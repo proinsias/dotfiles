@@ -1,0 +1,19 @@
+# This line sets your path environment
+PATH=$PATH:/usr/X11R6/bin:/sw/bin:/usr/local/bin
+export PATH
+
+# Needed so I can startup applications installed with Fink
+. /sw/bin/init.sh
+
+# Opens up an xterm 
+#xterm &
+
+# opens up the oclock clock
+#oclock &
+
+# opens up the fun xeyes program
+#xeyes &
+
+# Runs the quartz-wm so you can interact with the applications you've started
+/usr/X11R6/bin/quartz-wm
+

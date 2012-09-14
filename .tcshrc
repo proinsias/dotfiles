@@ -134,7 +134,7 @@ umask 002
 # Aliases
 #
 
-source ~ftod/.alias
+source ~ftod/.alias.csh
 
 #
 # Others

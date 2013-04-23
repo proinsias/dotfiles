@@ -16,8 +16,8 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "SystemWindow" :foreground "SystemWindowText" :inverse-video nil :box nil :str ike-through nil :overline nil :underline nil :slant normal :weight normal :height 163 :width normal :foundry "outline" :family "Cour
-ier New")))))
+;; '(default ((t (:inherit nil :stipple nil :background "SystemWindow" :foreground "SystemWindowText" :inverse-video nil :box nil :str ike-through nil :overline nil :underline nil :slant normal :weight normal :height 163 :width normal :foundry "outline" :family "Courier New"))))
+)
 
 ; To turn on auto-fill mode just once for one buffer, enter M-x auto-fill-mode
 ; To turn on auto-fill mode for every buffer in text mode:
@@ -125,3 +125,12 @@ ier New")))))
 ; Turn on auto spell check for text mode.
  (dolist (hook '(text-mode-hook))
       (add-hook hook (lambda () (flyspell-mode 1))))
+
+; Load pandoc-mode
+(add-to-list 'load-path "~/.emacs.d")
+(require 'cl)
+; http://joostkremers.github.com/pandoc-mode/
+(load "pandoc-mode")
+(add-to-list 'auto-mode-alist '("\\.md\\'" . pandoc-mode))
+
+(setq debug-on-error t)

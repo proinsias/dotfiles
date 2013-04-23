@@ -81,8 +81,8 @@ export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls' # Ignore the ls command as well
 export LESS="-X"
 
 # Aliases
-if [ -f "${HOME}/.alias" ]; then
-  source "${HOME}/.alias"
+if [ -f "${HOME}/.alias.bash" ]; then
+  source "${HOME}/.alias.bash"
 fi
 # Umask
 #

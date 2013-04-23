@@ -1,3 +1,13 @@
-# Disable the startup message
+# ---- Example screenrc file for creating windows and processes.
+# Create a window and use tcsh.
+screen tcsh
+# Turn off the startup message.
 startup_message off
+# Set the caption to the active windows. 
+caption always "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
 
+# New screens for various processes.
+#screen -t emacs 1 emacs
+#screen -t pine 2 pine
+#screen -t lynx 3 lynx
+#screen -t news 4 slrn  

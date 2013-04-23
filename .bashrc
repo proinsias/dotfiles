@@ -167,9 +167,11 @@ umask 027
 # 
 # alias cd=cd_func
 
-PATH=$PATH:"/home/fodonovan/scripts"
-
 export TODOTXT_DEFAULT_ACTION=ls
 complete -F _todo t
 #export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'
 
+
+  if [ -f "${HOME}/.bashrc.local" ]; then
+    source "${HOME}/.bashrc.local"
+  fi

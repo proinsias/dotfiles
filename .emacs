@@ -151,7 +151,7 @@ default-directory ".emacs")))
 ;;  Don't display passwords
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
 
-(set-default-font
+(set-frame-font
  "-adobe-courier-medium-r-normal--18-180-75-75-m-110-iso8859-1")
 
 ; Use aspell
@@ -160,20 +160,18 @@ default-directory ".emacs")))
  (dolist (hook '(text-mode-hook))
       (add-hook hook (lambda () (flyspell-mode 1))))
 
-<<<<<<< HEAD
 ; Load pandoc-mode
-(add-to-list 'load-path "~/.emacs.d")
-(require 'cl)
+;(add-to-list 'load-path "~/.emacs.d")
+;(require 'cl)
 ; http://joostkremers.github.com/pandoc-mode/
-(load "pandoc-mode")
-(add-to-list 'auto-mode-alist '("\\.md\\'" . pandoc-mode))
+;(load "pandoc-mode")
+;(add-to-list 'auto-mode-alist '("\\.md\\'" . pandoc-mode))
 
 (setq debug-on-error t)
-=======
+
 ;;;;Crontab mode
 ;;;;http://www.mahalito.net/~harley/elisp/crontab-mode.el
 (autoload 'crontab-mode "~/.emacs.d/crontab-mode.el" "Major mode
 for editing the crontab" t)
 (add-to-list 'auto-mode-alist '("\\.cron\\(tab\\)?\\'" .
 crontab-mode))
->>>>>>> 35736f6353403aaf396564c440237267bcd4b6e6

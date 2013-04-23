@@ -1,3 +1,21 @@
+;; User info
+(setq user-full-name "Francis O'Donovan")
+(setq user-mail-address "francis.odonovan@gmail.com")
+
+(defun call-occur()
+  (interactive)
+  (occur (current-word)))
+
+(global-set-key (quote [f3]) 'call-occur)
+
+;; Disable key
+;;(global-unset-key "\C-z")
+
+;; Disable the silly ring
+;; (setq ring-bell-function '(lambda()))
+
+
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -30,13 +48,6 @@
 ; Not sure if this supercedes above lines
 (setq-default auto-fill-function 'do-auto-fill)
 
-;; User info
-(setq user-full-name "Francis O'Donovan")
-;;(setq user-mail-address "user@name.com")
-
-;; Disable the silly ring
-;; (setq ring-bell-function '(lambda()))
-
 ;;;;Enable the bell- but make it visible and not aural.
 (setq visible-bell t)
 
@@ -59,6 +70,9 @@
 ;;;;things so all pastes, whether they be middle-click or C-y or menu,
 ;;;;all paste at the cursor.
 (setq mouse-yank-at-point t)
+
+;;;;Activate font-lock-mode. Syntax coloring, yay! 
+(global-font-lock-mode t)
 
 ;;;;While we are at it, always flash for parens.
 (show-paren-mode 1)
@@ -90,6 +104,12 @@
 ; 'Wrong type argument listp \.\.\.'
 ; delete ~/.emacs-places and start over.
 
+;;;SavePlace- this puts the cursor in the last place you editted
+;;;a particular file. This is very useful for large files.
+(require 'saveplace)
+(setq-default save-place t)
+
+;;;;Highlight regions so one can see what one is doing...
 (transient-mark-mode 1)
 
 ;;;;Completion ignores filenames ending in any string in this list.
@@ -98,6 +118,20 @@
 
 ;;;We can also get completion in the mini-buffer as well.
 (icomplete-mode t)
+
+;;;;"I always compile my .emacs, saves me about two seconds
+;;;;startuptime. But that only helps if the .emacs.elc is newer
+;;;;than the .emacs. So compile .emacs if it's not."
+(defun autocompile nil
+  "compile itself if ~/.emacs"
+  (interactive)
+  (require 'bytecomp)
+  (if (string= (buffer-file-name) (expand-file-name (concat
+default-directory ".emacs")))
+      (byte-compile-file (buffer-file-name))))
+
+(add-hook 'after-save-hook 'autocompile)
+
 
 ;;;Text files supposedly end in new lines. Or they should.
 (setq require-final-newline t)
@@ -126,6 +160,7 @@
  (dolist (hook '(text-mode-hook))
       (add-hook hook (lambda () (flyspell-mode 1))))
 
+<<<<<<< HEAD
 ; Load pandoc-mode
 (add-to-list 'load-path "~/.emacs.d")
 (require 'cl)
@@ -134,3 +169,11 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . pandoc-mode))
 
 (setq debug-on-error t)
+=======
+;;;;Crontab mode
+;;;;http://www.mahalito.net/~harley/elisp/crontab-mode.el
+(autoload 'crontab-mode "~/.emacs.d/crontab-mode.el" "Major mode
+for editing the crontab" t)
+(add-to-list 'auto-mode-alist '("\\.cron\\(tab\\)?\\'" .
+crontab-mode))
+>>>>>>> 35736f6353403aaf396564c440237267bcd4b6e6

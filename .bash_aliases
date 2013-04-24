@@ -10,7 +10,6 @@ alias alais='alias'
 alias boss='cd ; /usr/bin/clear'
 alias bye='/usr/bin/clear;logout'
 
-alias cd='cd \!*;echo $cwd'
 alias close='chmod g-w,o-rwx'
 alias copy='/bin/cp -i'
 alias count='ls \!* | wc -l'

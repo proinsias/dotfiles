@@ -11,4 +11,5 @@ set -o multiline # word wrap on command line # Cygwin doesn't like this
 
 export PS1='${USER}@`hostname`:${PWD}:\!>} '
 
-export PATH=/Users/ftod/bin:$PATH
+# Put this in local version of file
+#export PATH=/Users/ftod/bin:$PATH

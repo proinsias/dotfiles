@@ -1,0 +1,9 @@
+set path = ( $path /Developer/Tools /Developer/Applications )
+set path = ( $path /Users/ftod/bin.macosx /Users/ftod/scripts )
+set path = ( $path /Applications/GitHub.app/Contents/Resources/git/bin)
+
+set cdpath = (.. ~ ~/Downloads ~/Documents ~/favs)
+# The cd command will search the
+# list of paths defined in the cdpath variable for the directory
+# provided as its argument.
+

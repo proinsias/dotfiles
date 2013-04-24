@@ -28,6 +28,11 @@ if [ -f "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"
 fi
 
+# Aliases
+if [ -f "${HOME}/.bash_aliases" ]; then
+  source "${HOME}/.bash_aliases"
+fi
+
 if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
@@ -46,4 +51,5 @@ fi
 if [ -d "${HOME}/info" ]; then
   INFOPATH="${HOME}/info:${INFOPATH}"
 fi
+
 

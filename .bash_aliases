@@ -45,7 +45,7 @@ alias lmore='/bin/ls  --G -F \!* | more'
 alias mc='/bin/mv -i' # Stop calling Midnight Commander
 alias me='/usr/bin/whoami'
 alias move='/bin/mv -i'
-alias mroe more
+alias mroe='more'
 alias mv='/bin/mv -i'
 
 #alias open='chmod go+r'

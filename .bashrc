@@ -80,10 +80,6 @@ export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls' # Ignore the ls command as well
 # Disable the clearing of the screen by less
 export LESS="-X"
 
-# Aliases
-if [ -f "${HOME}/.alias.bash" ]; then
-  source "${HOME}/.alias.bash"
-fi
 # Umask
 #
 # /etc/profile sets 022, removing write perms to group + others.

@@ -1,0 +1,24 @@
+; idl.setup
+;		startup stuff for idl
+;		idl> @~/idl.setup
+;	last modified: Jul 8 2003
+;
+addpath = '/Users/ftod/idl_lib/:'+$
+'/Users/ftod/idl_lib/dc/:'
+!PATH = expand_path('+' + !DIR + ':' + 'external' + ':' + !PATH)
+
+astrolib
+
+if !path eq '' then $
+  !path = addpath $
+else !path = addpath + ':' + !path 
+delvar, addpath
+
+;
+; This section automatically creates a journal in the ~/.idl.journals
+;	directory with name: <date>.<time>.jnl 
+;	<date> is in yy-mm-dd format, <time> is in hhmm format
+;
+spawn,/noshell,['date','+%y-%m-%d.%H%M'],date
+name='~/.idl.journals/'+date(0)+'.jnl'
+journal,name	

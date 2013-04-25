@@ -21,6 +21,11 @@
 # would be benifitial to all, please feel free to send
 # a patch to the cygwin mailing list.
 
+# Source global definitions                                                     
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
 # User dependent .bashrc file
 
 # If not running interactively, don't do anything

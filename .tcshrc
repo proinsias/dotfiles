@@ -1,10 +1,12 @@
 ### BASIC SETUP
 
+if (`filetest -e ~/.tcshrc.local`) then
+        source ~/.tcshrc.local
+endif
+
 ## path
 
 set path = ( $path /usr/local/bin /usr/sbin /sbin )
-set path = ( $path /Developer/Tools /Developer/Applications )
-set path = ( $path /Users/ftod/bin.macosx /Users/ftod/scripts )
 
 # Do not put '.' in the path - for security reasons
 # Don't put final / in path
@@ -69,10 +71,6 @@ setenv EDITOR emacs
 # Completion ignores case, considers separators
 
 #set lcd = ( )  #  add parents of frequently used directories
-set cdpath = (.. ~ ~/Downloads ~/Documents ~/favs)
-# The cd command will search the
-# list of paths defined in the cdpath variable for the directory
-# provided as its argument.
 
 #stty erase ^H
 
@@ -134,7 +132,7 @@ umask 002
 # Aliases
 #
 
-source ~ftod/.alias.csh
+source ~/.alias.csh
 
 #
 # Others

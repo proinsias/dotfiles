@@ -47,4 +47,11 @@ Desktop.ini
 Icon?
 ehthumbs.db
 Thumbs.db
+
+# emacs
+\#*#
+*~
+
+# Misc
+
 .emacs.elc

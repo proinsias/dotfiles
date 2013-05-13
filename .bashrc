@@ -176,3 +176,7 @@ complete -F _todo t
   if [ -f "${HOME}/.bashrc.local" ]; then
     source "${HOME}/.bashrc.local"
   fi
+
+  if [ -f "${HOME}/.bash_aliases" ]; then
+    source "${HOME}/.bash_aliases"
+  fi

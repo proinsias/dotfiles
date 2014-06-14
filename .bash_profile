@@ -42,6 +42,9 @@ if [ -d "${HOME}/bin" ] ; then
   PATH="${HOME}/bin:${PATH}"
 fi
 
+PATH=/usr/local/sbin:$PATH
+
+
 # Set MANPATH so it includes users' private man if it exists
 if [ -d "${HOME}/man" ]; then
   MANPATH="${HOME}/man:${MANPATH}"

@@ -23,6 +23,9 @@ if (! $?MANPATH ) setenv MANPATH ""
 ## For MySQL
 set path = ( /usr/local/mysql/bin $path )
 
+## homebrew
+set path = (/usr/local/sbin $path )
+
 ## pgplot
 setenv PGPLOT_DIR /usr/local/pgplot
 setenv PGPLOT_FONT /usr/local/pgplot/grfont.dat

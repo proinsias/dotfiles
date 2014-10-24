@@ -183,7 +183,7 @@ function parse_git_branch {
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"
-WHITE="\[$(tput sgr0)\]"
+WHITE="\[\033[1;37m\]"
 PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
 
   if [ -f "${HOME}/.bashrc.local" ]; then

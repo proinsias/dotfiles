@@ -1,0 +1,5 @@
+[user]
+	name = Francis O'Donovan
+	email = francis.odonovan@gmail.com
+[include]
+	path = .gitconfig.local # if not found, will fail silently

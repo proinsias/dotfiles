@@ -172,6 +172,8 @@ export TODOTXT_DEFAULT_ACTION=ls
 complete -F _todo t
 #export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'
 
+export GIT_EDITOR=emacs
+
 
   if [ -f "${HOME}/.bashrc.local" ]; then
     source "${HOME}/.bashrc.local"
@@ -180,3 +182,5 @@ complete -F _todo t
   if [ -f "${HOME}/.bash_aliases" ]; then
     source "${HOME}/.bash_aliases"
   fi
+
+

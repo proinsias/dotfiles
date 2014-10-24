@@ -4,4 +4,4 @@
 [include]
 	path = .gitconfig.local # if not found, will fail silently
 [push]
-	default = simple
+	default = matching

@@ -1,5 +1,5 @@
 [user]
 	name = Francis T. O'Donovan
 	email = francis.odonovan@bostonfusion.com
-[core]
-	excludesfile = /home/fodonovan/.gitignore
+[include]
+	path = .gitconfig.local # if not found, will fail silently

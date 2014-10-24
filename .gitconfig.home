@@ -2,6 +2,5 @@
 	name = Francis O'Donovan
 	email = francis.odonovan@gmail.com
 [include]
+	path = .gitconfig.share
 	path = .gitconfig.local # if not found, will fail silently
-[push]
-	default = matching

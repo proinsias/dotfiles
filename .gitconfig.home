@@ -3,3 +3,5 @@
 	email = francis.odonovan@gmail.com
 [include]
 	path = .gitconfig.local # if not found, will fail silently
+[push]
+	default = simple

@@ -1,10 +1,10 @@
 # eclipse #
 ###########
-.classpath
-.project
+#.classpath
+#.project
 .settings
-bin
-doc
+/bin
+/doc
 
 # Compiled source #
 ###################
@@ -51,7 +51,9 @@ Thumbs.db
 # emacs
 \#*#
 *~
+.emacs.elc
 
 # Misc
-
-.emacs.elc
+.sonar
+log4j.properties
+target

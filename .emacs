@@ -14,8 +14,6 @@
 ;; Disable the silly ring
 ;; (setq ring-bell-function '(lambda()))
 
-
-
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -104,11 +102,6 @@
 ; 'Wrong type argument listp \.\.\.'
 ; delete ~/.emacs-places and start over.
 
-;;;SavePlace- this puts the cursor in the last place you editted
-;;;a particular file. This is very useful for large files.
-(require 'saveplace)
-(setq-default save-place t)
-
 ;;;;Highlight regions so one can see what one is doing...
 (transient-mark-mode 1)
 
@@ -131,7 +124,6 @@ default-directory ".emacs")))
       (byte-compile-file (buffer-file-name))))
 
 (add-hook 'after-save-hook 'autocompile)
-
 
 ;;;Text files supposedly end in new lines. Or they should.
 (setq require-final-newline t)
@@ -175,3 +167,7 @@ default-directory ".emacs")))
 for editing the crontab" t)
 (add-to-list 'auto-mode-alist '("\\.cron\\(tab\\)?\\'" .
 crontab-mode))
+
+;;; I like tabs!
+;;; The setq-default command sets values only in buffers that do not have their own local values for the variable.
+     (setq-default indent-tabs-mode t)

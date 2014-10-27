@@ -56,3 +56,5 @@
     editor = emacs
     excludesfile = /home/fodonovan/.gitignore
 
+[push]
+	default = matching

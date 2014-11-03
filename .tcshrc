@@ -1,8 +1,7 @@
 ### BASIC SETUP
 
-if (`filetest -e ~/.tcshrc.local`) then
-        source ~/.tcshrc.local
-endif
+unalias *       
+# Clear out any unwanted aliases we've picked up
 
 ## path
 
@@ -22,9 +21,6 @@ if (! $?MANPATH ) setenv MANPATH ""
 
 ## For MySQL
 set path = ( /usr/local/mysql/bin $path )
-
-## homebrew
-set path = (/usr/local/sbin $path )
 
 ## pgplot
 setenv PGPLOT_DIR /usr/local/pgplot
@@ -56,17 +52,17 @@ unlimit cputime
 set noclobber
 
 # -- changing screen colors --
-setenv TERMCOLOR_DIR ${HOME}/bin/colorssh
+#setenv TERMCOLOR_DIR ${HOME}/bin/colorssh
 # ideally we would only do this if we are actually physically
 # in front of this specific macintosh... but i don't know how
 # to check that
-if ( ${TERM} != "dumb") then
-  alias decolorterm '${TERMCOLOR_DIR}/termcolor_set.sh light gray'
-  alias su  '${TERMCOLOR_DIR}/termcolor_wrap.sh \su \!*'
-  alias ssh '${TERMCOLOR_DIR}/termcolor_wrap.sh \ssh \!*'
-  alias rlogin '${TERMCOLOR_DIR}/termcolor_wrap.sh \rlogin \!*'
-  alias slogin '${TERMCOLOR_DIR}/termcolor_wrap.sh \slogin \!*'
-endif
+#if ( ${TERM} != "dumb") then
+#  alias decolorterm '${TERMCOLOR_DIR}/termcolor_set.sh light gray'
+#  alias su  '${TERMCOLOR_DIR}/termcolor_wrap.sh \su \!*'
+#  alias ssh '${TERMCOLOR_DIR}/termcolor_wrap.sh \ssh \!*'
+#  alias rlogin '${TERMCOLOR_DIR}/termcolor_wrap.sh \rlogin \!*'
+#  alias slogin '${TERMCOLOR_DIR}/termcolor_wrap.sh \slogin \!*'
+#endif
 
 setenv EDITOR emacs
 #set edit=$EDITOR
@@ -97,8 +93,6 @@ set autolist = ambiguous
 # set autocorrect                                                            
 # instead, try to correct spelling
 
-unalias *       
-# Clear out any unwanted aliases we've picked up
 
 umask 002
 # Default file protection setting
@@ -208,3 +202,6 @@ else
     set prompt = "%{\033[0;1;32m%}[%{\033[31m%}%d%w%D %T %{\033[34m%}%n@%m:%{\033[35m%}%!(%?):%{\033[36m%}%c%{\033[32m%}]%{\033[0m%}%# "
 endif
 
+if (`filetest -e ~/.tcshrc.local`) then
+        source ~/.tcshrc.local
+endif

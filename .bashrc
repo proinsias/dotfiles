@@ -83,7 +83,8 @@ export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls' # Ignore the ls command as well
 # export PROMPT_COMMAND="history -a"
 
 # Disable the clearing of the screen by less
-export LESS="-X"
+# Pass color ANSI control characters through to the terminal
+export LESS="-XR"
 
 # Umask
 #
@@ -172,6 +173,18 @@ export TODOTXT_DEFAULT_ACTION=ls
 complete -F _todo t
 #export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'
 
+#export GIT_EDITOR=emacs
+
+# From http://www.railstips.org/blog/archives/2009/02/02/bedazzle-your-bash-prompt-with-git-info/
+function parse_git_branch {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo "("${ref#refs/heads/}")"
+}
+RED="\[\033[0;31m\]"
+YELLOW="\[\033[0;33m\]"
+GREEN="\[\033[0;32m\]"
+WHITE="\[\033[1;37m\]"
+PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
 
   if [ -f "${HOME}/.bashrc.local" ]; then
     source "${HOME}/.bashrc.local"
@@ -180,3 +193,5 @@ complete -F _todo t
   if [ -f "${HOME}/.bash_aliases" ]; then
     source "${HOME}/.bash_aliases"
   fi
+
+

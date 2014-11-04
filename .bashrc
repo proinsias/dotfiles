@@ -169,8 +169,8 @@ umask 027
 # 
 # alias cd=cd_func
 
-export TODOTXT_DEFAULT_ACTION=ls
-complete -F _todo t
+#export TODOTXT_DEFAULT_ACTION=ls
+#complete -F _todo t
 #export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'
 
 #export GIT_EDITOR=emacs
@@ -185,6 +185,11 @@ YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"
 WHITE="\[$(tput sgr0)\]"
 PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
+
+## Run ssh-agent
+#eval `ssh-agent -s` # `exec ssh-agent bash` doesn't work here
+#ssh-add # ~/.ssh/id_rsa 
+
 
   if [ -f "${HOME}/.bashrc.local" ]; then
     source "${HOME}/.bashrc.local"

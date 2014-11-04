@@ -54,5 +54,7 @@
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol # Highlight whitespace in diffs
     autocrlf = true
     editor = emacs
-    excludesfile = /home/fodonovan/.gitignore
+    # excludesfile = /Users/ftod/.gitignore
 
+[push]
+	default = matching

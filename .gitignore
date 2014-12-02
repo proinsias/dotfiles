@@ -62,3 +62,6 @@ target
 
 # Spyder
 .spyderproject
+
+# iPython
+.ipynb_checkpoints

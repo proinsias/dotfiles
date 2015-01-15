@@ -11,6 +11,7 @@ alias - cd -
 
 alias alais alias
 
+alias bc "bc -l"
 alias boss "cd ; /usr/bin/clear"
 alias bye "/usr/bin/clear;logout"
 

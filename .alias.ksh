@@ -1,3 +1,4 @@
+alias bc="bc -l"
 
 alias cd..="cd ../.."
 alias cd...="cd ../../.."

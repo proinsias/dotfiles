@@ -7,6 +7,7 @@
 
 alias alais='alias'
 
+alias bc="bc -l"
 alias boss='cd ; /usr/bin/clear'
 alias bye='/usr/bin/clear;logout'
 
@@ -63,6 +64,7 @@ alias space='/usr/bin/du -sh \!*'
 alias t='todo.sh -d /Users/ftod/.todo.cfg'
 alias top='top -o cpu'
 
+alias unmount='umount'
 alias up='cd ../'
 alias up2='cd ../../'
 alias up3='cd ../../../'

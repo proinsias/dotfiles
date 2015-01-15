@@ -35,6 +35,7 @@
 *.log.1
 *.sql
 *.sqlite
+/log
 
 # OS generated files #
 ######################
@@ -56,4 +57,11 @@ Thumbs.db
 # Misc
 .sonar
 log4j.properties
+logging.conf
 target
+
+# Spyder
+.spyderproject
+
+# iPython
+.ipynb_checkpoints

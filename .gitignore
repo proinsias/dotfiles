@@ -65,3 +65,7 @@ target
 
 # iPython
 .ipynb_checkpoints
+
+# cygwin
+*.stackdump
+

@@ -69,3 +69,13 @@ target
 # cygwin
 *.stackdump
 
+# GWT
+gwt-unitCache/
+.apt_generated/
+war/WEB-INF/deploy/
+war/WEB-INF/classes/
+.gwt/
+www-test/
+
+# GAE
+war/WEB-INF/appengine-generated/

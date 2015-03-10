@@ -1,10 +1,18 @@
 # eclipse #
 ###########
+<<<<<<< HEAD
 #.classpath
 #.project
 .settings
 /bin
 /doc
+=======
+.classpath
+.project
+.settings
+bin
+doc
+>>>>>>> Adding more .gitignore content.
 
 # Compiled source #
 ###################
@@ -35,7 +43,10 @@
 *.log.1
 *.sql
 *.sqlite
+<<<<<<< HEAD
 /log
+=======
+>>>>>>> Adding more .gitignore content.
 
 # OS generated files #
 ######################
@@ -48,6 +59,7 @@ Desktop.ini
 Icon?
 ehthumbs.db
 Thumbs.db
+<<<<<<< HEAD
 
 # emacs
 \#*#
@@ -79,3 +91,5 @@ www-test/
 
 # GAE
 war/WEB-INF/appengine-generated/
+=======
+>>>>>>> Adding more .gitignore content.

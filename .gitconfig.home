@@ -1,8 +1,6 @@
 [user]
-	name = Francis T. O'Donovan
-	email = francis.odonovan@bostonfusion.com
-[push]
-    default = matching
+	name = Francis O'Donovan
+	email = francis.odonovan@gmail.com
 [color]
     diff = auto
     status = auto
@@ -46,7 +44,7 @@
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls = ls-files
-    psuh = push 
+    psuh = push
     pu = pull --recurse-submodules
     pull = pull --recurse-submodules
     r  = !git ls-files -z --deleted | xargs -0 git rm # Remove files which have been deleted
@@ -61,5 +59,7 @@
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol # Highlight whitespace in diffs
     autocrlf = true
     editor = emacs
-    excludesfile = /home/fodonovan/.gitignore
+    # excludesfile = /Users/ftod/.gitignore
 
+[push]
+	default = matching

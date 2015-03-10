@@ -28,6 +28,11 @@ if [ -f "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"
 fi
 
+# Aliases
+if [ -f "${HOME}/.bash_aliases" ]; then
+  source "${HOME}/.bash_aliases"
+fi
+
 if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
@@ -36,6 +41,9 @@ fi
 if [ -d "${HOME}/bin" ] ; then
   PATH="${HOME}/bin:${PATH}"
 fi
+
+PATH=/usr/local/sbin:$PATH
+
 
 # Set MANPATH so it includes users' private man if it exists
 if [ -d "${HOME}/man" ]; then

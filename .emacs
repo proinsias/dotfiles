@@ -126,11 +126,11 @@
  (dolist (hook '(text-mode-hook))
       (add-hook hook (lambda () (flyspell-mode 1))))
 
-; Load pandoc-mode
-(add-to-list 'load-path "~/.emacs.d")
-(require 'cl)
+;; Load pandoc-mode
+;(add-to-list 'load-path "~/.emacs.d")
+;(require 'cl)
 ; http://joostkremers.github.com/pandoc-mode/
-(load "pandoc-mode")
-(add-to-list 'auto-mode-alist '("\\.md\\'" . pandoc-mode))
+;(load "pandoc-mode")
+;(add-to-list 'auto-mode-alist '("\\.md\\'" . pandoc-mode))
 
 (setq debug-on-error t)

@@ -55,3 +55,6 @@ if [ -d "${HOME}/info" ]; then
   INFOPATH="${HOME}/info:${INFOPATH}"
 fi
 
+
+# added by Anaconda3 2.1.0 installer
+export PATH="/Users/fodonovan/anaconda/bin:$PATH"

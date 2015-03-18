@@ -27,23 +27,20 @@
 " 01. General
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible         " get rid of Vi compatibility mode. SET
-FIRST!
+set nocompatible         " get rid of Vi compatibility mode. SET FIRST!
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 02. Events
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype plugin indent on " filetype detection[ON] plugin[ON]
-indent[ON]
+filetype plugin indent on " filetype detection[ON] plugin[ON] indent[ON]
 
 " In Makefiles DO NOT use spaces instead of tabs
 autocmd FileType make setlocal noexpandtab
 " In Ruby files, use 2 spaces instead of 4 for tabs
 autocmd FileType ruby setlocal sw=2 ts=2 sts=2
 
-" Enable omnicompletion (to use, hold Ctrl+X then Ctrl+O while in
-Insert mode.
+" Enable omnicompletion (to use, hold Ctrl+X then Ctrl+O while in Insert mode.
 set ofu=syntaxcomplete#Complete
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -53,7 +50,7 @@ set ofu=syntaxcomplete#Complete
 set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously
 syntax on).
-colorscheme molokai       " set colorscheme
+"colorscheme molokai       " set colorscheme
 
 " Prettify JSON files
 autocmd BufRead,BufNewFile *.json set filetype=json
@@ -73,8 +70,7 @@ match OverLength /\%81v.\+/
 set number                " show line numbers
 set cul                   " highlight current line
 set laststatus=2          " last window always has a statusline
-set nohlsearch            " Don't continue to highlight searched
-phrases.
+set nohlsearch            " Don't continue to highlight searched phrases.
 set incsearch             " But do highlight as you type your search.
 set ignorecase            " Make searches case-insensitive.
 set ruler                 " Always show info along bottom.
@@ -90,9 +86,7 @@ set autoindent            " auto-indent
 set tabstop=4             " tab spacing
 set softtabstop=4         " unify
 set shiftwidth=4          " indent/outdent by 4 columns
-set shiftround            " always indent/outdent to the nearest
-tabstop
+set shiftround            " always indent/outdent to the nearest tabstop
 set expandtab             " use spaces instead of tabs
-set smarttab              " use tabs at the start of a line, spaces
-elsewhere
+set smarttab              " use tabs at the start of a line, spaces elsewhere
 set nowrap                " don't wrap text

@@ -198,5 +198,3 @@ PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
   if [ -f "${HOME}/.bash_aliases" ]; then
     source "${HOME}/.bash_aliases"
   fi
-
-

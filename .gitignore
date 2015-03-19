@@ -1,10 +1,10 @@
 # eclipse #
 ###########
-#.classpath
-#.project
+.classpath
+.project
 .settings
-/bin
-/doc
+bin
+doc
 
 # Compiled source #
 ###################
@@ -35,7 +35,6 @@
 *.log.1
 *.sql
 *.sqlite
-/log
 
 # OS generated files #
 ######################
@@ -48,6 +47,15 @@ Desktop.ini
 Icon?
 ehthumbs.db
 Thumbs.db
+
+# Logs and databases #
+######################
+*.log
+*.log.1
+*.sql
+*.sqlite
+
+/log
 
 # emacs
 \#*#
@@ -65,3 +73,17 @@ target
 
 # iPython
 .ipynb_checkpoints
+
+# cygwin
+*.stackdump
+
+# GWT
+gwt-unitCache/
+.apt_generated/
+war/WEB-INF/deploy/
+war/WEB-INF/classes/
+.gwt/
+www-test/
+
+# GAE
+war/WEB-INF/appengine-generated/

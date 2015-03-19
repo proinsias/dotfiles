@@ -29,6 +29,7 @@
     br = branch
     cam = commit -am
     ci = commit
+    clone = clone --recursive
     co = checkout
     dc = diff --cached
     df = diff
@@ -45,10 +46,14 @@
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls = ls-files
-    psuh = push
-    pu = pull
+    psuh = push 
+    pu = pull --recurse-submodules
+    pull = pull --recurse-submodules
     r  = !git ls-files -z --deleted | xargs -0 git rm # Remove files which have been deleted
     st = status
+    su = !git submodule update --init --recursive && git submodule\
+	foreach --recursive git checkout master && git submodule\
+	foreach --recursive git pull
     this = !git init && git add . && git commit -m \"initial commit\" # Make this directory a git repo
     type = cat-file -t
     unstage = reset HEAD --
@@ -57,3 +62,4 @@
     autocrlf = true
     editor = emacs
     excludesfile = /home/fodonovan/.gitignore
+

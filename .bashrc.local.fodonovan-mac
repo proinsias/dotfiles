@@ -6,12 +6,7 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # python
 ## added by Anaconda3 2.1.0 installer
-export PATH="/Volumes/FireflyHD2/anaconda3/bin:$PATH"
-
-### pylearn
-#export PYLEARN2_DATA_PATH=/Users/ftod/data/pylearn
-
-export PATH="/Users/ftod/Library/Application Support/GoodSync":$PATH
+export PATH="/Users/fodonovan/anaconda/bin:$PATH"
 
 # for autojump
 [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
@@ -28,6 +23,7 @@ function cleanup {
 
 trap cleanup EXIT
 ###
+
 
 # For homebrew bash completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then

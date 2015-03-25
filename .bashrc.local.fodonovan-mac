@@ -8,6 +8,8 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 ## added by Anaconda3 2.1.0 installer
 export PATH="/Users/fodonovan/anaconda/bin:$PATH"
 
+export PATH=$PATH:"/Users/fodonovan/scripts"
+
 # for autojump
 [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
 
@@ -33,3 +35,4 @@ fi
 # To install homebrew casks in /Applications by default
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
+#ssh-add # ~/.ssh/id_rsa 

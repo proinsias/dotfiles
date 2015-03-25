@@ -1,0 +1,22 @@
+
+# Derby-related
+#export DERBY_HOME=c:/java/derby/db-derby-10.9.1.0-bin
+#export PATH=$DERBY_HOME/bin:$PATH
+
+PATH=$PATH:"/home/fodonovan/scripts"
+
+# Python
+export PATH=/home/fodonovan/Anaconda3:/home/fodonovan/Anaconda3/Scripts:$PATH
+#export PYTHONPATH=/usr/lib/python3.2/site-packages:$PYTHONPATH
+export PYTHONPATH=/cygdrive/c/Program\ Files/Anaconda3/Lib/site-packages:$PYTHONPATH
+## Required for anaconda in cygwin - interactive mode
+alias python='python -i'
+## Pylearn2
+export PYLEARN2_DATA_PATH=/home/fodonovan/data/pylearn2
+
+export TERM=cygwin
+
+# Run ssh-agent
+eval `ssh-agent -s` # `exec ssh-agent bash` doesn't work here
+ssh-add # ~/.ssh/id_rsa 
+

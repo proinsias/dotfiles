@@ -6,7 +6,7 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # python
 ## added by Anaconda3 2.1.0 installer
-export PATH="/Users/fodonovan/anaconda/bin:$PATH"
+export PATH="/Users/fodonovan/anaconda3/bin:$PATH"
 
 export PATH=$PATH:"/Users/fodonovan/scripts"
 
@@ -35,4 +35,16 @@ fi
 # To install homebrew casks in /Applications by default
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-#ssh-add # ~/.ssh/id_rsa 
+ssh-add # ~/.ssh/id_rsa 
+
+# GWT
+export GWT_TOOLS=/usr/local/gwt/tools-2.7.0
+export GWT_HOME=/usr/local/gwt/gwt-2.7.0
+
+
+# ruby
+export RBENV_ROOT=/usr/local/var/rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export RBENV_ROOT="$(brew --prefix rbenv)"
+export GEM_HOME="$(brew --prefix)/opt/gems"
+export GEM_PATH="$(brew --prefix)/opt/gems"

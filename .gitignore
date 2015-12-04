@@ -67,6 +67,7 @@ Thumbs.db
 log4j.properties
 logging.conf
 target
+config.ini
 
 # Spyder
 .spyderproject

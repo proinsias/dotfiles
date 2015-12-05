@@ -43,8 +43,9 @@ export GWT_HOME=/usr/local/gwt/gwt-2.7.0
 
 
 # ruby
-export RBENV_ROOT=/usr/local/var/rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export RBENV_ROOT="$(brew --prefix rbenv)"
 export GEM_HOME="$(brew --prefix)/opt/gems"
 export GEM_PATH="$(brew --prefix)/opt/gems"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+if brew command command-not-found-init > /dev/null; then eval "$(brew command-not-found-init)"; fi

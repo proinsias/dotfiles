@@ -46,12 +46,12 @@
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls = ls-files
-    psuh = push 
+    psuh = push
     pu = pull --recurse-submodules
     pull = pull --recurse-submodules
     r  = !git ls-files -z --deleted | xargs -0 git rm # Remove files which have been deleted
     st = status
-    su = !git submodule update --init --recursive && git submodule\
+    up = !git pull --rebase --prune $@ && git submodule update --init --recursive && git submodule\
 	foreach --recursive git checkout master && git submodule\
 	foreach --recursive git pull
     this = !git init && git add . && git commit -m \"initial commit\" # Make this directory a git repo
@@ -65,7 +65,7 @@
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true

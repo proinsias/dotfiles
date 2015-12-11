@@ -88,3 +88,5 @@ www-test/
 
 # GAE
 war/WEB-INF/appengine-generated/
+
+.idea

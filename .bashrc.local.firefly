@@ -11,7 +11,7 @@ export PATH="/Volumes/FireflyHD2/anaconda3/bin:$PATH"
 ### pylearn
 #export PYLEARN2_DATA_PATH=/Users/ftod/data/pylearn
 
-export PATH="/Users/ftod/Library/Application Support/GoodSync":$PATH
+#export PATH="/Users/ftod/Library/Application Support/GoodSync":$PATH
 
 # for autojump
 [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh

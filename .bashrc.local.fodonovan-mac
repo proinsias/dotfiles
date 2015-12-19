@@ -1,35 +1,12 @@
-# Add homebrew's GNU coreutils (ls, cat, etc.) to PATH - see http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-
-# Add homebrew's GNU coreutils to MANPATH
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
 # python
 ## added by Anaconda3 2.1.0 installer
-export PATH="/Users/fodonovan/anaconda/bin:$PATH"
+export PATH="/Users/fodonovan/anaconda3/bin:$PATH"
 
-# for autojump
-[[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
+export PATH=$PATH:"/Users/fodonovan/scripts"
 
-###
-# For homebrew openssh with keychain support
+#ssh-add # ~/.ssh/id_rsa
 
-eval $(ssh-agent)
-
-function cleanup {
-  echo "Killing SSH-Agent"
-  kill -9 $SSH_AGENT_PID
-}
-
-trap cleanup EXIT
-###
-
-
-# For homebrew bash completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
-
-# To install homebrew casks in /Applications by default
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+# GWT
+export GWT_TOOLS=/usr/local/gwt/tools-2.7.0
+export GWT_HOME=/usr/local/gwt/gwt-2.7.0
 

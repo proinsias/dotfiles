@@ -11,3 +11,9 @@ caption always "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
 #screen -t pine 2 pine
 #screen -t lynx 3 lynx
 #screen -t news 4 slrn  
+
+# Set a large scrollback buffer
+defscrollback 32000
+
+# Always start `screen` with UTF-8 enabled (`screen -U`)
+defutf8 on

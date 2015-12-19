@@ -134,3 +134,34 @@
 ;(add-to-list 'auto-mode-alist '("\\.md\\'" . pandoc-mode))
 
 (setq debug-on-error t)
+
+(let ((default-directory "/usr/local/share/emacs/site-lisp/"))
+  (normal-top-level-add-subdirs-to-load-path))
+
+(require 'git-messenger)
+(setq git-messenger:show-detail t)
+
+(require 'gitattributes-mode)
+(require 'gitconfig-mode)
+(require 'gitignore-mode)
+(add-to-list 'auto-mode-alist '("^\.gitattributes$"
+				. gitattributes-mode))
+(add-to-list 'auto-mode-alist '("^\.gitconfig$" . gitconfig-mode))
+(add-to-list 'auto-mode-alist '("^\.gitignore$" . gitignore-mode))
+(add-to-list 'auto-mode-alist '("\.git/info/attributes$"
+				. gitignore-mode))
+(add-to-list 'auto-mode-alist '("\.git/config$" . gitignore-mode))
+(add-to-list 'auto-mode-alist '("\.git/info/exclude$" . gitignore-mode))
+
+(require 'inf-ruby)
+(autoload 'inf-ruby-minor-mode "inf-ruby" "Run an inferior Ruby
+process" t)
+(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+
+(require 'markdown-mode)
+(add-to-list 'auto-mode-alist '("\.markdown$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\.mdown$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\.md$" . markdown-mode))
+
+
+

@@ -198,3 +198,64 @@ PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
   if [ -f "${HOME}/.bash_aliases" ]; then
     source "${HOME}/.bash_aliases"
   fi
+
+# Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+# * ~/.extra can be used for other settings you don’t want to commit.
+#for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+#    [ -r "$file" ] && [ -f "$file" ] && source "$file";
+#    done;
+#    unset file;
+
+# Add tab completion for `defaults read|write NSGlobalDomain`
+# You could just use `-g` instead, but I like being explicit
+complete -W "NSGlobalDomain" defaults;
+
+# Add homebrew's GNU coreutils (ls, cat, etc.) to PATH - see http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+# Add homebrew's GNU coreutils to MANPATH
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+# for autojump
+[[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
+
+###
+# For homebrew openssh with keychain support
+
+eval $(ssh-agent)
+
+function cleanup {
+  echo "Killing SSH-Agent"
+  kill -9 $SSH_AGENT_PID
+}
+
+trap cleanup EXIT
+###
+
+
+# For homebrew bash completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
+# To install homebrew casks in /Applications by default
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# ruby
+export RBENV_ROOT="$(brew --prefix rbenv)"
+export GEM_HOME="$(brew --prefix)/opt/gems"
+export GEM_PATH="$(brew --prefix)/opt/gems"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+if brew command command-not-found-init > /dev/null; then eval "$(brew command-not-found-init)"; fi
+
+# Wrap git automatically by adding the following to ~/.bash_profile:
+eval "$(hub alias -s)"
+
+# Add `killall` tab completion for common apps
+complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+

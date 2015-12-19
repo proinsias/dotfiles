@@ -90,3 +90,30 @@ alias ll='ls -l'                              # long list
 alias la='ls -A'                              # all but . and ..
 alias l='ls -CF'                              #
 
+# OS X has no `md5sum`, so use `md5` as a fallback
+command -v md5sum > /dev/null || alias md5sum="md5"
+
+# OS X has no `sha1sum`, so use `shasum` as a fallback
+command -v sha1sum > /dev/null || alias sha1sum="shasum"
+
+# Show/hide hidden files in Finder
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool
+true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool
+false && killall Finder"
+
+# Hide/show all desktop icons (useful when presenting)
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool
+false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool
+true && killall Finder"
+
+# Ring the terminal bell, and put a badge on Terminal.app’s Dock icon
+# (useful when executing time-consuming commands)
+alias badge="tput bel"
+
+# Lock the screen (when going AFK)
+alias afk="/System/Library/CoreServices/Menu\
+Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+

@@ -2,7 +2,10 @@
 ## added by Anaconda3 2.1.0 installer
 export PATH="/Volumes/FireflyHD2/anaconda3/bin:$PATH"
 
-export PATH="/Users/ftod/Library/Application Support/GoodSync":$PATH
+### pylearn
+#export PYLEARN2_DATA_PATH=/Users/ftod/data/pylearn
+
+#export PATH="/Users/ftod/Library/Application Support/GoodSync":$PATH
 
 export PATH=$PATH:"/Users/ftod/scripts"
 

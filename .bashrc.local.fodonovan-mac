@@ -2,7 +2,7 @@
 ## added by Anaconda3 2.1.0 installer
 export PATH="/Users/fodonovan/anaconda3/bin:$PATH"
 
-export PATH=$PATH:"/Users/fodonovan/scripts"
+export PATH=$PATH:"/Users/fodonovan/Documents/Bitbucket/scripts"
 
 #ssh-add # ~/.ssh/id_rsa
 

@@ -266,6 +266,9 @@ eval "$(thefuck --alias )" # Add text after 'alias' to replace default 'fuck'
 echo "Is the internet on fire?:"
 dig +short -t txt istheinternetonfire.com
 
+# keychain
+#eval `keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC`
+
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
 if [ -f ~/.bashhub/bashhub.sh ]; then

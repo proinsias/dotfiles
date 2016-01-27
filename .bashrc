@@ -269,9 +269,15 @@ dig +short -t txt istheinternetonfire.com
 # keychain
 #eval `keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC`
 
+# overcommit
+export GIT_TEMPLATE_DIR=`overcommit --template-dir`
+
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
 if [ -f ~/.bashhub/bashhub.sh ]; then
     source ~/.bashhub/bashhub.sh
 fi
 
+
+# added by travis gem
+[ -f /Users/fodonovan/.travis/travis.sh ] && source /Users/fodonovan/.travis/travis.sh

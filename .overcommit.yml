@@ -18,17 +18,21 @@ PreCommit:
     enabled: true
     quiet: false
     include: '**/*.sh'
-    required_executable: './bin/bash_syntax'
+    required_executable: './scripts/bash_syntax.sh'
   CopyrightYear:
     enabled: true
     quiet: false
-    required_executable: './bin/copyright_year'
+    required_executable: './scripts/copyright_year.sh'
   CssLint:
     enabled: true
   Eslint:
     enabled: true
   ExecutePermissions:
     enabled: true
+    exclude:
+      - 'scripts/bash_syntax.sh'
+      - 'scripts/copyright_year.sh'
+      - 'scripts/freespace.sh'
   HardTabs:
     enabled: true
   HtmlHint:
@@ -100,6 +104,7 @@ PostCheckout:
 PostCommit:
   GitGuilt:
     enabled: true
+    requires_files: false
   SubmoduleStatus:
     enabled: true
     quiet: false
@@ -129,4 +134,4 @@ PreReceive:
   FreeSpace:
     enabled: true
     quiet: false
-    required_executable: './bin/freespace'
+    required_executable: './scripts/freespace.sh'

@@ -13,6 +13,7 @@ brew 'ack'
 brew 'advancecomp'
 brew 'ant'
 brew 'apg'
+brew 'archey'
 brew 'aspell'
 brew 'autoconf'
 brew 'autojump'
@@ -30,6 +31,7 @@ brew 'colordiff'
 brew 'coreutils'
 brew 'cowsay'
 brew 'cscope'
+brew 'curl', args: ['with-ssl', 'with-libssh2']
 brew 'd-bus'
 brew 'daq'
 brew 'docmunch/pdftk/pdftk'
@@ -41,6 +43,7 @@ brew 'epstool'
 brew 'faac'
 brew 'ffmpeg'
 brew 'fftw'
+brew 'figlet'
 brew 'findutils', args: ['default-names']
 brew 'fontconfig'
 brew 'fortune'
@@ -53,7 +56,8 @@ brew 'gdbm'
 brew 'geoip'
 brew 'gettext'
 brew 'ghostscript'
-brew 'git'
+brew 'git', args: ['with-brewed-curl', 'with-brewed-openssl', 'with-brewed-svn', 'with-gettext', 'with-pcre', 'with-persistent-https']
+brew 'git-ftp'
 brew 'gl2ps'
 brew 'glib'
 brew 'gmp'
@@ -61,7 +65,7 @@ brew 'gnu-indent', args: ['default-names']
 brew 'gnu-sed', args: ['default-names']
 brew 'gnu-tar', args: ['default-names']
 brew 'gnu-which', args: ['with-default-names']
-brew 'gnuplot', args: ['with-qt']
+brew 'gnuplot', args: ['with-qt', 'with-x11']
 brew 'gnutls'
 brew 'go'
 brew 'gobject-introspection'
@@ -138,6 +142,7 @@ brew 'jpeg'
 brew 'jpegoptim'
 brew 'keychain'
 brew 'lame'
+brew 'lastpass-cli', args: ['with-doc']
 brew 'libdnet'
 brew 'libdvdcss'
 brew 'libffi'
@@ -161,7 +166,7 @@ brew 'macvim', args: ['with-override-system-vim']
 brew 'makedepend'
 brew 'maven'
 brew 'mercurial'
-brew 'mongodb'
+brew 'mongodb', args: ['with-openssl']
 brew 'mpfr'
 brew 'mysql-connector-c'
 brew 'nettle'
@@ -219,137 +224,137 @@ brew 'yasm'
 brew 'youtube-dl'
 brew 'zopfli'
 brew 'zsh'
-cask '1password'
-cask 'adobe-reader'
-cask 'amazon-cloud-drive'
-cask 'appcleaner'
-cask 'appfresh'
-cask 'apptrap'
-cask 'aquamacs'
-cask 'backblaze'
-cask 'bartender'
-cask 'bettertouchtool'
-cask 'betterzip'
-cask 'betterzipql'
-cask 'bibdesk'
-cask 'bittorrent-sync'
-cask 'box-sync'
-cask 'caffeine'
-cask 'cakebrew'
-cask 'carbon-copy-cloner'
-cask 'carmaintenance'
-cask 'cheatsheet'
-cask 'choosy'
-cask 'chrome-remote-desktop-host'
-cask 'chromium'
-cask 'clamxav'
-cask 'controlplane'
-cask 'cord'
-cask 'crashplan'
-cask 'ctivo'
-cask 'disk-inventory-x'
-cask 'diskmaker-x'
-cask 'diskwave'
-cask 'dnscrypt'
-cask 'dockertoolbox'
-cask 'dropbox'
-cask 'duplicate-annihilator'
-cask 'eclipse-java'
-cask 'emacs'
-cask 'evernote'
-cask 'filezilla'
-cask 'firefox'
-cask 'fitbit-connect'
-cask 'flash'
-cask 'flashlight'
-cask 'flickr-uploadr'
-cask 'flux'
-cask 'ganttproject'
-cask 'geektool'
-cask 'gephi'
-cask 'gimp'
-cask 'github-desktop'
-cask 'goodsync'
-cask 'google-chrome'
-cask 'google-drive'
-cask 'google-photos-backup'
-cask 'gpgtools'
-cask 'grandperspective'
-cask 'growl-fork'
-cask 'growlnotify'
-cask 'growlvoice'
-cask 'handbrake'
-cask 'handylock'
-cask 'ibettercharge'
-cask 'imageoptim'
-cask 'iterm2'
-cask 'karabiner'
-cask 'keka'
-cask 'kindle'
-cask 'lastpass'
-cask 'libreoffice'
-cask 'logitech-control-center'
-cask 'logitech-myharmony'
-cask 'logitech-unifying'
-cask 'lyx'
-cask 'macdown'
-cask 'mactex'
-cask 'macx-youtube-downloader'
-cask 'mailbox'
-cask 'makemkv'
-cask 'malwarebytes-anti-malware'
-cask 'marked'
-cask 'mendeley-desktop'
-cask 'metaz'
-cask 'microsoft-office'
-cask 'no-ip-duc'
-cask 'notebook'
-cask 'omnidisksweeper'
-cask 'omnifocus'
-cask 'onyx'
-cask 'osxfuse'
-cask 'pacifist'
-cask 'picasa'
-cask 'prey'
-cask 'pycharm-ce'
-cask 'qlcolorcode'
-cask 'qlmarkdown'
-cask 'qlprettypatch'
-cask 'qlstephen'
-cask 'quicklook-csv'
-cask 'quicklook-json'
-cask 'quicksilver'
-cask 'remote-desktop-connection'
-cask 'rstudio'
-cask 'send-to-kindle'
-cask 'shazzlemailclient'
-cask 'silverlight'
-cask 'skyfonts'
-cask 'skype'
-cask 'slack'
-cask 'slimbatterymonitor'
-cask 'sookasa'
-cask 'sourcetree'
-cask 'spectacle'
-cask 'spotdox'
-cask 'steam'
-cask 'sublime-text'
-cask 'suspicious-package'
-cask 'teamviewer'
-cask 'tether'
-cask 'texshop'
-cask 'texstudio'
-cask 'textwrangler'
-cask 'the-unarchiver'
-cask 'thunderbird'
-cask 'tower'
-cask 'transmission'
-cask 'transmit'
-cask 'tresorit'
-cask 'unison'
-cask 'virtualbox'
-cask 'vlc'
-cask 'webpquicklook'
-cask 'wireshark'
-cask 'xquartz'
-cask 'zotero'
+cask '1password', args: { appdir: '/Applications' }
+cask 'adobe-reader', args: { appdir: '/Applications' }
+cask 'amazon-cloud-drive', args: { appdir: '/Applications' }
+cask 'appcleaner', args: { appdir: '/Applications' }
+cask 'appfresh', args: { appdir: '/Applications' }
+cask 'apptrap', args: { appdir: '/Applications' }
+cask 'aquamacs', args: { appdir: '/Applications' }
+cask 'backblaze', args: { appdir: '/Applications' }
+cask 'bartender', args: { appdir: '/Applications' }
+cask 'bettertouchtool', args: { appdir: '/Applications' }
+cask 'betterzip', args: { appdir: '/Applications' }
+cask 'betterzipql', args: { appdir: '/Applications' }
+cask 'bibdesk', args: { appdir: '/Applications' }
+cask 'bittorrent-sync', args: { appdir: '/Applications' }
+cask 'box-sync', args: { appdir: '/Applications' }
+cask 'caffeine', args: { appdir: '/Applications' }
+cask 'cakebrew', args: { appdir: '/Applications' }
+cask 'carbon-copy-cloner', args: { appdir: '/Applications' }
+cask 'carmaintenance', args: { appdir: '/Applications' }
+cask 'cheatsheet', args: { appdir: '/Applications' }
+cask 'choosy', args: { appdir: '/Applications' }
+cask 'chrome-remote-desktop-host', args: { appdir: '/Applications' }
+cask 'chromium', args: { appdir: '/Applications' }
+cask 'clamxav', args: { appdir: '/Applications' }
+cask 'controlplane', args: { appdir: '/Applications' }
+cask 'cord', args: { appdir: '/Applications' }
+cask 'crashplan', args: { appdir: '/Applications' }
+cask 'ctivo', args: { appdir: '/Applications' }
+cask 'disk-inventory-x', args: { appdir: '/Applications' }
+cask 'diskmaker-x', args: { appdir: '/Applications' }
+cask 'diskwave', args: { appdir: '/Applications' }
+cask 'dnscrypt', args: { appdir: '/Applications' }
+cask 'dockertoolbox', args: { appdir: '/Applications' }
+cask 'dropbox', args: { appdir: '/Applications' }
+cask 'duplicate-annihilator', args: { appdir: '/Applications' }
+cask 'eclipse-java', args: { appdir: '/Applications' }
+cask 'emacs', args: { appdir: '/Applications' }
+cask 'evernote', args: { appdir: '/Applications' }
+cask 'filezilla', args: { appdir: '/Applications' }
+cask 'firefox', args: { appdir: '/Applications' }
+cask 'fitbit-connect', args: { appdir: '/Applications' }
+cask 'flash', args: { appdir: '/Applications' }
+cask 'flashlight', args: { appdir: '/Applications' }
+cask 'flickr-uploadr', args: { appdir: '/Applications' }
+cask 'flux', args: { appdir: '/Applications' }
+cask 'ganttproject', args: { appdir: '/Applications' }
+cask 'geektool', args: { appdir: '/Applications' }
+cask 'gephi', args: { appdir: '/Applications' }
+cask 'gimp', args: { appdir: '/Applications' }
+cask 'github-desktop', args: { appdir: '/Applications' }
+cask 'goodsync', args: { appdir: '/Applications' }
+cask 'google-chrome', args: { appdir: '/Applications' }
+cask 'google-drive', args: { appdir: '/Applications' }
+cask 'google-photos-backup', args: { appdir: '/Applications' }
+cask 'gpgtools', args: { appdir: '/Applications' }
+cask 'grandperspective', args: { appdir: '/Applications' }
+cask 'growl-fork', args: { appdir: '/Applications' }
+cask 'growlnotify', args: { appdir: '/Applications' }
+cask 'growlvoice', args: { appdir: '/Applications' }
+cask 'handbrake', args: { appdir: '/Applications' }
+cask 'handylock', args: { appdir: '/Applications' }
+cask 'ibettercharge', args: { appdir: '/Applications' }
+cask 'imageoptim', args: { appdir: '/Applications' }
+cask 'iterm2', args: { appdir: '/Applications' }
+cask 'karabiner', args: { appdir: '/Applications' }
+cask 'keka', args: { appdir: '/Applications' }
+cask 'kindle', args: { appdir: '/Applications' }
+cask 'lastpass', args: { appdir: '/Applications' }
+cask 'libreoffice', args: { appdir: '/Applications' }
+cask 'logitech-control-center', args: { appdir: '/Applications' }
+cask 'logitech-myharmony', args: { appdir: '/Applications' }
+cask 'logitech-unifying', args: { appdir: '/Applications' }
+cask 'lyx', args: { appdir: '/Applications' }
+cask 'macdown', args: { appdir: '/Applications' }
+cask 'mactex', args: { appdir: '/Applications' }
+cask 'macx-youtube-downloader', args: { appdir: '/Applications' }
+cask 'mailbox', args: { appdir: '/Applications' }
+cask 'makemkv', args: { appdir: '/Applications' }
+cask 'malwarebytes-anti-malware', args: { appdir: '/Applications' }
+cask 'marked', args: { appdir: '/Applications' }
+cask 'mendeley-desktop', args: { appdir: '/Applications' }
+cask 'metaz', args: { appdir: '/Applications' }
+cask 'microsoft-office', args: { appdir: '/Applications' }
+cask 'no-ip-duc', args: { appdir: '/Applications' }
+cask 'notebook', args: { appdir: '/Applications' }
+cask 'omnidisksweeper', args: { appdir: '/Applications' }
+cask 'omnifocus', args: { appdir: '/Applications' }
+cask 'onyx', args: { appdir: '/Applications' }
+cask 'osxfuse', args: { appdir: '/Applications' }
+cask 'pacifist', args: { appdir: '/Applications' }
+cask 'picasa', args: { appdir: '/Applications' }
+cask 'prey', args: { appdir: '/Applications' }
+cask 'pycharm-ce', args: { appdir: '/Applications' }
+cask 'qlcolorcode', args: { appdir: '/Applications' }
+cask 'qlmarkdown', args: { appdir: '/Applications' }
+cask 'qlprettypatch', args: { appdir: '/Applications' }
+cask 'qlstephen', args: { appdir: '/Applications' }
+cask 'quicklook-csv', args: { appdir: '/Applications' }
+cask 'quicklook-json', args: { appdir: '/Applications' }
+cask 'quicksilver', args: { appdir: '/Applications' }
+cask 'remote-desktop-connection', args: { appdir: '/Applications' }
+cask 'rstudio', args: { appdir: '/Applications' }
+cask 'send-to-kindle', args: { appdir: '/Applications' }
+cask 'shazzlemailclient', args: { appdir: '/Applications' }
+cask 'silverlight', args: { appdir: '/Applications' }
+cask 'skyfonts', args: { appdir: '/Applications' }
+cask 'skype', args: { appdir: '/Applications' }
+cask 'slack', args: { appdir: '/Applications' }
+cask 'slimbatterymonitor', args: { appdir: '/Applications' }
+cask 'sookasa', args: { appdir: '/Applications' }
+cask 'sourcetree', args: { appdir: '/Applications' }
+cask 'spectacle', args: { appdir: '/Applications' }
+cask 'spotdox', args: { appdir: '/Applications' }
+cask 'steam', args: { appdir: '/Applications' }
+cask 'sublime-text', args: { appdir: '/Applications' }
+cask 'suspicious-package', args: { appdir: '/Applications' }
+cask 'teamviewer', args: { appdir: '/Applications' }
+cask 'tether', args: { appdir: '/Applications' }
+cask 'texshop', args: { appdir: '/Applications' }
+cask 'texstudio', args: { appdir: '/Applications' }
+cask 'textwrangler', args: { appdir: '/Applications' }
+cask 'the-unarchiver', args: { appdir: '/Applications' }
+cask 'thunderbird', args: { appdir: '/Applications' }
+cask 'tower', args: { appdir: '/Applications' }
+cask 'transmission', args: { appdir: '/Applications' }
+cask 'transmit', args: { appdir: '/Applications' }
+cask 'tresorit', args: { appdir: '/Applications' }
+cask 'unison', args: { appdir: '/Applications' }
+cask 'virtualbox', args: { appdir: '/Applications' }
+cask 'vlc', args: { appdir: '/Applications' }
+cask 'webpquicklook', args: { appdir: '/Applications' }
+cask 'wireshark', args: { appdir: '/Applications' }
+cask 'xquartz', args: { appdir: '/Applications' }
+cask 'zotero', args: { appdir: '/Applications' }

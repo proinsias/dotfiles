@@ -186,11 +186,6 @@ GREEN="\[\033[0;32m\]"
 WHITE="\[\033[1;37m\]"
 PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
 
-## Run ssh-agent
-#eval `ssh-agent -s` # `exec ssh-agent bash` doesn't work here
-#ssh-add # ~/.ssh/id_rsa
-
-
   if [ -f "${HOME}/.bashrc.local" ]; then
     source "${HOME}/.bashrc.local"
   fi
@@ -262,15 +257,27 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 # https://github.com/nvbn/thefuck/
 eval "$(thefuck --alias )" # Add text after 'alias' to replace default 'fuck'
 
-# istheinternetonfire.com
-echo "Is the internet on fire?:"
-dig +short -t txt istheinternetonfire.com
-
 # keychain
 #eval `keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC`
 
 # overcommit
 export GIT_TEMPLATE_DIR=`overcommit --template-dir`
+
+# https://github.com/obihann/archey-osx
+archey -p
+
+# istheinternetonfire.com
+echo "Is the internet on fire?:"
+dig +short -t txt istheinternetonfire.com
+
+# Run ssh-agent
+eval `ssh-agent -s` # `exec ssh-agent bash` doesn't work here
+ssh-add # ~/.ssh/id_rsa
+
+# added by travis gem
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+
+export PATH=$PATH:"~/Documents/Bitbucket/scripts"
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
@@ -278,6 +285,3 @@ if [ -f ~/.bashhub/bashhub.sh ]; then
     source ~/.bashhub/bashhub.sh
 fi
 
-
-# added by travis gem
-[ -f /Users/fodonovan/.travis/travis.sh ] && source /Users/fodonovan/.travis/travis.sh

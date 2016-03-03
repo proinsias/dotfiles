@@ -2,10 +2,6 @@
 ## added by Anaconda3 2.1.0 installer
 export PATH="/Users/fodonovan/anaconda3/bin:$PATH"
 
-export PATH=$PATH:"/Users/fodonovan/Documents/Bitbucket/scripts"
-
-#ssh-add # ~/.ssh/id_rsa
-
 # GWT
 export GWT_TOOLS=/usr/local/gwt/tools-2.7.0
 export GWT_HOME=/usr/local/gwt/gwt-2.7.0

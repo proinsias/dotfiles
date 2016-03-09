@@ -1,6 +1,0 @@
-if [ -f "${HOME}/.bash_aliases.local" ]; then
-  source "${HOME}/.bash_aliases.local"
-fi
-
-
-

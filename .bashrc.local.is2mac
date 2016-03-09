@@ -1,0 +1,7 @@
+if [ -f "${HOME}/.bashrc.local.mac" ]; then
+  source "${HOME}/.bashrc.local.mac"
+fi
+
+
+
+

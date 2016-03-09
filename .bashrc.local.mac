@@ -1,0 +1,59 @@
+# Add tab completion for `defaults read|write NSGlobalDomain`
+# You could just use `-g` instead, but I like being explicit
+complete -W "NSGlobalDomain" defaults;
+
+# Add homebrew's GNU coreutils (ls, cat, etc.) to PATH - see http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+# Add homebrew's GNU coreutils to MANPATH
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+# for autojump
+[[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
+
+###
+# For homebrew openssh with keychain support
+
+eval $(ssh-agent)
+
+function cleanup {
+  echo "Killing SSH-Agent"
+  kill -9 $SSH_AGENT_PID
+}
+
+trap cleanup EXIT
+###
+
+# For homebrew bash completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
+# To install homebrew casks in /Applications by default
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# ruby
+export RBENV_ROOT="$(brew --prefix rbenv)"
+export GEM_HOME="$(brew --prefix)/opt/gems"
+export GEM_PATH="$(brew --prefix)/opt/gems"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+if brew command command-not-found-init 2> /dev/null; then
+  eval "$(brew command-not-found-init)"
+else
+  echo "Please install command-not-found-init command"
+fi
+
+# Add `killall` tab completion for common apps
+complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# keychain
+#eval `keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC`
+
+# https://github.com/obihann/archey-osx
+if type archey 2>/dev/null; then
+  archey -p
+else
+  echo "Please install archey command"
+fi
+

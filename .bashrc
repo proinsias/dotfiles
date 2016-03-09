@@ -169,11 +169,7 @@ umask 027
 #
 # alias cd=cd_func
 
-#export TODOTXT_DEFAULT_ACTION=ls
-#complete -F _todo t
-#export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'
-
-#export GIT_EDITOR=emacs
+export GIT_EDITOR=emacs
 
 # From http://www.railstips.org/blog/archives/2009/02/02/bedazzle-your-bash-prompt-with-git-info/
 function parse_git_branch {
@@ -186,13 +182,17 @@ GREEN="\[\033[0;32m\]"
 WHITE="\[\033[1;37m\]"
 PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
 
-  if [ -f "${HOME}/.bashrc.local" ]; then
-    source "${HOME}/.bashrc.local"
-  fi
+if [ -f "${HOME}/.bashrc.local" ]; then
+  source "${HOME}/.bashrc.local"
+fi
 
-  if [ -f "${HOME}/.bash_aliases" ]; then
-    source "${HOME}/.bash_aliases"
-  fi
+if [ -f "${HOME}/.bash_aliases" ]; then
+  source "${HOME}/.bash_aliases"
+fi
+
+if [ -f "${HOME}/.bash_aliases.local" ]; then
+  source "${HOME}/.bash_aliases.local"
+fi
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -202,69 +202,30 @@ PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
 #    done;
 #    unset file;
 
-# Add tab completion for `defaults read|write NSGlobalDomain`
-# You could just use `-g` instead, but I like being explicit
-complete -W "NSGlobalDomain" defaults;
-
-# Add homebrew's GNU coreutils (ls, cat, etc.) to PATH - see http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-
-# Add homebrew's GNU coreutils to MANPATH
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
-# for autojump
-[[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
-
-###
-# For homebrew openssh with keychain support
-
-eval $(ssh-agent)
-
-function cleanup {
-  echo "Killing SSH-Agent"
-  kill -9 $SSH_AGENT_PID
-}
-
-trap cleanup EXIT
-###
-
-
-# For homebrew bash completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+# Wrap git automatically
+if type hub 2>/dev/null; then
+  eval "$(hub alias -s)"
+else
+  echo "Please install hub command"
 fi
-
-# To install homebrew casks in /Applications by default
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
-# ruby
-export RBENV_ROOT="$(brew --prefix rbenv)"
-export GEM_HOME="$(brew --prefix)/opt/gems"
-export GEM_PATH="$(brew --prefix)/opt/gems"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-if brew command command-not-found-init > /dev/null; then eval "$(brew command-not-found-init)"; fi
-
-# Wrap git automatically by adding the following to ~/.bash_profile:
-eval "$(hub alias -s)"
-
-# Add `killall` tab completion for common apps
-complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 # https://github.com/nvbn/thefuck/
-eval "$(thefuck --alias )" # Add text after 'alias' to replace default 'fuck'
-
-# keychain
-#eval `keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC`
+if type thefuck 2>/dev/null; then
+  eval "$(thefuck --alias )" # Add text after 'alias' to replace default 'fuck'
+else
+  echo "Please install thef**k command"
+fi
 
 # overcommit
-export GIT_TEMPLATE_DIR=`overcommit --template-dir`
-
-# https://github.com/obihann/archey-osx
-archey -p
+# https://github.com/nvbn/thefuck/
+if type overcommit 2>/dev/null; then
+  export GIT_TEMPLATE_DIR=`overcommit --template-dir`
+else
+  echo "Please install overcommit command"
+fi
 
 # istheinternetonfire.com
 echo "Is the internet on fire?:"
@@ -277,7 +238,7 @@ ssh-add # ~/.ssh/id_rsa
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
-export PATH=$PATH:"~/Documents/Bitbucket/scripts"
+export PATH=$PATH:"~/scripts"
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs

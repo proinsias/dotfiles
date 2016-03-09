@@ -12,10 +12,40 @@ alias fv6='cd /usr/local/insightsquared/forecastv6/'
 alias tw='touch /usr/local/insightsquared/is_engine/bbase/wsgi_handler.py'
 
 # Extra tools
-alias issink='python /usr/local/insightsquared/is_engine/issink/issink.py  --get-input -v '
 alias migrate='python /usr/local/insightsquared/is_engine/bbase/manage.py migrate'
-alias run='python /usr/local/insightsquared/is_engine/bbase/bin/run.py'
-alias megatest='run -m bbase.megatest'
 alias dbshell='python -i /usr/local/insightsquared/is_tools/user_scripts/foxtrot/model_db.py'
 alias dbshellb='bpython -i /usr/local/insightsquared/is_tools/user_scripts/foxtrot/model_db.py'
+
+# Syncs credentials for dev boxes
+alias issink='python /usr/local/insightsquared/is_engine/issink/issink.py  --get-input -v '
+
+# Fuzzes an URL, attempting to give it valid, semi-valid, and invalid inputs to various URL parameters.
+# usage: --urls=bbase/bin/smoke_test.txt
+# Does the same smoke testing that engine pushes do.
+# -m <report_path>
+# Tests any report with a url that matches the regex <report_path>
+alias test_site='python /usr/local/insightsquared/is_engine/bbase/bin/test_site.py -u -j -t 100'
+
+# Allows you to run a host of things with is2 imports and settings.
+alias run='python /usr/local/insightsquared/is_engine/bbase/bin/run.py'
+
+# Entry point to megatest-based footing and regression testing.
+# USAGE:
+#   megatest -c <client> -u <url_path_query_params_optional> [finch|footing]
+alias megatest='run -m bbase.megatest'
+
+# Alias for shell_plus, the only is2 Python REPL you need.
+alias shellplus='python /usr/local/insightsquared/is_engine/bbase/manage.py shell_plus'
+
+# Watches in configuration|is_engine, and touches the watcher on change.
+alias watch='python /usr/local/insightsquared/is_engine/bbase/bin/watcher.py'
+
+# Tails the debug_stream.log file.
+alias debugstream='tail -F /usr/local/insightsquared/logs/debug_stream.log'
+
+# Executes a client-contextual request to an endpoint using the Django Test Client. get is in is_tools/andy
+alias get='python -m megatest.get'
+
+# Runs the is2 Django app locally in debug mode, allowing complex debug scenarios (AJAX requests sent from template-provided JS)
 alias runserver='/usr/bin/python /usr/local/insightsquared/is_engine/bbase/manage.py runserver 0.0.0.0:8001 --nostatic'
+

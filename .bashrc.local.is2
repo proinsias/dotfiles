@@ -1,6 +1,6 @@
-# python
-## added by Anaconda3 2.1.0 installer
-##export PATH="/Users/fodonovan/anaconda3/bin:$PATH"
+if [ -f "${HOME}/.bash_aliases.local" ]; then
+  source "${HOME}/.bash_aliases.local"
+fi
 
 
 

@@ -1,0 +1,21 @@
+# Repos
+alias is2='cd /usr/local/insightsquared'
+alias conf='cd /usr/local/insightsquared/configuration'
+alias screens='cd /usr/local/insightsquared/configuration/screens2'
+alias ise='cd /usr/local/insightsquared/is_engine'
+alias ice='cd /usr/local/insightsquared/is_ice/'
+alias ist='cd /usr/local/insightsquared/is_tools/'
+alias isk='cd /usr/local/insightsquared/is_engine/bbase/utils/is_charter2/'
+alias projects='cd /usr/local/insightsquared/projects/'
+alias fv6='cd /usr/local/insightsquared/forecastv6/'
+
+alias tw='touch /usr/local/insightsquared/is_engine/bbase/wsgi_handler.py'
+
+# Extra tools
+alias issink='python /usr/local/insightsquared/is_engine/issink/issink.py  --get-input -v '
+alias migrate='python /usr/local/insightsquared/is_engine/bbase/manage.py migrate'
+alias run='python /usr/local/insightsquared/is_engine/bbase/bin/run.py'
+alias megatest='run -m bbase.megatest'
+alias dbshell='python -i /usr/local/insightsquared/is_tools/user_scripts/foxtrot/model_db.py'
+alias dbshellb='bpython -i /usr/local/insightsquared/is_tools/user_scripts/foxtrot/model_db.py'
+alias runserver='/usr/bin/python /usr/local/insightsquared/is_engine/bbase/manage.py runserver 0.0.0.0:8001 --nostatic'

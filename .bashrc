@@ -203,7 +203,7 @@ fi
 #    unset file;
 
 # Wrap git automatically
-if type hub 2>/dev/null; then
+if type hub > /dev/null 2>&1 ; then
   eval "$(hub alias -s)"
 else
   echo "Please install hub command"
@@ -213,7 +213,7 @@ fi
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 # https://github.com/nvbn/thefuck/
-if type thefuck 2>/dev/null; then
+if type thefuck > /dev/null 2>&1 ; then
   eval "$(thefuck --alias )" # Add text after 'alias' to replace default 'fuck'
 else
   echo "Please install thef**k command"
@@ -221,7 +221,7 @@ fi
 
 # overcommit
 # https://github.com/nvbn/thefuck/
-if type overcommit 2>/dev/null; then
+if type overcommit > /dev/null 2>&1 ; then
   export GIT_TEMPLATE_DIR=`overcommit --template-dir`
 else
   echo "Please install overcommit command"

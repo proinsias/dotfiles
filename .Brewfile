@@ -327,6 +327,7 @@ cask 'quicksilver', args: { appdir: '/Applications' }
 cask 'remote-desktop-connection', args: { appdir: '/Applications' }
 cask 'rstudio', args: { appdir: '/Applications' }
 cask 'send-to-kindle', args: { appdir: '/Applications' }
+cask 'sequel-pro', args: { appdir: '/Applications' }
 cask 'shazzlemailclient', args: { appdir: '/Applications' }
 cask 'silverlight', args: { appdir: '/Applications' }
 cask 'skyfonts', args: { appdir: '/Applications' }

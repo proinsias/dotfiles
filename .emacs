@@ -82,6 +82,18 @@
 ;;;;;Push the mouse out of the way when the cursor approaches.
 (mouse-avoidance-mode 'jump)
 
+(load (expand-file-name "~/.emacs.d/elpa/package.el"))
+
+(condition-case nil
+  (require 'package) 
+  (add-to-list 'package-archives
+             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+  (when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+  (package-initialize) 
+  (error (message "package plugin unavailable, skipping load ...")))
+
 ;;;SavePlace- this puts the cursor in the last place you editted
 ;;;a particular file. This is very useful for large files.
 (require 'saveplace)
@@ -138,30 +150,44 @@
 (let ((default-directory "/usr/local/share/emacs/site-lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 
-(require 'git-messenger)
-(setq git-messenger:show-detail t)
+(condition-case nil
+  (require 'git-messenger)
+  (setq git-messenger:show-detail t)
+  (error (message "git-messenger plugin unavailable, skipping load ...")))
 
-(require 'gitattributes-mode)
-(require 'gitconfig-mode)
-(require 'gitignore-mode)
-(add-to-list 'auto-mode-alist '("^\.gitattributes$"
+(condition-case nil
+  (require 'gitattributes-mode)
+  (add-to-list 'auto-mode-alist '("^\.gitattributes$"
 				. gitattributes-mode))
-(add-to-list 'auto-mode-alist '("^\.gitconfig$" . gitconfig-mode))
-(add-to-list 'auto-mode-alist '("^\.gitignore$" . gitignore-mode))
-(add-to-list 'auto-mode-alist '("\.git/info/attributes$"
+  (error (message "gitattributes-mode plugin unavailable, skipping load ...")))
+
+(condition-case nil
+  (require 'gitconfig-mode)
+  (add-to-list 'auto-mode-alist '("^\.gitconfig$" . gitconfig-mode))
+  (error (message "gitconfig-mode plugin unavailable, skipping load ...")))
+
+(condition-case nil
+  (require 'gitignore-mode)
+  (add-to-list 'auto-mode-alist '("^\.gitignore$" . gitignore-mode))
+  (add-to-list 'auto-mode-alist '("\.git/info/attributes$"
 				. gitignore-mode))
-(add-to-list 'auto-mode-alist '("\.git/config$" . gitignore-mode))
-(add-to-list 'auto-mode-alist '("\.git/info/exclude$" . gitignore-mode))
+  (add-to-list 'auto-mode-alist '("\.git/config$" . gitignore-mode))
+  (add-to-list 'auto-mode-alist '("\.git/info/exclude$" . gitignore-mode))
+  (error (message "gitignore-mode plugin unavailable, skipping load ...")))
 
-(require 'inf-ruby)
-(autoload 'inf-ruby-minor-mode "inf-ruby" "Run an inferior Ruby
+(condition-case nil
+  (require 'inf-ruby)
+  (autoload 'inf-ruby-minor-mode "inf-ruby" "Run an inferior Ruby
 process" t)
-(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+  (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+  (error (message "inf-ruby plugin unavailable, skipping load ...")))
 
-(require 'markdown-mode)
-(add-to-list 'auto-mode-alist '("\.markdown$" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\.mdown$" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\.md$" . markdown-mode))
+(condition-case nil
+  (require 'markdown-mode)
+  (add-to-list 'auto-mode-alist '("\.markdown$" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\.mdown$" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\.md$" . markdown-mode))
+  (error (message "inf-ruby plugin unavailable, skipping load ...")))
 
 
 

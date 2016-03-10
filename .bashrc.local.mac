@@ -57,3 +57,8 @@ else
   echo "Please install archey command"
 fi
 
+# Run ssh-agent
+eval "$(ssh-agent -s)" # `exec ssh-agent bash` doesn't work here
+ssh-add -K # ~/.ssh/id_rsa
+
+

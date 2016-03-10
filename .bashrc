@@ -169,6 +169,11 @@ umask 027
 #
 # alias cd=cd_func
 
+export EDITOR='emacs -nw'
+if [[ -n "${EDITOR}" && -z "${VISUAL}" ]] ; then
+  export VISUAL="${EDITOR}"
+fi
+
 export GIT_EDITOR=emacs
 
 # From http://www.railstips.org/blog/archives/2009/02/02/bedazzle-your-bash-prompt-with-git-info/
@@ -230,10 +235,6 @@ fi
 # istheinternetonfire.com
 echo "Is the internet on fire?:"
 dig +short -t txt istheinternetonfire.com
-
-# Run ssh-agent
-eval `ssh-agent -s` # `exec ssh-agent bash` doesn't work here
-ssh-add # ~/.ssh/id_rsa
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh

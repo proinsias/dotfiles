@@ -29,6 +29,8 @@ alias editl='/bin/chmod 600 ~/.login ; em ~/.login'
 alias free='/bin/df'
 alias ftp='/usr/bin/ftp -i'
 
+alias gs='git status'
+
 alias h='history'
 
 alias ip='ifconfig -a | grep inet | grep broadcast'

@@ -82,9 +82,8 @@
 ;;;;;Push the mouse out of the way when the cursor approaches.
 (mouse-avoidance-mode 'jump)
 
-(load (expand-file-name "~/.emacs.d/elpa/package.el"))
-
 (condition-case nil
+  (load (expand-file-name "~/.emacs.d/elpa/package.el"))
   (require 'package) 
   (add-to-list 'package-archives
              '("melpa-stable" . "http://stable.melpa.org/packages/") t)

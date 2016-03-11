@@ -2,6 +2,9 @@ if [ -f "${HOME}/.bashrc.local.ubuntu" ]; then
   source "${HOME}/.bashrc.local.ubuntu"
 fi
 
+# added by Anaconda3 2.5.0 installer
+#export PATH="/home/fodonovan/anaconda3/bin:$PATH"
+
 
 
 

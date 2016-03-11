@@ -13,23 +13,20 @@ alias bye='/usr/bin/clear;logout'
 
 alias close='chmod g-w,o-rwx'
 alias copy='/bin/cp -i'
-alias count='ls \!* | wc -l'
+alias count='function _count(){ ls "$@" | wc -l ; };_count'
 alias cp='/bin/cp -i'
 
-alias delete='move \!* ~/.Trash/'
+alias delete='function _delete(){ move "$@" ~/.Trash/ ; };_delete'
 
-alias ew='/usr/bin/emacs -nw \!*'
-alias e='/usr/bin/emacs \!* &'
-alias ec='/bin/chmod 600 \!* ; /usr/bin/emacs \!* &'
-alias em='/usr/local/bin/emacs \!* &'
-alias edita='/bin/chmod 600 ~/.alias ; em ~/.alias'
-alias editc='/bin/chmod 600 ~/.cshrc ; em ~/.cshrc'
-alias editl='/bin/chmod 600 ~/.login ; em ~/.login'
+alias ew='function _ew(){ /usr/bin/emacs -nw "$@" ; };_ew'
+alias e='function _e(){ /usr/bin/emacs "$@" & ; };_e'
 
 alias free='/bin/df'
 alias ftp='/usr/bin/ftp -i'
 
+alias gc='git checkout'
 alias gs='git status'
+alias gp='git pull'
 
 alias h='history'
 
@@ -41,8 +38,6 @@ alias lastaccess='/bin/ls --G -Flhut'
 #alias l='/bin/ls -FG'
 #alias ls='/bin/ls -G'
 #alias listtrash='/bin/ls  -Fa ~/Desktop/Trash/'
-alias lallmore='/bin/ls  --G -Falh \!* | more'
-alias lmore='/bin/ls  --G -F \!* | more'
 
 alias mc='/bin/mv -i' # Stop calling Midnight Commander
 alias me='/usr/bin/whoami'
@@ -61,7 +56,6 @@ alias shut='chmod go-r'
 alias sortbysize='du -S | sort -n'
 alias sourcec='source ~/.tcshrc'
 alias sourcel='source ~/.login'
-alias space='/usr/bin/du -sh \!*'
 
 alias t='todo.sh -d /Users/ftod/.todo.cfg'
 alias top='top -o cpu'

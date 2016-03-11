@@ -17,7 +17,7 @@ alias dbshell='python -i /usr/local/insightsquared/is_tools/user_scripts/foxtrot
 alias dbshellb='bpython -i /usr/local/insightsquared/is_tools/user_scripts/foxtrot/model_db.py'
 
 # Syncs credentials for dev boxes
-alias issink='python /usr/local/insightsquared/is_engine/issink/issink.py  --get-input -v '
+alias issink='python /usr/local/insightsquared/is_engine/issink/issink.py --get-input -v --db-tmp --source'
 
 # Fuzzes an URL, attempting to give it valid, semi-valid, and invalid inputs to various URL parameters.
 # usage: --urls=bbase/bin/smoke_test.txt

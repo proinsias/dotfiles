@@ -33,6 +33,8 @@ alias h='history'
 
 alias ip='ifconfig -a | grep inet | grep broadcast'
 
+alias jn='jupyter notebook'
+
 alias k9='kill -9='
 
 alias lastaccess='/bin/ls --G -Flhut'

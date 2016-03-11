@@ -2,6 +2,5 @@ if [ -f "${HOME}/.bashrc.local.mac" ]; then
   source "${HOME}/.bashrc.local.mac"
 fi
 
-
-
-
+# added by Anaconda3 2.5.0 installer
+export PATH="/Users/fodonovan/anaconda3/bin:$PATH"

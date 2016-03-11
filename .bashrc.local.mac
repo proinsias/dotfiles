@@ -59,6 +59,7 @@ fi
 
 # Run ssh-agent
 eval "$(ssh-agent -s)" # `exec ssh-agent bash` doesn't work here
-ssh-add -K # ~/.ssh/id_rsa
+# Below use Apple's ssh-add, rather than brew ssh-add
+/usr/bin/ssh-add -K # ~/.ssh/id_rsa
 
 

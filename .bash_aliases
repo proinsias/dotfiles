@@ -37,11 +37,6 @@ alias jn='jupyter notebook'
 
 alias k9='kill -9='
 
-alias lastaccess='/bin/ls --G -Flhut'
-#alias l='/bin/ls -FG'
-#alias ls='/bin/ls -G'
-#alias listtrash='/bin/ls  -Fa ~/Desktop/Trash/'
-
 alias mc='/bin/mv -i' # Stop calling Midnight Commander
 alias me='/usr/bin/whoami'
 alias move='/bin/mv -i'
@@ -80,14 +75,6 @@ alias grep='grep --color'                     # show differences in colour
 alias egrep='egrep --color=auto'              # show differences in colour
 alias fgrep='fgrep --color=auto'              # show differences in colour
 #
-# Some shortcuts for different directory listings
-## Don't need with above alias for ls
-##alias ls='ls -hF --color=tty'                 # classify files in colour
-alias dir='ls --color=auto --format=vertical'
-alias vdir='ls --color=auto --format=long'
-alias ll='ls -l'                              # long list
-alias la='ls -A'                              # all but . and ..
-alias l='ls -CF'                              #
 
 # OS X has no `md5sum`, so use `md5` as a fallback
 command -v md5sum > /dev/null || alias md5sum="md5"

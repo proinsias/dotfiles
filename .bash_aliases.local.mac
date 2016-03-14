@@ -1,0 +1,2 @@
+alias ls='ls -hpFAG'
+alias ll='ls -l'                              # long list

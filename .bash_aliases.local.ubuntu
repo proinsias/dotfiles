@@ -1,0 +1,2 @@
+alias ls='/bin/ls -FhvA'
+alias ll='ls -l'                              # long list

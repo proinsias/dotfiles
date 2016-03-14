@@ -1,0 +1,65 @@
+[user]
+	name = Francis T. O'Donovan
+	email = fodonovan@insightsquared.com
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = auto
+    pager = true
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse # Highlight whitespace in diffs
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[alias]
+    alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\t=> \\2/' | sort # show all defined aliases
+    br = branch
+    cam = commit -am
+    ci = commit
+    clone = clone --recursive
+    co = checkout
+    dc = diff --cached
+    df = diff
+    dump = cat-file -p
+    find = !git ls-tree -r --name-only HEAD | grep --color $1 # Finds a filename in the git repository. Gives absolute location (from the git root)
+    h = !git --no-pager log origin/master..HEAD --abbrev-commit --pretty=oneline # Fast overview of differences between master and my current branch
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    hist2 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    ign = ls-files -o -i --exclude-standard # Show files ignored by git
+    ignore=!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore # Quickly add a file/dir to .gitignore.
+    lg = log -p
+    lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+    logs = log -- stat # include files changed, insertions, and deletions
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    ls = ls-files
+    psuh = push
+    pu = pull --recurse-submodules
+    pull = pull --recurse-submodules
+    r  = !git ls-files -z --deleted | xargs -0 git rm # Remove files which have been deleted
+    st = status
+    su = !git submodule update --init --recursive && git submodule\
+	foreach --recursive git checkout master && git submodule\
+	foreach --recursive git pull
+    this = !git init && git add . && git commit -m \"initial commit\" # Make this directory a git repo
+    type = cat-file -t
+    unstage = reset HEAD --
+[core]
+    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol # Highlight whitespace in diffs
+    autocrlf = input
+    editor = emacs
+    excludesfile = /home/fodonovan/.gitignore
+
+[push]
+	default = matching

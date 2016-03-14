@@ -18,8 +18,8 @@ alias cp='/bin/cp -i'
 
 alias delete='function _delete(){ move "$@" ~/.Trash/ ; };_delete'
 
-alias ew='function _ew(){ /usr/bin/emacs -nw "$@" ; };_ew'
-alias e='function _e(){ /usr/bin/emacs "$@" & ; };_e'
+alias ew='function _ew(){ emacs -nw "$@" ; };_ew'
+alias e='function _e(){ emacs "$@" & ; };_e'
 
 alias free='/bin/df'
 alias ftp='/usr/bin/ftp -i'

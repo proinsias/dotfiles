@@ -60,7 +60,8 @@ fi
 # Run ssh-agent
 eval "$(ssh-agent -s)" # `exec ssh-agent bash` doesn't work here
 # Below use Apple's ssh-add, rather than brew ssh-add
-/usr/bin/ssh-add -K # ~/.ssh/id_rsa
+#/usr/bin/ssh-add -K # ~/.ssh/id_rsa
+# Don't need above every login - just run once
 
 if [ -f "${HOME}/.bash_aliases.local.mac" ]; then
   source "${HOME}/.bash_aliases.local.mac"

@@ -90,7 +90,7 @@ export LESS="-XR"
 #
 # /etc/profile sets 022, removing write perms to group + others.
 # Set a more restrictive umask: i.e. no exec perms for others:
-umask 027
+# umask 027 # messes up is2
 # Paranoid: neither group nor others have any perms:
 # umask 077
 

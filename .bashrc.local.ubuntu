@@ -2,3 +2,4 @@ if [ -f "${HOME}/.bash_aliases.local.ubuntu" ]; then
   source "${HOME}/.bash_aliases.local.ubuntu"
 fi
 
+eval $(ssh-agent)

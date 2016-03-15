@@ -3,3 +3,5 @@ if [ -f "${HOME}/.bash_aliases.local.ubuntu" ]; then
 fi
 
 eval $(ssh-agent)
+ssh-add
+

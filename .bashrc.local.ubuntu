@@ -2,6 +2,26 @@ if [ -f "${HOME}/.bash_aliases.local.ubuntu" ]; then
   source "${HOME}/.bash_aliases.local.ubuntu"
 fi
 
-eval $(ssh-agent)
+# set environment variables if user's agent already exists
+## Need to try again when system ssh-agent has been rebooted
+#[ -z "$SSH_AUTH_SOCK" ] && SSH_AUTH_SOCK=$(ls -l /tmp/ssh-*/agent.* 2> /dev/null | grep $(whoami) | awk '{print $9}')
+SSH_AUTH_SOCK=$(ls -l /tmp/ssh-*/agent.* 2> /dev/null | grep $(whoami) | awk '{print $9}')
 
+[ -z "$SSH_AGENT_PID" -a -n "$(echo $SSH_AUTH_SOCK | cut -d. -f2)" ] && SSH_AGENT_PID=$(($(echo $SSH_AUTH_SOCK | cut -d. -f2 | cut -d= -f1) + 1))
+[ -n "$SSH_AUTH_SOCK" ] && export SSH_AUTH_SOCK
+[ -n "$SSH_AGENT_PID" ] && export SSH_AGENT_PID
+
+# start agent if necessary
+#if [ -z $SSH_AGENT_PID ] && [ -z $SSH_TTY ]; then  # if no agent & not in ssh
+if [ -z $SSH_AGENT_PID ] ; then
+   eval $(ssh-agent -s) 
+fi
+
+function cleanup {
+  echo "Killing SSH-Agent"
+  rm -rf $(ls -ld /tmp/ssh-* | grep fodonovan | awk '{print $9}')
+  kill -9 $SSH_AGENT_PID
+}
+
+trap cleanup EXIT
 

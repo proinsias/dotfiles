@@ -11,18 +11,11 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 # for autojump
 [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
 
-###
-# For homebrew openssh with keychain support
-
-eval $(ssh-agent)
-
-function cleanup {
-  echo "Killing SSH-Agent"
-  kill -9 $SSH_AGENT_PID
-}
-
-trap cleanup EXIT
-###
+# homebrew openssh with keychain support doesn't work anymore?
+# Below use Apple's ssh-add, rather than brew ssh-add
+# Move to interactive-only part
+# No need to launch ssh-agent - should be done by default
+/usr/bin/ssh-add -l &> /dev/null || /usr/bin/ssh-add -K # ~/.ssh/id_rsa
 
 # For homebrew bash completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -56,12 +49,6 @@ if type archey > /dev/null 2>&1 ; then
 else
   echo "Please install archey command"
 fi
-
-# Run ssh-agent
-eval "$(ssh-agent -s)" # `exec ssh-agent bash` doesn't work here
-# Below use Apple's ssh-add, rather than brew ssh-add
-#/usr/bin/ssh-add -K # ~/.ssh/id_rsa
-# Don't need above every login - just run once
 
 if [ -f "${HOME}/.bash_aliases.local.mac" ]; then
   source "${HOME}/.bash_aliases.local.mac"

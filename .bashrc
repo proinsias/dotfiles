@@ -241,6 +241,30 @@ dig +short -t txt istheinternetonfire.com
 
 export PATH=$PATH:"~/scripts"
 
+## Homebrew
+# for autojump
+[[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
+
+# For homebrew bash completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
+# ruby
+export RBENV_ROOT="$(brew --prefix rbenv)"
+export GEM_HOME="$(brew --prefix)/opt/gems"
+export GEM_PATH="$(brew --prefix)/opt/gems"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+if brew command command-not-found-init > /dev/null 2>&1 ; then
+  eval "$(brew command-not-found-init)"
+else
+  echo "Please install command-not-found-init command"
+fi
+
+
+
+
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
 if [ -f ~/.bashhub/bashhub.sh ]; then

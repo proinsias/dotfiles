@@ -188,5 +188,13 @@ process" t)
   (add-to-list 'auto-mode-alist '("\.md$" . markdown-mode))
   (error (message "inf-ruby plugin unavailable, skipping load ...")))
 
-
+;; For mouseterm https://github.com/saitoha/mouseterm-plus/releases/latest
+(unless window-system
+  (xterm-mouse-mode 1)
+  (global-set-key [mouse-4] '(lambda ()
+			       (interactive)
+			       (scroll-down 1)))
+  (global-set-key [mouse-5] '(lambda ()
+			       (interactive)
+			       (scroll-up 1))))
 

@@ -217,6 +217,13 @@ fi
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
+# ruby
+export RBENV_ROOT="$(brew --prefix rbenv)"
+export GEM_HOME="$(brew --prefix)/opt/gems"
+export GEM_PATH="$(brew --prefix)/opt/gems"
+export PATH="$GEM_HOME/bin:$PATH"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 # https://github.com/nvbn/thefuck/
 if type thefuck > /dev/null 2>&1 ; then
   eval "$(thefuck --alias )" # Add text after 'alias' to replace default 'fuck'
@@ -250,20 +257,11 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 
-# ruby
-export RBENV_ROOT="$(brew --prefix rbenv)"
-export GEM_HOME="$(brew --prefix)/opt/gems"
-export GEM_PATH="$(brew --prefix)/opt/gems"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 if brew command command-not-found-init > /dev/null 2>&1 ; then
   eval "$(brew command-not-found-init)"
 else
   echo "Please install command-not-found-init command"
 fi
-
-
-
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs

@@ -263,6 +263,13 @@ else
   echo "Please install command-not-found-init command"
 fi
 
+# https://github.com/obihann/archey-osx
+if type archey > /dev/null 2>&1 ; then
+  archey -p
+else
+  echo "Please install archey command"
+fi
+
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
 if [ -f ~/.bashhub/bashhub.sh ]; then

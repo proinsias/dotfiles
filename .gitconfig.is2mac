@@ -1,6 +1,7 @@
 [user]
 	name = Francis T. O'Donovan
 	email = fodonovan@insightsquared.com
+	signingkey = 9DE94ABA
 [color]
     diff = auto
     status = auto
@@ -63,3 +64,5 @@
 
 [push]
 	default = matching
+[commit]
+	gpgsign = true

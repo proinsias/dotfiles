@@ -14,6 +14,16 @@ alias isk='cd /usr/local/insightsquared/is_engine/bbase/utils/is_charter2/'
 alias projects='cd /usr/local/insightsquared/projects/'
 alias fv6='cd /usr/local/insightsquared/forecastv6/'
 
+alias dis2='cd ~/devbox/usr/local/insightsquared'
+alias dconf='cd ~/devbox/usr/local/insightsquared/configuration'
+alias dscreens='cd ~/devbox/usr/local/insightsquared/configuration/screens2'
+alias dise='cd ~/devbox/usr/local/insightsquared/is_engine'
+alias dice='cd ~/devbox/usr/local/insightsquared/is_ice/'
+alias dist='cd ~/devbox/usr/local/insightsquared/is_tools/'
+alias disk='cd ~/devbox/usr/local/insightsquared/is_engine/bbase/utils/is_charter2/'
+alias dprojects='cd ~/devbox/usr/local/insightsquared/projects/'
+alias dfv6='cd ~/devbox/usr/local/insightsquared/forecastv6/'
+
 alias tw='touch /usr/local/insightsquared/is_engine/bbase/wsgi_handler.py'
 
 # Extra tools

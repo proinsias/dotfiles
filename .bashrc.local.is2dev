@@ -6,4 +6,4 @@ fi
 #export PATH="/home/fodonovan/anaconda3/bin:$PATH"
 
 # Move to interactive-only part
-ssh-add -l &> /dev/null || ssh-add ~/.ssh/fodonovan.pem
+#ssh-add -l &> /dev/null || ssh-add ~/.ssh/fodonovan.pem

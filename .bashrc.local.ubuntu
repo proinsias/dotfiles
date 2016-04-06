@@ -2,20 +2,20 @@ if [ -f "${HOME}/.bash_aliases.local.ubuntu" ]; then
   source "${HOME}/.bash_aliases.local.ubuntu"
 fi
 
-# set environment variables if user's agent already exists
-## Need to try again when system ssh-agent has been rebooted
-#[ -z "$SSH_AUTH_SOCK" ] && SSH_AUTH_SOCK=$(ls -l /tmp/ssh-*/agent.* 2> /dev/null | grep $(whoami) | awk '{print $9}')
-SSH_AUTH_SOCK=$(ls -l /tmp/ssh-*/agent.* 2> /dev/null | grep $(whoami) | awk '{print $9}')
-
-[ -z "$SSH_AGENT_PID" -a -n "$(echo $SSH_AUTH_SOCK | cut -d. -f2)" ] && SSH_AGENT_PID=$(($(echo $SSH_AUTH_SOCK | cut -d. -f2 | cut -d= -f1) + 1))
-[ -n "$SSH_AUTH_SOCK" ] && export SSH_AUTH_SOCK
-[ -n "$SSH_AGENT_PID" ] && export SSH_AGENT_PID
+## set environment variables if user's agent already exists
+### Need to try again when system ssh-agent has been rebooted
+##[ -z "$SSH_AUTH_SOCK" ] && SSH_AUTH_SOCK=$(ls -l /tmp/ssh-*/agent.* 2> /dev/null | grep $(whoami) | awk '{print $9}')
+#SSH_AUTH_SOCK=$(ls -l /tmp/ssh-*/agent.* 2> /dev/null | grep $(whoami) | awk '{print $9}')
+#
+#[ -z "$SSH_AGENT_PID" -a -n "$(echo $SSH_AUTH_SOCK | cut -d. -f2)" ] && SSH_AGENT_PID=$(($(echo $SSH_AUTH_SOCK | cut -d. -f2 | cut -d= -f1) + 1))
+#[ -n "$SSH_AUTH_SOCK" ] && export SSH_AUTH_SOCK
+#[ -n "$SSH_AGENT_PID" ] && export SSH_AGENT_PID
 
 # start agent if necessary
 #if [ -z $SSH_AGENT_PID ] && [ -z $SSH_TTY ]; then  # if no agent & not in ssh
-if [ -z $SSH_AGENT_PID ] ; then
-   eval $(ssh-agent -s) 
-fi
+#if [ -z $SSH_AGENT_PID ] ; then
+#   eval $(ssh-agent -s) 
+#fi
 
 function cleanup {
   echo "Killing SSH-Agent"
@@ -26,11 +26,13 @@ function cleanup {
 trap cleanup EXIT
 
 # homebrew linuxbrew
-export PATH="$HOME/.linuxbrew/bin:$PATH"
+export PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 
 export RBENV_ROOT="$(brew --prefix rbenv)"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-
+export NPM_PACKAGES="${HOME}/.npm-packages"
+export PATH="$NPM_PACKAGES/bin:$PATH"
+export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"

@@ -90,3 +90,4 @@ www-test/
 war/WEB-INF/appengine-generated/
 
 .idea
+nohup.out

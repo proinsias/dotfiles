@@ -61,8 +61,10 @@
     autocrlf = input
     editor = emacs
     excludesfile = /Users/fodonovan/.gitignore
-
+    attributesfile = /Users/fodonovan/.gitattributes
 [push]
 	default = matching
 [commit]
 	gpgsign = true
+[diff "nb2py"]
+	textconv = nb2py.sh

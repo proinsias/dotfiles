@@ -110,5 +110,5 @@
 [help]
 	# Automatically correct and execute mistyped commands
 	autocorrect = 1
-[diff "nb2py"]
-	textconv = nb2py.sh
+[diff "nbconv"]
+	textconv = ~/scripts/nb2py.sh

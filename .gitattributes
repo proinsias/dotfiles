@@ -117,7 +117,7 @@
 *.py3 		text
 *.pyw 		text
 *.pyx  		text
-*.ipynb diff=nb2py
+*.ipynb diff=nbconv
 
 # Binary files
 # ============

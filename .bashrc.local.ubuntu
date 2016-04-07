@@ -36,3 +36,6 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$NPM_PACKAGES/bin:$PATH"
 export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
+
+# gpg-agent
+export GPG_TTY=$(tty)

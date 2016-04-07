@@ -60,6 +60,8 @@
     autocrlf = input
     editor = emacs
     excludesfile = /Users/ftod/.gitignore
-
+    attributesfile = /Users/ftod/.gitattributes
 [push]
 	default = matching
+[diff "nb2py"]
+	textconv = nb2py.sh

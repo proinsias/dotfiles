@@ -37,5 +37,14 @@ export NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$NPM_PACKAGES/bin:$PATH"
 export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
 
+# https://github.com/KittyKatt/screenFetch
+if type screenfetch > /dev/null 2>&1 ; then
+  screenfetch
+else
+  echo "Please install screenfetch command"
+fi
+
+
+
 # gpg-agent
 export GPG_TTY=$(tty)

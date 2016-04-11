@@ -59,9 +59,9 @@
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol # Highlight whitespace in diffs
     autocrlf = input
     editor = emacs
-    excludesfile = /Users/ftod/.gitignore
-    attributesfile = /Users/ftod/.gitattributes
+    excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
 [push]
 	default = matching
-[diff "nb2py"]
-	textconv = nb2py.sh
+[diff "nbconv"]
+	textconv = ~/scripts/nb2py.sh

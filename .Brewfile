@@ -61,6 +61,7 @@ brew 'git-ftp'
 brew 'gl2ps'
 brew 'glib'
 brew 'gmp'
+brew 'gpg-agent'
 brew 'gnu-indent', args: ['default-names']
 brew 'gnu-sed', args: ['default-names']
 brew 'gnu-tar', args: ['default-names']
@@ -289,6 +290,7 @@ cask 'handylock', args: { appdir: '/Applications' }
 cask 'ibettercharge', args: { appdir: '/Applications' }
 cask 'imageoptim', args: { appdir: '/Applications' }
 cask 'iterm2', args: { appdir: '/Applications' }
+cask 'java'
 cask 'karabiner', args: { appdir: '/Applications' }
 cask 'keka', args: { appdir: '/Applications' }
 cask 'kindle', args: { appdir: '/Applications' }
@@ -299,6 +301,7 @@ cask 'logitech-myharmony', args: { appdir: '/Applications' }
 cask 'logitech-unifying', args: { appdir: '/Applications' }
 cask 'lyx', args: { appdir: '/Applications' }
 cask 'macdown', args: { appdir: '/Applications' }
+cask 'macfusion', args: { appdir: '/Application' }
 cask 'mactex', args: { appdir: '/Applications' }
 cask 'macx-youtube-downloader', args: { appdir: '/Applications' }
 cask 'mailbox', args: { appdir: '/Applications' }
@@ -308,6 +311,7 @@ cask 'marked', args: { appdir: '/Applications' }
 cask 'mendeley-desktop', args: { appdir: '/Applications' }
 cask 'metaz', args: { appdir: '/Applications' }
 cask 'microsoft-office', args: { appdir: '/Applications' }
+cask 'mysqlworkbench', args: { appdir: '/Applications' }
 cask 'no-ip-duc', args: { appdir: '/Applications' }
 cask 'notebook', args: { appdir: '/Applications' }
 cask 'omnidisksweeper', args: { appdir: '/Applications' }
@@ -317,6 +321,7 @@ cask 'osxfuse', args: { appdir: '/Applications' }
 cask 'pacifist', args: { appdir: '/Applications' }
 cask 'picasa', args: { appdir: '/Applications' }
 cask 'prey', args: { appdir: '/Applications' }
+cask 'pycharm', args: { appdir: '/Applications' }
 cask 'pycharm-ce', args: { appdir: '/Applications' }
 cask 'qlcolorcode', args: { appdir: '/Applications' }
 cask 'qlmarkdown', args: { appdir: '/Applications' }
@@ -330,6 +335,7 @@ cask 'rstudio', args: { appdir: '/Applications' }
 cask 'send-to-kindle', args: { appdir: '/Applications' }
 cask 'sequel-pro', args: { appdir: '/Applications' }
 cask 'shazzlemailclient', args: { appdir: '/Applications' }
+cask 'sshfs', args: { appdir: '/Applications' }
 cask 'silverlight', args: { appdir: '/Applications' }
 cask 'skyfonts', args: { appdir: '/Applications' }
 cask 'skype', args: { appdir: '/Applications' }

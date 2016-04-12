@@ -37,6 +37,9 @@ alias jn='jupyter notebook'
 
 alias k9='kill -9='
 
+alias ls='ls --almost-all --classify --human-readable --color --quote-name -v' # natural sort
+alias ll='ls -l'                              # long list
+
 alias mc='/bin/mv -i' # Stop calling Midnight Commander
 alias me='/usr/bin/whoami'
 alias move='/bin/mv -i'

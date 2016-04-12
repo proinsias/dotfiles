@@ -263,6 +263,10 @@ else
   echo "Please install command-not-found-init command"
 fi
 
+# for hunspell
+export LANG=en_US.UTF-8
+export DICTIONARY=en_US 
+
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
 if [ -f ~/.bashhub/bashhub.sh ]; then

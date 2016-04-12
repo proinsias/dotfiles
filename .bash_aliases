@@ -56,7 +56,6 @@ alias sourcec='source ~/.tcshrc'
 alias sourcel='source ~/.login'
 
 alias t='todo.sh -d /Users/ftod/.todo.cfg'
-alias top='top -o cpu'
 
 alias unmount='umount'
 alias up='cd ../'

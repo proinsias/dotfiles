@@ -3,6 +3,7 @@
 alias activate_conda='export PATH="/home/fodonovan/anaconda3/bin:$PATH"'
 alias activate_conda2='export PATH="/home/fodonovan/anaconda3/bin:$PATH" ; source activate python2'
 alias deactivate_conda="export PATH=$(echo $PATH | sed -e 's|/home/fodonovan/anaconda3/bin:||')"
+alias deactivate_conda2="source deactivate ; deactivate_conda"
 
 # Repos
 alias is2='cd /usr/local/insightsquared'

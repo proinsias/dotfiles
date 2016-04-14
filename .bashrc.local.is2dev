@@ -7,3 +7,6 @@ fi
 
 # Move to interactive-only part
 #ssh-add -l &> /dev/null || ssh-add ~/.ssh/fodonovan.pem
+
+eval `keychain --eval --agents ssh,gpg --inherit any fodonovan.pem 9DE94ABA`
+

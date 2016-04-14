@@ -84,7 +84,7 @@ PreCommit:
     include:
       - '**/*.yaml'
       - '**/*.yml'
-      - '**/.*.yaml' # To parse this!
+      - '**/.*.yml' # To parse this!
 
 CommitMsg:
   HardTabs:

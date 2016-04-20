@@ -267,8 +267,12 @@ fi
 export LANG=en_US.UTF-8
 export DICTIONARY=en_US 
 
+### wakatime
+source ~/scripts/bash-wakatime.sh
+
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
 if [ -f ~/.bashhub/bashhub.sh ]; then
     source ~/.bashhub/bashhub.sh
 fi
+

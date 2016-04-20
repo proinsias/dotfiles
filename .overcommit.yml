@@ -94,6 +94,14 @@ CommitMsg:
   SpellCheck:
     enabled: true
     install_command: 'brew install hunspell'
+  TextWidth:
+    enabled: true
+    max_subject_width: 50
+  MessageFormat:
+    enabled: true
+    pattern: '\[#(\d+)\](.+)'
+    expected_pattern_message: '[#<Issue Id>] <Commit Message Description>'
+    sample_message: '[#1234] Refactored Onboarding flow'
 
 PostCheckout:
   SubmoduleStatus:

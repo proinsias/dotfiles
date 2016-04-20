@@ -58,7 +58,7 @@
     unstage = reset HEAD --
 [core]
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol # Highlight whitespace in diffs
-    autocrlf = input
+#    autocrlf = input
     editor = emacs
     excludesfile = ~/.gitignore
     attributesfile = ~/.gitattributes

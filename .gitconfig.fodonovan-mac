@@ -79,7 +79,7 @@
     # Prevent showing files whose names contain non-ASCII symbols as unversioned.
     # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
     precomposeunicode = false
-    
+
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
@@ -106,7 +106,9 @@
 [diff "bin"]
       # Use `hexdump` to diff binary files
       textconv = hexdump -v -C
-	
+
 [help]
 	# Automatically correct and execute mistyped commands
 	autocorrect = 1
+[diff "nbconv"]
+	textconv = ~/scripts/nb2py.sh

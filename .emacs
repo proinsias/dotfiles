@@ -86,7 +86,7 @@
   (load (expand-file-name "~/.emacs.d/elpa/package.el"))
   (require 'package) 
   (add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+             '("melpa" . "http://melpa.org/packages/") t)
   (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
@@ -188,5 +188,13 @@ process" t)
   (add-to-list 'auto-mode-alist '("\.md$" . markdown-mode))
   (error (message "inf-ruby plugin unavailable, skipping load ...")))
 
-
+;; For mouseterm https://github.com/saitoha/mouseterm-plus/releases/latest
+(unless window-system
+  (xterm-mouse-mode 1)
+  (global-set-key [mouse-4] '(lambda ()
+			       (interactive)
+			       (scroll-down 1)))
+  (global-set-key [mouse-5] '(lambda ()
+			       (interactive)
+			       (scroll-up 1))))
 

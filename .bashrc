@@ -233,8 +233,12 @@ else
 fi
 
 # istheinternetonfire.com
-echo "Is the internet on fire?:"
-dig +short -t txt istheinternetonfire.com
+if ping -c 1 google.com > /dev/null 2>&1 ; then
+    echo "Is the internet on fire?:"
+    dig +short -t txt istheinternetonfire.com
+else
+  echo "No internet connectivity..."
+fi
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh

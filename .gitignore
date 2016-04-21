@@ -90,3 +90,5 @@ www-test/
 war/WEB-INF/appengine-generated/
 
 .idea
+
+.google_apis

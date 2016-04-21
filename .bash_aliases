@@ -18,8 +18,8 @@ alias cp='/bin/cp -i'
 
 alias delete='function _delete(){ move "$@" ~/.Trash/ ; };_delete'
 
-alias ew='function _ew(){ /usr/bin/emacs -nw "$@" ; };_ew'
-alias e='function _e(){ /usr/bin/emacs "$@" & ; };_e'
+alias ew='function _ew(){ emacs -nw "$@" ; };_ew'
+alias e='function _e(){ emacs "$@" & ; };_e'
 
 alias free='/bin/df'
 alias ftp='/usr/bin/ftp -i'
@@ -37,10 +37,8 @@ alias jn='jupyter notebook'
 
 alias k9='kill -9='
 
-alias lastaccess='/bin/ls --G -Flhut'
-#alias l='/bin/ls -FG'
-#alias ls='/bin/ls -G'
-#alias listtrash='/bin/ls  -Fa ~/Desktop/Trash/'
+alias ls='ls --almost-all --classify --human-readable --color --quote-name -v' # natural sort
+alias ll='ls -l'                              # long list
 
 alias mc='/bin/mv -i' # Stop calling Midnight Commander
 alias me='/usr/bin/whoami'
@@ -61,7 +59,6 @@ alias sourcec='source ~/.tcshrc'
 alias sourcel='source ~/.login'
 
 alias t='todo.sh -d /Users/ftod/.todo.cfg'
-alias top='top -o cpu'
 
 alias unmount='umount'
 alias up='cd ../'
@@ -80,39 +77,4 @@ alias grep='grep --color'                     # show differences in colour
 alias egrep='egrep --color=auto'              # show differences in colour
 alias fgrep='fgrep --color=auto'              # show differences in colour
 #
-# Some shortcuts for different directory listings
-## Don't need with above alias for ls
-##alias ls='ls -hF --color=tty'                 # classify files in colour
-alias dir='ls --color=auto --format=vertical'
-alias vdir='ls --color=auto --format=long'
-alias ll='ls -l'                              # long list
-alias la='ls -A'                              # all but . and ..
-alias l='ls -CF'                              #
-
-# OS X has no `md5sum`, so use `md5` as a fallback
-command -v md5sum > /dev/null || alias md5sum="md5"
-
-# OS X has no `sha1sum`, so use `shasum` as a fallback
-command -v sha1sum > /dev/null || alias sha1sum="shasum"
-
-# Show/hide hidden files in Finder
-alias show="defaults write com.apple.finder AppleShowAllFiles -bool
-true && killall Finder"
-alias hide="defaults write com.apple.finder AppleShowAllFiles -bool
-false && killall Finder"
-
-# Hide/show all desktop icons (useful when presenting)
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool
-false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool
-true && killall Finder"
-
-# Ring the terminal bell, and put a badge on Terminal.app’s Dock icon
-# (useful when executing time-consuming commands)
-alias badge="tput bel"
-
-# Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\
-Extras/User.menu/Contents/Resources/CGSession -suspend"
-
 

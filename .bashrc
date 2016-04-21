@@ -90,7 +90,7 @@ export LESS="-XR"
 #
 # /etc/profile sets 022, removing write perms to group + others.
 # Set a more restrictive umask: i.e. no exec perms for others:
-umask 027
+# umask 027 # messes up is2
 # Paranoid: neither group nor others have any perms:
 # umask 077
 
@@ -217,6 +217,13 @@ fi
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
+# ruby
+export RBENV_ROOT="$(brew --prefix rbenv)"
+export GEM_HOME="$(brew --prefix)/opt/gems"
+export GEM_PATH="$(brew --prefix)/opt/gems"
+export PATH="$GEM_HOME/bin:$PATH"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 # https://github.com/nvbn/thefuck/
 if type thefuck > /dev/null 2>&1 ; then
   eval "$(thefuck --alias )" # Add text after 'alias' to replace default 'fuck'
@@ -244,6 +251,28 @@ fi
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
 export PATH=$PATH:"~/scripts"
+
+## Homebrew
+# for autojump
+[[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
+
+# For homebrew bash completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
+if brew command command-not-found-init > /dev/null 2>&1 ; then
+  eval "$(brew command-not-found-init)"
+else
+  echo "Please install command-not-found-init command"
+fi
+
+# for hunspell
+export LANG=en_US.UTF-8
+export DICTIONARY=en_US 
+
+### wakatime
+source ~/scripts/bash-wakatime.sh
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs

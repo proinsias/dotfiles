@@ -1,6 +1,7 @@
 [user]
-	name = Francis O'Donovan
-	email = francis.odonovan@gmail.com
+	name = Francis T. O'Donovan
+	email = fodonovan@insightsquared.com
+	signingkey = 9DE94ABA
 [color]
     diff = auto
     status = auto
@@ -57,11 +58,13 @@
     unstage = reset HEAD --
 [core]
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol # Highlight whitespace in diffs
-    autocrlf = input
+#    autocrlf = input
     editor = emacs
     excludesfile = ~/.gitignore
     attributesfile = ~/.gitattributes
 [push]
 	default = matching
+[commit]
+	gpgsign = true
 [diff "nbconv"]
 	textconv = ~/scripts/nb2py.sh

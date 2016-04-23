@@ -270,6 +270,9 @@ export DICTIONARY=en_US
 ### wakatime
 source ~/scripts/bash-wakatime.sh
 
+### motd
+echo "Don't forget to use autojump and bashhub!"
+
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
 if [ -f ~/.bashhub/bashhub.sh ]; then

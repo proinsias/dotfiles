@@ -12,27 +12,27 @@ alias - cd -
 alias alais alias
 
 alias bc "bc -l"
-alias boss "cd ; /usr/bin/clear"
-alias bye "/usr/bin/clear;logout"
+alias boss "cd ; clear"
+alias bye "clear;logout"
 
-alias cd            'cd \!*;echo $cwd'
+alias cd 'cd \!*;echo $cwd'
 alias close 'chmod g-w,o-rwx'
-alias copy "/bin/cp -i"
+alias copy "cp -i"
 alias count "ls \!* | wc -l"
-alias cp "/bin/cp -i"
+alias cp "cp -i"
 
 alias delete "move \!* ~/.Trash/"
 
-alias ew "/usr/bin/emacs -nw \!*"
-alias e "/usr/bin/emacs \!* &"
-alias ec "/bin/chmod 600 \!* ; /usr/bin/emacs \!* &"
-alias em "/usr/local/bin/emacs \!* &"
-alias edita "/bin/chmod 600 ~/.alias ; em ~/.alias"
-alias editc "/bin/chmod 600 ~/.cshrc ; em ~/.cshrc"
-alias editl "/bin/chmod 600 ~/.login ; em ~/.login"
+alias ew "emacs -nw \!*"
+alias e "emacs \!* &"
+alias ec "chmod 600 \!* ; emacs \!* &"
+alias em "emacs \!* &"
+alias edita "chmod 600 ~/.alias ; em ~/.alias"
+alias editc "chmod 600 ~/.cshrc ; em ~/.cshrc"
+alias editl "chmod 600 ~/.login ; em ~/.login"
 
-alias free "/bin/df"
-alias ftp "/usr/bin/ftp -i"
+alias free "df"
+alias ftp "ftp -i"
 
 alias h "history"
 
@@ -40,34 +40,34 @@ alias ip "ifconfig -a | grep inet | grep broadcast"
 
 alias k9 "kill -9 "
 
-alias lastaccess "/bin/ls --G -Flhut"
-alias l '/bin/ls -FG'
-alias ls '/bin/ls -G'
-#alias listtrash "/bin/ls  -Fa ~/Desktop/Trash/"
-alias lallmore "/bin/ls  --G -Falh \!* | more"
-alias lmore "/bin/ls  --G -F \!* | more"
+alias lastaccess "ls --G -Flhut"
+alias l 'ls -FG'
+alias ls 'ls -G'
+#alias listtrash "ls  -Fa ~/Desktop/Trash/"
+alias lallmore "ls  --G -Falh \!* | more"
+alias lmore "ls  --G -F \!* | more"
 
-alias mc "/bin/mv -i" # Stop calling Midnight Commander
-alias me "/usr/bin/whoami"
-alias mine '/bin/ps -eu ftod -o "user pid tty time comm" | /usr/bin/grep ftod'
-alias move "/bin/mv -i"
+alias mc "mv -i" # Stop calling Midnight Commander
+alias me "whoami"
+alias mine 'ps -eu ftod -o "user pid tty time comm" | grep ftod'
+alias move "mv -i"
 alias mroe more
-alias mv "/bin/mv -i"
+alias mv "mv -i"
 
 #alias open 'chmod go+r'
 
 alias pwd           'echo $cwd'
 
-alias remove "/bin/rm -i"
+alias remove "rm -i"
 alias removebackups "delete *~ #*# .*~"
-alias rm "/bin/rm -i"
+alias rm "rm -i"
 
 alias scp 'scp -prC'
 alias shut 'chmod go-r'
 alias sortbysize "du -S | sort -n"
 alias sourcec "source ~/.tcshrc"
 alias sourcel "source ~/.login"
-alias space "/usr/bin/du -sh \!*"
+alias space "du -sh \!*"
 
 alias t 'todo.sh -d /Users/ftod/.todo.cfg'
 alias top "top -o cpu"
@@ -80,7 +80,7 @@ alias up3 "cd ../../../"
 # Unused aliases
 #
 
-# alias quota  "/usr/bin/quota -v"
+# alias quota  "quota -v"
 
 # Interactive operation...
 alias rm='rm -i'

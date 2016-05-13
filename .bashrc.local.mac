@@ -30,6 +30,10 @@ else
   echo "Please install archey command"
 fi
 
+# Disable per-session command history feature in El Capitan
+# <https://stackoverflow.com/questions/32418438/how-can-i-disable-bash-sessions-in-os-x-el-capitan>
+export SHELL_SESSION_HISTORY=0
+
 if [ -f "${HOME}/.bash_aliases.local.mac" ]; then
   source "${HOME}/.bash_aliases.local.mac"
 fi

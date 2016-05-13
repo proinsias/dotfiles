@@ -28,6 +28,7 @@ brew 'checkstyle'
 brew 'cloog'
 brew 'cmake'
 brew 'colordiff'
+brew 'cookiecutter'
 brew 'coreutils'
 brew 'cowsay'
 brew 'cscope'
@@ -257,6 +258,7 @@ cask 'controlplane', args: { appdir: '/Applications' }
 cask 'cord', args: { appdir: '/Applications' }
 cask 'crashplan', args: { appdir: '/Applications' }
 cask 'ctivo', args: { appdir: '/Applications' }
+cask 'dash', args: { appdir: '/Applications' }
 cask 'disk-inventory-x', args: { appdir: '/Applications' }
 cask 'diskmaker-x', args: { appdir: '/Applications' }
 cask 'diskwave', args: { appdir: '/Applications' }

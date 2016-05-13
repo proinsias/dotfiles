@@ -23,12 +23,13 @@ is2update() {
     else
         echo "${red}Pulling is_engine ${blue}[development branch]${reset}";
         cd /usr/local/insightsquared/is_engine;
-        git checkout develop; 
+        git checkout develop;
         git pull;
 	bbase/manage.py migrate;
 	npm install;
 	gulp;
-        touch /usr/local/insightsquared/is_engine/bbase/wsgi_handler.py;
+        #touch /usr/local/insightsquared/is_engine/bbase/wsgi_handler.py;
+        sudo /etc/init.d/gunicorn restart
         echo "${red}Pulling configuration ${blue}[master branch]${reset}";
         cd /usr/local/insightsquared/configuration;
         git checkout master;

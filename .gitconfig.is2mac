@@ -68,3 +68,5 @@
 	gpgsign = true
 [diff "nbconv"]
 	textconv = ~/scripts/nb2py.sh
+[credential]
+	helper = osxkeychain

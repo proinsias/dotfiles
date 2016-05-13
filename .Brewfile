@@ -28,6 +28,7 @@ brew 'checkstyle'
 brew 'cloog'
 brew 'cmake'
 brew 'colordiff'
+brew 'cookiecutter'
 brew 'coreutils'
 brew 'cowsay'
 brew 'cscope'
@@ -131,6 +132,7 @@ brew 'homebrew/science/suite-sparse421'
 brew 'homebrew/science/veclibfort'
 brew 'homebrew/versions/perl518'
 brew 'homebrew/homebrew-x11/gv'
+brew 'httpie'
 brew 'hub'
 brew 'hunspell'
 brew 'icu4c'
@@ -205,6 +207,7 @@ brew 'ssh-copy-id'
 brew 'subversion'
 brew 'szip'
 brew 'tbb'
+brew 'tesseract'
 brew 'texi2html'
 brew 'texinfo'
 brew 'thefuck'
@@ -255,6 +258,7 @@ cask 'controlplane', args: { appdir: '/Applications' }
 cask 'cord', args: { appdir: '/Applications' }
 cask 'crashplan', args: { appdir: '/Applications' }
 cask 'ctivo', args: { appdir: '/Applications' }
+cask 'dash', args: { appdir: '/Applications' }
 cask 'disk-inventory-x', args: { appdir: '/Applications' }
 cask 'diskmaker-x', args: { appdir: '/Applications' }
 cask 'diskwave', args: { appdir: '/Applications' }

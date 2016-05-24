@@ -169,6 +169,7 @@ brew 'macvim', args: ['with-override-system-vim']
 brew 'makedepend'
 brew 'maven'
 brew 'mercurial'
+brew 'mkdocs'
 brew 'mongodb', args: ['with-openssl']
 brew 'mpfr'
 brew 'mysql-connector-c'

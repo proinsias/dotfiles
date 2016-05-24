@@ -69,3 +69,6 @@ alias get='python -m megatest.get'
 # Runs the is2 Django app locally in debug mode, allowing complex debug scenarios (AJAX requests sent from template-provided JS)
 alias runserver='/usr/bin/python /usr/local/insightsquared/is_engine/bbase/manage.py runserver 0.0.0.0:8001 --nostatic'
 
+alias foot='python /usr/local/insightsquared/is_engine/bbase/bin/test_foot.py -v -d'
+alias test_config='python /usr/local/insightsquared/is_engine/isdata/bin/test_config.py'
+alias gen_report='python /usr/local/insightsquared/configuration/screens2/gen_report.py'

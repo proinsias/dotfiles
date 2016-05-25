@@ -25,7 +25,7 @@ alias free='df'
 alias ftp='ftp -i'
 
 alias gc='git checkout'
-alias gd='git diff'
+alias gd='git difftool'
 alias gs='git status'
 alias gp='git pull'
 

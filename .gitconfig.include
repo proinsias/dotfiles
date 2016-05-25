@@ -59,6 +59,8 @@
     added = yellow
     changed = green
     untracked = cyan
+[commit]
+  gpgSign = true
 [core]
     attributesfile = ~/.gitattributes
     autocrlf = input

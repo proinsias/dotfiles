@@ -4,11 +4,13 @@
 [push]
     default = matching
 [color]
+    decorate = auto
+    grep = auto
     diff = auto
     status = auto
     branch = auto
     interactive = auto
-	ui = true
+    ui = auto
     pager = true
 [color "branch"]
     current = yellow reverse
@@ -70,16 +72,14 @@
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol # Highlight whitespace in diffs
     autocrlf = input
     editor = emacs
-    excludesfile = /Users/fodonovan/.gitignore
+    excludesfile = ~/.gitignore
     attributesfile = ~/.gitattributes
     # Make `git rebase` safer on OS X
     # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
     trustctime = false
-
     # Prevent showing files whose names contain non-ASCII symbols as unversioned.
     # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
     precomposeunicode = false
-
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
@@ -87,6 +87,7 @@
 	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [filter "hawser"]
+  # From GitHub for Mac
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
 	required = true
@@ -99,16 +100,16 @@
 	smudge = git-lfs smudge %f
 	required = true
 [diff]
-
+	tool = opendiff
 	# Detect copies as well as renames
 	renames = copies
-
 [diff "bin"]
       # Use `hexdump` to diff binary files
       textconv = hexdump -v -C
-
 [help]
 	# Automatically correct and execute mistyped commands
 	autocorrect = 1
 [diff "nbconv"]
 	textconv = ~/scripts/nb2py.sh
+[status]
+    submodulesummary = 1

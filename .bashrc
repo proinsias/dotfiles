@@ -274,6 +274,11 @@ export DICTIONARY=en_US
 ### wakatime
 source ~/scripts/bash-wakatime.sh
 
+### tab completion for conda
+if conda -V > /dev/null 2>&1 ; then
+  eval "$(register-python-argcomplete conda)"
+fi
+
 ### motd
 echo "Don't forget to use autojump and bashhub!"
 

@@ -59,8 +59,6 @@
     added = yellow
     changed = green
     untracked = cyan
-[commit]
-	gpgsign = true
 [core]
     attributesfile = ~/.gitattributes
     autocrlf = input
@@ -136,7 +134,6 @@
 	# default = upstream
 	# When pushing, also push tags whose commit-ishs are now reachable upstream
 	followTags = true
-	gpgSign = true
 [status]
 	# Shows paths relative to the repository root
     relativePaths = false

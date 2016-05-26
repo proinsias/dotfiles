@@ -211,7 +211,8 @@ fi
 if type hub > /dev/null 2>&1 ; then
   eval "$(hub alias -s)"
 else
-  echo "Please install hub command"
+  echo "Please install hub command:"
+  echo "$ brew install hub"
 fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
@@ -228,7 +229,8 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if type thefuck > /dev/null 2>&1 ; then
   eval "$(thefuck --alias )" # Add text after 'alias' to replace default 'fuck'
 else
-  echo "Please install thef**k command"
+  echo "Please install thef**k command:"
+  echo "$ brew install thef**k"
 fi
 
 # overcommit
@@ -236,7 +238,8 @@ fi
 if type overcommit > /dev/null 2>&1 ; then
   export GIT_TEMPLATE_DIR=`overcommit --template-dir`
 else
-  echo "Please install overcommit command"
+  echo "Please install overcommit command:"
+  echo "$ gem install overcommit"
 fi
 
 # istheinternetonfire.com
@@ -261,10 +264,10 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 
-if brew command command-not-found-init > /dev/null 2>&1 ; then
-  eval "$(brew command-not-found-init)"
+if brew command command-not-found-init > /dev/null; then
+  eval "$(brew command-not-found-init)";
 else
-  echo "Please install command-not-found-init command"
+  echo "Please install command-not-found-init command:"
 fi
 
 # for hunspell
@@ -272,7 +275,13 @@ export LANG=en_US.UTF-8
 export DICTIONARY=en_US 
 
 ### wakatime
-source ~/scripts/bash-wakatime.sh
+if wakatime -h > /dev/null 2>&1 ; then
+  source ~/scripts/bash-wakatime.sh
+else
+  echo "Please install wakatime command:"
+  echo "$ pip install wakatime"
+fi
+
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs

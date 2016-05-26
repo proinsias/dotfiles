@@ -1,9 +1,9 @@
 # conda
 
-alias activate_conda='export PATH="/home/fodonovan/anaconda3/bin:$PATH"'
-alias activate_conda2='export PATH="/home/fodonovan/anaconda3/bin:$PATH" ; source activate python2'
-alias deactivate_conda="export PATH=$(echo $PATH | sed -e 's|/home/fodonovan/anaconda3/bin:||')"
-alias deactivate_conda2="source deactivate ; deactivate_conda"
+alias activate_conda='source is2dev_conda.sh python3'
+alias activate_conda2='source is2dev_conda.sh python2'
+alias activate_sys='source is2dev_conda.sh sys'
+alias deactivate_conda="source is2dev_conda.sh deactivate"
 
 # Repos
 alias is2='cd /usr/local/insightsquared'
@@ -26,7 +26,8 @@ alias disk='cd ~/devbox/usr/local/insightsquared/is_engine/bbase/utils/is_charte
 alias dprojects='cd ~/devbox/usr/local/insightsquared/projects/'
 alias dfv6='cd ~/devbox/usr/local/insightsquared/forecastv6/'
 
-alias tw='touch /usr/local/insightsquared/is_engine/bbase/wsgi_handler.py'
+#alias tw='touch /usr/local/insightsquared/is_engine/bbase/wsgi_handler.py'
+alias tw='sudo /etc/init.d/gunicorn restart'
 
 # Extra tools
 alias migrate='python /usr/local/insightsquared/is_engine/bbase/manage.py migrate'
@@ -66,3 +67,6 @@ alias get='python -m megatest.get'
 # Runs the is2 Django app locally in debug mode, allowing complex debug scenarios (AJAX requests sent from template-provided JS)
 alias runserver='/usr/bin/python /usr/local/insightsquared/is_engine/bbase/manage.py runserver 0.0.0.0:8001 --nostatic'
 
+alias foot='python /usr/local/insightsquared/is_engine/bbase/bin/test_foot.py -v -d'
+alias test_config='python /usr/local/insightsquared/is_engine/isdata/bin/test_config.py'
+alias gen_report='python /usr/local/insightsquared/configuration/screens2/gen_report.py'

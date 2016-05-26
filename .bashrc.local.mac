@@ -30,6 +30,15 @@ else
   echo "Please install archey command"
 fi
 
+### Global tab completion for argcomplete-supported apps
+if [ ! -f /usr/local/etc/bash_completion.d/python-argcomplete.sh ]; then
+  activate-global-python-argcomplete --dest /usr/local/etc/bash_completion.d
+fi
+
+# Disable per-session command history feature in El Capitan
+# <https://stackoverflow.com/questions/32418438/how-can-i-disable-bash-sessions-in-os-x-el-capitan>
+export SHELL_SESSION_HISTORY=0
+
 if [ -f "${HOME}/.bash_aliases.local.mac" ]; then
   source "${HOME}/.bash_aliases.local.mac"
 fi

@@ -283,6 +283,14 @@ else
 fi
 
 
+### tab completion for conda
+if conda -V > /dev/null 2>&1 ; then
+  eval "$(register-python-argcomplete conda)"
+fi
+
+### motd
+echo "Don't forget to use autojump and bashhub!"
+
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
 if [ -f ~/.bashhub/bashhub.sh ]; then

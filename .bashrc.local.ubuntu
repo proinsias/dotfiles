@@ -44,7 +44,10 @@ else
   echo "Please install screenfetch command"
 fi
 
-
+### Global tab completion for argcomplete-supported apps
+if [ ! -f ~/.linuxbrew/etc/bash_completion.d/python-argcomplete.sh ]; then
+  activate-global-python-argcomplete --dest ~/.linuxbrew/etc/bash_completion.d
+fi
 
 # gpg-agent
 export GPG_TTY=$(tty)

@@ -1,1 +1,7 @@
-gem: --user-install -n/usr/local/bin # homebrew ruby
+# http://guides.rubygems.org/command-reference/#gem-environment
+gem: --no-document --user-install -n/usr/local/bin # homebrew ruby
+verbose: true
+update_sources: true
+backtrace: true
+benchmark: false
+bulk_threshold: 1000

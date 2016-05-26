@@ -1,17 +1,5 @@
 # Set default behaviour, in case users don't have core.autocrlf set.
-#* text=auto
-
-# Explicitly declare text files we want to always be normalized and
-  converted
-# to native line endings on checkout.
-#*.c text
-#*.h text
-
-# Declare files that will always have CRLF line endings on checkout.
-#*.sln text eol=crlf
-
-# Declare files that will always have LF line endings on checkout.
-.* text eol=lf
+* text=auto
 
 # Documents
 *.doc	 diff=astextplain
@@ -43,6 +31,20 @@
 *.ico binary
 *.svg binary
 *.eps binary
+
+# Declare files that will always have CRLF line endings on checkout.
+*.sln text eol=crlf
+
+# Declare files that will always have LF line endings on checkout.
+.* text eol=lf
+
+# Explicitly declare text files we want to always be normalized and
+# converted to native line endings on checkout.
+
+# c
+
+*.c text
+*.h text
 
 # Java
 

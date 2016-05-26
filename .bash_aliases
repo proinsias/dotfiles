@@ -8,24 +8,24 @@
 alias alais='alias'
 
 alias bc="bc -l"
-alias boss='cd ; /usr/bin/clear'
-alias bye='/usr/bin/clear;logout'
+alias boss='cd ; clear'
+alias bye='clear;logout'
 
 alias close='chmod g-w,o-rwx'
-alias copy='/bin/cp -i'
+alias copy='cp -i'
 alias count='function _count(){ ls "$@" | wc -l ; };_count'
-alias cp='/bin/cp -i'
+alias cp='cp -i'
 
 alias delete='function _delete(){ move "$@" ~/.Trash/ ; };_delete'
 
 alias ew='function _ew(){ emacs -nw "$@" ; };_ew'
 alias e='function _e(){ emacs "$@" & ; };_e'
 
-alias free='/bin/df'
-alias ftp='/usr/bin/ftp -i'
+alias free='df'
+alias ftp='ftp -i'
 
 alias gc='git checkout'
-alias gd='git diff'
+alias gd='git difftool'
 alias gs='git status'
 alias gp='git pull'
 
@@ -40,17 +40,17 @@ alias k9='kill -9='
 alias ls='ls --almost-all --classify --human-readable --color --quote-name -v' # natural sort
 alias ll='ls -l'                              # long list
 
-alias mc='/bin/mv -i' # Stop calling Midnight Commander
-alias me='/usr/bin/whoami'
-alias move='/bin/mv -i'
+alias mc='mv -i' # Stop calling Midnight Commander
+alias me='whoami'
+alias move='mv -i'
 alias mroe='more'
-alias mv='/bin/mv -i'
+alias mv='mv -i'
 
 #alias open='chmod go+r'
 
-alias remove='/bin/rm -i'
+alias remove='rm -i'
 alias removebackups='delete *~ #*# .*~'
-alias rm='/bin/rm -i'
+alias rm='rm -i'
 
 alias scp='scp -prC'
 alias shut='chmod go-r'

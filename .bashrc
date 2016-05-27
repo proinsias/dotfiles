@@ -5,21 +5,22 @@ if [ -f /etc/bashrc ]; then
         . /etc/bashrc
 fi
 
-if ls ~/.bash/* 1> /dev/null 2>&1; then
+# Use `/bin/ls` for these tests, since homebrew `ls` gives errors
+if /bin/ls ~/.bash/* 1> /dev/null 2>&1; then
   for file in ~/.bash/*; do
-    source "${file}"
+    source $file
   done
 fi
 
 # source .bashrc.local and .bashrc.local.<blah>
-if ls ~/.bashrc.local* 1> /dev/null 2>&1; then
+if /bin/ls ~/.bashrc.local* 1> /dev/null 2>&1; then
   for file in ~/.bashrc.local*; do
     source "${file}"
   done
 fi
 
 # source .bash_aliases and .bash_aliases.local.<blah>
-if ls ~/.bash_aliases* 1> /dev/null 2>&1; then
+if /bin/ls ~/.bash_aliases* 1> /dev/null 2>&1; then
   for file in ~/.bash_aliases*; do
     source "${file}"
   done
@@ -62,14 +63,6 @@ case $(uname -s) in
       #if [ -z $SSH_AGENT_PID ] ; then
       #   eval $(ssh-agent -s)
       #fi
-
-      function cleanup {
-        echo "Killing SSH-Agent"
-
-        rm -rf $(ls -ld /tmp/ssh-* | grep fodonovan | awk '{print $9}') > /dev/null 2>&1
-        kill -9 $SSH_AGENT_PID > /dev/null 2>&1
-      }
-      trap cleanup EXIT
 
       # homebrew linuxbrew
       export PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH"
@@ -256,6 +249,14 @@ case $(uname -s) in
         else
           echo "Please install screenfetch command"
         fi
+
+        function cleanup {
+          echo "Killing SSH-Agent"
+
+          rm -rf $(ls -ld /tmp/ssh-* | grep fodonovan | awk '{print $9}') > /dev/null 2>&1
+          kill -9 $SSH_AGENT_PID > /dev/null 2>&1
+        }
+        trap cleanup EXIT
         ;;
     "Darwin" )
         # Add tab completion for `defaults read|write NSGlobalDomain`

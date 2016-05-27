@@ -7,12 +7,16 @@ fi
 
 # source .bashrc.local and .bashrc.local.<blah>
 if ls ~/.bashrc.local* 1> /dev/null 2>&1; then
-  source ~/.bashrc.local*
+  for file in ~/.bashrc.local*; do
+    source "${file}"
+  done
 fi
 
 # source .bash_aliases, .bash_aliases.local and .bash_aliases.local.<blah>
 if ls ~/.bash_aliases* 1> /dev/null 2>&1; then
-  source ~/.bash_aliases*
+  for file in ~/.bash_aliases*; do
+    source "${file}"
+  done
 fi
 
 if [ -f ~/.bash/functions ]; then

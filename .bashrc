@@ -207,13 +207,6 @@ else
   echo "No internet connectivity..."
 fi
 
-# https://github.com/nvbn/thefuck/
-if type thefuck > /dev/null 2>&1 ; then
-  eval "$(thefuck --alias )" # Add text after 'alias' to replace default 'fuck'
-else
-  echo "Please install thef**k command"
-fi
-
 # for autojump
 [[ -s "${HOMEBREW_PREFIX}/etc/autojump.sh" ]] && . "${HOMEBREW_PREFIX}/etc/autojump.sh"
 
@@ -222,14 +215,19 @@ if [ -f "${HOMEBREW_PREFIX}/etc/bash_completion" ]; then
     . "${HOMEBREW_PREFIX}/etc/bash_completion"
 fi
 
-if brew command command-not-found-init > /dev/null 2>&1 ; then
-  eval "$(brew command-not-found-init)"
+if brew command command-not-found-init > /dev/null; then
+  eval "$(brew command-not-found-init)";
 else
-  echo "Please install command-not-found-init command"
+  echo "Please install command-not-found-init command:"
 fi
 
-## wakatime
-source ~/scripts/bash-wakatime.sh
+### wakatime
+if wakatime -h > /dev/null 2>&1 ; then
+  source ~/scripts/bash-wakatime.sh
+else
+  echo "Please install wakatime command:"
+  echo "$ pip install wakatime"
+fi
 
 ### tab completion for conda
 if conda -V > /dev/null 2>&1 ; then

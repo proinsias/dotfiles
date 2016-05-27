@@ -174,6 +174,7 @@ brew 'maven'
 brew 'mercurial'
 brew 'mkdocs'
 brew 'mongodb', args: ['with-openssl']
+brew 'moreutils'
 brew 'mpfr'
 brew 'mysql-connector-c'
 brew 'nettle'
@@ -273,6 +274,7 @@ cask 'duplicate-annihilator', args: { appdir: '/Applications' }
 cask 'eclipse-java', args: { appdir: '/Applications' }
 cask 'emacs', args: { appdir: '/Applications' }
 cask 'evernote', args: { appdir: '/Applications' }
+cask 'filebot', args: { appdir: '/Applications' }
 cask 'filezilla', args: { appdir: '/Applications' }
 cask 'firefox', args: { appdir: '/Applications' }
 cask 'fitbit-connect', args: { appdir: '/Applications' }

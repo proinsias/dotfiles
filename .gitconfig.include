@@ -136,9 +136,11 @@
 	# default = upstream
 	# When pushing, also push tags whose commit-ishs are now reachable upstream
 	followTags = true
+	# Not supported by bitbucket or github yet
+  gpgSign = if-asked
 [status]
 	# Shows paths relative to the repository root
-    relativePaths = false
+  # relativePaths = false
 	# Display submodule rev change summaries in status
 	submoduleSummary = true
 	# Recursively traverse untracked directories to display all contents

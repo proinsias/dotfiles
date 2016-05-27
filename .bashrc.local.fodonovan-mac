@@ -1,5 +1,7 @@
-if [ -f "${HOME}/.bashrc.local.mac" ]; then
-  source "${HOME}/.bashrc.local.mac"
+# Non-interactive stuff here
+
+if [ -f ~/.bashrc.local.mac ]; then
+  source ~/.bashrc.local.mac
 fi
 
 # python
@@ -9,4 +11,7 @@ export PATH="/Users/fodonovan/anaconda3/bin:$PATH"
 # GWT
 export GWT_TOOLS=/usr/local/gwt/tools-2.7.0
 export GWT_HOME=/usr/local/gwt/gwt-2.7.0
+
+# If not running interactively, stop here
+
 

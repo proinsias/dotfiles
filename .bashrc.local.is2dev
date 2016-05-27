@@ -1,14 +1,7 @@
-if [ -f "${HOME}/.bashrc.local.ubuntu" ]; then
-  source "${HOME}/.bashrc.local.ubuntu"
-fi
+# Non-interactive stuff here
 
 # added by Anaconda3 2.5.0 installer
 #export PATH="/home/fodonovan/anaconda3/bin:$PATH"
-
-# Move to interactive-only part
-#ssh-add -l &> /dev/null || ssh-add ~/.ssh/fodonovan.pem
-
-eval `keychain --eval --agents ssh,gpg --inherit any fodonovan.pem 9DE94ABA`
 
 #
 ## Devbox Maintenance - from chaps_functions
@@ -52,3 +45,8 @@ is2update() {
 }
 
 export -f is2update
+
+# If not running interactively, stop here
+if [[ "$-" == *i* ]]; then
+  eval $(keychain --eval --agents ssh,gpg --inherit any fodonovan.pem 9DE94ABA)
+fi

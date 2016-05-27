@@ -5,6 +5,12 @@ if [ -f /etc/bashrc ]; then
         . /etc/bashrc
 fi
 
+if ls ~/.bash/* 1> /dev/null 2>&1; then
+  for file in ~/.bash/*; do
+    source "${file}"
+  done
+fi
+
 # source .bashrc.local and .bashrc.local.<blah>
 if ls ~/.bashrc.local* 1> /dev/null 2>&1; then
   for file in ~/.bashrc.local*; do
@@ -12,15 +18,11 @@ if ls ~/.bashrc.local* 1> /dev/null 2>&1; then
   done
 fi
 
-# source .bash_aliases, .bash_aliases.local and .bash_aliases.local.<blah>
+# source .bash_aliases and .bash_aliases.local.<blah>
 if ls ~/.bash_aliases* 1> /dev/null 2>&1; then
   for file in ~/.bash_aliases*; do
     source "${file}"
   done
-fi
-
-if [ -f ~/.bash/functions ]; then
-  source ~/.bash/functions
 fi
 
 # added by travis gem

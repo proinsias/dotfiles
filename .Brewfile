@@ -13,6 +13,7 @@ brew 'ack'
 brew 'advancecomp'
 brew 'ag'
 brew 'ant'
+brew 'antiword'
 brew 'apg'
 brew 'archey'
 brew 'aspell'
@@ -334,6 +335,7 @@ cask 'picasa', args: { appdir: '/Applications' }
 cask 'prey', args: { appdir: '/Applications' }
 cask 'pycharm', args: { appdir: '/Applications' }
 cask 'pycharm-ce', args: { appdir: '/Applications' }
+cask 'p4merge', args: { appdir: '/Applications' }
 cask 'qlcolorcode', args: { appdir: '/Applications' }
 cask 'qlmarkdown', args: { appdir: '/Applications' }
 cask 'qlprettypatch', args: { appdir: '/Applications' }

@@ -12,20 +12,6 @@ if /bin/ls ~/.bash/* 1> /dev/null 2>&1; then
   done
 fi
 
-# source .bashrc.local and .bashrc.local.<blah>
-if /bin/ls ~/.bashrc.local* 1> /dev/null 2>&1; then
-  for file in ~/.bashrc.local*; do
-    source "${file}"
-  done
-fi
-
-# source .bash_aliases and .bash_aliases.local.<blah>
-if /bin/ls ~/.bash_aliases* 1> /dev/null 2>&1; then
-  for file in ~/.bash_aliases*; do
-    source "${file}"
-  done
-fi
-
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
@@ -97,6 +83,21 @@ export MANPATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman:$MANPATH"
 export MANPATH="${HOMEBREW_PREFIX}/share/man:$MANPATH"
 export INFOPATH="${HOMEBREW_PREFIX}/share/info:$INFOPATH"
 
+# source local files and aliases
+
+# source .bashrc.local and .bashrc.local.<blah>
+if /bin/ls ~/.bashrc.local* 1> /dev/null 2>&1; then
+  for file in ~/.bashrc.local*; do
+    source "${file}"
+  done
+fi
+
+# source .bash_aliases and .bash_aliases.local.<blah>
+if /bin/ls ~/.bash_aliases* 1> /dev/null 2>&1; then
+  for file in ~/.bash_aliases*; do
+    source "${file}"
+  done
+fi
 
 # Mix of interactivity here
 
@@ -256,7 +257,8 @@ case $(uname -s) in
           rm -rf $(ls -ld /tmp/ssh-* | grep fodonovan | awk '{print $9}') > /dev/null 2>&1
           kill -9 $SSH_AGENT_PID > /dev/null 2>&1
         }
-        trap cleanup EXIT
+	# 2016-05-31 - commented below to debug sudden exits
+        # trap cleanup EXIT
         ;;
     "Darwin" )
         # Add tab completion for `defaults read|write NSGlobalDomain`

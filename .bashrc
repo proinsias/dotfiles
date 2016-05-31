@@ -128,7 +128,7 @@ fi
 # set -o notify
 #
 # Don't use ^D to exit
-# set -o ignoreeof
+set -o ignoreeof
 #
 # Use case-insensitive filename globbing
 shopt -s nocaseglob

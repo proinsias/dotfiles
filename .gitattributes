@@ -22,15 +22,15 @@
 *.sql text
 
 # Graphics
-*.png binary
-*.jpg binary
-*.jpeg binary
-*.gif binary
-*.tif binary
-*.tiff binary
-*.ico binary
-*.svg binary
-*.eps binary
+*.png diff=exif
+*.jpg diff=exif
+*.jpeg diff=exif
+*.gif diff=exif
+*.tif diff=exif
+*.tiff diff=exif
+*.ico diff=exif
+*.svg diff=exif
+*.eps diff=exif
 
 # Declare files that will always have CRLF line endings on checkout.
 *.sln text eol=crlf
@@ -60,7 +60,6 @@
 *.jspf          text
 *.properties    text
 *.sh            text
-*.svg           text
 *.tld           text
 *.txt           text
 *.xml           text
@@ -70,12 +69,7 @@
 *.class         binary
 *.dll           binary
 *.ear           binary
-*.gif           binary
-*.ico           binary
 *.jar           binary
-*.jpg           binary
-*.jpeg          binary
-*.png           binary
 *.so            binary
 *.war           binary
 
@@ -108,6 +102,8 @@
 # ObjectiveC
 # compare .pbxproj files as binary and always merge as union
 *.pbxproj binary -merge=union
+# Xcode
+*.strings diff=localizablestrings
 
 # Python
 # Basic .gitattributes for a python repo.
@@ -124,7 +120,6 @@
 # Binary files
 # ============
 *.db		binary
-*.p 		binary
 *.pkl 		binary
 *.pyc 		binary
 *.pyd		binary
@@ -151,28 +146,17 @@
 
 # source code
 *.php text
-*.css text
 *.sass text
 *.scss text
 *.less text
 *.styl text
-*.js text
 *.ts text
 *.coffee text
-*.json text
-*.htm text
-*.html text
-*.xml text
-*.svg text
-*.txt text
 *.ini text
 *.inc text
 *.pl text
 *.rb text
-*.py text
 *.scm text
-*.sql text
-*.sh text
 *.bat text
 
 # templates
@@ -181,7 +165,6 @@
 *.jade text
 *.haml text
 *.hbs text
-*.dot text
 *.tmpl text
 *.phtml text
 *.latte text
@@ -216,7 +199,6 @@ Procfile text
 .slugignore text
 
 # Documentation
-*.md text
 LICENSE text
 AUTHORS text
 
@@ -226,11 +208,6 @@ AUTHORS text
 #
 
 # (binary is a macro for -text -diff)
-*.png binary
-*.jpg binary
-*.jpeg binary
-*.gif binary
-*.ico binary
 *.mov binary
 *.mp4 binary
 *.mp3 binary
@@ -244,6 +221,4 @@ AUTHORS text
 *.eot binary
 *.woff binary
 *.woff2 binary
-*.pyc binary
-*.pdf binary
 

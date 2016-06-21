@@ -1,3 +1,5 @@
+# Non-interactive stuff here
+
 # python
 ## added by Anaconda3 2.1.0 installer
 export PATH="/Volumes/FireflyHD2/anaconda3/bin:$PATH"
@@ -11,10 +13,6 @@ export PATH="/Volumes/FireflyHD2/anaconda3/bin:$PATH"
 #complete -F _todo t
 #export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'
 
-
 eval `keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC`
 
-if [ -f "${HOME}/.bashrc.local.mac" ]; then
-  source "${HOME}/.bashrc.local.mac"
-fi
 

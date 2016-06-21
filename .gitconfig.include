@@ -34,6 +34,8 @@
 [branch]
     # When branching off a remote branch, automatically let the local branch track the remote branch
     autosetupmerge = true
+    # Set up remote tracking branches to pull using `--rebase`
+    autosetuprebase = always
 [color]
     branch = auto
     decorate = auto
@@ -90,9 +92,16 @@
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
+[diff "astextplain"]
+  textconv = ~/scripts/astextplain.sh
+  # textconv = strings
 [diff "bin"]
-      # Use `hexdump` to diff binary files
-      textconv = hexdump -v -C
+  # Use `hexdump` to diff binary files
+  textconv = hexdump -v -C
+[diff "exif"]
+	textconv = exiftool
+[diff "localizablestrings"]
+  textconv = "iconv -f utf-16 -t utf-8"
 [diff "nbconv"]
 	textconv = ~/scripts/nb2py.sh
 [fetch]
@@ -113,7 +122,7 @@
   lineNumber = true
 [help]
 	# Automatically correct and execute mistyped commands
-	autocorrect = 1
+	autocorrect = 20 # 2 seconds
 [log]
 	# Use abbrev SHAs whenever possible/relevant instead of full 40 chars
 	abbrevCommit = true
@@ -136,9 +145,11 @@
 	# default = upstream
 	# When pushing, also push tags whose commit-ishs are now reachable upstream
 	followTags = true
+	# Not supported by bitbucket or github yet
+  gpgSign = if-asked
 [status]
 	# Shows paths relative to the repository root
-    relativePaths = false
+  # relativePaths = false
 	# Display submodule rev change summaries in status
 	submoduleSummary = true
 	# Recursively traverse untracked directories to display all contents

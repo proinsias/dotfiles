@@ -35,6 +35,11 @@ alias dbshell='python -i /usr/local/insightsquared/is_tools/user_scripts/foxtrot
 alias dbshellb='bpython -i /usr/local/insightsquared/is_tools/user_scripts/foxtrot/model_db.py'
 
 # Syncs credentials for dev boxes
+# Add --get-input to overwrite existing 'Input_' tables
+# Add --source to get raw provider data tables
+# Add --db-tmp to get 'insightsquared_<client>' tables
+# Leave off --db-tmp to get 'insightsquared' tables
+# Add --main to get 'main_' and 'isconfig_' tables
 alias issink='python /usr/local/insightsquared/is_engine/issink/issink.py --get-input -v --db-tmp --source'
 
 # Fuzzes an URL, attempting to give it valid, semi-valid, and invalid inputs to various URL parameters.

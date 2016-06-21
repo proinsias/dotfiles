@@ -1,14 +1,7 @@
-if [ -f "${HOME}/.bashrc.local.ubuntu" ]; then
-  source "${HOME}/.bashrc.local.ubuntu"
-fi
+# Non-interactive stuff here
 
 # added by Anaconda3 2.5.0 installer
 #export PATH="/home/fodonovan/anaconda3/bin:$PATH"
-
-# Move to interactive-only part
-#ssh-add -l &> /dev/null || ssh-add ~/.ssh/fodonovan.pem
-
-eval `keychain --eval --agents ssh,gpg --inherit any fodonovan.pem 9DE94ABA`
 
 #
 ## Devbox Maintenance - from chaps_functions
@@ -21,15 +14,18 @@ is2update() {
     if [ "$1" == "-h" ]; then
         echo -e $helptext
     else
+        source is2dev_conda.sh sys
+
         echo "${red}Pulling is_engine ${blue}[development branch]${reset}";
         cd /usr/local/insightsquared/is_engine;
         git checkout develop;
         git pull;
-	bbase/manage.py migrate;
-	npm install;
-	gulp;
+	      bbase/manage.py migrate;
+	      npm install;
+	      gulp;
         #touch /usr/local/insightsquared/is_engine/bbase/wsgi_handler.py;
         sudo /etc/init.d/gunicorn restart
+
         echo "${red}Pulling configuration ${blue}[master branch]${reset}";
         cd /usr/local/insightsquared/configuration;
         git checkout master;
@@ -48,7 +44,13 @@ is2update() {
         git pull;
         echo "${red}Returning to execution directory. Thanks for keeping your devbox happy :)${reset}";
         cd $wd;
+        source is2dev_conda.sh deactivate
     fi
 }
 
 export -f is2update
+
+# If not running interactively, stop here
+if [[ "$-" == *i* ]]; then
+  eval $(keychain --eval --agents ssh,gpg --inherit any fodonovan.pem 9DE94ABA)
+fi

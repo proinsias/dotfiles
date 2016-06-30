@@ -49,8 +49,8 @@
     current = yellow reverse
     local = yellow
     remote = green
-	# Blue on black is hard to read in git branch -vv: use cyan instead
-	upstream = cyan
+    # Blue on black is hard to read in git branch -vv: use cyan instead
+    upstream = cyan
 [color "diff"]
     frag = magenta bold
     meta = yellow bold
@@ -62,7 +62,7 @@
     changed = green
     untracked = cyan
 [commit]
-  gpgSign = true
+    gpgSign = true
 [core]
     attributesfile = ~/.gitattributes
     autocrlf = input
@@ -78,89 +78,89 @@
     trustctime = false
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol # Highlight whitespace in diffs
 [diff]
-	# Use (i)ndex, (w)ork tree, (c)ommit, (o)bject prefixes instead of standard a, b.
-	mnemonicprefix = true
-	# Detect copies as well as renames
-	renames = copies
-	# Display submodule-related information (commit listings)
-	submodule = log
+    # Use (i)ndex, (w)ork tree, (c)ommit, (o)bject prefixes instead of standard a, b.
+    mnemonicprefix = true
+    # Detect copies as well as renames
+    renames = copies
+    # Display submodule-related information (commit listings)
+    submodule = log
     tool = icdiff
 [difftool]
-  prompt = false
+    prompt = false
 [difftool "icdiff"]
-  cmd = icdiff --head=5000 --highlight --line-numbers -L \"$BASE\" -L \"$REMOTE\" \"$LOCAL\" \"$REMOTE\"
+    cmd = icdiff --head=5000 --highlight --line-numbers -L \"$BASE\" -L \"$REMOTE\" \"$LOCAL\" \"$REMOTE\"
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
 [diff "astextplain"]
-  textconv = ~/scripts/astextplain.sh
-  # textconv = strings
+    textconv = ~/scripts/astextplain.sh
+    # textconv = strings
 [diff "bin"]
-  # Use `hexdump` to diff binary files
-  textconv = hexdump -v -C
+    # Use `hexdump` to diff binary files
+    textconv = hexdump -v -C
 [diff "exif"]
-	textconv = exiftool
+    textconv = exiftool
 [diff "localizablestrings"]
-  textconv = "iconv -f utf-16 -t utf-8"
+    textconv = "iconv -f utf-16 -t utf-8"
 [diff "nbconv"]
-	textconv = ~/scripts/nb2py.sh
+    textconv = ~/scripts/nb2py.sh
 [fetch]
-	prune = true
-	# Auto-fetch submodule changes (sadly, won't auto-update)
-	recurseSubmodules = on-demand
+    prune = true
+    # Auto-fetch submodule changes (sadly, won't auto-update)
+    recurseSubmodules = on-demand
 [filter "hawser"]
   # From GitHub for Mac
-	clean = git hawser clean %f
-	smudge = git hawser smudge %f
-	required = true
+    clean = git hawser clean %f
+    smudge = git hawser smudge %f
+    required = true
 [filter "lfs"]
   # For Git-LFS
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
 [grep]
   lineNumber = true
 [help]
-	# Automatically correct and execute mistyped commands
-	autocorrect = 20 # 2 seconds
+    # Automatically correct and execute mistyped commands
+    autocorrect = 20 # 2 seconds
 [log]
-	# Use abbrev SHAs whenever possible/relevant instead of full 40 chars
-	abbrevCommit = true
-	# Automatically --follow when given a single path
-	follow = true
+    # Use abbrev SHAs whenever possible/relevant instead of full 40 chars
+    abbrevCommit = true
+    # Automatically --follow when given a single path
+    follow = true
 [merge]
-	# Include summaries of merged commits in newly created merge commit messages
-	log = true # synonym for 20
-	stat = true
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true # synonym for 20
+    stat = true
 [mergetool "emerge"]
-	cmd = emacs -Q \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+    cmd = emacs -Q \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
 [mergetool "sourcetree"]
-	keepBackup = false
-	trustExitCode = true
+    keepBackup = false
+    trustExitCode = true
 [pager]
-  difftool = true
+    difftool = true
 [push]
-	default = matching
-	# # Default push should only push the current branch to its push target, regardless of its remote name
-	# default = upstream
-	# When pushing, also push tags whose commit-ishs are now reachable upstream
-	followTags = true
-	# Not supported by bitbucket or github yet
-  gpgSign = if-asked
+    default = matching
+    # # Default push should only push the current branch to its push target, regardless of its remote name
+    # default = upstream
+    # When pushing, also push tags whose commit-ishs are now reachable upstream
+    followTags = true
+    # Not supported by bitbucket or github yet
+    gpgSign = if-asked
 [status]
-	# Shows paths relative to the repository root
-  # relativePaths = false
-	# Display submodule rev change summaries in status
-	submoduleSummary = true
-	# Recursively traverse untracked directories to display all contents
-	showUntrackedFiles = all
+    # Shows paths relative to the repository root
+    # relativePaths = false
+    # Display submodule rev change summaries in status
+    submoduleSummary = true
+    # Recursively traverse untracked directories to display all contents
+    showUntrackedFiles = all
 [tag]
-	# Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
-	sort = version:refname
+    # Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
+    sort = version:refname
 [versionsort]
-	prereleaseSuffix = -pre
-	prereleaseSuffix = .pre
-	prereleaseSuffix = -beta
-	prereleaseSuffix = .beta
-	prereleaseSuffix = -rc
-	prereleaseSuffix = .rc
+    prereleaseSuffix = -pre
+    prereleaseSuffix = .pre
+    prereleaseSuffix = -beta
+    prereleaseSuffix = .beta
+    prereleaseSuffix = -rc
+    prereleaseSuffix = .rc

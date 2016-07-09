@@ -145,6 +145,7 @@ brew 'isl'
 brew 'gifsicle'
 brew 'jbig2dec'
 brew 'jhead'
+brew 'jonof/kenutils/pngout'
 brew 'jpeg'
 brew 'jpegoptim'
 brew 'keychain'
@@ -269,6 +270,7 @@ cask 'disk-inventory-x', args: { appdir: '/Applications' }
 cask 'diskmaker-x', args: { appdir: '/Applications' }
 cask 'diskwave', args: { appdir: '/Applications' }
 cask 'dnscrypt', args: { appdir: '/Applications' }
+cask 'docker', args: { appdir: '/Applications' }
 cask 'dockertoolbox', args: { appdir: '/Applications' }
 cask 'dropbox', args: { appdir: '/Applications' }
 cask 'duplicate-annihilator', args: { appdir: '/Applications' }

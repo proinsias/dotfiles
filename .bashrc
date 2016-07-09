@@ -296,4 +296,5 @@ if [ -f ~/.bashhub/bashhub.sh ]; then
     source ~/.bashhub/bashhub.sh
 fi
 
-
+# added by travis gem
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh

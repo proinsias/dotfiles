@@ -67,6 +67,10 @@ PreCommit:
     enabled: true
   Sqlint:
     enabled: true
+  ToDos:
+    enabled: false
+    quiet: false
+    required_executable: './scripts/overcommit/todos.sh'
   TrailingWhitespace:
     enabled: true
   TravisLint:

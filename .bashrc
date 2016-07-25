@@ -288,7 +288,7 @@ case $(uname -s) in
 esac
 
 ### motd
-echo "Don't forget to use fzf, fasd and bashhub!"
+echo "Don't forget to use fzf, fasd, cheat and bashhub!"
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs

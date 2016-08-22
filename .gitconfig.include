@@ -31,6 +31,14 @@
     this = !git init && git add . && git commit -m \"initial commit\" # Make this directory a git repo
     type = cat-file -t
     unstage = reset HEAD --
+[apply]
+# Git will use core.whitespace values to help you
+# when you apply patches with git apply. When you’re applying patches, you can ask Git to
+# warn you if it’s applying patches with the specified whitespace issues:
+# whitespace = warn
+# Or you can have Git try to automatically fix the issue before applying the patch:
+# whitespace = fix
+    whitespace = fix
 [branch]
     # When branching off a remote branch, automatically let the local branch track the remote branch
     autosetupmerge = true
@@ -65,7 +73,20 @@
     gpgSign = true
 [core]
     attributesfile = ~/.gitattributes
+# If you’re on a Linux or Mac system that uses LF line endings, then you don’t want Git to
+# automatically convert them when you check out files; however, if a file with CRLF
+# endings accidentally gets introduced, then you may want Git to fix it. You can tell Git
+# to convert CRLF to LF on commit but not the other way around by setting core.autocrlf
+# to input. This setup should leave you with CRLF endings in Windows checkouts, but LF
+# endings on Mac and Linux systems and in the repository.
     autocrlf = input
+# If you’re on a Windows machine, set it to true – this converts LF endings into CRLF when
+# you check out code:
+    # autocrlf = true
+# If you’re a Windows programmer doing a Windows-only project, then you can turn off this
+# functionality, recording the carriage returns in the repository by setting the config
+# value to false.
+    # autocrlf = false
     editor = emacs
     excludesfile = ~/.gitignore
     # # Don't paginate output by default, default is less
@@ -76,7 +97,25 @@
     # Make `git rebase` safer on OS X
     # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
     trustctime = false
-    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol # Highlight whitespace in diffs
+# Git comes preset to detect and fix some whitespace issues.
+# It can look for six primary whitespace issues –
+# three are enabled by default and can be turned off,
+# and three are disabled by default but can be activated.
+#
+# The three that are turned on by default are:
+# * blank-at-eol, which looks for spaces at the end of a line;
+# * blank-at-eof, which notices blank lines at the end of a file; and
+# * space-before-tab, which looks for spaces before tabs at the beginning of a line.
+#
+# The three that are disabled by default but can be turned on are:
+# * indent-with-non-tab, which looks for lines that begin with spaces instead of tabs
+# (and is controlled by the tabwidth option);
+# * tab-in-indent, which watches for tabs in the indentation portion of a line; and
+# * cr-at-eol, which tells Git that carriage returns at the end of lines are OK.
+#
+# Git will detect these issues when you run a git diff command and try to color them so
+# you can possibly fix them before you commit.
+    whitespace = blank-at-eof, blank-at-eol, space-before-tab, tab-in-indent, trailing-space
 [diff]
     # Use (i)ndex, (w)ork tree, (c)ommit, (o)bject prefixes instead of standard a, b.
     mnemonicprefix = true
@@ -134,19 +173,26 @@
     stat = true
 [mergetool "emerge"]
     cmd = emacs -Q \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+[mergetool "p4merge"]
+    cmd = p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [mergetool "sourcetree"]
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     keepBackup = false
     trustExitCode = true
 [pager]
     difftool = true
 [push]
-    default = matching
-    # # Default push should only push the current branch to its push target, regardless of its remote name
-    # default = upstream
+    # push only the current branch to the one that git pull would pull
+    # from, and also checks that their names match
+    default = simple
     # When pushing, also push tags whose commit-ishs are now reachable upstream
     followTags = true
     # Not supported by bitbucket or github yet
     gpgSign = if-asked
+[rebase]
+# If you’ve committed whitespace issues but haven’t yet pushed upstream, have Git
+# automatically fix whitespace issues as it’s rewriting the patches.
+    whitespace = fix
 [status]
     # Shows paths relative to the repository root
     # relativePaths = false

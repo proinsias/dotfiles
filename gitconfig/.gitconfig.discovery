@@ -1,0 +1,15 @@
+[user]
+    name = Francis T. O'Donovan
+    email = francis@betteroutcomes.com
+    signingkey = 97FAE23F
+[include]
+    path = ~/.gitconfig.include
+[credential]
+#    helper = cache --timeout 3600
+    helper = osxkeychain
+[help]
+#    format = man
+    format = web
+[merge]
+#    tool = emerge
+    tool = p4merge

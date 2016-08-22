@@ -106,11 +106,10 @@ if type hub > /dev/null 2>&1 ; then
   eval "$(hub alias -s)"
 else
   # Test for interactive shell
-  [[ "$-" == *i* ]] && echo "Please install hub command"
+  [[ "$-" == *i* ]] && echo "Please install hub command:\nbrew install hub"
 fi
 
 # overcommit
-# https://github.com/nvbn/thefuck/
 if type overcommit > /dev/null 2>&1 ; then
   export GIT_TEMPLATE_DIR=$(overcommit --template-dir)
 else
@@ -157,6 +156,17 @@ shopt -s cdspell
 # Any completions you add in ~/.bash_completion are sourced last.
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
+# https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
+if [ -f ~/.bash/git-completion.sh ]; then
+    source ~/.bash/git-completion.sh
+fi
+
+# `npm completion > ~/.bash/npm-completion.bash`
+if [ -f ~/.bash/npm-completion.sh ]; then
+    source ~/.bash/npm-completion.sh
+fi
+
+
 # History Options
 #
 # Don't put duplicate lines in the history.
@@ -191,10 +201,10 @@ PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-#for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-#    [ -r "$file" ] && [ -f "$file" ] && source "$file";
-#    done;
-#    unset file;
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+    [ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
@@ -235,7 +245,12 @@ if conda -V > /dev/null 2>&1 ; then
 fi
 
 ### fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if fzf -h > /dev/null 2>&1 ; then
+  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+else
+  echo "Please install fzf command:"
+  echo "$ brew install fzf"
+fi
 
 ### Global tab completion for argcomplete-supported apps
 if [ ! -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh" ]; then
@@ -248,7 +263,7 @@ case $(uname -s) in
         if type screenfetch > /dev/null 2>&1 ; then
           screenfetch
         else
-          echo "Please install screenfetch command"
+          echo "Please install screenfetch command:\nbrew install screenfetch"
         fi
 
         function cleanup {
@@ -278,7 +293,7 @@ case $(uname -s) in
         if type archey > /dev/null 2>&1 ; then
           archey -p
         else
-          echo "Please install archey command"
+          echo "Please install archey command:\nbrew install archey"
         fi
 
         # Disable per-session command history feature in El Capitan
@@ -286,6 +301,21 @@ case $(uname -s) in
         export SHELL_SESSION_HISTORY=0
       ;;
 esac
+
+# For a ipython notebook and pyspark integration
+if which pyspark > /dev/null; then
+    export SPARK_HOME="${HOMEBREW_PREFIX}/Cellar/apache-spark/2.0.0/libexec"
+    export PYSPARK_SUBMIT_ARGS="--master local[4] pyspark-shell"
+    # Add the PySpark classes to the Python path:
+    export PYTHONPATH="${SPARK_HOME}/python/:$PYTHONPATH"
+    export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.1-src.zip:$PYTHONPATH"
+fi
+
+# added by Anaconda3 2.5.0 installer
+export PATH="${HOME}/anaconda3/bin:$PATH"
+
+# Add keychain keys
+eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC 97FAE23F)
 
 ### motd
 echo "Don't forget to use fzf, fasd, cheat and bashhub!"
@@ -295,6 +325,3 @@ echo "Don't forget to use fzf, fasd, cheat and bashhub!"
 if [ -f ~/.bashhub/bashhub.sh ]; then
     source ~/.bashhub/bashhub.sh
 fi
-
-# added by travis gem
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh

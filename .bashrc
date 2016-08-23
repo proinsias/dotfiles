@@ -314,6 +314,9 @@ fi
 # added by Anaconda3 2.5.0 installer
 export PATH="${HOME}/anaconda3/bin:$PATH"
 
+# AWS bash completion
+complete -C aws_completer aws
+
 # Add keychain keys
 eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC 97FAE23F)
 

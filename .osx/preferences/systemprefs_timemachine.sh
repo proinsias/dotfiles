@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "###############################################################################"
-echo "Time Machine"
+echo "System Preferences/Time Machine"
 echo "###############################################################################"
 
 echo ""
@@ -13,3 +13,4 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 #hash tmutil &> /dev/null && tmutil disablelocal
 
 CFPreferencesAppSynchronize "com.apple.TimeMachine"
+

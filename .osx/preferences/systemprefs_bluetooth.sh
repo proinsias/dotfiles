@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "###############################################################################"
-echo "Bluetooth"
+echo "System Preferences/Bluetooth"
 echo "###############################################################################"
 
 echo ""
@@ -15,4 +15,4 @@ echo "Show Bluetooth in menu bar"
 			com.apple.systemuiserver.plist > /dev/null 2>&1
 
 CFPreferencesAppSynchronize "com.apple.BluetoothAudioAgent"
-
+CFPreferencesAppSynchronize "com.apple.systemuiserver"

@@ -169,6 +169,7 @@ CFPreferencesAppSynchronize "com.apple.NetworkBrowser"
 CFPreferencesAppSynchronize "com.apple.frameworks.diskimages"
 CFPreferencesAppSynchronize "com.apple.desktopservices"
 CFPreferencesAppSynchronize "com.apple.finder"
+CFPreferencesAppSynchronize "NSGlobalDomain"
 
 echo ""
 echo "Killing application in order to take effect."

@@ -137,9 +137,8 @@ echo ""
 echo "Show the full URL in the address bar (note: this still hides the scheme)"
 defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true 
 
-
-
 CFPreferencesAppSynchronize "com.apple.Safari"
+CFPreferencesAppSynchronize "NSGlobalDomain"
 
 echo ""
 echo "Killing application in order to take effect."

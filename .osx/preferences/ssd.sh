@@ -5,10 +5,6 @@ echo "SSD"
 echo "###############################################################################"
 
 #echo ""
-#echo "Disable local Time Machine snapshots"
-#tmutil disablelocal
-
-#echo ""
 #echo "Disable hibernation (speeds up entering sleep mode)"
 #pmset -a hibernatemode 0
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "###############################################################################"
-echo "Dock"
+echo "System Preferences/Dock"
 echo "###############################################################################"
 
 echo "Wipe all (default) app icons from the Dock? (y/n)"

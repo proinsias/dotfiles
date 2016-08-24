@@ -132,7 +132,7 @@
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
     path =
 [diff "astextplain"]
-    textconv = ~/scripts/astextplain.sh
+    textconv = ~/bin/astextplain.sh
     # textconv = strings
 [diff "bin"]
     # Use `hexdump` to diff binary files
@@ -142,7 +142,7 @@
 [diff "localizablestrings"]
     textconv = "iconv -f utf-16 -t utf-8"
 [diff "nbconv"]
-    textconv = ~/scripts/nb2py.sh
+    textconv = ~/bin/nb2py.sh
 [fetch]
     prune = true
     # Auto-fetch submodule changes (sadly, won't auto-update)

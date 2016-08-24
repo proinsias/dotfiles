@@ -4,16 +4,23 @@ echo "##########################################################################
 echo "systemsetup"
 echo "###############################################################################"
 
-# Never go into computer sleep mode
+## Check System Sleep Idle Time
+#systemsetup -getcomputersleep
+
+## Never go into computer sleep mode
 # systemsetup -setcomputersleep Off > /dev/null
+## or
+# systemsetup -setcomputersleep Never
 
 #echo ""
-#echo "Never go into computer sleep mode"
-#systemsetup -setcomputersleep Off > /dev/null
+#echo "Set system sleep idle time to 60 minutes"
+#systemsetup -setcomputersleep 60
+
+echo ""
+echo "Automatic restart on system freeze"
+systemsetup -setrestartfreeze on
 
 echo ""
 echo "Set the timezone"
 #See `sudo systemsetup -listtimezones` for other values
 systemsetup -settimezone "America/New_York" > /dev/null
-
-

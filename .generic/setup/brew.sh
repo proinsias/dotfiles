@@ -10,8 +10,7 @@ echo "Install homebrew if necessary"
 # Install if we don't have it
 if test ! $(which brew); then
     echo "Installing homebrew..."
-      ruby -e "$(curl -fsSL
-https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 echo ""
@@ -33,10 +32,6 @@ echo Use 'rbenv install -l' to list the possible versions and find
 latest stable
 rbenv install 2.5.1
 rbenv global 2.5.1
-echo Add the following to your .bashrc file:
-echo 'export RBENV_ROOT="$(brew --prefix rbenv)"'
-echo 'export GEM_HOME="$(brew --prefix)/opt/gems"'
-echo 'export GEM_PATH="$(brew --prefix)/opt/gems"'
 gem update --system
 gem install bundler # http://bundler.io/
 

@@ -25,7 +25,6 @@ trap ctrl_c INT
 function ctrl_c() {
         echo "** Trapped CTRL-C, nice try!!s  But rly this needs to finish dont stahp it."
 
-
 echo "###############################################################################"
 echo "Ubuntu Setup scripts"
 echo "###############################################################################"
@@ -40,5 +39,3 @@ for script in "${HOME}/.ubuntu/setup"/*.sh; do
     esac
   done
 done
-
-

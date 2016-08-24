@@ -24,6 +24,7 @@ trap ctrl_c INT
 
 function ctrl_c() {
         echo "** Trapped CTRL-C, nice try!!  But rly this needs to finish dont stahp it."
+}
 
 echo "###############################################################################"
 echo "Mac Preferences scripts"
@@ -35,7 +36,7 @@ for script in "${HOME}/.osx/preferences"/*.sh; do
     case $yn in
       Yes ) "${script}"
   	    break;;
-      No ) exit;;
+      No ) break;;
     esac
   done
 done
@@ -51,7 +52,7 @@ for script in "${HOME}/.osx/setup"/*.sh; do
     case $yn in
       Yes ) "${script}"
   	    break;;
-      No ) exit;;
+      No ) break;;
     esac
   done
 done

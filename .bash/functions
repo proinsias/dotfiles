@@ -153,3 +153,11 @@ function parse_git_branch {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "("${ref#refs/heads/}")"
 }
+
+# From https://github.com/hjuutilainen/dotfiles/blob/master/bin/osx-user-defaults.sh
+function CFPreferencesAppSynchronize() {
+    /usr/bin/python - <<END
+from Foundation import CFPreferencesAppSynchronize
+CFPreferencesAppSynchronize('$1')
+END
+}

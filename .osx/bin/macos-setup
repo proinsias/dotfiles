@@ -1,0 +1,61 @@
+#!/bin/bash
+
+[ `uname` = 'Darwin' ] || {
+	echo 'Not a Mac!'
+	exit 1
+}
+
+# Here we go.. ask for the administrator password upfront and run a
+# keep-alive to update existing `sudo` time stamp until script has
+# finished
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+echo "This script will make your Mac awesome!"
+
+echo "Do NOT mess with the computer while this is being completed..."
+echo "Like seriously..."
+echo "Unless it prompts you for something, then go ahead..."
+echo "BTW: disk drives are going to all be unmounted..."
+echo "Don't attempt to remount until this is done..."
+echo "Ignore any detach failure messages..."
+
+trap ctrl_c INT
+
+function ctrl_c() {
+        echo "** Trapped CTRL-C, nice try!!  But rly this needs to finish dont stahp it."
+}
+
+echo "###############################################################################"
+echo "Mac Preferences scripts"
+echo "###############################################################################"
+
+for script in "${HOME}/.osx/preferences"/*.sh; do
+  echo "Want to run $(basename ${script})?"
+  select yn in "Yes" "No"; do
+    case $yn in
+      Yes ) "${script}"
+  	    break;;
+      No ) break;;
+    esac
+  done
+done
+
+
+echo "###############################################################################"
+echo "Mac Setup scripts"
+echo "###############################################################################"
+
+for script in "${HOME}/.osx/setup"/*.sh; do
+  echo "Want to run $(basename ${script})?"
+  select yn in "Yes" "No"; do
+    case $yn in
+      Yes ) "${script}"
+  	    break;;
+      No ) break;;
+    esac
+  done
+done
+
+
+

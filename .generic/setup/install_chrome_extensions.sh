@@ -1,4 +1,8 @@
-#!/bin/sh
+#!/bin/bash
+
+echo "###############################################################################"
+echo "Chrome Extensions"
+echo "###############################################################################"
 
 echo "Want to open the webpages for select Chrome extensions?"
 select yn in "Yes" "No"; do

@@ -15,10 +15,10 @@ fi
 
 echo ""
 echo "Setting some permissions for homebrew."
-chown -R $(whoami):admin $(brew --prefix)/bin
-chown -R $(whoami):admin $(brew --prefix)/share/man/man1
-chown -R $(whoami):admin $(brew --prefix)/lib
-chown -R $(whoami):admin $(brew --prefix)/share
+chown -R $(whoami):admin $(brew --prefix)/bin \
+                         $(brew --prefix)/share/man/man1 \
+                         $(brew --prefix)/lib \
+                         $(brew --prefix)/share
 
 echo ""
 echo "Update homebrew recipes"

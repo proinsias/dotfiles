@@ -15,26 +15,23 @@ echo "BTW: disk drives are going to all be unmounted..."
 echo "Don't attempt to remount until this is done..."
 echo "Ignore any detach failure messages..."
 
-trap ctrl_c INT
+#trap ctrl_c INT
 
 function ctrl_c() {
         echo "** Trapped CTRL-C, nice try!!  But rly this needs to finish dont stahp it."
+}
 
 echo "###############################################################################"
 echo "Setup scripts"
 echo "###############################################################################"
 
-# TODO:
-# * Run through 'setup' scripts one by one, wait for user feedback to continue, or
-#   else halt on error
-
 for script in "${HOME}/.generic/setup"/*.sh; do
   echo "Want to run $(basename ${script})?"
   select yn in "Yes" "No"; do
     case $yn in
-      Yes ) "${script}"
+      "Yes") "${script}"
   	    break;;
-      No ) exit;;
+      "No") break;;
     esac
   done
 done

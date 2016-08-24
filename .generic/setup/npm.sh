@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "###############################################################################"
+echo "npm"
+echo "###############################################################################"
+
 npm install -g wakatimecli # https://www.npmjs.com/package/wakatimecli # https://wakatime.com
 npm install -g htmlhint
 npm install -g csslint

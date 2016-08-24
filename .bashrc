@@ -15,7 +15,7 @@ fi
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
-export PATH="${PATH}:${HOME}/scripts"
+export PATH="${PATH}:${HOME}/bin"
 
 # for hunspell
 export LANG=en_US.UTF-8
@@ -32,6 +32,8 @@ export MANPATH="${NPM_PACKAGES}/share/man:${MANPATH}"
 # umask 027 # messes up is2
 # Paranoid: neither group nor others have any perms:
 # umask 077
+
+export PATH="${PATH}:${HOME}/.generic/bin"
 
 case $(uname -s) in
     "Linux" )
@@ -50,6 +52,8 @@ case $(uname -s) in
       #   eval $(ssh-agent -s)
       #fi
 
+      export PATH="${PATH}:${HOME}/.ubuntu/bin"
+
       # homebrew linuxbrew
       export PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH"
 
@@ -59,6 +63,8 @@ case $(uname -s) in
     "Darwin" )
       # homebrew - shouldn't be necessary on mac
       # export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+
+      export PATH="${PATH}:${HOME}/.osx/bin"
 
       # To install homebrew casks in /Applications by default
       export HOMEBREW_CASK_OPTS="--appdir=/Applications"

@@ -305,6 +305,7 @@ cask 'iterm2', args: { appdir: '/Applications' }
 cask 'java'
 cask 'karabiner', args: { appdir: '/Applications' }
 cask 'keka', args: { appdir: '/Applications' }
+cask 'keybase', args: { appdir: '/Applications' }
 cask 'kindle', args: { appdir: '/Applications' }
 cask 'lastpass', args: { appdir: '/Applications' }
 cask 'libreoffice', args: { appdir: '/Applications' }

@@ -13,6 +13,9 @@ export PATH="/Volumes/FireflyHD2/anaconda3/bin:$PATH"
 #complete -F _todo t
 #export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'
 
+# MacTex
+export PATH="/Library/TeX/texbin":$PATH
+
 eval `keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC`
 
 

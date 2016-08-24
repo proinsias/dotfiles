@@ -52,7 +52,6 @@ case $(uname -s) in
 
       # homebrew linuxbrew
       export PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH"
-
       # gpg-agent
       export GPG_TTY=$(tty)
       ;;
@@ -67,6 +66,7 @@ esac
 
 # For homebrew
 export HOMEBREW_PREFIX="$(brew --prefix)"
+export PATH="/usr/local/sbin:$PATH"
 
 # ruby
 export RBENV_ROOT="$(brew --prefix rbenv)"
@@ -297,3 +297,6 @@ if [ -f ~/.bashhub/bashhub.sh ]; then
 fi
 
 
+
+# added by travis gem
+[ -f /Users/ftod/.travis/travis.sh ] && source /Users/ftod/.travis/travis.sh

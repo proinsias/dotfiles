@@ -23,19 +23,19 @@ if test ! $(which conda); then
 fi
 
 echo ""
-echo "Install requirements into the root environment"
-echo "Start off by installing conda packages"
-while read requirement; do
-    conda install --yes $requirement;
-done < requirements.txt
-echo "Then install pip-only packages"
-pip install -r requirments.txt
-
-echo ""
 echo "Login to anaconda.org"
 anaconda login
 
 echo ""
 echo "Add conda-forge channel"
 conda config --add channels conda-forge
+
+echo ""
+echo "Install requirements into the root environment"
+echo "Start off by installing conda packages"
+while read requirement; do
+    conda install --yes $requirement;
+done < requirements.txt
+echo "Then install pip-only packages, if necessary"
+pip install -r requirments.txt
 

@@ -208,3 +208,4 @@ echo "Don't forget to use fzf, fasd, cheat and bashhub!"
 if [ -f ~/.bashhub/bashhub.sh ]; then
     source ~/.bashhub/bashhub.sh
 fi
+

@@ -4,23 +4,63 @@ echo "##########################################################################
 echo "Bartender"
 echo "###############################################################################"
 
-#echo ""
-#echo ""
-#defaults write com.surteesstudios.Bartender.plist barLocationPercentage -1
+plist=com.surteesstudios.Bartender.plist
 
 #echo ""
 #echo ""
-#defaults write com.surteesstudios.Bartender.plist bartenderClick 1
+#defaults write "${plist}" barLocationPercentage -1
+
+#echo ""
+#echo ""
+#defaults write "${plist}" bartenderClick 1
 
 echo ""
 echo "Show menu bar icon"
-defaults write com.surteesstudios.Bartender.plist showMenuBarIcon -bool true
+defaults write "${plist}" showMenuBarIcon -bool true
 
 echo ""
 echo "Show menu bar at startup"
-defaults write com.surteesstudios.Bartender.plist showBarAtStartup -bool true
+defaults write "${plist}" showBarAtStartup -bool true
 
-CFPreferencesAppSynchronize "com.surteesstudios.Bartender.plist"
+echo ""
+echo "Add my default preferences for certain menu items"
+plb=/usr/libexec/PlistBuddy
+add="Add :appSettings:"
+set="set :appSettings:"
+add_app_settings() {
+    menuitem="${1}"
+    "${plb}" -c "${add}${menuitem} dict" "${plist}"
+    "${plb}" -c "${add}${menuitem}:showForUpdates bool" "${plist}"
+    "${plb}" -c "${set}${menuitem}:showForUpdates true" "${plist}"
+    "${plb}" -c "${add}${menuitem}:popupFix bool" "${plist}"
+    "${plb}" -c "${set}${menuitem}:popupFix false" "${plist}"
+    "${plb}" -c "${add}${menuitem}:updateDisplayTime integer" "${plist}"
+    "${plb}" -c "${set}${menuitem}:updateDisplayTime 60" "${plist}"
+    "${plb}" -c "${add}${menuitem}:controlled integer" "${plist}"
+    "${plb}" -c "${set}${menuitem}:controlled 1" "${plist}"
+}
+
+add_app_settings "com.apple.menuextra.bluetooth"
+add_app_settings "com.box.sync"
+add_app_settings "com.corecode.SMARTReporter"
+add_app_settings "com.getdropbox.dropbox"
+add_app_settings "com.google.GoogleDrive"
+add_app_settings "com.softorino.iBetterCharge"
+add_app_settings "net.tunnelblick.tunnelblick"
+add_app_settings "org.herf.Flux"
+
+menuitem="com.apple.menuextra.volume"
+"${plb}" -c "${add}${menuitem} dict" "${plist}"
+"${plb}" -c "${add}${menuitem}:showForUpdates bool" "${plist}"
+"${plb}" -c "${set}${menuitem}:showForUpdates false" "${plist}"
+"${plb}" -c "${add}${menuitem}:popupFix bool" "${plist}"
+"${plb}" -c "${set}${menuitem}:popupFix false" "${plist}"
+"${plb}" -c "${add}${menuitem}:updateDisplayTime integer" "${plist}"
+"${plb}" -c "${set}${menuitem}:updateDisplayTime 5" "${plist}"
+"${plb}" -c "${add}${menuitem}:controlled integer" "${plist}"
+"${plb}" -c "${set}${menuitem}:controlled 2" "${plist}"
+
+CFPreferencesAppSynchronize "${plist}"
 
 echo ""
 echo "Killing application in order to take effect."

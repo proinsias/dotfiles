@@ -32,6 +32,10 @@ echo "Then install pip-only packages"
 pip install -r requirments.txt
 
 echo ""
+echo "Login to anaconda.org"
+anaconda login
+
+echo ""
 echo "Add conda-forge channel"
 conda config --add channels conda-forge
 

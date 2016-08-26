@@ -198,7 +198,7 @@ esac
 complete -C aws_completer aws
 
 # Add keychain keys
-eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC 97FAE23F)
+eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC 97FAE23)
 
 ### motd
 echo "Don't forget to use fzf, fasd, cheat and bashhub!"

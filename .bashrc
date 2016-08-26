@@ -139,7 +139,7 @@ fi
 
 ### wakatime
 if wakatime -h > /dev/null 2>&1 ; then
-  source ~/scripts/bash-wakatime.sh
+  source ~/bin/bash-wakatime.sh
 else
   echo "Please install wakatime command:"
   echo "$ pip install wakatime"

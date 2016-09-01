@@ -62,10 +62,6 @@ defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool 
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
 
 echo ""
-echo "Add a context menu item for showing the Web Inspector in web views"
-defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
-
-echo ""
 echo "Open pages in tabs instead of windows: automatically"
 defaults write com.apple.Safari TabCreationPolicy -int 1
 
@@ -80,6 +76,18 @@ defaults write com.apple.Safari CommandClickMakesTabs -bool true
 echo ""
 echo "Don't remember passwords"
 defaults write com.apple.Safari AutoFillPasswords -bool false
+
+#echo ""
+#echo "Disable AutoFill from Address Book"
+#defaults write com.apple.Safari AutoFillFromAddressBook -bool false
+
+#echo ""
+#echo "Disable AutoFill from Credit Card"
+#defaults write com.apple.Safari AutoFillCreditCardData -bool false
+
+#echo ""
+#echo "Disable AutoFill from Misc Forms"
+#defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
 
 echo ""
 echo "Warn About Fraudulent Websites"
@@ -137,9 +145,18 @@ echo ""
 echo "Show the full URL in the address bar (note: this still hides the scheme)"
 defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true 
 
+echo ""
+echo "Enable continuous spellchecking"
+defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true
+
+echo ""
+echo "Enable auto-correct"
+defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool true
+
 CFPreferencesAppSynchronize "com.apple.Safari"
 CFPreferencesAppSynchronize "NSGlobalDomain"
 
 echo ""
 echo "Killing application in order to take effect."
 killall "Safari" > /dev/null 2>&1
+

@@ -88,9 +88,9 @@ defaults write com.apple.dock dashboard-in-overlay -bool true
 #echo "Don’t automatically rearrange Spaces based on most recent use"
 #defaults write com.apple.dock mru-spaces -bool false
 
-#echo ""
-#echo "Make Dock icons of hidden applications translucent"
-#defaults write com.apple.dock showhidden -bool true
+echo ""
+echo "Make Dock icons of hidden applications translucent"
+defaults write com.apple.dock showhidden -bool true
 
 #echo ""
 #echo "Disable the Launchpad gesture (pinch with thumb and three fingers)"
@@ -102,8 +102,9 @@ defaults write com.apple.dock dashboard-in-overlay -bool true
 
 #echo ""
 #echo "Add iOS Simulator to Launchpad"
-#ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/iOS
-#Simulator.app" "/Applications/iOS Simulator.app"
+#ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/iOS Simulator.app" "/Applications/iOS Simulator.app"
+#ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
+#ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app" "/Applications/Simulator (Watch).app"
 
 echo ""
 echo "Making launchpad better"
@@ -153,3 +154,4 @@ CFPreferencesAppSynchronize "com.apple.dock"
 echo ""
 echo "Killing application in order to take effect."
 killall "Dock" > /dev/null 2>&1
+

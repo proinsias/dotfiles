@@ -53,3 +53,4 @@ CFPreferencesAppSynchronize "org.m0k.transmission"
 echo ""
 echo "Killing application in order to take effect."
 killall "Transmission" > /dev/null 2>&1
+

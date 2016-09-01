@@ -78,11 +78,11 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Add homebrew's GNU coreutils (ls, cat, etc.) to PATH, etc. - see
 #http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
-export PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:$PATH"
-export MANPATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman:$MANPATH"
+export PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
+export MANPATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman:${MANPATH}"
 
-export MANPATH="${HOMEBREW_PREFIX}/share/man:$MANPATH"
-export INFOPATH="${HOMEBREW_PREFIX}/share/info:$INFOPATH"
+export MANPATH="${HOMEBREW_PREFIX}/share/man:${MANPATH}"
+export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH}"
 
 # For hunspell
 export DICPATH="${HOME}/.hunspell_default:/usr/local/share/hunspell:${DICPATH}"
@@ -105,13 +105,17 @@ else
 fi
 
 # For a ipython notebook and pyspark integration
-if which pyspark > /dev/null; then
-    export SPARK_HOME="${HOMEBREW_PREFIX}/Cellar/apache-spark/2.0.0/libexec"
-    export PYSPARK_SUBMIT_ARGS="--master local[4] pyspark-shell"
-    # Add the PySpark classes to the Python path:
-    export PYTHONPATH="${SPARK_HOME}/python/:$PYTHONPATH"
-    export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.1-src.zip:$PYTHONPATH"
-fi
+export SPARK_HOME="${HOMEBREW_PREFIX}/Cellar/apache-spark/2.0.0/libexec"
+export PYSPARK_SUBMIT_ARGS=" --master local[4] pyspark-shell:${PYSPARK_SUBMIT_ARGS}"
+# Add the PySpark classes to the Python path:
+export PYTHONPATH="${SPARK_HOME}/python/:${PYTHONPATH}"
+export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.1-src.zip:${PYTHONPATH}"
+# Hadoop
+export HADOOP_HOME="${HOMEBREW_PREFIX}/Cellar/hadoop/2.7.2/libexec"
+export PATH="${PATH}:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin"
+export HADOOP_CONF_DIR="${HADOOP_HOME}/etc/hadoop"
+# Pig
+export PIG_HOME="${HOMEBREW_PREFIX}/Cellar/pig/0.12.0"
 
 # added by Anaconda3 2.5.0 installer
 export PATH="${HOME}/anaconda3/bin:$PATH"

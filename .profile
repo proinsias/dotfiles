@@ -105,7 +105,7 @@ else
 fi
 
 # For a ipython notebook and pyspark integration
-if which pyspark > /dev/null; then
+if which pyspark > /dev/null 2>&1 ; then
     export SPARK_HOME="${HOMEBREW_PREFIX}/Cellar/apache-spark/2.0.0/libexec"
     export PYSPARK_SUBMIT_ARGS="--master local[4] pyspark-shell"
     # Add the PySpark classes to the Python path:

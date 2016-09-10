@@ -3,7 +3,8 @@
 .classpath
 .project
 .settings
-bin
+bin/
+!bin/*.sh  # Include scripts!
 doc
 
 # Compiled source #
@@ -35,7 +36,7 @@ doc
 ######################
 *.log
 *.log.1
-*.sql
+#*.sql
 *.sqlite
 /log
 log4j.properties

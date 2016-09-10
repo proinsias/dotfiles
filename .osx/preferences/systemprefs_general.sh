@@ -1,35 +1,19 @@
 #!/bin/bash
 
 echo "###############################################################################"
-echo "Bartender"
+echo "System Preferences/General"
 echo "###############################################################################"
 
-plist=com.surteesstudios.Bartender.plist
-
-#echo ""
-#echo ""
-#defaults write "${plist}" barLocationPercentage -1
-
-#echo ""
-#echo ""
-#defaults write "${plist}" bartenderClick 1
+plist="com.apple.LaunchServices/com.apple.launchservices.secure.plist"
 
 echo ""
-echo "Show menu bar icon"
-defaults write "${plist}" showMenuBarIcon -bool true
-
-echo ""
-echo "Show menu bar at startup"
-defaults write "${plist}" showBarAtStartup -bool true
-
-echo ""
-echo "Add my default preferences for certain menu items"
+echo "Set my default apps for web"
 plb=/usr/libexec/PlistBuddy
-appS=":appSettings:"
-add="Add ${appS}"
-remove="Remove ${appS}"
-set="Set ${appS}"
-add_app_settings() {
+lsh=":LSHandlers:"
+add="Add ${lsh}"
+remove="Remove ${lsh}"
+set="Set ${lsh}"
+add_lsh() {
     menuitem="${1}"
     "${plb}" -c "${remove}${menuitem}" "${plist}"
     "${plb}" -c "${add}${menuitem} dict" "${plist}"
@@ -65,6 +49,3 @@ menuitem="com.apple.menuextra.volume"
 
 CFPreferencesAppSynchronize "${plist}"
 
-echo ""
-echo "Killing application in order to take effect."
-killall "Bartender" > /dev/null 2>&1

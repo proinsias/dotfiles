@@ -1,50 +1,53 @@
 # Set default behaviour, in case users don't have core.autocrlf set.
-* text=auto
+*               text=auto
+
+# Makefile
+Makefile        text whitespace=-tab-in-indent,trailing-space,tabwidth=4
 
 # Documents
-*.doc	 diff=astextplain
-*.DOC	 diff=astextplain
-*.docx diff=astextplain
-*.DOCX diff=astextplain
-*.dot  diff=astextplain
-*.DOT  diff=astextplain
-*.pdf  diff=astextplain
-*.PDF	 diff=astextplain
-*.rtf	 diff=astextplain
-*.RTF	 diff=astextplain
-*.md text
-*.adoc text
-*.textile text
-*.mustache text
-*.csv text
-*.tab text
-*.tsv text
-*.sql text
+*.doc           diff=astextplain
+*.DOC           diff=astextplain
+*.docx          diff=astextplain
+*.DOCX          diff=astextplain
+*.dot           diff=astextplain
+*.DOT           diff=astextplain
+*.pdf           diff=astextplain
+*.PDF           diff=astextplain
+*.rtf           diff=astextplain
+*.RTF           diff=astextplain
+*.md            text
+*.adoc          text
+*.textile       text
+*.mustache      text
+*.csv           text
+*.tab           text
+*.tsv           text
+*.sql           text
 
 # Graphics
-*.png diff=exif
-*.jpg diff=exif
-*.jpeg diff=exif
-*.gif diff=exif
-*.tif diff=exif
-*.tiff diff=exif
-*.ico diff=exif
-*.svg diff=exif
-*.eps diff=exif
+*.png           diff=exif
+*.jpg           diff=exif
+*.jpeg          diff=exif
+*.gif           diff=exif
+*.tif           diff=exif
+*.tiff          diff=exif
+*.ico           diff=exif
+*.svg           diff=exif
+*.eps           diff=exif
 
 # Declare files that will always have CRLF line endings on checkout.
-*.sln text eol=crlf
+*.sln           text eol=crlf
 
 # Declare files that will always have LF line endings on checkout.
-.* text eol=lf
+.* text         eol=lf
 
 # Explicitly declare text files we want to always be normalized and
 # converted to native line endings on checkout.
 
 # c
 
-*.c text
-*.h text
+*.c             text
+*.h             text
 
 # Java
 
@@ -101,29 +104,29 @@
 
 # ObjectiveC
 # compare .pbxproj files as binary and always merge as union
-*.pbxproj binary -merge=union
+*.pbxproj       binary -merge=union
 # Xcode
-*.strings diff=localizablestrings
+*.strings       diff=localizablestrings
 
 # Python
 # Basic .gitattributes for a python repo.
 
 # Source files
 # ============
-*.pxd		text
-*.py 		text
-*.py3 		text
-*.pyw 		text
-*.pyx  		text
-*.ipynb diff=nbconv
+*.pxdtext
+*.py            text
+*.py3           text
+*.pyw           text
+*.pyx           text
+*.ipynb         diff=nbconv
 
 # Binary files
 # ============
-*.db		binary
-*.pkl 		binary
-*.pyc 		binary
-*.pyd		binary
-*.pyo 		binary
+*.db            binary
+*.pkl           binary
+*.pyc           binary
+*.pyd           binary
+*.pyo           binary
 
 # Note: .db, .p, and .pkl files are associated
 # with the python modules ``pickle``, ``dbm.*``,
@@ -131,13 +134,13 @@
 # (among others).
 
 # R
-*.Rdata     text
-*.rdb       binary
-*.rds       binary
-*.Rd        text
-*.Rdx       binary
-*.Rmd		text
-*.R  		text
+*.Rdata         text
+*.rdb           binary
+*.rds           binary
+*.Rd            text
+*.Rdx           binary
+*.Rmd           text
+*.R             text
 
 # Web
 #
@@ -145,80 +148,78 @@
 #
 
 # source code
-*.php text
-*.sass text
-*.scss text
-*.less text
-*.styl text
-*.ts text
-*.coffee text
-*.ini text
-*.inc text
-*.pl text
-*.rb text
-*.scm text
-*.bat text
+*.php           text
+*.sass          text
+*.scss          text
+*.less          text
+*.styl          text
+*.ts            text
+*.coffee        text
+*.ini           text
+*.inc           text
+*.pl            text
+*.rb            text
+*.scm           text
+*.bat           text
 
 # templates
-*.ejs text
-*.hbt text
-*.jade text
-*.haml text
-*.hbs text
-*.tmpl text
-*.phtml text
-*.latte text
+*.ejs           text
+*.hbt           text
+*.jade          text
+*.haml          text
+*.hbs           text
+*.tmpl          text
+*.phtml         text
+*.latte         text
 
 # server config
-.htaccess text
+.htaccess       text
 
 # git config
-.gitattributes text
-.gitignore text
-.gitconfig text
+.gitattributes  text
+.gitignore      text
+.gitconfig      text
 
 # code analysis config
-.jshintrc text
-.jscsrc text
-.jshintignore text
-.csslintrc text
-.eslintrc text
-.stylelintrc text
+.jshintrc       text
+.jscsrc         text
+.jshintignore   text
+.csslintrc      text
+.eslintrc       text
+.stylelintrc    text
 
 # misc config
-*.yaml text
-*.yml text
-.editorconfig text
+*.yaml          text
+*.yml           text
+.editorconfig   text
 
 # build config
-*.npmignore text
-*.bowerrc text
+*.npmignore     text
+*.bowerrc       text
 
 # Heroku
-Procfile text
-.slugignore text
+Procfile        text
+.slugignore     text
 
 # Documentation
-LICENSE text
-AUTHORS text
-
+LICENSE         text
+AUTHORS         text
 
 #
 ## These files are binary and should be left untouched
 #
 
 # (binary is a macro for -text -diff)
-*.mov binary
-*.mp4 binary
-*.mp3 binary
-*.flv binary
-*.fla binary
-*.swf binary
-*.gz binary
-*.zip binary
-*.7z binary
-*.ttf binary
-*.eot binary
-*.woff binary
-*.woff2 binary
-
+*.mov           binary
+*.mp4           binary
+*.mp3           binary
+*.flv           binary
+*.fla           binary
+*.swf           binary
+*.gz            binary
+*.zip           binary
+*.7z            binary
+*.ttf           binary
+*.eot           binary
+*.woff          binary
+*.woff2         binary

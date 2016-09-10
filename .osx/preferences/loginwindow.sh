@@ -26,6 +26,19 @@ defaults write /Library/Preferences/com.apple.loginwindow \
 #echo "Enable shutdown dialog"
 #defaults write com.apple.loginwindow PowerButtonSleepsSystem -bool NO
 
+#Hide Shutdown Button on Login Window:
+#$ defaults write com.apple.loginwindow ShutDownDisabled -bool
+
+#Remove Restart Button From Login Window:
+#$ defaults write com.apple.loginwindow RestartDisabled -bool
+
+#Disable Login for Hidden User ">Console"
+#$ defaults write com.apple.loginwindow DisableConsoleAccess -bool
+
+#Change login screen background:
+#$ sudo defaults write /Library/Preferences/com.apple.loginwindow \
+#DesktopPicture "/Library/Desktop Pictures/Aqua Blue.jpg"
+
 CFPreferencesAppSynchronize /Library/Preferences/com.apple.loginwindow
 CFPreferencesAppSynchronize com.apple.loginwindow
 

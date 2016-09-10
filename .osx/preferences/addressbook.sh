@@ -16,6 +16,9 @@ echo ""
 echo "Sort by last name"
 defaults write com.apple.AddressBook ABNameSortingFormat 'sortingFirstName sortingLastName'
 
+#Show Contact Reflection:
+#$ defaults write com.apple.AddressBook reflection -boolean
+
 CFPreferencesAppSynchronize "com.apple.addressbook"
 
 echo ""

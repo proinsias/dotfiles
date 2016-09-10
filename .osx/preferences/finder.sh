@@ -144,6 +144,10 @@ echo ""
 echo "Show the ~/Library folder"
 chflags nohidden ~/Library
 
+echo ""
+echo "Show the /Volumes folder"
+sudo chflags nohidden /Volumes
+
 #echo ""
 #echo "Remove Dropbox’s green checkmark icons in Finder"
 #file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
@@ -165,6 +169,26 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 #echo "Finder: hide files on desktop"
 #defaults write com.apple.finder CreateDesktop -bool false
 
+#Auto stop previews when scrolling:
+#$ defaults write com.apple.finder AutoStopWhenScrollingOffBounds -boolean
+
+#Auto stop previews when selection changes:
+#$ defaults write com.apple.finder AutoStopWhenSelectionChanges -boolean
+
+#Show version column in search results:
+#$ defaults write com.apple.finder SearchViewSettings.ListViewSettings.columns.version.visible -boolean
+
+#Show label column in search results:
+#$ defaults write com.apple.finder SearchViewSettings.ListViewSettings.columns.label.visible -boolean
+
+#Show comments column in search results:
+#$ defaults write com.apple.finder SearchViewSettings.ListViewSettings.columns.comments.visible -boolean
+
+#Show size column in search results:
+#$ defaults write com.apple.finder SearchViewSettings.ListViewSettings.columns.size.visible -boolean
+
+
+
 CFPreferencesAppSynchronize "com.apple.NetworkBrowser"
 CFPreferencesAppSynchronize "com.apple.frameworks.diskimages"
 CFPreferencesAppSynchronize "com.apple.desktopservices"
@@ -174,3 +198,4 @@ CFPreferencesAppSynchronize "NSGlobalDomain"
 echo ""
 echo "Killing application in order to take effect."
 killall "Finder" > /dev/null 2>&1
+

@@ -84,13 +84,13 @@
 
 (condition-case nil
   (load (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (require 'package) 
+  (require 'package)
   (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
   (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-  (package-initialize) 
+  (package-initialize)
   (error (message "package plugin unavailable, skipping load ...")))
 
 ;;;SavePlace- this puts the cursor in the last place you editted
@@ -198,3 +198,44 @@ process" t)
 			       (interactive)
 			       (scroll-up 1))))
 
+;; https://github.com/yoshiki/yaml-mode
+(require 'yaml-mode)
+    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
+;; https://joostkremers.github.io/pandoc-mode/
+(require 'pandoc-mode)
+  (add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
+
+;; http://jblevins.org/projects/markdown-mode/
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(autoload 'gfm-mode "gfm-mode"
+   "Major mode for editing GitHub Flavored Markdown files" t)
+(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+
+;; https://github.com/Sterlingg/json-snatcher
+(require 'json-snatcher)
+  (defun js-mode-bindings ()
+     "Sets a hotkey for using the json-snatcher plugin"
+       (when (string-match  "\\.json$" (buffer-name))
+             (local-set-key (kbd "C-c C-g") 'jsons-print-path)))
+     (add-hook 'js-mode-hook 'js-mode-bindings)
+     (add-hook 'js2-mode-hook 'js-mode-bindings)
+
+;; https://github.com/dunn/homebrew-mode
+(add-to-list 'load-path "homebrew-mode")
+(require 'homebrew-mode)
+(global-homebrew-mode)
+
+;; https://github.com/nonsequitur/inf-ruby
+(autoload 'inf-ruby-minor-mode "inf-ruby" "Run an inferior Ruby process" t)
+(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+(add-hook 'compilation-filter-hook 'inf-ruby-auto-enter)
+
+;; https://github.com/sellout/emacs-color-theme-solarized
+;(add-to-list 'custom-theme-load-path "/usr/local/share/emacs/site-lisp/solarized-emacs")
+;(load-theme 'solarized t)
+;(setq solarized-termcolors 256)
+;(add-to-list 'default-frame-alist '(background-mode . dark))

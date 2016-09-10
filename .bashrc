@@ -135,6 +135,7 @@ if brew command command-not-found-init > /dev/null; then
   eval "$(brew command-not-found-init)";
 else
   echo "Please install command-not-found-init command:"
+  echo "brew tap homebrew/command-not-found"
 fi
 
 ### wakatime
@@ -158,9 +159,14 @@ else
   echo "$ brew install fzf"
 fi
 
-### Global tab completion for argcomplete-supported apps
-if [ ! -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh" ]; then
-  activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
+if activate-global-python-argcomplete -h > /dev/null 2>&1 ; then
+  ### Global tab completion for argcomplete-supported apps
+  if [ ! -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh" ]; then
+    activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
+  fi
+else
+  echo "Please install activate-global-python-argcomplete command:"
+  echo "pip/conda install argcomplete"
 fi
 
 case $(uname -s) in

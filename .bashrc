@@ -1,14 +1,6 @@
 # If not running interactively, stop here
 [[ "$-" != *i* ]] && return
 
-# Use `/bin/ls` for these tests, since homebrew `ls` gives errors
-if /bin/ls ~/.bash/* 1> /dev/null 2>&1; then
-  for file in ~/.bash/*; do
-    source $file
-  done;
-  unset file;
-fi
-
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
@@ -19,15 +11,6 @@ if /bin/ls ~/.bashrc.local* 1> /dev/null 2>&1; then
   done;
   unset file;
 fi
-
-# source .bash_aliases and .bash_aliases.local.<blah>
-if /bin/ls ~/.bash_aliases* 1> /dev/null 2>&1; then
-  for file in ~/.bash_aliases*; do
-    source "${file}"
-  done;
-  unset file;
-fi
-
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -208,6 +191,22 @@ eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC 97FAE23)
 
 ### motd
 echo "Don't forget to use fzf, fasd, cheat and bashhub!"
+
+# Use `/bin/ls` for these tests, since homebrew `ls` gives errors
+if /bin/ls ~/.bash/* 1> /dev/null 2>&1; then
+  for file in ~/.bash/*; do
+    source $file
+  done;
+  unset file;
+fi
+
+# source .bash_aliases and .bash_aliases.local.<blah>
+if /bin/ls ~/.bash_aliases* 1> /dev/null 2>&1; then
+  for file in ~/.bash_aliases*; do
+    source "${file}"
+  done;
+  unset file;
+fi
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs

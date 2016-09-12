@@ -144,6 +144,10 @@ echo ""
 echo "Show the ~/Library folder"
 chflags nohidden ~/Library
 
+#echo ""
+#echo "Don't show the ~/bin directory"
+#chflags hidden "${HOME}/bin"
+
 echo ""
 echo "Show the /Volumes folder"
 sudo chflags nohidden /Volumes

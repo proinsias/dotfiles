@@ -20,15 +20,6 @@ if /bin/ls ~/.bashrc.local* 1> /dev/null 2>&1; then
   unset file;
 fi
 
-# source .bash_aliases and .bash_aliases.local.<blah>
-if /bin/ls ~/.bash_aliases* 1> /dev/null 2>&1; then
-  for file in ~/.bash_aliases*; do
-    source "${file}"
-  done;
-  unset file;
-fi
-
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
         . /etc/bashrc
@@ -151,7 +142,7 @@ if conda -V > /dev/null 2>&1 ; then
   eval "$(register-python-argcomplete conda)"
 fi
 
-### fzf
+## fzf
 if fzf -h > /dev/null 2>&1 ; then
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 else
@@ -160,7 +151,7 @@ else
 fi
 
 if activate-global-python-argcomplete -h > /dev/null 2>&1 ; then
-  ### Global tab completion for argcomplete-supported apps
+  # Global tab completion for argcomplete-supported apps
   if [ ! -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh" ]; then
     activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
   fi
@@ -200,14 +191,26 @@ case $(uname -s) in
       ;;
 esac
 
+
+
+
 # AWS bash completion
 complete -C aws_completer aws
 
 # Add keychain keys
-eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC 97FAE23)
+eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC 97FAE23F)
 
 ### motd
 echo "Don't forget to use fzf, fasd, cheat and bashhub!"
+
+# source .bash_aliases and .bash_aliases.local.<blah>
+if /bin/ls ~/.bash_aliases* 1> /dev/null 2>&1; then
+  for file in ~/.bash_aliases*; do
+    source "${file}"
+  done;
+  unset file;
+fi
+
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs

@@ -78,7 +78,8 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Add homebrew's GNU coreutils (ls, cat, etc.) to PATH, etc. - see
 #http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
-export PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
+# May cause issues - e.g., archey doesn't work with 'gawk'
+#export PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
 export MANPATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman:${MANPATH}"
 
 export MANPATH="${HOMEBREW_PREFIX}/share/man:${MANPATH}"
@@ -152,7 +153,4 @@ case $(uname -s) in
         export JAVA_HOME="$(/usr/libexec/java_home)"
         ;;
 esac
-
-
-
 

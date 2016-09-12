@@ -19,6 +19,7 @@ charset = utf-8
 
 # 4 space indentation
 [*.py]
+mode = Python
 indent_style = space
 indent_size = 4
 line_length = 80
@@ -84,5 +85,16 @@ indent_size = 2
 indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
+
+#
+# Property lists, Munki and AutoPkg
+#
+[*.{plist,recipe,pkginfo}]
+mode = XML
+indent_style = tab
+indent_size = 4
+x-show-invisibles = 1
+x-show-spaces = 1
+
 
 

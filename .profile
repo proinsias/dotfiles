@@ -105,17 +105,18 @@ else
 fi
 
 # For a ipython notebook and pyspark integration
-export SPARK_HOME="${HOMEBREW_PREFIX}/Cellar/apache-spark/2.0.0/libexec"
-export PYSPARK_SUBMIT_ARGS=" --master local[4] pyspark-shell:${PYSPARK_SUBMIT_ARGS}"
+export SPARK_HOME="$(brew --prefix apache-spark)/libexec"
+#export PYSPARK_SUBMIT_ARGS=" --master local[4] pyspark-shell ${PYSPARK_SUBMIT_ARGS}"
 # Add the PySpark classes to the Python path:
 export PYTHONPATH="${SPARK_HOME}/python/:${PYTHONPATH}"
 export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.1-src.zip:${PYTHONPATH}"
 # Hadoop
-export HADOOP_HOME="${HOMEBREW_PREFIX}/Cellar/hadoop/2.7.2/libexec"
+export HADOOP_HOME="$(brew --prefix hadoop)/libexec"
 export PATH="${PATH}:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin"
 export HADOOP_CONF_DIR="${HADOOP_HOME}/etc/hadoop"
+export HADOOP_CLASSPATH="${HADOOP_CLASSPATH}:${HADOOP_HOME}/share/hadoop/tools/lib/*"
 # Pig
-export PIG_HOME="${HOMEBREW_PREFIX}/Cellar/pig/0.12.0"
+export PIG_HOME="$(brew --prefix pig)/libexec"
 
 # added by Anaconda3 2.5.0 installer
 export PATH="${HOME}/anaconda3/bin:$PATH"
@@ -139,7 +140,6 @@ case $(uname -s) in
         else
           echo "Please install screenfetch command:\nbrew install screenfetch"
         fi
-
         ;;
     "Darwin" )
         # https://github.com/obihann/archey-osx
@@ -148,6 +148,8 @@ case $(uname -s) in
         else
           echo "Please install archey command:\nbrew install archey"
         fi
+
+        export JAVA_HOME="$(/usr/libexec/java_home)"
         ;;
 esac
 

@@ -8,27 +8,9 @@ if test ! $(which conda); then
     echo ""
     echo "Installing conda..."
 
-    case $(uname -s) in
-        "Linux" )
-            wget https://repo.continuum.io/archive/Anaconda3-4.1.1-Linux-x86_64.sh \
-            --output-document=/tmp/Anaconda3.sh
-            ;;
-        "Darwin" )
-            wget https://repo.continuum.io/archive/Anaconda3-4.1.1-MacOSX-x86_64.sh \
-            --output-document=/tmp/Anaconda3.sh
-            ;;
-
-        bash /tmp/Anaconda3.sh
-    esac
+    pyenv install miniconda3-latest
+    pyenv global miniconda3-latest    
 fi
-
-echo ""
-echo "Login to anaconda.org"
-anaconda login
-
-echo ""
-echo "Add conda-forge channel"
-conda config --add channels conda-forge
 
 echo ""
 echo "Install requirements into the root environment"

@@ -121,35 +121,12 @@ else
   echo "brew tap homebrew/command-not-found"
 fi
 
-### wakatime
-if wakatime -h > /dev/null 2>&1 ; then
-  source ~/bin/bash-wakatime.sh
-else
-  echo "Please install wakatime command:"
-  echo "$ pip install wakatime"
-fi
-
-### tab completion for conda
-if conda -V > /dev/null 2>&1 ; then
-  eval "$(register-python-argcomplete conda)"
-fi
-
 ## fzf
 if fzf -h > /dev/null 2>&1 ; then
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 else
   echo "Please install fzf command:"
   echo "$ brew install fzf"
-fi
-
-if activate-global-python-argcomplete -h > /dev/null 2>&1 ; then
-  # Global tab completion for argcomplete-supported apps
-  if [ ! -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh" ]; then
-    activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
-  fi
-else
-  echo "Please install activate-global-python-argcomplete command:"
-  echo "pip/conda install argcomplete"
 fi
 
 case $(uname -s) in
@@ -183,9 +160,6 @@ case $(uname -s) in
       ;;
 esac
 
-
-
-
 # AWS bash completion
 complete -C aws_completer aws
 
@@ -210,6 +184,37 @@ if /bin/ls ~/.bash_aliases* 1> /dev/null 2>&1; then
   done;
   unset file;
 fi
+
+### wakatime
+if wakatime -h > /dev/null 2>&1 ; then
+  source ~/bin/bash-wakatime.sh
+else
+  echo "Please install wakatime command:"
+  echo "$ brew install wakatime"
+fi
+
+### tab completion for conda
+if conda -V > /dev/null 2>&1 ; then
+  eval "$(register-python-argcomplete conda)"
+fi
+
+### https://github.com/yyuu/pyenv
+### https://github.com/yyuu/pyenv-virtualenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+if activate-global-python-argcomplete -h > /dev/null 2>&1 ; then
+  # Global tab completion for argcomplete-supported apps
+  if [ ! -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh" ]; then
+    activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
+  fi
+else
+  echo "Please install activate-global-python-argcomplete command:"
+  echo "pip/conda install argcomplete"
+fi
+
+### http://direnv.net/
+eval "$(direnv hook bash)"
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs

@@ -105,23 +105,6 @@ else
   [[ "$-" == *i* ]] && echo "Please install overcommit command"
 fi
 
-# For a ipython notebook and pyspark integration
-export SPARK_HOME="$(brew --prefix apache-spark)/libexec"
-#export PYSPARK_SUBMIT_ARGS=" --master local[4] pyspark-shell ${PYSPARK_SUBMIT_ARGS}"
-# Add the PySpark classes to the Python path:
-export PYTHONPATH="${SPARK_HOME}/python/:${PYTHONPATH}"
-export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.1-src.zip:${PYTHONPATH}"
-# Hadoop
-export HADOOP_HOME="$(brew --prefix hadoop)/libexec"
-export PATH="${PATH}:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin"
-export HADOOP_CONF_DIR="${HADOOP_HOME}/etc/hadoop"
-export HADOOP_CLASSPATH="${HADOOP_CLASSPATH}:${HADOOP_HOME}/share/hadoop/tools/lib/*"
-# Pig
-export PIG_HOME="$(brew --prefix pig)/libexec"
-
-# added by Anaconda3 2.5.0 installer
-export PATH="${HOME}/anaconda3/bin:$PATH"
-
 # If not running interactively, stop here
 [[ "$-" != *i* ]] && return
 

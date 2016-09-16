@@ -34,8 +34,3 @@ defaults write com.twitter.twitter-mac ShowFullNames -bool true
 #echo "Hide the app in the background if it’s not the front-most window"
 #defaults write com.twitter.twitter-mac HideInBackground -bool true
 
-CFPreferencesAppSynchronize "com.twitter.twitter-mac"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Twitter" > /dev/null 2>&1

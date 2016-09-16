@@ -23,8 +23,3 @@ echo "Display the amount of time required for Replace All operations."
 defaults write com.barebones.textwrangler \
 	 ReplaceAllResultsIncludeTiming -bool YES
 
-CFPreferencesAppSynchronize "com.barebones.textwrangler"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "TextWrangler" > /dev/null 2>&1

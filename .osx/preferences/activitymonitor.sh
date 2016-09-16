@@ -21,8 +21,3 @@ echo "Sort Activity Monitor results by CPU usage"
 defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
-CFPreferencesAppSynchronize "com.apple.ActivityMonitor"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Activity Monitor" > /dev/null 2>&1

@@ -13,9 +13,3 @@ echo "##########################################################################
 # Enable “focus follows mouse” for all X11 apps
 # i.e. hover over a window and start typing in it without clicking first
 #defaults write org.x.X11 wm_ffm -bool true
-
-CFPreferencesAppSynchronize "org.macosforge.xquartz.X11"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "X11" > /dev/null 2>&1

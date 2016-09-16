@@ -17,5 +17,3 @@ echo ""
 echo "Mute Audio Output"
 osascript -e 'set volume output muted true'
 
-CFPreferencesAppSynchronize "com.apple.systemsound"
-CFPreferencesAppSynchronize "com.apple.sound.beep.feedback"

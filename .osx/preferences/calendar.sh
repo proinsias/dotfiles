@@ -13,8 +13,3 @@ echo "##########################################################################
 #echo "Default duration for new event"
 #defaults write com.apple.iCal "Default duration in minutes for new event" 60
 
-CFPreferencesAppSynchronize "com.apple.iCal"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Calendar" > /dev/null 2>&1

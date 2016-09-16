@@ -39,9 +39,3 @@ defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 \
 defaults write com.google.Chrome.canary \
 	 PMPrintingExpandedStateForPrint2 -bool true
 
-CFPreferencesAppSynchronize "com.google.Chrome"
-CFPreferencesAppSynchronize "com.google.Chrome.canary"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Google Chrome" > /dev/null 2>&1

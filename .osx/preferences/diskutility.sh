@@ -12,8 +12,3 @@ defaults write com.apple.DiskUtility advanced-image-options -bool true
 #Show hidden Partitions:
 #$ defaults write com.apple.DiskUtility DUShowEveryPartition -boolean
 
-CFPreferencesAppSynchronize "com.apple.DiskUtility"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Disk Utility" > /dev/null 2>&1

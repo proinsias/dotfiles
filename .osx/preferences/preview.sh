@@ -13,8 +13,3 @@ echo "##########################################################################
 #Quit Always Keeps Windows:
 #$ defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -boolean
 
-CFPreferencesAppSynchronize "com.apple.Preview"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Preview" > /dev/null 2>&1

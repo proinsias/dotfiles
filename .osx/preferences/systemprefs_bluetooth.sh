@@ -14,5 +14,3 @@ echo "Show Bluetooth in menu bar"
 			"Add :menuExtras string '/System/Library/CoreServices/Menu Extras/Bluetooth.menu'" \
 			com.apple.systemuiserver.plist > /dev/null 2>&1
 
-CFPreferencesAppSynchronize "com.apple.BluetoothAudioAgent"
-CFPreferencesAppSynchronize "com.apple.systemuiserver"

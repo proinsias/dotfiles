@@ -20,8 +20,3 @@ echo "##########################################################################
 #echo ""
 #defaults write com.google.GoogleDrive.plist usagestats -bool false
 
-CFPreferencesAppSynchronize "com.google.GoogleDrive.plist"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Google Drive" > /dev/null 2>&1

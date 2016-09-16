@@ -56,3 +56,148 @@ for script in "${HOME}/.osx/setup"/*.sh; do
     esac
   done
 done
+
+echo "###############################################################################"
+echo "Tidy up"
+echo "###############################################################################"
+
+echo ""
+echo "Reset Launchpad"
+find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 \
+     -delete
+
+echo ""
+echo "Synchronize Preferences"
+
+CFPreferencesAppSynchronize "/.Spotlight-V100/VolumeConfiguration"
+CFPreferencesAppSynchronize "/Library/Preferences/SystemConfiguration/com.apple.captive.control"
+CFPreferencesAppSynchronize "/Library/Preferences/SystemConfiguration/com.apple.finder"
+CFPreferencesAppSynchronize "/Library/Preferences/SystemConfiguration/com.apple.nat"
+CFPreferencesAppSynchronize "/Library/Preferences/SystemConfiguration/com.apple.smb.server"
+CFPreferencesAppSynchronize "/Library/Preferences/com.apple.alf"
+CFPreferencesAppSynchronize "/Library/Preferences/com.apple.iokit.AmbientLightSensor"
+CFPreferencesAppSynchronize "/Library/Preferences/com.apple.iokit.AmbientLightSensor"
+CFPreferencesAppSynchronize "/Library/Preferences/com.apple.loginwindow"
+CFPreferencesAppSynchronize "/Library/Preferences/com.apple.windowserver"
+CFPreferencesAppSynchronize "/var/db/SystemPolicy-prefs.plist"
+CFPreferencesAppSynchronize "Apple Global Domain"
+CFPreferencesAppSynchronize "NSGlobalDomain"
+CFPreferencesAppSynchronize "com.agilebits.onepassword4-helper.plist"
+CFPreferencesAppSynchronize "com.agilebits.onepassword4.plist"
+CFPreferencesAppSynchronize "com.apple.ActivityMonitor"
+CFPreferencesAppSynchronize "com.apple.AppleMultitouchTrackpad"
+CFPreferencesAppSynchronize "com.apple.BezelServices"
+CFPreferencesAppSynchronize "com.apple.BluetoothAudioAgent"
+CFPreferencesAppSynchronize "com.apple.CrashReporter"
+CFPreferencesAppSynchronize "com.apple.Dictionary"
+CFPreferencesAppSynchronize "com.apple.DiskUtility"
+CFPreferencesAppSynchronize "com.apple.ImageCapture"
+CFPreferencesAppSynchronize "com.apple.LaunchServices"
+CFPreferencesAppSynchronize "com.apple.LaunchServices/com.apple.launchservices.secure.plist"
+CFPreferencesAppSynchronize "com.apple.NetworkBrowser"
+CFPreferencesAppSynchronize "com.apple.PhotoBooth"
+CFPreferencesAppSynchronize "com.apple.Preview"
+CFPreferencesAppSynchronize "com.apple.QuickTimePlayerX"
+CFPreferencesAppSynchronize "com.apple.Safari"
+CFPreferencesAppSynchronize "com.apple.ScreenSharing"
+CFPreferencesAppSynchronize "com.apple.ScreenSharingMenulet"
+CFPreferencesAppSynchronize "com.apple.SoftwareUpdate"
+CFPreferencesAppSynchronize "com.apple.TextEdit"
+CFPreferencesAppSynchronize "com.apple.TimeMachine"
+CFPreferencesAppSynchronize "com.apple.addressbook"
+CFPreferencesAppSynchronize "com.apple.airplay"
+CFPreferencesAppSynchronize "com.apple.appstore"
+CFPreferencesAppSynchronize "com.apple.commerce"
+CFPreferencesAppSynchronize "com.apple.dashboard"
+CFPreferencesAppSynchronize "com.apple.desktopservices"
+CFPreferencesAppSynchronize "com.apple.dock"
+CFPreferencesAppSynchronize "com.apple.driver.AppleBluetoothMultitouch.trackpad"
+CFPreferencesAppSynchronize "com.apple.dt.Xcode.plist"
+CFPreferencesAppSynchronize "com.apple.finder"
+CFPreferencesAppSynchronize "com.apple.frameworks.diskimages"
+CFPreferencesAppSynchronize "com.apple.helpviewer"
+CFPreferencesAppSynchronize "com.apple.iCal"
+CFPreferencesAppSynchronize "com.apple.loginwindow"
+CFPreferencesAppSynchronize "com.apple.menuextra.battery"
+CFPreferencesAppSynchronize "com.apple.menuextra.clock"
+CFPreferencesAppSynchronize "com.apple.messageshelper.MessageController"
+CFPreferencesAppSynchronize "com.apple.mouse.scaling"
+CFPreferencesAppSynchronize "com.apple.networkConnect"
+CFPreferencesAppSynchronize "com.apple.print.PrintingPrefs"
+CFPreferencesAppSynchronize "com.apple.reminders"
+CFPreferencesAppSynchronize "com.apple.screencapture"
+CFPreferencesAppSynchronize "com.apple.screensaver"
+CFPreferencesAppSynchronize "com.apple.sound.beep.feedback"
+CFPreferencesAppSynchronize "com.apple.spotlight"
+CFPreferencesAppSynchronize "com.apple.systempreferences"
+CFPreferencesAppSynchronize "com.apple.systemsound"
+CFPreferencesAppSynchronize "com.apple.systemuiserver"
+CFPreferencesAppSynchronize "com.apple.terminal"
+CFPreferencesAppSynchronize "com.apple.trackpad.scaling"
+CFPreferencesAppSynchronize "com.apple.universalaccess"
+CFPreferencesAppSynchronize "com.barebones.textwrangler"
+CFPreferencesAppSynchronize "com.dayoneapp.dayone.plist"
+CFPreferencesAppSynchronize "com.google.Chrome"
+CFPreferencesAppSynchronize "com.google.Chrome.canary"
+CFPreferencesAppSynchronize "com.google.GoogleDrive.plist"
+CFPreferencesAppSynchronize "com.googlecode.iterm2"
+CFPreferencesAppSynchronize "com.lightheadsw.caffeine.plist"
+CFPreferencesAppSynchronize "com.operasoftware.Opera"
+CFPreferencesAppSynchronize "com.operasoftware.OperaDeveloper"
+CFPreferencesAppSynchronize "com.ragingmenace.MenuMeters"
+CFPreferencesAppSynchronize "com.sequelpro.SequelPro.plist"
+CFPreferencesAppSynchronize "com.skype.skype.plist"
+CFPreferencesAppSynchronize "com.surteesstudios.Bartender.plist"
+CFPreferencesAppSynchronize "com.twitter.twitter-mac"
+CFPreferencesAppSynchronize "org.herf.Flux.plist"
+CFPreferencesAppSynchronize "org.m0k.transmission"
+CFPreferencesAppSynchronize "org.macosforge.xquartz.X11"
+CFPreferencesAppSynchronize "org.x.X11"
+CFPreferencesAppSynchronize "~/Library/Preferences/com.apple.alf"
+CFPreferencesAppSynchronize "~/Library/Preferences/org.gpgtools.gpgmail"
+
+echo ""
+echo "Killing some open applications in order to take effect."
+for app in \
+  "cfprefsd" \
+  "1password" \
+  "Activity Monitor" \
+  "Address Book" \
+  "App Store" \
+  "Bartender" \
+  "Caffeine" \
+  "Calendar" \
+  "Day One" \
+  "Dictionary" \
+  "Disk Utility" \
+  "Dock" \
+  "Finder" \
+  "Flux" \
+  "Google Chrome" \
+  "Google Drive" \
+  "iTerm" \
+  "iTunes" \
+  "Messages" \
+  "Opera" \
+  "Photo Booth" \
+  "Preview" \
+  "QuickTime Player" \
+  "Reminders" \
+  "Safari" \
+  "Screen Sharing" \
+  "Sequel Pro" \
+  "Skype" \
+  "SystemUIServer" \
+  "Terminal" \
+  "TextEdit" \
+  "TextWrangler" \
+  "Transmission" \
+  "Twitter" \
+  "Xcode" \
+  "X11" \
+  ; do
+  killall "${app}" > /dev/null 2>&1
+done
+
+echo ""
+echo "Note that some of these changes require a logout/restart to take effect."

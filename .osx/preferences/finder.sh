@@ -191,15 +191,3 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 #Show size column in search results:
 #$ defaults write com.apple.finder SearchViewSettings.ListViewSettings.columns.size.visible -boolean
 
-
-
-CFPreferencesAppSynchronize "com.apple.NetworkBrowser"
-CFPreferencesAppSynchronize "com.apple.frameworks.diskimages"
-CFPreferencesAppSynchronize "com.apple.desktopservices"
-CFPreferencesAppSynchronize "com.apple.finder"
-CFPreferencesAppSynchronize "NSGlobalDomain"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Finder" > /dev/null 2>&1
-

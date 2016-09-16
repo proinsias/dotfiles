@@ -13,4 +13,6 @@ echo ""
 echo "Automatically quit printer app once the print jobs complete"
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
-CFPreferencesAppSynchronize "com.apple.print.PrintingPrefs"
+echo ""
+echo "Turn off printer sharing"
+cupsctl --no-share-printers

@@ -48,9 +48,3 @@ defaults write org.m0k.transmission BlocklistNew -bool true
 defaults write org.m0k.transmission BlocklistURL -string \
 	 "http://john.bitsurge.net/public/biglist.p2p.gz"
 
-CFPreferencesAppSynchronize "org.m0k.transmission"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Transmission" > /dev/null 2>&1
-

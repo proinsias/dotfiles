@@ -21,5 +21,3 @@ defaults write "Apple Global Domain" AppleFirstWeekday = '{
         gregorian = 2;
         }'
 
-CFPreferencesAppSynchronize "NSGlobalDomain"
-CFPreferencesAppSynchronize "Apple Global Domain"

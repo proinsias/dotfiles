@@ -8,4 +8,4 @@ echo "##########################################################################
 #echo "Disable display from automatically adjusting brightness"
 #defaults write /Library/Preferences/com.apple.iokit.AmbientLightSensor "Automatic Display Enabled" -bool false
 
-CFPreferencesAppSynchronize /Library/Preferences/com.apple.iokit.AmbientLightSensor
+

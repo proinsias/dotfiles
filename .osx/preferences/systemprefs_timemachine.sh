@@ -12,5 +12,3 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 #echo "Disable local Time Machine backups"
 #hash tmutil &> /dev/null && tmutil disablelocal
 
-CFPreferencesAppSynchronize "com.apple.TimeMachine"
-

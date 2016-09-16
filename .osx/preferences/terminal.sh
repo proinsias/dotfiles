@@ -22,8 +22,3 @@ echo "Enable Secure Keyboard Entry in Terminal.app"
 # See: https://security.stackexchange.com/a/47786/8918
 defaults write com.apple.terminal SecureKeyboardEntry -bool true
 
-CFPreferencesAppSynchronize "com.apple.terminal"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Terminal" > /dev/null 2>&1

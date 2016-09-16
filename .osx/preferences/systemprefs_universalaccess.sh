@@ -12,4 +12,3 @@ echo "##########################################################################
 #echo "Follow the keyboard focus while zoomed in"
 #defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
-CFPreferencesAppSynchronize "com.apple.universalaccess"

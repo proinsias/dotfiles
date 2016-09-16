@@ -214,9 +214,3 @@ echo ""
 echo "Turn on autosubmit"
 defaults write com.agilebits.onepassword4-helper.plist autosubmit -bool true
 
-CFPreferencesAppSynchronize "com.agilebits.onepassword4.plist"
-CFPreferencesAppSynchronize "com.agilebits.onepassword4-helper.plist"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "1password" > /dev/null 2>&1

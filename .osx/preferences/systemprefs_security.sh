@@ -6,7 +6,8 @@ echo "##########################################################################
 
 echo ""
 echo "Turn on Firewall"
-defaults write /Library/Preferences/com.apple.alf globalstate -int 1
+defaults write /Library/Preferences/com.apple.alf globalstate -bool true
+defaults -currentHost write ~/Library/Preferences/com.apple.alf globalstate -bool true
 # /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 
 echo "Want to enable FileVault?"
@@ -20,7 +21,8 @@ done
 
 echo ""
 echo "Enable stealth mode"
-defaults write /Library/Preferences/com.apple.alf stealthenabled 1
+defaults write /Library/Preferences/com.apple.alf stealthenabled -bool true
+defaults write ~/Library/Preferences/com.apple.alf stealthenabled -bool true
 
 echo ""
 echo "Allow signed applications to receive incoming connections"
@@ -33,6 +35,3 @@ defaults write /Library/Preferences/com.apple.alf allowsignedenabled 1
 #defaults write /var/db/SystemPolicy-prefs.plist enabled -string no
 #defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-CFPreferencesAppSynchronize /Library/Preferences/com.apple.alf
-CFPreferencesAppSynchronize /var/db/SystemPolicy-prefs.plist
-CFPreferencesAppSynchronize com.apple.LaunchServices

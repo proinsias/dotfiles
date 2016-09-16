@@ -24,4 +24,3 @@ echo ""
 echo "Automatically download apps purchased on other Macs"
 defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1
 
-CFPreferencesAppSynchronize "com.apple.SoftwareUpdate"

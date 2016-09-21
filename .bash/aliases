@@ -156,8 +156,9 @@ alias cp='cp -i'
 
 alias delete='function _delete(){ move "$@" ~/.Trash/ ; };_delete'
 
-alias ew='function _ew(){ emacs -nw "$@" ; };_ew'
-alias e='function _e(){ emacs "$@" & ; };_e'
+alias ec='function _ec(){ emacsclient "$@" ; };_ec'
+alias emacs='function _ec(){ emacsclient "$@" ; };_ec'
+alias ew='function _ew(){ /usr/local/bin/emacs -nw "$@" ; };_ew'
 
 alias free='df'
 alias ftp='ftp -i'

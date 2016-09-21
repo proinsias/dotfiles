@@ -4,13 +4,19 @@
 anaconda-client
 argcomplete
 autopep8
-aws-shell
+awscli # not homebrew
+aws-shell # not homebrew
 cheat
+emoji
 glances
+ntfy
 pep257
 pep8
+psutil
 pyflakes
 pylint
-thefuck
+slacker
+thefuck # not homebrew
 uncommitted
 yamllint
+

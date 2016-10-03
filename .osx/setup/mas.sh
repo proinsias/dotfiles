@@ -10,7 +10,7 @@ echo "Install Mac App Store apps"
 #mas install  442963716 # AirBeam
 mas install 937984704 Amphetamine
 #mas install  408974874 # BlackjackHD
-#mas install  523620159 # CleanMyDrive 2
+mas install  523620159 # CleanMyDrive 2
 #mas install  529870855 # Color by Numbers - Animals - Free
 #mas install  407992094 # DailyBible
 mas install 1055511498 # Day One

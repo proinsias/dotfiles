@@ -142,5 +142,3 @@ case $(uname -s) in
         export JAVA_HOME="$(/usr/libexec/java_home)"
         ;;
 esac
-
-export HOMEBREW_NO_ANALYTICS=1

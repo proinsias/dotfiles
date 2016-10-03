@@ -56,8 +56,8 @@ case $(uname -s) in
       export GPG_TTY=$(tty)
       ;;
     "Darwin" )
-      # homebrew - shouldn't be necessary on mac
-      # export PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
+      # homebrew
+      export PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
 
       export PATH="${PATH}:${HOME}/.osx/bin"
 

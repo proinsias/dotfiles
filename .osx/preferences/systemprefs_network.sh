@@ -12,5 +12,3 @@ echo ""
 echo "VPN status - Show Time Connected"
 defaults write com.apple.networkConnect VPNShowTime -int 1
 
-CFPreferencesAppSynchronize "com.apple.NetworkBrowser"
-CFPreferencesAppSynchronize "com.apple.networkConnect"

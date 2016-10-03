@@ -19,7 +19,8 @@ defaults -currentHost write com.apple.screensaver showClock 1
 
 echo ""
 echo "Require password immediately after sleep or screen saver begins"
-defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPassword -bool true
+defaults write /Library/Preferences/com.apple.screensaver askForPassword -bool true
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 echo ""
@@ -29,10 +30,4 @@ defaults write com.apple.screencapture location -string "${HOME}/Desktop"
 echo ""
 echo "Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)"
 defaults write com.apple.screencapture type -string "png"
-
-echo ""
-echo "Enable subpixel font rendering on non-Apple LCDs"
-defaults write NSGlobalDomain AppleFontSmoothing -int 2
-
-CFPreferencesAppSynchronize "com.apple.screencapture"
 

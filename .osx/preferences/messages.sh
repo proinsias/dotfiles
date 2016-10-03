@@ -19,8 +19,3 @@ defaults write com.apple.messageshelper.MessageController \
 #defaults write com.apple.messageshelper.MessageController \
 #	 SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
 
-CFPreferencesAppSynchronize "com.apple.messageshelper.MessageController"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Messages" > /dev/null 2>&1

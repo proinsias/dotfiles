@@ -9,4 +9,3 @@ defaults write \
 	 /Library/Preferences/com.apple.iokit.AmbientLightSensor \
 	 "Automatic Keyboard Enabled" -bool false
 
-CFPreferencesAppSynchronize /Library/Preferences/com.apple.iokit.AmbientLightSensor

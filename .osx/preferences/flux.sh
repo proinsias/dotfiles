@@ -20,8 +20,3 @@ echo ""
 echo "Enable automatic update checks"
 defaults write org.herf.Flux.plist SUEnableAutomaticChecks -bool true
 
-CFPreferencesAppSynchronize "org.herf.Flux.plist"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Flux" > /dev/null 2>&1

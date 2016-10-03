@@ -39,6 +39,3 @@ defaults write /Library/Preferences/com.apple.loginwindow \
 #$ sudo defaults write /Library/Preferences/com.apple.loginwindow \
 #DesktopPicture "/Library/Desktop Pictures/Aqua Blue.jpg"
 
-CFPreferencesAppSynchronize /Library/Preferences/com.apple.loginwindow
-CFPreferencesAppSynchronize com.apple.loginwindow
-

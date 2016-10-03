@@ -4,7 +4,7 @@ echo "##########################################################################
 echo "Bartender"
 echo "###############################################################################"
 
-plist=com.surteesstudios.Bartender.plist
+plist="com.surteesstudios.Bartender.plist"
 
 #echo ""
 #echo ""
@@ -63,8 +63,3 @@ menuitem="com.apple.menuextra.volume"
 "${plb}" -c "${add}${menuitem}:controlled integer" "${plist}"
 "${plb}" -c "${set}${menuitem}:controlled 2" "${plist}"
 
-CFPreferencesAppSynchronize "${plist}"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Bartender" > /dev/null 2>&1

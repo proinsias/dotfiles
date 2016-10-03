@@ -17,6 +17,10 @@ echo "##########################################################################
 #systemsetup -setcomputersleep 60
 
 echo ""
+echo "Turn off wake on network access"
+systemsetup -setwakeonnetworkaccess off
+
+echo ""
 echo "Automatic restart on system freeze"
 systemsetup -setrestartfreeze on
 

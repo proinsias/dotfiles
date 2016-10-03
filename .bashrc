@@ -2,7 +2,14 @@
 [[ "$-" != *i* ]] && return
 
 # added by travis gem
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+if ! test -f ~/.travis/travis.sh ; then
+    echo Installing travis...
+    RBENV_VERSION=system gem install travis
+    echo Run travis command to install auto-completion!!!
+fi
+if test -f ~/.travis/travis.sh ; then
+  source ~/.travis/travis.sh
+fi
 
 # source .bashrc.local and .bashrc.local.<blah>
 if /bin/ls ~/.bashrc.local* 1> /dev/null 2>&1; then
@@ -13,7 +20,7 @@ if /bin/ls ~/.bashrc.local* 1> /dev/null 2>&1; then
 fi
 
 # Source global definitions
-if [ -f /etc/bashrc ]; then
+if test -f /etc/bashrc ; then
         . /etc/bashrc
 fi
 
@@ -49,19 +56,23 @@ shopt -s cdspell
 #
 # Define to avoid flattening internal contents of tar files
 # COMP_TAR_INTERNAL_PATHS=1
-#
-# Uncomment to turn on programmable completion enhancements.
-# Any completions you add in ~/.bash_completion are sourced last.
-[[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
-# https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
-if [ -f ~/.bash/git-completion.sh ]; then
-    source ~/.bash/git-completion.sh
+if ! test -f ~/bin/git-completion.sh; then
+    echo Installing git completion...
+    wget \
+https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash \
+--output-document=~/bin/git-completion.sh
+fi
+if test -f ~/bin/git-completion.sh; then
+    source ~/bin/git-completion.sh
 fi
 
-# `npm completion > ~/.bash/npm-completion.bash`
-if [ -f ~/.bash/npm-completion.sh ]; then
-    source ~/.bash/npm-completion.sh
+if ! test -f ~/bin/npm-completion.sh ; then
+    echo Installing npm compleition...
+    npm completion > ~/bin/npm-completion.sh
+fi
+if test -f ~/bin/npm-completion.sh ; then
+    source ~/bin/npm-completion.sh
 fi
 
 # History Options
@@ -82,12 +93,12 @@ export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls' # Ignore the ls command as well
 # Pass color ANSI control characters through to the terminal
 export LESS="-XR"
 
-export EDITOR='emacs -nw'
+export EDITOR='emacsclient'
 if [[ -n "${EDITOR}" && -z "${VISUAL}" ]] ; then
   export VISUAL="${EDITOR}"
 fi
 
-export GIT_EDITOR=emacs
+export GIT_EDITOR=emacsclient
 
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
@@ -106,50 +117,44 @@ PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
-# for autojump
-[[ -s "${HOMEBREW_PREFIX}/etc/autojump.sh" ]] && . "${HOMEBREW_PREFIX}/etc/autojump.sh"
+if ! type rbenv > /dev/null; then
+  echo Installing rbenv...
+  brew install rbenv
+fi
+if type rbenv > /dev/null; then
+  eval "$(rbenv init -)";
+fi
+
 
 # For homebrew bash completion
-if [ -f "${HOMEBREW_PREFIX}/etc/bash_completion" ]; then
+if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion"; then
+  echo Installing bash completion...
+  brew install 'homebrew/completions/bash-completion'
+fi
+if test -f "${HOMEBREW_PREFIX}/etc/bash_completion"; then
     . "${HOMEBREW_PREFIX}/etc/bash_completion"
 fi
 
+if ! brew command command-not-found-init > /dev/null; then
+  echo Installing command-not-found-init...
+  brew tap homebrew/command-not-found
+fi
 if brew command command-not-found-init > /dev/null; then
   eval "$(brew command-not-found-init)";
-else
-  echo "Please install command-not-found-init command:"
-  echo "brew tap homebrew/command-not-found"
 fi
 
-### wakatime
-if wakatime -h > /dev/null 2>&1 ; then
-  source ~/bin/bash-wakatime.sh
-else
-  echo "Please install wakatime command:"
-  echo "$ pip install wakatime"
+## fzf
+if ! fzf -h > /dev/null 2>&1 ; then
+  echo Installing fzf...
+  brew install fzf
 fi
-
-### tab completion for conda
-if conda -V > /dev/null 2>&1 ; then
-  eval "$(register-python-argcomplete conda)"
-fi
-
-### fzf
 if fzf -h > /dev/null 2>&1 ; then
-  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-else
-  echo "Please install fzf command:"
-  echo "$ brew install fzf"
-fi
-
-if activate-global-python-argcomplete -h > /dev/null 2>&1 ; then
-  ### Global tab completion for argcomplete-supported apps
-  if [ ! -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh" ]; then
-    activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
+  if ! test -f ~/.fzf.bash; then
+    "${HOMEBREW_PREFIX}/opt/fzf/install" --all --no-update-rc
   fi
-else
-  echo "Please install activate-global-python-argcomplete command:"
-  echo "pip/conda install argcomplete"
+  if test -f ~/.fzf.bash; then
+    source ~/.fzf.bash
+  fi
 fi
 
 case $(uname -s) in
@@ -187,10 +192,7 @@ esac
 complete -C aws_completer aws
 
 # Add keychain keys
-eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC 97FAE23)
-
-### motd
-echo "Don't forget to use fzf, fasd, cheat and bashhub!"
+eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC 97FAE23F --ignore-missing)
 
 # Use `/bin/ls` for these tests, since homebrew `ls` gives errors
 if /bin/ls ~/.bash/* 1> /dev/null 2>&1; then
@@ -208,9 +210,128 @@ if /bin/ls ~/.bash_aliases* 1> /dev/null 2>&1; then
   unset file;
 fi
 
-### Bashhub.com Installation.
-### This Should be at the EOF. https://bashhub.com/docs
-if [ -f ~/.bashhub/bashhub.sh ]; then
-    source ~/.bashhub/bashhub.sh
+### wakatime
+if ! wakatime -h > /dev/null 2>&1 ; then
+  brew install wakatime
+fi
+if wakatime -h > /dev/null 2>&1 ; then
+  if ! test -f ~/bin/bash-wakatime.sh; then
+    wget \
+https://raw.githubusercontent.com/irondoge/bash-wakatime/master/bash-wakatime.sh \
+--output-document=~/bin/bash-wakatime.sh
+  fi
+  if test -f ~/bin/bash-wakatime.sh; then
+    source ~/bin/bash-wakatime.sh
+  fi
 fi
 
+## argcomplete
+if ! activate-global-python-argcomplete -h > /dev/null 2>&1 ; then
+  echo Installing argcomplete...
+  PYENV_VERSION=system pip install argcomplete
+fi
+
+### tab completion for conda
+if conda -V > /dev/null 2>&1 ; then
+  eval "$(register-python-argcomplete conda)"
+fi
+
+### http://www.jenv.be/
+export PATH="$HOME/.jenv/bin:$PATH"
+if ! type jenv > /dev/null; then
+  echo Installing jenv...
+  brew install jenv
+fi
+if type jenv > /dev/null; then
+  eval "$(jenv init -)";
+fi
+
+### https://github.com/yyuu/pyenv
+### https://github.com/yyuu/pyenv-virtualenv
+if ! type pyenv > /dev/null; then
+  echo Installing pyenv...
+  brew install pyenv
+fi
+if type pyenv > /dev/null; then
+  eval "$(pyenv init -)";
+fi
+
+if ! type pyenv-virtualenv-init > /dev/null; then
+  echo Installing pyenv-virtualenv...
+  brew install pyenv-virtualenv
+fi
+if type pyenv-virtualenv-init > /dev/null; then
+  eval "$(pyenv virtualenv-init -)";
+fi
+
+# Global tab completion for argcomplete-supported apps
+if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh"; then
+  activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
+fi
+
+### A utility for sending notifications, on demand and when commands finish.
+### https://github.com/dschep/ntfy/
+if ! type ntfy > /dev/null; then
+  echo Installing ntfy...
+  PYENV_VERSION=system pip install ntfy
+fi
+if type ntfy > /dev/null; then
+  eval "$(ntfy shell-integration --foreground-too)"
+  export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld "\
+"psql screen tmux vim"
+fi
+
+### http://direnv.net/
+if ! type direnv > /dev/null; then
+  echo Installing direnv...
+  brew install direnv
+fi
+if type direnv > /dev/null; then
+  eval "$(direnv hook bash)"
+fi
+
+### https://github.com/chrisallenlane/cheat
+### cheat allows you to create and view interactive cheatsheets on the command-line.
+export CHEATCOLORS=true
+
+### https://github.com/clvv/fasd
+### Offers quick access to files and directories
+if ! type fasd > /dev/null; then
+  echo Installing fasd...
+  brew install fasd
+fi
+if type fasd > /dev/null; then
+  eval "$(fasd --init auto)"
+fi
+
+### Bashhub.com Installation.
+### This Should be at the EOF. https://bashhub.com/docs
+if ! test -f ~/.bashhub/bashhub.sh; then
+  echo Installing bashhub...
+  cd /tmp/ && curl -OL https://bashhub.com/setup && bash setup && cd -
+fi
+if test -f ~/.bashhub/bashhub.sh; then
+  source ~/.bashhub/bashhub.sh
+fi
+
+### motd
+echo "* bashhub"
+echo '  + bh -n 20 "grep"  # last 20 files greped'
+echo '  + bh -i "wget github"  # interactive search to execute command again'
+echo '  + bh -d  # last command executed in current directory'
+echo '  + bh -sys -n 10 "curl"  # last 10 curl commands on this system'
+echo "  + bashhub status  # summary of user stats/status"
+echo "  + bashhub off/on  # turn bashhub recording off/on"
+echo '  + echo this command will no be saved #ignore  # bashhub will ignore this command'
+echo "* cheat"
+echo "  + cheat tar"
+echo "* fasd"
+echo "  + f foo           # list frecent files matching foo"
+echo "  + a foo bar       # list frecent files and directories matching foo and bar"
+echo "  + f js$           # list frecent files that ends in js"
+echo "  + f -e vim foo    # run vim on the most frecent file matching foo"
+echo "  + mplayer \`f bar\` # run mplayer on the most frecent file matching bar"
+echo "  + z foo           # cd into the most frecent directory matching foo"
+echo "  + open \`sf pdf\`   # interactively select a file matching pdf and launch open"
+echo "* fzf"
+echo "  + Figure out fasd first"

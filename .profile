@@ -13,12 +13,12 @@ export PATH="${NPM_PACKAGES}/bin:${PATH}"
 export MANPATH="${NPM_PACKAGES}/share/man:${MANPATH}"
 
 # Set MANPATH so it includes users' private man if it exists
-if [ -d "${HOME}/man" ]; then
+if test -d "${HOME}/man"; then
   MANPATH="${HOME}/man:${MANPATH}"
 fi
 
 # Set INFOPATH so it includes users' private info if it exists
-if [ -d "${HOME}/info" ]; then
+if test -d "${HOME}/info"; then
   INFOPATH="${HOME}/info:${INFOPATH}"
 fi
 
@@ -70,11 +70,10 @@ esac
 export HOMEBREW_PREFIX="$(brew --prefix)"
 
 # ruby
-export RBENV_ROOT="$(brew --prefix rbenv)"
+export RBENV_ROOT="${HOMEBREW_PREFIX}/opt/rbenv"
 export GEM_HOME="${HOMEBREW_PREFIX}/opt/gems"
 export GEM_PATH="${HOMEBREW_PREFIX}/opt/gems"
 export PATH="${GEM_HOME}/bin:${PATH}"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Add homebrew's GNU coreutils (ls, cat, etc.) to PATH, etc. - see
 #http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
@@ -91,35 +90,22 @@ export DICPATH="${HOME}/.hunspell_default:/usr/local/share/hunspell:${DICPATH}"
 # Mix of interactivity here
 
 # Wrap git automatically with hub
+if ! type hub > /dev/null 2>&1 ; then
+  echo Installing hub...
+  brew install hub
+fi
 if type hub > /dev/null 2>&1 ; then
   eval "$(hub alias -s)"
-else
-  # Test for interactive shell
-  [[ "$-" == *i* ]] && echo "Please install hub command:\nbrew install hub"
 fi
 
 # overcommit
+if ! type overcommit > /dev/null 2>&1 ; then
+  echo Installing overcommit...
+  RBENV_VERSION=system gem install overcommit
+fi
 if type overcommit > /dev/null 2>&1 ; then
   export GIT_TEMPLATE_DIR=$(overcommit --template-dir)
-else
-  [[ "$-" == *i* ]] && echo "Please install overcommit command"
 fi
-
-# For a ipython notebook and pyspark integration
-export SPARK_HOME="${HOMEBREW_PREFIX}/Cellar/apache-spark/2.0.0/libexec"
-export PYSPARK_SUBMIT_ARGS=" --master local[4] pyspark-shell:${PYSPARK_SUBMIT_ARGS}"
-# Add the PySpark classes to the Python path:
-export PYTHONPATH="${SPARK_HOME}/python/:${PYTHONPATH}"
-export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.1-src.zip:${PYTHONPATH}"
-# Hadoop
-export HADOOP_HOME="${HOMEBREW_PREFIX}/Cellar/hadoop/2.7.2/libexec"
-export PATH="${PATH}:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin"
-export HADOOP_CONF_DIR="${HADOOP_HOME}/etc/hadoop"
-# Pig
-export PIG_HOME="${HOMEBREW_PREFIX}/Cellar/pig/0.12.0"
-
-# added by Anaconda3 2.5.0 installer
-export PATH="${HOME}/anaconda3/bin:$PATH"
 
 # If not running interactively, stop here
 [[ "$-" != *i* ]] && return
@@ -135,20 +121,26 @@ fi
 case $(uname -s) in
     "Linux" )
         # https://github.com/KittyKatt/screenFetch
+        if ! type screenfetch > /dev/null 2>&1 ; then
+            echo Installing screenfetch...
+            brew install screenfetch
+        fi
         if type screenfetch > /dev/null 2>&1 ; then
           screenfetch
-        else
-          echo "Please install screenfetch command:\nbrew install screenfetch"
         fi
-
         ;;
     "Darwin" )
         # https://github.com/obihann/archey-osx
+        if ! type archey > /dev/null 2>&1 ; then
+          echo Installing archey...
+          brew install archey
+        fi
         if type archey > /dev/null 2>&1 ; then
           archey -p
-        else
-          echo "Please install archey command:\nbrew install archey"
         fi
+
+        export JAVA_HOME="$(/usr/libexec/java_home)"
         ;;
 esac
 
+export HOMEBREW_NO_ANALYTICS=1

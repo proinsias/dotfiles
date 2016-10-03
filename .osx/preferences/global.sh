@@ -99,7 +99,7 @@ echo ""
 echo "Add a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
-CFPreferencesAppSynchronize "NSGlobalDomain"
-CFPreferencesAppSynchronize "Apple Global Domain"
-
+echo ""
+echo "Enable subpixel font rendering on non-Apple LCDs"
+defaults write NSGlobalDomain AppleFontSmoothing -int 2
 

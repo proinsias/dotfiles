@@ -47,5 +47,5 @@ menuitem="com.apple.menuextra.volume"
 "${plb}" -c "${add}${menuitem}:controlled integer" "${plist}"
 "${plb}" -c "${set}${menuitem}:controlled 2" "${plist}"
 
-CFPreferencesAppSynchronize "${plist}"
+
 

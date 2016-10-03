@@ -19,8 +19,3 @@ defaults write com.apple.AddressBook ABNameSortingFormat 'sortingFirstName sorti
 #Show Contact Reflection:
 #$ defaults write com.apple.AddressBook reflection -boolean
 
-CFPreferencesAppSynchronize "com.apple.addressbook"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Address Book" > /dev/null 2>&1

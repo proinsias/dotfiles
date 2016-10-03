@@ -46,8 +46,3 @@ defaults write com.skype.skype.plist DisableWebKitDeveloperExtras -bool false
 #defaults write com.skype.skype.plist ShowDialpadOnLogin -bool false
 #
 
-CFPreferencesAppSynchronize "com.skype.skype.plist"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Skype" > /dev/null 2>&1

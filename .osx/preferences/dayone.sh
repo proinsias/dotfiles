@@ -73,8 +73,3 @@ echo ""
 echo "Enable lock on sleep"
 defaults write com.dayoneapp.dayone.plist SecuritySleepLockEnabled -bool true
 
-CFPreferencesAppSynchronize "com.dayoneapp.dayone.plist"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Day One" > /dev/null 2>&1

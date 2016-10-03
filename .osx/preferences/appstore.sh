@@ -20,9 +20,3 @@ echo ""
 echo "Allow the App Store to reboot machine on macOS updates"
 defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
 
-OACFPreferencesAppSynchronize "com.apple.appstore"
-OACFPreferencesAppSynchronize "com.apple.commerce"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "App Store" > /dev/null 2>&1

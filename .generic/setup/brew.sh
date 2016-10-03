@@ -46,3 +46,5 @@ echo ""
 echo "Set bash as default shell for current user"
 chsh -s $(brew --prefix)/bin/bash
 
+echo ""
+echo "Remember to install from .Brewfile from *system* python library"

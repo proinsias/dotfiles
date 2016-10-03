@@ -13,5 +13,3 @@ echo ""
 echo "Show battery percentage"
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
-CFPreferencesAppSynchronize "com.apple.menuextra.clock"
-CFPreferencesAppSynchronize "com.apple.menuextra.battery"

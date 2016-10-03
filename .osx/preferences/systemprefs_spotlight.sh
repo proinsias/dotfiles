@@ -5,6 +5,10 @@ echo "System Preferences/Spotlight"
 echo "###############################################################################"
 
 #echo ""
+#echo "Hide Spotlight tray-icon (and subsequent helper)"
+#chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+
+#echo ""
 #echo "Disable Spotlight indexing for any volume that gets mounted" \
 #     "and has not yet been indexed before."
 # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
@@ -34,6 +38,7 @@ echo "##########################################################################
 # '{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
 # '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
 # '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
+
 echo ""
 echo "Make sure indexing is enabled for the main volume"
 mdutil -i on / > /dev/null
@@ -51,5 +56,3 @@ select yn in "Yes" "No"; do
   esac
 done
 
-CFPreferencesAppSynchronize /.Spotlight-V100/VolumeConfiguration
-CFPreferencesAppSynchronize com.apple.spotlight

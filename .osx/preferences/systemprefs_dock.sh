@@ -149,9 +149,3 @@ echo ""
 echo "Make animation snappier"
 defaults write com.apple.dock workspaces-edge-delay -float 0.1
 
-CFPreferencesAppSynchronize "com.apple.dock"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Dock" > /dev/null 2>&1
-

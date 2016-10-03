@@ -31,4 +31,3 @@ echo ""
 echo "Symlink Directory Utility.app"
 ln -s "${core_apps}/Directory Utility.app" /Applications/.
 
-CFPreferencesAppSynchronize "com.apple.systempreferences"

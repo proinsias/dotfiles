@@ -30,8 +30,3 @@ defaults write com.apple.ScreenSharing \
 #Display IP-Addresses of the local hosts on ScreenSharingMenulet:
 #$ defaults write com.klieme.ScreenSharingMenulet showIPAddresses -boolean
 
-CFPreferencesAppSynchronize "com.apple.ScreenSharing"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "Screen Sharing" > /dev/null 2>&1

@@ -11,8 +11,3 @@ echo "Add service shortcut"
 			pbs.plist > /dev/null 2>&1
 /System/Library/CoreServices/pbs -flush
 
-#CFPreferencesAppSynchronize "com.apple.addressbook"
-
-#echo ""
-#echo "Killing application in order to take effect."
-#killall "Address Book" > /dev/null 2>&1

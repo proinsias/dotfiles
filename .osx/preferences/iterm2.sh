@@ -265,8 +265,3 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 #echo ""
 #defaults write com.googlecode.iterm2 findRegex_iTerm -bool false
 
-CFPreferencesAppSynchronize "com.googlecode.iterm2"
-
-echo ""
-echo "Killing application in order to take effect."
-killall "iTerm" > /dev/null 2>&1

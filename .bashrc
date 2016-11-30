@@ -1,10 +1,15 @@
+# User dependent .bashrc file
+# Anything you'd want at an interactive non-login shell. Command prompt, `EDITOR`
+# variable, bash aliases for my use.
+# only output stuff in interactive mode.
+
 # If not running interactively, stop here
 [[ "$-" != *i* ]] && return
 
 # added by travis gem
 if ! test -f ~/.travis/travis.sh ; then
     echo Installing travis...
-    RBENV_VERSION=system gem install travis
+    gem install travis
     echo Run travis command to install auto-completion!!!
 fi
 if test -f ~/.travis/travis.sh ; then
@@ -117,15 +122,6 @@ PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
-if ! type rbenv > /dev/null; then
-  echo Installing rbenv...
-  brew install rbenv
-fi
-if type rbenv > /dev/null; then
-  eval "$(rbenv init -)";
-fi
-
-
 # For homebrew bash completion
 if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion"; then
   echo Installing bash completion...
@@ -236,34 +232,6 @@ if conda -V > /dev/null 2>&1 ; then
   eval "$(register-python-argcomplete conda)"
 fi
 
-### http://www.jenv.be/
-export PATH="$HOME/.jenv/bin:$PATH"
-if ! type jenv > /dev/null; then
-  echo Installing jenv...
-  brew install jenv
-fi
-if type jenv > /dev/null; then
-  eval "$(jenv init -)";
-fi
-
-### https://github.com/yyuu/pyenv
-### https://github.com/yyuu/pyenv-virtualenv
-if ! type pyenv > /dev/null; then
-  echo Installing pyenv...
-  brew install pyenv
-fi
-if type pyenv > /dev/null; then
-  eval "$(pyenv init -)";
-fi
-
-if ! type pyenv-virtualenv-init > /dev/null; then
-  echo Installing pyenv-virtualenv...
-  brew install pyenv-virtualenv
-fi
-if type pyenv-virtualenv-init > /dev/null; then
-  eval "$(pyenv virtualenv-init -)";
-fi
-
 # Global tab completion for argcomplete-supported apps
 if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh"; then
   activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
@@ -275,11 +243,12 @@ if ! type ntfy > /dev/null; then
   echo Installing ntfy...
   PYENV_VERSION=system pip install ntfy
 fi
-if type ntfy > /dev/null; then
-  eval "$(ntfy shell-integration --foreground-too)"
-  export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld "\
-"psql screen tmux vim"
-fi
+#if type ntfy > /dev/null; then
+#  eval "$(ntfy shell-integration --foreground-too)"
+#  export AUTO_NTFY_DONE_IGNORE=\
+#"aws-shell ec emacs glances ipython jupyter less man meld more psql screen tmux top "\
+#"vim"
+#fi
 
 ### http://direnv.net/
 if ! type direnv > /dev/null; then
@@ -300,9 +269,9 @@ if ! type fasd > /dev/null; then
   echo Installing fasd...
   brew install fasd
 fi
-if type fasd > /dev/null; then
-  eval "$(fasd --init auto)"
-fi
+#if type fasd > /dev/null; then
+#  eval "$(fasd --init auto)"
+#fi
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs

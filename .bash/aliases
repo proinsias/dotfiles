@@ -11,26 +11,26 @@
 
 #alias base32="gbase32"
 #alias base64="gbase64"
-#alias basename="gbasename"
-#alias cat="gcat"
+alias basename="gbasename"
+alias cat="gcat"
 #alias chcon="gchcon"
-#alias chgrp="gchgrp"
-#alias chmod="gchmod"
-#alias chown="gchown"
-#alias chroot="gchroot"
+alias chgrp="gchgrp"
+alias chmod="gchmod"
+alias chown="gchown"
+alias chroot="gchroot"
 #alias cksum="gcksum"
 #alias comm="gcomm"
-#alias cp="gcp"
+alias cp='gcp -i'
 #alias csplit="gcsplit"
-#alias cut="gcut"
-#alias date="gdate"
+alias cut="gcut"
+alias date="gdate"
 #alias dd="gdd"
-#alias df="gdf"
-#alias dir="gdir"
+alias df='gdf -h'  # Default to human readable figures
+alias dir="gdir"
 #alias dircolors="gdircolors"
 #alias dirname="gdirname"
-#alias du="gdu"
-#alias echo="gecho"
+alias du='gdu -h'  # Default to human readable figures
+alias echo="gecho"
 #alias env="genv"
 #alias expand="gexpand"
 #alias expr="gexpr"
@@ -39,25 +39,25 @@
 #alias fmt="gfmt"
 #alias fold="gfold"
 #alias groups="ggroups"
-#alias head="ghead"
+alias head="ghead"
 #alias hostid="ghostid"
 #alias id="gid"
 #alias install="ginstall"
-#alias join="gjoin"
-#alias kill="gkill"
+alias join="gjoin"
+alias kill="gkill"
 #alias link="glink"
-#alias ln="gln"
+alias ln="gln"
 #alias logname="glogname"
-alias ls="gls"
-#alias md5sum="gmd5sum"
-#alias mkdir="gmkdir"
+alias ls='gls --almost-all --classify --human-readable --color --quote-name -v' # natural sort
+alias md5sum="gmd5sum"
+alias mkdir="gmkdir"
 #alias mkfifo="gmkfifo"
 #alias mknod="gmknod"
 #alias mktemp="gmktemp"
-#alias mv="gmv"
-#alias nice="gnice"
+alias mv="gmv -i"
+alias nice="gnice"
 #alias nl="gnl"
-#alias nohup="gnohup"
+alias nohup="gnohup"
 #alias nproc="gnproc"
 #alias numfmt="gnumfmt"
 #alias od="god"
@@ -71,47 +71,47 @@ alias ls="gls"
 #alias pwd="gpwd"
 #alias readlink="greadlink"
 #alias realpath="grealpath"
-#alias rm="grm"
-#alias rmdir="grmdir"
+alias rm="grm -i"
+alias rmdir="grmdir"
 #alias runcon="gruncon"
 #alias seq="gseq"
-#alias sha1sum="gsha1sum"
-#alias sha224sum="gsha224sum"
-#alias sha256sum="gsha256sum"
-#alias sha384sum="gsha384sum"
-#alias sha512sum="gsha512sum"
-#alias shred="gshred"
-#alias shuf="gshuf"
-#alias sleep="gsleep"
-#alias sort="gsort"
-#alias split="gsplit"
+alias sha1sum="gsha1sum"
+alias sha224sum="gsha224sum"
+alias sha256sum="gsha256sum"
+alias sha384sum="gsha384sum"
+alias sha512sum="gsha512sum"
+alias shred="gshred"
+alias shuf="gshuf"
+alias sleep="gsleep"
+alias sort="gsort"
+alias split="gsplit"
 #alias stat="gstat"
 #alias stdbuf="gstdbuf"
 #alias stty="gstty"
 #alias sum="gsum"
 #alias sync="gsync"
 #alias tac="gtac"
-#alias tail="gtail"
-#alias tee="gtee"
+alias tail="gtail"
+alias tee="gtee"
 #alias test="gtest"
 #alias timeout="gtimeout"
-#alias touch="gtouch"
+alias touch="gtouch"
 #alias tr="gtr"
-#alias true="gtrue"
+alias true="gtrue"
 #alias truncate="gtruncate"
-#alias tsort="gtsort"
+alias tsort="gtsort"
 #alias tty="gtty"
-#alias uname="guname"
+alias uname="guname"
 #alias unexpand="gunexpand"
-#alias uniq="guniq"
+alias uniq="guniq"
 #alias unlink="gunlink"
-#alias uptime="guptime"
-#alias users="gusers"
+alias uptime="guptime"
+alias users="gusers"
 #alias vdir="gvdir"
-#alias wc="gwc"
-#alias who="gwho"
-#alias whoami="gwhoami"
-#alias yes="gyes"
+alias wc="gwc"
+alias who="gwho"
+alias whoami="gwhoami"
+alias yes="gyes"
 
 ## findutils
 #alias find="gfind" # causes issues in the bash shell
@@ -137,9 +137,9 @@ alias which="gwhich"
 #alias red="gred"
 
 ## grep
-#alias egrep="gegrep"
-#alias fgrep="gfgrep"
-#alias grep="ggrep"
+alias grep='ggrep --color'                     # show differences in colour
+alias egrep='gegrep --color=auto'              # show differences in colour
+alias fgrep='gfgrep --color=auto'              # show differences in colour
 
 # main aliases
 
@@ -149,10 +149,9 @@ alias bc="bc -l"
 alias boss='cd ; clear'
 alias bye='clear;logout'
 
-alias close='chmod g-w,o-rwx'
-alias copy='cp -i'
-alias count='function _count(){ ls "$@" | wc -l ; };_count'
-alias cp='cp -i'
+alias close='gchmod g-w,o-rwx'
+alias copy='gcp -i'
+alias count='function _count(){ gls "$@" | gwc -l ; };_count'
 
 alias delete='function _delete(){ move "$@" ~/.Trash/ ; };_delete'
 
@@ -170,30 +169,27 @@ alias gp='git pull'
 
 alias h='history'
 
-alias ip='ifconfig -a | grep inet | grep broadcast'
+alias ip='ifconfig -a | ggrep inet | ggrep broadcast'
 
 alias jn='jupyter notebook'
 
-alias k9='kill -9='
+alias k9='gkill -9='
 
-alias ls='gls --almost-all --classify --human-readable --color --quote-name -v' # natural sort
-alias ll='gls -l'                              # long list
+alias ll='gls --almost-all --classify --human-readable --color --quote-name -v -l'                              # long list, natural sort
 
-alias mc='mv -i' # Stop calling Midnight Commander
+alias mc='gmv -i' # Stop calling Midnight Commander
 alias me='whoami'
-alias move='mv -i'
+alias move='gmv -i'
 alias mroe='more'
-alias mv='mv -i'
 
-#alias open='chmod go+r'
+#alias open='gchmod go+r'
 
-alias remove='rm -i'
+alias remove='grm -i'
 alias removebackups='delete *~ #*# .*~'
-alias rm='rm -i'
 
 alias scp='scp -prC'
-alias shut='chmod go-r'
-alias sortbysize='du -S | sort -n'
+alias shut='gchmod go-r'
+alias sortbysize='gdu -S | gsort -n'
 alias sourcec='source ~/.tcshrc'
 alias sourcel='source ~/.login'
 
@@ -204,20 +200,14 @@ alias up='cd ../'
 alias up2='cd ../../'
 alias up3='cd ../../../'
 
-# Default to human readable figures
-alias df='df -h'
-alias du='du -h'
 #
 # Misc :)
 alias less='less -r'                          # raw control characters
 alias more='less'
 alias whence='type -a'                        # where, of a sort
-alias grep='grep --color'                     # show differences in colour
-alias egrep='egrep --color=auto'              # show differences in colour
-alias fgrep='fgrep --color=auto'              # show differences in colour
-#
 
-case $(uname -s) in
+
+case $(guname -s) in
     --"Linux" )
         alias top='top -o %CPU'
         ;;
@@ -230,7 +220,7 @@ case $(uname -s) in
 
         # Show/hide hidden files in Finder
         alias show="defaults write com.apple.finder AppleShowAllFiles -bool
-        true && killall Finder"
+        gtrue && killall Finder"
         alias hide="defaults write com.apple.finder AppleShowAllFiles -bool
         false && killall Finder"
 
@@ -238,7 +228,7 @@ case $(uname -s) in
         alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool
         false && killall Finder"
         alias showdesktop="defaults write com.apple.finder CreateDesktop -bool
-        true && killall Finder"
+        gtrue && killall Finder"
 
         # Ring the terminal bell, and put a badge on Terminal.app’s Dock icon
         # (useful when executing time-consuming commands)

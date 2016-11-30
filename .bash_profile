@@ -1,4 +1,5 @@
 # User dependent .bash_profile file
+# Should be super-simple and just load `.profile` and `.bashrc` (in that order)
 
 # source the users profile if it exists
 if [ -f "${HOME}/.profile" ] ; then

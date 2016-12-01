@@ -1,6 +1,6 @@
 [user]
     name = Francis T. O'Donovan
-    email = francis@betteroutcomes.com
+    email = francis@om1.com
     signingkey = 97FAE23F
 [include]
     path = ~/.gitconfig.include

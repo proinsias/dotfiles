@@ -161,3 +161,9 @@ from Foundation import CFPreferencesAppSynchronize
 CFPreferencesAppSynchronize('$1')
 END
 }
+
+# From http://stackoverflow.com/a/23550347/1257318
+errcho(){
+    # Redirect output to stderr rather than stdout
+    >&2 echo $@;
+}

@@ -13,12 +13,12 @@ export PATH="${NPM_PACKAGES}/bin:${PATH}"
 export MANPATH="${NPM_PACKAGES}/share/man:${MANPATH}"
 
 # Set MANPATH so it includes users' private man if it exists
-if test -d "${HOME}/man"; then
+if test -d "${HOME}/man" > /dev/null 2>&1; then
   MANPATH="${HOME}/man:${MANPATH}"
 fi
 
 # Set INFOPATH so it includes users' private info if it exists
-if test -d "${HOME}/info"; then
+if test -d "${HOME}/info" > /dev/null 2>&1; then
   INFOPATH="${HOME}/info:${INFOPATH}"
 fi
 

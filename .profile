@@ -1,4 +1,7 @@
 # User dependent .profile file - Non-interactive, login-shell stuff goes in here
+# Stuff NOT specifically related to `bash`, such as environment variables (`PATH` and
+# friends) – Anything that should be available to graphical applications OR to sh or
+# to login shells
 
 # Add my personal bin directory to the PATH
 export PATH="${PATH}:${HOME}/bin"
@@ -70,10 +73,42 @@ esac
 export HOMEBREW_PREFIX="$(brew --prefix)"
 
 # ruby
-export RBENV_ROOT="${HOMEBREW_PREFIX}/opt/rbenv"
-export GEM_HOME="${HOMEBREW_PREFIX}/opt/gems"
-export GEM_PATH="${HOMEBREW_PREFIX}/opt/gems"
-export PATH="${GEM_HOME}/bin:${PATH}"
+if ! type rbenv > /dev/null 2>&1 ; then
+  [[ "$-" == *i* ]] && echo Installing rbenv...
+  brew install rbenv
+fi
+
+if type rbenv > /dev/null 2>&1 ; then
+  eval "$(rbenv init -)";
+fi
+
+### http://www.jenv.be/
+export PATH="$HOME/.jenv/bin:$PATH"
+if ! type jenv > /dev/null 2>&1 ; then
+  echo Installing jenv...
+  brew install jenv
+fi
+#if type jenv > /dev/null 2>&1 ; then
+#  eval "$(jenv init -)";
+#fi
+
+### https://github.com/yyuu/pyenv
+### https://github.com/yyuu/pyenv-virtualenv
+if ! type pyenv > /dev/null 2>&1 ; then
+  echo Installing pyenv...
+  brew install pyenv
+fi
+if type pyenv > /dev/null 2>&1 ; then
+  eval "$(pyenv init -)";
+fi
+
+if ! type pyenv-virtualenv-init > /dev/null 2>&1 ; then
+  echo Installing pyenv-virtualenv...
+  brew install pyenv-virtualenv
+fi
+if type pyenv-virtualenv-init > /dev/null 2>&1 ; then
+  eval "$(pyenv virtualenv-init -)";
+fi
 
 # Add homebrew's GNU coreutils (ls, cat, etc.) to PATH, etc. - see
 #http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
@@ -91,7 +126,7 @@ export DICPATH="${HOME}/.hunspell_default:/usr/local/share/hunspell:${DICPATH}"
 
 # Wrap git automatically with hub
 if ! type hub > /dev/null 2>&1 ; then
-  echo Installing hub...
+  [[ "$-" == *i* ]] && echo Installing hub...
   brew install hub
 fi
 if type hub > /dev/null 2>&1 ; then
@@ -100,8 +135,8 @@ fi
 
 # overcommit
 if ! type overcommit > /dev/null 2>&1 ; then
-  echo Installing overcommit...
-  RBENV_VERSION=system gem install overcommit
+  [[ "$-" == *i* ]] && echo Installing overcommit...
+  gem install overcommit
 fi
 if type overcommit > /dev/null 2>&1 ; then
   export GIT_TEMPLATE_DIR=$(overcommit --template-dir)

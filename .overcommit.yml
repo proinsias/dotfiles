@@ -12,17 +12,21 @@
 #
 # For a complete list of options that you can use to customize hooks, see:
 # https://github.com/brigade/overcommit#configuration
+#
+# SKIP=RuboCop git commit
+# ONLY=RuboCop git commit
+# OVERCOMMIT_DISABLE=1 ./my-custom-script
 
 PreCommit:
   BashSyntax:
     enabled: true
     quiet: false
     include: '**/*.sh'
-    required_executable: './scripts/bash_syntax.sh'
+    required_executable: './scripts/overcommit/bash_syntax.sh'
   CopyrightYear:
     enabled: true
     quiet: false
-    required_executable: './scripts/copyright_year.sh'
+    required_executable: './scripts/overcommit/copyright_year.sh'
   CssLint:
     enabled: true
   Eslint:
@@ -30,9 +34,7 @@ PreCommit:
   ExecutePermissions:
     enabled: true
     exclude:
-      - 'scripts/bash_syntax.sh'
-      - 'scripts/copyright_year.sh'
-      - 'scripts/freespace.sh'
+      - 'scripts/overcommit/*.sh'
   HardTabs:
     enabled: true
   HtmlHint:
@@ -57,6 +59,8 @@ PreCommit:
     enabled: true
   Pylint:
     enabled: true
+    flags:
+      - '--max-line-length=120'
   PythonFlake8:
     enabled: true
   SemiStandard:
@@ -146,4 +150,4 @@ PreReceive:
   FreeSpace:
     enabled: true
     quiet: false
-    required_executable: './scripts/freespace.sh'
+    required_executable: './scripts/overcommit/freespace.sh'

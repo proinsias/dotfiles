@@ -9,8 +9,8 @@ gem "image_optim"
 gem "image_optim_pack"
 gem "jekyll"
 gem "json"
-gem "overcommit" # https://github.com/brigade/overcommit
-gem "rubocop" # https://github.com/bbatsov/rubocop
+gem "overcommit"  # https://github.com/brigade/overcommit
+gem "rubocop"  # https://github.com/bbatsov/rubocop
 gem "sqlint"
 gem "terminal-notifier"
 gem "travis"

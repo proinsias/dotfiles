@@ -9,7 +9,7 @@ if test ! $(which conda); then
     echo "Installing conda..."
 
     pyenv install miniconda3-latest
-    pyenv global miniconda3-latest    
+    pyenv global miniconda3-latest
 fi
 
 echo ""
@@ -19,5 +19,5 @@ while read requirement; do
     conda install --yes $requirement;
 done < requirements.txt
 echo "Then install pip-only packages, if necessary"
-pip install -r requirments.txt
+pip install -r requirements.txt
 

@@ -9,6 +9,15 @@
 # Source global definitions
 if test -f /etc/bashrc ; then
         . /etc/bashrc
+
+# added by travis gem
+if ! test -f ~/.travis/travis.sh > /dev/null 2>&1; then
+    echo Installing travis...
+    gem install travis
+    echo Run travis command to install auto-completion!!!
+fi
+if test -f ~/.travis/travis.sh > /dev/null 2>&1; then
+  source ~/.travis/travis.sh
 fi
 
 # source .bashrc.local and .bashrc.local.<blah>
@@ -17,16 +26,6 @@ if /bin/ls ~/.bashrc.local* 1> /dev/null 2>&1; then
     source "${file}"
   done;
   unset file;
-fi
-
-# added by travis gem
-if ! test -f ~/.travis/travis.sh ; then
-    echo Installing travis...
-    gem install travis
-    echo Run travis command to install auto-completion!!!
-fi
-if test -f ~/.travis/travis.sh ; then
-  source ~/.travis/travis.sh
 fi
 
 # Shell Options
@@ -73,21 +72,21 @@ shopt -s checkwinsize
 # Define to avoid flattening internal contents of tar files
 # COMP_TAR_INTERNAL_PATHS=1
 
-if ! test -f ~/bin/git-completion.sh; then
+if ! test -f ~/bin/git-completion.sh > /dev/null 2>&1; then
     echo Installing git completion...
     wget \
 https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash \
 --output-document=~/bin/git-completion.sh
 fi
-if test -f ~/bin/git-completion.sh; then
+if test -f ~/bin/git-completion.sh > /dev/null 2>&1; then
     source ~/bin/git-completion.sh
 fi
 
-if ! test -f ~/bin/npm-completion.sh ; then
+if ! test -f ~/bin/npm-completion.sh > /dev/null 2>&1; then
     echo Installing npm compleition...
     npm completion > ~/bin/npm-completion.sh
 fi
-if test -f ~/bin/npm-completion.sh ; then
+if test -f ~/bin/npm-completion.sh > /dev/null 2>&1; then
     source ~/bin/npm-completion.sh
 fi
 
@@ -137,19 +136,19 @@ PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 # For homebrew bash completion
-if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion"; then
+if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion" > /dev/null 2>&1; then
   echo Installing bash completion...
   brew install 'homebrew/completions/bash-completion'
 fi
-if test -f "${HOMEBREW_PREFIX}/etc/bash_completion"; then
+if test -f "${HOMEBREW_PREFIX}/etc/bash_completion" > /dev/null 2>&1; then
     . "${HOMEBREW_PREFIX}/etc/bash_completion"
 fi
 
-if ! brew command command-not-found-init > /dev/null; then
+if ! brew command command-not-found-init > /dev/null 2>&1; then
   echo Installing command-not-found-init...
   brew tap homebrew/command-not-found
 fi
-if brew command command-not-found-init > /dev/null; then
+if brew command command-not-found-init > /dev/null 2>&1; then
   eval "$(brew command-not-found-init)";
 fi
 
@@ -163,7 +162,11 @@ if fzf -h > /dev/null 2>&1 ; then
     "${HOMEBREW_PREFIX}/opt/fzf/install" --all --no-update-rc
   fi
   if test -f ~/.fzf.bash; then
-    source ~/.fzf.bash
+      if test $(uname -n) != firefly.local > /dev/null 2>&1; then
+	  source ~/.fzf.bash
+      else
+	  echo Check if fzf is working!!!
+      fi
   fi
 fi
 
@@ -201,8 +204,14 @@ esac
 # AWS bash completion
 complete -C aws_completer aws
 
-# Add keychain keys
-eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC 97FAE23F --ignore-missing)
+if test $(uname -n) = firefly.local > /dev/null 2>&1; then
+    # Add keychain keys
+    echo Check if gpg is working!!!
+    eval $(keychain --eval --agents ssh --inherit any id_rsa --ignore-missing)
+else
+    # Add keychain keys
+    eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC 97FAE23F --ignore-missing)
+fi
 
 # Use `/bin/ls` for these tests, since homebrew `ls` gives errors
 if /bin/ls ~/.bash/* 1> /dev/null 2>&1; then
@@ -225,13 +234,17 @@ if ! wakatime -h > /dev/null 2>&1 ; then
   brew install wakatime
 fi
 if wakatime -h > /dev/null 2>&1 ; then
-  if ! test -f ~/bin/bash-wakatime.sh; then
+  if ! test -f ~/bin/bash-wakatime.sh > /dev/null 2>&1; then
     wget \
 https://raw.githubusercontent.com/irondoge/bash-wakatime/master/bash-wakatime.sh \
 --output-document=~/bin/bash-wakatime.sh
   fi
-  if test -f ~/bin/bash-wakatime.sh; then
-    source ~/bin/bash-wakatime.sh
+  if test -f ~/bin/bash-wakatime.sh > /dev/null 2>&1; then
+    if test $(uname -n) != firefly.local > /dev/null 2>&1; then
+	source ~/bin/bash-wakatime.sh
+    else
+        echo Check if wakatime installation works!!!
+    fi
   fi
 fi
 
@@ -253,23 +266,26 @@ fi
 
 ### A utility for sending notifications, on demand and when commands finish.
 ### https://github.com/dschep/ntfy/
-if ! type ntfy > /dev/null; then
-  echo Installing ntfy...
-  PYENV_VERSION=system pip install ntfy
+if ! type ntfy > /dev/null 2>&1; then
+    if test $(uname -n) != firefly.local > /dev/null 2>&1; then
+	echo Installing ntfy...
+	PYENV_VERSION=system pip install ntfy
+    else
+        echo Check if ntfy installation works!!!
+    fi
 fi
-#if type ntfy > /dev/null; then
+#if type ntfy > /dev/null 2>&1; then
 #  eval "$(ntfy shell-integration --foreground-too)"
-#  export AUTO_NTFY_DONE_IGNORE=\
-#"aws-shell ec emacs glances ipython jupyter less man meld more psql screen tmux top "\
-#"vim"
+#  export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld "\
+#"psql screen tmux vim"
 #fi
 
 ### http://direnv.net/
-if ! type direnv > /dev/null; then
+if ! type direnv > /dev/null 2>&1; then
   echo Installing direnv...
   brew install direnv
 fi
-if type direnv > /dev/null; then
+if type direnv > /dev/null 2>&1; then
   eval "$(direnv hook bash)"
 fi
 
@@ -279,11 +295,11 @@ export CHEATCOLORS=true
 
 ### https://github.com/clvv/fasd
 ### Offers quick access to files and directories
-if ! type fasd > /dev/null; then
+if ! type fasd > /dev/null 2>&1; then
   echo Installing fasd...
   brew install fasd
 fi
-#if type fasd > /dev/null; then
+#if type fasd > /dev/null 2>&1 ; then
 #  eval "$(fasd --init auto)"
 #fi
 
@@ -292,11 +308,11 @@ fi
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
-if ! test -f ~/.bashhub/bashhub.sh; then
+if ! test -f ~/.bashhub/bashhub.sh > /dev/null 2>&1; then
   echo Installing bashhub...
   cd /tmp/ && curl -OL https://bashhub.com/setup && bash setup && cd -
 fi
-if test -f ~/.bashhub/bashhub.sh; then
+if test -f ~/.bashhub/bashhub.sh > /dev/null 2>&1; then
   source ~/.bashhub/bashhub.sh
 fi
 

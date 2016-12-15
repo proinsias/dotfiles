@@ -20,13 +20,13 @@ export NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="${NPM_PACKAGES}/bin:${PATH}"
 export MANPATH="${NPM_PACKAGES}/share/man:${MANPATH}"
 
-# Set MANPATH so it includes user's private man if it exists
-if test -d "${HOME}/man"; then
+# Set MANPATH so it includes users' private man if it exists
+if test -d "${HOME}/man" > /dev/null 2>&1; then
   MANPATH="${HOME}/man:${MANPATH}"
 fi
 
-# Set INFOPATH so it includes user's private info if it exists
-if test -d "${HOME}/info"; then
+# Set INFOPATH so it includes users' private info if it exists
+if test -d "${HOME}/info" > /dev/null 2>&1; then
   INFOPATH="${HOME}/info:${INFOPATH}"
 fi
 
@@ -87,40 +87,40 @@ esac
 export HOMEBREW_PREFIX="$(brew --prefix)"
 
 # ruby
-if ! type rbenv > /dev/null; then
+if ! type rbenv > /dev/null 2>&1 ; then
   [[ "$-" == *i* ]] && echo Installing rbenv...
   brew install rbenv
 fi
 
-if type rbenv > /dev/null; then
+if type rbenv > /dev/null 2>&1 ; then
   eval "$(rbenv init -)";
 fi
 
 ### http://www.jenv.be/
 export PATH="$HOME/.jenv/bin:$PATH"
-if ! type jenv > /dev/null; then
+if ! type jenv > /dev/null 2>&1 ; then
   echo Installing jenv...
   brew install jenv
 fi
-#if type jenv > /dev/null; then
+#if type jenv > /dev/null 2>&1 ; then
 #  eval "$(jenv init -)";
 #fi
 
 ### https://github.com/yyuu/pyenv
-if ! type pyenv > /dev/null; then
+if ! type pyenv > /dev/null 2>&1 ; then
   echo Installing pyenv...
   brew install pyenv
 fi
-if type pyenv > /dev/null; then
+if type pyenv > /dev/null 2>&1 ; then
   eval "$(pyenv init -)";
 fi
 
 ### https://github.com/yyuu/pyenv-virtualenv
-if ! type pyenv-virtualenv-init > /dev/null; then
+if ! type pyenv-virtualenv-init > /dev/null 2>&1 ; then
   echo Installing pyenv-virtualenv...
   brew install pyenv-virtualenv
 fi
-if type pyenv-virtualenv-init > /dev/null; then
+if type pyenv-virtualenv-init > /dev/null 2>&1 ; then
   eval "$(pyenv virtualenv-init -)";
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 fi

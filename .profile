@@ -3,9 +3,14 @@
 # friends) – Anything that should be available to graphical applications OR to sh or
 # to login shells
 
-# Add my personal bin directory to the PATH
-export PATH="${PATH}:${HOME}/bin"
-export PATH="${PATH}:${HOME}/.generic/bin"
+# set PATH so it includes user's private bin if it exists
+if [ -d "${HOME}/bin" ] ; then
+    export PATH="${PATH}:${HOME}/bin"
+fi
+
+if [ -d "${HOME}/.generic/bin" ] ; then
+    export PATH="${PATH}:${HOME}/.generic/bin"
+fi
 
 # for hunspell
 export LANG=en_US.UTF-8
@@ -15,12 +20,12 @@ export NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="${NPM_PACKAGES}/bin:${PATH}"
 export MANPATH="${NPM_PACKAGES}/share/man:${MANPATH}"
 
-# Set MANPATH so it includes users' private man if it exists
+# Set MANPATH so it includes user's private man if it exists
 if test -d "${HOME}/man"; then
   MANPATH="${HOME}/man:${MANPATH}"
 fi
 
-# Set INFOPATH so it includes users' private info if it exists
+# Set INFOPATH so it includes user's private info if it exists
 if test -d "${HOME}/info"; then
   INFOPATH="${HOME}/info:${INFOPATH}"
 fi
@@ -50,10 +55,17 @@ case $(uname -s) in
       #   eval $(ssh-agent -s)
       #fi
 
-      export PATH="${PATH}:${HOME}/.ubuntu/bin"
+      if [ -d "${HOME}/.ubuntu/bin" ] ; then
+          export PATH="${PATH}:${HOME}/.ubuntu/bin"
+      fi
 
       # homebrew linuxbrew
-      export PATH="${HOME}/.linuxbrew/bin:${HOME}/.linuxbrew/sbin:${PATH}"
+      if [ -d "${HOME}/.linuxbrew/bin" ] ; then
+          export PATH="${PATH}:${HOME}/.linuxbrew/bin"
+      fi
+      if [ -d "${HOME}/.linuxbrew/sbin" ] ; then
+          export PATH="${PATH}:${HOME}/.linuxbrew/sbin"
+      fi
 
       # gpg-agent
       export GPG_TTY=$(tty)
@@ -62,7 +74,9 @@ case $(uname -s) in
       # homebrew
       export PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
 
-      export PATH="${PATH}:${HOME}/.osx/bin"
+      if [ -d "${HOME}/.osx/bin" ] ; then
+          export PATH="${PATH}:${HOME}/.osx/bin"
+      fi
 
       # To install homebrew casks in /Applications by default
       export HOMEBREW_CASK_OPTS="--appdir=/Applications"
@@ -93,7 +107,6 @@ fi
 #fi
 
 ### https://github.com/yyuu/pyenv
-### https://github.com/yyuu/pyenv-virtualenv
 if ! type pyenv > /dev/null; then
   echo Installing pyenv...
   brew install pyenv
@@ -102,12 +115,14 @@ if type pyenv > /dev/null; then
   eval "$(pyenv init -)";
 fi
 
+### https://github.com/yyuu/pyenv-virtualenv
 if ! type pyenv-virtualenv-init > /dev/null; then
   echo Installing pyenv-virtualenv...
   brew install pyenv-virtualenv
 fi
 if type pyenv-virtualenv-init > /dev/null; then
   eval "$(pyenv virtualenv-init -)";
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 fi
 
 # Add homebrew's GNU coreutils (ls, cat, etc.) to PATH, etc. - see

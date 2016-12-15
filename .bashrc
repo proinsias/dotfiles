@@ -6,14 +6,9 @@
 # If not running interactively, stop here
 [[ "$-" != *i* ]] && return
 
-# added by travis gem
-if ! test -f ~/.travis/travis.sh ; then
-    echo Installing travis...
-    gem install travis
-    echo Run travis command to install auto-completion!!!
-fi
-if test -f ~/.travis/travis.sh ; then
-  source ~/.travis/travis.sh
+# Source global definitions
+if test -f /etc/bashrc ; then
+        . /etc/bashrc
 fi
 
 # source .bashrc.local and .bashrc.local.<blah>
@@ -24,9 +19,14 @@ if /bin/ls ~/.bashrc.local* 1> /dev/null 2>&1; then
   unset file;
 fi
 
-# Source global definitions
-if test -f /etc/bashrc ; then
-        . /etc/bashrc
+# added by travis gem
+if ! test -f ~/.travis/travis.sh ; then
+    echo Installing travis...
+    gem install travis
+    echo Run travis command to install auto-completion!!!
+fi
+if test -f ~/.travis/travis.sh ; then
+  source ~/.travis/travis.sh
 fi
 
 # Shell Options
@@ -48,6 +48,17 @@ shopt -s histappend
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
 shopt -s cdspell
+
+# Enable some Bash 4 features when possible:
+# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# * Recursive globbing, e.g. `echo **/*.txt`
+for option in autocd globstar; do
+	shopt -s "$option" 2> /dev/null
+done
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
 # Completion options
 #
@@ -97,6 +108,9 @@ export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls' # Ignore the ls command as well
 # Disable the clearing of the screen by less
 # Pass color ANSI control characters through to the terminal
 export LESS="-XR"
+
+# Don’t clear the screen after quitting a manual page
+export MANPAGER="less -X";
 
 export EDITOR='emacsclient'
 if [[ -n "${EDITOR}" && -z "${VISUAL}" ]] ; then
@@ -273,6 +287,9 @@ fi
 #  eval "$(fasd --init auto)"
 #fi
 
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
 if ! test -f ~/.bashhub/bashhub.sh; then
@@ -304,3 +321,6 @@ echo "  + z foo           # cd into the most frecent directory matching foo"
 echo "  + open \`sf pdf\`   # interactively select a file matching pdf and launch open"
 echo "* fzf"
 echo "  + Figure out fasd first"
+
+# added by travis gem
+[ -f /Users/francis/.travis/travis.sh ] && source /Users/francis/.travis/travis.sh

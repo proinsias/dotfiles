@@ -15,3 +15,5 @@ npm install -g jscs
 npm install -g jshint
 npm install -g jslint
 npm install -g svgo
+npm install -g dockerlint
+npm install -g dockerfile_lint

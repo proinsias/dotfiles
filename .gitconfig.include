@@ -40,8 +40,9 @@
 # whitespace = fix
     whitespace = fix
 [branch]
-    # When branching off a remote branch, automatically let the local branch track the remote branch
-    autosetupmerge = true
+    # When branching off a remote branch, automatically let the local
+    # branch track the remote branch
+    autosetupmerge = always
     # Set up remote tracking branches to pull using `--rebase`
     autosetuprebase = always
 [color]
@@ -186,8 +187,10 @@
 [pager]
     difftool = true
 [push]
-    # push only the current branch to the one that git pull would pull
+    # 'simple' - push only the current branch to the one that git pull would pull
     # from, and also checks that their names match
+    # 'current' - doesn't care about whether or not the current branch tracks an
+    # upstream - more dangerous
     default = simple
     # When pushing, also push tags whose commit-ishs are now reachable upstream
     followTags = true

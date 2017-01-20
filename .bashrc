@@ -9,6 +9,7 @@
 # Source global definitions
 if test -f /etc/bashrc ; then
         . /etc/bashrc
+fi
 
 # added by travis gem
 if ! test -f ~/.travis/travis.sh > /dev/null 2>&1; then
@@ -32,32 +33,54 @@ fi
 #
 # See man bash for more options...
 #
-# Don't wait for job termination notification
-# set -o notify
-#
 # Don't use ^D to exit
 set -o ignoreeof
 #
-# Use case-insensitive filename globbing
-shopt -s nocaseglob
+# Don't wait for job termination notification
+# set -o notify
 #
-# Make bash append rather than overwrite the history on disk
-shopt -s histappend
+# command name that is directory name is executed as if it were argument to cd
+shopt -s autocd 2> /dev/null
 #
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
 shopt -s cdspell
-
-# Enable some Bash 4 features when possible:
-# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
-# * Recursive globbing, e.g. `echo **/*.txt`
-for option in autocd globstar; do
-	shopt -s "$option" 2> /dev/null
-done
-
+#
+# List the status of any stopped and running jobs before exiting
+shopt -s checkjobs
+#
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+#
+# Save all lines of a multiple-line command in the same history entry
+shopt -s cmdhist
+#
+# Correct spelling of directory names during word completion
+shopt -s dirspell
+#
+# Include filenames beginning with ‘.’ in results of filename expansion
+shopt -s dotglob
+#
+# ‘**’ used in filename expansion context will match all files and zero or
+# more directories and subdirectories. If pattern is followed by ‘/’, only directories
+# and subdirectories match.
+shopt -s globstar 2> /dev/null
+#
+# Make bash append rather than overwrite the history on disk
+shopt -s histappend
+#
+# Give opportunity to re-edit a failed history substitution
+shopt -s histreedit
+#
+# Results of history substitution not immediately passed to the shell parser
+shopt -s histverify
+#
+# Save multi-line commands to the history with embedded newlines
+shopt -s lithist
+#
+# Use case-insensitive filename globbing
+shopt -s nocaseglob
 
 # Completion options
 #

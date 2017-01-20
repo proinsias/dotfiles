@@ -13,16 +13,47 @@
 # For a complete list of options that you can use to customize hooks, see:
 # https://github.com/brigade/overcommit#configuration
 #
+# required:     If true, this hook cannot be skipped via the SKIP
+#               environment variable
+# quiet:        If true, this hook does not display any output unless
+#               it warns/fails
+# description:  Message displayed while hook is running.
+#
+# Within a hook category, there is a special type of hook
+# configuration that applies to all hooks in the category. This
+# configuration looks like a normal hook configuration, except it has
+# the name ALL:
+#
+# PreCommit:
+#   ALL:
+#     problem_on_unmodified_line: warn
+#     requires_files: true
+#     required: false
+#     quiet: false
+#
 # SKIP=RuboCop git commit
 # ONLY=RuboCop git commit
 # OVERCOMMIT_DISABLE=1 ./my-custom-script
 
+---
 PreCommit:
+  ALL:
+    # report: report errors/warnings as-is regardless of line location (default)
+    # warn: report errors as warnings if they are on lines you didn't modify
+    problem_on_unmodified_line: warn
   BashSyntax:
     enabled: true
     quiet: false
     include: '**/*.sh'
     required_executable: './scripts/overcommit/bash_syntax.sh'
+  BundleAudit:
+    enabled: true
+  BundleCheck:
+    enabled: true
+  BundleOutdated:
+    enabled: true
+  CaseConflicts:
+    enabled: true
   CopyrightYear:
     enabled: true
     quiet: false
@@ -35,6 +66,10 @@ PreCommit:
     enabled: true
     exclude:
       - 'scripts/overcommit/*.sh'
+  FixMe:
+    enabled: true
+  ForbiddenBranches:
+    enabled: true
   HardTabs:
     enabled: true
   HtmlHint:
@@ -51,30 +86,68 @@ PreCommit:
     enabled: true
   JsonSyntax:
     enabled: true
+  #LicenseHeader:
+  #  enabled: true
+  #  license_file: 'LICENSE'
+  #  include: '**/*.py'
+  LineEndings:
+    enabled: true
+  LineEndings:
+    enabled: true
+  LocalPathsInGemfile:
+    enabled: true
+  Mdl:
+    enabled: true
   Pep257:
     enabled: true
-  Pep8:
-    enabled: true
-  Pyflakes:
-    enabled: true
+    flags:
+      - '--explain'
+      - '--source'
+      - '--verbose'
+#  Pep8:
+#    enabled: true
+#    flags:
+#      - '--max-line-length=120'
+#      - '--show-source'
+#  Pyflakes:
+#    enabled: true
   Pylint:
     enabled: true
     flags:
       - '--max-line-length=120'
+      - '--msg-template="{path}:{line}:{C}: {msg} ({symbol})"'
+      - '--reports=n'
+      - '--persistent=n'
   PythonFlake8:
     enabled: true
+    flags:
+      - '--doctests'
+      - '--max-complexity=10'
+      - '--max-line-length=120'
+      - '--show-source'
+  Reek:
+    enabled: true
+  RuboCop:
+    enabled: true
+  RubyLint:
+    enabled: true
+    exclude: '**/mdl.rb'
   SemiStandard:
     enabled: true
   Standard:
     enabled: true
   ShellCheck:
     enabled: true
+    flags:
+      - '--format=gcc'
+      - '--external-sources'
+      - '--shell=bash'
   Sqlint:
     enabled: true
-  ToDos:
-    enabled: false
-    quiet: false
-    required_executable: './scripts/overcommit/todos.sh'
+#  ToDos:
+#    enabled: false
+#    quiet: false
+#    required_executable: './scripts/overcommit/todos.sh'
   TrailingWhitespace:
     enabled: true
   TravisLint:
@@ -87,12 +160,14 @@ PreCommit:
     enabled: true
   XmlSyntax:
     enabled: true
+  YamlLint:
+    enabled: true
   YamlSyntax:
     enabled: true
     include:
       - '**/*.yaml'
       - '**/*.yml'
-      - '**/.*.yml' # To parse this!
+      - '**/.*.yml'  # To parse this!
 
 CommitMsg:
   HardTabs:
@@ -112,12 +187,16 @@ CommitMsg:
     sample_message: '[#1234] Refactored Onboarding flow'
 
 PostCheckout:
+  BundleInstall:
+    enabled: true
   SubmoduleStatus:
     enabled: true
     quiet: false
     recursive: true
 
 PostCommit:
+  BundleInstall:
+    enabled: true
   GitGuilt:
     enabled: true
     requires_files: false
@@ -127,12 +206,16 @@ PostCommit:
     recursive: true
 
 PostMerge:
+  BundleInstall:
+    enabled: true
   SubmoduleStatus:
     enabled: true
     quiet: false
     recursive: true
 
 PostRewrite:
+  BundleInstall:
+    enabled: true
   SubmoduleStatus:
     enabled: true
     quiet: false

@@ -57,6 +57,7 @@ brew 'daq'
 brew 'docmunch/pdftk/pdftk'
 brew 'dos2unix'
 brew 'direnv'
+brew 'docker-clean'
 brew 'ecj'
 brew 'editorconfig'
 brew 'emacs', args: ['with-imagemagick', 'with-modules']

@@ -9,6 +9,7 @@ aws-shell # not homebrew
 cheat
 emoji
 glances
+jupyter_contrib_nbextensions
 ntfy
 pep257
 pep8
@@ -19,4 +20,4 @@ slacker
 thefuck # not homebrew
 uncommitted
 yamllint
-
+yapf

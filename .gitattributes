@@ -15,7 +15,7 @@ Makefile        text whitespace=-tab-in-indent,trailing-space,tabwidth=4
 *.PDF           diff=astextplain
 *.rtf           diff=astextplain
 *.RTF           diff=astextplain
-*.md            text
+#*.md            text  # UNCOMMENT!
 *.adoc          text
 *.textile       text
 *.mustache      text
@@ -39,7 +39,7 @@ Makefile        text whitespace=-tab-in-indent,trailing-space,tabwidth=4
 *.sln           text eol=crlf
 
 # Declare files that will always have LF line endings on checkout.
-.* text         eol=lf
+#.* text         eol=lf  # UNCOMMENT!
 
 # Explicitly declare text files we want to always be normalized and
 # converted to native line endings on checkout.
@@ -57,7 +57,7 @@ Makefile        text whitespace=-tab-in-indent,trailing-space,tabwidth=4
 *.htm           text
 *.html          text
 *.java          text
-*.js            text
+#*.js            text  # UNCOMMENT!
 *.json          text
 *.jsp           text
 *.jspf          text

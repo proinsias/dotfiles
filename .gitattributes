@@ -19,7 +19,7 @@ Makefile        text whitespace=-tab-in-indent,trailing-space,tabwidth=4
 *.adoc          text
 *.textile       text
 *.mustache      text
-*.csv           text
+#*.csv           text
 *.tab           text
 *.tsv           text
 *.sql           text

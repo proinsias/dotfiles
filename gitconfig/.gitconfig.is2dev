@@ -1,6 +1,6 @@
 [user]
 	name = Francis T. O'Donovan
-	email = fodonovan@insightsquared.com
+	email = proinsias@users.noreply.github.com
 	signingkey = 9DE94ABA
 [include]
     path = ~/.gitconfig.include

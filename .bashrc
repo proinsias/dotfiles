@@ -11,7 +11,6 @@ if test -f /etc/bashrc ; then
         . /etc/bashrc
 fi
 
-# added by travis gem
 if ! test -f ~/.travis/travis.sh > /dev/null 2>&1; then
     echo Installing travis...
     gem install travis
@@ -253,23 +252,23 @@ if /bin/ls ~/.bash_aliases* 1> /dev/null 2>&1; then
 fi
 
 ### wakatime
-if ! wakatime -h > /dev/null 2>&1 ; then
-  brew install wakatime
-fi
-if wakatime -h > /dev/null 2>&1 ; then
-  if ! test -f ~/bin/bash-wakatime.sh > /dev/null 2>&1; then
-    wget \
-https://raw.githubusercontent.com/irondoge/bash-wakatime/master/bash-wakatime.sh \
---output-document=~/bin/bash-wakatime.sh
-  fi
-  if test -f ~/bin/bash-wakatime.sh > /dev/null 2>&1; then
-    if test $(uname -n) != firefly.local > /dev/null 2>&1; then
-	source ~/bin/bash-wakatime.sh
-    else
-        echo Check if wakatime installation works!!!
-    fi
-  fi
-fi
+# if ! wakatime -h > /dev/null 2>&1 ; then
+#   brew install wakatime
+# fi
+# if wakatime -h > /dev/null 2>&1 ; then
+#   if ! test -f ~/bin/bash-wakatime.sh > /dev/null 2>&1; then
+#     wget \
+# https://raw.githubusercontent.com/irondoge/bash-wakatime/master/bash-wakatime.sh \
+# --output-document=~/bin/bash-wakatime.sh
+#   fi
+#   if test -f ~/bin/bash-wakatime.sh > /dev/null 2>&1; then
+#     if test $(uname -n) != firefly.local > /dev/null 2>&1; then
+# 	source ~/bin/bash-wakatime.sh
+#     else
+#         echo Check if wakatime installation works!!!
+#     fi
+#   fi
+# fi
 
 ## argcomplete
 if ! activate-global-python-argcomplete -h > /dev/null 2>&1 ; then
@@ -339,8 +338,18 @@ if test -f ~/.bashhub/bashhub.sh > /dev/null 2>&1; then
   source ~/.bashhub/bashhub.sh
 fi
 
+# "Magnificent app which corrects your previous console command"
+eval $(thefuck --alias)
+
 ### motd
-echo "* bashhub"
+echo "* Search help for command line"
+echo "  + clf"
+echo "  + eg"
+echo "  + howdoi"
+echo "  + how2"
+echo "  + tldr"
+echo "* f@@k - https://github.com/nvbn/thef@@k"
+echo "* bashhub - https://bashhub.com/"
 echo '  + bh -n 20 "grep"  # last 20 files greped'
 echo '  + bh -i "wget github"  # interactive search to execute command again'
 echo '  + bh -d  # last command executed in current directory'
@@ -348,9 +357,9 @@ echo '  + bh -sys -n 10 "curl"  # last 10 curl commands on this system'
 echo "  + bashhub status  # summary of user stats/status"
 echo "  + bashhub off/on  # turn bashhub recording off/on"
 echo '  + echo this command will no be saved #ignore  # bashhub will ignore this command'
-echo "* cheat"
+echo "* cheat - https://github.com/chrisallenlane/cheat"
 echo "  + cheat tar"
-echo "* fasd"
+echo "* fasd - https://github.com/clvv/fasd"
 echo "  + f foo           # list frecent files matching foo"
 echo "  + a foo bar       # list frecent files and directories matching foo and bar"
 echo "  + f js$           # list frecent files that ends in js"
@@ -358,8 +367,5 @@ echo "  + f -e vim foo    # run vim on the most frecent file matching foo"
 echo "  + mplayer \`f bar\` # run mplayer on the most frecent file matching bar"
 echo "  + z foo           # cd into the most frecent directory matching foo"
 echo "  + open \`sf pdf\`   # interactively select a file matching pdf and launch open"
-echo "* fzf"
+echo "* fzf - https://github.com/junegunn/fzf"
 echo "  + Figure out fasd first"
-
-# added by travis gem
-[ -f /Users/francis/.travis/travis.sh ] && source /Users/francis/.travis/travis.sh

@@ -26,7 +26,7 @@
 #*.sql
 *.sqlite
 /log
-log4j.properties
+#log4j.properties
 logging.conf
 
 # OS generated files #

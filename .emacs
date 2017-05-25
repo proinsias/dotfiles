@@ -239,3 +239,10 @@ process" t)
 ;(load-theme 'solarized t)
 ;(setq solarized-termcolors 256)
 ;(add-to-list 'default-frame-alist '(background-mode . dark))
+
+
+
+
+
+
+

@@ -121,8 +121,8 @@ if ! type pyenv-virtualenv-init > /dev/null 2>&1 ; then
   brew install pyenv-virtualenv
 fi
 if type pyenv-virtualenv-init > /dev/null 2>&1 ; then
+  # export PYENV_VIRTUALENV_DISABLE_PROMPT=1
   eval "$(pyenv virtualenv-init -)";
-  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 fi
 
 # Add homebrew's GNU coreutils (ls, cat, etc.) to PATH, etc. - see
@@ -157,16 +157,24 @@ if type overcommit > /dev/null 2>&1 ; then
   export GIT_TEMPLATE_DIR=$(overcommit --template-dir)
 fi
 
+# Add OM1 devops scripts, if available.
+if [ -d "${HOME}/favs/om1/devops/bin" ] ; then
+    export PATH="${PATH}:${HOME}/favs/om1/devops/bin"
+fi
+
 # If not running interactively, stop here
 [[ "$-" != *i* ]] && return
 
-# istheinternetonfire.com
-if ping -c 1 google.com > /dev/null 2>&1 ; then
-    echo "Is the internet on fire?:"
-    dig +short -t txt istheinternetonfire.com
-else
-  echo "No internet connectivity..."
-fi
+# # istheinternetonfire.com
+# if ping -c 1 google.com > /dev/null 2>&1 ; then
+#     echo "Is the internet on fire?:"
+#     dig +short -t txt istheinternetonfire.com
+# else
+#   echo "No internet connectivity..."
+# fi
+
+# Ccache
+export PATH="/usr/local/opt/ccache/libexec:${PATH}"
 
 case $(uname -s) in
     "Linux" )
@@ -190,5 +198,9 @@ case $(uname -s) in
         fi
 
         export JAVA_HOME="$(/usr/libexec/java_home)"
+        export SCALA_HOME="/usr/local/opt/scala/idea"  # To use with IntelliJ.
         ;;
 esac
+
+# added by Snowflake SnowSQL installer v1.0
+export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH

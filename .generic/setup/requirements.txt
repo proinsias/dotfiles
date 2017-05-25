@@ -4,20 +4,46 @@
 anaconda-client
 argcomplete
 autopep8
-awscli # not homebrew
-aws-shell # not homebrew
-cheat
+awscli  # not homebrew
+aws-shell  # not homebrew
+#cheat  # homebrew
+clf
+csvkit
+eg
 emoji
+flake8
+flake8-bugbear
+flake8-builtins
+flake8-coding
+flake8-commas
+flake8-comprehensions
+flake8-debugger
+flake8-deprecated
+flake8-docstrings
+flake8-mutable
+flake8-pep3101
+flake8-print
+flake8-string-format
+flake8-tidy-imports
+flake8-todo
+flake8_tuple
 glances
+hashin
+howdoi
 jupyter_contrib_nbextensions
 ntfy
-pep257
-pep8
+pip-tools
 psutil
+pycodestyle  # pep8
+pydocstyle  # pep257
 pyflakes
 pylint
+pytest
+pytest-xdist
+searchcmd
 slacker
 thefuck # not homebrew
+twine
 uncommitted
 yamllint
 yapf

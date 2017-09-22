@@ -9,17 +9,17 @@ textwrangler_font='62706c6973743030d401020304050828295424746f7058246f626a6563747
 echo ""
 echo "Set default font sizes"
 defaults write com.barebones.textwrangler 'BBEditorFont' \
-	 -data ${textwrangler_font}
+     -data ${textwrangler_font}
 defaults write com.barebones.textwrangler 'ListDisplayFont' \
-	 -data ${textwrangler_font}
+     -data ${textwrangler_font}
 
 echo ""
 echo "New files are markdown files"
 defaults write com.barebones.textwrangler \
-	 DefaultLanguageNameForNewDocuments -string “Markdown”
+     DefaultLanguageNameForNewDocuments -string 'Markdown'
 
 echo ""
 echo "Display the amount of time required for Replace All operations."
 defaults write com.barebones.textwrangler \
-	 ReplaceAllResultsIncludeTiming -bool YES
+     ReplaceAllResultsIncludeTiming -bool YES
 

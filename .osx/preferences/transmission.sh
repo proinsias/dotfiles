@@ -11,14 +11,14 @@ IMPORT_DIR="${HOME}/Downloads"
 echo ""
 echo "Setting auto-add folder to be Downloads"
 defaults write org.m0k.transmission AutoImportDirectory \
-	 -string "${IMPORT_DIR}"
+     -string "${IMPORT_DIR}"
 
 echo ""
 echo "Setting up an incomplete downloads folder in Downloads"
 defaults write org.m0k.transmission UseIncompleteDownloadFolder \
-	 -bool true
+     -bool true
 defaults write org.m0k.transmission IncompleteDownloadFolder \
-	 -string "${IMPORT_DIR}/Incomplete"
+     -string "${IMPORT_DIR}/Incomplete"
 
 echo ""
 echo "Don't prompt for confirmation before downloading"
@@ -46,5 +46,5 @@ defaults write org.m0k.transmission EncryptionRequire -bool true
 defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 defaults write org.m0k.transmission BlocklistNew -bool true
 defaults write org.m0k.transmission BlocklistURL -string \
-	 "http://john.bitsurge.net/public/biglist.p2p.gz"
+     "http://john.bitsurge.net/public/biglist.p2p.gz"
 

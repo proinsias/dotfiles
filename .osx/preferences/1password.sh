@@ -196,7 +196,7 @@ defaults write com.agilebits.onepassword4-helper.plist ShowStatusItem -bool true
 echo ""
 echo "Enable 1Password Watchtower"
 defaults write 2BUA8C4S2C.com.agilebits.onepassword4-helper \
-	 watchtowerService -int 1
+     watchtowerService -int 1
 
 echo ""
 echo "Disable welcome window"

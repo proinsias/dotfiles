@@ -10,7 +10,7 @@ don't use the Dock to launch apps.)"
 select yn in "Yes" "No"; do
   case $yn in
     Yes ) defaults write com.apple.dock persistent-apps -array
-	  break;;
+      break;;
     No ) exit;;
   esac
 done

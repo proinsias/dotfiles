@@ -5,7 +5,7 @@ echo "Finder"
 echo "###############################################################################"
 
 echo ""
-echo "Remove duplicates in the “Open With” menu (also see 'lscleanup' alias)"
+echo "Remove duplicates in the 'Open With' menu (also see 'lscleanup' alias)"
 /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
 
 echo ""
@@ -159,11 +159,11 @@ sudo chflags nohidden /Volumes
 
 echo ""
 echo "Expand the following File Info panes:"
-echo '“General”, “Open with”, and “Sharing & Permissions”'
+echo '"General", "Open with", and "Sharing & Permissions"'
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
-	 General -bool true \
-	 OpenWith -bool true \
-	 Privileges -bool true
+     General -bool true \
+     OpenWith -bool true \
+     Privileges -bool true
 
 #echo ""
 #echo "Setting Trash to empty securely by default"

@@ -35,7 +35,7 @@ mas install  409183694 # Keynote
 #mas install  570169521 # Live Coloring Book
 #mas install  405728848 # McSolitaire
 mas install  451444120 # Memory Clean
-mas install  784801555 # Microsoft OneNote    
+mas install  784801555 # Microsoft OneNote
 mas install  715768417 # Microsoft Remote Desktop
 mas install  533491939 # Mint QuickView
 #mas install  449597246 # Motion FX

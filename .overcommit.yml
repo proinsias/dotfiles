@@ -105,6 +105,8 @@ PreCommit:
       - '--explain'
       - '--source'
       - '--verbose'
+    exclude:
+      - 'jupyter/jupyter_notebook_config.py'
   # Pep8:
   #   enabled: true
   #   flags:
@@ -119,6 +121,8 @@ PreCommit:
       - '--msg-template="{path}:{line}:{C}: {msg} ({symbol})"'
       - '--reports=n'
       - '--persistent=n'
+    exclude:
+      - 'jupyter/jupyter_notebook_config.py'
   PythonFlake8:
     enabled: true
     flags:
@@ -126,6 +130,8 @@ PreCommit:
       - '--max-complexity=10'
       - '--max-line-length=120'
       - '--show-source'
+    exclude:
+      - 'jupyter/jupyter_notebook_config.py'
   Reek:
     enabled: true
   RuboCop:

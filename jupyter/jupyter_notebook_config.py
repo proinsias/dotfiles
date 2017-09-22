@@ -96,7 +96,7 @@
 # c.NotebookApp.browser = ''
 
 # The full path to an SSL/TLS certificate file.
-c.NotebookApp.certfile = u'/Users/fodonovan/keys/mac-fodonovan.jupyter.pem'
+c.NotebookApp.certfile = u'/Users/francis/.jupyter/jupyter.crt'
 
 # The full path to a certificate authority certifificate for SSL/TLS client
 # authentication.
@@ -171,7 +171,7 @@ c.NotebookApp.certfile = u'/Users/fodonovan/keys/mac-fodonovan.jupyter.pem'
 # c.NotebookApp.kernel_spec_manager_class = 'jupyter_client.kernelspec.KernelSpecManager'
 
 # The full path to a private key file for usage with SSL/TLS.
-c.NotebookApp.keyfile = u'/Users/fodonovan/keys/mac-fodonovan.jupyter.key'
+c.NotebookApp.keyfile = u'/Users/francis/.jupyter/jupyter.key'
 
 # The login handler class to use.
 # c.NotebookApp.login_handler_class = 'notebook.auth.login.LoginHandler'
@@ -198,7 +198,7 @@ c.NotebookApp.keyfile = u'/Users/fodonovan/keys/mac-fodonovan.jupyter.key'
 #   from notebook.auth import passwd; passwd()
 #
 # The string should be of the form type:salt:hashed-password.
-c.NotebookApp.password = u'sha1:42b4cfb2bf41:ab16481c08a67f6f57bed8c6c6ab4e7870077dbc'
+# c.NotebookApp.password = u'sha1:42b4cfb2bf41:ab16481c08a67f6f57bed8c6c6ab4e7870077dbc'
 
 # The port the notebook server will listen on.
 c.NotebookApp.port = 9999
@@ -386,7 +386,7 @@ c.IPKernelApp.pylab = 'inline'
 # c.Session.unpacker = 'json'
 
 # Username for the Session. Default is your system username.
-# c.Session.username = 'fodonovan'
+# c.Session.username = 'francis'
 
 #------------------------------------------------------------------------------
 # MultiKernelManager configuration
@@ -550,19 +550,37 @@ c.IPKernelApp.pylab = 'inline'
 # By default, all installed kernels are allowed.
 # c.KernelSpecManager.whitelist = set()
 
-import os
-from subprocess import check_call
-
 def post_save(model, os_path, contents_manager):
     """post-save hook for converting notebooks to .py scripts"""
+    import os
+    from subprocess import check_call
+
     if model['type'] != 'notebook':
         return # only do this for notebooks
-    d, fname = os.path.split(os_path)
-    check_call(['jupyter', 'nbconvert', '--to', 'script', fname],
-    cwd=d)
+
+    import nbformat
+    notebook = nbformat.read(os_path, as_version=nbformat.NO_CONVERT, )
+    import nbconvert
+    python_exporter = nbconvert.PythonExporter()
+    (body, resources) = python_exporter.from_notebook_node(notebook)
+
+    lines = body.split('\n')
+    lines = [x for x in lines if x]  # Remove empty lines.
+    lines = [x for x in lines if not x.startswith('get_ipython().magic')]  # Remove magic lines.
+
+    body = '\n'.join(lines) + '\n'
+
+    python_filename = os.path.splitext(os_path)[0] + '.py'
+    with open(python_filename, 'w') as py_file:
+        py_file.write(body)
+
+    print('Converting notebook {0} to python file {1}...'.format(
+          os.path.basename(os_path),
+          os.path.basename(python_filename),
+          ))
+
+#     d, fname = os.path.split(os_path)
+#     check_call(['jupyter', 'nbconvert', '--to', 'python', fname], cwd=d)
+
 
 c.FileContentsManager.post_save_hook = post_save
-
-
-
-

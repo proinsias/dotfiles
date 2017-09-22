@@ -11,9 +11,9 @@ defaults write com.apple.ScreenSharing ShowBonjourBrowser_Debug 1
 echo ""
 echo "Show the full toolbar"
 defaults write com.apple.ScreenSharing \
-	 'NSToolbar Configuration ControlToolbar' -dict-add \
-	 'TB Item Identifiers' \
-	 '(Scale,Control,Share,Curtain,Capture,FullScreen,GetClipboard,SendClipboard,Quality)'
+     'NSToolbar Configuration ControlToolbar' -dict-add \
+     'TB Item Identifiers' \
+     '(Scale,Control,Share,Curtain,Capture,FullScreen,GetClipboard,SendClipboard,Quality)'
 
 #Do Not Send Special Keys to Remote Machine
 #$ defaults write com.apple.ScreenSharing DoNotSendSystemKeys -boolean

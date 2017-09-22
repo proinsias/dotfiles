@@ -11,6 +11,6 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 echo ""
 echo "Show Bluetooth in menu bar"
 /usr/libexec/PlistBuddy -c \
-			"Add :menuExtras string '/System/Library/CoreServices/Menu Extras/Bluetooth.menu'" \
-			com.apple.systemuiserver.plist > /dev/null 2>&1
+            "Add :menuExtras string '/System/Library/CoreServices/Menu Extras/Bluetooth.menu'" \
+            com.apple.systemuiserver.plist > /dev/null 2>&1
 

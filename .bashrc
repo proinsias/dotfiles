@@ -185,9 +185,9 @@ if fzf -h > /dev/null 2>&1 ; then
   fi
   if test -f ~/.fzf.bash; then
       if test $(uname -n) != firefly.local > /dev/null 2>&1; then
-	  source ~/.fzf.bash
+        source ~/.fzf.bash
       else
-	  echo Check if fzf is working!!!
+        echo Check if fzf is working!!!
       fi
   fi
 fi
@@ -200,7 +200,7 @@ case $(uname -s) in
           rm -rf $(ls -ld /tmp/ssh-* | grep fodonovan | awk '{print $9}') > /dev/null 2>&1
           kill -9 $SSH_AGENT_PID > /dev/null 2>&1
         }
-	# 2016-05-31 - commented below to debug sudden exits
+    # 2016-05-31 - commented below to debug sudden exits
         # trap cleanup EXIT
         ;;
     "Darwin" )
@@ -232,7 +232,7 @@ if test $(uname -n) = firefly.local > /dev/null 2>&1; then
     eval $(keychain --eval --agents ssh --inherit any id_rsa --ignore-missing)
 else
     # Add keychain keys
-    eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC 97FAE23F --ignore-missing)
+    eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC 6519D396 --ignore-missing)
 fi
 
 # Use `/bin/ls` for these tests, since homebrew `ls` gives errors
@@ -263,7 +263,7 @@ fi
 #   fi
 #   if test -f ~/bin/bash-wakatime.sh > /dev/null 2>&1; then
 #     if test $(uname -n) != firefly.local > /dev/null 2>&1; then
-# 	source ~/bin/bash-wakatime.sh
+#       source ~/bin/bash-wakatime.sh
 #     else
 #         echo Check if wakatime installation works!!!
 #     fi
@@ -290,10 +290,10 @@ fi
 ### https://github.com/dschep/ntfy/
 if ! type ntfy > /dev/null 2>&1; then
     if test $(uname -n) != firefly.local > /dev/null 2>&1; then
-	echo Installing ntfy...
-	PYENV_VERSION=system pip install ntfy
+      echo Installing ntfy...
+      PYENV_VERSION=system pip install ntfy
     else
-        echo Check if ntfy installation works!!!
+      echo Check if ntfy installation works!!!
     fi
 fi
 #if type ntfy > /dev/null 2>&1; then
@@ -342,6 +342,9 @@ fi
 eval $(thefuck --alias)
 
 ### motd
+echo "* bash"
+echo "  + `!?foo` will repeat the most recent command that contained the string 'foo'"
+echo "* em – emojii"
 echo "* Search help for command line"
 echo "  + clf"
 echo "  + eg"

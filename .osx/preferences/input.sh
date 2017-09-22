@@ -20,13 +20,13 @@ defaults write com.apple.BezelServices kDimTime -int 300
 echo ""
 echo "Trackpad: enable tap to click for this user and for the login screen"
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad \
-	 Clicking -bool true
+     Clicking -bool true
 
 echo ""
 echo "Trackpad: enable click and drag"
 defaults write com.apple.AppleMultitouchTrackpad Dragging -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad \
-	 Dragging -bool true
+     Dragging -bool true
 
 #echo ""
 #echo "Trackpad: map bottom right corner to right-click"

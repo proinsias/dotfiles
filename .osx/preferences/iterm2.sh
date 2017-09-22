@@ -111,7 +111,7 @@ defaults write com.googlecode.iterm2 HideMenuBarInFullscreen -bool false
 #echo ""
 #echo ""
 #defaults write com.googlecode.iterm2 HotKeyBookmark \
-#	 -string "BA49A3D5-D1B4-47AC-8DE5-501143AF35C8"
+#     -string "BA49A3D5-D1B4-47AC-8DE5-501143AF35C8"
 
 #echo ""
 #echo ""

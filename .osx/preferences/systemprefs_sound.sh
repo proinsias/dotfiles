@@ -7,7 +7,7 @@ echo "##########################################################################
 echo ""
 echo "Disable UI sounds"
 defaults write com.apple.systemsound com.apple.sound.uiaudio.enabled\
-	 -int 0
+     -int 0
 
 echo ""
 echo "Disable beeps on sound level change"

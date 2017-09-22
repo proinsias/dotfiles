@@ -7,7 +7,7 @@ echo "##########################################################################
 echo ""
 echo "Disable smart quotes as it’s annoying for code tweets"
 defaults write com.twitter.twitter-mac \
-	 AutomaticQuoteSubstitutionEnabled -bool false
+     AutomaticQuoteSubstitutionEnabled -bool false
 
 #echo ""
 #echo "Show the app window when clicking the menu icon"
@@ -20,7 +20,7 @@ defaults write com.twitter.twitter-mac ShowDevelopMenu -bool true
 echo ""
 echo "Open links in the background"
 defaults write com.twitter.twitter-mac openLinksInBackground \
-	 -bool true
+     -bool true
 
 #echo ""
 #echo "Allow closing the ‘new tweet’ window by pressing `Esc`"

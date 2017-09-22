@@ -31,6 +31,7 @@ alias dir="gdir"
 #alias dirname="gdirname"
 alias du='gdu -h'  # Default to human readable figures
 alias echo="gecho"
+alias edit="bbedit"
 #alias env="genv"
 #alias expand="gexpand"
 #alias expr="gexpr"

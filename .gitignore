@@ -580,4 +580,6 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# Spark
+spark-warehouse/
 

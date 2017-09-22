@@ -76,8 +76,8 @@ defaults write NSGlobalDomain com.apple.springing.enabled -bool true
 #defaults write "Apple Global Domain" "_HIHideMenuBar" 1cho ""
 
 #Restore the the 'Save As' menu item (Equivalent to adding a Keyboard
-#				     shortcut in the System
-#				     Preferences.app )
+#                     shortcut in the System
+#                     Preferences.app )
 #$ defaults write -g NSUserKeyEquivalents -dict-add 'Save As...' '@$S'
 
 #Enable continuous spell checking everywhere

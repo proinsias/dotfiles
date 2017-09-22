@@ -5,11 +5,11 @@
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "${HOME}/bin" ] ; then
-    export PATH="${PATH}:${HOME}/bin"
+    export PATH="${PATH:+${PATH}:}${HOME}/bin"
 fi
 
 if [ -d "${HOME}/.generic/bin" ] ; then
-    export PATH="${PATH}:${HOME}/.generic/bin"
+    export PATH="${PATH:+${PATH}:}${HOME}/.generic/bin"
 fi
 
 # for hunspell
@@ -17,17 +17,17 @@ export LANG=en_US.UTF-8
 export DICTIONARY=en_US
 
 export NPM_PACKAGES="${HOME}/.npm-packages"
-export PATH="${NPM_PACKAGES}/bin:${PATH}"
-export MANPATH="${NPM_PACKAGES}/share/man:${MANPATH}"
+export PATH="${NPM_PACKAGES}/${PATH:+:${PATH}}"
+export MANPATH="${NPM_PACKAGES}/share/man${MANPATH:+:${MANPATH}}"
 
 # Set MANPATH so it includes users' private man if it exists
 if test -d "${HOME}/man" > /dev/null 2>&1; then
-  MANPATH="${HOME}/man:${MANPATH}"
+  MANPATH="${HOME}/man${MANPATH:+:${MANPATH}}"
 fi
 
 # Set INFOPATH so it includes users' private info if it exists
 if test -d "${HOME}/info" > /dev/null 2>&1; then
-  INFOPATH="${HOME}/info:${INFOPATH}"
+  INFOPATH="${HOME}/info${INFOPATH:+:${INFOPATH}}"
 fi
 
 # Umask
@@ -56,15 +56,15 @@ case $(uname -s) in
       #fi
 
       if [ -d "${HOME}/.ubuntu/bin" ] ; then
-          export PATH="${PATH}:${HOME}/.ubuntu/bin"
+          export PATH="${PATH:+${PATH}:}${HOME}/.ubuntu/bin"
       fi
 
       # homebrew linuxbrew
       if [ -d "${HOME}/.linuxbrew/bin" ] ; then
-          export PATH="${PATH}:${HOME}/.linuxbrew/bin"
+          export PATH="${PATH:+${PATH}:}${HOME}/.linuxbrew/bin"
       fi
       if [ -d "${HOME}/.linuxbrew/sbin" ] ; then
-          export PATH="${PATH}:${HOME}/.linuxbrew/sbin"
+          export PATH="${PATH:+${PATH}:}${HOME}/.linuxbrew/sbin"
       fi
 
       # gpg-agent
@@ -72,10 +72,10 @@ case $(uname -s) in
       ;;
     "Darwin" )
       # homebrew
-      export PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
+      export PATH="/usr/local/bin:/usr/local/sbin${PATH:+:${PATH}}"
 
       if [ -d "${HOME}/.osx/bin" ] ; then
-          export PATH="${PATH}:${HOME}/.osx/bin"
+          export PATH="${PATH:+${PATH}:}${HOME}/.osx/bin"
       fi
 
       # To install homebrew casks in /Applications by default
@@ -128,14 +128,14 @@ fi
 # Add homebrew's GNU coreutils (ls, cat, etc.) to PATH, etc. - see
 #http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
 # May cause issues - e.g., archey doesn't work with 'gawk'
-#export PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
-export MANPATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman:${MANPATH}"
+#export PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin${PATH:+:${PATH}}"
+export MANPATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman${MANPATH:+:${MANPATH}}"
 
-export MANPATH="${HOMEBREW_PREFIX}/share/man:${MANPATH}"
-export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH}"
+export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH:+:${MANPATH}}"
+export INFOPATH="${HOMEBREW_PREFIX}/share/info${INFOPATH:+:${INFOPATH}}"
 
 # For hunspell
-export DICPATH="${HOME}/.hunspell_default:/usr/local/share/hunspell:${DICPATH}"
+export DICPATH="${HOME}/.hunspell_default:/usr/local/share/hunspell${DICPATH:+:${DICPATH}}"
 
 # Mix of interactivity here
 
@@ -159,7 +159,7 @@ fi
 
 # Add OM1 devops scripts, if available.
 if [ -d "${HOME}/favs/om1/devops/bin" ] ; then
-    export PATH="${PATH}:${HOME}/favs/om1/devops/bin"
+    export PATH="${PATH:+${PATH}:}${HOME}/favs/om1/devops/bin"
 fi
 
 # If not running interactively, stop here
@@ -174,7 +174,7 @@ fi
 # fi
 
 # Ccache
-export PATH="/usr/local/opt/ccache/libexec:${PATH}"
+export PATH="/usr/local/opt/ccache/libexec${PATH:+:${PATH}}"
 
 case $(uname -s) in
     "Linux" )
@@ -203,4 +203,4 @@ case $(uname -s) in
 esac
 
 # added by Snowflake SnowSQL installer v1.0
-export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
+export PATH="/Applications/SnowSQL.app/Contents/MacOS${PATH:+:${PATH}}"

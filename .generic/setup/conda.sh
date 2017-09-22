@@ -4,7 +4,7 @@ echo "##########################################################################
 echo "conda"
 echo "###############################################################################"
 
-if test ! $(which conda); then
+if test ! "$(which conda)"; then
     echo ""
     echo "Installing conda..."
 
@@ -15,8 +15,8 @@ fi
 echo ""
 echo "Install requirements into the root environment"
 echo "Start off by installing conda packages"
-while read requirement; do
-    conda install --yes $requirement;
+while read -r requirement; do
+    conda install --yes "${requirement}";
 done < requirements.txt
 echo "Then install pip-only packages, if necessary"
 pip install -r requirements.txt

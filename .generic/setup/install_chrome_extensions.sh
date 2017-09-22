@@ -26,7 +26,7 @@ select yn in "Yes" "No"; do
           https://chrome.google.com/webstore/detail/use-https/kbkgnojednemejclpggpnhlhlhkmfidi \
           https://chrome.google.com/webstore/detail/wakatime/jnbbnacmeggbgdjgaoojpmhdlkkpblgi \
           https://chrome.google.com/webstore/detail/gmail-offline/ejidjjhkpiempkbhmpbfngldlkglhimk?utm_source=chrome-ntp-launcher
-	  break;;
+      break;;
     No ) exit;;
   esac
 done

@@ -115,13 +115,11 @@ if type pyenv > /dev/null 2>&1 ; then
   eval "$(pyenv init -)";
 fi
 
-### https://github.com/yyuu/pyenv-virtualenv
-if ! type pyenv-virtualenv-init > /dev/null 2>&1 ; then
+if ! pyenv virtualenv-init - > /dev/null 2>&1 ; then
   echo Installing pyenv-virtualenv...
   brew install pyenv-virtualenv
 fi
-if type pyenv-virtualenv-init > /dev/null 2>&1 ; then
-  # export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+if pyenv virtualenv-init - > /dev/null 2>&1 ; then
   eval "$(pyenv virtualenv-init -)";
 fi
 

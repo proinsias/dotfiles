@@ -251,25 +251,6 @@ if /bin/ls ~/.bash_aliases* 1> /dev/null 2>&1; then
   unset file;
 fi
 
-### wakatime
-# if ! wakatime -h > /dev/null 2>&1 ; then
-#   brew install wakatime
-# fi
-# if wakatime -h > /dev/null 2>&1 ; then
-#   if ! test -f ~/bin/bash-wakatime.sh > /dev/null 2>&1; then
-#     wget \
-# https://raw.githubusercontent.com/irondoge/bash-wakatime/master/bash-wakatime.sh \
-# --output-document=~/bin/bash-wakatime.sh
-#   fi
-#   if test -f ~/bin/bash-wakatime.sh > /dev/null 2>&1; then
-#     if test $(uname -n) != firefly.local > /dev/null 2>&1; then
-#       source ~/bin/bash-wakatime.sh
-#     else
-#         echo Check if wakatime installation works!!!
-#     fi
-#   fi
-# fi
-
 ## argcomplete
 if ! activate-global-python-argcomplete -h > /dev/null 2>&1 ; then
   echo Installing argcomplete...
@@ -288,14 +269,14 @@ fi
 
 ### A utility for sending notifications, on demand and when commands finish.
 ### https://github.com/dschep/ntfy/
-if ! type ntfy > /dev/null 2>&1; then
-    if test $(uname -n) != firefly.local > /dev/null 2>&1; then
-      echo Installing ntfy...
-      PYENV_VERSION=system pip install ntfy
-    else
-      echo Check if ntfy installation works!!!
-    fi
-fi
+# if ! type ntfy > /dev/null 2>&1; then
+#     if test $(uname -n) != firefly.local > /dev/null 2>&1; then
+#       echo Installing ntfy...
+#       PYENV_VERSION=system pip install ntfy
+#     else
+#       echo Check if ntfy installation works!!!
+#     fi
+# fi
 #if type ntfy > /dev/null 2>&1; then
 #  eval "$(ntfy shell-integration --foreground-too)"
 #  export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld "\

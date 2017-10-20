@@ -35,6 +35,7 @@ glances
 hashin
 howdoi
 jupyter_contrib_nbextensions
+jupyterlab
 ntfy
 pip-tools
 proselint

@@ -68,6 +68,9 @@ PreCommit:
       - 'scripts/overcommit/*.sh'
   FixMe:
     enabled: true
+    exclude:
+      - 'notebooks/*.ipynb'
+      - 'notebooks/*/*.ipynb'
   ForbiddenBranches:
     enabled: true
   HardTabs:
@@ -99,7 +102,12 @@ PreCommit:
     enabled: true
   Mdl:
     enabled: true
-  Pep257:
+  Pycodestyle:
+    enabled: true
+    flags:
+      - '--max-line-length=120'
+      - '--show-source'
+  Pydocstyle:
     enabled: true
     flags:
       - '--explain'
@@ -107,11 +115,6 @@ PreCommit:
       - '--verbose'
     exclude:
       - 'jupyter/jupyter_notebook_config.py'
-  # Pep8:
-  #   enabled: true
-  #   flags:
-  #     - '--max-line-length=120'
-  #     - '--show-source'
   # Pyflakes:
   #   enabled: true
   Pylint:

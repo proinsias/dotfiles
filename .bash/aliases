@@ -179,6 +179,7 @@ alias h='history'
 
 alias ip='ifconfig -a | ggrep inet | ggrep broadcast'
 
+alias jl='jupyter lab'
 alias jn='jupyter notebook'
 
 alias k9='gkill -9='

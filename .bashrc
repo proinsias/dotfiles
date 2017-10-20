@@ -226,14 +226,8 @@ esac
 # AWS bash completion
 complete -C aws_completer aws
 
-if test $(uname -n) = firefly.local > /dev/null 2>&1; then
-    # Add keychain keys
-    echo Check if gpg is working!!!
-    eval $(keychain --eval --agents ssh --inherit any id_rsa --ignore-missing)
-else
-    # Add keychain keys
-    eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa 6519D396 --ignore-missing)
-fi
+# Add keychain keys
+eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa 6519D396 --ignore-missing)
 
 # Use `/bin/ls` for these tests, since homebrew `ls` gives errors
 if /bin/ls ~/.bash/* 1> /dev/null 2>&1; then

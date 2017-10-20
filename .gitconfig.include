@@ -71,7 +71,7 @@
     changed = green
     untracked = cyan
 [commit]
-    gpgSign = true
+#     gpgSign = true
 [core]
     attributesfile = ~/.gitattributes
 # Note: This setting is no longer recommended.

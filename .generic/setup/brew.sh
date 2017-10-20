@@ -27,11 +27,10 @@ brew update
 echo ""
 echo "Install ruby via homebrew's rbenv"
 brew install rbenv ruby-build # Do not install ruby via homebrew!
-echo Installing gem 2.5.1...
-echo Use 'rbenv install -l' to list the possible versions and find
-latest stable
-rbenv install 2.5.1
-rbenv global 2.5.1
+echo Installing ruby 2.3.3...
+echo Use 'rbenv install -l' to list the possible versions and find latest stable
+rbenv install 2.3.3
+rbenv global 2.3.3
 gem update --system
 gem install bundler # http://bundler.io/
 

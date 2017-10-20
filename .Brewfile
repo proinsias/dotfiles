@@ -51,7 +51,7 @@ brew 'cloog'
 brew 'cmake'
 brew 'colordiff'
 brew 'cookiecutter'
-brew 'coreutils'#, args: ['default-names']
+brew 'coreutils' #, args: ['default-names']
 brew 'cowsay'
 brew 'cscope'
 brew 'd-bus'
@@ -69,7 +69,7 @@ brew 'fasd'
 brew 'ffmpeg'
 brew 'fftw'
 brew 'figlet'
-brew 'findutils'#, args: ['default-names']
+brew 'findutils' #, args: ['default-names']
 brew 'fontconfig'
 brew 'fortune'
 brew 'freetype'
@@ -92,10 +92,10 @@ brew 'glib'
 brew 'gmp'
 brew 'gpg-agent'
 brew 'gnu-getopt'
-brew 'gnu-indent'#, args: ['default-names']
-brew 'gnu-sed'#, args: ['default-names']
-brew 'gnu-tar'#, args: ['default-names']
-brew 'gnu-which'#, args: ['with-default-names']
+brew 'gnu-indent' #, args: ['default-names']
+brew 'gnu-sed' #, args: ['default-names']
+brew 'gnu-tar' #, args: ['default-names']
+brew 'gnu-which' #, args: ['with-default-names']
 brew 'gnuplot', args: ['with-qt', 'with-x11']
 brew 'gnutls'
 brew 'go'
@@ -129,10 +129,10 @@ brew 'veclibfort'
 brew 'tmuxinator-completion'
 
 brew 'homebrew/dupes/diffutils'
-brew 'homebrew/dupes/ed'#, args: ['with-default-names']
+brew 'homebrew/dupes/ed' #, args: ['with-default-names']
 brew 'homebrew/dupes/file-formula'
 brew 'homebrew/dupes/gpatch'
-brew 'homebrew/dupes/grep'#, args: ['with-default-names']
+brew 'homebrew/dupes/grep' #, args: ['with-default-names']
 brew 'homebrew/dupes/gzip'
 brew 'homebrew/dupes/less'
 brew 'homebrew/dupes/lsof'
@@ -283,7 +283,7 @@ brew 'youtube-dl'
 brew 'zopfli'
 brew 'zsh'
 
-cask '1password'#, args: { appdir: '/Applications' }
+cask '1password' #, args: { appdir: '/Applications' }
 cask 'adobe-reader'
 # cask 'anaconda'
 # cask 'appcleaner'
@@ -362,6 +362,7 @@ cask 'keybase'
 cask 'kindle'
 cask 'kite'
 cask 'lastpass'
+cask 'libdvdcss'
 cask 'libreoffice'
 cask 'logitech-control-center'
 cask 'logitech-myharmony'
@@ -417,6 +418,7 @@ cask 'spectacle'
 cask 'spotdox'
 cask 'sshfs'
 cask 'steam'
+cask 'subler'
 cask 'sublime-text'
 cask 'suspicious-package'
 # cask 'teamviewer'

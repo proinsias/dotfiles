@@ -232,7 +232,7 @@ if test $(uname -n) = firefly.local > /dev/null 2>&1; then
     eval $(keychain --eval --agents ssh --inherit any id_rsa --ignore-missing)
 else
     # Add keychain keys
-    eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC 6519D396 --ignore-missing)
+    eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa 6519D396 --ignore-missing)
 fi
 
 # Use `/bin/ls` for these tests, since homebrew `ls` gives errors

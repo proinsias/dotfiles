@@ -1,274 +1,307 @@
-tap 'caskroom/cask'
+tap 'caskroom/cask', 'git@github.com:caskroom/homebrew-cask'
 tap 'caskroom/versions'
-tap 'docmunch/pdftk'
-tap 'homebrew/boneyard'
+#tap 'docmunch/pdftk'
+#tap 'gbeine/homebrew-java'
 tap 'homebrew/bundle'
 tap 'homebrew/command-not-found'
-tap 'homebrew/completions'
-tap 'homebrew/core'
-tap 'homebrew/dupes'
-tap 'homebrew/emacs'
-tap 'homebrew/fuse'
-tap 'homebrew/python'
-tap 'homebrew/science'
+#tap 'homebrew/emacs'
+#tap 'homebrew/fuse'
+#tap 'homebrew/science'
 tap 'homebrew/services'
-tap 'homebrew/versions'
-tap 'homebrew/x11'
-tap 'jonof/kenutils'
-cask 'mactex'
+#tap 'homebrew/versions'
+#tap 'homebrew/homebrew-x11'
+#tap 'jonof/kenutils'
+
+cask 'java'
 cask 'osxfuse'
 cask 'xquartz'
+
+brew 'openssl'
+brew 'openssh', args: ['with-brewed-openssl', 'with-keychain-support']
+brew 'curl', args: ['with-ssl', 'with-libssh2']
+brew 'svn'
+brew 'parallel'  # Install before moreutils that also different `parallel` command.
+
 brew 'ack'
+brew 'advancecomp'
+brew 'ag'
 brew 'ant'
+brew 'antiword'
+brew 'apache-spark'
+brew 'apg'
 brew 'archey'
+brew 'arpack'
 brew 'aspell'
 brew 'autoconf'
+#brew 'autojump'  # fasd
 brew 'automake'
-brew 'libtool'
-brew 'atomicparsley'
-brew 'autojump'
-brew 'readline'
+#brew 'awscli'  # pyenv
+#brew 'aws-shell'  # pyenv
 brew 'bash'
-brew 'bash-completion'
 brew 'binutils'
 brew 'c-ares'
-brew 'libpng'
-brew 'freetype'
-brew 'pkg-config'
-brew 'fontconfig'
-brew 'gettext'
-brew 'libffi'
-brew 'pcre'
-brew 'glib'
-brew 'pixman'
 brew 'cairo'
-brew 'dbus'
-brew 'gmp'
-brew 'libtasn1'
-brew 'nettle'
-brew 'gnutls'
-brew 'isl'
-brew 'mpfr'
-brew 'libmpc'
-brew 'gcc', args: ['with-all-languages']
-brew 'fftw'
-brew 'jpeg'
-brew 'xz'
-brew 'libtiff'
-brew 'little-cms2'
-brew 'ghostscript'
-brew 'git'
-brew 'gobject-introspection'
-brew 'shared-mime-info'
-brew 'gdk-pixbuf'
-brew 'libcroco'
-brew 'icu4c'
-brew 'harfbuzz'
-brew 'pango'
-brew 'librsvg'
-brew 'cmake'
-brew 'openjpeg'
-brew 'perl'
-brew 'webp'
-brew 'imagemagick'
-brew 'emacs', restart_service: true
 brew 'cask'
+brew 'ccache'
+brew 'certbot'
 brew 'cheat'
+brew 'checkstyle'
 brew 'cloog'
+brew 'cmake'
 brew 'colordiff'
-brew 'coreutils'
+brew 'cookiecutter'
+brew 'coreutils' #, args: ['default-names']
 brew 'cowsay'
 brew 'cscope'
-brew 'makedepend'
-brew 'openssl'
-brew 'libssh2'
-brew 'curl', args: ['with-libssh2']
+brew 'd-bus'
 brew 'daq'
-brew 'go'
-brew 'direnv'
-brew 'libgpg-error'
-brew 'libassuan'
-brew 'libgcrypt'
-brew 'libksba'
-brew 'pth'
-brew 'dirmngr'
-brew 'docx2txt'
+brew 'docmunch/pdftk/pdftk'
 brew 'dos2unix'
+brew 'direnv'
+brew 'docker-clean'
 brew 'ecj'
+brew 'editorconfig'
+brew 'emacs', args: ['with-imagemagick', 'with-modules']
 brew 'epstool'
 brew 'faac'
 brew 'fasd'
-brew 'lame'
-brew 'texi2html'
-brew 'gdbm'
-brew 'sqlite'
-brew 'python'
-brew 'yasm'
-brew 'x264'
-brew 'xvid'
 brew 'ffmpeg'
-brew 'findutils', args: ['with-default-names']
-brew 'fltk'
+brew 'fftw'
+brew 'figlet'
+brew 'findutils' #, args: ['default-names']
+brew 'fontconfig'
 brew 'fortune'
+brew 'freetype'
 brew 'fzf'
 brew 'gawk'
+brew 'gbeine/homebrew-java/postgresql-jdbc'
+brew 'gcc', args: ['with-jit', 'with-nls']
 brew 'gd'
 brew 'gdb'
+brew 'gdbm'
 brew 'geoip'
+brew 'gettext'
+brew 'ghostscript'
+brew 'git', args: ['with-brewed-curl', 'with-brewed-openssl', 'with-brewed-svn', 'with-gettext', 'with-pcre', 'with-persistent-https']
+brew 'git-ftp'
+brew 'git-standup'
+brew 'glpk'
 brew 'gl2ps'
-brew 'gnu-indent'
-brew 'gnu-sed'
-brew 'gnu-tar'
-brew 'gnu-which'
-brew 'pinentry'
+brew 'glib'
+brew 'gmp'
 brew 'gpg-agent'
-brew 'libusb'
-brew 'libusb-compat'
-brew 'gnupg2'
-brew 'lua'
-brew 'qt5'
-brew 'gnuplot', args: ['with-qt5']
+brew 'gnu-getopt'
+brew 'gnu-indent' #, args: ['default-names']
+brew 'gnu-sed' #, args: ['default-names']
+brew 'gnu-tar' #, args: ['default-names']
+brew 'gnu-which' #, args: ['with-default-names']
+brew 'gnuplot', args: ['with-qt', 'with-x11']
+brew 'gnutls'
+brew 'go'
+brew 'gobject-introspection'
 brew 'graphicsmagick'
+brew 'graphviz'
 brew 'gwt'
-brew 'python3'
+brew 'hadoop'
+brew 'hdf5'
+brew 'bash-completion'
+brew 'brew-cask-completion'
+brew 'bundler-completion'
+brew 'docker-completion'
+brew 'docker-compose-completion'
+brew 'docker-machine-completion'
+brew 'gem-completion'
+brew 'homesick-completion'
+brew 'launchctl-completion'
+# brew 'maven-completion'
+brew 'octave', args: ['with-gui']
+brew 'open-completion'
+brew 'pip-completion'
+brew 'qhull'
+brew 'qrupdate'
+brew 'ruby-completion'
+brew 'sonar-completion'
+brew 'stormssh-completion'
+brew 'suite-sparse'
+brew 'vagrant-completion'
+brew 'veclibfort'
+brew 'tmuxinator-completion'
+
+brew 'diffutils'
+brew 'ed'#, args: ['with-default-names']
+brew 'file-formula'
+brew 'gpatch'
+brew 'grep'#, args: ['with-default-names']
+brew 'gzip'
+brew 'httpie'
+brew 'less'
+brew 'lsof'
+brew 'm4'
+brew 'make'
+brew 'nano'
+brew 'rsync'
+brew 'screen'
+brew 'tcpdump'
+brew 'units'
+brew 'unzip'
+brew 'homebrew/science/r'
+brew 'homebrew/science/suite-sparse421'
+brew 'homebrew/emacs/dash-emacs'
+brew 'homebrew/emacs/git-messenger'
+brew 'homebrew/emacs/git-modes'
+brew 'homebrew/emacs/homebrew-mode'
+brew 'homebrew/emacs/hydra-emacs'
+brew 'homebrew/emacs/inf-ruby'
+brew 'homebrew/emacs/json-mode'
+brew 'homebrew/emacs/json-reformat'
+brew 'homebrew/emacs/json-snatcher'
+brew 'homebrew/emacs/markdown-mode'
+brew 'homebrew/emacs/org-mode'
+brew 'homebrew/emacs/pandoc-mode'
+brew 'homebrew/emacs/popup'
+brew 'homebrew/emacs/solarized-emacs'
+brew 'homebrew/emacs/yaml-mode'
+brew 'homebrew/fuse/ntfs-3g'
+brew 'homebrew/fuse/sshfs'
+brew 'homebrew/gui/gsmartcontrol'
+brew 'homebrew/versions/perl518'
+brew 'homebrew/homebrew-x11/gv'
 brew 'httpie'
 brew 'hub'
 brew 'hunspell'
 brew 'icdiff'
+brew 'icu4c'
+brew 'imagemagick'
+brew 'isl'
+brew 'gifsicle'
 brew 'jbig2dec'
 brew 'jenv'
+brew 'jhead'
+brew 'jonof/kenutils/pngout'
+brew 'jpeg'
+brew 'jpegoptim'
+brew 'jq'
 brew 'keychain'
+brew 'lame'
+# brew 'lastpass-cli', args: ['with-doc']
 brew 'libdnet'
 brew 'libdvdcss'
-brew 'libmagic'
+brew 'libffi'
+brew 'libgcrypt'
+brew 'libgpg-error'
+brew 'libmpc'
+brew 'libpng'
 brew 'libsodium'
+brew 'libtasn1'
+brew 'libtiff'
+brew 'libtool'
 brew 'libvo-aacenc'
-brew 'libxml2'
-brew 'libxslt'
 brew 'libyaml'
+brew 'little-cms2'
+brew 'lua'
 brew 'luajit'
+brew 'lynx'
 brew 'lzip'
 brew 'mackup'
-brew 'macvim', args: ['with-override-system-vim']
+brew 'macvim'  #, args: ['with-override-system-vim']
+brew 'makedepend'
 brew 'mas'
-brew 'maven'
-brew 'mercurial'
-brew 'mongodb'
+# brew 'maven'
+# brew 'mercurial'
+brew 'mkdocs'
+brew 'mongodb', args: ['with-openssl']
 brew 'moreutils'
+brew 'mpfr'
 brew 'mysql-connector-c'
+brew 'nettle'
 brew 'nmap'
 brew 'node'
+brew 'openjpeg'
+brew 'openssl'
 brew 'optipng'
 brew 'pandoc'
 brew 'pandoc-citeproc'
+brew 'pcre'
+# brew 'pinentry-mac' # Use GPG Suite instead.
+brew 'pixman'
+brew 'pkg-config'
 brew 'plotutils'
+brew 'pngcrush'
+brew 'pngquant'
 brew 'poppler'
+brew 'postgresql'
 brew 'pstoedit'
+brew 'pv'
+brew 'pwgen'
 brew 'pyenv'
+brew 'pyenv-ccache'
+brew 'pyenv-pip-migrate'
 brew 'pyenv-virtualenv'
-brew 'sip', args: ['with-python3']
-brew 'pyqt5'
+brew 'pyenv-which-ext'
+brew 'pyqt'
+brew 'python'
 brew 'qscintilla2'
 brew 'qt'
-brew 'ruby-build'
 brew 'rbenv'
+brew 'readline'
 brew 'rename'
+brew 'ruby-build'
+brew 'scala'
+brew 'screenfetch'
 brew 'shellcheck'
+brew 'sip'
 brew 'snort'
+brew 'sqlite'
 brew 'ssh-copy-id'
 brew 'subversion'
 brew 'szip'
 brew 'tbb'
+brew 'tesseract'
+brew 'texi2html'
 brew 'texinfo'
+#brew 'thefuck'  # pyenv
 brew 'the_silver_searcher'
-brew 'thefuck'
+brew 'tig'
 brew 'tivodecode'
+brew 'tmux'
 brew 'tomcat'
 brew 'trash'
 brew 'tree'
-brew 'vim'
+brew 'vim'  # , args: ['override-system-vi']
+brew 'vitorgalvao/tiny-scripts/cask-repair'
 brew 'watch'
 brew 'wdiff', args: ['with-gettext']
 brew 'webkit2png'
 brew 'wget'
+brew 'wine'
+brew 'winetricks'
 brew 'wireshark'
+brew 'x264'
+brew 'xvid'
+brew 'xz'
+brew 'yasm'
 brew 'youtube-dl'
 brew 'zopfli'
 brew 'zsh'
-brew 'homebrew/boneyard/pyqt'
-brew 'homebrew/completions/gem-completion'
-brew 'homebrew/completions/maven-completion'
-brew 'homebrew/completions/open-completion'
-brew 'homebrew/completions/pip-completion'
-brew 'homebrew/completions/ruby-completion'
-brew 'homebrew/dupes/diffutils'
-brew 'homebrew/dupes/ed', args: ['with-default-names']
-brew 'homebrew/dupes/file-formula'
-brew 'homebrew/dupes/gpatch'
-brew 'homebrew/dupes/grep'
-brew 'homebrew/dupes/gzip'
-brew 'homebrew/dupes/less'
-brew 'homebrew/dupes/lsof'
-brew 'homebrew/dupes/m4'
-brew 'homebrew/dupes/make'
-brew 'homebrew/dupes/ncurses'
-brew 'homebrew/dupes/nano'
-brew 'homebrew/dupes/openssh'
-brew 'homebrew/dupes/rsync'
-brew 'homebrew/dupes/screen'
-brew 'homebrew/dupes/tcpdump'
-brew 'homebrew/dupes/units'
-brew 'homebrew/dupes/unzip'
-brew 'homebrew/emacs/cl-lib'
-brew 'homebrew/emacs/dash-emacs'
-brew 'homebrew/emacs/popup'
-brew 'homebrew/emacs/git-messenger'
-brew 'homebrew/emacs/git-modes'
-brew 'homebrew/emacs/inf-ruby'
-brew 'homebrew/emacs/homebrew-mode'
-brew 'homebrew/emacs/hydra-emacs'
-brew 'homebrew/emacs/json-reformat'
-brew 'homebrew/emacs/json-snatcher'
-brew 'homebrew/emacs/json-mode'
-brew 'homebrew/emacs/markdown-mode'
-brew 'homebrew/emacs/org-mode'
-brew 'homebrew/emacs/pandoc-mode'
-brew 'homebrew/emacs/yaml-mode'
-brew 'homebrew/fuse/ntfs-3g'
-brew 'homebrew/fuse/sshfs'
-brew 'homebrew/science/veclibfort'
-brew 'homebrew/science/arpack'
-brew 'homebrew/science/glpk'
-brew 'homebrew/science/hdf5'
-brew 'homebrew/science/metis'
-brew 'homebrew/science/qhull'
-brew 'homebrew/science/qrupdate'
-brew 'homebrew/science/suite-sparse'
-brew 'homebrew/x11/imake'
-brew 'homebrew/science/transfig'
-brew 'homebrew/science/octave'
-brew 'homebrew/science/r'
-brew 'homebrew/versions/perl518'
-brew 'homebrew/x11/xclip'
-brew 'jonof/kenutils/pngout'
-cask '1password'
+
+cask '1password' #, args: { appdir: '/Applications' }
 cask 'adobe-reader'
-cask 'amazon-cloud-drive'
-cask 'amazon-drive'
-cask 'appcleaner'
+# cask 'anaconda'
+# cask 'appcleaner'
 cask 'appfresh'
 cask 'apptrap'
 cask 'aquamacs'
+cask 'avast'
 cask 'backblaze'
 cask 'bartender'
+cask 'bbedit'
 cask 'bettertouchtool'
 cask 'betterzip'
 cask 'betterzipql'
-cask 'bibdesk'
-cask 'bittorrent-sync'
-cask 'bluestacks'
+# cask 'bibdesk'
+# cask 'bittorrent-sync'
 cask 'box-sync'
-cask 'caffeine'
+#cask 'caffeine'
 cask 'cakebrew'
 cask 'carbon-copy-cloner'
 cask 'carmaintenance'
@@ -276,27 +309,31 @@ cask 'cheatsheet'
 cask 'choosy'
 cask 'chrome-remote-desktop-host'
 cask 'chromium'
-cask 'clamxav'
+cask 'coconutBattery'
 cask 'controlplane'
 cask 'cord'
-cask 'crashplan'
+# cask 'crashplan'
 cask 'ctivo'
-cask 'disk-inventory-x'
+cask 'dash'
+cask 'dbeaver-enterprise'
+cask 'dbvisualizer'
+# cask 'disk-inventory-x'
 cask 'diskmaker-x'
 cask 'diskwave'
 cask 'dnscrypt'
+cask 'docker'
+cask 'docker-toolbox'
 cask 'dockertoolbox'
 cask 'dropbox'
 cask 'duplicate-annihilator'
-cask 'eclipse-java'
+# cask 'eclipse-java'
 cask 'emacs'
 cask 'evernote'
-cask 'eye-fi'
 cask 'filebot'
 cask 'filezilla'
 cask 'firefox'
 cask 'fitbit-connect'
-cask 'flash'
+# cask 'flash'
 cask 'flashlight'
 cask 'flickr-uploadr'
 cask 'flux'
@@ -304,14 +341,14 @@ cask 'ganttproject'
 cask 'geektool'
 cask 'gephi'
 cask 'gimp'
-cask 'github-desktop'
+# cask 'github-desktop'
 cask 'goodsync'
+cask 'google-backup-and-sync'
 cask 'google-chrome'
-cask 'google-drive'
 cask 'google-photos-backup'
 cask 'gpgtools'
 cask 'grandperspective'
-cask 'growl-fork'
+cask 'grammarly'
 cask 'growlnotify'
 cask 'growlvoice'
 cask 'handbrake'
@@ -319,123 +356,147 @@ cask 'handylock'
 cask 'ibettercharge'
 cask 'imageoptim'
 cask 'iterm2'
-cask 'jettison'
+cask 'jing'
+cask 'joinme'
 cask 'karabiner'
 cask 'keka'
+cask 'keybase'
 cask 'kindle'
+cask 'kite'
 cask 'lastpass'
+cask 'libdvdcss'
 cask 'libreoffice'
 cask 'logitech-control-center'
 cask 'logitech-myharmony'
 cask 'logitech-unifying'
 cask 'lyx'
 cask 'macdown'
+cask 'macfusion'
+cask 'macfusion', args: { appdir: '/Application' }
+cask 'mactex'
 cask 'macx-youtube-downloader'
+cask 'mailbox'
 cask 'makemkv'
 cask 'malwarebytes-anti-malware'
 cask 'marked'
 cask 'mendeley-desktop'
 cask 'metaz'
 cask 'microsoft-office'
-cask 'near-lock'
+cask 'mysqlworkbench'
 cask 'no-ip-duc'
+cask 'notebook'
 cask 'omnidisksweeper'
 cask 'omnifocus'
 cask 'onyx'
+cask 'osxfuse'
+cask 'oversight'
+cask 'p4merge'
 cask 'pacifist'
-cask 'picasa'
-cask 'plex-media-server'
+# cask 'picasa'
+cask 'podcastmenu'
+cask 'prey'
 cask 'pycharm'
+# cask 'pycharm-ce'
 cask 'qlcolorcode'
 cask 'qlmarkdown'
 cask 'qlprettypatch'
 cask 'qlstephen'
 cask 'quicklook-csv'
 cask 'quicklook-json'
-cask 'quicksilver'
-cask 'remote-desktop-connection'
-cask 'rstudio'
+# cask 'quicksilver'
+# cask 'rstudio'
 cask 'send-to-kindle'
+cask 'sequel-pro'
+cask 'shazzlemailclient'
 cask 'silverlight'
 cask 'skyfonts'
 cask 'skype'
 cask 'slack'
 cask 'slimbatterymonitor'
+cask 'snowflake-snowsql'
 cask 'sookasa'
 cask 'sourcetree'
 cask 'spectacle'
 cask 'spotdox'
+cask 'sshfs'
 cask 'steam'
-cask 'sublime'
+cask 'subler'
 cask 'sublime-text'
 cask 'suspicious-package'
-cask 'teamviewer'
-cask 'tether'
+# cask 'teamviewer'
+# cask 'tether'
 cask 'texshop'
 cask 'texstudio'
-cask 'textwrangler'
 cask 'the-unarchiver'
 cask 'thunderbird'
-cask 'tower'
+cask 'tonido'
+cask 'tonidosync'
+# cask 'tower'
 cask 'transmission'
 cask 'transmit'
 cask 'tresorit'
+cask 'tunnelblick'
 cask 'unison'
 cask 'virtualbox'
 cask 'vlc'
 cask 'webpquicklook'
 cask 'wireshark'
+cask 'xquartz'
+cask 'yujitach-menumeters'
 cask 'zotero'
-mas 'Microsoft OneNote (15.28)', id: 784801555
-mas 'AirBeam (2.2)', id: 442963716
-mas 'Twitter (4.2.4)', id: 409789998
-mas 'Tab for Google+ (3.2)', id: 449711125
-mas 'Video Converter (2.5.0)', id: 412700130
-mas 'McSolitaire (4.3)', id: 405728848
-mas 'Growl (2.1.3)', id: 467939042
-mas 'TweetDeck (3.9.889)', id: 485812721
-mas 'SMARTReporter (3.1.11)', id: 509148961
-mas 'Fantastic 4 In A Row Free (1.0.9)', id: 409248669
-mas 'Disk Diag (1.4)', id: 672206759
-mas 'Reeder (1.2)', id: 439845554
-mas 'Elsewhere (1.3)', id: 512485834
-mas 'CleanMyDrive 2 (2.1.3)', id: 523620159
-mas 'iMovie (10.1.3)', id: 408981434
-mas 'WhiteNoise (7.0)', id: 415139197
-mas 'OneDrive (17.3.6518)', id: 823766827
-mas 'Mint QuickView (2.0.1)', id: 533491939
-mas 'Install OS X El Capitan (1.7.28)', id: 1018109117
-mas 'DinosaurDots (1.5)', id: 980169201
-mas 'iPhoto (9.6.1)', id: 408981381
-mas 'NetSpot (1.3.418)', id: 514951692
-mas 'Fireplace (1.2)', id: 407719809
-mas 'Live Coloring Book (2.0)', id: 570169521
-mas 'Duplicate Cleaner For iPhoto (1.13)', id: 586862299
-mas 'DailyBible (1.0)', id: 407992094
-mas 'Microsoft Remote Desktop (8.0.27228)', id: 715768417
-mas 'DinosaurCombo (1.3.2)', id: 997591055
-mas 'FruitsPuzzles (1.2)', id: 946386240
-mas 'Prices Drop Monitor (4.5)', id: 473939551
-mas 'DeskConnect (1.2.2)', id: 642220194
-mas 'Textify Me (1.61)', id: 470453599
-mas 'UnPlugged (3.0)', id: 423123087
-mas 'Xcode (8.1)', id: 497799835
-mas 'Doodle Hangman Free (1.0.13)', id: 409366914
-mas 'ZooIsland (36.0.0)', id: 992143732
-mas 'GarageBand (6.0.5)', id: 408980954
-mas 'Kid's Activity Centre (1.2.2)', id: 644089060
-mas 'Color by Numbers - Animals - Free (1.6)', id: 529870855
-mas 'Pages (6.0.5)', id: 409201541
-mas 'Numbers (4.0.5)', id: 409203825
-mas 'PokerHD (1.1.1)', id: 408973905
-mas 'BlackjackHD (1.1.1)', id: 408974874
-mas 'Motion FX (1.1.4)', id: 449597246
-mas 'Terrific Tic Tac Toe Free (1.0.4)', id: 409380380
-mas 'Memory Clean (6.2)', id: 451444120
-mas 'SSH Tunnel Manager (2.1.4)', id: 424470626
-mas 'Keynote (7.0.5)', id: 409183694
-mas 'SyncTime (2.5)', id: 590386474
-mas '♡ Sudoku Daily (1.2)', id: 408895572
-mas 'WiFi Explorer (2.2)', id: 494803304
-mas 'Day One (2.1.3)', id: 1055511498
-mas 'Pocket (1.6.2)', id: 568494494
+
+#mas  442963716 # AirBeam
+mas 937984704 Amphetamine
+#mas 408974874 # BlackjackHD
+mas 523620159 # CleanMyDrive 2
+#mas 529870855 # Color by Numbers - Animals - Free
+#mas 407992094 # DailyBible
+mas 1055511498 # Day One
+mas 642220194 # DeskConnect
+#mas 997591055 # DinosaurCombo
+#mas 980169201 # DinosaurDots
+mas 672206759 # Disk Diag
+#mas 409366914 # Doodle Hangman Free
+mas 586862299 # Duplicate Cleaner For iPhoto
+#mas 512485834 # Elsewhere
+#mas 409248669 # Fantastic 4 In A Row Free
+#mas 407719809 # Fireplace
+#mas 946386240 # FruitsPuzzles
+#mas 408980954 # GarageBand
+mas 467939042 # Growl
+#mas 436979139 # iDisplay Lite
+mas 408981434 # iMovie
+mas 408981381 # iPhoto
+#mas install1 018109117 # OS X El Capitan
+mas 409183694 # Keynote
+#mas 644089060 # Kid's Activity Centre
+#mas 570169521 # Live Coloring Book
+#mas 405728848 # McSolitaire
+mas 451444120 # Memory Clean
+mas 784801555 # Microsoft OneNote
+mas 715768417 # Microsoft Remote Desktop
+mas 533491939 # Mint QuickView
+#mas 449597246 # Motion FX
+#mas 514951692 # NetSpot
+mas 409203825 # Numbers
+mas 823766827 # OneDrive
+mas 409201541 # Pages
+mas 568494494 # Pocket
+#mas 408973905 # PokerHD
+#mas 473939551 # Prices Drop Monitor
+mas 439845554 # Reeder
+mas 509148961 # SMARTReporter
+mas 424470626 # SSH Tunnel Manager
+#mas 590386474 # SyncTime
+#mas 449711125 # Tab for Google+
+#mas 409380380 # Terrific Tic Tac Toe Free
+#mas 470453599 # Textify Me
+mas 485812721 # TweetDeck
+mas 409789998 # Twitter
+mas 423123087 # UnPlugged
+#mas 412700130 # Video Converter
+mas 415139197 # WhiteNoise
+mas 494803304 # WiFi Explorer
+mas 497799835 # Xcode
+#mas 992143732 # ZooIsland
+#mas 408895572 # ♡ Sudoku Daily

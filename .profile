@@ -17,7 +17,7 @@ export LANG=en_US.UTF-8
 export DICTIONARY=en_US
 
 export NPM_PACKAGES="${HOME}/.npm-packages"
-export PATH="${NPM_PACKAGES}/${PATH:+:${PATH}}"
+export PATH="${NPM_PACKAGES}${PATH:+:${PATH}}"
 export MANPATH="${NPM_PACKAGES}/share/man${MANPATH:+:${MANPATH}}"
 
 # Set MANPATH so it includes users' private man if it exists

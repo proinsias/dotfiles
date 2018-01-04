@@ -19,10 +19,12 @@ mas install  642220194 # DeskConnect
 #mas install  980169201 # DinosaurDots
 mas install  672206759 # Disk Diag
 #mas install  409366914 # Doodle Hangman Free
+mas install 524373870  # Due
 mas install  586862299 # Duplicate Cleaner For iPhoto
 #mas install  512485834 # Elsewhere
 #mas install  409248669 # Fantastic 4 In A Row Free
 #mas install  407719809 # Fireplace
+mas install 671736912  # FruitJuice
 #mas install  946386240 # FruitsPuzzles
 #mas install  408980954 # GarageBand
 mas install  467939042 # Growl

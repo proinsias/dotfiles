@@ -1,16 +1,9 @@
+tap 'alexdavid/homebrew-tap'
 tap 'caskroom/cask', 'git@github.com:caskroom/homebrew-cask'
 tap 'caskroom/versions'
-#tap 'docmunch/pdftk'
-#tap 'gbeine/homebrew-java'
 tap 'homebrew/bundle'
 tap 'homebrew/command-not-found'
-#tap 'homebrew/emacs'
-#tap 'homebrew/fuse'
-#tap 'homebrew/science'
 tap 'homebrew/services'
-#tap 'homebrew/versions'
-#tap 'homebrew/homebrew-x11'
-#tap 'jonof/kenutils'
 
 cask 'java'
 cask 'osxfuse'
@@ -33,12 +26,14 @@ brew 'archey'
 brew 'arpack'
 brew 'aspell'
 brew 'autoconf'
-#brew 'autojump'  # fasd
 brew 'automake'
-#brew 'awscli'  # pyenv
-#brew 'aws-shell'  # pyenv
+brew 'awscli'
+brew 'aws-shell'
 brew 'bash'
+brew 'bash-completion'
 brew 'binutils'
+brew 'brew-cask-completion'
+brew 'bundler-completion'
 brew 'c-ares'
 brew 'cairo'
 brew 'cask'
@@ -55,11 +50,16 @@ brew 'cowsay'
 brew 'cscope'
 brew 'd-bus'
 brew 'daq'
-brew 'docmunch/pdftk/pdftk'
-brew 'dos2unix'
+brew 'diffutils'
 brew 'direnv'
 brew 'docker-clean'
+brew 'docker-completion'
+brew 'docker-compose-completion'
+brew 'docker-machine-completion'
+brew 'docmunch/pdftk/pdftk'
+brew 'dos2unix'
 brew 'ecj'
+brew 'ed'#, args: ['with-default-names']
 brew 'editorconfig'
 brew 'emacs', args: ['with-imagemagick', 'with-modules']
 brew 'epstool'
@@ -68,7 +68,9 @@ brew 'fasd'
 brew 'ffmpeg'
 brew 'fftw'
 brew 'figlet'
+brew 'file-formula'
 brew 'findutils' #, args: ['default-names']
+brew 'flake8'
 brew 'fontconfig'
 brew 'fortune'
 brew 'freetype'
@@ -79,17 +81,19 @@ brew 'gcc', args: ['with-jit', 'with-nls']
 brew 'gd'
 brew 'gdb'
 brew 'gdbm'
+brew 'gem-completion'
 brew 'geoip'
 brew 'gettext'
 brew 'ghostscript'
+brew 'gifsicle'
 brew 'git', args: ['with-brewed-curl', 'with-brewed-openssl', 'with-brewed-svn', 'with-gettext', 'with-pcre', 'with-persistent-https']
+brew 'git-branch-status'
 brew 'git-ftp'
 brew 'git-standup'
-brew 'glpk'
 brew 'gl2ps'
 brew 'glib'
+brew 'glpk'
 brew 'gmp'
-brew 'gpg-agent'
 brew 'gnu-getopt'
 brew 'gnu-indent' #, args: ['default-names']
 brew 'gnu-sed' #, args: ['default-names']
@@ -99,53 +103,16 @@ brew 'gnuplot', args: ['with-qt', 'with-x11']
 brew 'gnutls'
 brew 'go'
 brew 'gobject-introspection'
+brew 'gpatch'
+brew 'gpg-agent'
 brew 'graphicsmagick'
 brew 'graphviz'
+brew 'grep'#, args: ['with-default-names']
 brew 'gwt'
+brew 'gzip'
+brew 'hadolint'
 brew 'hadoop'
 brew 'hdf5'
-brew 'bash-completion'
-brew 'brew-cask-completion'
-brew 'bundler-completion'
-brew 'docker-completion'
-brew 'docker-compose-completion'
-brew 'docker-machine-completion'
-brew 'gem-completion'
-brew 'homesick-completion'
-brew 'launchctl-completion'
-# brew 'maven-completion'
-brew 'octave', args: ['with-gui']
-brew 'open-completion'
-brew 'pip-completion'
-brew 'qhull'
-brew 'qrupdate'
-brew 'ruby-completion'
-brew 'sonar-completion'
-brew 'stormssh-completion'
-brew 'suite-sparse'
-brew 'vagrant-completion'
-brew 'veclibfort'
-brew 'tmuxinator-completion'
-
-brew 'diffutils'
-brew 'ed'#, args: ['with-default-names']
-brew 'file-formula'
-brew 'gpatch'
-brew 'grep'#, args: ['with-default-names']
-brew 'gzip'
-brew 'httpie'
-brew 'less'
-brew 'lsof'
-brew 'm4'
-brew 'make'
-brew 'nano'
-brew 'rsync'
-brew 'screen'
-brew 'tcpdump'
-brew 'units'
-brew 'unzip'
-brew 'homebrew/science/r'
-brew 'homebrew/science/suite-sparse421'
 brew 'homebrew/emacs/dash-emacs'
 brew 'homebrew/emacs/git-messenger'
 brew 'homebrew/emacs/git-modes'
@@ -164,8 +131,11 @@ brew 'homebrew/emacs/yaml-mode'
 brew 'homebrew/fuse/ntfs-3g'
 brew 'homebrew/fuse/sshfs'
 brew 'homebrew/gui/gsmartcontrol'
-brew 'homebrew/versions/perl518'
 brew 'homebrew/homebrew-x11/gv'
+brew 'homebrew/science/r'
+brew 'homebrew/science/suite-sparse421'
+brew 'homebrew/versions/perl518'
+brew 'homesick-completion'
 brew 'httpie'
 brew 'hub'
 brew 'hunspell'
@@ -173,7 +143,6 @@ brew 'icdiff'
 brew 'icu4c'
 brew 'imagemagick'
 brew 'isl'
-brew 'gifsicle'
 brew 'jbig2dec'
 brew 'jenv'
 brew 'jhead'
@@ -181,9 +150,11 @@ brew 'jonof/kenutils/pngout'
 brew 'jpeg'
 brew 'jpegoptim'
 brew 'jq'
+brew 'jsonlint'
 brew 'keychain'
 brew 'lame'
-# brew 'lastpass-cli', args: ['with-doc']
+brew 'launchctl-completion'
+brew 'less'
 brew 'libdnet'
 brew 'libdvdcss'
 brew 'libffi'
@@ -198,31 +169,36 @@ brew 'libtool'
 brew 'libvo-aacenc'
 brew 'libyaml'
 brew 'little-cms2'
+brew 'lsof'
 brew 'lua'
 brew 'luajit'
 brew 'lynx'
 brew 'lzip'
+brew 'm4'
 brew 'mackup'
 brew 'macvim'  #, args: ['with-override-system-vim']
+brew 'make'
 brew 'makedepend'
 brew 'mas'
-# brew 'maven'
-# brew 'mercurial'
 brew 'mkdocs'
 brew 'mongodb', args: ['with-openssl']
 brew 'moreutils'
 brew 'mpfr'
 brew 'mysql-connector-c'
+brew 'nano'
 brew 'nettle'
 brew 'nmap'
 brew 'node'
+brew 'octave', args: ['with-gui']
+brew 'open-completion'
 brew 'openjpeg'
-brew 'openssl'
 brew 'optipng'
 brew 'pandoc'
 brew 'pandoc-citeproc'
 brew 'pcre'
 # brew 'pinentry-mac' # Use GPG Suite instead.
+brew 'pipenv'
+brew 'pip-completion'
 brew 'pixman'
 brew 'pkg-config'
 brew 'plotutils'
@@ -233,6 +209,7 @@ brew 'postgresql'
 brew 'pstoedit'
 brew 'pv'
 brew 'pwgen'
+brew 'pycodestyle'
 brew 'pyenv'
 brew 'pyenv-ccache'
 brew 'pyenv-pip-migrate'
@@ -240,33 +217,49 @@ brew 'pyenv-virtualenv'
 brew 'pyenv-which-ext'
 brew 'pyqt'
 brew 'python'
+brew 'qhull'
+brew 'qrupdate'
 brew 'qscintilla2'
 brew 'qt'
 brew 'rbenv'
 brew 'readline'
 brew 'rename'
+brew 'restview'
+brew 'rst-lint'
+brew 'rsync'
 brew 'ruby-build'
+brew 'ruby-completion'
 brew 'scala'
+brew 'screen'
 brew 'screenfetch'
 brew 'shellcheck'
 brew 'sip'
 brew 'snort'
+brew 'sonar-completion'
 brew 'sqlite'
 brew 'ssh-copy-id'
+brew 'stormssh-completion'
 brew 'subversion'
+brew 'suite-sparse'
 brew 'szip'
 brew 'tbb'
+brew 'tcpdump'
 brew 'tesseract'
 brew 'texi2html'
 brew 'texinfo'
-#brew 'thefuck'  # pyenv
+brew 'thefuck'
 brew 'the_silver_searcher'
 brew 'tig'
 brew 'tivodecode'
 brew 'tmux'
+brew 'tmuxinator-completion'
 brew 'tomcat'
 brew 'trash'
 brew 'tree'
+brew 'units'
+brew 'unzip'
+brew 'vagrant-completion'
+brew 'veclibfort'
 brew 'vim'  # , args: ['override-system-vi']
 brew 'vitorgalvao/tiny-scripts/cask-repair'
 brew 'watch'
@@ -286,22 +279,16 @@ brew 'zsh'
 
 cask '1password' #, args: { appdir: '/Applications' }
 cask 'adobe-reader'
-# cask 'anaconda'
-# cask 'appcleaner'
 cask 'appfresh'
 cask 'apptrap'
 cask 'aquamacs'
-cask 'avast'
+cask 'avast-security'
 cask 'backblaze'
 cask 'bartender'
 cask 'bbedit'
 cask 'bettertouchtool'
 cask 'betterzip'
-cask 'betterzipql'
-# cask 'bibdesk'
-# cask 'bittorrent-sync'
 cask 'box-sync'
-#cask 'caffeine'
 cask 'cakebrew'
 cask 'carbon-copy-cloner'
 cask 'carmaintenance'
@@ -312,12 +299,10 @@ cask 'chromium'
 cask 'coconutBattery'
 cask 'controlplane'
 cask 'cord'
-# cask 'crashplan'
 cask 'ctivo'
 cask 'dash'
 cask 'dbeaver-enterprise'
 cask 'dbvisualizer'
-# cask 'disk-inventory-x'
 cask 'diskmaker-x'
 cask 'diskwave'
 cask 'dnscrypt'
@@ -326,14 +311,12 @@ cask 'docker-toolbox'
 cask 'dockertoolbox'
 cask 'dropbox'
 cask 'duplicate-annihilator'
-# cask 'eclipse-java'
 cask 'emacs'
 cask 'evernote'
 cask 'filebot'
 cask 'filezilla'
 cask 'firefox'
 cask 'fitbit-connect'
-# cask 'flash'
 cask 'flashlight'
 cask 'flickr-uploadr'
 cask 'flux'
@@ -341,14 +324,13 @@ cask 'ganttproject'
 cask 'geektool'
 cask 'gephi'
 cask 'gimp'
-# cask 'github-desktop'
 cask 'goodsync'
 cask 'google-backup-and-sync'
 cask 'google-chrome'
 cask 'google-photos-backup'
-cask 'gpgtools'
-cask 'grandperspective'
+cask 'gpg-suite'
 cask 'grammarly'
+cask 'grandperspective'
 cask 'growlnotify'
 cask 'growlvoice'
 cask 'handbrake'
@@ -388,23 +370,19 @@ cask 'notebook'
 cask 'omnidisksweeper'
 cask 'omnifocus'
 cask 'onyx'
-cask 'osxfuse'
 cask 'oversight'
 cask 'p4merge'
 cask 'pacifist'
-# cask 'picasa'
 cask 'podcastmenu'
 cask 'prey'
 cask 'pycharm'
-# cask 'pycharm-ce'
 cask 'qlcolorcode'
 cask 'qlmarkdown'
 cask 'qlprettypatch'
+cask 'qlrest'  # Needs python dependencies installed in system python - https://github.com/cluther/qlrest.
 cask 'qlstephen'
 cask 'quicklook-csv'
 cask 'quicklook-json'
-# cask 'quicksilver'
-# cask 'rstudio'
 cask 'send-to-kindle'
 cask 'sequel-pro'
 cask 'shazzlemailclient'
@@ -423,15 +401,12 @@ cask 'steam'
 cask 'subler'
 cask 'sublime-text'
 cask 'suspicious-package'
-# cask 'teamviewer'
-# cask 'tether'
 cask 'texshop'
 cask 'texstudio'
 cask 'the-unarchiver'
 cask 'thunderbird'
 cask 'tonido'
 cask 'tonidosync'
-# cask 'tower'
 cask 'transmission'
 cask 'transmit'
 cask 'tresorit'
@@ -441,62 +416,34 @@ cask 'virtualbox'
 cask 'vlc'
 cask 'webpquicklook'
 cask 'wireshark'
-cask 'xquartz'
 cask 'yujitach-menumeters'
 cask 'zotero'
 
-#mas  442963716 # AirBeam
-mas 937984704 Amphetamine
-#mas 408974874 # BlackjackHD
-mas 523620159 # CleanMyDrive 2
-#mas 529870855 # Color by Numbers - Animals - Free
-#mas 407992094 # DailyBible
+
 mas 1055511498 # Day One
-mas 642220194 # DeskConnect
-#mas 997591055 # DinosaurCombo
-#mas 980169201 # DinosaurDots
-mas 672206759 # Disk Diag
-#mas 409366914 # Doodle Hangman Free
-mas 586862299 # Duplicate Cleaner For iPhoto
-#mas 512485834 # Elsewhere
-#mas 409248669 # Fantastic 4 In A Row Free
-#mas 407719809 # Fireplace
-#mas 946386240 # FruitsPuzzles
-#mas 408980954 # GarageBand
-mas 467939042 # Growl
-#mas 436979139 # iDisplay Lite
-mas 408981434 # iMovie
 mas 408981381 # iPhoto
-#mas install1 018109117 # OS X El Capitan
+mas 408981434 # iMovie
 mas 409183694 # Keynote
-#mas 644089060 # Kid's Activity Centre
-#mas 570169521 # Live Coloring Book
-#mas 405728848 # McSolitaire
-mas 451444120 # Memory Clean
-mas 784801555 # Microsoft OneNote
-mas 715768417 # Microsoft Remote Desktop
-mas 533491939 # Mint QuickView
-#mas 449597246 # Motion FX
-#mas 514951692 # NetSpot
-mas 409203825 # Numbers
-mas 823766827 # OneDrive
 mas 409201541 # Pages
-mas 568494494 # Pocket
-#mas 408973905 # PokerHD
-#mas 473939551 # Prices Drop Monitor
-mas 439845554 # Reeder
-mas 509148961 # SMARTReporter
-mas 424470626 # SSH Tunnel Manager
-#mas 590386474 # SyncTime
-#mas 449711125 # Tab for Google+
-#mas 409380380 # Terrific Tic Tac Toe Free
-#mas 470453599 # Textify Me
-mas 485812721 # TweetDeck
+mas 409203825 # Numbers
 mas 409789998 # Twitter
-mas 423123087 # UnPlugged
-#mas 412700130 # Video Converter
 mas 415139197 # WhiteNoise
+mas 423123087 # UnPlugged
+mas 424470626 # SSH Tunnel Manager
+mas 439845554 # Reeder
+mas 451444120 # Memory Clean
+mas 467939042 # Growl
+mas 485812721 # TweetDeck
 mas 494803304 # WiFi Explorer
 mas 497799835 # Xcode
-#mas 992143732 # ZooIsland
-#mas 408895572 # ♡ Sudoku Daily
+mas 509148961 # SMARTReporter
+mas 523620159 # CleanMyDrive 2
+mas 533491939 # Mint QuickView
+mas 568494494 # Pocket
+mas 586862299 # Duplicate Cleaner For iPhoto
+mas 642220194 # DeskConnect
+mas 672206759 # Disk Diag
+mas 715768417 # Microsoft Remote Desktop
+mas 784801555 # Microsoft OneNote
+mas 823766827 # OneDrive
+mas 937984704 Amphetamine

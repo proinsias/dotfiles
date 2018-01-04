@@ -46,6 +46,8 @@ PreCommit:
     quiet: false
     include: '**/*.sh'
     required_executable: './scripts/overcommit/bash_syntax.sh'
+  BrokenSymlinks:
+    enabled: true
   BundleAudit:
     enabled: true
   BundleCheck:
@@ -74,6 +76,8 @@ PreCommit:
   ForbiddenBranches:
     enabled: true
   HardTabs:
+    enabled: true
+  Hadolint:
     enabled: true
   HtmlHint:
     enabled: true
@@ -136,6 +140,8 @@ PreCommit:
     exclude:
       - 'jupyter/jupyter_notebook_config.py'
   Reek:
+    enabled: true
+  RstLint:
     enabled: true
   RuboCop:
     enabled: true
@@ -201,6 +207,8 @@ CommitMsg:
 PostCheckout:
   BundleInstall:
     enabled: true
+  IndexTags:
+    enabled: true
   SubmoduleStatus:
     enabled: true
     quiet: false
@@ -220,6 +228,8 @@ PostCommit:
 PostMerge:
   BundleInstall:
     enabled: true
+  IndexTags:
+    enabled: true
   SubmoduleStatus:
     enabled: true
     quiet: false
@@ -227,6 +237,8 @@ PostMerge:
 
 PostRewrite:
   BundleInstall:
+    enabled: true
+  IndexTags:
     enabled: true
   SubmoduleStatus:
     enabled: true

@@ -157,11 +157,12 @@
     required = true
 [filter "lfs"]
   # For Git-LFS
-    clean = git-lfs clean %f
-    smudge = git-lfs smudge %f
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+  	process = git-lfs filter-process
     required = true
 [grep]
-  lineNumber = true
+    lineNumber = true
 [help]
     # Automatically correct and execute mistyped commands
     autocorrect = 20 # 2 seconds
@@ -172,6 +173,8 @@
     abbrevCommit = true
     # Automatically --follow when given a single path
     follow = true
+[lfs]
+	  pruneverifyremotealways = true
 [merge]
     # Include summaries of merged commits in newly created merge commit messages
     log = true # synonym for 20

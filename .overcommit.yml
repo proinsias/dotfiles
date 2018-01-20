@@ -207,6 +207,8 @@ CommitMsg:
 PostCheckout:
   BundleInstall:
     enabled: true
+  GitLfs:
+    enabled: true
   IndexTags:
     enabled: true
   SubmoduleStatus:
@@ -220,6 +222,8 @@ PostCommit:
   GitGuilt:
     enabled: true
     requires_files: false
+  GitLfs:
+    enabled: true
   SubmoduleStatus:
     enabled: true
     quiet: false
@@ -227,6 +231,8 @@ PostCommit:
 
 PostMerge:
   BundleInstall:
+    enabled: true
+  GitLfs:
     enabled: true
   IndexTags:
     enabled: true
@@ -246,6 +252,8 @@ PostRewrite:
     recursive: true
 
 PrePush:
+  GitLfs:
+    enabled: true
   ProtectedBranches:
     enabled: true
 

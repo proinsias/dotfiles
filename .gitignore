@@ -406,7 +406,7 @@ fabric.properties
 .settings
 bin/
 !bin/*.sh  # Include scripts!
-doc
+#doc
 .metadata
 tmp/
 *.tmp

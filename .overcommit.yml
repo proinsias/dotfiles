@@ -45,7 +45,7 @@ PreCommit:
     enabled: true
     quiet: false
     include: '**/*.sh'
-    required_executable: './scripts/overcommit/bash_syntax.sh'
+    required_executable: 'bash-syntax'
   BrokenSymlinks:
     enabled: true
   BundleAudit:
@@ -59,7 +59,7 @@ PreCommit:
   CopyrightYear:
     enabled: true
     quiet: false
-    required_executable: './scripts/overcommit/copyright_year.sh'
+    required_executable: 'copyright-year'
   CssLint:
     enabled: true
   Eslint:
@@ -67,14 +67,14 @@ PreCommit:
   ExecutePermissions:
     enabled: true
     exclude:
-      - 'scripts/overcommit/*.sh'
+      - 'ci/*.sh'
   FixMe:
     enabled: true
     exclude:
       - 'notebooks/*.ipynb'
       - 'notebooks/*/*.ipynb'
   ForbiddenBranches:
-    enabled: true
+    enabled: false
   HardTabs:
     enabled: true
   Hadolint:
@@ -98,8 +98,6 @@ PreCommit:
   #   license_file: 'LICENSE'
   #   include: '**/*.py'
   # Requires overcommit have access to git version 2.10 or higher.
-  # LineEndings:
-  #   enabled: true
   LineEndings:
     enabled: true
   LocalPathsInGemfile:
@@ -160,10 +158,10 @@ PreCommit:
       - '--shell=bash'
   Sqlint:
     enabled: true
-  # ToDos:
-  #   enabled: false
-  #   quiet: false
-  #   required_executable: './scripts/overcommit/todos.sh'
+  ToDos:
+    enabled: false
+    quiet: false
+    required_executable: 'check-todos'
   TrailingWhitespace:
     enabled: true
   TravisLint:
@@ -199,7 +197,7 @@ CommitMsg:
     enabled: true
     max_subject_width: 50
   MessageFormat:
-    enabled: true
+    enabled: false
     pattern: '\[#(\d+)\](.+)'
     expected_pattern_message: '[#<Issue Id>] <Commit Message Description>'
     sample_message: '[#1234] Refactored Onboarding flow'
@@ -265,4 +263,4 @@ PreReceive:
   FreeSpace:
     enabled: true
     quiet: false
-    required_executable: './scripts/overcommit/freespace.sh'
+    required_executable: 'check-freespace'

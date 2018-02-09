@@ -10,8 +10,8 @@ cask 'osxfuse'
 cask 'xquartz'
 
 brew 'openssl'
-brew 'openssh', args: ['with-brewed-openssl', 'with-keychain-support']
-brew 'curl', args: ['with-ssl', 'with-libssh2']
+brew 'openssh'
+brew 'curl', args: ['with-openssl', 'with-libssh2']
 brew 'svn'
 brew 'parallel'  # Install before moreutils that also different `parallel` command.
 
@@ -61,7 +61,7 @@ brew 'dos2unix'
 brew 'ecj'
 brew 'ed'#, args: ['with-default-names']
 brew 'editorconfig'
-brew 'emacs', args: ['with-imagemagick', 'with-modules']
+brew 'emacs', args: ['with-cocoa', 'with-ctags', 'with-modules']
 brew 'epstool'
 brew 'faac'
 brew 'fasd'
@@ -86,7 +86,7 @@ brew 'geoip'
 brew 'gettext'
 brew 'ghostscript'
 brew 'gifsicle'
-brew 'git', args: ['with-brewed-curl', 'with-brewed-openssl', 'with-brewed-svn', 'with-gettext', 'with-pcre', 'with-persistent-https']
+brew 'git', args: ['with-curl', 'with-gettext', 'with-openssl', 'with-pcre', 'with-persistent-https', 'with-subversion']
 brew 'git-branch-status'
 brew 'git-ftp'
 brew 'git-lfs'

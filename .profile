@@ -203,10 +203,9 @@ case $(uname -s) in
 esac
 
 # added by Snowflake SnowSQL installer v1.0
-export PATH="/Applications/SnowSQL.app/Contents/MacOS"
+export PATH="/Applications/SnowSQL.app/Contents/MacOS${PATH:+:${PATH}}"
 
 # Go Lang
-
 export GOPATH="${HOME}/golang"
 export GOROOT=/usr/local/opt/go/libexec
 export PATH="${GOPATH}/bin${PATH:+:${PATH}}"

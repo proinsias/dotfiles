@@ -583,3 +583,4 @@ ENV/
 # Spark
 spark-warehouse/
 
+.pytest_cache

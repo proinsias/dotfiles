@@ -225,7 +225,6 @@ alias less='less -r'                          # raw control characters
 alias more='less'
 alias whence='type -a'                        # where, of a sort
 
-
 case $(guname -s) in
     --"Linux" )
         alias top='top -o %CPU'

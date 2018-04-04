@@ -167,3 +167,12 @@ errcho(){
     # Redirect output to stderr rather than stdout
     >&2 echo $@;
 }
+
+# Keychain
+# From https://gist.github.com/bmhatfield/f613c10e360b4f27033761bbee4404fd
+getpassword(){
+    security find-generic-password -a ${USER} -D "environment variable" -s "${1}" -w
+}
+setpassword(){
+    security add-generic-password -U -a ${USER} -D "environment variable" -s "${1}" -w "${2}"
+}

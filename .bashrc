@@ -261,21 +261,21 @@ if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh"; t
   activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
 fi
 
-### A utility for sending notifications, on demand and when commands finish.
-### https://github.com/dschep/ntfy/
-# if ! type ntfy > /dev/null 2>&1; then
-#     if test $(uname -n) != firefly.local > /dev/null 2>&1; then
-#       echo Installing ntfy...
-#       PYENV_VERSION=system pip install ntfy
-#     else
-#       echo Check if ntfy installation works!!!
-#     fi
-# fi
-#if type ntfy > /dev/null 2>&1; then
-#  eval "$(ntfy shell-integration --foreground-too)"
-#  export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld "\
-#"psql screen tmux vim"
-#fi
+# A utility for sending notifications, on demand and when commands finish.
+# https://github.com/dschep/ntfy/
+if ! type ntfy > /dev/null 2>&1; then
+    if test $(uname -n) != firefly.local > /dev/null 2>&1; then
+      echo Installing ntfy...
+      PYENV_VERSION=system pip install ntfy[pid,emoji,slack]  # TODO: homebrew?
+    else
+      echo Check if ntfy installation works!!!
+    fi
+fi
+ if type ntfy > /dev/null 2>&1; then
+  eval "$(ntfy shell-integration --foreground-too)"
+  export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld "\
+"psql screen tmux vim"
+fi
 
 ### http://direnv.net/
 if ! type direnv > /dev/null 2>&1; then

@@ -67,6 +67,7 @@ PreCommit:
   ExecutePermissions:
     enabled: true
     exclude:
+      - 'bin/**/*'
       - 'ci/*.sh'
   FixMe:
     enabled: true
@@ -93,10 +94,10 @@ PreCommit:
     enabled: true
   JsonSyntax:
     enabled: true
-  # LicenseHeader:
-  #   enabled: true
-  #   license_file: 'LICENSE'
-  #   include: '**/*.py'
+  LicenseHeader:
+    enabled: false
+    license_file: 'LICENSE'
+    include: '**/*.py'
   # Requires overcommit have access to git version 2.10 or higher.
   LineEndings:
     enabled: true
@@ -117,10 +118,10 @@ PreCommit:
       - '--verbose'
     exclude:
       - 'jupyter/jupyter_notebook_config.py'
-  # Pyflakes:
-  #   enabled: true
+  Pyflakes:
+    enabled: false
   Pylint:
-    enabled: true
+    enabled: false
     flags:
       - '--max-line-length=120'
       - '--msg-template="{path}:{line}:{C}: {msg} ({symbol})"'
@@ -157,7 +158,7 @@ PreCommit:
       - '--external-sources'
       - '--shell=bash'
   Sqlint:
-    enabled: true
+    enabled: false
   ToDos:
     enabled: false
     quiet: false

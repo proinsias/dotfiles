@@ -1,0 +1,91 @@
+---
+- hosts: all
+
+  vars_files:
+      - vars/homebrew.yml  # geerlingguy.homebrew
+      - vars/mas.yml  # geerlingguy.mas
+      - vars/osx-defaults  # lafarer.osx-defaults
+      - vars/pip.yml  # geerlingguy.pip
+      - vars/ruby.yml  # geerlingguy.ruby
+
+  vars:
+    ComputerName: "discovery"  # osx-computername # FIXME: Set per computer.
+    system:
+      ui:
+        # By default the macOS save/print dialog opens in a
+        # simplified version, enable to show the full dialog
+        # by default.
+        expand_save_panel: yes
+        expand_print_panel: yes
+        # macOS ommits common file extensions by default
+        show_all_file_extensions: yes
+        # Open directory if you drag a file/folder onto it.
+        enable_springloading_directories: yes
+        springloading_directories_delay: 2
+        # FIXME: Finish https://github.com/kinglouie/ansible-role-macos/blob/master/defaults/main.yml
+
+
+  roles:
+    # FIXME: Put macos_power_settings in var file?
+    - {role: appian.macos-power,
+       become: yes,
+       macos_power_settings: [
+         {cmd: computersleep, desired_value: 'Never'},
+         {cmd: displaysleep, desired_value: 'after 15 minutes'},
+         {cmd: harddisksleep, desired_value: 'Never'},
+         {cmd: restartfreeze, desired_value: 'Off'},
+         {cmd: wakeonnetworkaccess, desired_value: 'On'},
+       ]
+    }
+    - geerlingguy.homebrew
+    - geerlingguy.mas
+    - geerlingguy.nodejs
+    - geerlingguy.pip
+    - geerlingguy.ruby
+    - kinglouie.macos
+    - lafarer.osx-computername
+    - lafarer.osx-defaults
+
+  tasks:
+
+
+# FIXME: Use roles and separate files to setup mac/ubuntu/centos machines.
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html
+# Or maybe different things via ansible galaxy?
+# See
+# https://github.com/lafarer/ansible-role-osx-defaults/blob/18072c8e68afb2e2244825ad1a6f42affd75f1ed/tasks/main.yml
+
+# FIXME: Can use same tag on multiple tasks to group tasks.
+
+# FIXME: Can use prompts
+
+# FIXME:
+# ansible-role-pip
+# ansible-role-dotfiles
+# https://github.com/danbohea/ansible-role-rbenv
+# https://github.com/fubarhouse/ansible-role-macdock
+# https://github.com/danbohea/ansible-role-macos-dock
+# https://galaxy.ansible.com/danbohea/flux - flux configuration?
+# https://galaxy.ansible.com/shashikant86/ios-dev
+# https://galaxy.ansible.com/drew-kun/macos_terminal
+# https://galaxy.ansible.com/mhalano/dropbox
+# https://galaxy.ansible.com/bjoernalbers/sysctl
+#https://github.com/juju4/ansible-harden-darwin
+#https://github.com/feffi/ansible-macos-softwareupdate
+#https://github.com/dotstrap/ansible-xcode
+#https://github.com/ansible/ansible-modules-extras/blob/devel/system/osx_defaults.py
+#
+#https://github.com/mego22/ansible-role-osx-settings
+#https://github.com/lafarer/ansible-role-osx-jenv
+#https://github.com/fubarhouse/ansible-role-macfonts
+#https://github.com/0x4e3/osx-bootstrap-defaults
+#https://github.com/osxstrap/ansible-osx-user-picture
+#https://github.com/osxstrap/ansible-osx-software-update
+#https://github.com/feffi/ansible-macos-git-repos
+#https://github.com/feffi/ansible-macos-timemachine
+#https://github.com/feffi/ansible-macos-standby
+#https://github.com/openstack/ansible-hardening
+
+# FIXME:
+# https://stackoverflow.com/questions/25230376/how-to-automatically-install-ansible-galaxy-roles
+# When creating galaxy requirements, specify hash so they are pinned!

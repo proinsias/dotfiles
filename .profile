@@ -106,22 +106,22 @@ fi
 #  eval "$(jenv init -)";
 #fi
 
-### https://github.com/yyuu/pyenv
-if ! type pyenv > /dev/null 2>&1 ; then
-  echo Installing pyenv...
-  brew install pyenv
-fi
-if type pyenv > /dev/null 2>&1 ; then
-  eval "$(pyenv init -)";
-fi
+##### https://github.com/yyuu/pyenv
+# if ! type pyenv > /dev/null 2>&1 ; then
+#   echo Installing pyenv...
+#   brew install pyenv
+# fi
+# if type pyenv > /dev/null 2>&1 ; then
+#   eval "$(pyenv init -)";
+# fi
 
-if ! pyenv virtualenv-init - > /dev/null 2>&1 ; then
-  echo Installing pyenv-virtualenv...
-  brew install pyenv-virtualenv
-fi
-if pyenv virtualenv-init - > /dev/null 2>&1 ; then
-  eval "$(pyenv virtualenv-init -)";
-fi
+# if ! pyenv virtualenv-init - > /dev/null 2>&1 ; then
+#   echo Installing pyenv-virtualenv...
+#   brew install pyenv-virtualenv
+# fi
+# if pyenv virtualenv-init - > /dev/null 2>&1 ; then
+#   eval "$(pyenv virtualenv-init -)";
+# fi
 
 # Add homebrew's GNU coreutils (ls, cat, etc.) to PATH, etc. - see
 #http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
@@ -164,12 +164,12 @@ fi
 [[ "$-" != *i* ]] && return
 
 # # istheinternetonfire.com
-# if ping -c 1 google.com > /dev/null 2>&1 ; then
-#     echo "Is the internet on fire?:"
-#     dig +short -t txt istheinternetonfire.com
-# else
-#   echo "No internet connectivity..."
-# fi
+if ping -c 1 google.com > /dev/null 2>&1 ; then
+    echo "Is the internet on fire?:"
+    dig +short -t txt istheinternetonfire.com
+else
+  echo "No internet connectivity..."
+fi
 
 # Ccache
 export PATH="/usr/local/opt/ccache/libexec${PATH:+:${PATH}}"
@@ -210,3 +210,6 @@ export GOPATH="${HOME}/golang"
 export GOROOT=/usr/local/opt/go/libexec
 export PATH="${GOPATH}/bin${PATH:+:${PATH}}"
 export PATH="${GOROOT}/bin${PATH:+:${PATH}}"
+
+# p4merge
+export PATH="/Applications/p4merge.app/Contents//MacOS${PATH:+:${PATH}}"

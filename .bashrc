@@ -112,6 +112,8 @@ if test -f ~/bin/npm-completion.sh > /dev/null 2>&1; then
     source ~/bin/npm-completion.sh
 fi
 
+eval "$(pipenv --completion)"
+
 # History Options
 #
 # Don't put duplicate lines in the history.
@@ -248,7 +250,7 @@ fi
 ## argcomplete
 if ! activate-global-python-argcomplete -h > /dev/null 2>&1 ; then
   echo Installing argcomplete...
-  PYENV_VERSION=system pip install argcomplete
+  pip3 install argcomplete
 fi
 
 ### tab completion for conda
@@ -266,7 +268,7 @@ fi
 if ! type ntfy > /dev/null 2>&1; then
     if test $(uname -n) != firefly.local > /dev/null 2>&1; then
       echo Installing ntfy...
-      PYENV_VERSION=system pip install ntfy[pid,emoji,slack]  # TODO: homebrew?
+      pip3 install ntfy[pid,emoji,slack]  # TODO: homebrew?
     else
       echo Check if ntfy installation works!!!
     fi
@@ -315,6 +317,9 @@ fi
 
 # "Magnificent app which corrects your previous console command"
 eval $(thefuck --alias)
+
+# Only load Liquid Prompt in interactive shells, not from a script or from scp
+# [[ $- = *i* ]] && source ~/Documents/GitHub/liquidprompt/liquidprompt
 
 ### motd
 echo "* bash"

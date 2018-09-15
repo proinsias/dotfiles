@@ -195,10 +195,18 @@ case $(uname -s) in
           archey -p
         fi
 
-        export JAVA_HOME="$(/usr/libexec/java_home)"
+#         export JAVA_HOME="$(/usr/libexec/java_home)"
+        # Need Java8 not Java9 for Spark.
+        export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/"
         export SCALA_HOME="/usr/local/opt/scala/idea"  # To use with IntelliJ.
         ;;
 esac
 
 # added by Snowflake SnowSQL installer v1.0
 export PATH="/Applications/SnowSQL.app/Contents/MacOS${PATH:+:${PATH}}"
+
+# Go Lang
+export GOPATH="${HOME}/golang"
+export GOROOT=/usr/local/opt/go/libexec
+export PATH="${GOPATH}/bin${PATH:+:${PATH}}"
+export PATH="${GOROOT}/bin${PATH:+:${PATH}}"

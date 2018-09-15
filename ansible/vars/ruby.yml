@@ -1,0 +1,19 @@
+---
+ruby_install_bundler: True
+ruby_install_gems:
+  - bundle-audit
+  - bundler # http://bundler.io/
+  # - copyright-header  # https://github.com/osterman/copyright-header
+  - danger
+  - html-proofer
+  - image_optim
+  - image_optim_pack
+  - jekyll
+  - json
+  - overcommit # https://github.com/brigade/overcommit
+  - rspec
+  - rubocop  # https://github.com/bbatsov/rubocop
+  - sqlint
+  - terminal-notifier
+  - travis
+  - w3c_validators

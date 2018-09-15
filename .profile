@@ -106,23 +106,6 @@ fi
 #  eval "$(jenv init -)";
 #fi
 
-##### https://github.com/yyuu/pyenv
-# if ! type pyenv > /dev/null 2>&1 ; then
-#   echo Installing pyenv...
-#   brew install pyenv
-# fi
-# if type pyenv > /dev/null 2>&1 ; then
-#   eval "$(pyenv init -)";
-# fi
-
-# if ! pyenv virtualenv-init - > /dev/null 2>&1 ; then
-#   echo Installing pyenv-virtualenv...
-#   brew install pyenv-virtualenv
-# fi
-# if pyenv virtualenv-init - > /dev/null 2>&1 ; then
-#   eval "$(pyenv virtualenv-init -)";
-# fi
-
 # Add homebrew's GNU coreutils (ls, cat, etc.) to PATH, etc. - see
 #http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
 # May cause issues - e.g., archey doesn't work with 'gawk'

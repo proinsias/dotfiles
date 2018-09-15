@@ -106,18 +106,23 @@ PreCommit:
   Mdl:
     enabled: true
   Pycodestyle:
+    on_fail: 'warn'
     enabled: true
     flags:
+      # E703 statement ends with a semicolon. Need for matplotlib in Jupyter notebooks.
+      - '--ignore=E211,E231,E703,W291,W293'
       - '--max-line-length=120'
       - '--show-source'
+    exclude:
+      - 'jupyter/jupyter_notebook_config.py'
+      - 'setup.py'
   Pydocstyle:
     enabled: true
     flags:
       - '--explain'
+      - '--ignore=D100,D103,D203'
       - '--source'
       - '--verbose'
-    exclude:
-      - 'jupyter/jupyter_notebook_config.py'
   Pyflakes:
     enabled: false
   Pylint:
@@ -129,15 +134,20 @@ PreCommit:
       - '--persistent=n'
     exclude:
       - 'jupyter/jupyter_notebook_config.py'
+      - 'setup.py'
   PythonFlake8:
     enabled: true
     flags:
       - '--doctests'
+      - '--exclude =.git,__pycache__'
+      - '--ignore=F401,F403,F405'
       - '--max-complexity=10'
       - '--max-line-length=120'
+      - '--select=E10,E11,E9,F4,F6,F7,F8'
       - '--show-source'
     exclude:
       - 'jupyter/jupyter_notebook_config.py'
+      - 'setup.py'
   Reek:
     enabled: true
   RstLint:
@@ -147,6 +157,9 @@ PreCommit:
   RubyLint:
     enabled: true
     exclude: '**/mdl.rb'
+  Safety:
+    enabled: true
+    required_executable: 'safety.sh'
   SemiStandard:
     enabled: true
   Standard:
@@ -207,7 +220,7 @@ PostCheckout:
   BundleInstall:
     enabled: true
   GitLfs:
-    enabled: true
+    enabled: false
   IndexTags:
     enabled: true
   SubmoduleStatus:
@@ -222,7 +235,7 @@ PostCommit:
     enabled: true
     requires_files: false
   GitLfs:
-    enabled: true
+    enabled: false
   SubmoduleStatus:
     enabled: true
     quiet: false
@@ -232,7 +245,7 @@ PostMerge:
   BundleInstall:
     enabled: true
   GitLfs:
-    enabled: true
+    enabled: false
   IndexTags:
     enabled: true
   SubmoduleStatus:
@@ -252,7 +265,7 @@ PostRewrite:
 
 PrePush:
   GitLfs:
-    enabled: true
+    enabled: false
   ProtectedBranches:
     enabled: true
 

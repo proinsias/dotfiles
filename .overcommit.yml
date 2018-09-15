@@ -45,7 +45,9 @@ PreCommit:
     enabled: true
     quiet: false
     include: '**/*.sh'
-    required_executable: './scripts/overcommit/bash_syntax.sh'
+    required_executable: 'bash-syntax'
+  BrokenSymlinks:
+    enabled: true
   BundleAudit:
     enabled: true
   BundleCheck:
@@ -57,7 +59,7 @@ PreCommit:
   CopyrightYear:
     enabled: true
     quiet: false
-    required_executable: './scripts/overcommit/copyright_year.sh'
+    required_executable: 'copyright-year'
   CssLint:
     enabled: true
   Eslint:
@@ -65,15 +67,18 @@ PreCommit:
   ExecutePermissions:
     enabled: true
     exclude:
-      - 'scripts/overcommit/*.sh'
+      - 'bin/**/*'
+      - 'ci/*.sh'
   FixMe:
     enabled: true
     exclude:
       - 'notebooks/*.ipynb'
       - 'notebooks/*/*.ipynb'
   ForbiddenBranches:
-    enabled: true
+    enabled: false
   HardTabs:
+    enabled: true
+  Hadolint:
     enabled: true
   HtmlHint:
     enabled: true
@@ -89,13 +94,11 @@ PreCommit:
     enabled: true
   JsonSyntax:
     enabled: true
-  # LicenseHeader:
-  #   enabled: true
-  #   license_file: 'LICENSE'
-  #   include: '**/*.py'
+  LicenseHeader:
+    enabled: false
+    license_file: 'LICENSE'
+    include: '**/*.py'
   # Requires overcommit have access to git version 2.10 or higher.
-  # LineEndings:
-  #   enabled: true
   LineEndings:
     enabled: true
   LocalPathsInGemfile:
@@ -115,10 +118,10 @@ PreCommit:
       - '--verbose'
     exclude:
       - 'jupyter/jupyter_notebook_config.py'
-  # Pyflakes:
-  #   enabled: true
+  Pyflakes:
+    enabled: false
   Pylint:
-    enabled: true
+    enabled: false
     flags:
       - '--max-line-length=120'
       - '--msg-template="{path}:{line}:{C}: {msg} ({symbol})"'
@@ -137,6 +140,8 @@ PreCommit:
       - 'jupyter/jupyter_notebook_config.py'
   Reek:
     enabled: true
+  RstLint:
+    enabled: true
   RuboCop:
     enabled: true
   RubyLint:
@@ -153,11 +158,11 @@ PreCommit:
       - '--external-sources'
       - '--shell=bash'
   Sqlint:
-    enabled: true
-  # ToDos:
-  #   enabled: false
-  #   quiet: false
-  #   required_executable: './scripts/overcommit/todos.sh'
+    enabled: false
+  ToDos:
+    enabled: false
+    quiet: false
+    required_executable: 'check-todos'
   TrailingWhitespace:
     enabled: true
   TravisLint:
@@ -193,13 +198,17 @@ CommitMsg:
     enabled: true
     max_subject_width: 50
   MessageFormat:
-    enabled: true
+    enabled: false
     pattern: '\[#(\d+)\](.+)'
     expected_pattern_message: '[#<Issue Id>] <Commit Message Description>'
     sample_message: '[#1234] Refactored Onboarding flow'
 
 PostCheckout:
   BundleInstall:
+    enabled: true
+  GitLfs:
+    enabled: true
+  IndexTags:
     enabled: true
   SubmoduleStatus:
     enabled: true
@@ -212,6 +221,8 @@ PostCommit:
   GitGuilt:
     enabled: true
     requires_files: false
+  GitLfs:
+    enabled: true
   SubmoduleStatus:
     enabled: true
     quiet: false
@@ -219,6 +230,10 @@ PostCommit:
 
 PostMerge:
   BundleInstall:
+    enabled: true
+  GitLfs:
+    enabled: true
+  IndexTags:
     enabled: true
   SubmoduleStatus:
     enabled: true
@@ -228,12 +243,16 @@ PostMerge:
 PostRewrite:
   BundleInstall:
     enabled: true
+  IndexTags:
+    enabled: true
   SubmoduleStatus:
     enabled: true
     quiet: false
     recursive: true
 
 PrePush:
+  GitLfs:
+    enabled: true
   ProtectedBranches:
     enabled: true
 
@@ -245,4 +264,4 @@ PreReceive:
   FreeSpace:
     enabled: true
     quiet: false
-    required_executable: './scripts/overcommit/freespace.sh'
+    required_executable: 'check-freespace'

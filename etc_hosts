@@ -4,11 +4,11 @@ g##
 # localhost is used to configure the loopback interface
 # when the system is booting.  Do not change this entry.
 ##
-127.0.0.1	localhost
+127.0.0.1 localhost
 # Disable Cryptohacking - https://www.grc.com/sn/SN-637-Notes.pdf
-127.0.0.1	coin-hive.com coinhive.com
+127.0.0.1 coin-hive.com coinhive.com
 # Disable AudienceInsights - https://www.grc.com/sn/SN-644-Notes.pdf
 127.0.0.1   static.audienceinsights.net
 127.0.0.1   api.behavioralengine.com
-255.255.255.255	broadcasthost
+255.255.255.255 broadcasthost
 ::1             localhost

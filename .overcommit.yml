@@ -36,6 +36,23 @@
 # OVERCOMMIT_DISABLE=1 ./my-custom-script
 
 ---
+CommitMsg:
+  HardTabs:
+    enabled: true
+  MessageFormat:
+    enabled: false
+    pattern: '\[#(\d+)\](.+)'
+    expected_pattern_message: '[#<Issue Id>] <Commit Message Description>'
+    sample_message: '[#1234] Refactored Onboarding flow'
+  RussianNovel:
+    enabled: true
+  SpellCheck:
+    enabled: true
+    install_command: 'brew install hunspell'
+  TextWidth:
+    enabled: true
+    max_subject_width: 50
+
 PreCommit:
   ALL:
     # report: report errors/warnings as-is regardless of line location (default)
@@ -69,18 +86,30 @@ PreCommit:
     exclude:
       - 'bin/**/*'
       - 'ci/*.sh'
+  Fasterer:
+    enabled: true
   FixMe:
     enabled: true
     exclude:
       - 'notebooks/*.ipynb'
       - 'notebooks/*/*.ipynb'
+  Flay:
+    enabled: true
   ForbiddenBranches:
     enabled: false
-  HardTabs:
+  GoLint:
+    enabled: true
+  GoVet:
     enabled: true
   Hadolint:
     enabled: true
+  HardTabs:
+    enabled: true
+  HamlLint:
+    enabled: true
   HtmlHint:
+    enabled: true
+  HtmlTidy:
     enabled: true
   ImageOptim:
     enabled: true
@@ -94,6 +123,8 @@ PreCommit:
     enabled: true
   JsonSyntax:
     enabled: true
+  LicenseFinder:
+    enabled: false
   LicenseHeader:
     enabled: false
     license_file: 'LICENSE'
@@ -162,6 +193,11 @@ PreCommit:
   Safety:
     enabled: true
     required_executable: 'safety.sh'
+  Scalariform:
+    enabled: false
+  Scalastyle:
+    enabled: false
+    flags: ['-c', '.idea/scalastyle-config.xml']
   SemiStandard:
     enabled: true
   Standard:
@@ -182,6 +218,8 @@ PreCommit:
     enabled: true
   TravisLint:
     enabled: true
+  Vint:
+    enabled: true
   W3cCss:
     enabled: true
   W3cHtml:
@@ -200,23 +238,8 @@ PreCommit:
       - '**/*.yaml'
       - '**/*.yml'
       - '**/.*.yml'  # To parse this!
-
-CommitMsg:
-  HardTabs:
-    enabled: true
-  RussianNovel:
-    enabled: true
-  SpellCheck:
-    enabled: true
-    install_command: 'brew install hunspell'
-  TextWidth:
-    enabled: true
-    max_subject_width: 50
-  MessageFormat:
+  YardCoverage:
     enabled: false
-    pattern: '\[#(\d+)\](.+)'
-    expected_pattern_message: '[#<Issue Id>] <Commit Message Description>'
-    sample_message: '[#1234] Refactored Onboarding flow'
 
 PostCheckout:
   BundleInstall:
@@ -270,6 +293,10 @@ PrePush:
     enabled: false
   ProtectedBranches:
     enabled: true
+  Pytest:
+    enabled: false
+  PythonNose:
+    enabled: false
 
 PreRebase:
   MergedCommits:

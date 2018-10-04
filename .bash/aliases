@@ -171,7 +171,7 @@ alias free='df'
 alias ftp='ftp -i'
 
 alias gc='git checkout'
-alias gd='git difftool'
+alias gd='git diff'
 alias gs='git status'
 alias gp='git pull'
 

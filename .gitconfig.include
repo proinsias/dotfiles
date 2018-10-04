@@ -1,0 +1,222 @@
+[alias]
+    alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\t=> \\2/' | sort # show all defined aliases
+    br = branch
+    cam = commit -am
+    ci = commit
+    clone = clone --recursive
+    co = checkout
+    dc = diff --cached
+    df = diff
+    dump = cat-file -p
+    find = !git ls-tree -r --name-only HEAD | grep --color $1 # Finds a filename in the git repository. Gives absolute location (from the git root)
+    h = !git --no-pager log origin/master..HEAD --abbrev-commit --pretty=oneline # Fast overview of differences between master and my current branch
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    hist2 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    ign = ls-files -o -i --exclude-standard # Show files ignored by git
+    ignore=!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore # Quickly add a file/dir to .gitignore.
+    lg = log -p
+    lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+    logs = log -- stat # include files changed, insertions, and deletions
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    ls = ls-files
+    psuh = push
+    pu = pull --recurse-submodules
+    pull = pull --recurse-submodules
+    r  = !git ls-files -z --deleted | xargs -0 git rm # Remove files which have been deleted
+    st = status
+    su = !git submodule update --init --recursive && git submodule\
+        foreach --recursive git checkout master && git submodule\
+        foreach --recursive git pull
+    this = !git init && git add . && git commit -m \"initial commit\" # Make this directory a git repo
+    type = cat-file -t
+    unstage = reset HEAD --
+[apply]
+# Git will use core.whitespace values to help you
+# when you apply patches with git apply. When you’re applying patches, you can ask Git to
+# warn you if it’s applying patches with the specified whitespace issues:
+# whitespace = warn
+# Or you can have Git try to automatically fix the issue before applying the patch:
+# whitespace = fix
+    whitespace = fix
+[branch]
+    # When branching off a remote branch, automatically let the local
+    # branch track the remote branch
+    autosetupmerge = always
+    # Set up remote tracking branches to pull using `--rebase`
+    autosetuprebase = always
+[color]
+    branch = auto
+    decorate = auto
+    diff = auto
+    grep = auto
+    interactive = auto
+    pager = true
+    status = auto
+    ui = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+    # Blue on black is hard to read in git branch -vv: use cyan instead
+    upstream = cyan
+[color "diff"]
+    frag = magenta bold
+    meta = yellow bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse # Highlight whitespace in diffs
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[commit]
+#     gpgSign = true
+[core]
+    attributesfile = ~/.gitattributes
+# Note: This setting is no longer recommended.
+#
+# If you’re on a Linux or Mac system that uses LF line endings, then you don’t want Git to
+# automatically convert them when you check out files; however, if a file with CRLF
+# endings accidentally gets introduced, then you may want Git to fix it. You can tell Git
+# to convert CRLF to LF on commit but not the other way around by setting core.autocrlf
+# to input. This setup should leave you with CRLF endings in Windows checkouts, but LF
+# endings on Mac and Linux systems and in the repository.
+#    autocrlf = input
+# If you’re on a Windows machine, set it to true – this converts LF endings into CRLF when
+# you check out code:
+    # autocrlf = true
+# If you’re a Windows programmer doing a Windows-only project, then you can turn off this
+# functionality, recording the carriage returns in the repository by setting the config
+# value to false.
+    # autocrlf = false
+    editor = emacs
+    excludesfile = ~/.gitignore
+    # # Don't paginate output by default, default is less
+        # pager = cat
+    # Prevent showing files whose names contain non-ASCII symbols as unversioned.
+    # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+    precomposeunicode = false
+    # Make `git rebase` safer on OS X
+    # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+    trustctime = false
+# Git comes preset to detect and fix some whitespace issues.
+# It can look for six primary whitespace issues –
+# three are enabled by default and can be turned off,
+# and three are disabled by default but can be activated.
+#
+# The three that are turned on by default are:
+# * blank-at-eol, which looks for spaces at the end of a line;
+# * blank-at-eof, which notices blank lines at the end of a file; and
+# * space-before-tab, which looks for spaces before tabs at the beginning of a line.
+#
+# The three that are disabled by default but can be turned on are:
+# * indent-with-non-tab, which looks for lines that begin with spaces instead of tabs
+# (and is controlled by the tabwidth option);
+# * tab-in-indent, which watches for tabs in the indentation portion of a line; and
+# * cr-at-eol, which tells Git that carriage returns at the end of lines are OK.
+#
+# Git will detect these issues when you run a git diff command and try to color them so
+# you can possibly fix them before you commit.
+    whitespace = blank-at-eof, blank-at-eol, space-before-tab, tab-in-indent, trailing-space
+[diff]
+    # Use (i)ndex, (w)ork tree, (c)ommit, (o)bject prefixes instead of standard a, b.
+    mnemonicprefix = true
+    # Detect copies as well as renames
+    renames = copies
+    # Display submodule-related information (commit listings)
+    submodule = log
+    tool = icdiff
+[difftool]
+    prompt = false
+[difftool "icdiff"]
+    cmd = icdiff --head=5000 --highlight --line-numbers -L \"$BASE\" -L \"$REMOTE\" \"$LOCAL\" \"$REMOTE\"
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
+[diff "astextplain"]
+    textconv = ~/bin/astextplain.sh
+    # textconv = strings
+[diff "bin"]
+    # Use `hexdump` to diff binary files
+    textconv = hexdump -v -C
+[diff "exif"]
+    textconv = exiftool
+[diff "localizablestrings"]
+    textconv = "iconv -f utf-16 -t utf-8"
+[diff "nbconv"]
+    textconv = ~/bin/nb2py.sh
+[fetch]
+    prune = true
+    # Auto-fetch submodule changes (sadly, won't auto-update)
+    recurseSubmodules = on-demand
+[filter "hawser"]
+  # From GitHub for Mac
+    clean = git hawser clean %f
+    smudge = git hawser smudge %f
+    required = true
+[filter "lfs"]
+  # For Git-LFS
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+    required = true
+[grep]
+    lineNumber = true
+[help]
+    # Automatically correct and execute mistyped commands
+    autocorrect = 20 # 2 seconds
+[hooks]
+        copyrightholder = Francis T. O'Donovan <francis.odonovan@gmail.com>
+[log]
+    # Use abbrev SHAs whenever possible/relevant instead of full 40 chars
+    abbrevCommit = true
+    # Automatically --follow when given a single path
+    follow = true
+[lfs]
+          pruneverifyremotealways = true
+[merge]
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true # synonym for 20
+    stat = true
+[mergetool "emerge"]
+    cmd = emacs -Q \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+[mergetool "p4merge"]
+    cmd = p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool "sourcetree"]
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    keepBackup = false
+    trustExitCode = true
+[pager]
+    difftool = true
+[push]
+    # 'simple' - push only the current branch to the one that git pull would pull
+    # from, and also checks that their names match
+    # 'current' - doesn't care about whether or not the current branch tracks an
+    # upstream - more dangerous
+    default = simple
+    # When pushing, also push tags whose commit-ishs are now reachable upstream
+    followTags = true
+    # Not supported by bitbucket or github yet
+    gpgSign = if-asked
+[rebase]
+# If you’ve committed whitespace issues but haven’t yet pushed upstream, have Git
+# automatically fix whitespace issues as it’s rewriting the patches.
+    whitespace = fix
+[status]
+    # Shows paths relative to the repository root
+    # relativePaths = false
+    # Display submodule rev change summaries in status
+    submoduleSummary = true
+    # Recursively traverse untracked directories to display all contents
+    showUntrackedFiles = all
+[tag]
+    # Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
+    sort = version:refname
+[versionsort]
+    prereleaseSuffix = -pre
+    prereleaseSuffix = .pre
+    prereleaseSuffix = -beta
+    prereleaseSuffix = .beta
+    prereleaseSuffix = -rc
+    prereleaseSuffix = .rc

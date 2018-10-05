@@ -1,0 +1,20 @@
+---
+dependencies:
+  # FIXME: Put macos_power_settings in var file?
+  # FIXME: Can't use this in check mode.
+  # - {role: appian.macos-power,
+  #    become: yes,
+  #    macos_power_settings: [
+  #      {cmd: computersleep, desired_value: 'Never'},
+  #      {cmd: displaysleep, desired_value: 'after 15 minutes'},
+  #      {cmd: harddisksleep, desired_value: 'Never'},
+  #      {cmd: restartfreeze, desired_value: 'Off'},
+  #      {cmd: wakeonnetworkaccess, desired_value: 'On'},
+  #    ]
+  # }
+  - {role: geerlingguy.homebrew}  # FIXME: Need "role" stuff?
+  # - {role: geerlingguy.mas}  # FIXME: TESTING - check for errors.
+  # - {role: kinglouie.macos}
+  - {role: lafarer.osx-computername}
+  # FIXME: TO TEST!
+  # - {role: lafarer.osx-defaults}

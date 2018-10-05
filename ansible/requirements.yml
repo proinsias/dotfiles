@@ -1,5 +1,5 @@
 ---
-# ansible-galaxy install -r requirements.yml
+# ansible-galaxy install --role-file requirements.yml
 
 - src: geerlingguy.homebrew  # Install a role from the Ansible Galaxy.
 - src: geerlingguy.mas

@@ -1,0 +1,3 @@
+dependencies:
+  # FIXME: Use module instead - npm is installed via brew.
+  # - {role: geerlingguy.nodejs}

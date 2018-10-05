@@ -1,0 +1,69 @@
+---
+- hosts: all
+
+  tasks:
+    # - name: print facts
+    #   debug:
+    #     var: ansible_facts
+    - include_role:
+        name: darwin
+      when: ansible_facts['os_family']|lower == 'darwin'
+    - include_role:
+        name: debian
+      when: ansible_facts['os_family']|lower == 'debian'
+    - include_role:
+        name: redhat
+      when: ansible_facts['os_family']|lower == 'redhat'
+    - include_role:
+        name: common
+
+
+# FIXME: GT FIXMEs in:
+#./ansible.sh:# FIXME: Try `--check` to just report differences.
+#./roles/nodejs/meta/main.yml:  # FIXME: Use module instead - npm is installed via brew.
+#./roles/mas/vars/main.yml:  # FIXME: Add from firefly.
+#./roles/homebrew/vars/main.yml:  # FIXME: Reduce this list!
+#./roles/pip/tasks/main.yml:    - cheat # FIXME: homebrew?
+#./roles/common/meta/main.yml:  # FIXME: Need to have these run *after* darwin role?
+#./roles/darwin/vars/main.yml:  ComputerName: "discovery"  # osx-computername # FIXME: Set per computer, or use to identify host!
+#./roles/ruby/meta/main.yml:  # FIXME: Use module instead - ruby is installed via brew.
+
+# FIXME: Move brewup, gemupdate to here?
+
+# FIXME: Eventually Look up roles for redhat/debian stuff similar to macos stuff
+# - geerlingguy.pip? or just generic module?
+
+# FIXME: Can use same tag on multiple tasks to group tasks.
+
+# FIXME: Can use prompts
+
+# FIXME:
+# ansible-role-pip
+# ansible-role-dotfiles
+# https://github.com/danbohea/ansible-role-rbenv
+# https://github.com/fubarhouse/ansible-role-macdock
+# https://github.com/danbohea/ansible-role-macos-dock
+# https://galaxy.ansible.com/danbohea/flux - flux configuration?
+# https://galaxy.ansible.com/shashikant86/ios-dev
+# https://galaxy.ansible.com/drew-kun/macos_terminal
+# https://galaxy.ansible.com/mhalano/dropbox
+# https://galaxy.ansible.com/bjoernalbers/sysctl
+#https://github.com/juju4/ansible-harden-darwin
+#https://github.com/feffi/ansible-macos-softwareupdate
+#https://github.com/dotstrap/ansible-xcode
+#https://github.com/ansible/ansible-modules-extras/blob/devel/system/osx_defaults.py
+#
+#https://github.com/mego22/ansible-role-osx-settings
+#https://github.com/lafarer/ansible-role-osx-jenv
+#https://github.com/fubarhouse/ansible-role-macfonts
+#https://github.com/0x4e3/osx-bootstrap-defaults
+#https://github.com/osxstrap/ansible-osx-user-picture
+#https://github.com/osxstrap/ansible-osx-software-update
+#https://github.com/feffi/ansible-macos-git-repos
+#https://github.com/feffi/ansible-macos-timemachine
+#https://github.com/feffi/ansible-macos-standby
+#https://github.com/openstack/ansible-hardening
+
+# FIXME: HOW DO SPECIFIC HOST STUFF!?
+# - hosts: discovery
+# - hosts: firefly

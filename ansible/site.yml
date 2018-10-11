@@ -1,6 +1,52 @@
 ---
-- hosts: all
+# FIXME: Test just this host.
+- hosts: discovery.local
+  vars:
+    homebrew_installed_packages:
+      - apache-spark
+      - gbeine/homebrew-java/postgresql-jdbc
+      - hadoop
+      - homebrew/science/r
+      - homebrew/versions/perl518
+      - { name: mongodb, install_options: "with-openssl" }
+      - mysql-connector-c
+      - { name: octave, install_options: "with-gui" }
+      - postgresql
+      - scala
+      - tomcat
+    homebrew_cask_apps:
+      - mendeley-desktop
+      - mysqlworkbench
+      - notebook
+      - pycharm
+      - sequel-pro
+      - snowflake-snowsql
+    roles:
+      - homebrew
 
+- hosts: firefly.local
+  vars:
+    homebrew_cask_apps:
+      - backblaze
+      - carmaintenance
+      - google-backup-and-sync
+      - google-photos-backup
+      - handbrake
+      - pycharm-ce
+      - steam
+      - subler
+      - wireshark
+    mas_installed_apps:
+      - { id: 1055511498, name: "Day One" }
+      - { id:  586862299, name: "Duplicate Cleaner For iPhoto" }
+      - { id: 592704001, name: "Photos Duplicate Cleaner" }
+    mas_signin_dialog: yes
+    mas_upgrade_all_apps: yes
+    roles:
+      # - geerlingguy.mas  # Broken on latest OSs.
+      - homebrew
+
+- hosts: all
   tasks:
     # - name: print facts
     #   debug:
@@ -17,53 +63,57 @@
     - include_role:
         name: common
 
+# FIXME: Test using tags to limit what we use
+#  - for testing
+#  - for running all the "update" tasks like brewup etc
+# FIXME: How report newly installed brews, casks, pips, npms, gems, etc.
+
+
+# FIXME: ansible-role-dotfiles!
 
 # FIXME: GT FIXMEs in:
 #./ansible.sh:# FIXME: Try `--check` to just report differences.
 #./roles/nodejs/meta/main.yml:  # FIXME: Use module instead - npm is installed via brew.
 #./roles/mas/vars/main.yml:  # FIXME: Add from firefly.
-#./roles/homebrew/vars/main.yml:  # FIXME: Reduce this list!
-#./roles/pip/tasks/main.yml:    - cheat # FIXME: homebrew?
-#./roles/common/meta/main.yml:  # FIXME: Need to have these run *after* darwin role?
 #./roles/darwin/vars/main.yml:  ComputerName: "discovery"  # osx-computername # FIXME: Set per computer, or use to identify host!
-#./roles/ruby/meta/main.yml:  # FIXME: Use module instead - ruby is installed via brew.
+# https://github.com/lafarer/ansible-role-osx-computername/blob/master/tasks/main.yml
 
 # FIXME: Move brewup, gemupdate to here?
 
 # FIXME: Eventually Look up roles for redhat/debian stuff similar to macos stuff
-# - geerlingguy.pip? or just generic module?
 
 # FIXME: Can use same tag on multiple tasks to group tasks.
 
 # FIXME: Can use prompts
 
 # FIXME:
-# ansible-role-pip
-# ansible-role-dotfiles
-# https://github.com/danbohea/ansible-role-rbenv
+#
 # https://github.com/fubarhouse/ansible-role-macdock
 # https://github.com/danbohea/ansible-role-macos-dock
 # https://galaxy.ansible.com/danbohea/flux - flux configuration?
 # https://galaxy.ansible.com/shashikant86/ios-dev
-# https://galaxy.ansible.com/drew-kun/macos_terminal
-# https://galaxy.ansible.com/mhalano/dropbox
+# ansible Liquid Prompt ala drew-kun/ansible-ohmyzsh
 # https://galaxy.ansible.com/bjoernalbers/sysctl
-#https://github.com/juju4/ansible-harden-darwin
 #https://github.com/feffi/ansible-macos-softwareupdate
 #https://github.com/dotstrap/ansible-xcode
 #https://github.com/ansible/ansible-modules-extras/blob/devel/system/osx_defaults.py
 #
 #https://github.com/mego22/ansible-role-osx-settings
-#https://github.com/lafarer/ansible-role-osx-jenv
-#https://github.com/fubarhouse/ansible-role-macfonts
+#
 #https://github.com/0x4e3/osx-bootstrap-defaults
 #https://github.com/osxstrap/ansible-osx-user-picture
+# https://en.gravatar.com/userimage/34741261/b37d9ade8b8cea564bc47268db650c84.jpg?size=200
 #https://github.com/osxstrap/ansible-osx-software-update
-#https://github.com/feffi/ansible-macos-git-repos
-#https://github.com/feffi/ansible-macos-timemachine
-#https://github.com/feffi/ansible-macos-standby
-#https://github.com/openstack/ansible-hardening
+# drew-kun/ansible-dnscrypt
+# drew-kun/ansible-sshd
+# drew-kun/ansible-macos_terminal
 
-# FIXME: HOW DO SPECIFIC HOST STUFF!?
-# - hosts: discovery
-# - hosts: firefly
+#all:
+# https://github.com/feffi/ansible-macos-git-repos
+
+#darwin:
+# https://github.com/feffi/ansible-macos-standby
+
+#darwin/firefly:
+# https://github.com/feffi/ansible-macos-timemachine
+

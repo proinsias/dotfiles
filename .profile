@@ -97,11 +97,11 @@ if type rbenv > /dev/null 2>&1 ; then
 fi
 
 ### http://www.jenv.be/
-export PATH="$HOME/.jenv/bin:$PATH"
-if ! type jenv > /dev/null 2>&1 ; then
-  echo Installing jenv...
-  brew install jenv
-fi
+# export PATH="$HOME/.jenv/bin:$PATH"
+# if ! type jenv > /dev/null 2>&1 ; then
+#   echo Installing jenv...
+#   brew install jenv
+# fi
 #if type jenv > /dev/null 2>&1 ; then
 #  eval "$(jenv init -)";
 #fi
@@ -178,9 +178,9 @@ case $(uname -s) in
           archey -p
         fi
 
-#         export JAVA_HOME="$(/usr/libexec/java_home)"
-        # Need Java8 not Java9 for Spark.
-        export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/"
+        export JAVA_HOME="$(/usr/libexec/java_home)" # Need Java8 not Java9 for Spark.
+        export PATH="${JAVA_HOME}/bin${PATH:+:${PATH}}"
+
         export SCALA_HOME="/usr/local/opt/scala/idea"  # To use with IntelliJ.
         ;;
 esac

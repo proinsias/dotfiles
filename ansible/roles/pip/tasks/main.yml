@@ -2,15 +2,14 @@
 - name: Install latest versions of pip packages
   pip:
     name: '{{ item }}'
+    executable: 'pip3'
   with_items:
     - anaconda-client
     - argcomplete
-    - cheat # FIXME: homebrew?
     - clf
-    - csvkit
     - eg
     - emoji
-    - # flake8 stuff via homebrew?
+    - # FIXME: flake8 stuff via homebrew?
     - flake8-bugbear
     - flake8-builtins
     - flake8-coding
@@ -30,24 +29,22 @@
     - flake8-tidy-imports
     - flake8-todo
     - flake8_tuple
-    - glances
-    - hashin
-    - howdoi
+    - hashin  # FIXME: via homebrew?
     - jupyter_contrib_nbextensions
     - jupyterlab
-    - ntfy
-    - pip-tools
-    - proselint
+    - ntfy  # FIXME: via homebrew?
+    - pip-tools  # FIXME: via homebrew?
     - psutil
-    - pydocstyle
-    - pyflakes
-    - pylint
-    - pytest
-    - pytest-xdist
+    - pydocstyle  # FIXME: via homebrew?
+    - pyflakes  # FIXME: via homebrew?
+    - pylint  # FIXME: via homebrew?
+    - pytest  # FIXME: via homebrew?
+    - pytest-xdist  # FIXME: via homebrew?
     - rpy2
-    - r-essentials
+    # - r-essentials
     - searchcmd
     - slacker
     - twine
-    - uncommitted
-    - yapf
+    - uncommitted  # FIXME: via homebrew?
+    - yapf  # FIXME: via homebrew?
+  become: yes

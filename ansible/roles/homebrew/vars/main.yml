@@ -22,7 +22,6 @@ homebrew_installed_packages:
   - ansible
   - ant
   - antiword
-  - apache-spark
   - archey
   - arpack
   - aspell
@@ -50,6 +49,7 @@ homebrew_installed_packages:
   - coreutils
   - cowsay
   - cscope
+  - csvkit
   - d-bus
   - daq
   - diffutils
@@ -90,7 +90,6 @@ homebrew_installed_packages:
   - freetype
   - fzf
   - gawk
-  - gbeine/homebrew-java/postgresql-jdbc
   - { name: gcc, install_options: "with-jit,with-nls" }
   - gd
   - gdb
@@ -105,9 +104,10 @@ homebrew_installed_packages:
   - git-ftp
   - git-lfs
   - git-standup
-  - gl2ps
+  - glances
   - glib
   - glpk
+  - gl2ps
   - gmp
   - gnu-getopt
   - gnu-indent
@@ -126,13 +126,11 @@ homebrew_installed_packages:
   - gwt
   - gzip
   - hadolint
-  - hadoop
   - hdf5
   - homebrew/gui/gsmartcontrol
   - homebrew/homebrew-x11/gv
-  - homebrew/science/r
-  - homebrew/versions/perl518
   - homesick-completion
+  - howdoi
   - htop
   - httpie
   - hub
@@ -179,22 +177,17 @@ homebrew_installed_packages:
   - makedepend
   - mas
   - mkdocs
-  - { name: mongodb, install_options: "with-openssl" }
   - moreutils
   - mosh
   - mpfr
   - mypy
-  - mysql-connector-c
   - nano
   - nettle
   - nmap
   - node
   - ntfs-3g
-  - { name: octave, install_options: "with-gui" }
   - open-completion
   - openjpeg
-  - openssh
-  - openssl
   - optipng
   - packer
   - packer-completion
@@ -209,16 +202,16 @@ homebrew_installed_packages:
   - pngcrush
   - pngquant
   - poppler
-  - postgresql
+  - proselint
   - pstoedit
   - pv
   - pwgen
   - pycodestyle
-  - pyenv
-  - pyenv-ccache
-  - pyenv-pip-migrate
-  - pyenv-virtualenv
-  - pyenv-which-ext
+  # - pyenv
+  # - pyenv-ccache
+  # - pyenv-pip-migrate
+  # - pyenv-virtualenv
+  # - pyenv-which-ext
   - pyqt
   - python
   - python@2
@@ -234,7 +227,6 @@ homebrew_installed_packages:
   - rsync
   - ruby-build
   - ruby-completion
-  - scala
   - screen
   - screenfetch
   - shellcheck
@@ -256,10 +248,9 @@ homebrew_installed_packages:
   - the_silver_searcher
   - thefuck
   - tig
-  - tivodecode
+  # - tivodecode
   - tmux
   - tmuxinator-completion
-  - tomcat
   - trash
   - tree
   - unzip
@@ -271,21 +262,20 @@ homebrew_installed_packages:
   - { name: wdiff, install_options: "with-gettext" }
   - webkit2png
   - wget
-  - wine
-  - winetricks
+  # - wine
+  # - winetricks
   - wireshark
   - x264
   - xvid
   - xz
   - yamllint
   - yasm
-  - youtube-dl
+  # - youtube-dl
   - zopfli
   - zsh
 homebrew_uninstalled_packages: []
 homebrew_cask_apps:
-  # FIXME: Reduce this list!
-  - java
+  # - java  # Need java8 for Spark.
   - java8
   - osxfuse
   - xquartz
@@ -293,23 +283,21 @@ homebrew_cask_apps:
   - adobe-reader
   - appfresh
   - apptrap
-  - backblaze
   - bartender
   - bbedit
   - bettertouchtool
   - betterzip
   - box-sync
   - cakebrew
-  - carmaintenance
   - cheatsheet
-  - choosy
-  - chrome-remote-desktop-host
+  # - choosy
+  # - chrome-remote-desktop-host
   - coconutBattery
   - controlplane
   - cord
   - dash
-  - dbeaver-enterprise
-  - dbvisualizer
+  # - dbeaver-enterprise
+  # - dbvisualizer
   - diskmaker-x
   - diskwave
   - dnscrypt
@@ -319,24 +307,21 @@ homebrew_cask_apps:
   - dropbox
   - emacs
   - filebot
-  - filezilla
+  # - filezilla
   - firefox
   - flashlight
   - flux
-  - ganttproject
+  # - ganttproject
   - geektool
-  - gephi
+  # - gephi
   - gimp
-  - google-backup-and-sync
   - google-chrome
-  - google-photos-backup
   - gpg-suite
-  - grammarly
+  # - grammarly
   - grandperspective
-  - growlnotify
-  - growlvoice
-  - handbrake
-  - handylock
+  # - growlnotify
+  # - growlvoice
+  # - handylock
   - ibettercharge
   - imageoptim
   - imazing
@@ -348,7 +333,7 @@ homebrew_cask_apps:
   - keybase
   - kindle
   - kite
-  - lastpass
+  # - lastpass
   - libdvdcss
   - lingon-x
   - macdown
@@ -356,22 +341,16 @@ homebrew_cask_apps:
   - mactex
   - makemkv
   - marked
-  - mendeley-desktop
   - metaz
-  - mysqlworkbench
   - no-ip-duc
-  - notebook
   - omnidisksweeper
   - omnifocus
-  - onyx
-  - osxfuse
+  # - onyx
   - oversight
   - p4merge
   - pacifist
   - podcastmenu
-  - prey
-  - pycharm
-  # - pycharm-ce
+  # - prey  # FIXME: Install separately with correct API key.
   - qlcolorcode
   - qlmarkdown
   - qlprettypatch
@@ -379,36 +358,31 @@ homebrew_cask_apps:
   - quicklook-csv
   - quicklook-json
   - send-to-kindle
-  - sequel-pro
   - silverlight
   - skyfonts
   - skype
   - slack
   - slimbatterymonitor
-  - snowflake-snowsql
   - sourcetree
   - spectacle
   - spotdox
   - sshfs
-  - steam
-  - subler
-  - sublime-text
+  # - sublime-text
   - suspicious-package
   # - texshop
   # - texstudio
   - the-unarchiver
   - tigervnc-viewer
-  - tonido
-  - tonidosync
-  - transmission
-  - transmit
-  - tresorit
-  - unison
+  # - tonido
+  # - tonidosync
+  # - transmission
+  # - transmit
+  # - tresorit
+  # - unison
   - virtualbox
   - vlc
   - webpquicklook
-  - wireshark
   - xquartz
   - yujitach-menumeters
-  - zotero
+  # - zotero
 homebrew_cask_uninstalled_apps: []

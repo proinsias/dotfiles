@@ -1,8 +1,6 @@
 ---
 dependencies:
-  # FIXME: Need to have these run *after* darwin role?
   # FIXME: Use module instead - npm is installed via brew.
   # - {role: nodejs}
-  - {role: pip}  # FIXME: Need "role" stuff?
-  # FIXME: Use module instead - ruby is installed via brew.
-  # - {role: ruby}
+  - pip
+  - ruby

@@ -1,15 +1,13 @@
 ---
 # ansible-galaxy install --role-file requirements.yml
 
+- src: appian.macos-power
+- src: danbohea.rbenv
 - src: geerlingguy.homebrew  # Install a role from the Ansible Galaxy.
 - src: geerlingguy.mas
-- src: geerlingguy.nodejs
-- src: geerlingguy.pip
-- src: geerlingguy.ruby
 - src: kinglouie.macos
 - src: lafarer.osx-computername
 - src: lafarer.osx-defaults
-
 
 # # Install a role from GitHub
 # - name: opendaylight

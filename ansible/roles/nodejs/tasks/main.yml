@@ -6,6 +6,7 @@ nodejs_npm_global_packages:
   - csslint
   - dockerlint
   - dockerfile_lint
+  - electron@1.8.4
   - eslint
   - git-guilt
   - how2  # https://github.com/santinic/how2
@@ -13,6 +14,7 @@ nodejs_npm_global_packages:
   - jscs
   - jshint
   - jslint
+  - orca
   - semistandard
   - standard
   - svgo

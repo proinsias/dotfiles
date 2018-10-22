@@ -43,7 +43,7 @@
     mas_signin_dialog: yes
     mas_upgrade_all_apps: yes
     roles:
-      # - geerlingguy.mas  # Broken on latest OSs.
+      # - geerlingguy.mas  # TODO: Broken on latest OSs.
       - homebrew
 
 - hosts: all
@@ -66,15 +66,12 @@
 # FIXME: Test using tags to limit what we use
 #  - for testing
 #  - for running all the "update" tasks like brewup etc
-# FIXME: How report newly installed brews, casks, pips, npms, gems, etc.
+# FIXME: How report newly installed brews, casks, pips, npms, gems, etc. that aren't in this file.
 
 
 # FIXME: ansible-role-dotfiles!
 
 # FIXME: GT FIXMEs in:
-#./ansible.sh:# FIXME: Try `--check` to just report differences.
-#./roles/nodejs/meta/main.yml:  # FIXME: Use module instead - npm is installed via brew.
-#./roles/mas/vars/main.yml:  # FIXME: Add from firefly.
 #./roles/darwin/vars/main.yml:  ComputerName: "discovery"  # osx-computername # FIXME: Set per computer, or use to identify host!
 # https://github.com/lafarer/ansible-role-osx-computername/blob/master/tasks/main.yml
 

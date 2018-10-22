@@ -21,6 +21,7 @@ homebrew_installed_packages:
   - ag
   - ansible
   - ant
+  - ant-contrib
   - antiword
   - archey
   - arpack
@@ -32,6 +33,7 @@ homebrew_installed_packages:
   - awscli
   - bash
   - bash-completion
+  - bash-snippets
   - binutils
   - brew-cask-completion
   - bundler-completion
@@ -40,7 +42,7 @@ homebrew_installed_packages:
   - cask
   - ccache
   - certbot
-  - cheat
+  # - cheat  # Get via bash-snippets.
   - checkstyle
   - cloog
   - cmake
@@ -139,6 +141,7 @@ homebrew_installed_packages:
   - icu4c
   - imagemagick
   - isl
+  - ivy
   - jbig2dec
   - jenv
   - jhead
@@ -235,6 +238,7 @@ homebrew_installed_packages:
   - sonar-completion
   - sqlite
   - ssh-copy-id
+  - stress
   - stormssh-completion
   - subversion
   - suite-sparse

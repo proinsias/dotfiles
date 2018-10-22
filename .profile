@@ -139,8 +139,8 @@ if type overcommit > /dev/null 2>&1 ; then
 fi
 
 # Add OM1 devops scripts, if available.
-if [ -d "${HOME}/favs/om1/devops/bin" ] ; then
-    export PATH="${PATH:+${PATH}:}${HOME}/favs/om1/devops/bin"
+if [ -d "${HOME}/favs/om1/infrastructure/bin" ] ; then
+    export PATH="${PATH:+${PATH}:}${HOME}/favs/om1/infrastructure/bin"
 fi
 
 # If not running interactively, stop here

@@ -222,7 +222,7 @@ homebrew_installed_packages:
   - qrupdate
   - qscintilla2
   - qt
-  - rbenv
+  # - rbenv
   - readline
   - rename
   - restview
@@ -346,6 +346,7 @@ homebrew_cask_apps:
   - makemkv
   - marked
   - metaz
+  - nightowl
   - no-ip-duc
   - omnidisksweeper
   - omnifocus

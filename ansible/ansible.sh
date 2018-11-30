@@ -1,5 +1,14 @@
 #!/bin/bash
 
+#
+# Initial setup
+#
+# brew install ansible
+# sudo mkdir /etc/ansible
+# cat 'localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python"' >> /etc/ansible/hosts
+# touch ~/.ansible.cfg
+# ansible-config view
+
 ansible-galaxy install --force --role-file requirements.yml
 
 # FIXME: Try `--check` (with `--diff`?) to just report differences.

@@ -85,6 +85,7 @@ esac
 
 # For homebrew
 export HOMEBREW_PREFIX="$(brew --prefix)"
+export HOMEBREW_INSTALL_CLEANUP=true
 
 # ruby
 export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
@@ -118,6 +119,10 @@ export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 #export PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin${PATH:+:${PATH}}"
 export MANPATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman${MANPATH:+:${MANPATH}}"
 
+# Add homebrew's GNU findutils to PATH:
+#export PATH="${HOMEBREW_PREFIX}/opt/findutils/bin${PATH:+:${PATH}}"
+export MANPATH="${HOMEBREW_PREFIX}/opt/findutils/share/man${MANPATH:+:${MANPATH}}"
+
 export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH:+:${MANPATH}}"
 export INFOPATH="${HOMEBREW_PREFIX}/share/info${INFOPATH:+:${INFOPATH}}"
 
@@ -142,11 +147,6 @@ if ! type overcommit > /dev/null 2>&1 ; then
 fi
 if type overcommit > /dev/null 2>&1 ; then
   export GIT_TEMPLATE_DIR=$(overcommit --template-dir)
-fi
-
-# Add OM1 devops scripts, if available.
-if [ -d "${HOME}/favs/om1/infrastructure/bin" ] ; then
-    export PATH="${PATH:+${PATH}:}${HOME}/favs/om1/infrastructure/bin"
 fi
 
 # If not running interactively, stop here
@@ -184,7 +184,7 @@ case $(uname -s) in
           archey -p
         fi
 
-        export JAVA_HOME="$(/usr/libexec/java_home)" # Need Java8 not Java9 for Spark.
+        export JAVA_HOME="$(/usr/libexec/java_home)"  # Need Java8 not Java9 for Spark.
         export PATH="${JAVA_HOME}/bin${PATH:+:${PATH}}"
 
         export SCALA_HOME="${HOMEBREW_PREFIX}/opt/scala/idea"  # To use with IntelliJ.
@@ -200,5 +200,30 @@ export GOROOT="${HOMEBREW_PREFIX}/opt/go/libexec"
 export PATH="${GOPATH}/bin${PATH:+:${PATH}}"
 export PATH="${GOROOT}/bin${PATH:+:${PATH}}"
 
-# p4merge
-export PATH="/Applications/p4merge.app/Contents//MacOS${PATH:+:${PATH}}"
+# Prevent accidental global package install through pip.
+export PIP_REQUIRE_VIRTUALENV=true
+
+if test $(hostname -s) == 'ospideal'; then
+    # Use python2.
+
+    export PATH="/usr/local/opt/python@2/libexec/bin:${PATH}"
+
+    export GAE_PATH="/usr/local/google_appengine"
+    export PRS_PATH="${HOME}/Documents/HospitalIQ/patientroutesystems"
+
+    export PYTHONPATH="${GAE_PATH}:${GAE_PATH}/lib/yaml-3.10:${PRS_PATH}:${PRS_PATH}/lib${PYTHONPATH:+:${PYTHONPATH}}"
+
+    export PATH="/usr/local/node-v8.11.4-darwin-x64/bin:${PATH}"
+    export PATH="/usr/local/yarn-v1.10.0/bin:${PATH}"
+
+    # The next line updates PATH for the Google Cloud SDK.
+    if [ -f '/usr/local/google-cloud-sdk/path.bash.inc' ]; then
+    	. '/usr/local/google-cloud-sdk/path.bash.inc'
+    fi
+fi
+
+### Bashhub.com Installation.
+### This Should be at the EOF. https://bashhub.com/docs
+if [ -f ~/.bashhub/bashhub.sh ]; then
+    source ~/.bashhub/bashhub.sh
+fi

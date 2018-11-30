@@ -1,6 +1,6 @@
 ---
 # FIXME: Test just this host.
-- hosts: discovery.local
+- hosts: ospideal.local
   vars:
     homebrew_installed_packages:
       - apache-spark
@@ -63,11 +63,19 @@
     - include_role:
         name: common
 
+# FIXME: Cheatsheet installed via cask **and** mas?
+
 # FIXME: Test using tags to limit what we use
 #  - for testing
 #  - for running all the "update" tasks like brewup etc
 # FIXME: How report newly installed brews, casks, pips, npms, gems, etc. that aren't in this file.
 
+
+# FIXME: Add:
+# sudo echo /usr/local/bin/bash >> /etc/shells
+#
+
+# FIXME: Add installation of bashhub - pipsi?
 
 # FIXME: ansible-role-dotfiles!
 

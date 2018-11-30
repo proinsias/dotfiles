@@ -176,3 +176,21 @@ getpassword(){
 setpassword(){
     security add-generic-password -U -a ${USER} -D "environment variable" -s "${1}" -w "${2}"
 }
+
+# Provide alias to disable requiring virtualenv.
+gpip(){
+  PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+
+# Provide commands to keep virtualenvs contained in a certain folder.
+pyenv() {
+  source ~/.virtualenvs/$@/bin/activate
+}
+
+newpyenv() {
+  # Use builtin in case there's some cd customizations.
+  builtin cd ~/.virtualenvs/.
+  virtualenv $@ && source ~/.virtualenvs/$@/bin/activate
+  builtin cd "${OLDPWD}"
+}
+

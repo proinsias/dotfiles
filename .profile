@@ -200,19 +200,10 @@ export GOROOT="${HOMEBREW_PREFIX}/opt/go/libexec"
 export PATH="${GOPATH}/bin${PATH:+:${PATH}}"
 export PATH="${GOROOT}/bin${PATH:+:${PATH}}"
 
-# Prevent accidental global package install through pip.
-export PIP_REQUIRE_VIRTUALENV=true
+# # Prevent accidental global package install through pip.
+# export PIP_REQUIRE_VIRTUALENV=true
 
 if test $(hostname -s) == 'ospideal'; then
-    # Use python2.
-
-    export PATH="/usr/local/opt/python@2/libexec/bin:${PATH}"
-
-    export GAE_PATH="/usr/local/google_appengine"
-    export PRS_PATH="${HOME}/Documents/HospitalIQ/patientroutesystems"
-
-    export PYTHONPATH="${GAE_PATH}:${GAE_PATH}/lib/yaml-3.10:${PRS_PATH}:${PRS_PATH}/lib${PYTHONPATH:+:${PYTHONPATH}}"
-
     export PATH="/usr/local/node-v8.11.4-darwin-x64/bin:${PATH}"
     export PATH="/usr/local/yarn-v1.10.0/bin:${PATH}"
 

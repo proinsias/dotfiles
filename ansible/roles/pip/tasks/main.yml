@@ -5,10 +5,11 @@
     executable: 'pip3'
   with_items:
     - anaconda-client
-    - argcomplete
-    - clf
-    - eg
-    - emoji
+    - argcomplete  # FIXME: via homebrew?
+    - clf  # FIXME: via homebrew?
+    - eg  # FIXME: via homebrew?
+    - emoji  # FIXME: via homebrew?
+    - em-keyboard  # FIXME: via homebrew?
     - # FIXME: flake8 stuff via homebrew?
     - flake8-bugbear
     - flake8-builtins
@@ -32,7 +33,7 @@
     - hashin  # FIXME: via homebrew?
     - jupyter_contrib_nbextensions
     - jupyterlab
-    - ntfy  # FIXME: via homebrew?
+    - ntfy[pid,emoji,slack]  # FIXME: via homebrew?
     - pip-tools  # FIXME: via homebrew?
     - psutil
     - pydocstyle  # FIXME: via homebrew?
@@ -44,6 +45,7 @@
     # - r-essentials
     - searchcmd
     - slacker
+    - tldr  # FIXME: via homebrew?
     - twine
     - uncommitted  # FIXME: via homebrew?
     - yapf  # FIXME: via homebrew?

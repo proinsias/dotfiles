@@ -14,10 +14,10 @@ fi
 # Create venv directory in case doesn't exist.
 mkdir -p "${HOME}"/.virtualenvs
 
-if ! test -f ~/.travis/travis.sh > /dev/null 2>&1; then
-    echo Installing travis...
-    gem install travis
-    echo Run travis command to install auto-completion!!!
+## travis
+if ! travis -h > /dev/null 2>&1 ; then
+  echo Installing travis...
+  gem install travis
 fi
 if test -f ~/.travis/travis.sh > /dev/null 2>&1; then
   source ~/.travis/travis.sh
@@ -179,6 +179,42 @@ if brew command command-not-found-init > /dev/null 2>&1; then
   eval "$(brew command-not-found-init)";
 fi
 
+## em
+if ! em -h > /dev/null 2>&1 ; then
+  echo Installing em...
+  PIP_REQUIRE_VIRTUALENV="" pip3 install em-keyboard  # TODO: via homebrew? via pipsi?
+fi
+
+## clf
+if ! clf -h > /dev/null 2>&1 ; then
+  echo Installing clf...
+  PIP_REQUIRE_VIRTUALENV="" pip3 install clf  # TODO: via homebrew? via pipsi?
+fi
+
+## howdoi
+if ! howdoi -h > /dev/null 2>&1 ; then
+  echo Installing howdoi...
+  brew install howdoi
+fi
+
+## tldr
+if ! tldr -h > /dev/null 2>&1 ; then
+  echo Installing tldr...
+  PIP_REQUIRE_VIRTUALENV="" pip3 install tldr  # TODO: via homebrew? via pipsi?
+fi
+
+## eg
+if ! eg -h > /dev/null 2>&1 ; then
+  echo Installing eg...
+  brew install eg-examples
+fi
+
+## how2
+if ! how2 -h > /dev/null 2>&1 ; then
+  echo Installing how2...
+  npm install --global how-2
+fi
+
 ## fzf
 if ! fzf -h > /dev/null 2>&1 ; then
   echo Installing fzf...
@@ -282,15 +318,6 @@ fi
 "psql screen tmux vim"
 fi
 
-### http://direnv.net/
-if ! type direnv > /dev/null 2>&1; then
-  echo Installing direnv...
-  brew install direnv
-fi
-if type direnv > /dev/null 2>&1; then
-  eval "$(direnv hook bash)"
-fi
-
 ### https://github.com/chrisallenlane/cheat
 ### cheat allows you to create and view interactive cheatsheets on the command-line.
 export CHEATCOLORS=true
@@ -301,12 +328,40 @@ if ! type fasd > /dev/null 2>&1; then
   echo Installing fasd...
   brew install fasd
 fi
-#if type fasd > /dev/null 2>&1 ; then
-#  eval "$(fasd --init auto)"
-#fi
+if type fasd > /dev/null 2>&1 ; then
+  eval "$(fasd --init auto)"
+fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# "Magnificent app which corrects your previous console command"
+eval $(thefuck --alias)
+
+# FIXME: To fix.
+# Only load Liquid Prompt in interactive shells, not from a script or from scp
+# [[ $- = *i* ]] && source ~/Documents/GitHub/liquidprompt/liquidprompt
+
+# p4merge
+export PATH="/Applications/p4merge.app/Contents//MacOS${PATH:+:${PATH}}"
+
+# pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+fi
+
+ssh-add -A  # Add all identities stored in your keychain.
+# To add identities, run:
+# ssh-add -K ~/.ssh/id_rsa
+
+if test $(hostname -s) == 'ospideal'; then
+    # The next line enables shell command completion for gcloud.
+    if [ -f '/usr/local/google-cloud-sdk/completion.bash.inc' ]; then
+      	. '/usr/local/google-cloud-sdk/completion.bash.inc'
+    fi
+fi
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
@@ -318,24 +373,13 @@ if test -f ~/.bashhub/bashhub.sh > /dev/null 2>&1; then
   source ~/.bashhub/bashhub.sh
 fi
 
-# "Magnificent app which corrects your previous console command"
-eval $(thefuck --alias)
-
-# Only load Liquid Prompt in interactive shells, not from a script or from scp
-# [[ $- = *i* ]] && source ~/Documents/GitHub/liquidprompt/liquidprompt
-
-# p4merge
-export PATH="/Applications/p4merge.app/Contents//MacOS${PATH:+:${PATH}}"
-
-ssh-add
-
-if test $(hostname -s) == 'ospideal'; then
-    ssh-add ~/.ssh/proinsias_bitbucket
-
-    # The next line enables shell command completion for gcloud.
-    if [ -f '/usr/local/google-cloud-sdk/completion.bash.inc' ]; then
-      	. '/usr/local/google-cloud-sdk/completion.bash.inc'
-    fi
+### http://direnv.net/
+if ! type direnv > /dev/null 2>&1; then
+  echo Installing direnv...
+  brew install direnv
+fi
+if type direnv > /dev/null 2>&1; then
+  eval "$(direnv hook bash)"
 fi
 
 ### motd

@@ -1,11 +1,13 @@
 ---
 homebrew_upgrade_all_packages: yes
 homebrew_taps:
+  - alehouse/homebrew-unofficial
   - alexdavid/homebrew-tap
   - caskroom/versions  # For java8.
   - dunn/emacs
   - dunn/homebrew-emacs
   - homebrew/cask
+  - homebrew/cask-drivers
   - homebrew/bundle
   - homebrew/command-not-found
   - homebrew/services
@@ -40,7 +42,7 @@ homebrew_installed_packages:
   - c-ares
   - cairo
   - cask
-  - ccache
+  - ccache  # For pyenv-ccache.
   - certbot
   # - cheat  # Get via bash-snippets.
   - checkstyle
@@ -77,6 +79,7 @@ homebrew_installed_packages:
   - dunn/emacs/yaml-mode
   - ed
   - editorconfig
+  - eg-examples
   - { name: emacs, install_options: "with-cocoa,with-ctags,with-modules" }
   - epstool
   - faac
@@ -101,7 +104,7 @@ homebrew_installed_packages:
   - gettext
   - ghostscript
   - gifsicle
-  - { name: git, install_options: "with-curl,with-gettext,with-openssl,with-pcre,with-persistent-https,with-subversion"}
+  - { name: git, install_options: "with-curl,with-openssl"}
   - git-branch-status
   - git-ftp
   - git-lfs
@@ -211,11 +214,11 @@ homebrew_installed_packages:
   - pv
   - pwgen
   - pycodestyle
-  # - pyenv
-  # - pyenv-ccache
-  # - pyenv-pip-migrate
-  # - pyenv-virtualenv
-  # - pyenv-which-ext
+  - pyenv
+  - pyenv-ccache
+  - pyenv-pip-migrate
+  - pyenv-virtualenv
+  - pyenv-which-ext
   - pyqt
   - python
   - python@2
@@ -224,7 +227,7 @@ homebrew_installed_packages:
   - qscintilla2
   - qt
   # - rbenv
-  - readline
+  - readline  # For pyenv.
   - rename
   - restview
   - rst-lint
@@ -266,7 +269,7 @@ homebrew_installed_packages:
   - vim
   - vitorgalvao/tiny-scripts/cask-repair
   - watch
-  - { name: wdiff, install_options: "with-gettext" }
+  - wdiff
   - webkit2png
   - wget
   # - wine
@@ -274,10 +277,11 @@ homebrew_installed_packages:
   - wireshark
   - x264
   - xvid
-  - xz
+  - xz  # For pyenv.
   - yamllint
   - yasm
   # - youtube-dl
+  - zlib  # For pyenv.
   - zopfli
   - zsh
 homebrew_uninstalled_packages: []
@@ -329,6 +333,7 @@ homebrew_cask_apps:
   # - growlnotify
   # - growlvoice
   # - handylock
+  # - haptic-touch-bar
   - ibettercharge
   - imageoptim
   - imazing
@@ -366,6 +371,7 @@ homebrew_cask_apps:
   - quicklook-csv
   - quicklook-json
   - send-to-kindle
+  - signal
   - silverlight
   - skyfonts
   - skype
@@ -391,6 +397,10 @@ homebrew_cask_apps:
   - vlc
   - webpquicklook
   - xquartz
+  - yubico-authenticator
+  - yubico-yubikey-manager
+  - yubico-yubikey-personalization-gui
+  - yubico-yubikey-piv-manager
   - yujitach-menumeters
   # - zotero
 homebrew_cask_uninstalled_apps: []

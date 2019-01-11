@@ -73,7 +73,9 @@
 
 # FIXME: Add:
 # sudo echo /usr/local/bin/bash >> /etc/shells
-#
+# npm install -g git-guilt
+# gem install bundler
+# gem install bundler-audit
 
 # FIXME: Add installation of bashhub - pipsi?
 

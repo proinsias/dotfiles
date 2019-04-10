@@ -11,10 +11,13 @@ if test -f /etc/bashrc ; then
         . /etc/bashrc
 fi
 
-if ! test -f ~/.travis/travis.sh > /dev/null 2>&1; then
-    echo Installing travis...
-    gem install travis
-    echo Run travis command to install auto-completion!!!
+# Create venv directory in case doesn't exist.
+mkdir --parents "${HOME}"/.virtualenvs
+
+## travis
+if ! travis -h > /dev/null 2>&1 ; then
+  echo Installing travis...
+  gem install travis
 fi
 if test -f ~/.travis/travis.sh > /dev/null 2>&1; then
   source ~/.travis/travis.sh
@@ -176,6 +179,42 @@ if brew command command-not-found-init > /dev/null 2>&1; then
   eval "$(brew command-not-found-init)";
 fi
 
+## em
+if ! em -h > /dev/null 2>&1 ; then
+  echo Installing em...
+  PIP_REQUIRE_VIRTUALENV="" pip3 install em-keyboard  # TODO: via homebrew? via pipsi?
+fi
+
+## clf
+if ! clf -h > /dev/null 2>&1 ; then
+  echo Installing clf...
+  PIP_REQUIRE_VIRTUALENV="" pip3 install clf  # TODO: via homebrew? via pipsi?
+fi
+
+## howdoi
+if ! howdoi -h > /dev/null 2>&1 ; then
+  echo Installing howdoi...
+  brew install howdoi
+fi
+
+## tldr
+if ! tldr -h > /dev/null 2>&1 ; then
+  echo Installing tldr...
+  PIP_REQUIRE_VIRTUALENV="" pip3 install tldr  # TODO: via homebrew? via pipsi?
+fi
+
+## eg
+if ! eg -h > /dev/null 2>&1 ; then
+  echo Installing eg...
+  brew install eg-examples
+fi
+
+## how2
+if ! how2 -h > /dev/null 2>&1 ; then
+  echo Installing how2...
+  npm install --global how-2
+fi
+
 ## fzf
 if ! fzf -h > /dev/null 2>&1 ; then
   echo Installing fzf...
@@ -229,7 +268,7 @@ esac
 complete -C aws_completer aws
 
 # Add keychain keys
-eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa 6519D396 --ignore-missing)
+eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC,6519D396,9DE94ABA,9879E8CA --ignore-missing)
 
 # Use `/bin/ls` for these tests, since homebrew `ls` gives errors
 if /bin/ls ~/.bash/* 1> /dev/null 2>&1; then
@@ -250,7 +289,7 @@ fi
 ## argcomplete
 if ! activate-global-python-argcomplete -h > /dev/null 2>&1 ; then
   echo Installing argcomplete...
-  pip3 install argcomplete
+  PIP_REQUIRE_VIRTUALENV="" pip3 install argcomplete  # TODO: via homebrew? via pipsi?
 fi
 
 ### tab completion for conda
@@ -268,7 +307,7 @@ fi
 if ! type ntfy > /dev/null 2>&1; then
     if test $(uname -n) != firefly.local > /dev/null 2>&1; then
       echo Installing ntfy...
-      pip3 install ntfy[pid,emoji,slack]  # TODO: homebrew?
+      PIP_REQUIRE_VIRTUALENV="" pip3 install ntfy[pid,emoji,slack]  # TODO: via homebrew? via pipsi?
     else
       echo Check if ntfy installation works!!!
     fi
@@ -298,39 +337,57 @@ if ! type fasd > /dev/null 2>&1; then
   echo Installing fasd...
   brew install fasd
 fi
-#if type fasd > /dev/null 2>&1 ; then
-#  eval "$(fasd --init auto)"
-#fi
+if type fasd > /dev/null 2>&1 ; then
+  eval "$(fasd --init auto)"
+fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# "Magnificent app which corrects your previous console command"
+eval $(thefuck --alias)
+
+# FIXME: To fix.
+# Only load Liquid Prompt in interactive shells, not from a script or from scp
+# [[ $- = *i* ]] && source ~/Documents/GitHub/liquidprompt/liquidprompt
+
+# p4merge
+export PATH="/Applications/p4merge.app/Contents//MacOS${PATH:+:${PATH}}"
+
+# pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+fi
+
+ssh-add -A  # Add all identities stored in your keychain.
+# To add identities, run:
+# ssh-add -K ~/.ssh/id_rsa
+
+if test $(hostname -s) == 'ospideal'; then
+    # The next line enables shell command completion for gcloud.
+    if [ -f '/usr/local/google-cloud-sdk/completion.bash.inc' ]; then
+      	. '/usr/local/google-cloud-sdk/completion.bash.inc'
+    fi
+fi
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
 if ! test -f ~/.bashhub/bashhub.sh > /dev/null 2>&1; then
   echo Installing bashhub...
-  cd /tmp/ && curl -OL https://bashhub.com/setup && bash setup && cd -
+  cd /tmp/ && curl --location --remote-name https://bashhub.com/setup && PIP_REQUIRE_VIRTUALENV="" bash setup && cd -
 fi
 if test -f ~/.bashhub/bashhub.sh > /dev/null 2>&1; then
   source ~/.bashhub/bashhub.sh
 fi
-
-# "Magnificent app which corrects your previous console command"
-eval $(thefuck --alias)
-
-# Only load Liquid Prompt in interactive shells, not from a script or from scp
-# [[ $- = *i* ]] && source ~/Documents/GitHub/liquidprompt/liquidprompt
 
 ### motd
 echo "* bash"
 echo "  + `!?foo` will repeat the most recent command that contained the string 'foo'"
 echo "* em – emojii"
 echo "* Search help for command line"
-echo "  + clf"
-echo "  + eg"
-echo "  + howdoi"
-echo "  + how2"
-echo "  + tldr"
+echo "  + clf, eg, howdoi, how2, tldr"
 echo "* f@@k - https://github.com/nvbn/thef@@k"
 echo "* bashhub - https://bashhub.com/"
 echo '  + bh -n 20 "grep"  # last 20 files greped'

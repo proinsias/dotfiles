@@ -1,0 +1,15 @@
+[user]
+    name = Francis T. O'Donovan  # Overwritten by GIT_AUTHOR_NAME, GIT_COMMITTER_NAME.
+    email = proinsias@users.noreply.github.com  # Overwritten by GIT_AUTHOR_EMAIL, GIT_COMMITTER_EMAIL.
+    signingkey = 9879E8CA
+[include]
+    path = ~/.gitconfig.include
+[credential]
+#    helper = cache --timeout 3600
+    helper = osxkeychain
+[help]
+#    format = man
+    format = web
+[merge]
+#    tool = emerge
+    tool = p4merge

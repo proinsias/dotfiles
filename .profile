@@ -72,7 +72,7 @@ case $(uname -s) in
       ;;
     "Darwin" )
       # homebrew
-      export PATH="/usr/local/bin:/usr/local/sbin${PATH:+:${PATH}}"
+      export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH:+:${PATH}}"
 
       if [ -d "${HOME}/.osx/bin" ] ; then
           export PATH="${PATH:+${PATH}:}${HOME}/.osx/bin"
@@ -85,23 +85,30 @@ esac
 
 # For homebrew
 export HOMEBREW_PREFIX="$(brew --prefix)"
+export HOMEBREW_INSTALL_CLEANUP=true
 
 # ruby
-if ! type rbenv > /dev/null 2>&1 ; then
-  [[ "$-" == *i* ]] && echo Installing rbenv...
-  brew install rbenv
-fi
+export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
+export RUBY_VERSION="2.5.0"
+export PATH="${RUBY_HOME}/bin:${PATH}"
+export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
+export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 
-if type rbenv > /dev/null 2>&1 ; then
-  eval "$(rbenv init -)";
-fi
+#if ! type rbenv > /dev/null 2>&1 ; then
+#  [[ "$-" == *i* ]] && echo Installing rbenv...
+#  brew install rbenv
+#fi
+#
+#if type rbenv > /dev/null 2>&1 ; then
+#  eval "$(rbenv init -)";
+#fi
 
 ### http://www.jenv.be/
-export PATH="$HOME/.jenv/bin:$PATH"
-if ! type jenv > /dev/null 2>&1 ; then
-  echo Installing jenv...
-  brew install jenv
-fi
+# export PATH="$HOME/.jenv/bin:$PATH"
+# if ! type jenv > /dev/null 2>&1 ; then
+#   echo Installing jenv...
+#   brew install jenv
+# fi
 #if type jenv > /dev/null 2>&1 ; then
 #  eval "$(jenv init -)";
 #fi
@@ -112,11 +119,15 @@ fi
 #export PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin${PATH:+:${PATH}}"
 export MANPATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman${MANPATH:+:${MANPATH}}"
 
+# Add homebrew's GNU findutils to PATH:
+#export PATH="${HOMEBREW_PREFIX}/opt/findutils/bin${PATH:+:${PATH}}"
+export MANPATH="${HOMEBREW_PREFIX}/opt/findutils/share/man${MANPATH:+:${MANPATH}}"
+
 export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH:+:${MANPATH}}"
 export INFOPATH="${HOMEBREW_PREFIX}/share/info${INFOPATH:+:${INFOPATH}}"
 
 # For hunspell
-export DICPATH="${HOME}/.hunspell_default:/usr/local/share/hunspell${DICPATH:+:${DICPATH}}"
+export DICPATH="${HOME}/.hunspell_default:${HOMEBREW_PREFIX}/share/hunspell${DICPATH:+:${DICPATH}}"
 
 # Mix of interactivity here
 
@@ -138,11 +149,6 @@ if type overcommit > /dev/null 2>&1 ; then
   export GIT_TEMPLATE_DIR=$(overcommit --template-dir)
 fi
 
-# Add OM1 devops scripts, if available.
-if [ -d "${HOME}/favs/om1/devops/bin" ] ; then
-    export PATH="${PATH:+${PATH}:}${HOME}/favs/om1/devops/bin"
-fi
-
 # If not running interactively, stop here
 [[ "$-" != *i* ]] && return
 
@@ -155,7 +161,7 @@ else
 fi
 
 # Ccache
-export PATH="/usr/local/opt/ccache/libexec${PATH:+:${PATH}}"
+export PATH="${HOMEBREW_PREFIX}/opt/ccache/libexec${PATH:+:${PATH}}"
 
 case $(uname -s) in
     "Linux" )
@@ -178,10 +184,10 @@ case $(uname -s) in
           archey -p
         fi
 
-#         export JAVA_HOME="$(/usr/libexec/java_home)"
-        # Need Java8 not Java9 for Spark.
-        export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/"
-        export SCALA_HOME="/usr/local/opt/scala/idea"  # To use with IntelliJ.
+        export JAVA_HOME="$(/usr/libexec/java_home)"  # Need Java8 not Java9 for Spark.
+        export PATH="${JAVA_HOME}/bin${PATH:+:${PATH}}"
+
+        export SCALA_HOME="${HOMEBREW_PREFIX}/opt/scala/idea"  # To use with IntelliJ.
         ;;
 esac
 
@@ -190,9 +196,24 @@ export PATH="/Applications/SnowSQL.app/Contents/MacOS${PATH:+:${PATH}}"
 
 # Go Lang
 export GOPATH="${HOME}/golang"
-export GOROOT=/usr/local/opt/go/libexec
+export GOROOT="${HOMEBREW_PREFIX}/opt/go/libexec"
 export PATH="${GOPATH}/bin${PATH:+:${PATH}}"
 export PATH="${GOROOT}/bin${PATH:+:${PATH}}"
 
 # p4merge
 export PATH="/Applications/p4merge.app/Contents//MacOS${PATH:+:${PATH}}"
+
+# # Prevent accidental global package install through pip.
+# export PIP_REQUIRE_VIRTUALENV=true
+
+if test $(hostname -s) == 'ospideal'; then
+    export PATH="/usr/local/node-v8.11.4-darwin-x64/bin:${PATH}"
+    export PATH="/usr/local/yarn-v1.10.0/bin:${PATH}"
+
+    # The next line updates PATH for the Google Cloud SDK.
+    if [ -f '/usr/local/google-cloud-sdk/path.bash.inc' ]; then
+    	. '/usr/local/google-cloud-sdk/path.bash.inc'
+    fi
+fi
+
+

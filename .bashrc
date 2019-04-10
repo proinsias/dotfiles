@@ -12,16 +12,16 @@ if test -f /etc/bashrc ; then
 fi
 
 # Create venv directory in case doesn't exist.
-mkdir --parents "${HOME}"/.virtualenvs
+mkdir -p "${HOME}"/.virtualenvs
 
-## travis
-if ! travis -h > /dev/null 2>&1 ; then
-  echo Installing travis...
-  gem install travis
-fi
-if test -f ~/.travis/travis.sh > /dev/null 2>&1; then
-  source ~/.travis/travis.sh
-fi
+### travis
+#if ! travis -h > /dev/null 2>&1 ; then
+#  echo Installing travis...
+#  gem install travis
+#fi
+#if test -f ~/.travis/travis.sh > /dev/null 2>&1; then
+#  source ~/.travis/travis.sh
+#fi
 
 # source .bashrc.local and .bashrc.local.<blah>
 if /bin/ls ~/.bashrc.local* 1> /dev/null 2>&1; then
@@ -382,7 +382,8 @@ if command -v pyenv 1>/dev/null 2>&1; then
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 fi
 
-ssh-add -A  # Add all identities stored in your keychain.
+# ssh-add -A  # Add all identities stored in your keychain.
+ssh-add ~/.ssh/id_rsa
 # To add identities, run:
 # ssh-add -K ~/.ssh/id_rsa
 

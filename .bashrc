@@ -230,6 +230,12 @@ if ! how2 -h > /dev/null 2>&1 ; then
   npm install --global how-2
 fi
 
+## uncommitted
+if ! uncommitted -h > /dev/null 2>&1 ; then
+  echo Installing uncommitted...
+  pipx install uncommitted
+fi
+
 ## fzf
 if ! fzf -h > /dev/null 2>&1 ; then
   echo Installing fzf...

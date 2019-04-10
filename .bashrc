@@ -191,19 +191,19 @@ export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
 ## em
 if ! em -h > /dev/null 2>&1 ; then
   echo Installing em...
-  pipx install em-keyboard
+  pipx install em-keyboard --python /usr/local/bin/python3
 fi
 
 ## pyjokes
 if ! pyjoke -h > /dev/null 2>&1 ; then
   echo Installing pyjoke...
-  pipx install pyjokes
+  pipx install pyjokes --python /usr/local/bin/python3
 fi
 
 ## clf
 if ! clf -h > /dev/null 2>&1 ; then
   echo Installing clf...
-  pipx install clf
+  pipx install clf --python /usr/local/bin/python3
 fi
 
 ## howdoi
@@ -215,7 +215,7 @@ fi
 ## tldr
 if ! tldr -h > /dev/null 2>&1 ; then
   echo Installing tldr...
-  pipx install tldr
+  pipx install tldr --python /usr/local/bin/python3
 fi
 
 ## eg
@@ -233,7 +233,7 @@ fi
 ## uncommitted
 if ! uncommitted -h > /dev/null 2>&1 ; then
   echo Installing uncommitted...
-  pipx install uncommitted
+  pipx install uncommitted --python /usr/local/bin/python3
 fi
 
 ## fzf
@@ -310,7 +310,7 @@ fi
 ## argcomplete
 if ! activate-global-python-argcomplete -h > /dev/null 2>&1 ; then
   echo Installing argcomplete...
-  pipx install argcomplete
+  pipx install argcomplete --python /usr/local/bin/python3
 fi
 
 ### tab completion for conda
@@ -328,7 +328,7 @@ fi
 if ! type ntfy > /dev/null 2>&1; then
     if test $(uname -n) != firefly.local > /dev/null 2>&1; then
       echo Installing ntfy...
-      pipx install ntfy[pid,emoji,slack]
+      pipx install ntfy[pid,emoji,slack] --python /usr/local/bin/python3
     else
       echo Check if ntfy installation works!!!
     fi

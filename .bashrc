@@ -179,16 +179,31 @@ if brew command command-not-found-init > /dev/null 2>&1; then
   eval "$(brew command-not-found-init)";
 fi
 
+## pipx
+if ! pipx -h > /dev/null 2>&1 ; then
+  echo Installing pipx...
+  pip3 install pipx
+fi
+
+# added by pipx (https://github.com/pipxproject/pipx)
+export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
+
 ## em
 if ! em -h > /dev/null 2>&1 ; then
   echo Installing em...
-  PIP_REQUIRE_VIRTUALENV="" pip3 install em-keyboard  # TODO: via homebrew? via pipsi?
+  pipx install em-keyboard
+fi
+
+## pyjokes
+if ! pyjoke -h > /dev/null 2>&1 ; then
+  echo Installing pyjoke...
+  pipx install pyjokes
 fi
 
 ## clf
 if ! clf -h > /dev/null 2>&1 ; then
   echo Installing clf...
-  PIP_REQUIRE_VIRTUALENV="" pip3 install clf  # TODO: via homebrew? via pipsi?
+  pipx install clf
 fi
 
 ## howdoi
@@ -200,7 +215,7 @@ fi
 ## tldr
 if ! tldr -h > /dev/null 2>&1 ; then
   echo Installing tldr...
-  PIP_REQUIRE_VIRTUALENV="" pip3 install tldr  # TODO: via homebrew? via pipsi?
+  pipx install tldr
 fi
 
 ## eg
@@ -289,7 +304,7 @@ fi
 ## argcomplete
 if ! activate-global-python-argcomplete -h > /dev/null 2>&1 ; then
   echo Installing argcomplete...
-  PIP_REQUIRE_VIRTUALENV="" pip3 install argcomplete  # TODO: via homebrew? via pipsi?
+  pipx install argcomplete
 fi
 
 ### tab completion for conda
@@ -307,7 +322,7 @@ fi
 if ! type ntfy > /dev/null 2>&1; then
     if test $(uname -n) != firefly.local > /dev/null 2>&1; then
       echo Installing ntfy...
-      PIP_REQUIRE_VIRTUALENV="" pip3 install ntfy[pid,emoji,slack]  # TODO: via homebrew? via pipsi?
+      pipx install ntfy[pid,emoji,slack]
     else
       echo Check if ntfy installation works!!!
     fi
@@ -414,3 +429,9 @@ echo "  + git show | tig"
 echo "  + tig show"
 echo "* httpie - https://httpie.org/doc#main-features"
 echo "* git branch-status"
+echo "* dvc status"
+
+# pyjokes
+echo
+echo "Joke of the Day:"
+pyjoke

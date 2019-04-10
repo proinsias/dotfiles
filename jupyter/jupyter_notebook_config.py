@@ -560,8 +560,27 @@ def post_save(model, os_path, contents_manager):
 
     import nbformat
     notebook = nbformat.read(os_path, as_version=nbformat.NO_CONVERT, )
+
     import nbconvert
-    python_exporter = nbconvert.PythonExporter()
+
+    html_exporter = nbconvert.exporters.html.HTMLExporter()
+    (body, resources) = html_exporter.from_notebook_node(notebook)
+
+    html_filename = os.path.splitext(os_path)[0] + '.html'
+    with open(html_filename, 'w') as html_file:
+        try:
+            # Python 3
+            html_file.write(body)
+        except UnicodeEncodeError:
+            # Python 2
+            html_file.write(body.encode('utf-8'))
+
+    print('Converting notebook {0} to html file {1}...'.format(
+          os.path.basename(os_path),
+          os.path.basename(html_filename),
+          ))
+
+    python_exporter = nbconvert.exporters.PythonExporter()
     (body, resources) = python_exporter.from_notebook_node(notebook)
 
     lines = body.split('\n')
@@ -572,15 +591,17 @@ def post_save(model, os_path, contents_manager):
 
     python_filename = os.path.splitext(os_path)[0] + '.py'
     with open(python_filename, 'w') as py_file:
-        py_file.write(body)
+        try:
+            # Python 3
+            py_file.write(body)
+        except UnicodeEncodeError:
+            # Python 2
+            py_file.write(body.encode('utf-8'))
 
     print('Converting notebook {0} to python file {1}...'.format(
           os.path.basename(os_path),
           os.path.basename(python_filename),
           ))
-
-#     d, fname = os.path.split(os_path)
-#     check_call(['jupyter', 'nbconvert', '--to', 'python', fname], cwd=d)
 
 
 c.FileContentsManager.post_save_hook = post_save

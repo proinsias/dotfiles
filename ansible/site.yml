@@ -77,7 +77,7 @@
 # gem install bundler
 # gem install bundler-audit
 
-# FIXME: Add installation of bashhub - pipsi?
+# FIXME: Add installation of bashhub - via pipx?
 
 # FIXME: ansible-role-dotfiles!
 

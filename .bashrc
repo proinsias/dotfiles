@@ -194,6 +194,12 @@ if ! em -h > /dev/null 2>&1 ; then
   pipx install em-keyboard --python /usr/local/bin/python3
 fi
 
+## safety
+if ! safety --help > /dev/null 2>&1 ; then
+  echo Installing safety...
+  pipx install safety --python /usr/local/bin/python3
+fi
+
 ## pyjokes
 if ! pyjoke -h > /dev/null 2>&1 ; then
   echo Installing pyjoke...

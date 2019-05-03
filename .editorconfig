@@ -9,45 +9,18 @@ charset = utf-8
 end_of_file = lf
 insert_final_newline = true
 indent_style = space
-indent_size = 2
-trim_trailing_whitespace = true
-
-# Matches multiple files with brace expansion notation
-# Set default charset
-[*.{js,py}]
-charset = utf-8
-
-# 4 space indentation
-[*.py]
-mode = Python
-indent_style = space
 indent_size = 4
-line_length = 80
-multi_line_output = 3
-lines_after_imports = 2
+max_line_length = 120
+quote_type = single
+trim_trailing_whitespace = true
 
 # Tab indentation (no size specified)
 [Makefile]
 indent_style = tab
 
-# Indentation override for all JS under lib directory
-[lib/**.js]
-indent_style = space
-indent_size = 2
-
-# Matches the exact files either package.json or .travis.yml
-[{package.json,.travis.yml}]
-indent_style = space
-indent_size = 2
-
 # Ruby
 [{*.rb,*.gemspec,Gemfile{,.lock},Rakefile,Vagrantfile}]
-indent_style = space
 indent_size = 2
-end_of_line = lf
-charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
 
 # Front End Languages (HTML, JS, CSS etc)
 [*.{js, css, html}]
@@ -56,45 +29,12 @@ indent_size = 2
 charset = utf-8
 trim_trailing_whitespace = true
 
-## JS
-[*.js]
-quote_type = single
+[*.json]
+quote_type = double
 
 # YAML Based files - 2 space indent
 [*.{yml, yaml, sls}]
-indent_style = space
 indent_size = 2
-
-[*.{sh, zsh}]
-indent_style = space
-indent_size = 4
-
-[*.{md, markdown}]
-indent_style = space
-indent_size = 4
-trim_trailing_whitespace = false
-insert_final_newline = true
-
-[README.md]
-max_line_length = 80
 
 [*.{js,json}]
-charset = utf-8
-end_of_line = lf
 indent_size = 2
-indent_style = space
-insert_final_newline = true
-trim_trailing_whitespace = true
-
-#
-# Property lists, Munki and AutoPkg
-#
-[*.{plist,recipe,pkginfo}]
-mode = XML
-indent_style = tab
-indent_size = 4
-x-show-invisibles = 1
-x-show-spaces = 1
-
-
-

@@ -1,30 +1,6 @@
 ---
 - hosts: all
 
-  vars_files:
-      - vars/homebrew.yml  # geerlingguy.homebrew
-      - vars/mas.yml  # geerlingguy.mas
-      - vars/osx-defaults  # lafarer.osx-defaults
-      - vars/pip.yml  # geerlingguy.pip
-      - vars/ruby.yml  # geerlingguy.ruby
-
-  vars:
-    ComputerName: "discovery"  # osx-computername # FIXME: Set per computer.
-    system:
-      ui:
-        # By default the macOS save/print dialog opens in a
-        # simplified version, enable to show the full dialog
-        # by default.
-        expand_save_panel: yes
-        expand_print_panel: yes
-        # macOS ommits common file extensions by default
-        show_all_file_extensions: yes
-        # Open directory if you drag a file/folder onto it.
-        enable_springloading_directories: yes
-        springloading_directories_delay: 2
-        # FIXME: Finish https://github.com/kinglouie/ansible-role-macos/blob/master/defaults/main.yml
-
-
   roles:
     # FIXME: Put macos_power_settings in var file?
     - {role: appian.macos-power,
@@ -37,14 +13,9 @@
          {cmd: wakeonnetworkaccess, desired_value: 'On'},
        ]
     }
-    - geerlingguy.homebrew
-    - geerlingguy.mas
     - geerlingguy.nodejs
     - geerlingguy.pip
     - geerlingguy.ruby
-    - kinglouie.macos
-    - lafarer.osx-computername
-    - lafarer.osx-defaults
 
   tasks:
 

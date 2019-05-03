@@ -3,7 +3,6 @@ ruby_install_bundler: True
 ruby_install_gems:
   - bundle-audit
   - bundler # http://bundler.io/
-  # - copyright-header  # https://github.com/osterman/copyright-header
   - danger
   - html-proofer
   - image_optim

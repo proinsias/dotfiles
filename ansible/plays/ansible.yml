@@ -89,3 +89,7 @@
 # FIXME:
 # https://stackoverflow.com/questions/25230376/how-to-automatically-install-ansible-galaxy-roles
 # When creating galaxy requirements, specify hash so they are pinned!
+
+
+# FIXME: Add pipx,
+# FIXME: GT .bashrc .profile.

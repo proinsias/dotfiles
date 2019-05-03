@@ -43,7 +43,7 @@
     mas_signin_dialog: yes
     mas_upgrade_all_apps: yes
     roles:
-      # - geerlingguy.mas  # TODO: Broken on latest OSs.
+      # - geerlingguy.mas  # FIXME: Broken on latest OSs.
       - homebrew
 
 - hosts: all

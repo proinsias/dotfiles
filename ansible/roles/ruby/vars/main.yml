@@ -6,7 +6,6 @@ rbenv_default_ruby_version: "2.5.1"
 rbenv_global_gems:
   - bundle-audit
   - bundler # http://bundler.io/
-  # - copyright-header  # https://github.com/osterman/copyright-header
   - danger
   - html-proofer
   - image_optim

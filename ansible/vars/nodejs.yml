@@ -17,4 +17,3 @@ nodejs_npm_global_packages:
   - standard
   - svgo
   - tldr  # http://tldr.sh/
-  # - wakatimecli  # https://www.npmjs.com/package/wakatimecli # https://wakatime.com

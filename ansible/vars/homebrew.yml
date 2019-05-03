@@ -131,10 +131,10 @@ homebrew_installed_packages:
   - homebrew/emacs/popup
   - homebrew/emacs/solarized-emacs
   - homebrew/emacs/yaml-mode
-  - homebrew/fuse/ntfs-3g
-  - homebrew/fuse/sshfs
+  # - homebrew/fuse/ntfs-3g
+  # - homebrew/fuse/sshfs
   - homebrew/gui/gsmartcontrol
-  - homebrew/homebrew-x11/gv
+  # - homebrew/homebrew-x11/gv
   - homebrew/science/r
   - homebrew/science/suite-sparse421
   - homebrew/versions/perl518

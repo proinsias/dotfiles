@@ -144,6 +144,7 @@ if [[ -n "${EDITOR}" && -z "${VISUAL}" ]] ; then
 fi
 
 export GIT_EDITOR=emacsclient
+export ALTERNATE_EDITOR=""
 
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
@@ -182,7 +183,7 @@ fi
 ## pipx
 if ! pipx -h > /dev/null 2>&1 ; then
   echo Installing pipx...
-  pip3 install pipx
+  brew install pipx
 fi
 
 # added by pipx (https://github.com/pipxproject/pipx)

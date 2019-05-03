@@ -208,6 +208,7 @@ homebrew_installed_packages:
   - pcre
   - pip-completion
   - pipenv
+  - pipx
   - pixman
   - pkg-config
   - plotutils

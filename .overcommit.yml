@@ -52,8 +52,6 @@ CommitMsg:
   TextWidth:
     enabled: true
     max_subject_width: 50
-  YardCoverage:
-    enabled: false
 
 PreCommit:
   ALL:
@@ -93,29 +91,20 @@ PreCommit:
   FixMe:
     enabled: true
     exclude:
-      - 'notebooks/*.ipynb'
-      - 'notebooks/*/*.ipynb'
+      - 'notebooks/**/*.ipynb'
   ForbiddenBranches:
     enabled: false
-  HardTabs:
-    enabled: true
-  Hadolint:
-    enabled: true
-  HtmlHint:
-    enabled: true
   Flay:
     enabled: true
-  ForbiddenBranches:
-    enabled: false
   GoLint:
     enabled: true
   GoVet:
     enabled: true
   Hadolint:
     enabled: true
-  HardTabs:
-    enabled: true
   HamlLint:
+    enabled: true
+  HardTabs:
     enabled: true
   HtmlHint:
     enabled: true
@@ -144,6 +133,9 @@ PreCommit:
     enabled: true
   LocalPathsInGemfile:
     enabled: true
+  Markdownlint:
+    enabled: true
+    required_executable: 'markdownlint'
   Mdl:
     enabled: true
   Pycodestyle:
@@ -153,17 +145,17 @@ PreCommit:
       # E703 statement ends with a semicolon. Need for matplotlib in Jupyter notebooks.
       - '--ignore=E211,E231,E703,W291,W293'
       - '--max-line-length=120'
-      - '--show-source'
+      # - '--show-source'  # Don't use!
     exclude:
       - 'jupyter/jupyter_notebook_config.py'
       - 'setup.py'
   Pydocstyle:
     enabled: true
     flags:
-      - '--explain'
+      # - '--explain'  # Don't use!
       - '--ignore=D100,D103,D203'
-      - '--source'
-      - '--verbose'
+      # - '--source'  # Don't use!
+      # - '--verbose'  # Don't use!
     exclude:
       - 'jupyter/jupyter_notebook_config.py'
   Pyflakes:
@@ -248,12 +240,15 @@ PreCommit:
       - '**/*.yaml'
       - '**/*.yml'
       - '**/.*.yml'  # To parse this!
+  YardCoverage:
+    enabled: false
 
 PostCheckout:
   BundleInstall:
     enabled: true
+  # Should no be longer needed with updates to git.
   GitLfs:
-    enabled: true
+    enabled: false
   IndexTags:
     enabled: true
   SubmoduleStatus:
@@ -267,8 +262,9 @@ PostCommit:
   GitGuilt:
     enabled: true
     requires_files: false
+  # Should no be longer needed with updates to git.
   GitLfs:
-    enabled: true
+    enabled: false
   SubmoduleStatus:
     enabled: true
     quiet: false
@@ -277,8 +273,9 @@ PostCommit:
 PostMerge:
   BundleInstall:
     enabled: true
+  # Should no be longer needed with updates to git.
   GitLfs:
-    enabled: true
+    enabled: false
   IndexTags:
     enabled: true
   SubmoduleStatus:
@@ -297,8 +294,9 @@ PostRewrite:
     recursive: true
 
 PrePush:
+  # Should no be longer needed with updates to git.
   GitLfs:
-    enabled: true
+    enabled: false
   ProtectedBranches:
     enabled: true
   Pytest:

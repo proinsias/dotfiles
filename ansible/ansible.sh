@@ -5,6 +5,7 @@
 #
 # brew install ansible
 # sudo mkdir /etc/ansible
+# sudo chown -R francis /etc/ansible/
 # cat 'localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python"' >> /etc/ansible/hosts
 # touch ~/.ansible.cfg
 # ansible-config view

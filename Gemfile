@@ -11,9 +11,9 @@ gem 'image_optim'
 gem 'image_optim_pack'
 gem 'jekyll'
 gem 'json'
-# gem 'overcommit' # https://github.com/brigade/overcommit
+gem 'overcommit' # https://github.com/brigade/overcommit
 # Use master branch of overcommit.
-gem 'overcommit', github: 'brigade/overcommit'
+# gem 'overcommit', github: 'brigade/overcommit'
 # Use custom branch of overcommit.
 # gem 'overcommit', :git => 'https://github.com/proinsias/overcommit.git',\
 # :branch => 'proinsias/git-lfs-hooks'

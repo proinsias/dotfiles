@@ -249,6 +249,9 @@ PostCheckout:
   # Should no be longer needed with updates to git.
   GitLfs:
     enabled: false
+  GitLfs2:
+    enabled: true
+    command: ['git', 'lfs', 'post-checkout']
   IndexTags:
     enabled: true
   SubmoduleStatus:
@@ -265,6 +268,9 @@ PostCommit:
   # Should no be longer needed with updates to git.
   GitLfs:
     enabled: false
+  GitLfs2:
+    enabled: true
+    command: ['git', 'lfs', 'post-commit']
   SubmoduleStatus:
     enabled: true
     quiet: false
@@ -276,6 +282,9 @@ PostMerge:
   # Should no be longer needed with updates to git.
   GitLfs:
     enabled: false
+  GitLfs2:
+    enabled: true
+    command: ['git', 'lfs', 'post-merge']
   IndexTags:
     enabled: true
   SubmoduleStatus:
@@ -297,6 +306,9 @@ PrePush:
   # Should no be longer needed with updates to git.
   GitLfs:
     enabled: false
+  GitLfs2:
+    enabled: true
+    command: ['git', 'lfs', 'pre-push']
   ProtectedBranches:
     enabled: true
   Pytest:

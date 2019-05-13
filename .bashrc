@@ -164,72 +164,16 @@ PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 # For homebrew bash completion
-if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion" > /dev/null 2>&1; then
-  echo Installing bash completion...
-  brew install 'homebrew/completions/bash-completion'
-fi
 if test -f "${HOMEBREW_PREFIX}/etc/bash_completion" > /dev/null 2>&1; then
     . "${HOMEBREW_PREFIX}/etc/bash_completion"
 fi
 
-if ! brew command command-not-found-init > /dev/null 2>&1; then
-  echo Installing command-not-found-init...
-  brew tap homebrew/command-not-found
-fi
 if brew command command-not-found-init > /dev/null 2>&1; then
   eval "$(brew command-not-found-init)";
 fi
 
-## pipx
-if ! pipx -h > /dev/null 2>&1 ; then
-  echo Installing pipx...
-  brew install pipx
-fi
-
-# added by pipx (https://github.com/pipxproject/pipx)
+## pipx (https://github.com/pipxproject/pipx)
 export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
-
-## em
-if ! em -h > /dev/null 2>&1 ; then
-  echo Installing em...
-  pipx install em-keyboard --python /usr/local/bin/python3
-fi
-
-## safety
-if ! safety --help > /dev/null 2>&1 ; then
-  echo Installing safety...
-  pipx install safety --python /usr/local/bin/python3
-fi
-
-## pyjokes
-if ! pyjoke -h > /dev/null 2>&1 ; then
-  echo Installing pyjoke...
-  pipx install pyjokes --python /usr/local/bin/python3
-fi
-
-## clf
-if ! clf -h > /dev/null 2>&1 ; then
-  echo Installing clf...
-  pipx install clf --python /usr/local/bin/python3
-fi
-
-## howdoi
-if ! howdoi -h > /dev/null 2>&1 ; then
-  echo Installing howdoi...
-  brew install howdoi
-fi
-
-## tldr
-if ! tldr -h > /dev/null 2>&1 ; then
-  echo Installing tldr...
-  pipx install tldr --python /usr/local/bin/python3
-fi
-
-## eg
-if ! eg -h > /dev/null 2>&1 ; then
-  echo Installing eg...
-  brew install eg-examples
-fi
 
 ## how2
 if ! how2 -h > /dev/null 2>&1 ; then
@@ -237,17 +181,7 @@ if ! how2 -h > /dev/null 2>&1 ; then
   npm install --global how-2
 fi
 
-## uncommitted
-if ! uncommitted -h > /dev/null 2>&1 ; then
-  echo Installing uncommitted...
-  pipx install uncommitted --python /usr/local/bin/python3
-fi
-
 ## fzf
-if ! fzf -h > /dev/null 2>&1 ; then
-  echo Installing fzf...
-  brew install fzf
-fi
 if fzf -h > /dev/null 2>&1 ; then
   if ! test -f ~/.fzf.bash; then
     "${HOMEBREW_PREFIX}/opt/fzf/install" --all --no-update-rc
@@ -314,12 +248,6 @@ if /bin/ls ~/.bash_aliases* 1> /dev/null 2>&1; then
   unset file;
 fi
 
-## argcomplete
-if ! activate-global-python-argcomplete -h > /dev/null 2>&1 ; then
-  echo Installing argcomplete...
-  pipx install argcomplete --python /usr/local/bin/python3
-fi
-
 ### tab completion for conda
 if conda -V > /dev/null 2>&1 ; then
   eval "$(register-python-argcomplete conda)"
@@ -332,14 +260,6 @@ fi
 
 # A utility for sending notifications, on demand and when commands finish.
 # https://github.com/dschep/ntfy/
-if ! type ntfy > /dev/null 2>&1; then
-    if test $(uname -n) != firefly.local > /dev/null 2>&1; then
-      echo Installing ntfy...
-      pipx install ntfy[pid,emoji,slack] --python /usr/local/bin/python3
-    else
-      echo Check if ntfy installation works!!!
-    fi
-fi
  if type ntfy > /dev/null 2>&1; then
   eval "$(ntfy shell-integration --foreground-too)"
   export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld "\
@@ -347,10 +267,6 @@ fi
 fi
 
 ### http://direnv.net/
-if ! type direnv > /dev/null 2>&1; then
-  echo Installing direnv...
-  brew install direnv
-fi
 if type direnv > /dev/null 2>&1; then
   eval "$(direnv hook bash)"
 fi
@@ -361,10 +277,6 @@ export CHEATCOLORS=true
 
 ### https://github.com/clvv/fasd
 ### Offers quick access to files and directories
-if ! type fasd > /dev/null 2>&1; then
-  echo Installing fasd...
-  brew install fasd
-fi
 if type fasd > /dev/null 2>&1 ; then
   eval "$(fasd --init auto)"
 fi

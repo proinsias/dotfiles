@@ -94,25 +94,6 @@ export PATH="${RUBY_HOME}/bin:${PATH}"
 export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 
-#if ! type rbenv > /dev/null 2>&1 ; then
-#  [[ "$-" == *i* ]] && echo Installing rbenv...
-#  brew install rbenv
-#fi
-#
-#if type rbenv > /dev/null 2>&1 ; then
-#  eval "$(rbenv init -)";
-#fi
-
-### http://www.jenv.be/
-# export PATH="$HOME/.jenv/bin:$PATH"
-# if ! type jenv > /dev/null 2>&1 ; then
-#   echo Installing jenv...
-#   brew install jenv
-# fi
-#if type jenv > /dev/null 2>&1 ; then
-#  eval "$(jenv init -)";
-#fi
-
 # Add homebrew's GNU coreutils (ls, cat, etc.) to PATH, etc. - see
 #http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
 # May cause issues - e.g., archey doesn't work with 'gawk'
@@ -132,19 +113,11 @@ export DICPATH="${HOME}/.hunspell_default:${HOMEBREW_PREFIX}/share/hunspell${DIC
 # Mix of interactivity here
 
 # Wrap git automatically with hub
-if ! type hub > /dev/null 2>&1 ; then
-  [[ "$-" == *i* ]] && echo Installing hub...
-  brew install hub
-fi
 if type hub > /dev/null 2>&1 ; then
   eval "$(hub alias -s)"
 fi
 
 # overcommit
-if ! type overcommit > /dev/null 2>&1 ; then
-  [[ "$-" == *i* ]] && echo Installing overcommit...
-  gem install overcommit
-fi
 if type overcommit > /dev/null 2>&1 ; then
   export GIT_TEMPLATE_DIR=$(overcommit --template-dir)
 fi
@@ -166,20 +139,12 @@ export PATH="${HOMEBREW_PREFIX}/opt/ccache/libexec${PATH:+:${PATH}}"
 case $(uname -s) in
     "Linux" )
         # https://github.com/KittyKatt/screenFetch
-        if ! type screenfetch > /dev/null 2>&1 ; then
-            echo Installing screenfetch...
-            brew install screenfetch
-        fi
         if type screenfetch > /dev/null 2>&1 ; then
           screenfetch
         fi
         ;;
     "Darwin" )
         # https://github.com/obihann/archey-osx
-        if ! type archey > /dev/null 2>&1 ; then
-          echo Installing archey...
-          brew install archey
-        fi
         if type archey > /dev/null 2>&1 ; then
           archey -p
         fi

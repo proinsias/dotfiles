@@ -19,6 +19,7 @@ gem 'overcommit' # https://github.com/brigade/overcommit
 # :branch => 'proinsias/git-lfs-hooks'
 gem 'rspec'
 gem 'rubocop' # https://github.com/bbatsov/rubocop
+gem 'rubocop-performance'
 gem 'sqlint'
 gem 'terminal-notifier'
 gem 'travis'

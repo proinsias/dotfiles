@@ -313,6 +313,9 @@ if test $(hostname -s) == 'ospideal'; then
     fi
 fi
 
+
+export PIPENV_IGNORE_VIRTUALENVS=1
+
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
 if ! test -f ~/.bashhub/bashhub.sh > /dev/null 2>&1; then

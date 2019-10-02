@@ -72,7 +72,7 @@
     changed = green
     untracked = cyan
 [commit]
-#     gpgSign = true
+    gpgSign = true
 [core]
     attributesfile = ~/.gitattributes
 # Note: This setting is no longer recommended.
@@ -215,7 +215,7 @@
     # Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
     sort = version:refname
 [url "https://"]
-	insteadOf = git+https://
+    insteadOf = git+https://
 [versionsort]
     prereleaseSuffix = -pre
     prereleaseSuffix = .pre

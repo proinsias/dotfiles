@@ -1,7 +1,7 @@
 [user]
-    name = Francis T. O'Donovan  # Overwritten by GIT_AUTHOR_NAME, GIT_COMMITTER_NAME.
-    email = proinsias@users.noreply.github.com  # Overwritten by GIT_AUTHOR_EMAIL, GIT_COMMITTER_EMAIL.
-    signingkey = 9879E8CA
+    name = Francis T. O'Donovan
+    email = proinsias@users.noreply.github.com
+    signingkey = 740CFB25
 [include]
     path = ~/.gitconfig.include
 [credential]
@@ -13,16 +13,18 @@
 [merge]
 #    tool = emerge
     tool = p4merge
-[core]
-	excludesfile = /Users/francis/.gitignore_global
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
     path =
 [mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+[core]
+    excludesfile = /Users/francis/.gitignore_global
+[commit]
+    template = /Users/francis/.stCommitMsg

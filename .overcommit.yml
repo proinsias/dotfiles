@@ -58,6 +58,11 @@ PreCommit:
     # report: report errors/warnings as-is regardless of line location (default)
     # warn: report errors as warnings if they are on lines you didn't modify
     problem_on_unmodified_line: warn
+  Bandit:
+    enabled: false
+    required_executable: 'bandit'
+    flags: ['--recursive']
+    install_command: 'pip install bandit'
   BashSyntax:
     enabled: true
     quiet: false
@@ -71,6 +76,11 @@ PreCommit:
     enabled: true
   BundleOutdated:
     enabled: true
+  Caniusepython3:
+    enabled: false
+    required_executable: 'caniusepython3'
+    flags: ['--requirements', 'requirements.txt']
+    install_command: 'pip install caniusepython3'
   CaseConflicts:
     enabled: true
   CopyrightYear:
@@ -112,6 +122,8 @@ PreCommit:
     enabled: true
   ImageOptim:
     enabled: true
+    required_executable: 'svgo'
+    install_command: 'brew install svgo'
   JavaCheckstyle:
     enabled: true
   Jscs:

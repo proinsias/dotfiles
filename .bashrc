@@ -230,7 +230,7 @@ esac
 complete -C aws_completer aws
 
 # Add keychain keys
-eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC,6519D396,9DE94ABA,9879E8CA --ignore-missing)
+eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC,6519D396,740CFB25,9DE94ABA,9879E8CA --ignore-missing)
 
 # Use `/bin/ls` for these tests, since homebrew `ls` gives errors
 if /bin/ls ~/.bash/* 1> /dev/null 2>&1; then
@@ -309,7 +309,7 @@ ssh-add ~/.ssh/id_rsa
 if test $(hostname -s) == 'ospideal'; then
     # The next line enables shell command completion for gcloud.
     if [ -f '/usr/local/google-cloud-sdk/completion.bash.inc' ]; then
-      	. '/usr/local/google-cloud-sdk/completion.bash.inc'
+          . '/usr/local/google-cloud-sdk/completion.bash.inc'
     fi
 fi
 

@@ -30,6 +30,10 @@ if test -d "${HOME}/info" > /dev/null 2>&1; then
   INFOPATH="${HOME}/info${INFOPATH:+:${INFOPATH}}"
 fi
 
+# For homebrew
+export HOMEBREW_PREFIX="$(brew --prefix)"
+export HOMEBREW_INSTALL_CLEANUP=true
+
 # Umask
 #
 # /etc/profile sets 022, removing write perms to group + others.
@@ -83,13 +87,9 @@ case $(uname -s) in
       ;;
 esac
 
-# For homebrew
-export HOMEBREW_PREFIX="$(brew --prefix)"
-export HOMEBREW_INSTALL_CLEANUP=true
-
 # ruby
 export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
-export RUBY_VERSION="2.5.0"
+export RUBY_VERSION="2.6.0"
 export PATH="${RUBY_HOME}/bin:${PATH}"
 export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
@@ -177,7 +177,7 @@ if test $(hostname -s) == 'ospideal'; then
 
     # The next line updates PATH for the Google Cloud SDK.
     if [ -f '/usr/local/google-cloud-sdk/path.bash.inc' ]; then
-    	. '/usr/local/google-cloud-sdk/path.bash.inc'
+        . '/usr/local/google-cloud-sdk/path.bash.inc'
     fi
 fi
 

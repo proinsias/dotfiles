@@ -11,6 +11,7 @@ gem 'image_optim'
 gem 'image_optim_pack'
 gem 'jekyll'
 gem 'json'
+gem 'nokogiri', ">= 1.10.3"
 gem 'overcommit' # https://github.com/brigade/overcommit
 # Use master branch of overcommit.
 # gem 'overcommit', github: 'brigade/overcommit'

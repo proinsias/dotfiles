@@ -584,3 +584,4 @@ ENV/
 spark-warehouse/
 
 .pytest_cache
+.config/configstore

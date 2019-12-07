@@ -62,7 +62,7 @@ PreCommit:
     enabled: false
     required_executable: 'bandit'
     flags: ['--recursive']
-    install_command: 'pip install bandit'
+    install_command: 'python3 -m pip install bandit'
   BashSyntax:
     enabled: true
     quiet: false
@@ -80,7 +80,7 @@ PreCommit:
     enabled: false
     required_executable: 'caniusepython3'
     flags: ['--requirements', 'requirements.txt']
-    install_command: 'pip install caniusepython3'
+    install_command: 'python3 -m pip install caniusepython3'
   CaseConflicts:
     enabled: true
   CopyrightYear:

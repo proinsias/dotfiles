@@ -115,11 +115,15 @@ export DICPATH="${HOME}/.hunspell_default:${HOMEBREW_PREFIX}/share/hunspell${DIC
 # Wrap git automatically with hub
 if type hub > /dev/null 2>&1 ; then
   eval "$(hub alias -s)"
+else
+  echo "Install hub using: brew install hub"
 fi
 
 # overcommit
 if type overcommit > /dev/null 2>&1 ; then
   export GIT_TEMPLATE_DIR=$(overcommit --template-dir)
+else
+  echo "Install overcommit using: gem install overcommit"
 fi
 
 # If not running interactively, stop here
@@ -146,7 +150,9 @@ case $(uname -s) in
     "Darwin" )
         # https://github.com/obihann/archey-osx
         if type archey > /dev/null 2>&1 ; then
-          archey -p
+          archey --packager
+        else
+          echo "Install archey using: brew install archey"
         fi
 
         export JAVA_HOME="$(/usr/libexec/java_home)"  # Need Java8 not Java9 for Spark.
@@ -164,9 +170,6 @@ export GOPATH="${HOME}/golang"
 export GOROOT="${HOMEBREW_PREFIX}/opt/go/libexec"
 export PATH="${GOPATH}/bin${PATH:+:${PATH}}"
 export PATH="${GOROOT}/bin${PATH:+:${PATH}}"
-
-# p4merge
-export PATH="/Applications/p4merge.app/Contents//MacOS${PATH:+:${PATH}}"
 
 # # Prevent accidental global package install through pip.
 # export PIP_REQUIRE_VIRTUALENV=true

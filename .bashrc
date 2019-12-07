@@ -15,7 +15,7 @@ fi
 mkdir -p "${HOME}"/.virtualenvs
 
 ### travis
-#if ! travis -h > /dev/null 2>&1 ; then
+#if ! type travis > /dev/null 2>&1 ; then
 #  echo Installing travis...
 #  gem install travis
 #fi
@@ -24,7 +24,7 @@ mkdir -p "${HOME}"/.virtualenvs
 #fi
 
 # source .bashrc.local and .bashrc.local.<blah>
-if /bin/ls ~/.bashrc.local* 1> /dev/null 2>&1; then
+if /bin/ls ~/.bashrc.local* > /dev/null 2>&1; then
   for file in ~/.bashrc.local*; do
     source "${file}"
   done;
@@ -115,8 +115,6 @@ if test -f ~/bin/npm-completion.sh > /dev/null 2>&1; then
     source ~/bin/npm-completion.sh
 fi
 
-eval "$(pipenv --completion)"
-
 # History Options
 #
 # Don't put duplicate lines in the history.
@@ -173,16 +171,14 @@ if brew command command-not-found-init > /dev/null 2>&1; then
 fi
 
 ## pipx (https://github.com/pipxproject/pipx)
-export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
-
-## how2
-if ! how2 -h > /dev/null 2>&1 ; then
-  echo Installing how2...
-  npm install --global how-2
+if type pipx > /dev/null 2>&1 ; then
+    export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
+else
+    echo "Install pipx using: brew install pipx"
 fi
 
 ## fzf
-if fzf -h > /dev/null 2>&1 ; then
+if type fzf > /dev/null 2>&1 ; then
   if ! test -f ~/.fzf.bash; then
     "${HOMEBREW_PREFIX}/opt/fzf/install" --all --no-update-rc
   fi
@@ -193,6 +189,8 @@ if fzf -h > /dev/null 2>&1 ; then
         echo Check if fzf is working!!!
       fi
   fi
+else
+    echo "Install fzf using: brew install fzf"
 fi
 
 case $(uname -s) in
@@ -230,7 +228,11 @@ esac
 complete -C aws_completer aws
 
 # Add keychain keys
-eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC,6519D396,740CFB25,9DE94ABA,9879E8CA --ignore-missing)
+if type keychain > /dev/null 2>&1; then
+    eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC,6519D396,740CFB25,9DE94ABA,9879E8CA --ignore-missing)
+else
+    echo "Install keychain using: brew install keychain"
+fi
 
 # Use `/bin/ls` for these tests, since homebrew `ls` gives errors
 if /bin/ls ~/.bash/* 1> /dev/null 2>&1; then
@@ -248,14 +250,22 @@ if /bin/ls ~/.bash_aliases* 1> /dev/null 2>&1; then
   unset file;
 fi
 
-### tab completion for conda
-if conda -V > /dev/null 2>&1 ; then
-  eval "$(register-python-argcomplete conda)"
+# tab completion for conda
+if type conda > /dev/null 2>&1 ; then
+  if type register-python-argcomplete > /dev/null 2>&1 ; then
+    eval "$(register-python-argcomplete conda)"
+  else
+    echo "Install argcomplete using: python3 -m pip install argcomplete"
+  fi
 fi
 
 # Global tab completion for argcomplete-supported apps
 if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh"; then
-  activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
+  if type activate-global-python-argcomplete > /dev/null 2>&1 ; then
+    activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
+  else
+    echo "Install argcomplete using: python3 -m pip install argcomplete"
+  fi
 fi
 
 # A utility for sending notifications, on demand and when commands finish.
@@ -264,11 +274,15 @@ fi
   eval "$(ntfy shell-integration --foreground-too)"
   export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld "\
 "psql screen tmux vim"
+else
+    echo "Install ntfy using: python3 -m pip install ntfy[pid,emoji,slack]"
 fi
 
 ### http://direnv.net/
 if type direnv > /dev/null 2>&1; then
   eval "$(direnv hook bash)"
+else
+    echo "Install direnv using: brew install direnv"
 fi
 
 ### https://github.com/chrisallenlane/cheat
@@ -279,49 +293,47 @@ export CHEATCOLORS=true
 ### Offers quick access to files and directories
 if type fasd > /dev/null 2>&1 ; then
   eval "$(fasd --init auto)"
+else
+    echo "Install fasd using: brew install fasd"
 fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # "Magnificent app which corrects your previous console command"
-eval $(thefuck --alias)
+if type thefuck > /dev/null 2>&1; then
+    eval $(thefuck --alias)
+else
+    echo "Install thefuck using: brew install thefuck"
+fi
 
-# FIXME: To fix.
+# FIXME: To fix. And add check for file.
 # Only load Liquid Prompt in interactive shells, not from a script or from scp
 # [[ $- = *i* ]] && source ~/Documents/GitHub/liquidprompt/liquidprompt
 
-# p4merge
-export PATH="/Applications/p4merge.app/Contents//MacOS${PATH:+:${PATH}}"
-
 # pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
+if type pyenv > /dev/null 2>&1; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+  eval "$(pipenv --completion)"
+else
+    echo "Install pyenv using: brew install pyenv"
 fi
 
+# Don't need this with use of keychain.
 # ssh-add -A  # Add all identities stored in your keychain.
-ssh-add ~/.ssh/id_rsa
+# ssh-add ~/.ssh/id_rsa
 # To add identities, run:
 # ssh-add -K ~/.ssh/id_rsa
 
-if test $(hostname -s) == 'ospideal'; then
-    # The next line enables shell command completion for gcloud.
-    if [ -f '/usr/local/google-cloud-sdk/completion.bash.inc' ]; then
-          . '/usr/local/google-cloud-sdk/completion.bash.inc'
-    fi
+# The next line enables shell command completion for gcloud.
+if [ -f '/usr/local/google-cloud-sdk/completion.bash.inc' ]; then
+      . '/usr/local/google-cloud-sdk/completion.bash.inc'
 fi
-
-
-export PIPENV_IGNORE_VIRTUALENVS=1
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
-if ! test -f ~/.bashhub/bashhub.sh > /dev/null 2>&1; then
-  echo Installing bashhub...
-  cd /tmp/ && curl --location --remote-name https://bashhub.com/setup && PIP_REQUIRE_VIRTUALENV="" bash setup && cd -
-fi
 if test -f ~/.bashhub/bashhub.sh > /dev/null 2>&1; then
   source ~/.bashhub/bashhub.sh
 fi
@@ -361,7 +373,11 @@ echo "* git branch-status"
 echo "* dvc status"
 
 # pyjokes
-echo
-echo "Joke of the Day:"
-pyjoke
+if type pyjoke > /dev/null 2>&1; then
+  echo
+  echo "Joke of the Day:"
+  pyjoke
+else
+    echo "Install pyjoke using: pipx install pyjokes"
+fi
 

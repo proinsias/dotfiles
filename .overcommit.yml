@@ -151,8 +151,8 @@ PreCommit:
   Mdl:
     enabled: true
   Pycodestyle:
-    on_fail: 'warn'
     enabled: true
+    on_fail: 'warn'
     flags:
       # E703 statement ends with a semicolon. Need for matplotlib in Jupyter notebooks.
       - '--ignore=E211,E231,E703,W291,W293'

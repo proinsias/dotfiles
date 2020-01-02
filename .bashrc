@@ -176,6 +176,7 @@ if type pipx > /dev/null 2>&1 ; then
     eval "$(register-python-argcomplete pipx)"
 else
     echo "Install pipx using: brew install pipx"
+fi
 
 ## fzf
 if type fzf > /dev/null 2>&1 ; then
@@ -274,8 +275,6 @@ fi
   eval "$(ntfy shell-integration --foreground-too)"
   export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld "\
 "psql screen tmux vim"
-else
-    echo "Install ntfy using: python3 -m pip install ntfy[pid,emoji,slack]"
 fi
 
 ### http://direnv.net/
@@ -377,7 +376,5 @@ if type pyjoke > /dev/null 2>&1; then
   echo
   echo "Joke of the Day:"
   pyjoke
-else
-    echo "Install pyjoke using: pipx install pyjokes"
 fi
 

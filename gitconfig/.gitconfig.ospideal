@@ -25,6 +25,6 @@
     process = git-lfs filter-process
     required = true
 [core]
-    excludesfile = /Users/francis/.gitignore_global
+    excludesfile = /Users/francis/.gitignore
 [commit]
     template = /Users/francis/.stCommitMsg

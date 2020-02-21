@@ -12,6 +12,7 @@ create_default_packages:
 show_channel_urls: true
 
 report_errors: true
+auto_activate_base: false
 # anaconda_upload: false
 # always_yes: true
 # auto_update_conda: false

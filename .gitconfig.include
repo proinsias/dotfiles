@@ -39,7 +39,7 @@
 # whitespace = warn
 # Or you can have Git try to automatically fix the issue before applying the patch:
 # whitespace = fix
-    whitespace = fix
+    whitespace = warn
 [branch]
     # When branching off a remote branch, automatically let the local
     # branch track the remote branch
@@ -83,14 +83,14 @@
 # to convert CRLF to LF on commit but not the other way around by setting core.autocrlf
 # to input. This setup should leave you with CRLF endings in Windows checkouts, but LF
 # endings on Mac and Linux systems and in the repository.
-#    autocrlf = input
+    autocrlf = input
 # If you’re on a Windows machine, set it to true – this converts LF endings into CRLF when
 # you check out code:
     # autocrlf = true
 # If you’re a Windows programmer doing a Windows-only project, then you can turn off this
 # functionality, recording the carriage returns in the repository by setting the config
 # value to false.
-    # autocrlf = false
+#    autocrlf = false
     editor = emacs
     excludesfile = ~/.gitignore
     # # Don't paginate output by default, default is less
@@ -203,7 +203,7 @@
 [rebase]
 # If you’ve committed whitespace issues but haven’t yet pushed upstream, have Git
 # automatically fix whitespace issues as it’s rewriting the patches.
-    whitespace = fix
+    whitespace = warn
 [status]
     # Shows paths relative to the repository root
     # relativePaths = false

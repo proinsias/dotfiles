@@ -1,3 +1,5 @@
+---
+
 # Use this file to configure the Overcommit hooks you wish to use. This will
 # extend the default configuration defined in:
 # https://github.com/brigade/overcommit/blob/master/config/default.yml
@@ -35,7 +37,6 @@
 # ONLY=RuboCop git commit
 # OVERCOMMIT_DISABLE=1 ./my-custom-script
 
----
 CommitMsg:
   HardTabs:
     enabled: true
@@ -64,6 +65,7 @@ PreCommit:
     flags: ['--recursive']
     install_command: 'python3 -m pip install bandit'
   BashSyntax:
+    description: 'Check syntax of bash scripts'
     enabled: true
     quiet: false
     include: '**/*.sh'
@@ -77,6 +79,7 @@ PreCommit:
   BundleOutdated:
     enabled: true
   Caniusepython3:
+    description: 'Check python3 compatibility'
     enabled: false
     required_executable: 'caniusepython3'
     flags: ['--requirements', 'requirements.txt']
@@ -84,6 +87,7 @@ PreCommit:
   CaseConflicts:
     enabled: true
   CopyrightYear:
+    description: 'Check copyright statements are current'
     enabled: true
     quiet: false
     required_executable: 'copyright-year'
@@ -205,6 +209,7 @@ PreCommit:
     enabled: true
     exclude: '**/mdl.rb'
   Safety:
+    description: 'Check for vulnerable python dependencies'
     enabled: true
     required_executable: 'safety.sh'
   Scalariform:
@@ -334,6 +339,7 @@ PreRebase:
 
 PreReceive:
   FreeSpace:
+    description: 'Check how much disk space is free'
     enabled: true
     quiet: false
     required_executable: 'check-freespace'

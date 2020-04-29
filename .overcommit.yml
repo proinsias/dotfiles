@@ -152,6 +152,7 @@ PreCommit:
   Markdownlint:
     enabled: true
     required_executable: 'markdownlint'
+    install_command: 'npm install --global markdownlint-cli'
   Mdl:
     enabled: true
   Pycodestyle:

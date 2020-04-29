@@ -370,6 +370,7 @@ echo "  + tig show"
 echo "* httpie - https://httpie.org/doc#main-features"
 echo "* git branch-status"
 echo "* dvc status"
+echo "* exa"
 
 # pyjokes
 if type pyjoke > /dev/null 2>&1; then

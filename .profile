@@ -110,51 +110,21 @@ export INFOPATH="${HOMEBREW_PREFIX}/share/info${INFOPATH:+:${INFOPATH}}"
 # For hunspell
 export DICPATH="${HOME}/.hunspell_default:${HOMEBREW_PREFIX}/share/hunspell${DICPATH:+:${DICPATH}}"
 
-# Mix of interactivity here
-
 # Wrap git automatically with hub
 if type hub > /dev/null 2>&1 ; then
   eval "$(hub alias -s)"
-else
-  echo "Install hub using: brew install hub"
-fi
 
 # overcommit
 if type overcommit > /dev/null 2>&1 ; then
   export GIT_TEMPLATE_DIR=$(overcommit --template-dir)
-else
-  echo "Install overcommit using: gem install overcommit"
-fi
-
-# If not running interactively, stop here
-[[ "$-" != *i* ]] && return
-
-# # istheinternetonfire.com
-if ping -c 1 google.com > /dev/null 2>&1 ; then
-    echo "Is the internet on fire?:"
-    dig +short -t txt istheinternetonfire.com
-else
-  echo "No internet connectivity..."
-fi
 
 # Ccache
 export PATH="${HOMEBREW_PREFIX}/opt/ccache/libexec${PATH:+:${PATH}}"
 
 case $(uname -s) in
     "Linux" )
-        # https://github.com/KittyKatt/screenFetch
-        if type screenfetch > /dev/null 2>&1 ; then
-          screenfetch
-        fi
         ;;
     "Darwin" )
-        # https://github.com/obihann/archey-osx
-        if type archey > /dev/null 2>&1 ; then
-          archey --packager
-        else
-          echo "Install archey using: brew install archey"
-        fi
-
         export JAVA_HOME="$(/usr/libexec/java_home)"  # Need Java8 not Java9 for Spark.
         export PATH="${JAVA_HOME}/bin${PATH:+:${PATH}}"
 
@@ -184,4 +154,5 @@ if test $(hostname -s) == 'ospideal'; then
     fi
 fi
 
-
+# If not running interactively, stop here
+[[ "$-" != *i* ]] && return

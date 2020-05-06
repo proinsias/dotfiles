@@ -8,27 +8,7 @@
 
 # Source global definitions
 if test -f /etc/bashrc ; then
-        . /etc/bashrc
-fi
-
-# Create venv directory in case doesn't exist.
-mkdir -p "${HOME}"/.virtualenvs
-
-### travis
-#if ! type travis > /dev/null 2>&1 ; then
-#  echo Installing travis...
-#  gem install travis
-#fi
-#if test -f ~/.travis/travis.sh > /dev/null 2>&1; then
-#  source ~/.travis/travis.sh
-#fi
-
-# source .bashrc.local and .bashrc.local.<blah>
-if /bin/ls ~/.bashrc.local* > /dev/null 2>&1; then
-  for file in ~/.bashrc.local*; do
-    source "${file}"
-  done;
-  unset file;
+  . /etc/bashrc
 fi
 
 # Shell Options
@@ -84,6 +64,17 @@ shopt -s lithist
 # Use case-insensitive filename globbing
 shopt -s nocaseglob
 
+# Create venv directory in case doesn't exist.
+mkdir -p "${HOME}"/.virtualenvs
+
+# source .bashrc.local and .bashrc.local.<blah>
+if /bin/ls ~/.bashrc.local* > /dev/null 2>&1; then
+  for file in ~/.bashrc.local*; do
+    source "${file}"
+  done;
+  unset file;
+fi
+
 # Completion options
 #
 # These completion tuning parameters change the default behavior of bash_completion:
@@ -113,6 +104,19 @@ if ! test -f ~/bin/npm-completion.sh > /dev/null 2>&1; then
 fi
 if test -f ~/bin/npm-completion.sh > /dev/null 2>&1; then
     source ~/bin/npm-completion.sh
+fi
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+
+# For homebrew bash completion
+if test -f "${HOMEBREW_PREFIX}/etc/bash_completion" > /dev/null 2>&1; then
+    . "${HOMEBREW_PREFIX}/etc/bash_completion"
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/usr/local/google-cloud-sdk/completion.bash.inc' ]; then
+  . '/usr/local/google-cloud-sdk/completion.bash.inc'
 fi
 
 # History Options
@@ -158,16 +162,33 @@ PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
 #done;
 #unset file;
 
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
-
-# For homebrew bash completion
-if test -f "${HOMEBREW_PREFIX}/etc/bash_completion" > /dev/null 2>&1; then
-    . "${HOMEBREW_PREFIX}/etc/bash_completion"
-fi
-
 if brew command command-not-found-init > /dev/null 2>&1; then
   eval "$(brew command-not-found-init)";
+fi
+
+### travis
+#if ! type travis > /dev/null 2>&1 ; then
+#  echo Installing travis...
+#  gem install travis
+#fi
+#if test -f ~/.travis/travis.sh > /dev/null 2>&1; then
+#  source ~/.travis/travis.sh
+#fi
+
+# Warn of missing tools
+if ! type hub > /dev/null 2>&1 ; then
+  echo "Install hub using: brew install hub"
+fi
+if ! type overcommit > /dev/null 2>&1 ; then
+  echo "Install overcommit using: gem install overcommit"
+fi
+
+# # istheinternetonfire.com
+if ping -c 1 google.com > /dev/null 2>&1 ; then
+    echo "Is the internet on fire?:"
+    dig +short -t txt istheinternetonfire.com
+else
+  echo "No internet connectivity..."
 fi
 
 ## pipx (https://github.com/pipxproject/pipx)
@@ -202,10 +223,22 @@ case $(uname -s) in
           rm -rf $(ls -ld /tmp/ssh-* | grep fodonovan | awk '{print $9}') > /dev/null 2>&1
           kill -9 $SSH_AGENT_PID > /dev/null 2>&1
         }
-    # 2016-05-31 - commented below to debug sudden exits
+        # 2016-05-31 - commented below to debug sudden exits
         # trap cleanup EXIT
+
+        # https://github.com/KittyKatt/screenFetch
+        if type screenfetch > /dev/null 2>&1 ; then
+          screenfetch
+        fi
         ;;
     "Darwin" )
+        # https://github.com/obihann/archey-osx
+        if type archey > /dev/null 2>&1 ; then
+          archey --packager
+        else
+          echo "Install archey using: brew install archey"
+        fi
+
         # Add tab completion for `defaults read|write NSGlobalDomain`
         # You could just use `-g` instead, but I like being explicit
         complete -W "NSGlobalDomain" defaults;
@@ -271,7 +304,7 @@ fi
 
 # A utility for sending notifications, on demand and when commands finish.
 # https://github.com/dschep/ntfy/
- if type ntfy > /dev/null 2>&1; then
+if type ntfy > /dev/null 2>&1; then
   eval "$(ntfy shell-integration --foreground-too)"
   export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld "\
 "psql screen tmux vim"
@@ -281,7 +314,7 @@ fi
 if type direnv > /dev/null 2>&1; then
   eval "$(direnv hook bash)"
 else
-    echo "Install direnv using: brew install direnv"
+  echo "Install direnv using: brew install direnv"
 fi
 
 ### https://github.com/chrisallenlane/cheat
@@ -293,7 +326,7 @@ export CHEATCOLORS=true
 if type fasd > /dev/null 2>&1 ; then
   eval "$(fasd --init auto)"
 else
-    echo "Install fasd using: brew install fasd"
+  echo "Install fasd using: brew install fasd"
 fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
@@ -301,9 +334,9 @@ fi
 
 # "Magnificent app which corrects your previous console command"
 if type thefuck > /dev/null 2>&1; then
-    eval $(thefuck --alias)
+  eval $(thefuck --alias)
 else
-    echo "Install thefuck using: brew install thefuck"
+  echo "Install thefuck using: brew install thefuck"
 fi
 
 # FIXME: To fix. And add check for file.
@@ -317,7 +350,7 @@ if type pyenv > /dev/null 2>&1; then
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
   eval "$(pipenv --completion)"
 else
-    echo "Install pyenv using: brew install pyenv"
+  echo "Install pyenv using: brew install pyenv"
 fi
 
 # Don't need this with use of keychain.
@@ -325,11 +358,6 @@ fi
 # ssh-add ~/.ssh/id_rsa
 # To add identities, run:
 # ssh-add -K ~/.ssh/id_rsa
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/usr/local/google-cloud-sdk/completion.bash.inc' ]; then
-      . '/usr/local/google-cloud-sdk/completion.bash.inc'
-fi
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
@@ -378,4 +406,3 @@ if type pyjoke > /dev/null 2>&1; then
   echo "Joke of the Day:"
   pyjoke
 fi
-

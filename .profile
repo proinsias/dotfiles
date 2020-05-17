@@ -150,7 +150,7 @@ if test $(hostname -s) == 'ospideal'; then
 
     # The next line updates PATH for the Google Cloud SDK.
     if [ -f '/usr/local/google-cloud-sdk/path.bash.inc' ]; then
-        . '/usr/local/google-cloud-sdk/path.bash.inc'
+      . '/usr/local/google-cloud-sdk/path.bash.inc'
     fi
 fi
 

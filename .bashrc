@@ -119,6 +119,11 @@ if [ -f '/usr/local/google-cloud-sdk/completion.bash.inc' ]; then
   . '/usr/local/google-cloud-sdk/completion.bash.inc'
 fi
 
+if [ -f "${HOME}/.bash/cht.sh" ]; then
+  # https://cheat.sh/
+  . "${HOME}/.bash/cht.sh"
+fi
+
 # History Options
 #
 # Don't put duplicate lines in the history.
@@ -368,6 +373,7 @@ fi
 ### motd
 echo "* bash"
 echo "  + `!?foo` will repeat the most recent command that contained the string 'foo'"
+echo "* cht.sh python lambda"
 echo "* em – emojii"
 echo "* Search help for command line"
 echo "  + clf, eg, howdoi, how2, tldr"

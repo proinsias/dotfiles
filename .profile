@@ -113,10 +113,12 @@ export DICPATH="${HOME}/.hunspell_default:${HOMEBREW_PREFIX}/share/hunspell${DIC
 # Wrap git automatically with hub
 if type hub > /dev/null 2>&1 ; then
   eval "$(hub alias -s)"
+fi
 
 # overcommit
 if type overcommit > /dev/null 2>&1 ; then
   export GIT_TEMPLATE_DIR=$(overcommit --template-dir)
+fi
 
 # Ccache
 export PATH="${HOMEBREW_PREFIX}/opt/ccache/libexec${PATH:+:${PATH}}"

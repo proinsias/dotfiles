@@ -146,14 +146,9 @@ export PATH="${GOROOT}/bin${PATH:+:${PATH}}"
 # # Prevent accidental global package install through pip.
 # export PIP_REQUIRE_VIRTUALENV=true
 
-if test $(hostname -s) == 'ospideal'; then
-    # export PATH="/usr/local/node-v8.11.4-darwin-x64/bin:${PATH}"
-    # export PATH="/usr/local/yarn-v1.10.0/bin:${PATH}"
-
-    # The next line updates PATH for the Google Cloud SDK.
-    if [ -f '/usr/local/google-cloud-sdk/path.bash.inc' ]; then
-      . '/usr/local/google-cloud-sdk/path.bash.inc'
-    fi
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/usr/local/google-cloud-sdk/path.bash.inc' ]; then
+  . '/usr/local/google-cloud-sdk/path.bash.inc'
 fi
 
 # If not running interactively, stop here

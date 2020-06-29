@@ -1,0 +1,127 @@
+# Don't print a new line at the start of the prompt.
+# add_newline = false
+# Overwrite default_prompt_order and use custom prompt_order.
+# https://starship.rs/config/#default-prompt-order
+# prompt_order=["rust","line_break","package","line_break","character"]
+# Wait 10 milliseconds for starship to check files under the current directory.
+# scan_timeout = 10
+
+[aws]
+# style = "bold blue"
+# symbol = "🅰 "
+# displayed_items = "region"
+[aws.region_aliases]
+# ap-southeast-2 = "au"
+# us-east-1 = "va"
+
+[battery]
+# The module is only visible when the device's battery is below 10%.
+# Battery indicator will be hidden if the status is unknown or empty
+# unless you specify the appropriate option in the config.
+# full_symbol = "🔋"
+# charging_symbol = "⚡️"
+# discharging_symbol = "💀"
+# [[battery.display]]
+# threshold = 10  # "bold red" style when capacity is between 0% and 10%
+# style = "bold red"
+# [[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
+# threshold = 30
+# style = "bold yellow"
+
+[character]
+# Replace the "❯" symbol in the prompt with "➜"
+# symbol = "➜"     # The "symbol" segment is being set to "➜"
+# error_symbol = "✗"
+# use_symbol_for_status = true
+
+[cmd_duration]
+# min_time = 500
+# prefix = "underwent "
+
+[conda]
+# style = "dimmed green"
+
+[directory]
+# truncation_length = 8
+
+[docker_context]
+disabled = false
+# symbol = "🐋 "
+
+[env_var]
+# variable = "SHELL"
+# default = "unknown shell"
+
+[git_branch]
+symbol = "🌱 "
+# truncation_length = 4
+# truncation_symbol = ""
+
+[git_commit]
+# commit_hash_length = 4
+
+[git_state]
+# progress_divider = " of "
+# cherry_pick = "🍒 PICKING"
+
+[git_status]
+# conflicted = "🏳"
+# ahead = "🏎💨"
+# behind = "😰"
+# diverged = "😵"
+# untracked = "🤷‍"
+# stashed = "📦"
+# modified = "📝"
+# staged.value = "++"
+# staged.style = "green"
+# staged_count.enabled = true
+# staged_count.style = "green"
+# renamed = "👅"
+# deleted = "🗑"
+
+[hostname]
+# ssh_only = false
+# prefix = "⟪"
+# suffix = "⟫"
+# trim_at = ".companyname.com"
+# disabled = false
+
+[java]
+# symbol = "🌟 "
+
+[jobs]
+# symbol = "+ "
+# threshold = 4
+
+[line_break]
+# disabled = true
+
+[memory_usage]
+disabled = false
+show_percentage = true
+show_swap = false
+# threshold = -1
+# symbol = " "
+# separator = "/"
+# style = "bold dimmed green"
+
+[nodejs]
+disabled = true
+
+[python]
+# symbol = "👾 "
+# pyenv_version_name = true
+# pyenv_prefix = "foo "
+
+[ruby]
+# symbol = "🔺 "
+
+[time]
+# disabled = false
+# format = "🕙[ %T ]"
+# utc_time_offset = "-5"
+# time_range = "10:00:00-14:00:00"
+
+[username]
+# disabled = true
+

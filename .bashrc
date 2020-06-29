@@ -364,6 +364,9 @@ fi
 # To add identities, run:
 # ssh-add -K ~/.ssh/id_rsa
 
+# Starship
+eval "$(starship init bash)"
+
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
 if test -f ~/.bashhub/bashhub.sh > /dev/null 2>&1; then

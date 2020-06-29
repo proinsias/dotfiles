@@ -96,7 +96,7 @@
 # c.NotebookApp.browser = ''
 
 # The full path to an SSL/TLS certificate file.
-# c.NotebookApp.certfile = u'/Users/francis/.jupyter/jupyter.crt'
+# c.NotebookApp.certfile = u'/Users/ftod/.jupyter/jupyter.crt'
 
 # The full path to a certificate authority certifificate for SSL/TLS client
 # authentication.
@@ -171,7 +171,7 @@
 # c.NotebookApp.kernel_spec_manager_class = 'jupyter_client.kernelspec.KernelSpecManager'
 
 # The full path to a private key file for usage with SSL/TLS.
-# c.NotebookApp.keyfile = u'/Users/francis/.jupyter/jupyter.key'
+# c.NotebookApp.keyfile = u'/Users/ftod/.jupyter/jupyter.key'
 
 # The login handler class to use.
 # c.NotebookApp.login_handler_class = 'notebook.auth.login.LoginHandler'

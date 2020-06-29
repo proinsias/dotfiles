@@ -5,6 +5,3 @@
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
-# added by travis gem
-[ -f /Users/francis/.travis/travis.sh ] && source /Users/francis/.travis/travis.sh

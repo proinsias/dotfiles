@@ -363,10 +363,6 @@ else
   echo "Install thefuck using: brew install thefuck"
 fi
 
-# FIXME: To fix. And add check for file.
-# Only load Liquid Prompt in interactive shells, not from a script or from scp
-# [[ $- = *i* ]] && source ~/Documents/GitHub/liquidprompt/liquidprompt
-
 # pyenv
 if type pyenv > /dev/null 2>&1; then
   eval "$(pyenv init -)"

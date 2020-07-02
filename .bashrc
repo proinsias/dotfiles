@@ -11,6 +11,24 @@ if test -f /etc/bashrc ; then
   . /etc/bashrc
 fi
 
+# For homebrew
+case $(uname -s) in
+    "Linux" )
+      # homebrew linuxbrew
+      if [ -d "${HOME}/.linuxbrew/bin" ] ; then
+          export PATH="${PATH:+${PATH}:}${HOME}/.linuxbrew/bin"
+      fi
+      if [ -d "${HOME}/.linuxbrew/sbin" ] ; then
+          export PATH="${PATH:+${PATH}:}${HOME}/.linuxbrew/sbin"
+      fi
+      ;;
+    "Darwin" )
+      # homebrew
+      export PATH="$/usr/local/bin:/usr/local/sbin${PATH:+:${PATH}}"
+      ;;
+esac
+export HOMEBREW_PREFIX="$(brew --prefix)"
+
 # Shell Options
 #
 # See man bash for more options...
@@ -366,7 +384,11 @@ fi
 # ssh-add -K ~/.ssh/id_rsa
 
 # Starship
-eval "$(starship init bash)"
+if type starship > /dev/null 2>&1; then
+  eval "$(starship init bash)"
+else
+  echo "Install starship using: brew install starship"
+fi
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs

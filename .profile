@@ -30,10 +30,6 @@ if test -d "${HOME}/info" > /dev/null 2>&1; then
   INFOPATH="${HOME}/info${INFOPATH:+:${INFOPATH}}"
 fi
 
-# For homebrew
-export HOMEBREW_PREFIX="$(brew --prefix)"
-export HOMEBREW_INSTALL_CLEANUP=true
-
 # Umask
 #
 # /etc/profile sets 022, removing write perms to group + others.
@@ -76,7 +72,7 @@ case $(uname -s) in
       ;;
     "Darwin" )
       # homebrew
-      export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH:+:${PATH}}"
+      export PATH="$/usr/local/bin:/usr/local/sbin${PATH:+:${PATH}}"
 
       if [ -d "${HOME}/.osx/bin" ] ; then
           export PATH="${PATH:+${PATH}:}${HOME}/.osx/bin"
@@ -87,12 +83,17 @@ case $(uname -s) in
       ;;
 esac
 
+# For homebrew
+export HOMEBREW_PREFIX="$(brew --prefix)"
+export HOMEBREW_INSTALL_CLEANUP=true
+
 # ruby
 export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
 export RUBY_VERSION="2.6.0"
 export PATH="${RUBY_HOME}/bin${PATH:+:${PATH}}"
 export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
+export PATH="${GEM_PATH}/bin${PATH:+:${PATH}}"
 
 # Add homebrew's GNU coreutils (ls, cat, etc.) to PATH, etc. - see
 #http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/

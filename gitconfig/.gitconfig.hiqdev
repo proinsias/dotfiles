@@ -1,7 +1,7 @@
 [user]
     name = Francis T. O'Donovan
     email = proinsias@users.noreply.github.com
-    # signingkey = 740CFB25
+    signingkey = 740CFB25
 [include]
     path = ~/.gitconfig.include
 [credential]

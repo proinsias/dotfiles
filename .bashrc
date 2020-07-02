@@ -127,7 +127,7 @@ fi
 # History Options
 #
 # Don't put duplicate lines in the history.
-export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
+export HISTCONTROL="$HISTCONTROL${HISTCONTROL+,}ignoredups"
 #
 # Ignore some controlling instructions
 # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
@@ -196,9 +196,10 @@ else
   echo "No internet connectivity..."
 fi
 
+export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
+
 ## pipx (https://github.com/pipxproject/pipx)
 if type pipx > /dev/null 2>&1 ; then
-    export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
     eval "$(register-python-argcomplete pipx)"
 else
     echo "Install pipx using: brew install pipx"

@@ -90,7 +90,7 @@ esac
 # ruby
 export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
 export RUBY_VERSION="2.6.0"
-export PATH="${RUBY_HOME}/bin:${PATH}"
+export PATH="${RUBY_HOME}/bin${PATH:+:${PATH}}"
 export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 
@@ -117,7 +117,7 @@ fi
 
 # overcommit
 if type overcommit > /dev/null 2>&1 ; then
-  export GIT_TEMPLATE_DIR=$(overcommit --template-dir)
+  export GIT_TEMPLATE_DIR="$(overcommit --template-dir)"
 fi
 
 # Ccache

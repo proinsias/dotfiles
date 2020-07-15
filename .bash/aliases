@@ -260,3 +260,9 @@ case $(guname -s) in
         alias top='top -o cpu'
       ;;
 esac
+
+## Hospital IQ Aliases
+alias hiqdb="docker-compose --file ~/favs/hiq/patientroutesystems/docker/docker-compose.yml up db"
+alias hiqds="docker-compose --file ~/favs/hiq/data-science/docker-compose.override.yml --file ~/favs/hiq/data-science/docker-compose.yml up"
+alias hiqf="docker-compose --file ~/favs/hiq/prs_forecaster/pr-apps/managed/forecaster/docker-compose.yml up"
+alias hiqweb="docker-compose --file ~/favs/hiq/patientroutesystems/docker/docker-compose.yml up web"

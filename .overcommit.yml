@@ -38,6 +38,11 @@
 # OVERCOMMIT_DISABLE=1 ./my-custom-script
 
 CommitMsg:
+  Gitlint:
+    enabled: false
+    command: ['gitlint', 'lint']  # FIXME: Needs to be fixed
+    required_executable: 'gitlint'
+    install_command: 'pipx install gitlint'
   HardTabs:
     enabled: true
   MessageFormat:
@@ -63,7 +68,7 @@ PreCommit:
     enabled: false
     required_executable: 'bandit'
     flags: ['--recursive']
-    install_command: 'python3 -m pip install bandit'
+    install_command: 'pipx install bandit'
   BashSyntax:
     description: 'Check syntax of bash scripts'
     enabled: true
@@ -83,7 +88,7 @@ PreCommit:
     enabled: false
     required_executable: 'caniusepython3'
     flags: ['--requirements', 'requirements.txt']
-    install_command: 'python3 -m pip install caniusepython3'
+    install_command: 'pipx install caniusepython3'
   CaseConflicts:
     enabled: true
   CopyrightYear:

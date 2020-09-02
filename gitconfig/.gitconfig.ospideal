@@ -27,4 +27,4 @@
 [core]
     excludesfile = ~/.gitignore
 [commit]
-    template = ~/.stCommitMsg
+    # template = ~/.stCommitMsg  # Comes from SourceTree

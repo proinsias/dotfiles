@@ -563,22 +563,22 @@ def post_save(model, os_path, contents_manager):
 
     import nbconvert
 
-    html_exporter = nbconvert.exporters.html.HTMLExporter()
-    (body, resources) = html_exporter.from_notebook_node(notebook)
-
-    html_filename = os.path.splitext(os_path)[0] + '.html'
-    with open(html_filename, 'w') as html_file:
-        try:
-            # Python 3
-            html_file.write(body)
-        except UnicodeEncodeError:
-            # Python 2
-            html_file.write(body.encode('utf-8'))
-
-    print('Converting notebook {0} to html file {1}...'.format(
-          os.path.basename(os_path),
-          os.path.basename(html_filename),
-          ))
+    # html_exporter = nbconvert.exporters.html.HTMLExporter()
+    # (body, resources) = html_exporter.from_notebook_node(notebook)
+    #
+    # html_filename = os.path.splitext(os_path)[0] + '.html'
+    # with open(html_filename, 'w') as html_file:
+    #     try:
+    #         # Python 3
+    #         html_file.write(body)
+    #     except UnicodeEncodeError:
+    #         # Python 2
+    #         html_file.write(body.encode('utf-8'))
+    #
+    # print('Converting notebook {0} to html file {1}...'.format(
+    #       os.path.basename(os_path),
+    #       os.path.basename(html_filename),
+    #       ))
 
     python_exporter = nbconvert.exporters.PythonExporter()
     (body, resources) = python_exporter.from_notebook_node(notebook)

@@ -137,6 +137,10 @@ if [ -f '/usr/local/google-cloud-sdk/completion.bash.inc' ]; then
   . '/usr/local/google-cloud-sdk/completion.bash.inc'
 fi
 
+# gcloud doesn't work with python3.8 yet.
+# GoogleCloudPlatform/gsutil#961
+export CLOUDSDK_PYTHON=/usr/bin/python3
+
 if [ -f "${HOME}/.bash/cht.sh" ]; then
   # https://cheat.sh/
   . "${HOME}/.bash/cht.sh"

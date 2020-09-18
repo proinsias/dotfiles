@@ -86,8 +86,8 @@ shopt -s nocaseglob
 mkdir -p "${HOME}"/.virtualenvs
 
 # source .bashrc.local and .bashrc.local.<blah>
-if /bin/ls ~/.bashrc.local* > /dev/null 2>&1; then
-  for file in ~/.bashrc.local*; do
+if /bin/ls "${HOME}"/.bashrc.local* > /dev/null 2>&1; then
+  for file in "${HOME}"/.bashrc.local*; do
     source "${file}"
   done;
   unset file;
@@ -106,26 +106,26 @@ fi
 # Define to avoid flattening internal contents of tar files
 # COMP_TAR_INTERNAL_PATHS=1
 
-if ! test -f ~/bin/git-completion.sh > /dev/null 2>&1; then
+if ! test -f "${HOME}"/bin/git-completion.sh > /dev/null 2>&1; then
     echo Installing git completion...
     wget \
 https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash \
---output-document=~/bin/git-completion.sh
+--output-document="${HOME}"/bin/git-completion.sh
 fi
-if test -f ~/bin/git-completion.sh > /dev/null 2>&1; then
-    source ~/bin/git-completion.sh
+if test -f "${HOME}"/bin/git-completion.sh > /dev/null 2>&1; then
+    source "${HOME}"/bin/git-completion.sh
 fi
 
-if ! test -f ~/bin/npm-completion.sh > /dev/null 2>&1; then
+if ! test -f "${HOME}"/bin/npm-completion.sh > /dev/null 2>&1; then
     echo Installing npm compleition...
-    npm completion > ~/bin/npm-completion.sh
+    npm completion > "${HOME}"/bin/npm-completion.sh
 fi
-if test -f ~/bin/npm-completion.sh > /dev/null 2>&1; then
-    source ~/bin/npm-completion.sh
+if test -f "${HOME}"/bin/npm-completion.sh > /dev/null 2>&1; then
+    source "${HOME}"/bin/npm-completion.sh
 fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+[ -e "${HOME}/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 # For homebrew bash completion
 if test -f "${HOMEBREW_PREFIX}/etc/bash_completion" > /dev/null 2>&1; then
@@ -193,15 +193,6 @@ if brew command command-not-found-init > /dev/null 2>&1; then
   eval "$(brew command-not-found-init)";
 fi
 
-### travis
-#if ! type travis > /dev/null 2>&1 ; then
-#  echo Installing travis...
-#  gem install travis
-#fi
-#if test -f ~/.travis/travis.sh > /dev/null 2>&1; then
-#  source ~/.travis/travis.sh
-#fi
-
 # Warn of missing tools
 if ! type hub > /dev/null 2>&1 ; then
   echo "Install hub using: brew install hub"
@@ -229,12 +220,12 @@ fi
 
 ## fzf
 if type fzf > /dev/null 2>&1 ; then
-  if ! test -f ~/.fzf.bash; then
+  if ! test -f "${HOME}"/.fzf.bash; then
     "${HOMEBREW_PREFIX}/opt/fzf/install" --all --no-update-rc
   fi
-  if test -f ~/.fzf.bash; then
+  if test -f "${HOME}"/.fzf.bash; then
       if test $(uname -n) != firefly.local > /dev/null 2>&1; then
-        source ~/.fzf.bash
+        source "${HOME}"/.fzf.bash
       else
         echo Check if fzf is working!!!
       fi
@@ -297,16 +288,16 @@ else
 fi
 
 # Use `/bin/ls` for these tests, since homebrew `ls` gives errors
-if /bin/ls ~/.bash/* 1> /dev/null 2>&1; then
-  for file in ~/.bash/*; do
+if /bin/ls "${HOME}"/.bash/* 1> /dev/null 2>&1; then
+  for file in "${HOME}"/.bash/*; do
     source $file
   done;
   unset file;
 fi
 
 # source .bash_aliases and .bash_aliases.local.<blah>
-if /bin/ls ~/.bash_aliases* 1> /dev/null 2>&1; then
-  for file in ~/.bash_aliases*; do
+if /bin/ls "${HOME}"/.bash_aliases* 1> /dev/null 2>&1; then
+  for file in "${HOME}"/.bash_aliases*; do
     source "${file}"
   done;
   unset file;
@@ -392,9 +383,16 @@ fi
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
-if test -f ~/.bashhub/bashhub.sh > /dev/null 2>&1; then
-  source ~/.bashhub/bashhub.sh
+if test -f "${HOME}"/.bashhub/bashhub.sh > /dev/null 2>&1; then
+  source "${HOME}"/.bashhub/bashhub.sh
 fi
+
+#if ! type travis > /dev/null 2>&1 ; then
+#  echo Installing travis...
+#  gem install travis
+#fi
+# added by travis gem
+[ ! -s "${HOME}"/.travis/travis.sh ] || source "${HOME}"/.travis/travis.sh
 
 ### motd
 echo "* bash"

@@ -14,20 +14,15 @@ fi
 # For homebrew
 case $(uname -s) in
     "Linux" )
-      # homebrew linuxbrew
-      if [ -d "${HOME}/.linuxbrew/bin" ] ; then
-          export PATH="${PATH:+${PATH}:}${HOME}/.linuxbrew/bin"
-      fi
-      if [ -d "${HOME}/.linuxbrew/sbin" ] ; then
-          export PATH="${PATH:+${PATH}:}${HOME}/.linuxbrew/sbin"
-      fi
-      ;;
+        # homebrew linuxbrew
+        test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+        test -d "${HOME}/.linuxbrew/" && eval $("${HOME}/.linuxbrew/bin/brew shellenv")
+        ;;
     "Darwin" )
-      # homebrew
-      export PATH="$/usr/local/bin:/usr/local/sbin${PATH:+:${PATH}}"
-      ;;
+        # homebrew
+        test -f /usr/local/bin/brew && eval $(/usr/local/bin/brew shellenv)
+        ;;
 esac
-export HOMEBREW_PREFIX="$(brew --prefix)"
 
 # Shell Options
 #

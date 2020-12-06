@@ -60,19 +60,15 @@ case $(uname -s) in
       fi
 
       # homebrew linuxbrew
-      if [ -d "${HOME}/.linuxbrew/bin" ] ; then
-          export PATH="${PATH:+${PATH}:}${HOME}/.linuxbrew/bin"
-      fi
-      if [ -d "${HOME}/.linuxbrew/sbin" ] ; then
-          export PATH="${PATH:+${PATH}:}${HOME}/.linuxbrew/sbin"
-      fi
+      test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+      test -d "${HOME}/.linuxbrew/" && eval $("${HOME}/.linuxbrew/bin/brew shellenv")
 
       # gpg-agent
       export GPG_TTY=$(tty)
       ;;
     "Darwin" )
       # homebrew
-      export PATH="$/usr/local/bin:/usr/local/sbin${PATH:+:${PATH}}"
+      test -f /usr/local/bin/brew && eval $(/usr/local/bin/brew shellenv)
 
       if [ -d "${HOME}/.osx/bin" ] ; then
           export PATH="${PATH:+${PATH}:}${HOME}/.osx/bin"
@@ -84,7 +80,6 @@ case $(uname -s) in
 esac
 
 # For homebrew
-export HOMEBREW_PREFIX="$(brew --prefix)"
 export HOMEBREW_INSTALL_CLEANUP=true
 
 # ruby

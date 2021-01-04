@@ -84,7 +84,7 @@ export HOMEBREW_INSTALL_CLEANUP=true
 
 # ruby
 export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
-export RUBY_VERSION="2.6.0"
+export RUBY_VERSION="3.0.0"
 export PATH="${RUBY_HOME}/bin${PATH:+:${PATH}}"
 export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"

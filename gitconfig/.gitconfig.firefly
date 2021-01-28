@@ -1,15 +1,15 @@
+[credential]
+    # helper = cache --timeout 3600
+    helper = osxkeychain
+[help]
+    # format = man
+    format = web
+[include]
+    path = ~/.gitconfig.include
+[merge]
+    # tool = emerge
+    tool = p4merge
 [user]
     name = Francis O'Donovan
     email = proinsias@users.noreply.github.com
     signingkey = 6519D396
-[include]
-    path = ~/.gitconfig.include
-[credential]
-#    helper = cache --timeout 3600
-    helper = osxkeychain
-[help]
-#    format = man
-    format = web
-[merge]
-#    tool = emerge
-    tool = p4merge

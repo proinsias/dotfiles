@@ -158,6 +158,10 @@ PreCommit:
     enabled: true
     required_executable: 'markdownlint'
     install_command: 'npm install --global markdownlint-cli'
+  MarkdownToc:
+    enabled: true
+    command: ['markdown-toc', '-i', 'README.md']
+    install_command: 'npm install --global markdown-toc'
   Mdl:
     enabled: true
     required_executable: 'mdl'

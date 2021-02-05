@@ -3,10 +3,10 @@
 	email = proinsias@users.noreply.github.com
 	signingkey = 9DE94ABA
 [include]
-    path = ~/.gitconfig.include
+	path = ~/.gitconfig.include
 [credential]
 	helper = cache --timeout 3600
 [help]
-  format = man
+	format = man
 [merge]
-  tool = emerge
+	tool = emerge

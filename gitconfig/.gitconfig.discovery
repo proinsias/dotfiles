@@ -1,15 +1,15 @@
 [credential]
-    # helper = cache --timeout 3600
-    helper = osxkeychain
+	# helper = cache --timeout 3600
+	helper = osxkeychain
 [help]
-    # format = man
-    format = web
+	# format = man
+	format = web
 [include]
-    path = ~/.gitconfig.include
+	path = ~/.gitconfig.include
 [merge]
-    # tool = emerge
-    tool = p4merge
+	# tool = emerge
+	tool = p4merge
 [user]
-    name = Francis T. O'Donovan  # Overwritten by GIT_AUTHOR_NAME, GIT_COMMITTER_NAME.
-    email = proinsias@users.noreply.github.com  # Overwritten by GIT_AUTHOR_EMAIL, GIT_COMMITTER_EMAIL.
-    signingkey = 6519D396
+	name = Francis T. O'Donovan  # Overwritten by GIT_AUTHOR_NAME, GIT_COMMITTER_NAME.
+	email = proinsias@users.noreply.github.com  # Overwritten by GIT_AUTHOR_EMAIL, GIT_COMMITTER_EMAIL.
+	signingkey = 6519D396

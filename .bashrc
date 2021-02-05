@@ -275,7 +275,7 @@ complete -C aws_completer aws
 
 # Add keychain keys
 if type keychain > /dev/null 2>&1; then
-    eval $(keychain --eval --agents ssh,gpg --inherit any id_rsa D2E0BEAC,6519D396,740CFB25,9DE94ABA,9879E8CA --ignore-missing)
+    eval $(keychain --eval --agents ssh,gpg --ignore-missing --inherit any id_rsa 6519D396 740CFB25 9DE94ABA )
 else
     echo "Install keychain using: brew install keychain"
 fi

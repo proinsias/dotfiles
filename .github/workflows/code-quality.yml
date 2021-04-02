@@ -33,7 +33,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: detect-secrets
+      - name: Detect Secrets
         uses: reviewdog/action-detect-secrets@master
         with:
           github_token: ${{ secrets.github_token }}

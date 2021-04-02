@@ -329,13 +329,6 @@ if type ntfy > /dev/null 2>&1; then
 "psql screen tmux vim"
 fi
 
-### http://direnv.net/
-if type direnv > /dev/null 2>&1; then
-  eval "$(direnv hook bash)"
-else
-  echo "Install direnv using: brew install direnv"
-fi
-
 ### https://github.com/chrisallenlane/cheat
 ### cheat allows you to create and view interactive cheatsheets on the command-line.
 export CHEATCOLORS=true
@@ -379,6 +372,13 @@ if type starship > /dev/null 2>&1; then
   eval "$(starship init bash)"
 else
   echo "Install starship using: brew install starship"
+fi
+
+### http://direnv.net/
+if type direnv > /dev/null 2>&1; then
+  eval "$(direnv hook bash)"
+else
+  echo "Install direnv using: brew install direnv"
 fi
 
 ### Bashhub.com Installation.

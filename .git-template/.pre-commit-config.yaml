@@ -122,8 +122,14 @@ repos:
         args: ['--external-sources', '--format=gcc', '--shell=bash']
       - id: shfmt
 
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.1.9
+    hooks:
+      - id: remove-crlf
+      - id: remove-tabs
 
-# sqlint?
+# python
+# github.com/MarcoGorelli/absolufy-imports
 # https://github.com/pre-commit/mirrors-mypy
 # https://github.com/pre-commit/pygrep-hooks
 # https://github.com/FalconSocial/pre-commit-mirrors-pep257
@@ -132,18 +138,8 @@ repos:
 # https://github.com/asottile/blacken-docs
 # https://github.com/asottile/dead
 # https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
-# https://github.com/Lucas-C/pre-commit-hooks
-# https://github.com/Lucas-C/pre-commit-hooks-markup
 # https://github.com/Lucas-C/pre-commit-hooks-safety
-# https://github.com/detailyang/pre-commit-shell
-#
-# https://github.com/ansible-community/ansible-lint
-#
-#
 # https://github.com/psf/black
-# https://github.com/IamTheFij/docker-pre-commit
-# https://github.com/pryorda/dockerfilelint-precommit-hooks
-#
 # https://github.com/PyCQA/flake8
 #    flags:
 #      - '--doctests'
@@ -156,7 +152,6 @@ repos:
 #    exclude:
 #      - 'jupyter/jupyter_notebook_config.py'
 #      - 'setup.py'
-
 # https://github.com/PyCQA/bandit
 # https://github.com/PyCQA/pydocstyle
 #    flags:
@@ -166,7 +161,6 @@ repos:
 #      # - '--verbose'  # Don't use!
 #    exclude:
 #      - 'jupyter/jupyter_notebook_config.py'
-
 # pycodestyle
 #    flags:
 #      # E703 statement ends with a semicolon.
@@ -177,8 +171,6 @@ repos:
 #    exclude:
 #      - 'jupyter/jupyter_notebook_config.py'
 #      - 'setup.py'
-
-
 # https://github.com/PyCQA/pylint
 #    flags:
 #      - '--max-line-length=120'
@@ -192,87 +184,60 @@ repos:
 # https://github.com/PyCQA/prospector
 # https://github.com/PyCQA/isort
 # https://github.com/miki725/importanize
-#
-#
 # https://github.com/sqlalchemyorg/zimports
 # https://github.com/peterdemin/pip-compile-multi
-#
-#
-#
 # github.com/myint/rstcheck
 # github.com/myint/autoflake
-# gitlab.com/iamlikeme/nbhooks
-# github.com/kynan/nbstripout
-# github.com/igorshubovych/markdownlint-cli
-# github.com/markdownlint/markdownlint
-#
 # github.com/jazzband/pip-tools
 
-
-# github.com/aorumbayev/pydantic-to-schema
-# github.com/nbQA-dev/nbQA
 # github.com/editorconfig-checker/editorconfig-checker.python
 
+# github.com/igorshubovych/markdownlint-cli
+# github.com/markdownlint/markdownlint
 # mdformat has toc - does it work?
 # github.com/frnmst/md-toc
 # https://github.com/thlorenz/doctoc
 
-# github.com/mgedmin/check-manifest
-#
-#
-# github.com/mwouts/jupytext
-
-# github.com/MarcoGorelli/absolufy-imports
-#
-
 # languagetool?
 # alex?
 
-Use .pre-commit github action rather than separate github actions?!!!
+# Use .pre-commit github action rather than separate github actions?!!!
 
 # FIXME: Are there any linters etc that I want to setup via pre-commit via my own repos!
-
-  HardTabs:
-  MessageFormat:
-    pattern: '\[#(\d+)\](.+)'
-    expected_pattern_message: '[#<Issue Id>] <Commit Message Description>'
-    sample_message: '[#1234] Refactored Onboarding flow'
-  RussianNovel:
-  hunspell
-  TextWidth:
-    max_subject_width: 50
-  BashSyntax:
-    include: '**/*.sh'
-    required_executable: 'bash-syntax'
-  BundleCheck:
-  BundleOutdated:
-  ExecutePermissions:
-    enabled: true
-    exclude:
-      - 'bin/**/*'
-      - 'ci/*.sh'
-  FixMe:
-    exclude:
-      - 'notebooks/**/*.ipynb'
-  HardTabs:
-  ImageOptim: svgo
-  LocalPathsInGemfile:
-    enabled: true
-  ToDos: check-todos
-  TravisLint:
-  BundleInstall:
-  GitGuilt:
-  Pytest:
-  PythonNose:
-  FreeSpace: check-freespace
+#  RussianNovel:
+#  hunspell
+#  TextWidth:
+#    max_subject_width: 50
+#  BashSyntax:
+#    include: '**/*.sh'
+#    required_executable: 'bash-syntax'
+#  BundleCheck:
+#  BundleOutdated:
+#  ExecutePermissions:
+#    enabled: true
+#    exclude:
+#      - 'bin/**/*'
+#      - 'ci/*.sh'
+#  FixMe:
+#    exclude:
+#      - 'notebooks/**/*.ipynb'
+#  ImageOptim: svgo
+#  LocalPathsInGemfile:
+#    enabled: true
+#  ToDos: check-todos
+#  TravisLint:
+#  BundleInstall:
+#  GitGuilt:
+#  FreeSpace: check-freespace
 
 
 # proinsias.github.io:
 
-bundler-audit - may give ruby error
-markdownlint (ruby version) - may give ruby error
-markdown-link-check - https://github.com/scivision/linkchecker-markdown instead? Needs to be converted I think, but it gives an example! Submit .pre...yaml file to them!
-https://github.com/client9/misspell v https://github.com/codespell-project/codespell
+#bundler-audit - may give ruby error
+#markdownlint (ruby version) - may give ruby error
+# https://github.com/scivision/linkchecker-markdown - accepted my PR? Or just use script ?
+# markdown-link-check - add as pre-commit hook!
+#https://github.com/client9/misspell v https://github.com/codespell-project/codespell
 
 # patientroutesystems x2:
 
@@ -281,15 +246,28 @@ https://github.com/client9/misspell v https://github.com/codespell-project/codes
 # github.com/sondrelg/pep585-upgrade
 # github.com/jendrikseipp/vulture
 # github.com/hadolint/hadolint
+# https://github.com/IamTheFij/docker-pre-commit
+# https://github.com/pryorda/dockerfilelint-precommit-hooks
+# sqlint?
+# github.com/aorumbayev/pydantic-to-schema
+# above python
 
-# nameshark_vcard;
+# data-science:
+# gitlab.com/iamlikeme/nbhooks
+# github.com/kynan/nbstripout
+# github.com/hadolint/hadolint
+# https://github.com/IamTheFij/docker-pre-commit
+# https://github.com/pryorda/dockerfilelint-precommit-hooks
+# sqlint?
+# github.com/nbQA-dev/nbQA
+# github.com/mwouts/jupytext
+# above python?
+
+# nameshark_vcard
 
 # https://github.com/milin/gitown
 # github.com/myint/docformatter
 # github.com/sondrelg/pep585-upgrade
 # github.com/jendrikseipp/vulture
-
-
-
-
-# https://github.com/detailyang/pre-commit-shell
+# github.com/mgedmin/check-manifest
+# above python 

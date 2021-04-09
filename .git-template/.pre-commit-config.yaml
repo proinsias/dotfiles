@@ -57,6 +57,24 @@ repos:
   #        args: ['--offline']  # FIXME: Take out once I figure out how to authenticate.
   #        files: \.(yaml|yml)$
 
+  # Docker
+
+  - repo: https://github.com/IamTheFij/docker-pre-commit
+    rev: v2.0.0
+    hooks:
+      - id: docker-compose-check
+
+  - repo: https://github.com/pryorda/dockerfilelint-precommit-hooks
+    rev: v0.1.0
+    hooks:
+      - id: dockerfilelint
+        stages: [commit]
+
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.1.0
+    hooks:
+      - id: hadolint
+
   # Git
 
   - repo: https://github.com/jorisroovers/gitlint
@@ -87,6 +105,18 @@ repos:
     hooks:
       - id: add-trailing-comma
 
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+    rev: v1.2.1
+    hooks:
+      - id: python-safety-dependencies-check
+
+  - repo: https://github.com/jazzband/pip-tools
+    rev: 6.0.1
+    hooks:
+      - id: pip-compile
+        files: ^requirements/production\.(in|txt)$
+        args: [requirements/production.in]
+
   - repo: https://github.com/asottile/pyupgrade
     # Automatically upgrade syntax for newer versions of the language.
     rev: v2.11.0
@@ -100,6 +130,11 @@ repos:
     hooks:
       - id: yamllint
         args: [-c=.yamllint.yml]
+
+  - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
+    rev: 0.1.0
+    hooks:
+      - id: yamlfmt
 
   # Mixed
 
@@ -137,8 +172,6 @@ repos:
 # https://github.com/asottile/yesqa
 # https://github.com/asottile/blacken-docs
 # https://github.com/asottile/dead
-# https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
-# https://github.com/Lucas-C/pre-commit-hooks-safety
 # https://github.com/psf/black
 # https://github.com/PyCQA/flake8
 #    flags:
@@ -188,7 +221,6 @@ repos:
 # https://github.com/peterdemin/pip-compile-multi
 # github.com/myint/rstcheck
 # github.com/myint/autoflake
-# github.com/jazzband/pip-tools
 
 # github.com/editorconfig-checker/editorconfig-checker.python
 
@@ -239,9 +271,6 @@ repos:
 # github.com/myint/docformatter
 # github.com/sondrelg/pep585-upgrade
 # github.com/jendrikseipp/vulture
-# github.com/hadolint/hadolint
-# https://github.com/IamTheFij/docker-pre-commit
-# https://github.com/pryorda/dockerfilelint-precommit-hooks
 # sqlint?
 # github.com/aorumbayev/pydantic-to-schema
 # above python
@@ -249,9 +278,6 @@ repos:
 # data-science:
 # gitlab.com/iamlikeme/nbhooks
 # github.com/kynan/nbstripout
-# github.com/hadolint/hadolint
-# https://github.com/IamTheFij/docker-pre-commit
-# https://github.com/pryorda/dockerfilelint-precommit-hooks
 # sqlint?
 # github.com/nbQA-dev/nbQA
 # github.com/mwouts/jupytext

@@ -34,11 +34,6 @@ repos:
         args: ['--baseline', '.secrets.baseline']
         exclude: package.lock.json
 
-  - repo: https://github.com/sirosen/fix-smartquotes
-    rev: 0.2.0
-    hooks:
-      - id: fix-smartquotes
-
   # Git
 
   - repo: https://github.com/jorisroovers/gitlint

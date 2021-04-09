@@ -1,22 +1,22 @@
 [commit]
-	template = ~/.stCommitMsg
+    template = ~/.stCommitMsg
 [core]
-	excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore
 [credential]
-	helper = cache --timeout 3600
+    helper = cache --timeout 3600
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 [help]
-	format = man
+    format = man
 [include]
-	path = ~/.gitconfig.include
+    path = ~/.gitconfig.include
 [merge]
-	# tool = emerge
-	tool = p4merge
+    # tool = emerge
+    tool = p4merge
 [user]
-	name = Francis T. O'Donovan
-	email = proinsias@users.noreply.github.com
-	signingkey = 740CFB25
+    name = Francis T. O'Donovan
+    email = proinsias@users.noreply.github.com
+    signingkey = 740CFB25

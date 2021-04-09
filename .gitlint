@@ -4,12 +4,13 @@
 # one rule and each key in it is an option for that specific rule.
 #
 # Rules and sections can be referenced by their full name or by id. For example
-# section "[body-max-line-length]" could be written as "[B1]". Full section names are
+# section "[body-max-line-length]" could also be written as "[B1]". Full section names are
 # used in here for clarity.
-#
-# [general]
+
+[general]
 # Ignore certain rules, this example uses both full name and id
 # ignore=title-trailing-punctuation, T3
+ignore=body-is-missing
 
 # verbosity should be a value between 1 and 3, the commandline -v flags take precedence over this
 # verbosity = 2
@@ -32,39 +33,40 @@
 
 # Enable community contributed rules
 # See http://jorisroovers.github.io/gitlint/contrib_rules for details
+# You HAVE to add contributed rules here to enable it.
+# Only configuring (such as below) does NOT enable it.
 # contrib=contrib-title-conventional-commits,CC1
 
 # Set the extra-path where gitlint will search for user defined rules
 # See http://jorisroovers.github.io/gitlint/user_defined_rules for details
 # extra-path=examples/
 
-# This is an example of how to configure the "title-max-length" rule and
-# set the line-length it enforces to 80
-# [title-max-length]
-# line-length=50
+[title-max-length]
+line-length=50
 
-# [title-must-not-contain-word]
+[title-min-length]
+min-length=10
+
+[title-must-not-contain-word]
 # Comma-separated list of words that should not occur in the title. Matching is case
 # insensitive. It's fine if the keyword occurs as part of a larger word (so "WIPING"
 # will not cause a violation, but "WIP: my title" will.
-words=wip,temp
+words=wip
 
 # [title-match-regex]
-# python like regex (https://docs.python.org/2/library/re.html) that the
-# commit-msg title must be matched to.
+# python-style regex that the commit-msg title must match
 # Note that the regex can contradict with other rules if not used correctly
 # (e.g. title-must-not-contain-word).
 # regex=^US[0-9]*
 
-# [body-max-line-length]
-# line-length=72
+[body-max-line-length]
+line-length=72
 
 # [body-min-length]
 # min-length=5
 
 # [body-is-missing]
-# Whether to ignore this rule on merge commits (which typically only have a title)
-# default = True
+# Whether to ignore this rule on merge commits (which typically only have a title). This default is true.
 # ignore-merge-commits=false
 
 # [body-changed-file-mention]
@@ -72,11 +74,16 @@ words=wip,temp
 # This is useful for when developers often erroneously edit certain files or git submodules.
 # By specifying this rule, developers can only change the file when they explicitly reference
 # it in the commit message.
-files=README.md,CHANGELOG.md
+# files=gitlint/rules.py,README.md
+
+# [body-match-regex]
+# python-style regex that the commit-msg body must match.
+# E.g. body must end in My-Commit-Tag: foo
+# regex=My-Commit-Tag: foo$
 
 # [author-valid-email]
-# python like regex (https://docs.python.org/2/library/re.html) that the
-# commit author email address should be matched to
+# python-style regex that the commit author email address must match.
+# For example, use the following regex if you only want to allow email addresses from foo.com
 # regex=[^@]+@foo.com
 
 # [ignore-by-title]
@@ -96,6 +103,11 @@ files=README.md,CHANGELOG.md
 # Ignore certain rules, you can reference them by their id or by their full name
 # Use 'all' to ignore all rules
 # ignore=T1,body-min-length
+
+# [ignore-body-lines]
+# Ignore certain lines in a commit body that match a regex.
+# E.g. Ignore all lines that start with 'Co-Authored-By'
+# regex=^Co-Authored-By
 
 # This is a contrib rule - a community contributed rule. These are disabled by default.
 # You need to explicitly enable them one-by-one by adding them to the "contrib" option

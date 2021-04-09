@@ -4,7 +4,7 @@
 # Access control
 #
 
-#xhost - 
+#xhost -
 # Turn on access control.
 #xhost + europa.ucc.ie
 # Allow certain machines access.
@@ -41,7 +41,7 @@
 # Disabled commands
 #
 
-# sleep 4 
+# sleep 4
 # sleep for 4 seconds
 
 #exec screen

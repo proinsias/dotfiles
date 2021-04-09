@@ -3,7 +3,7 @@
 #  . $SYSTEM_DIR/system.profile
 #fi
 
-# Source global definitions                                                     
+# Source global definitions
 if [ -f /etc/kshrc ]; then
         . /etc/kshrc
 fi

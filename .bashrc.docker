@@ -27,7 +27,7 @@ shopt -s cdspell
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
 # * Recursive globbing, e.g. `echo **/*.txt`
 for option in autocd globstar; do
-	shopt -s "$option" 2> /dev/null
+    shopt -s "$option" 2> /dev/null
 done
 
 # check the window size after each command and, if necessary,
@@ -38,7 +38,7 @@ shopt -s checkwinsize
 # Pass color ANSI control characters through to the terminal
 export LESS="-XR"
 
-# Don’t clear the screen after quitting a manual page
+# Don't clear the screen after quitting a manual page
 export MANPAGER="less -X";
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -79,12 +79,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
     else
-	color_prompt=
+    color_prompt=
     fi
 fi
 

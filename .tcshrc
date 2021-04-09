@@ -1,6 +1,6 @@
 ### BASIC SETUP
 
-unalias *       
+unalias *
 # Clear out any unwanted aliases we've picked up
 
 ## path
@@ -79,18 +79,18 @@ set complete='enhance'
 
 if ($?tcsh) then
         set correct=all
-# Spell check all                                                           
-# set correct=cmd                                                           
-# Spell check cmds                                                          
-# unset correct                                                             
+# Spell check all
+# set correct=cmd
+# Spell check cmds
+# unset correct
         set nobeep
-# Disables the audio bell                                                    
+# Disables the audio bell
 set autolist = ambiguous
-# make completions behave more sensibly                                     
-# set autolist=beepnone                                                     
-# List possibilites on ambiguous tabs                                       
-# unset autolist                                                            
-# set autocorrect                                                            
+# make completions behave more sensibly
+# set autolist=beepnone
+# List possibilites on ambiguous tabs
+# unset autolist
+# set autocorrect
 # instead, try to correct spelling
 
 
@@ -143,23 +143,23 @@ mesg y
 
 #setenv MYTEX            /Users/ftod/Library/texmf
 #setenv TEXMF            /sw/share
-#setenv TEXINPUTS	.:${MYTEX}/tex//:${TEXMF}/texmf//
+#setenv TEXINPUTS    .:${MYTEX}/tex//:${TEXMF}/texmf//
 # BibTeX
 #setenv  BIBINPUTS       .:${MYTEX}/bibtex/bib//:${TEXMF}/bibtex/bib//
-#setenv	BSTINPUTS	.:${MYTEX}/bibtex/bst//:${TEXMF}/bibtex/bst//
+#setenv    BSTINPUTS    .:${MYTEX}/bibtex/bst//:${TEXMF}/bibtex/bst//
 
-#setenv	HOMETEXMF       ~ftod/Library/texmf
+#setenv    HOMETEXMF       ~ftod/Library/texmf
 
 #setenv  TEXMFMAIN       /sw/share/texmf
 #setenv  TEXMFDIST       /sw/share/texmf-dist
 #setenv  TEXMFLOCAL      /sw/share/texmf-local
 
-#setenv	TEXINPUTS	.:$HOMETEXMF///:$TEXMF///
+#setenv    TEXINPUTS    .:$HOMETEXMF///:$TEXMF///
 # BibTeX
 #setenv  BIBINPUTS       .:$HOMETEXMF/bibtex/bib//:$TEXMF/bibtex/bib//
 #setenv  BSTINPUTS       .:$HOMETEXMF/bibtex/bst//:$TEXMF/bibtex/bst//
 ## Miscellaneous TeX utilities
-#setenv	INDEXSTYLE	.:$TEXMF/makeindex/inputs//
+#setenv    INDEXSTYLE    .:$TEXMF/makeindex/inputs//
 
 # LEAVE THIS TILL LAST
 #setenv  TEXMF      '{'"$HOMETEXMF":\!\!"$TEXMFMAIN":\!\!"$TEXMFLOCAL":\!\!"$TEXMFDIST"'}'
@@ -183,7 +183,7 @@ alias list_all_hostnames cat ~/.known_ssh_hostnames
 # provided as its argument.
 
 if ( $TERM == screen) then
-# ---------------- screen setup ----------                                     
+# ---------------- screen setup ----------
   if (!~ $?SHOWED_SCREEN_MESSAGE ) then
     set detached_screens=`screen -list | grep Detached`
     if ( "$detached_screens" != "" ) then

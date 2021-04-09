@@ -5,7 +5,7 @@ export PATH
 # Needed so I can startup applications installed with Fink
 . /sw/bin/init.sh
 
-# Opens up an xterm 
+# Opens up an xterm
 #xterm &
 
 # opens up the oclock clock
@@ -16,4 +16,3 @@ export PATH
 
 # Runs the quartz-wm so you can interact with the applications you've started
 /usr/X11R6/bin/quartz-wm
-

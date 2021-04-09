@@ -48,7 +48,7 @@
   (function
    (lambda () (interactive)
      (cond ((y-or-n-p "Quit? ")
-	    (save-buffers-kill-emacs))))))
+        (save-buffers-kill-emacs))))))
 ;;;;C-x k is a command I use often, but C-x C-k (an easy mistake) is
 ;;;;bound to nothing!
 ;;;;Set C-x C-k to same thing as C-x k.
@@ -105,7 +105,7 @@
 
 ;;;;Completion ignores filenames ending in any string in this list.
 ;(setq completion-ignored-extensions
-					;  '(".o" ".elc" ".class" "java~" ".ps" ".abs" ".mx" ".~jv" ))
+                    ;  '(".o" ".elc" ".class" "java~" ".ps" ".abs" ".mx" ".~jv" ))
 
 ;;;We can also get completion in the mini-buffer as well.
 (icomplete-mode t)
@@ -157,7 +157,7 @@
 ;(condition-case nil
 ;  (require 'gitattributes-mode)
 ;  (add-to-list 'auto-mode-alist '("^\.gitattributes$"
-;				. gitattributes-mode))
+;                . gitattributes-mode))
 ;  (error (message "gitattributes-mode plugin unavailable, skipping load ...")))
 ;
 ;(condition-case nil
@@ -169,7 +169,7 @@
 ;  (require 'gitignore-mode)
 ;  (add-to-list 'auto-mode-alist '("^\.gitignore$" . gitignore-mode))
 ;  (add-to-list 'auto-mode-alist '("\.git/info/attributes$"
-;				. gitignore-mode))
+;                . gitignore-mode))
 ;  (add-to-list 'auto-mode-alist '("\.git/config$" . gitignore-mode))
 ;  (add-to-list 'auto-mode-alist '("\.git/info/exclude$" . gitignore-mode))
 ;  (error (message "gitignore-mode plugin unavailable, skipping load ...")))
@@ -192,11 +192,11 @@
 (unless window-system
   (xterm-mouse-mode 1)
   (global-set-key [mouse-4] '(lambda ()
-			       (interactive)
-			       (scroll-down 1)))
+                   (interactive)
+                   (scroll-down 1)))
   (global-set-key [mouse-5] '(lambda ()
-			       (interactive)
-			       (scroll-up 1))))
+                   (interactive)
+                   (scroll-up 1))))
 
 ;;; https://github.com/yoshiki/yaml-mode
 ;(require 'yaml-mode)
@@ -239,10 +239,3 @@
 ;(load-theme 'solarized t)
 ;(setq solarized-termcolors 256)
 ;(add-to-list 'default-frame-alist '(background-mode . dark))
-
-
-
-
-
-
-

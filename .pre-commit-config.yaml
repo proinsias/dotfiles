@@ -18,7 +18,6 @@ repos:
       - id: double-quote-string-fixer
       - id: end-of-file-fixer
       - id: mixed-line-ending  # Replaces or checks mixed line ending.
-      - id: no-commit-to-branch  # Protect specific branches from direct checkins.
         # Both master and main are protected by default if no branch argument is set.
       - id: trailing-whitespace
 
@@ -75,21 +74,9 @@ repos:
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: 2.1.5
     hooks:
-      - id: bundler-audit
-      - id: check-mailmap
-      - id: fasterer
       - id: forbid-binary
       - id: git-check  # Configure in .gitattributes
       - id: git-dirty  # Configure in .gitignore
-      - id: markdownlint # Configure in .mdlrc
-      - id: reek
-      - id: require-ascii
-      - id: rubocop
-      - id: script-must-have-extension
-      - id: script-must-not-have-extension
-      - id: shellcheck
-        args: ['--external-sources', '--format=gcc', '--shell=bash']
-      - id: shfmt
 
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.1.9

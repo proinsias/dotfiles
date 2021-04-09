@@ -3,7 +3,7 @@ addpath = '/Users/ftod/idl_lib/:'
 
 if !path eq '' then $
   !path = addpath $
-else !path = addpath + ':' + !path 
+else !path = addpath + ':' + !path
 ;delvar, addpath
 
 ;astrolib

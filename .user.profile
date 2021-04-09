@@ -1,7 +1,7 @@
 #!/bin/ksh
 
 set -o emacs
-set -o noclobber 
+set -o noclobber
 set -o notify # notifies you when background jobs finish running
 export BASEPATH="$PATH" # To save original $PATH
 export HISTSIZE=200

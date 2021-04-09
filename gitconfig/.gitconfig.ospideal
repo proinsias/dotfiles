@@ -1,30 +1,30 @@
 [core]
-	excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore
 [commit]
-	# template = ~/.stCommitMsg  # Comes from SourceTree
+    # template = ~/.stCommitMsg  # Comes from SourceTree
 [credential]
-	# helper = cache --timeout 3600
-	helper = osxkeychain
+    # helper = cache --timeout 3600
+    helper = osxkeychain
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 [help]
-	# format = man
-	format = web
+    # format = man
+    format = web
 [include]
-	path = ~/.gitconfig.include
+    path = ~/.gitconfig.include
 [merge]
-	# tool = emerge
-	tool = p4merge
+    # tool = emerge
+    tool = p4merge
 [mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
 [user]
-	name = Francis T. O'Donovan
-	email = proinsias@users.noreply.github.com
-	signingkey = 740CFB25
+    name = Francis T. O'Donovan
+    email = proinsias@users.noreply.github.com
+    signingkey = 740CFB25

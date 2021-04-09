@@ -112,9 +112,11 @@ if type hub > /dev/null 2>&1 ; then
 fi
 
 # overcommit
-if type overcommit > /dev/null 2>&1 ; then
-  export GIT_TEMPLATE_DIR="$(overcommit --template-dir)"
-fi
+#if type overcommit > /dev/null 2>&1 ; then
+#  export GIT_TEMPLATE_DIR="$(overcommit --template-dir)"
+#fi
+
+export GIT_TEMPLATE_DIR="${HOME}"/.git-template
 
 # Ccache
 export PATH="${HOMEBREW_PREFIX}/opt/ccache/libexec${PATH:+:${PATH}}"

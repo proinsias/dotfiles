@@ -36,13 +36,8 @@ repos:
 
   # General
 
-  - repo: https://github.com/asottile/add-trailing-comma
-    rev: v2.1.0
-    hooks:
-      - id: add-trailing-comma
-
   - repo: https://github.com/Yelp/detect-secrets
-    rev: v1.0.0
+    rev: v1.0.3
     hooks:
       - id: detect-secrets
         args: ['--baseline', '.secrets.baseline']
@@ -86,6 +81,11 @@ repos:
           - mdformat-toc
 
   # Python
+
+  - repo: https://github.com/asottile/add-trailing-comma
+    rev: v2.1.0
+    hooks:
+      - id: add-trailing-comma
 
   - repo: https://github.com/asottile/pyupgrade
     # Automatically upgrade syntax for newer versions of the language.
@@ -203,43 +203,37 @@ repos:
 
 # Use .pre-commit github action rather than separate github actions?!!!
 
-# FIXME: Are there any linters etc that I want to setup via pre-commit via my own repos!
-#  RussianNovel:
-#  hunspell
-#  TextWidth:
-#    max_subject_width: 50
-#  BashSyntax:
-#    include: '**/*.sh'
-#    required_executable: 'bash-syntax'
-#  BundleCheck:
-#  BundleOutdated:
-#  ExecutePermissions:
-#    enabled: true
-#    exclude:
-#      - 'bin/**/*'
-#      - 'ci/*.sh'
-#  FixMe:
-#    exclude:
-#      - 'notebooks/**/*.ipynb'
-#  ImageOptim: svgo
-#  LocalPathsInGemfile:
-#    enabled: true
-#  ToDos: check-todos
-#  TravisLint:
-#  BundleInstall:
-#  GitGuilt:
-#  FreeSpace: check-freespace
+#  BundleCheck: bundle check
+#  BundleOutdated: bundle outdated --strict --parseable
+#  ExecutePermissions: - if I follow google guide, there's something already
+#  FixMe = create?
+#  LocalPathsInGemfile: - create?
+#  TravisLint: - create hook via pr - accepted my PR?
+#  BundleInstall: bundle install
+#  GitGuilt: - create hook via pr
 
 
-# proinsias.github.io:
+# proinsias.github.io and travis-lint
 
-#bundler-audit - may give ruby error
+# https://github.com/toy/image_optim/ - accepted my PR?
+#bundler-audit - may give ruby error - bundle-audit
 #markdownlint (ruby version) - may give ruby error
 # https://github.com/scivision/linkchecker-markdown - accepted my PR? Or just use script ?
 # markdown-link-check - add as pre-commit hook!
 #https://github.com/client9/misspell v https://github.com/codespell-project/codespell
 
 # patientroutesystems x2:
+
+#  ForecasterUpdater:
+#    description: 'Run forecaster updater'
+#    enabled: false
+#    required_executable: pr-apps/managed/forecaster/bin/updater-forecaster.sh
+#    quiet: false
+#  PRSUpdater:
+#    description: 'Run web app updater'
+#    enabled: true
+#    required_executable: ./hooks/updater-pr
+#    quiet: false
 
 # https://github.com/milin/giticket
 # github.com/myint/docformatter
@@ -270,4 +264,4 @@ repos:
 # github.com/sondrelg/pep585-upgrade
 # github.com/jendrikseipp/vulture
 # github.com/mgedmin/check-manifest
-# above python 
+# above python

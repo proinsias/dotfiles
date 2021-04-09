@@ -1,0 +1,295 @@
+---
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+      # General
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-xml
+      - id: check-yaml
+      - id: detect-private-key
+      - id: double-quote-string-fixer
+      - id: end-of-file-fixer
+      - id: mixed-line-ending  # Replaces or checks mixed line ending.
+      - id: no-commit-to-branch  # Protect specific branches from direct checkins.
+        # Both master and main are protected by default if no branch argument is set.
+      - id: trailing-whitespace
+
+      # Json
+      - id: check-json
+      - id: pretty-format-json  # Checks that all your JSON files are pretty.
+
+      # Python
+      - id: check-ast  # Check whether files parse as valid python.
+      - id: check-builtin-literals  # Require literal syntax when initializing empty or zero Python builtin types.
+      - id: debug-statements  # Check for debugger imports and py37+ breakpoint() calls in python source.
+      - id: detect-aws-credentials
+      - id: fix-encoding-pragma  # Add # -*- coding: utf-8 -*- to the top of python files.
+      - id: name-tests-test  # Assert that files in tests/ end in _test.py, or optionally test*.py
+
+  # General
+
+  - repo: https://github.com/asottile/add-trailing-comma
+    rev: v2.1.0
+    hooks:
+      - id: add-trailing-comma
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.0.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+        exclude: package.lock.json
+
+  - repo: https://github.com/sirosen/fix-smartquotes
+    rev: 0.2.0
+    hooks:
+      - id: fix-smartquotes
+
+  # Ansible
+
+  #  - repo: https://github.com/ansible-community/ansible-lint.git
+  #    rev: v5.0.7
+  #    hooks:
+  #      - id: ansible-lint
+  #        args: ['--offline']  # FIXME: Take out once I figure out how to authenticate.
+  #        files: \.(yaml|yml)$
+
+  # Git
+
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.15.0
+    hooks:
+      - id: gitlint
+
+  # Markdown
+
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.6.4
+    hooks:
+      - id: mdformat
+        additional_dependencies:
+          - mdformat-beautysh
+          - mdformat-black
+          - mdformat-config
+          # - mdformat-frontmatter  # Breaks.
+          - mdformat-gfm
+          - mdformat-shfmt
+          - mdformat-tables
+          - mdformat-toc
+
+  # Python
+
+  - repo: https://github.com/asottile/pyupgrade
+    # Automatically upgrade syntax for newer versions of the language.
+    rev: v2.11.0
+    hooks:
+      - id: pyupgrade
+
+  # YAML
+
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.26.1
+    hooks:
+      - id: yamllint
+        args: [-c=.yamllint.yml]
+
+  # Mixed
+
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 2.1.5
+    hooks:
+      - id: bundler-audit
+      - id: check-mailmap
+      - id: fasterer
+      - id: forbid-binary
+      - id: git-check  # Configure in .gitattributes
+      - id: git-dirty  # Configure in .gitignore
+      - id: markdownlint # Configure in .mdlrc
+      - id: reek
+      - id: require-ascii
+      - id: rubocop
+      - id: script-must-have-extension
+      - id: script-must-not-have-extension
+      - id: shellcheck
+        args: ['--external-sources', '--format=gcc', '--shell=bash']
+      - id: shfmt
+
+
+# sqlint?
+# https://github.com/pre-commit/mirrors-mypy
+# https://github.com/pre-commit/pygrep-hooks
+# https://github.com/FalconSocial/pre-commit-mirrors-pep257
+# https://github.com/asottile/reorder_python_imports
+# https://github.com/asottile/yesqa
+# https://github.com/asottile/blacken-docs
+# https://github.com/asottile/dead
+# https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
+# https://github.com/Lucas-C/pre-commit-hooks
+# https://github.com/Lucas-C/pre-commit-hooks-markup
+# https://github.com/Lucas-C/pre-commit-hooks-safety
+# https://github.com/detailyang/pre-commit-shell
+#
+# https://github.com/ansible-community/ansible-lint
+#
+#
+# https://github.com/psf/black
+# https://github.com/IamTheFij/docker-pre-commit
+# https://github.com/pryorda/dockerfilelint-precommit-hooks
+#
+# https://github.com/PyCQA/flake8
+#    flags:
+#      - '--doctests'
+#      - '--exclude =.git,__pycache__'
+#      - '--ignore=F401,F403,F405'
+#      - '--max-complexity=10'
+#      - '--max-line-length=120'
+#      - '--select=E10,E11,E9,F4,F6,F7,F8'
+#      - '--show-source'
+#    exclude:
+#      - 'jupyter/jupyter_notebook_config.py'
+#      - 'setup.py'
+
+# https://github.com/PyCQA/bandit
+# https://github.com/PyCQA/pydocstyle
+#    flags:
+#      # - '--explain'  # Don't use!
+#      - '--ignore=D100,D103,D203'
+#      # - '--source'  # Don't use!
+#      # - '--verbose'  # Don't use!
+#    exclude:
+#      - 'jupyter/jupyter_notebook_config.py'
+
+# pycodestyle
+#    flags:
+#      # E703 statement ends with a semicolon.
+#      # Need for matplotlib in Jupyter notebooks.
+#      - '--ignore=E211,E231,E703,W291,W293'
+#      - '--max-line-length=120'
+#      # - '--show-source'  # Don't use!
+#    exclude:
+#      - 'jupyter/jupyter_notebook_config.py'
+#      - 'setup.py'
+
+
+# https://github.com/PyCQA/pylint
+#    flags:
+#      - '--max-line-length=120'
+#      - '--msg-template="{path}:{line}:{C}: {msg} ({symbol})"'
+#      - '--reports=n'
+#      - '--persistent=n'
+#    exclude:
+#      - 'jupyter/jupyter_notebook_config.py'
+#      - 'setup.py'
+# https://github.com/PyCQA/doc8
+# https://github.com/PyCQA/prospector
+# https://github.com/PyCQA/isort
+# https://github.com/miki725/importanize
+#
+#
+# https://github.com/sqlalchemyorg/zimports
+# https://github.com/peterdemin/pip-compile-multi
+#
+#
+#
+# github.com/myint/rstcheck
+# github.com/myint/autoflake
+# gitlab.com/iamlikeme/nbhooks
+# github.com/kynan/nbstripout
+# github.com/igorshubovych/markdownlint-cli
+# github.com/markdownlint/markdownlint
+#
+# github.com/jazzband/pip-tools
+
+
+# github.com/aorumbayev/pydantic-to-schema
+# github.com/nbQA-dev/nbQA
+# github.com/editorconfig-checker/editorconfig-checker.python
+
+# mdformat has toc - does it work?
+# github.com/frnmst/md-toc
+# https://github.com/thlorenz/doctoc
+
+# github.com/mgedmin/check-manifest
+#
+#
+# github.com/mwouts/jupytext
+
+# github.com/MarcoGorelli/absolufy-imports
+#
+
+# languagetool?
+# alex?
+
+Use .pre-commit github action rather than separate github actions?!!!
+
+# FIXME: Are there any linters etc that I want to setup via pre-commit via my own repos!
+
+  HardTabs:
+  MessageFormat:
+    pattern: '\[#(\d+)\](.+)'
+    expected_pattern_message: '[#<Issue Id>] <Commit Message Description>'
+    sample_message: '[#1234] Refactored Onboarding flow'
+  RussianNovel:
+  hunspell
+  TextWidth:
+    max_subject_width: 50
+  BashSyntax:
+    include: '**/*.sh'
+    required_executable: 'bash-syntax'
+  BundleCheck:
+  BundleOutdated:
+  ExecutePermissions:
+    enabled: true
+    exclude:
+      - 'bin/**/*'
+      - 'ci/*.sh'
+  FixMe:
+    exclude:
+      - 'notebooks/**/*.ipynb'
+  HardTabs:
+  ImageOptim: svgo
+  LocalPathsInGemfile:
+    enabled: true
+  ToDos: check-todos
+  TravisLint:
+  BundleInstall:
+  GitGuilt:
+  Pytest:
+  PythonNose:
+  FreeSpace: check-freespace
+
+
+# proinsias.github.io:
+
+bundler-audit - may give ruby error
+markdownlint (ruby version) - may give ruby error
+markdown-link-check - https://github.com/scivision/linkchecker-markdown instead? Needs to be converted I think, but it gives an example! Submit .pre...yaml file to them!
+https://github.com/client9/misspell v https://github.com/codespell-project/codespell
+
+# patientroutesystems x2:
+
+# https://github.com/milin/giticket
+# github.com/myint/docformatter
+# github.com/sondrelg/pep585-upgrade
+# github.com/jendrikseipp/vulture
+# github.com/hadolint/hadolint
+
+# nameshark_vcard;
+
+# https://github.com/milin/gitown
+# github.com/myint/docformatter
+# github.com/sondrelg/pep585-upgrade
+# github.com/jendrikseipp/vulture
+
+
+
+
+# https://github.com/detailyang/pre-commit-shell

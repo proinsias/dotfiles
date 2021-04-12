@@ -86,6 +86,11 @@ repos:
     hooks:
       - id: gitlint
 
+  - repo: https://github.com/sirosen/check-jsonschema
+    rev: 0.3.0
+    hooks:
+      - id: check-github-workflows
+
   # Markdown
 
   - repo: https://github.com/executablebooks/mdformat
@@ -139,11 +144,6 @@ repos:
     hooks:
       - id: yamllint
         args: [-c=.yamllint.yml]
-
-  - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
-    rev: 0.1.0
-    hooks:
-      - id: yamlfmt
 
   # Mixed
 
@@ -308,3 +308,6 @@ repos:
 #     git config --global user.name "README-bot"
 #     git diff --quiet || (git add README.md && git commit -m "Updated README")
 #     git push
+
+
+# https://github.com/pre-commit/mirrors-prettier

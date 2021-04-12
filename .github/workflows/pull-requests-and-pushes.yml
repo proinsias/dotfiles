@@ -1,5 +1,5 @@
 ---
-name: Code Quality
+name: Pull Requests & Pushes
 
 # yamllint disable-line rule:truthy
 on: [push, pull_request]
@@ -19,9 +19,6 @@ jobs:
           path: vendor/bundle
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: ${{ runner.os }}-gem-
-
-      - name: Pre-commit autoupdate
-        uses: browniebroke/pre-commit-autoupdate-action@v1.0.0
 
       # - name: pre-commit
       #   uses: pre-commit/action@v2.0.2

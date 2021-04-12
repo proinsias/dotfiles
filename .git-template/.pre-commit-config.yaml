@@ -1,5 +1,9 @@
 ---
 
+# Add the pre-commit badge to the README!
+
+# Which of these should have stages?
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.4.0
@@ -19,7 +23,7 @@ repos:
       - id: end-of-file-fixer
       - id: mixed-line-ending  # Replaces or checks mixed line ending.
       - id: no-commit-to-branch  # Protect specific branches from direct checkins.
-        # Both master and main are protected by default if no branch argument is set.
+      # Both master and main are protected by default if no branch argument is set.
       - id: trailing-whitespace
 
       # Json
@@ -105,6 +109,11 @@ repos:
     hooks:
       - id: add-trailing-comma
 
+  - repo: https://github.com/PyCQA/bandit  # Add badge to README!
+    rev: '1.7.0'
+    hooks:
+      - id: bandit
+
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
     rev: v1.2.1
     hooks:
@@ -147,7 +156,7 @@ repos:
       - id: forbid-binary
       - id: git-check  # Configure in .gitattributes
       - id: git-dirty  # Configure in .gitignore
-      - id: markdownlint # Configure in .mdlrc
+      - id: markdownlint  # Configure in .mdlrc
       - id: reek
       - id: require-ascii
       - id: rubocop
@@ -185,7 +194,6 @@ repos:
 #    exclude:
 #      - 'jupyter/jupyter_notebook_config.py'
 #      - 'setup.py'
-# https://github.com/PyCQA/bandit
 # https://github.com/PyCQA/pydocstyle
 #    flags:
 #      # - '--explain'  # Don't use!
@@ -240,7 +248,6 @@ repos:
 #  ExecutePermissions: - if I follow google guide, there's something already
 #  FixMe = create?
 #  LocalPathsInGemfile: - create?
-#  TravisLint: - create hook via pr - accepted my PR?
 #  BundleInstall: bundle install
 #  GitGuilt: - create hook via pr
 
@@ -248,11 +255,11 @@ repos:
 # proinsias.github.io and travis-lint
 
 # https://github.com/toy/image_optim/ - accepted my PR?
-#bundler-audit - may give ruby error - bundle-audit
-#markdownlint (ruby version) - may give ruby error
+# bundler-audit - may give ruby error - bundle-audit
+# markdownlint (ruby version) - may give ruby error
 # https://github.com/scivision/linkchecker-markdown - accepted my PR? Or just use script ?
 # markdown-link-check - add as pre-commit hook!
-#https://github.com/client9/misspell v https://github.com/codespell-project/codespell
+# https://github.com/client9/misspell v https://github.com/codespell-project/codespell
 
 # patientroutesystems x2:
 
@@ -291,3 +298,13 @@ repos:
 # github.com/jendrikseipp/vulture
 # github.com/mgedmin/check-manifest
 # above python
+
+# - name: Update TOC
+#   run: npx markdown-toc README.md -i
+# - name: Commit and push if README changed
+#   run: |-
+#     git diff
+#     git config --global user.email "readme-bot@example.com"
+#     git config --global user.name "README-bot"
+#     git diff --quiet || (git add README.md && git commit -m "Updated README")
+#     git push

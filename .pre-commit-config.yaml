@@ -18,7 +18,7 @@ repos:
       - id: double-quote-string-fixer
       - id: end-of-file-fixer
       - id: mixed-line-ending  # Replaces or checks mixed line ending.
-        # Both master and main are protected by default if no branch argument is set.
+      # Both master and main are protected by default if no branch argument is set.
       - id: trailing-whitespace
 
       # Json
@@ -71,10 +71,10 @@ repos:
     hooks:
       - id: forbid-binary
       - id: git-check  # Configure in .gitattributes
-      - id: git-dirty  # Configure in .gitignore
 
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.1.9
     hooks:
       - id: remove-crlf
       - id: remove-tabs
+        exclude: .git/COMMIT_EDITMSG

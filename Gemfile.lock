@@ -54,7 +54,7 @@ GEM
       rchardet (~> 1.8)
     google-protobuf (3.15.7)
     google-protobuf (3.15.7-universal-darwin)
-    html-proofer (3.19.0)
+    html-proofer (3.19.1)
       addressable (~> 2.3)
       mercenary (~> 0.3)
       nokogumbo (~> 2.0)

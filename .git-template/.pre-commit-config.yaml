@@ -35,7 +35,6 @@ repos:
       - id: check-builtin-literals  # Require literal syntax when initializing empty or zero Python builtin types.
       - id: debug-statements  # Check for debugger imports and py37+ breakpoint() calls in python source.
       - id: detect-aws-credentials
-      - id: fix-encoding-pragma  # Add # -*- coding: utf-8 -*- to the top of python files.
       - id: name-tests-test  # Assert that files in tests/ end in _test.py, or optionally test*.py
 
   # General

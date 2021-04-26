@@ -147,7 +147,7 @@
 [diff "localizablestrings"]
     textconv = "iconv -f utf-16 -t utf-8"
 [diff "nbconv"]
-    textconv = ~/bin/nb2py.sh
+    textconv = ~/bin/nb2py
 [fetch]
     prune = true
     # Auto-fetch submodule changes (sadly, won't auto-update).

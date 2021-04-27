@@ -45,9 +45,6 @@ symbol = " "
 [julia]
 symbol = " "
 
-[line_break]
-disabled = true
-
 [memory_usage]
 disabled = false
 symbol = " "

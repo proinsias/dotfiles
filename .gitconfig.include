@@ -47,6 +47,8 @@
     autosetupmerge = always
     # Set up remote tracking branches to pull using `--rebase`.
     autosetuprebase = always
+    # Sort your branches by their last commit date, with the most recent at the top.
+    sort = -committerdate
 [color]
     branch = auto
     decorate = auto

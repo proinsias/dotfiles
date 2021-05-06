@@ -437,5 +437,3 @@ if type pyjoke > /dev/null 2>&1; then
   echo "Joke of the Day:"
   pyjoke
 fi
-
-source /Users/ftod/.bash_completions/cli.py.sh

@@ -281,11 +281,11 @@ else
 fi
 
 # # Add 1password-cli session
-# if type op > /dev/null 2>&1; then
-#     eval $(op signin slesnonovans)
-# else
-#     echo "Install 1password-cli using: brew cask install 1password-cli"
-# fi
+if type op > /dev/null 2>&1; then
+    eval $(op signin slesnonovans)
+else
+    echo "Install 1password-cli using: brew cask install 1password-cli"
+fi
 
 # Use `/bin/ls` for these tests, since homebrew `ls` gives errors
 if /bin/ls "${HOME}"/.bash/* 1> /dev/null 2>&1; then

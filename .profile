@@ -5,7 +5,7 @@
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "${HOME}/bin" ] ; then
-    export PATH="${PATH:+${PATH}:}${HOME}/bin"
+    export PATH="${HOME}/bin${PATH:+:${PATH}}"
 fi
 
 if [ -d "${HOME}/.generic/bin" ] ; then

@@ -3,3 +3,9 @@
 additional-dependency-files:
   - type: bundler-gemfile
     path: Gemfile
+
+ignore-failures:
+
+  python:
+    - bundle-audit
+    - terminal-notifier

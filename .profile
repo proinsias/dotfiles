@@ -149,5 +149,9 @@ if [ -f '/usr/local/google-cloud-sdk/path.bash.inc' ]; then
   . '/usr/local/google-cloud-sdk/path.bash.inc'
 fi
 
+export PYENV_ROOT="${HOME}/.pyenv"
+export PATH="${PYENV_ROOT}/bin:${PATH}"
+eval "$(pyenv init --path)"
+
 # If not running interactively, stop here
 [[ "$-" != *i* ]] && return

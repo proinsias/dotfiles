@@ -49,11 +49,3 @@ jobs:
         with:
           check-modified-files-only: 'no'
           max-depth: 1
-
-      - name: Dependabot Auto Merge
-        uses: PabioHQ/dependabot-pr-action@v1.1.12
-        with:
-          github-token: ${{ secrets.github_token }}
-          approve: true
-          auto-level: true
-          merge: true

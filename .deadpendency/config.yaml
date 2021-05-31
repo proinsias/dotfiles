@@ -6,6 +6,6 @@ additional-dependency-files:
 
 ignore-failures:
 
-  python:
+  ruby:
     - bundle-audit
     - terminal-notifier

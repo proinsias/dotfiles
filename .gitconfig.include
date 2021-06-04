@@ -174,7 +174,7 @@
     copyrightholder = Francis T. O'Donovan <francis.odonovan@gmail.com>
 [init]
     defaultBranch = main
-    templateDir = ~/.git-template
+    templatedir = ~/.git-template
 [log]
     # Use abbrev SHAs whenever possible/relevant instead of full 40 chars.
     abbrevCommit = true

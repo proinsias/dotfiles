@@ -12,12 +12,6 @@ gem 'image_optim_pack'
 gem 'jekyll'
 gem 'json'
 gem 'nokogiri', ">= 1.10.3"
-# gem 'overcommit' # https://github.com/brigade/overcommit
-# Use master branch of overcommit.
-# gem 'overcommit', github: 'brigade/overcommit'
-# Use custom branch of overcommit.
-# gem 'overcommit', :git => 'https://github.com/proinsias/overcommit.git',\
-# :branch => 'proinsias/git-lfs-hooks'
 gem 'rspec'
 gem 'rubocop' # https://github.com/bbatsov/rubocop
 gem 'rubocop-performance'

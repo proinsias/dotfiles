@@ -17,7 +17,7 @@ export LANG=en_US.UTF-8
 export DICTIONARY=en_US
 
 export NPM_PACKAGES="${HOME}/.npm-packages"
-export PATH="${NPM_PACKAGES}${PATH:+:${PATH}}"
+export PATH="${PATH:+${PATH}:}${NPM_PACKAGES}/bin"
 export MANPATH="${NPM_PACKAGES}/share/man${MANPATH:+:${MANPATH}}"
 
 # Set MANPATH so it includes users' private man if it exists
@@ -85,10 +85,10 @@ export HOMEBREW_INSTALL_CLEANUP=true
 # ruby
 export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
 export RUBY_VERSION="3.0.0"
-export PATH="${RUBY_HOME}/bin${PATH:+:${PATH}}"
+export PATH="${PATH:+${PATH}:}${RUBY_HOME}/bin"
 export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
-export PATH="${GEM_PATH}/bin${PATH:+:${PATH}}"
+export PATH="${PATH:+${PATH}:}${GEM_PATH}/bin"
 
 # Add homebrew's GNU coreutils (ls, cat, etc.) to PATH, etc. - see
 #http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
@@ -126,20 +126,17 @@ case $(uname -s) in
         ;;
     "Darwin" )
         export JAVA_HOME="$(/usr/libexec/java_home)"  # Need Java8 not Java9 for Spark.
-        export PATH="${JAVA_HOME}/bin${PATH:+:${PATH}}"
+        export PATH="${PATH:+${PATH}:}${JAVA_HOME}/bin"
 
         export SCALA_HOME="${HOMEBREW_PREFIX}/opt/scala/idea"  # To use with IntelliJ.
         ;;
 esac
 
-# added by Snowflake SnowSQL installer v1.0
-export PATH="/Applications/SnowSQL.app/Contents/MacOS${PATH:+:${PATH}}"
-
 # Go Lang
 export GOPATH="${HOME}/golang"
 export GOROOT="${HOMEBREW_PREFIX}/opt/go/libexec"
-export PATH="${GOPATH}/bin${PATH:+:${PATH}}"
-export PATH="${GOROOT}/bin${PATH:+:${PATH}}"
+export PATH="${PATH:+${PATH}:}${GOPATH}/bin"
+export PATH="${PATH:+${PATH}:}${GOROOT}/bin"
 
 # # Prevent accidental global package install through pip.
 # export PIP_REQUIRE_VIRTUALENV=true
@@ -151,7 +148,7 @@ fi
 
 export PYENV_ROOT="${HOME}/.pyenv"
 export PATH="${PYENV_ROOT}/bin:${PATH}"
-eval "$(pyenv init --path)"
+eval "$(pyenv init --path)"  # Puts shims dir as prefix to PATH.
 
 # If not running interactively, stop here
 [[ "$-" != *i* ]] && return

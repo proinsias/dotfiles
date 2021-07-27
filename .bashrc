@@ -12,6 +12,7 @@ if test -f /etc/bashrc ; then
 fi
 
 # For homebrew
+# Adds $HOMEBREW_PREFIX/bin as prefix to PATH.
 case $(uname -s) in
     "Linux" )
         # homebrew linuxbrew
@@ -353,6 +354,7 @@ fi
 
 # pyenv
 if type pyenv > /dev/null 2>&1; then
+  eval "$(pyenv init --path)"  # Puts shims dir as prefix to PATH.
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
@@ -392,7 +394,7 @@ fi
 #  gem install travis
 #fi
 # added by travis gem
-[ ! -s "${HOME}"/.travis/travis.sh ] || source "${HOME}"/.travis/travis.sh
+# [ ! -s "${HOME}"/.travis/travis.sh ] || source "${HOME}"/.travis/travis.sh
 
 ### motd
 echo "* bash"
@@ -437,3 +439,6 @@ if type pyjoke > /dev/null 2>&1; then
   echo "Joke of the Day:"
   pyjoke
 fi
+
+# Deduplicate PATH variable
+export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"

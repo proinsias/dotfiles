@@ -389,6 +389,8 @@ if test -f "${HOME}"/.bashhub/bashhub.sh > /dev/null 2>&1; then
   source "${HOME}"/.bashhub/bashhub.sh
 fi
 
+source "${HOME}"/.config/broot/launcher/bash/br
+
 #if ! type travis > /dev/null 2>&1 ; then
 #  echo Installing travis...
 #  gem install travis
@@ -414,6 +416,7 @@ echo "  + bashhub off/on  # turn bashhub recording off/on"
 echo '  + echo this command will no be saved #ignore  # bashhub will ignore this command'
 echo "* cheat - https://github.com/chrisallenlane/cheat"
 echo "  + cheat tar"
+echo "* broot – https://dystroy.org/broot/"
 echo "* fasd - https://github.com/clvv/fasd"
 echo "  + f foo           # list frecent files matching foo"
 echo "  + a foo bar       # list frecent files and directories matching foo and bar"

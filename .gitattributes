@@ -154,7 +154,7 @@ Makefile        text whitespace=-tab-in-indent,trailing-space,tabwidth=4
 *.less          text
 *.styl          text
 *.ts            text
-*.coffee        text
+# *.coffee        text
 *.ini           text
 *.inc           text
 *.pl            text

@@ -40,7 +40,7 @@
     # whitespace = warn
     # Or you can have Git try to automatically fix the issue before applying the patch:
     # whitespace = fix
-    whitespace = warn
+    # whitespace = warn
 [branch]
     # When branching off a remote branch, automatically let the local
     # branch track the remote branch.
@@ -86,7 +86,7 @@
     # to convert CRLF to LF on commit but not the other way around by setting core.autocrlf
     # to input. This setup should leave you with CRLF endings in Windows checkouts, but LF
     # endings on Mac and Linux systems and in the repository.
-    autocrlf = input
+    # autocrlf = input
     # If you're on a Windows machine, set it to true – this converts LF endings into CRLF when
     # you check out code:
     # autocrlf = true
@@ -122,7 +122,7 @@
     #
     # Git will detect these issues when you run a git diff command and try to color them so
     # you can possibly fix them before you commit.
-    whitespace = blank-at-eof, blank-at-eol, space-before-tab, tab-in-indent, trailing-space
+    # whitespace = blank-at-eof, blank-at-eol, space-before-tab, tab-in-indent, trailing-space
 [diff]
     # Use (i)ndex, (w)ork tree, (c)ommit, (o)bject prefixes instead of standard a, b.
     mnemonicprefix = true
@@ -209,7 +209,7 @@
 [rebase]
     # If you've committed whitespace issues but haven't yet pushed upstream,
     # have Git automatically fix whitespace issues as it's rewriting the patches.
-    whitespace = warn
+    # whitespace = warn
 [status]
     # Shows paths relative to the repository root.
     # relativePaths = false

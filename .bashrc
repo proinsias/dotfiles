@@ -358,7 +358,7 @@ if type pyenv > /dev/null 2>&1; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-  eval "$(pipenv --completion)"
+  # eval "$(pipenv --completion)"
 else
   echo "Install pyenv using: brew install pyenv"
 fi

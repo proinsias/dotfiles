@@ -16,12 +16,15 @@ fi
 case $(uname -s) in
     "Linux" )
         # homebrew linuxbrew
-        test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-        test -d "${HOME}/.linuxbrew/" && eval $("${HOME}/.linuxbrew/bin/brew shellenv")
+        test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        test -d "${HOME}/.linuxbrew/" && eval "$(${HOME}/.linuxbrew/bin/brew shellenv)"
         ;;
     "Darwin" )
-        # homebrew
-        test -f /usr/local/bin/brew && eval $(/usr/local/bin/brew shellenv)
+        # Intel homebrew
+        test -f /usr/local/bin/brew && eval "$(/usr/local/bin/brew shellenv)"
+        # M1 home-brew – do second in case we are also using Intel
+        # via Rosetta.
+        test -f /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
         ;;
 esac
 
@@ -247,9 +250,9 @@ case $(uname -s) in
     "Darwin" )
         # https://github.com/obihann/archey-osx
         if type archey > /dev/null 2>&1 ; then
-          archey --packager
+          archey
         else
-          echo "Install archey using: brew install archey"
+          echo "Install archey using: brew install archey4"
         fi
 
         # Add tab completion for `defaults read|write NSGlobalDomain`
@@ -276,14 +279,14 @@ complete -C aws_completer aws
 
 # Add keychain keys
 if type keychain > /dev/null 2>&1; then
-    eval $(keychain --eval --agents ssh,gpg --ignore-missing --inherit any id_rsa 6519D396 740CFB25 9DE94ABA )
+    eval "$(keychain --eval --agents ssh,gpg --ignore-missing --inherit any id_rsa 6519D396 740CFB25 9DE94ABA )"
 else
     echo "Install keychain using: brew install keychain"
 fi
 
 # # Add 1password-cli session
 if type op > /dev/null 2>&1; then
-    eval $(op signin slesnonovans)
+    eval "$(op signin slesnonovans)"
 else
     echo "Install 1password-cli using: brew cask install 1password-cli"
 fi
@@ -347,7 +350,7 @@ fi
 
 # "Magnificent app which corrects your previous console command"
 if type thefuck > /dev/null 2>&1; then
-  eval $(thefuck --alias)
+  eval "$(thefuck --alias)"
 else
   echo "Install thefuck using: brew install thefuck"
 fi

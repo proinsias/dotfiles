@@ -60,15 +60,22 @@ case $(uname -s) in
       fi
 
       # homebrew linuxbrew
-      test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-      test -d "${HOME}/.linuxbrew/" && eval $("${HOME}/.linuxbrew/bin/brew shellenv")
+      test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      test -d "${HOME}/.linuxbrew/" && eval "$(${HOME}/.linuxbrew/bin/brew shellenv)"
 
       # gpg-agent
       export GPG_TTY=$(tty)
       ;;
     "Darwin" )
-      # homebrew
-      test -f /usr/local/bin/brew && eval $(/usr/local/bin/brew shellenv)
+      # Intel homebrew
+      test -f /usr/local/bin/brew && eval "$(/usr/local/bin/brew shellenv)"
+      test -d /usr/local/lib && export LDFLAGS="-L/usr/local/lib ${LDFLAGS}"
+      test -d /usr/local/include && export CPPFLAGS="-L/usr/local/include ${CPPFLAGS}"
+      # M1 home-brew – do second in case we are also using Intel
+      # via Rosetta.
+      test -f /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
+      test -d /opt/homebrew/lib && export LDFLAGS="-L/opt/homebrew/lib ${LDFLAGS}"
+      test -d /opt/homebrew/include && export CPPFLAGS="-L/opt/homebrew/include ${CPPFLAGS}"
 
       if [ -d "${HOME}/.osx/bin" ] ; then
           export PATH="${PATH:+${PATH}:}${HOME}/.osx/bin"
@@ -76,6 +83,7 @@ case $(uname -s) in
 
       # To install homebrew casks in /Applications by default
       export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
       ;;
 esac
 
@@ -85,7 +93,7 @@ export HOMEBREW_INSTALL_CLEANUP=true
 # ruby
 export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
 export RUBY_VERSION="3.0.0"
-export PATH="${PATH:+${PATH}:}${RUBY_HOME}/bin"
+export PATH="${RUBY_HOME}/bin${PATH:+:${PATH}}"
 export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 export PATH="${PATH:+${PATH}:}${GEM_PATH}/bin"

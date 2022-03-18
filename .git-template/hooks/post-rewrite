@@ -4,7 +4,7 @@
 
 # start templated
 INSTALL_PYTHON=/opt/homebrew/opt/pre-commit/libexec/bin/python3
-ARGS=(hook-impl --config=.pre-commit-config.yaml --hook-type=post-checkout --skip-on-missing-config)
+ARGS=(hook-impl --config=.pre-commit-config.yaml --hook-type=post-rewrite --skip-on-missing-config)
 # end templated
 
 HERE="$(cd "$(dirname "$0")" && pwd)"

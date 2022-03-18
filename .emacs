@@ -128,8 +128,8 @@
 ;;  Don't display passwords
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
 
-(set-default-font
- "-adobe-courier-medium-r-normal--18-180-75-75-m-110-iso8859-1")
+;;(set-default-font
+;; "-adobe-courier-medium-r-normal--18-180-75-75-m-110-iso8859-1")
 
 ; Use aspell
 (setq-default ispell-program-name"aspell")

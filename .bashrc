@@ -136,7 +136,7 @@ if [ -f '/usr/local/google-cloud-sdk/completion.bash.inc' ]; then
   . '/usr/local/google-cloud-sdk/completion.bash.inc'
 fi
 
-export CLOUDSDK_PYTHON=/usr/local/bin/python3
+export CLOUDSDK_PYTHON=/opt/homebrew/bin/python3
 
 if [ -f "${HOME}/.bash/cht.sh" ]; then
   # https://cheat.sh/

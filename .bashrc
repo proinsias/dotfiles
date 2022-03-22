@@ -277,16 +277,16 @@ esac
 # AWS bash completion
 complete -C aws_completer aws
 
-# Add keychain keys
+# Add keychain keys - use 1password instead for ssh key
 if type keychain > /dev/null 2>&1; then
-    eval "$(keychain --eval --agents ssh,gpg --ignore-missing --inherit any id_rsa 6519D396 740CFB25 9DE94ABA )"
+    eval "$(keychain --eval --agents gpg --ignore-missing --inherit any 6519D396 740CFB25 9DE94ABA )"
 else
     echo "Install keychain using: brew install keychain"
 fi
 
 # # Add 1password-cli session
 if type op > /dev/null 2>&1; then
-    eval "$(op signin slesnonovans)"
+    eval "$(op signin --account slesnonovans)"
 else
     echo "Install 1password-cli using: brew cask install 1password-cli"
 fi

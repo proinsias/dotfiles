@@ -448,3 +448,6 @@ fi
 
 # Deduplicate PATH variable
 export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+
+# To enable support via ssh-add.
+export SSH_AUTH_SOCK=~/.1password/agent.sock

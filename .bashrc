@@ -58,11 +58,11 @@ shopt -s cmdhist
 # Correct spelling of directory names during word completion
 shopt -s dirspell
 #
-# Include filenames beginning with ‘.’ in results of filename expansion
+# Include filenames beginning with '.' in results of filename expansion
 shopt -s dotglob
 #
-# ‘**’ used in filename expansion context will match all files and zero or
-# more directories and subdirectories. If pattern is followed by ‘/’, only directories
+# '**' used in filename expansion context will match all files and zero or
+# more directories and subdirectories. If pattern is followed by '/', only directories
 # and subdirectories match.
 shopt -s globstar 2> /dev/null
 #
@@ -105,22 +105,54 @@ fi
 # Define to avoid flattening internal contents of tar files
 # COMP_TAR_INTERNAL_PATHS=1
 
-if ! test -f "${HOME}"/bin/git-completion.sh > /dev/null 2>&1; then
-    echo Installing git completion...
-    wget \
-https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash \
---output-document="${HOME}"/bin/git-completion.sh
-fi
-if test -f "${HOME}"/bin/git-completion.sh > /dev/null 2>&1; then
-    source "${HOME}"/bin/git-completion.sh
+## pipx (https://github.com/pipxproject/pipx)
+if type pipx > /dev/null 2>&1 ; then
+    eval "$(register-python-argcomplete pipx)"
+else
+    echo "Install pipx using: brew install pipx"
 fi
 
-if ! test -f "${HOME}"/bin/npm-completion.sh > /dev/null 2>&1; then
-    echo Installing npm compleition...
-    npm completion > "${HOME}"/bin/npm-completion.sh
+# AWS bash completion
+complete -C aws_completer aws
+
+# tab completion for conda
+if type conda > /dev/null 2>&1 ; then
+  if type register-python-argcomplete > /dev/null 2>&1 ; then
+    eval "$(register-python-argcomplete conda)"
+  else
+    echo "Install argcomplete using: python3 -m pip install argcomplete"
+  fi
 fi
-if test -f "${HOME}"/bin/npm-completion.sh > /dev/null 2>&1; then
-    source "${HOME}"/bin/npm-completion.sh
+
+# Global tab completion for argcomplete-supported apps
+if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh"; then
+  if type activate-global-python-argcomplete > /dev/null 2>&1 ; then
+    activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
+  else
+    echo "Install argcomplete using: python3 -m pip install argcomplete"
+  fi
+fi
+
+# nbp bash completion
+if type nbp > /dev/null 2>&1; then
+  if ! test -f "${HOME}"/.bash_completions/nbp.sh > /dev/null 2>&1; then
+    nbp --install-completion bash
+  fi
+  if test -f "${HOME}"/.bash_completions/nbp.sh > /dev/null 2>&1; then
+    source "${HOME}"/.bash_completions/nbp.sh
+  fi
+else
+  echo "Install nbp using: pipx install nbpreview"
+fi
+
+# https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+if test -f "${HOME}"/.bash_completions/git-completion.sh > /dev/null 2>&1; then
+    source "${HOME}"/.bash_completions/git-completion.sh
+fi
+
+# npm completion > "${HOME}"/.bash_completions/npm-completion.sh
+if test -f "${HOME}"/.bash_completions/npm-completion.sh > /dev/null 2>&1; then
+    source "${HOME}"/.bash_completions/npm-completion.sh
 fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
@@ -161,7 +193,7 @@ export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls' # Ignore the ls command as well
 # Pass color ANSI control characters through to the terminal
 export LESS="-XR"
 
-# Don’t clear the screen after quitting a manual page
+# Don't clear the screen after quitting a manual page
 export MANPAGER="less -X";
 
 export EDITOR='emacsclient'
@@ -180,7 +212,7 @@ PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
-# * ~/.extra can be used for other settings you don’t want to commit.
+# * ~/.extra can be used for other settings you don't want to commit.
 #for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 #    [ -r "$file" ] && [ -f "$file" ] && source "$file";
 #done;
@@ -207,13 +239,6 @@ else
 fi
 
 export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
-
-## pipx (https://github.com/pipxproject/pipx)
-if type pipx > /dev/null 2>&1 ; then
-    eval "$(register-python-argcomplete pipx)"
-else
-    echo "Install pipx using: brew install pipx"
-fi
 
 ## fzf
 if type fzf > /dev/null 2>&1 ; then
@@ -274,9 +299,6 @@ case $(uname -s) in
       ;;
 esac
 
-# AWS bash completion
-complete -C aws_completer aws
-
 # Add keychain keys - use 1password instead for ssh key
 if type keychain > /dev/null 2>&1; then
     eval "$(keychain --eval --agents gpg --ignore-missing --inherit any 6519D396 740CFB25 9DE94ABA )"
@@ -305,24 +327,6 @@ if /bin/ls "${HOME}"/.bash_aliases* 1> /dev/null 2>&1; then
     source "${file}"
   done;
   unset file;
-fi
-
-# tab completion for conda
-if type conda > /dev/null 2>&1 ; then
-  if type register-python-argcomplete > /dev/null 2>&1 ; then
-    eval "$(register-python-argcomplete conda)"
-  else
-    echo "Install argcomplete using: python3 -m pip install argcomplete"
-  fi
-fi
-
-# Global tab completion for argcomplete-supported apps
-if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh"; then
-  if type activate-global-python-argcomplete > /dev/null 2>&1 ; then
-    activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
-  else
-    echo "Install argcomplete using: python3 -m pip install argcomplete"
-  fi
 fi
 
 # A utility for sending notifications, on demand and when commands finish.
@@ -394,12 +398,8 @@ fi
 
 source "${HOME}"/.config/broot/launcher/bash/br
 
-#if ! type travis > /dev/null 2>&1 ; then
-#  echo Installing travis...
-#  gem install travis
-#fi
-# added by travis gem
-# [ ! -s "${HOME}"/.travis/travis.sh ] || source "${HOME}"/.travis/travis.sh
+# To enable support via ssh-add.
+export SSH_AUTH_SOCK=~/.1password/agent.sock
 
 ### motd
 echo "* bash"
@@ -438,6 +438,7 @@ echo "* httpie - https://httpie.org/doc#main-features"
 echo "* git branch-status"
 echo "* dvc status"
 echo "* exa"
+echo "* nbpreview"
 
 # pyjokes
 if type pyjoke > /dev/null 2>&1; then
@@ -448,6 +449,3 @@ fi
 
 # Deduplicate PATH variable
 export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
-
-# To enable support via ssh-add.
-export SSH_AUTH_SOCK=~/.1password/agent.sock

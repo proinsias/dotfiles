@@ -11,7 +11,7 @@ gem 'image_optim'
 gem 'image_optim_pack'
 gem 'jekyll'
 gem 'json'
-gem 'nokogiri', ">= 1.10.3"
+gem 'nokogiri', ">= 1.13.4"
 gem 'rspec'
 gem 'rubocop' # https://github.com/bbatsov/rubocop
 gem 'rubocop-performance'

@@ -112,6 +112,18 @@ else
     echo "Install pipx using: brew install pipx"
 fi
 
+# nbp bash completion
+if type nbp > /dev/null 2>&1; then
+  if ! test -f "${HOME}"/.bash_completions/nbp.sh > /dev/null 2>&1; then
+    nbp --install-completion bash
+  fi
+  if test -f "${HOME}"/.bash_completions/nbp.sh > /dev/null 2>&1; then
+    source "${HOME}"/.bash_completions/nbp.sh
+  fi
+else
+  echo "Install nbp using: pipx install nbpreview"
+fi
+
 # AWS bash completion
 complete -C aws_completer aws
 
@@ -131,18 +143,6 @@ if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh"; t
   else
     echo "Install argcomplete using: python3 -m pip install argcomplete"
   fi
-fi
-
-# nbp bash completion
-if type nbp > /dev/null 2>&1; then
-  if ! test -f "${HOME}"/.bash_completions/nbp.sh > /dev/null 2>&1; then
-    nbp --install-completion bash
-  fi
-  if test -f "${HOME}"/.bash_completions/nbp.sh > /dev/null 2>&1; then
-    source "${HOME}"/.bash_completions/nbp.sh
-  fi
-else
-  echo "Install nbp using: pipx install nbpreview"
 fi
 
 # https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash

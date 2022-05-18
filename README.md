@@ -8,5 +8,5 @@ My personal collection of dotfiles to be managed with
 Simply run this command from your terminal.
 
 ```bash
-curl --location --remote-name https://github.com/proinsias/dotfiles/blob/master/bin/setup.sh && bash setup.sh
+curl --location --remote-name https://raw.githubusercontent.com/proinsias/dotfiles/master/bin/setup.sh && bash setup.sh
 ```

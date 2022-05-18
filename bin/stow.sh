@@ -35,6 +35,7 @@ if type stow > /dev/null 2>&1 ; then
         pylint \
         rubocop \
         screen \
+        scripts \
         ssh \
         starship \
         svn \

@@ -400,12 +400,10 @@ export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV
 
 ### Print message of the day.
 
-# # istheinternetonfire.com
+# istheinternetonfire.com
 if ping -c 1 google.com > /dev/null 2>&1 ; then
     echo "Is the internet on fire?:"
     dig +short -t txt istheinternetonfire.com
-else
-  echo "No internet connectivity..."
 fi
 
 # pyjokes
@@ -415,38 +413,17 @@ if type pyjoke > /dev/null 2>&1; then
   pyjoke
 fi
 
-### motd
-echo "* !?foo will repeat the most recent command that contained the string 'foo'"
-echo '* bh -n 20 "grep"  # last 20 files greped'
-echo '* bh -i "wget github"  # interactive search to execute command again'
-echo '* bh -d  # last command executed in current directory'
-echo '* bh -sys -n 10 "curl"  # last 10 curl commands on this system'
-echo "* bashhub status  # summary of user stats/status"
-echo "* bashhub off/on  # turn bashhub recording off/on"
-echo "* br – A better way to navigate directories"
-echo "* br -hsdp – Display sizes, dates and permissions, and include hidden files"
-echo '* echo this command will no be saved #ignore  # bashhub will ignore this command'
-echo "* em – get emojii using name"
-echo "* fkill – launch the interactive UI to fabulously kill processes"
-echo "* fkill :8080 - kill a port"
-echo "* fkill safari – kill an application by name"
-echo "* git branch-status"
-echo "* git show | tig – colorize the output of git-show using tig"
-echo "* nbpreview – Render a Jupyter Notebook in the terminal."
-echo "* tig show – run git show via text-mode interface for Git"
+# tldr
 
-echo "* f@@k - https://github.com/nvbn/thef@@k"
-echo "* cht.sh python lambda"
-echo "* Search help for command line"
-echo "  + clf, eg, howdoi, how2, tldr"
-echo "* cheat - https://github.com/chrisallenlane/cheat"
-echo "  + cheat tar"
-echo "* fasd - https://github.com/clvv/fasd"
-echo "  + f foo           # list frecent files matching foo"
-echo "  + a foo bar       # list frecent files and directories matching foo and bar"
-echo "  + f js$           # list frecent files that ends in js"
-echo "  + f -e vim foo    # run vim on the most frecent file matching foo"
-echo "  + mplayer \`f bar\` # run mplayer on the most frecent file matching bar"
-echo "  + z foo           # cd into the most frecent directory matching foo"
-echo "  + open \`sf pdf\`   # interactively select a file matching pdf and launch open"
-# echo "* fzf - https://github.com/junegunn/fzf"  # Figure out fasd first.
+if type tldr > /dev/null 2>&1; then
+    echo
+    echo "tldr random example"
+    tldr --random-example
+fi
+
+# motd
+if type motd > /dev/null 2>&1; then
+    echo
+    echo "message of the day"
+    motd
+fi

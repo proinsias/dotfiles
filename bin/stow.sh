@@ -17,6 +17,7 @@ if type stow > /dev/null 2>&1 ; then
         boto \
         broot \
         bundle \
+        cheat \
         conda \
         direnv \
         emacs \
@@ -32,6 +33,8 @@ if type stow > /dev/null 2>&1 ; then
         kitty \
         ksh \
         mog \
+        npm \
+        python \
         pylint \
         rubocop \
         screen \

@@ -40,67 +40,29 @@ brewup () {
     echo -e ""
 }
 
+builddocker() {
+    echo -e "build-docker_${dt}_${host}"
 
-gemupdate() {
-    echo -e "gemupdate_${dt}_${host}"
+    bd="${HOME}/bin/build-docker"
 
-    export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
-    export PATH="${RUBY_HOME}/bin:${PATH}"
-    export RUBY_VERSION="2.6.0"
-    export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
-    export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
-
-    gem="${RUBY_HOME}"/bin/gem
-
-    if type "${gem}" > /dev/null 2>&1 ; then
-        echo -e "\ngem update --system:" ; "${gem}" update --system --no-document
-        echo -e "\ngem update:" ; "${gem}" update --no-document
-        echo -e "\ngem cleanup:" ; yes n | "${gem}" cleanup
+    if type "${bd}" > /dev/null 2>&1 ; then
+        "${bd}"
     else
-        echo -e "\ngem not found!"
+        echo -e "\nbuild-docker not found!"
     fi
 
     echo -e ""
 }
 
+dockercleanup() {
+    echo -e "docker-cleanup_${dt}_${host}"
 
-pipxupdate () {
-    echo -e "pipxupdate_${dt}_${host}"
+    dc="${HOME}/.local/bin/docker-cleanup"
 
-    if type pipx > /dev/null 2>&1 ; then
-        echo -e "\npipx upgrade-all:" ; pipx upgrade-all
+    if type "${dc}" > /dev/null 2>&1 ; then
+        "${dc}"
     else
-        echo -e "\npipx not found!"
-    fi
-
-    echo -e ""
-}
-
-
-npmupdate() {
-    echo -e "npmupdate_${dt}_${host}"
-
-    if type npm > /dev/null 2>&1 ; then
-        echo -e "\nnpm update --global:" ; npm update --global
-    else
-        echo -e "\nnpm not found!"
-    fi
-
-    echo -e ""
-}
-
-
-run_uncommitted() {
-    echo -e "run_uncommitted_${dt}_${host}"
-
-    uncommitted="${HOME}/.local/bin/uncommitted"
-
-    if type "${uncommitted}" > /dev/null 2>&1 ; then
-        echo -e "\nuncommitted:"
-        "${uncommitted}" --non-tracking --untracked --stash \
-        -I "old/proinsias" -I ".cache" "${HOME}"
-    else
-        echo -e "\nuncommitted not found!"
+        echo -e "\ndocker-cleanup not found!"
     fi
 
     echo -e ""
@@ -125,30 +87,47 @@ gcloudupdate() {
     echo -e ""
 }
 
-dockercleanup() {
-    echo -e "docker-cleanup_${dt}_${host}"
+gemupdate() {
+    echo -e "gemupdate_${dt}_${host}"
 
-    dc="${HOME}/bin/docker-cleanup"
+    export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
+    export PATH="${RUBY_HOME}/bin:${PATH}"
+    export RUBY_VERSION="3.1.0"
+    export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
+    export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 
-    if type "${dc}" > /dev/null 2>&1 ; then
-        "${dc}"
+    gem="${RUBY_HOME}"/bin/gem
+
+    if type "${gem}" > /dev/null 2>&1 ; then
+        echo -e "\ngem update --system:" ; "${gem}" update --system --no-document
+        echo -e "\ngem update:" ; "${gem}" update --no-document
+        echo -e "\ngem cleanup:" ; yes n | "${gem}" cleanup
     else
-        echo -e "\ndocker-cleanup not found!"
+        echo -e "\ngem not found!"
     fi
 
     echo -e ""
 }
 
+npmupdate() {
+    echo -e "npmupdate_${dt}_${host}"
 
-builddocker() {
-    echo -e "build-docker_${dt}_${host}"
-
-    bd="${HOME}/bin/build-docker"
-
-    if type "${bd}" > /dev/null 2>&1 ; then
-        "${bd}"
+    if type npm > /dev/null 2>&1 ; then
+        echo -e "\nnpm update --global:" ; npm update --global
     else
-        echo -e "\nbuild-docker not found!"
+        echo -e "\nnpm not found!"
+    fi
+
+    echo -e ""
+}
+
+pipxupdate () {
+    echo -e "pipxupdate_${dt}_${host}"
+
+    if type pipx > /dev/null 2>&1 ; then
+        echo -e "\npipx upgrade-all:" ; pipx upgrade-all
+    else
+        echo -e "\npipx not found!"
     fi
 
     echo -e ""
@@ -157,7 +136,7 @@ builddocker() {
 precommit() {
     echo -e "pre-commit-autoupdate_${dt}_${host}"
 
-    pca="${HOME}/bin/pre-commit-autoupdate"
+    pca="${HOME}/.local/bin/pre-commit-autoupdate"
 
     if type "${pca}" > /dev/null 2>&1 ; then
         "${pca}"
@@ -168,25 +147,59 @@ precommit() {
     echo -e ""
 }
 
+tldr_run() {
+    echo -e "pre-commit-autoupdate_${dt}_${host}"
+
+    pca="${HOME}/.local/bin/pre-commit-autoupdate"
+
+    if type "${pca}" > /dev/null 2>&1 ; then
+        "${pca}"
+    else
+        echo -e "\npre-commit-autoupdate not found!"
+    fi
+
+    echo -e ""
+
+    tldr --update
+}
+
+uncommitted_run() {
+    echo -e "run_uncommitted_${dt}_${host}"
+
+    uncommitted="${HOME}/.local/bin/uncommitted"
+
+    if type "${uncommitted}" > /dev/null 2>&1 ; then
+        echo -e "\nuncommitted:"
+        "${uncommitted}" --non-tracking --untracked --stash \
+        -I "old/proinsias" -I ".cache" "${HOME}"
+    else
+        echo -e "\nuncommitted not found!"
+    fi
+
+    echo -e ""
+}
+
 tmpfile="$(mktemp /tmp/lingon.XXXXXX)"
 
 brewup 2>&1 | tee -a "${tmpfile}"
+
+builddocker 2>&1 | tee -a "${tmpfile}"
+
+dockercleanup 2>&1 | tee -a "${tmpfile}"
 
 gcloudupdate 2>&1 | tee -a "${tmpfile}"
 
 gemupdate 2>&1 | tee -a "${tmpfile}"
 
-pipxupdate 2>&1 | tee -a "${tmpfile}"
-
 npmupdate 2>&1 | tee -a "${tmpfile}"
 
-run_uncommitted 2>&1 | tee -a "${tmpfile}"
-
-dockercleanup 2>&1 | tee -a "${tmpfile}"
-
-builddocker 2>&1 | tee -a "${tmpfile}"
+pipxupdate 2>&1 | tee -a "${tmpfile}"
 
 precommit 2>&1 | tee -a "${tmpfile}"
+
+tldr_run 2>&1 | tee -a "${tmpfile}"
+
+uncommitted_run 2>&1 | tee -a "${tmpfile}"
 
 "${HOME}"/.local/bin/ntfy \
   --backend slack \

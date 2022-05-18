@@ -1,6 +1,0 @@
-{
-    "PLAIDML_DEVICE_IDS":[
-        "metal_amd_radeon_pro_560x.0"
-    ],
-    "PLAIDML_EXPERIMENTAL":false
-}

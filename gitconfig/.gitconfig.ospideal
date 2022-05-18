@@ -41,3 +41,5 @@
     cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [mergetool]
     prompt = false
+[safe]
+    directory = /home/data/code/data-science

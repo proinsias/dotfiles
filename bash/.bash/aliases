@@ -251,7 +251,7 @@ case $(guname -s) in
         alias showdesktop="defaults write com.apple.finder CreateDesktop -bool
         gtrue && killall Finder"
 
-        # Ring the terminal bell, and put a badge on Terminal.app’s Dock icon
+        # Ring the terminal bell, and put a badge on Terminal.app's Dock icon
         # (useful when executing time-consuming commands)
         alias badge="tput bel"
 
@@ -262,9 +262,3 @@ case $(guname -s) in
         alias top='top -o cpu'
       ;;
 esac
-
-## Hospital IQ Aliases
-alias hiqdb="docker-compose --file ~/favs/hiq/patientroutesystems/docker/docker-compose.yml up db"
-alias hiqds="docker-compose --file ~/favs/hiq/data-science/docker-compose.override.yml --file ~/favs/hiq/data-science/docker-compose.yml up"
-alias hiqf="docker-compose --file ~/favs/hiq/prs_forecaster/pr-apps/managed/forecaster/docker-compose.yml up"
-alias hiqweb="docker-compose --file ~/favs/hiq/patientroutesystems/docker/docker-compose.yml up web"

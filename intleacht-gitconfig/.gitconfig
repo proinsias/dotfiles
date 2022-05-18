@@ -1,5 +1,3 @@
-[core]
-    excludesfile = ~/.gitignore
 [commit]
     # template = ~/.stCommitMsg  # Comes from SourceTree
 [credential]

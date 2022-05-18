@@ -15,6 +15,7 @@ if type stow > /dev/null 2>&1 ; then
         aspell \
         bash \
         boto \
+        broot \
         bundle \
         conda \
         direnv \
@@ -45,29 +46,23 @@ if type stow > /dev/null 2>&1 ; then
         yamllint \
         zsh
 
-    # FIXME: GT gitconfig.
+    case $(hostname -s) in
+        "ilovemovies" )
+              ;;
+        "intleacht" )
+            stow --target="${HOME}" intleacht-gitconfig
+              ;;
+    esac
 
-    # FIXME: Move ~/.config/ntfy to ntfy/.config/ntfy?
-
-    # FIXME: GT:
-    # etc_hosts
-    # Why doesn't .gitignore get installed? - copy it manually
-    # .bash
-          #.envrc - needs editing
-          #.ntfy.yml.template
-
-    # FIXME:
-    # if ubuntu
-    # stow --target="${HOME}" ubuntu-npm
+    case $(uname -s) in
+        "Linux" )
+            stow --target="${HOME}" linux-npm
+              ;;
+        "Darwin" )
+              ;;
+    esac
 
     cp ./non-stow/.[a-z]* "${HOME}"/.
 else
     echo "Install stow using: brew install stow"
 fi
-
-
-# FIXME: Move scripts directory to base/bin/.local/bin/. MAKE SURE NO SECRETS!
-# FIXME: Make bin script that git clones this repo and then runs stow!
-# FIXME: Make sure .bashrc and .profile will work on any machine.
-# FIXME: Test on ilovemovies and GCS VM machine.
-# FIXME: Add vnc config files from GCS VM machine!

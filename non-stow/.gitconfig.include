@@ -1,3 +1,5 @@
+# Note: This file cannot be used via a symbolic link!
+
 [alias]
     alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\t=> \\2/' | sort  # Show all defined aliases.
     br = branch
@@ -95,7 +97,7 @@
     # value to false.
     # autocrlf = false
     editor = emacs
-    excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore_global
     # # Don't paginate output by default, default is less.
     # pager = cat
     # Prevent showing files whose names contain non-ASCII symbols as unversioned.

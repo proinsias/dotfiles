@@ -112,18 +112,6 @@ else
     echo "Install pipx using: brew install pipx"
 fi
 
-# nbp bash completion
-if type nbp > /dev/null 2>&1; then
-  if ! test -f "${HOME}"/.bash_completions/nbp.sh > /dev/null 2>&1; then
-    nbp --install-completion bash
-  fi
-  if test -f "${HOME}"/.bash_completions/nbp.sh > /dev/null 2>&1; then
-    source "${HOME}"/.bash_completions/nbp.sh
-  fi
-else
-  echo "Install nbp using: pipx install nbpreview"
-fi
-
 # AWS bash completion
 complete -C aws_completer aws
 
@@ -137,7 +125,7 @@ if type conda > /dev/null 2>&1 ; then
 fi
 
 # Global tab completion for argcomplete-supported apps
-if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete.sh"; then
+if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete"; then
   if type activate-global-python-argcomplete > /dev/null 2>&1 ; then
     activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
   else
@@ -228,14 +216,6 @@ if ! type hub > /dev/null 2>&1 ; then
 fi
 if ! type overcommit > /dev/null 2>&1 ; then
   echo "Install overcommit using: gem install overcommit"
-fi
-
-# # istheinternetonfire.com
-if ping -c 1 google.com > /dev/null 2>&1 ; then
-    echo "Is the internet on fire?:"
-    dig +short -t txt istheinternetonfire.com
-else
-  echo "No internet connectivity..."
 fi
 
 export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
@@ -403,44 +383,30 @@ fi
 # To enable support via ssh-add.
 export SSH_AUTH_SOCK=~/.1password/agent.sock
 
-### motd
-echo "* bash"
-echo "  + `!?foo` will repeat the most recent command that contained the string 'foo'"
-echo "* cht.sh python lambda"
-echo "* em – emojii"
-echo "* Search help for command line"
-echo "  + clf, eg, howdoi, how2, tldr"
-echo "* f@@k - https://github.com/nvbn/thef@@k"
-echo "* bashhub - https://bashhub.com/"
-echo '  + bh -n 20 "grep"  # last 20 files greped'
-echo '  + bh -i "wget github"  # interactive search to execute command again'
-echo '  + bh -d  # last command executed in current directory'
-echo '  + bh -sys -n 10 "curl"  # last 10 curl commands on this system'
-echo "  + bashhub status  # summary of user stats/status"
-echo "  + bashhub off/on  # turn bashhub recording off/on"
-echo '  + echo this command will no be saved #ignore  # bashhub will ignore this command'
-echo "* cheat - https://github.com/chrisallenlane/cheat"
-echo "  + cheat tar"
-echo "* broot – https://dystroy.org/broot/"
-echo "* fasd - https://github.com/clvv/fasd"
-echo "  + f foo           # list frecent files matching foo"
-echo "  + a foo bar       # list frecent files and directories matching foo and bar"
-echo "  + f js$           # list frecent files that ends in js"
-echo "  + f -e vim foo    # run vim on the most frecent file matching foo"
-echo "  + mplayer \`f bar\` # run mplayer on the most frecent file matching bar"
-echo "  + z foo           # cd into the most frecent directory matching foo"
-echo "  + open \`sf pdf\`   # interactively select a file matching pdf and launch open"
-echo "* fkill – https://github.com/sindresorhus/fkill-cli"
-echo "* fzf - https://github.com/junegunn/fzf"
-echo "  + Figure out fasd first"
-echo "* tig - https://jonas.github.io/tig/"
-echo "  + git show | tig"
-echo "  + tig show"
-echo "* httpie - https://httpie.org/doc#main-features"
-echo "* git branch-status"
-echo "* dvc status"
-echo "* exa"
-echo "* nbpreview"
+# nbp bash completion
+if type nbp > /dev/null 2>&1; then
+  if ! test -f "${HOME}"/.bash_completions/nbp.sh > /dev/null 2>&1; then
+    nbp --install-completion bash
+  fi
+  if test -f "${HOME}"/.bash_completions/nbp.sh > /dev/null 2>&1; then
+    source "${HOME}"/.bash_completions/nbp.sh
+  fi
+else
+  echo "Install nbp using: pipx install nbpreview"
+fi
+
+# Deduplicate PATH variable
+export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+
+### Print message of the day.
+
+# # istheinternetonfire.com
+if ping -c 1 google.com > /dev/null 2>&1 ; then
+    echo "Is the internet on fire?:"
+    dig +short -t txt istheinternetonfire.com
+else
+  echo "No internet connectivity..."
+fi
 
 # pyjokes
 if type pyjoke > /dev/null 2>&1; then
@@ -449,5 +415,38 @@ if type pyjoke > /dev/null 2>&1; then
   pyjoke
 fi
 
-# Deduplicate PATH variable
-export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+### motd
+echo "* !?foo will repeat the most recent command that contained the string 'foo'"
+echo '* bh -n 20 "grep"  # last 20 files greped'
+echo '* bh -i "wget github"  # interactive search to execute command again'
+echo '* bh -d  # last command executed in current directory'
+echo '* bh -sys -n 10 "curl"  # last 10 curl commands on this system'
+echo "* bashhub status  # summary of user stats/status"
+echo "* bashhub off/on  # turn bashhub recording off/on"
+echo "* br – A better way to navigate directories"
+echo "* br -hsdp – Display sizes, dates and permissions, and include hidden files"
+echo '* echo this command will no be saved #ignore  # bashhub will ignore this command'
+echo "* em – get emojii using name"
+echo "* fkill – launch the interactive UI to fabulously kill processes"
+echo "* fkill :8080 - kill a port"
+echo "* fkill safari – kill an application by name"
+echo "* git branch-status"
+echo "* git show | tig – colorize the output of git-show using tig"
+echo "* nbpreview – Render a Jupyter Notebook in the terminal."
+echo "* tig show – run git show via text-mode interface for Git"
+
+echo "* f@@k - https://github.com/nvbn/thef@@k"
+echo "* cht.sh python lambda"
+echo "* Search help for command line"
+echo "  + clf, eg, howdoi, how2, tldr"
+echo "* cheat - https://github.com/chrisallenlane/cheat"
+echo "  + cheat tar"
+echo "* fasd - https://github.com/clvv/fasd"
+echo "  + f foo           # list frecent files matching foo"
+echo "  + a foo bar       # list frecent files and directories matching foo and bar"
+echo "  + f js$           # list frecent files that ends in js"
+echo "  + f -e vim foo    # run vim on the most frecent file matching foo"
+echo "  + mplayer \`f bar\` # run mplayer on the most frecent file matching bar"
+echo "  + z foo           # cd into the most frecent directory matching foo"
+echo "  + open \`sf pdf\`   # interactively select a file matching pdf and launch open"
+# echo "* fzf - https://github.com/junegunn/fzf"  # Figure out fasd first.

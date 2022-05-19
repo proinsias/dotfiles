@@ -2,7 +2,7 @@
   snippetfile = "/Users/ftod/.config/pet/snippet.toml"
   editor = "emacsclient"
   column = 40
-  selectcmd = "fzf"
+  selectcmd = "fzf --ansi"
   backend = "gist"
   sortby = ""
 

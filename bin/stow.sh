@@ -27,7 +27,7 @@ if type stow > /dev/null 2>&1 ; then
         gitlint \
         gnupg \
         htop \
-	httpie \
+        httpie \
         hunspell \
         ipython \
         jupyter \
@@ -48,25 +48,31 @@ if type stow > /dev/null 2>&1 ; then
         thefuck \
         tmux \
         vim \
-	vnc \
+        vnc \
         wget \
         yamllint \
         zsh
 
     case $(hostname -s) in
         "ilovemovies" )
-              ;;
+            stow --target="${HOME}" ilovemovies-gitconfig
+            ;;
         "intleacht" )
             stow --target="${HOME}" intleacht-gitconfig
-              ;;
+            ;;
+    * )
+        stow --target="${HOME}" default-gitconfig
+        ;;
     esac
 
     case $(uname -s) in
         "Linux" )
             stow --target="${HOME}" linux-npm
-              ;;
+            ;;
         "Darwin" )
-              ;;
+            ;;
+    * )
+        ;;
     esac
 
     cp ./non-stow/.[a-z]* "${HOME}"/.

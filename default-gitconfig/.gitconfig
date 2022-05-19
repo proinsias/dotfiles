@@ -1,10 +1,9 @@
 [credential]
-    helper = osxkeychain
+    helper = cache --timeout 3600
+    # helper = osxkeychain
 [include]
     path = ~/.gitconfig.include
 [user]
     name = "Francis T. O'Donovan"
     email = proinsias@users.noreply.github.com
-    signingkey = 740CFB25
-[safe]
-    directory = /home/data/code/data-science
+    signingkey = 740CFB25  # FIXME: Update?

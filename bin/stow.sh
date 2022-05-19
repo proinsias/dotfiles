@@ -27,6 +27,7 @@ if type stow > /dev/null 2>&1 ; then
         gitlint \
         gnupg \
         htop \
+	httpie \
         hunspell \
         ipython \
         jupyter \
@@ -47,6 +48,7 @@ if type stow > /dev/null 2>&1 ; then
         thefuck \
         tmux \
         vim \
+	vnc \
         wget \
         yamllint \
         zsh

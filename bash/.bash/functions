@@ -193,3 +193,9 @@ gpip(){
 #   virtualenv $@ && source ~/.virtualenvs/$@/bin/activate
 #   builtin cd "${OLDPWD}"
 # }
+
+# https://github.com/knqyf263/pet
+function petprev() {
+  PREV=$(echo `history | tail -n2 | head -n1` | sed 's/[0-9]* //')
+  sh -c "pet new `printf %q "$PREV"`"
+}

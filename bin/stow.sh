@@ -34,6 +34,7 @@ if type stow > /dev/null 2>&1 ; then
         ksh \
         mog \
         npm \
+        pet \
         python \
         pylint \
         rubocop \

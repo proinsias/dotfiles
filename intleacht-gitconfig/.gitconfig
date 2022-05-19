@@ -1,43 +1,11 @@
-[commit]
-    # template = ~/.stCommitMsg  # Comes from SourceTree
 [credential]
     # helper = cache --timeout 3600
     helper = osxkeychain
-[difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path =
-[filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
-[help]
-    # format = man
-    format = web
 [include]
     path = ~/.gitconfig.include
-[merge]
-    # tool = emerge
-    tool = p4merge
-[mergetool "sourcetree"]
-    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true
 [user]
-    name = Francis T. O'Donovan
+    name = "Francis T. O'Donovan"
     email = proinsias@users.noreply.github.com
     signingkey = 740CFB25
-[diff "jupyternotebook"]
-    command = git-nbdiffdriver diff
-[merge "jupyternotebook"]
-    driver = git-nbmergedriver merge %O %A %B %L %P
-    name = jupyter notebook merge driver
-[difftool "nbdime"]
-    cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
-[difftool]
-    prompt = false
-[mergetool "nbdime"]
-    cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
-[mergetool]
-    prompt = false
 [safe]
     directory = /home/data/code/data-science

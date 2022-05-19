@@ -1,4 +1,4 @@
 ---
 slack:
-    token: <token>  # FIXME: Use env variable from .envrc?
+    token: <token>
     recipient: '@francis'

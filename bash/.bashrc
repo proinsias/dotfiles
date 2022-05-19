@@ -226,11 +226,7 @@ if type fzf > /dev/null 2>&1 ; then
     "${HOMEBREW_PREFIX}/opt/fzf/install" --all --no-update-rc
   fi
   if test -f "${HOME}"/.fzf.bash; then
-      if test $(uname -n) != firefly.local > /dev/null 2>&1; then
-        source "${HOME}"/.fzf.bash
-      else
-        echo Check if fzf is working!!!
-      fi
+      source "${HOME}"/.fzf.bash
   fi
 else
     echo "Install fzf using: brew install fzf"

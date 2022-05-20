@@ -8,7 +8,11 @@ set -o pipefail               # Produce a failure return code if any pipeline co
 shopt -s failglob             # Cause globs that don't get expanded to cause errors.
 shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+
 if type stow > /dev/null 2>&1 ; then
+    cd "${SCRIPT_DIR}"/..
+
     stow --target="${HOME}" \
         base \
         ansible \
@@ -76,6 +80,8 @@ if type stow > /dev/null 2>&1 ; then
     esac
 
     cp ./non-stow/.[a-z]* "${HOME}"/.
+
+    cd -
 else
     echo "Install stow using: brew install stow"
 fi

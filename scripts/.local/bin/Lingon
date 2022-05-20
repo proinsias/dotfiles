@@ -5,14 +5,19 @@ test -f /usr/local/bin/brew && eval "$(/usr/local/bin/brew shellenv)"
 # M1 home-brew. Do second in case we are also using Intel via Rosetta.
 test -f /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
 
-export HOMEBREW_PREFIX="$(brew --prefix)"
+update () {
+    export HOMEBREW_PREFIX="$(brew --prefix)"
 
+    export host="$(hostname -s)"
+    export dt="$(gdate --iso-8601)"
 
-export host="$(hostname -s)"
-export dt="$(gdate --iso-8601)"
+    export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
+    export RUBY_VERSION="3.1.0"
+    export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
+    export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 
+    export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/google-cloud-sdk/bin:${RUBY_HOME}/bin${PATH:+:${PATH}}"
 
-brewup () {
     echo -e "brewup_${dt}_${host}"
 
     if type brew > /dev/null 2>&1 ; then
@@ -38,45 +43,33 @@ brewup () {
     fi
 
     echo -e ""
-}
 
-builddocker() {
     echo -e "build-docker_${dt}_${host}"
 
-    bd="${HOME}/bin/build-docker"
-
-    if type "${bd}" > /dev/null 2>&1 ; then
-        "${bd}"
+    if type build-docker > /dev/null 2>&1 ; then
+        build-docker
     else
         echo -e "\nbuild-docker not found!"
     fi
 
     echo -e ""
-}
 
-dockercleanup() {
     echo -e "docker-cleanup_${dt}_${host}"
 
-    dc="${HOME}/.local/bin/docker-cleanup"
-
-    if type "${dc}" > /dev/null 2>&1 ; then
-        "${dc}"
+    if type docker-cleanup > /dev/null 2>&1 ; then
+        docker-cleanup
     else
         echo -e "\ndocker-cleanup not found!"
     fi
 
     echo -e ""
-}
 
-gcloudupdate() {
     echo -e "gcloudupdate_${dt}_${host}"
 
-    gcloud="/usr/local/google-cloud-sdk/bin/gcloud"
-
-    if type "${gcloud}" > /dev/null 2>&1 ; then
+    if type gcloud > /dev/null 2>&1 ; then
 
         echo -e "\ngcloud components list 2>&1 | grep \"Update Available\":"
-        "${gcloud}" components list 2>&1 | grep "Update Available"
+        gcloud components list 2>&1 | grep "Update Available"
 
         echo -e "To upgrade, run: sudo gcloud components update --quiet"
 
@@ -85,31 +78,19 @@ gcloudupdate() {
     fi
 
     echo -e ""
-}
 
-gemupdate() {
     echo -e "gemupdate_${dt}_${host}"
 
-    export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
-    export PATH="${RUBY_HOME}/bin:${PATH}"
-    export RUBY_VERSION="3.1.0"
-    export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
-    export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
-
-    gem="${RUBY_HOME}"/bin/gem
-
-    if type "${gem}" > /dev/null 2>&1 ; then
-        echo -e "\ngem update --system:" ; "${gem}" update --system --no-document
-        echo -e "\ngem update:" ; "${gem}" update --no-document
-        echo -e "\ngem cleanup:" ; yes n | "${gem}" cleanup
+    if type gem > /dev/null 2>&1 ; then
+        echo -e "\ngem update --system:" ; gem update --system --no-document
+        echo -e "\ngem update:" ; gem update --no-document
+        echo -e "\ngem cleanup:" ; yes n | gem cleanup
     else
         echo -e "\ngem not found!"
     fi
 
     echo -e ""
-}
 
-npmupdate() {
     echo -e "npmupdate_${dt}_${host}"
 
     if type npm > /dev/null 2>&1 ; then
@@ -119,9 +100,7 @@ npmupdate() {
     fi
 
     echo -e ""
-}
 
-pipxupdate () {
     echo -e "pipxupdate_${dt}_${host}"
 
     if type pipx > /dev/null 2>&1 ; then
@@ -131,46 +110,42 @@ pipxupdate () {
     fi
 
     echo -e ""
-}
 
-precommit() {
     echo -e "pre-commit-autoupdate_${dt}_${host}"
 
-    pca="${HOME}/.local/bin/pre-commit-autoupdate"
-
-    if type "${pca}" > /dev/null 2>&1 ; then
-        "${pca}"
-    else
-        echo -e "\npre-commit-autoupdate not found!"
-    fi
-
-    echo -e ""
-}
-
-tldr_run() {
-    echo -e "pre-commit-autoupdate_${dt}_${host}"
-
-    pca="${HOME}/.local/bin/pre-commit-autoupdate"
-
-    if type "${pca}" > /dev/null 2>&1 ; then
-        "${pca}"
+    if type pre-commit-autoupdate > /dev/null 2>&1 ; then
+        pre-commit-autoupdate
     else
         echo -e "\npre-commit-autoupdate not found!"
     fi
 
     echo -e ""
 
-    tldr --update
-}
+    echo -e "tldr_${dt}_${host}"
 
-uncommitted_run() {
-    echo -e "run_uncommitted_${dt}_${host}"
+    if type ~/favs/gh/dotfiles/bin/stow.sh > /dev/null 2>&1 ; then
+        ~/favs/gh/dotfiles/bin/stow.sh
+    else
+        echo -e "\nstow.sh not found!"
+    fi
 
-    uncommitted="${HOME}/.local/bin/uncommitted"
+    echo -e ""
 
-    if type "${uncommitted}" > /dev/null 2>&1 ; then
+    echo -e "tldr_${dt}_${host}"
+
+    if type tldr > /dev/null 2>&1 ; then
+        tldr --update
+    else
+        echo -e "\npre-commit-autoupdate not found!"
+    fi
+
+    echo -e ""
+
+    echo -e "uncommitted_${dt}_${host}"
+
+    if type uncommitted > /dev/null 2>&1 ; then
         echo -e "\nuncommitted:"
-        "${uncommitted}" --non-tracking --untracked --stash \
+        uncommitted --non-tracking --untracked --stash \
         -I "old/proinsias" -I ".cache" "${HOME}"
     else
         echo -e "\nuncommitted not found!"
@@ -181,25 +156,7 @@ uncommitted_run() {
 
 tmpfile="$(mktemp /tmp/lingon.XXXXXX)"
 
-brewup 2>&1 | tee -a "${tmpfile}"
-
-builddocker 2>&1 | tee -a "${tmpfile}"
-
-dockercleanup 2>&1 | tee -a "${tmpfile}"
-
-gcloudupdate 2>&1 | tee -a "${tmpfile}"
-
-gemupdate 2>&1 | tee -a "${tmpfile}"
-
-npmupdate 2>&1 | tee -a "${tmpfile}"
-
-pipxupdate 2>&1 | tee -a "${tmpfile}"
-
-precommit 2>&1 | tee -a "${tmpfile}"
-
-tldr_run 2>&1 | tee -a "${tmpfile}"
-
-uncommitted_run 2>&1 | tee -a "${tmpfile}"
+update 2>&1 | tee -a "${tmpfile}"
 
 "${HOME}"/.local/bin/ntfy \
   --backend slack \

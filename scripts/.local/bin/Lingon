@@ -18,7 +18,15 @@ update () {
 
     export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/google-cloud-sdk/bin:${RUBY_HOME}/bin${PATH:+:${PATH}}"
 
-    echo -e "brewup_${dt}_${host}"
+    if type apt-get > /dev/null 2>&1 ; then
+        echo -e "apt-get_${dt}_${host}"
+        export DEBIAN_FRONTEND="noninteractive"
+        apt-get update --yes
+        apt-get upgrade --yes
+        echo -e ""
+    fi
+
+    echo -e "brew_${dt}_${host}"
 
     if type brew > /dev/null 2>&1 ; then
         echo -e "\nbrew update:" ; brew update
@@ -31,8 +39,6 @@ update () {
 
     if type mas > /dev/null 2>&1 ; then
         echo -e "\nmas upgrade:" ; mas upgrade
-    else
-        echo -e "\nmas not found!"
     fi
 
     if type pyenv > /dev/null 2>&1 ; then
@@ -44,40 +50,28 @@ update () {
 
     echo -e ""
 
-    echo -e "build-docker_${dt}_${host}"
-
     if type build-docker > /dev/null 2>&1 ; then
+        echo -e "build-docker_${dt}_${host}"
         build-docker
-    else
-        echo -e "\nbuild-docker not found!"
+        echo -e ""
     fi
-
-    echo -e ""
-
-    echo -e "docker-cleanup_${dt}_${host}"
 
     if type docker-cleanup > /dev/null 2>&1 ; then
+        echo -e "docker-cleanup_${dt}_${host}"
         docker-cleanup
-    else
-        echo -e "\ndocker-cleanup not found!"
+        echo -e ""
     fi
 
-    echo -e ""
-
-    echo -e "gcloudupdate_${dt}_${host}"
-
     if type gcloud > /dev/null 2>&1 ; then
+        echo -e "gcloudupdate_${dt}_${host}"
 
         echo -e "\ngcloud components list 2>&1 | grep \"Update Available\":"
         gcloud components list 2>&1 | grep "Update Available"
 
         echo -e "To upgrade, run: sudo gcloud components update --quiet"
 
-    else
-        echo -e "\ngcloud not found!"
+        echo -e ""
     fi
-
-    echo -e ""
 
     echo -e "gemupdate_${dt}_${host}"
 
@@ -121,15 +115,11 @@ update () {
 
     echo -e ""
 
-    echo -e "tldr_${dt}_${host}"
-
     if type ~/favs/gh/dotfiles/bin/stow.sh > /dev/null 2>&1 ; then
+        echo -e "stow_${dt}_${host}"
         ~/favs/gh/dotfiles/bin/stow.sh
-    else
-        echo -e "\nstow.sh not found!"
+        echo -e ""
     fi
-
-    echo -e ""
 
     echo -e "tldr_${dt}_${host}"
 

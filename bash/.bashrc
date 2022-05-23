@@ -321,8 +321,6 @@ export CHEATCOLORS=true
 ### Offers quick access to files and directories
 if type fasd > /dev/null 2>&1 ; then
   eval "$(fasd --init auto)"
-else
-  echo "Install fasd using: brew install fasd"
 fi
 
 # make less more friendly for non-text input files, see lesspipe(1)

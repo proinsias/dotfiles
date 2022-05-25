@@ -366,9 +366,9 @@ fi
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs
-if test -f "${HOME}"/.bashhub/bashhub.sh > /dev/null 2>&1; then
-  source "${HOME}"/.bashhub/bashhub.sh
-fi
+# if test -f "${HOME}"/.bashhub/bashhub.sh > /dev/null 2>&1; then
+#   source "${HOME}"/.bashhub/bashhub.sh
+# fi
 
 if test -f "${HOME}"/.config/broot/launcher/bash/br > /dev/null 2>&1; then
   source "${HOME}"/.config/broot/launcher/bash/br

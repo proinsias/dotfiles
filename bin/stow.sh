@@ -45,6 +45,7 @@ if type stow > /dev/null 2>&1 ; then
         rubocop \
         screen \
         scripts \
+        shellcheck \
         ssh \
         starship \
         svn \

@@ -40,6 +40,7 @@ if type stow > /dev/null 2>&1 ; then
         mog \
         npm \
         pet \
+        prettier \
         python \
         pylint \
         rubocop \
@@ -72,9 +73,21 @@ if type stow > /dev/null 2>&1 ; then
 
     case $(uname -s) in
         "Linux" )
-            stow --target="${HOME}" linux-npm
+            stow --target="${HOME}" \
+                linux-gnupg \
+                linux-npm
             ;;
         "Darwin" )
+            case $(uname -m) in
+                "amd64" )
+                    stow --override=.gnupg/gpg-agent.conf --target="${HOME}" amd64-gnupg
+                    ;;
+                "arm64" )
+                    stow --override=.gnupg/gpg-agent.conf --target="${HOME}" arm64-gnupg
+                    ;;
+            * )
+                ;;
+            esac
             ;;
     * )
         ;;

@@ -404,8 +404,8 @@ fabric.properties
 ### Eclipse ###
 
 .settings
-bin/
-!bin/*.sh  # Include scripts!
+# bin/
+# !bin/*.sh  # Include scripts!
 #doc
 .metadata
 tmp/

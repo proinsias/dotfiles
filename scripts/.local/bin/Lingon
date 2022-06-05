@@ -18,36 +18,96 @@ update () {
 
     export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/google-cloud-sdk/bin:${RUBY_HOME}/bin${PATH:+:${PATH}}"
 
+    export DEBIAN_FRONTEND="noninteractive"
+
     if type apt-get > /dev/null 2>&1 ; then
         echo -e "apt-get_${dt}_${host}"
-        export DEBIAN_FRONTEND="noninteractive"
         apt-get update --yes
         apt-get upgrade --yes
         echo -e ""
     fi
 
-    echo -e "brew_${dt}_${host}"
-
     if type brew > /dev/null 2>&1 ; then
+        echo -e "brew_${dt}_${host}"
         echo -e "\nbrew update:" ; brew update
         echo -e "\nbrew upgrade:" ; brew upgrade
         echo -e "\nbrew cleanup:" ; brew cleanup
-        echo -e "\nbrew outdated:" ; brew outdated
     else
         echo -e "\nbrew not found!"
     fi
+    echo -e ""
 
     if type mas > /dev/null 2>&1 ; then
+        echo -e "mas_${dt}_${host}"
         echo -e "\nmas upgrade:" ; mas upgrade
+        echo -e ""
     fi
+
+    if type gem > /dev/null 2>&1 ; then
+        echo -e "gemupdate_${dt}_${host}"
+        echo -e "\ngem update --system:" ; gem update --system --no-document
+        echo -e "\ngem update:" ; gem update --no-document
+        echo -e "\ngem cleanup:" ; yes n | gem cleanup
+    else
+        echo -e "\ngem not found!"
+    fi
+    echo -e ""
+
+    if type npm > /dev/null 2>&1 ; then
+        echo -e "npmupdate_${dt}_${host}"
+        echo -e "\nnpm update --global:" ; npm update --global
+    else
+        echo -e "\nnpm not found!"
+    fi
+    echo -e ""
+
+
+    if type pipx > /dev/null 2>&1 ; then
+        echo -e "pipxupdate_${dt}_${host}"
+        echo -e "\npipx upgrade-all:" ; pipx upgrade-all
+    else
+        echo -e "\npipx not found!"
+    fi
+    echo -e ""
+
+
+    if type pre-commit-autoupdate > /dev/null 2>&1 ; then
+        echo -e "pre-commit-autoupdate_${dt}_${host}"
+        echo -e "\npre-commit-autoupdate:" ; pre-commit-autoupdate
+    else
+        echo -e "\npre-commit-autoupdate not found!"
+    fi
+    echo -e ""
+
+    if type ~/favs/gh/dotfiles/bin/stow.sh > /dev/null 2>&1 ; then
+        echo -e "stow_${dt}_${host}"
+        echo -e "\n~/favs/gh/dotfiles/bin/stow.sh:" ; ~/favs/gh/dotfiles/bin/stow.sh
+        echo -e ""
+    fi
+
+    if type tldr > /dev/null 2>&1 ; then
+        echo -e "tldr_${dt}_${host}"
+        echo -e "\ntldr --update:" ; tldr --update
+    fi
+    echo -e ""
 
     if type pyenv > /dev/null 2>&1 ; then
         # Need to run this after upgrading pyenv via brew.
+        echo -e "pyenv_${dt}_${host}"
         echo -e "\npyenv rehash:" ; pyenv rehash
     else
         echo -e "\npyenv not found!"
     fi
+    echo -e ""
 
+    if type uncommitted > /dev/null 2>&1 ; then
+        echo -e "uncommitted_${dt}_${host}"
+        echo -e "\nuncommitted:"
+        uncommitted --non-tracking --untracked --stash \
+        -I "old/proinsias" -I ".cache" "${HOME}"
+    else
+        echo -e "\nuncommitted not found!"
+    fi
     echo -e ""
 
     if type build-docker > /dev/null 2>&1 ; then
@@ -62,91 +122,44 @@ update () {
         echo -e ""
     fi
 
+    echo -e ""
+}
+
+outdated () {
+    if type apt-get > /dev/null 2>&1 ; then
+        echo -e "\napt list --upgradeable:" ; apt list --upgradeable
+        echo -e ""
+    fi
+
+    if type brew > /dev/null 2>&1 ; then
+        echo -e "\nbrew outdated:" ; brew outdated
+        echo -e ""
+    else
+        echo -e "\nbrew not found!"
+    fi
+
+    if type mas > /dev/null 2>&1 ; then
+        echo -e "mas_${dt}_${host}"
+        echo -e "\nmas outdated:" ; mas outdated
+        echo -e ""
+    fi
+
     if type gcloud > /dev/null 2>&1 ; then
         echo -e "gcloudupdate_${dt}_${host}"
 
         echo -e "\ngcloud components list 2>&1 | grep \"Update Available\":"
         gcloud components list 2>&1 | grep "Update Available"
-
-        echo -e "To upgrade, run: sudo gcloud components update --quiet"
-
+        # To upgrade, run: `sudo gcloud components update --quiet`.
         echo -e ""
     fi
 
-    echo -e "gemupdate_${dt}_${host}"
-
-    if type gem > /dev/null 2>&1 ; then
-        echo -e "\ngem update --system:" ; gem update --system --no-document
-        echo -e "\ngem update:" ; gem update --no-document
-        echo -e "\ngem cleanup:" ; yes n | gem cleanup
-    else
-        echo -e "\ngem not found!"
-    fi
-
-    echo -e ""
-
-    echo -e "npmupdate_${dt}_${host}"
-
-    if type npm > /dev/null 2>&1 ; then
-        echo -e "\nnpm update --global:" ; npm update --global
-    else
-        echo -e "\nnpm not found!"
-    fi
-
-    echo -e ""
-
-    echo -e "pipxupdate_${dt}_${host}"
-
-    if type pipx > /dev/null 2>&1 ; then
-        echo -e "\npipx upgrade-all:" ; pipx upgrade-all
-    else
-        echo -e "\npipx not found!"
-    fi
-
-    echo -e ""
-
-    echo -e "pre-commit-autoupdate_${dt}_${host}"
-
-    if type pre-commit-autoupdate > /dev/null 2>&1 ; then
-        pre-commit-autoupdate
-    else
-        echo -e "\npre-commit-autoupdate not found!"
-    fi
-
-    echo -e ""
-
-    if type ~/favs/gh/dotfiles/bin/stow.sh > /dev/null 2>&1 ; then
-        echo -e "stow_${dt}_${host}"
-        ~/favs/gh/dotfiles/bin/stow.sh
-        echo -e ""
-    fi
-
-    echo -e "tldr_${dt}_${host}"
-
-    if type tldr > /dev/null 2>&1 ; then
-        tldr --update
-    else
-        echo -e "\npre-commit-autoupdate not found!"
-    fi
-
-    echo -e ""
-
-    echo -e "uncommitted_${dt}_${host}"
-
-    if type uncommitted > /dev/null 2>&1 ; then
-        echo -e "\nuncommitted:"
-        uncommitted --non-tracking --untracked --stash \
-        -I "old/proinsias" -I ".cache" "${HOME}"
-    else
-        echo -e "\nuncommitted not found!"
-    fi
-
-    echo -e ""
 }
 
 tmpfile="$(mktemp /tmp/lingon.XXXXXX)"
 
 update 2>&1 | tee -a "${tmpfile}"
+
+outdated 2>&1 | tee -a "${tmpfile}"
 
 "${HOME}"/.local/bin/ntfy \
   --backend slack \

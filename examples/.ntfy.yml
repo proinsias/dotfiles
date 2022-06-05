@@ -1,4 +1,4 @@
 ---
 slack:
-    token: <token>
-    recipient: '@francis'
+  token: <token>
+  recipient: "@francis"

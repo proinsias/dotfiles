@@ -16,6 +16,9 @@ fi
 export LANG=en_US.UTF-8
 export DICTIONARY=en_US
 
+export LANGUAGE="en_US:en"
+export LC_ALL="en_US.UTF-8"
+
 export NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="${PATH:+${PATH}:}${NPM_PACKAGES}/bin"
 export MANPATH="${NPM_PACKAGES}/share/man${MANPATH:+:${MANPATH}}"
@@ -65,6 +68,8 @@ case $(uname -s) in
 
       # gpg-agent
       export GPG_TTY=$(tty)
+
+      export PATH="/usr/lib/ccache${PATH:+:${PATH}}"
       ;;
     "Darwin" )
       # Intel homebrew

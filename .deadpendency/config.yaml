@@ -6,4 +6,11 @@ additional-dependency-files:
 ignore-failures:
   ruby:
     - bundle-audit
+    - jekyll-gist
+    - jekyll-github-metadata
+    - jekyll-paginate
+    - jekyll-sitemap
+    - jemoji
+    - ruby-lint
     - terminal-notifier
+    - wdm

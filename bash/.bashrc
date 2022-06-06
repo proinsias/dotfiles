@@ -124,6 +124,11 @@ if type conda > /dev/null 2>&1 ; then
   fi
 fi
 
+# tab completion for whalebrew
+if type whalebrew > /dev/null 2>&1 ; then
+    eval "$(whalebrew completion bash)"
+fi
+
 # Global tab completion for argcomplete-supported apps
 if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete"; then
   if type activate-global-python-argcomplete > /dev/null 2>&1 ; then

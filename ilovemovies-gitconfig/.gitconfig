@@ -5,7 +5,7 @@
 [user]
     name = "Francis T. O'Donovan"
     email = proinsias@users.noreply.github.com
-    signingkey = 740CFB25
+    signingkey = 6519D396
 [safe]
        directory = /usr/local/Homebrew
        directory = /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask

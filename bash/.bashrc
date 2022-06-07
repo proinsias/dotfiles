@@ -282,7 +282,7 @@ esac
 
 # Add keychain keys - use 1password instead for ssh key
 if type keychain > /dev/null 2>&1; then
-    eval "$(keychain --eval --agents gpg --ignore-missing --inherit any 6519D396 740CFB25 9DE94ABA )"
+    eval "$(keychain --eval --agents gpg --ignore-missing --inherit any 6519D396 740CFB25 97FAE23F 9879E8CA)"
 else
     echo "Install keychain using: brew install keychain"
 fi

@@ -79,8 +79,8 @@ if type stow > /dev/null 2>&1 ; then
             ;;
         "Darwin" )
             case $(uname -m) in
-                "amd64" )
-                    stow --target="${HOME}" amd64-gnupg
+                "x86_64" )
+                    stow --target="${HOME}" x86-64-gnupg
                     ;;
                 "arm64" )
                     stow --target="${HOME}" arm64-gnupg

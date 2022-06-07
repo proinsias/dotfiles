@@ -5,20 +5,20 @@ test -f /usr/local/bin/brew && eval "$(/usr/local/bin/brew shellenv)"
 # M1 home-brew. Do second in case we are also using Intel via Rosetta.
 test -f /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
 
+export host="$(hostname -s)"
+export dt="$(gdate --iso-8601)"
+export HOMEBREW_PREFIX="$(brew --prefix)"
+
+export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
+export RUBY_VERSION="3.1.0"
+export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
+export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
+
+export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/google-cloud-sdk/bin:${RUBY_HOME}/bin${PATH:+:${PATH}}"
+
+export DEBIAN_FRONTEND="noninteractive"
+
 update () {
-    export HOMEBREW_PREFIX="$(brew --prefix)"
-
-    export host="$(hostname -s)"
-    export dt="$(gdate --iso-8601)"
-
-    export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
-    export RUBY_VERSION="3.1.0"
-    export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
-    export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
-
-    export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/google-cloud-sdk/bin:${RUBY_HOME}/bin${PATH:+:${PATH}}"
-
-    export DEBIAN_FRONTEND="noninteractive"
 
     if type apt-get > /dev/null 2>&1 ; then
         echo -e "apt-get_${dt}_${host}"
@@ -55,7 +55,7 @@ update () {
 
     if type npm > /dev/null 2>&1 ; then
         echo -e "npmupdate_${dt}_${host}"
-        echo -e "\nnpm update --global:" ; npm update --global
+        echo -e "\nnpm update --location=global:" ; npm update --location=global
     else
         echo -e "\nnpm not found!"
     fi

@@ -80,10 +80,10 @@ if type stow > /dev/null 2>&1 ; then
         "Darwin" )
             case $(uname -m) in
                 "amd64" )
-                    stow --override=.gnupg/gpg-agent.conf --target="${HOME}" amd64-gnupg
+                    stow --target="${HOME}" amd64-gnupg
                     ;;
                 "arm64" )
-                    stow --override=.gnupg/gpg-agent.conf --target="${HOME}" arm64-gnupg
+                    stow --target="${HOME}" arm64-gnupg
                     ;;
             * )
                 ;;

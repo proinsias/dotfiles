@@ -154,6 +154,9 @@ export PATH="${PATH:+${PATH}:}${GOROOT}/bin"
 # # Prevent accidental global package install through pip.
 # export PIP_REQUIRE_VIRTUALENV=true
 
+# Ensure pipenv creates its own virtual environments for projects.
+export PIPENV_IGNORE_VIRTUALENVS=1
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/usr/local/google-cloud-sdk/path.bash.inc' ]; then
   . '/usr/local/google-cloud-sdk/path.bash.inc'

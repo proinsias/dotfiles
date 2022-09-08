@@ -143,6 +143,15 @@ if test -f "${HOME}"/.bash_completions/git-completion.sh > /dev/null 2>&1; then
     source "${HOME}"/.bash_completions/git-completion.sh
 fi
 
+# https://python-poetry.org/docs/
+if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/poetry.bash-completion"; then
+  if test poetry > /dev/null 2>&1; then
+    poetry completions bash > "${HOMEBREW_PREFIX}"/etc/bash_completion.d/poetry.bash-completion
+  else
+    echo "Install poetry!"
+  fi
+fi
+
 # npm completion > "${HOME}"/.bash_completions/npm-completion.sh
 if test -f "${HOME}"/.bash_completions/npm-completion.sh > /dev/null 2>&1; then
     source "${HOME}"/.bash_completions/npm-completion.sh

@@ -6,5 +6,5 @@
     name = "Francis T. O'Donovan"
     email = proinsias@users.noreply.github.com
     signingkey = 740CFB25
-[safe]
-    directory = /home/data/code/data-science
+[fetch]
+    prune = true

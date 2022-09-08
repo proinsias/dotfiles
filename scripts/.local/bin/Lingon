@@ -100,13 +100,12 @@ update () {
     fi
     echo -e ""
 
-    if type uncommitted > /dev/null 2>&1 ; then
+    if type uncommitted-francis > /dev/null 2>&1 ; then
         echo -e "uncommitted_${dt}_${host}"
-        echo -e "\nuncommitted:"
-        uncommitted --non-tracking --untracked --stash \
-        -I "old/proinsias" -I ".cache" "${HOME}"
+        echo -e "\nuncommitted-francis:"
+        uncommitted-francis "${HOME}"
     else
-        echo -e "\nuncommitted not found!"
+        echo -e "\nuncommitted-francis not found!"
     fi
     echo -e ""
 

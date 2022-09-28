@@ -16,6 +16,7 @@ if type stow > /dev/null 2>&1 ; then
     stow --target="${HOME}" \
         base \
         ansible \
+        archey4 \
         aspell \
         bash \
         boto \
@@ -38,6 +39,7 @@ if type stow > /dev/null 2>&1 ; then
         kitty \
         ksh \
         mog \
+        neofetch \
         npm \
         pet \
         prettier \

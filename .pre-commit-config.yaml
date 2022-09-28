@@ -22,7 +22,7 @@ repos:
 
       # Json
       - id: check-json
-      - id: pretty-format-json # Checks that all your JSON files are pretty.
+      # - id: pretty-format-json # Checks that all your JSON files are pretty.
 
   # General
 

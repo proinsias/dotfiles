@@ -263,11 +263,18 @@ case $(uname -s) in
         fi
         ;;
     "Darwin" )
+
         # https://github.com/obihann/archey-osx
         if type archey > /dev/null 2>&1 ; then
           archey
         else
           echo "Install archey using: brew install archey4"
+        fi
+        # https://github.com/dylanaraps/neofetch
+        if type neofetch > /dev/null 2>&1 ; then
+          neofetch
+        else
+          echo "Install neofetch using: brew install neofetch"
         fi
 
         # Add tab completion for `defaults read|write NSGlobalDomain`
@@ -435,3 +442,5 @@ if type motd > /dev/null 2>&1; then
     echo "tip of the day"
     motd
 fi
+
+echo

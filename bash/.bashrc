@@ -432,6 +432,6 @@ fi
 # motd
 if type motd > /dev/null 2>&1; then
     echo
-    echo "message of the day"
+    echo "tip of the day"
     motd
 fi

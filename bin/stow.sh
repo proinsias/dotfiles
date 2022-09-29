@@ -10,7 +10,7 @@ shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
-if type stow > /dev/null 2>&1 ; then
+if type stow >/dev/null 2>&1; then
     cd "${SCRIPT_DIR}"/..
 
     stow --target="${HOME}" \
@@ -62,37 +62,37 @@ if type stow > /dev/null 2>&1 ; then
         zsh
 
     case $(hostname -s) in
-        "ilovemovies" )
-            stow --target="${HOME}" ilovemovies-gitconfig
-            ;;
-        "intleacht" )
-            stow --target="${HOME}" intleacht-gitconfig
-            ;;
-    * )
+    "ilovemovies")
+        stow --target="${HOME}" ilovemovies-gitconfig
+        ;;
+    "intleacht")
+        stow --target="${HOME}" intleacht-gitconfig
+        ;;
+    *)
         stow --target="${HOME}" default-gitconfig
         ;;
     esac
 
     case $(uname -s) in
-        "Linux" )
-            stow --target="${HOME}" \
-                linux-gnupg \
-                linux-npm
-            ;;
-        "Darwin" )
-            case $(uname -m) in
-                "x86_64" )
-                    stow --target="${HOME}" x86-64-gnupg
-                    ;;
-                "arm64" )
-                    stow --target="${HOME}" arm64-gnupg
-                    ;;
-            * )
-                ;;
-            esac
-            ;;
-    * )
+    "Linux")
+        stow --target="${HOME}" \
+            linux-gnupg \
+            linux-npm
         ;;
+    "Darwin")
+        case $(uname -m) in
+        "x86_64")
+            stow --target="${HOME}" x86-64-gnupg
+            ;;
+        "arm64")
+            stow --target="${HOME}" arm64-gnupg
+            ;;
+        *) ;;
+
+        esac
+        ;;
+    *) ;;
+
     esac
 
     cp ./non-stow/.[a-z]* "${HOME}"/.

@@ -1,20 +1,19 @@
 #!/usr/bin/env bash
 
-_cht_complete()
-{
+_cht_complete() {
     local cur prev opts
     _get_comp_words_by_ref -n : cur
 
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     # shellcheck disable=SC2034
-    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    prev="${COMP_WORDS[COMP_CWORD - 1]}"
     opts="$(curl -s cheat.sh/:list)"
 
-    if [ "${COMP_CWORD}" = 1 ]; then
+    if [[ "${COMP_CWORD}" = 1 ]]; then
         # shellcheck disable=SC2207
-        COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-        __ltrim_colon_completions "$cur"
+        COMPREPLY=($(compgen -W "${opts}" -- "${cur}"))
+        __ltrim_colon_completions "${cur}"
     fi
     return 0
 }

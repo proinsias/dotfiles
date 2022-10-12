@@ -132,7 +132,7 @@ fcs() {
 #   popd -n +11 2>/dev/null 1>/dev/null
 #
 #   #
-#   # Remove any other occurence of this dir, skipping the top of the stack
+#   # Remove any other occurrence of this dir, skipping the top of the stack
 #   for ((cnt=1; cnt <= 10; cnt++)); do
 #     x2=$(dirs +${cnt} 2>/dev/null)
 #     [[ $? -ne 0 ]] && return 0

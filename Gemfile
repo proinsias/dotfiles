@@ -15,7 +15,7 @@ gem 'nokogiri', ">= 1.13.4"
 gem 'rspec'
 gem 'rubocop' # https://github.com/bbatsov/rubocop
 gem 'rubocop-performance'
-gem 'sqlint'
+#gem 'sqlint'
 gem 'terminal-notifier'
 # gem 'travis'
 gem 'w3c_validators'

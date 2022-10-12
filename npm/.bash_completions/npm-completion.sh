@@ -1,3 +1,4 @@
+# shellcheck disable=all
 ###-begin-npm-completion-###
 #
 # npm command completion script

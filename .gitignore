@@ -585,3 +585,5 @@ spark-warehouse/
 
 .pytest_cache
 .config/configstore
+
+megalinter-reports/

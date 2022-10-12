@@ -101,12 +101,13 @@ repos:
     #      hooks:
     #          - id: editorconfig-checker
 
-    - repo: https://github.com/oxsecurity/megalinter
-      rev: v6.11.1
-      hooks:
-          - id: megalinter-incremental # Faster, less thorough
-            stages:
-                - commit
-          - id: megalinter-full # Slower, more thorough
-            stages:
-                - push
+    # FIXME: Why not working?
+    #    - repo: https://github.com/oxsecurity/megalinter
+    #      rev: v6.11.1
+    #      hooks:
+    #          - id: megalinter-incremental # Faster, less thorough
+    #            stages:
+    #                - commit
+    #          - id: megalinter-full # Slower, more thorough
+    #            stages:
+    #                - push

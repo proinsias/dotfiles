@@ -95,13 +95,13 @@ repos:
       hooks:
           - id: actionlint
 
-    # FIXME: Why not working?
+    # FIXME: Why not working? Not respecting config.
     #    - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
     #      rev: 2.6.1
     #      hooks:
     #          - id: editorconfig-checker
 
-    # FIXME: Why not working?
+    # FIXME: Why not working? Is it because I'm on an m1 mac? Try on imac.
     #    - repo: https://github.com/oxsecurity/megalinter
     #      rev: v6.11.1
     #      hooks:

@@ -587,3 +587,4 @@ spark-warehouse/
 .config/configstore
 
 megalinter-reports/
+report/

@@ -166,5 +166,10 @@ export PYENV_ROOT="${HOME}/.pyenv"
 export PATH="${PYENV_ROOT}/bin:${PATH}"
 eval "$(pyenv init --path)"  # Puts shims dir as prefix to PATH.
 
+# Add .NET Core SDK tools
+export PATH="$PATH:/Users/ftod/.dotnet/tools"
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
+export DOTNET_ROLL_FORWARD="LatestMajor"
+
 # If not running interactively, stop here
 [[ "$-" != *i* ]] && return

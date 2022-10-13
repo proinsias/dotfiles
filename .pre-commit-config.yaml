@@ -86,7 +86,7 @@ repos:
           - id: check-readthedocs
 
     - repo: https://github.com/zricethezav/gitleaks
-      rev: v8.13.0
+      rev: v8.14.1
       hooks:
           - id: gitleaks
 
@@ -101,7 +101,7 @@ repos:
     #      hooks:
     #          - id: editorconfig-checker
 
-    # FIXME: Why not working? Is it because I'm on an m1 mac? Try on imac.
+    # FIXME: Why not working? Try on intel mac. Try with node 16?
     #    - repo: https://github.com/oxsecurity/megalinter
     #      rev: v6.11.1
     #      hooks:
@@ -111,3 +111,13 @@ repos:
     #          - id: megalinter-full # Slower, more thorough
     #            stages:
     #                - push
+
+    - repo: https://github.com/tcort/markdown-link-check
+      rev: v3.10.3
+      hooks:
+          - id: markdown-link-check
+
+    - repo: https://github.com/streetsidesoftware/cspell-cli
+      rev: v6.12.0
+      hooks:
+          - id: cspell

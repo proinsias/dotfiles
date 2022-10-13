@@ -3,6 +3,7 @@
 # See all available variables at https://oxsecurity.github.io/megalinter/configuration/ and in linters documentation
 
 APPLY_FIXES: all # all, none, or list of linter keys
+BASH_SHELLCHECK_ARGUMENTS: '--external-sources --format=gcc --shell=bash'
 DISABLE:
   - ACTION # FIXME: Figure out why doesn't run!
   - EDITORCONFIG # FIXME: Figure out why not working!?
@@ -15,5 +16,4 @@ LINTER_RULES_PATH: .
 SHOW_ELAPSED_TIME: true
 SPELL_MISSPELL_FILTER_REGEX_EXCLUDE: (bash/.bash/aliases)
 # FIXME: Add v8r schemas for:
-# * .github/mergify.yml
 # * .ntfy.yml - https://ntfy.readthedocs.io/en/latest/#backends - do it myself? or ignore

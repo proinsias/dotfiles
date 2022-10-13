@@ -2,7 +2,8 @@
   "threshold": 0,
   "reporters": ["html", "markdown"],
   "ignore": [
-    "megalinter-reports/**",
+    "**/megalinter-reports/**",
+    "**/.gitleaksignore",
     "**/node_modules/**",
     "**/.git/**",
     "**/.rbenv/**",
@@ -11,7 +12,6 @@
     "**/.github/**",
     "**/.idea/**",
     "**/report/**",
-    "**/*.svg",
-    ".gitleaksignore"
+    "**/*.svg"
   ]
 }

@@ -1,106 +1,124 @@
 #!/usr/bin/env bash
 
 # Intel homebrew
-test -f /usr/local/bin/brew && eval "$(/usr/local/bin/brew shellenv)"
+test -f /usr/local/bin/brew && SHELLENV="$(/usr/local/bin/brew shellenv)" && eval "${SHELLENV}"
 # M1 home-brew. Do second in case we are also using Intel via Rosetta.
-test -f /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
+test -f /opt/homebrew/bin/brew && SHELLENV="$(/opt/homebrew/bin/brew shellenv)" && eval "${SHELLENV}"
 
-export host="$(hostname -s)"
-export dt="$(gdate --iso-8601)"
-export HOMEBREW_PREFIX="$(brew --prefix)"
+host="$(hostname -s)"
+export host
+dt="$(gdate --iso-8601)"
+export dt
+HOMEBREW_PREFIX="$(brew --prefix)"
+export HOMEBREW_PREFIX
+RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
+export RUBY_HOME
+RUBY_VERSION="3.1.0"
+export RUBY_VERSION
+GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
+export GEM_HOME
+GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
+export GEM_PATH
+PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/google-cloud-sdk/bin:${RUBY_HOME}/bin${PATH:+:${PATH}}"
+export PATH
+DEBIAN_FRONTEND="noninteractive"
+export DEBIAN_FRONTEND
 
-export RUBY_HOME="${HOMEBREW_PREFIX}/opt/ruby"
-export RUBY_VERSION="3.1.0"
-export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
-export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
+update() {
 
-export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/google-cloud-sdk/bin:${RUBY_HOME}/bin${PATH:+:${PATH}}"
-
-export DEBIAN_FRONTEND="noninteractive"
-
-update () {
-
-    if type apt-get > /dev/null 2>&1 ; then
+    if type apt-get >/dev/null 2>&1; then
         echo -e "apt-get_${dt}_${host}"
         apt-get update --yes
         apt-get upgrade --yes
         echo -e ""
     fi
 
-    if type brew > /dev/null 2>&1 ; then
+    if type brew >/dev/null 2>&1; then
         echo -e "brew_${dt}_${host}"
-        echo -e "\nbrew update:" ; brew update
-        echo -e "\nbrew upgrade:" ; brew upgrade
-        echo -e "\nbrew cleanup:" ; brew cleanup
+        echo -e "\nbrew update:"
+        brew update
+        echo -e "\nbrew upgrade:"
+        brew upgrade
+        echo -e "\nbrew cleanup:"
+        brew cleanup
     else
         echo -e "\nbrew not found!"
     fi
     echo -e ""
 
-    if type mas > /dev/null 2>&1 ; then
+    if type mas >/dev/null 2>&1; then
         echo -e "mas_${dt}_${host}"
-        echo -e "\nmas upgrade:" ; mas upgrade
+        echo -e "\nmas upgrade:"
+        mas upgrade
         echo -e ""
     fi
 
-    if type gem > /dev/null 2>&1 ; then
+    if type gem >/dev/null 2>&1; then
         echo -e "gemupdate_${dt}_${host}"
-        echo -e "\ngem update --system:" ; gem update --system --no-document
-        echo -e "\ngem update:" ; gem update --no-document
-        echo -e "\ngem cleanup:" ; yes n | gem cleanup
+        echo -e "\ngem update --system:"
+        gem update --system --no-document
+        echo -e "\ngem update:"
+        gem update --no-document
+        echo -e "\ngem cleanup:"
+        # shellcheck disable=SC2312
+        yes n | gem cleanup
     else
         echo -e "\ngem not found!"
     fi
     echo -e ""
 
-    if type npm > /dev/null 2>&1 ; then
+    if type npm >/dev/null 2>&1; then
         echo -e "npmupdate_${dt}_${host}"
-        echo -e "\nnpm update --location=global:" ; npm update --location=global
+        echo -e "\nnpm update --location=global:"
+        npm update --location=global
     else
         echo -e "\nnpm not found!"
     fi
     echo -e ""
 
-
-    if type pipx > /dev/null 2>&1 ; then
+    if type pipx >/dev/null 2>&1; then
         echo -e "pipxupdate_${dt}_${host}"
-        echo -e "\npipx upgrade-all:" ; pipx upgrade-all
+        echo -e "\npipx upgrade-all:"
+        pipx upgrade-all
     else
         echo -e "\npipx not found!"
     fi
     echo -e ""
 
-
-    if type pre-commit-autoupdate > /dev/null 2>&1 ; then
+    if type pre-commit-autoupdate >/dev/null 2>&1; then
         echo -e "pre-commit-autoupdate_${dt}_${host}"
-        echo -e "\npre-commit-autoupdate:" ; pre-commit-autoupdate
+        echo -e "\npre-commit-autoupdate:"
+        pre-commit-autoupdate
     else
         echo -e "\npre-commit-autoupdate not found!"
     fi
     echo -e ""
 
-    if type ~/favs/gh/dotfiles/bin/stow.sh > /dev/null 2>&1 ; then
+    if type ~/favs/gh/dotfiles/bin/stow.sh >/dev/null 2>&1; then
         echo -e "stow_${dt}_${host}"
-        echo -e "\n~/favs/gh/dotfiles/bin/stow.sh:" ; ~/favs/gh/dotfiles/bin/stow.sh
+        echo -e "\n~/favs/gh/dotfiles/bin/stow.sh:"
+        ~/favs/gh/dotfiles/bin/stow.sh
         echo -e ""
     fi
 
-    if type tldr > /dev/null 2>&1 ; then
+    if type tldr >/dev/null 2>&1; then
         echo -e "tldr_${dt}_${host}"
-        echo -e "\ntldr --update:" ; tldr --update
+        echo -e "\ntldr --update:"
+        tldr --update
     fi
     echo -e ""
 
-    if type pyenv > /dev/null 2>&1 ; then
+    if type pyenv >/dev/null 2>&1; then
         # Need to run this after upgrading pyenv via brew.
         echo -e "pyenv_${dt}_${host}"
-        echo -e "\npyenv rehash:" ; pyenv rehash
+        echo -e "\npyenv rehash:"
+        pyenv rehash
     else
         echo -e "\npyenv not found!"
     fi
     echo -e ""
 
-    if type uncommitted-francis > /dev/null 2>&1 ; then
+    if type uncommitted-francis >/dev/null 2>&1; then
         echo -e "uncommitted_${dt}_${host}"
         echo -e "\nuncommitted-francis:"
         uncommitted-francis "${HOME}"
@@ -109,13 +127,13 @@ update () {
     fi
     echo -e ""
 
-    if type build-docker > /dev/null 2>&1 ; then
+    if type build-docker >/dev/null 2>&1; then
         echo -e "build-docker_${dt}_${host}"
         build-docker
         echo -e ""
     fi
 
-    if type docker-cleanup > /dev/null 2>&1 ; then
+    if type docker-cleanup >/dev/null 2>&1; then
         echo -e "docker-cleanup_${dt}_${host}"
         docker-cleanup
         echo -e ""
@@ -124,29 +142,33 @@ update () {
     echo -e ""
 }
 
-outdated () {
-    if type apt-get > /dev/null 2>&1 ; then
-        echo -e "\napt list --upgradeable:" ; apt list --upgradeable
+outdated() {
+    if type apt-get >/dev/null 2>&1; then
+        echo -e "\napt list --upgradeable:"
+        apt list --upgradeable
         echo -e ""
     fi
 
-    if type brew > /dev/null 2>&1 ; then
-        echo -e "\nbrew outdated:" ; brew outdated
+    if type brew >/dev/null 2>&1; then
+        echo -e "\nbrew outdated:"
+        brew outdated
         echo -e ""
     else
         echo -e "\nbrew not found!"
     fi
 
-    if type mas > /dev/null 2>&1 ; then
+    if type mas >/dev/null 2>&1; then
         echo -e "mas_${dt}_${host}"
-        echo -e "\nmas outdated:" ; mas outdated
+        echo -e "\nmas outdated:"
+        mas outdated
         echo -e ""
     fi
 
-    if type gcloud > /dev/null 2>&1 ; then
+    if type gcloud >/dev/null 2>&1; then
         echo -e "gcloudupdate_${dt}_${host}"
 
         echo -e "\ngcloud components list 2>&1 | grep \"Update Available\":"
+        # shellcheck disable=SC2312
         gcloud components list 2>&1 | grep "Update Available"
         # To upgrade, run: `sudo gcloud components update --quiet`.
         echo -e ""
@@ -156,11 +178,14 @@ outdated () {
 
 tmpfile="$(mktemp /tmp/lingon.XXXXXX)"
 
+# shellcheck disable=SC2312
 update 2>&1 | tee -a "${tmpfile}"
 
+# shellcheck disable=SC2312
 outdated 2>&1 | tee -a "${tmpfile}"
 
+TMPFILE="$(cat "${tmpfile}")"
 "${HOME}"/.local/bin/ntfy \
-  --backend slack \
-  --config "${HOME}/.ntfy.yml" \
-  send "$(cat ${tmpfile})"
+    --backend slack_webhook \
+    --config "${HOME}/.ntfy.yml" \
+    send "${TMPFILE}"

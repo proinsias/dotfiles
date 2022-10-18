@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2312
 
 # Intel homebrew
 test -f /usr/local/bin/brew && SHELLENV="$(/usr/local/bin/brew shellenv)" && eval "${SHELLENV}"
@@ -24,168 +25,125 @@ export PATH
 DEBIAN_FRONTEND="noninteractive"
 export DEBIAN_FRONTEND
 
-update() {
-
-    if type apt-get >/dev/null 2>&1; then
-        echo -e "apt-get_${dt}_${host}"
+if type apt-get >/dev/null 2>&1; then
+    (
+        echo -e "\apt-get update:"
         apt-get update --yes
+        echo -e "\apt-get upgrade:"
         apt-get upgrade --yes
-        echo -e ""
-    fi
+    ) 2>&1 | slackcat --channel francis --filename "apt-get_${host}_${dt}.txt"
+fi
 
-    if type brew >/dev/null 2>&1; then
-        echo -e "brew_${dt}_${host}"
-        echo -e "\nbrew update:"
-        brew update
-        echo -e "\nbrew upgrade:"
-        brew upgrade
-        echo -e "\nbrew cleanup:"
-        brew cleanup
-    else
-        echo -e "\nbrew not found!"
-    fi
-    echo -e ""
+if type brew >/dev/null 2>&1; then
+    echo -e "\nbrew update:"
+    brew update
+    echo -e "\nbrew upgrade:"
+    brew upgrade
+    echo -e "\nbrew cleanup:"
+    brew cleanup
+else
+    echo -e "\nbrew not found!"
+fi 2>&1 | slackcat --channel francis --filename "brew_${host}_${dt}.txt"
 
-    if type mas >/dev/null 2>&1; then
-        echo -e "mas_${dt}_${host}"
+if type mas >/dev/null 2>&1; then
+    (
         echo -e "\nmas upgrade:"
         mas upgrade
-        echo -e ""
-    fi
+    ) 2>&1 | slackcat --channel francis --filename "mas_${host}_${dt}.txt"
+fi
 
-    if type gem >/dev/null 2>&1; then
-        echo -e "gemupdate_${dt}_${host}"
-        echo -e "\ngem update --system:"
-        gem update --system --no-document
-        echo -e "\ngem update:"
-        gem update --no-document
-        echo -e "\ngem cleanup:"
-        # shellcheck disable=SC2312
-        yes n | gem cleanup
-    else
-        echo -e "\ngem not found!"
-    fi
-    echo -e ""
+if type gem >/dev/null 2>&1; then
+    echo -e "\ngem update --system:"
+    gem update --system --no-document
+    echo -e "\ngem update:"
+    gem update --no-document
+    echo -e "\ngem cleanup:"
+    # shellcheck disable=SC2312
+    yes n | gem cleanup
+else
+    echo -e "\ngem not found!"
+fi 2>&1 | slackcat --channel francis --filename "gemupdate_${host}_${dt}.txt"
 
-    if type npm >/dev/null 2>&1; then
-        echo -e "npmupdate_${dt}_${host}"
-        echo -e "\nnpm update --location=global:"
-        npm update --location=global
-    else
-        echo -e "\nnpm not found!"
-    fi
-    echo -e ""
+if type npm >/dev/null 2>&1; then
+    echo -e "\nnpm update --location=global:"
+    npm update --location=global
+else
+    echo -e "\nnpm not found!"
+fi 2>&1 | slackcat --channel francis --filename "npm_${host}_${dt}.txt"
 
-    if type pipx >/dev/null 2>&1; then
-        echo -e "pipxupdate_${dt}_${host}"
-        echo -e "\npipx upgrade-all:"
-        pipx upgrade-all
-    else
-        echo -e "\npipx not found!"
-    fi
-    echo -e ""
+if type pipx >/dev/null 2>&1; then
+    echo -e "\npipx upgrade-all:"
+    pipx upgrade-all 2>&1 | grep -v "upgrading "
+else
+    echo -e "\npipx not found!"
+fi 2>&1 | slackcat --channel francis --filename "pipx_${host}_${dt}.txt"
 
-    if type pre-commit-autoupdate >/dev/null 2>&1; then
-        echo -e "pre-commit-autoupdate_${dt}_${host}"
-        echo -e "\npre-commit-autoupdate:"
-        pre-commit-autoupdate
-    else
-        echo -e "\npre-commit-autoupdate not found!"
-    fi
-    echo -e ""
+if type pre-commit-autoupdate >/dev/null 2>&1; then
+    echo -e "\npre-commit-autoupdate:"
+    pre-commit-autoupdate
+else
+    echo -e "\npre-commit-autoupdate not found!"
+fi 2>&1 | slackcat --channel francis --filename "pre-commit-autoupdate_${host}_${dt}.txt"
 
-    if type ~/favs/gh/dotfiles/bin/stow.sh >/dev/null 2>&1; then
-        echo -e "stow_${dt}_${host}"
+if type ~/favs/gh/dotfiles/bin/stow.sh >/dev/null 2>&1; then
+    (
         echo -e "\n~/favs/gh/dotfiles/bin/stow.sh:"
         ~/favs/gh/dotfiles/bin/stow.sh
-        echo -e ""
-    fi
+    ) 2>&1 | slackcat --channel francis --filename "stow_${host}_${dt}.txt"
+fi
 
-    if type tldr >/dev/null 2>&1; then
-        echo -e "tldr_${dt}_${host}"
+if type tldr >/dev/null 2>&1; then
+    (
         echo -e "\ntldr --update:"
         tldr --update
-    fi
-    echo -e ""
+    ) 2>&1 | slackcat --channel francis --filename "tldr_${host}_${dt}.txt"
+fi
 
-    if type pyenv >/dev/null 2>&1; then
-        # Need to run this after upgrading pyenv via brew.
-        echo -e "pyenv_${dt}_${host}"
-        echo -e "\npyenv rehash:"
-        pyenv rehash
-    else
-        echo -e "\npyenv not found!"
-    fi
-    echo -e ""
+if type pyenv >/dev/null 2>&1; then
+    # Need to run this after upgrading pyenv via brew.
+    echo -e "\npyenv rehash:"
+    pyenv rehash
+else
+    echo -e "\npyenv not found!"
+fi 2>&1 | slackcat --channel francis --filename "pyenv_${host}_${dt}.txt"
 
-    if type uncommitted-francis >/dev/null 2>&1; then
-        echo -e "uncommitted_${dt}_${host}"
-        echo -e "\nuncommitted-francis:"
-        uncommitted-francis "${HOME}"
-    else
-        echo -e "\nuncommitted-francis not found!"
-    fi
-    echo -e ""
+if type uncommitted-francis >/dev/null 2>&1; then
+    echo -e "\nuncommitted-francis:"
+    uncommitted-francis "${HOME}"
+else
+    echo -e "\nuncommitted-francis not found!"
+fi 2>&1 | slackcat --channel francis --filename "uncommitted_${host}_${dt}.txt"
 
-    if type build-docker >/dev/null 2>&1; then
-        echo -e "build-docker_${dt}_${host}"
-        build-docker
-        echo -e ""
-    fi
+if type build-docker >/dev/null 2>&1; then
+    build-docker 2>&1 | slackcat --channel francis --filename "build-docker_${host}_${dt}.txt"
+fi
 
-    if type docker-cleanup >/dev/null 2>&1; then
-        echo -e "docker-cleanup_${dt}_${host}"
-        docker-cleanup
-        echo -e ""
-    fi
+if type docker-cleanup >/dev/null 2>&1; then
+    docker-cleanup 2>&1 | slackcat --channel francis --filename "docker-cleanup_${host}_${dt}.txt"
+fi
 
-    echo -e ""
-}
+if type apt-get >/dev/null 2>&1; then
+    apt list --upgradeable 2>&1 | slackcat --channel francis --filename "apt_upgradeable_${host}_${dt}.txt"
+fi
 
-outdated() {
-    if type apt-get >/dev/null 2>&1; then
-        echo -e "\napt list --upgradeable:"
-        apt list --upgradeable
-        echo -e ""
-    fi
+if type brew >/dev/null 2>&1; then
+    brew outdated
+else
+    echo -e "\nbrew not found!"
+fi 2>&1 | slackcat --channel francis --filename "brew_outdated_${host}_${dt}.txt"
 
-    if type brew >/dev/null 2>&1; then
-        echo -e "\nbrew outdated:"
-        brew outdated
-        echo -e ""
-    else
-        echo -e "\nbrew not found!"
-    fi
-
-    if type mas >/dev/null 2>&1; then
-        echo -e "mas_${dt}_${host}"
+if type mas >/dev/null 2>&1; then
+    (
         echo -e "\nmas outdated:"
         mas outdated
-        echo -e ""
-    fi
+    ) 2>&1 | slackcat --channel francis --filename "mas_outdated_${host}_${dt}.txt"
+fi
 
-    if type gcloud >/dev/null 2>&1; then
-        echo -e "gcloudupdate_${dt}_${host}"
-
+if type gcloud >/dev/null 2>&1; then
+    (
         echo -e "\ngcloud components list 2>&1 | grep \"Update Available\":"
         # shellcheck disable=SC2312
         gcloud components list 2>&1 | grep "Update Available"
         # To upgrade, run: `sudo gcloud components update --quiet`.
-        echo -e ""
-    fi
-
-}
-
-tmpfile="$(mktemp /tmp/lingon.XXXXXX)"
-
-# shellcheck disable=SC2312
-update 2>&1 | tee -a "${tmpfile}"
-
-# shellcheck disable=SC2312
-outdated 2>&1 | tee -a "${tmpfile}"
-
-TMPFILE="$(cat "${tmpfile}")"
-"${HOME}"/.local/bin/ntfy \
-    --backend slack_webhook \
-    --config "${HOME}/.ntfy.yml" \
-    send "${TMPFILE}"
+    ) 2>&1 | slackcat --channel francis --filename "gcloud_outdated_${host}_${dt}.txt"
+fi

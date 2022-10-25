@@ -116,6 +116,9 @@ repos:
       rev: v3.10.3
       hooks:
           - id: markdown-link-check
+            args:
+                - --config
+                - .markdown-link-check.json
 
     - repo: https://github.com/streetsidesoftware/cspell-cli
       rev: v6.12.0

@@ -49,6 +49,7 @@ if type stow >/dev/null 2>&1; then
         screen \
         scripts \
         shellcheck \
+        sourcery \
         ssh \
         starship \
         svn \

@@ -16,15 +16,16 @@ fi
 case $(uname -s) in
 "Linux")
     # homebrew linuxbrew
-    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    test -d "${HOME}/.linuxbrew/" && eval "$(${HOME}/.linuxbrew/bin/brew shellenv)"
+    test -d /home/linuxbrew/.linuxbrew && OUTPUT="$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
+    # shellcheck disable=SC2086
+    test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
     ;;
 "Darwin")
     # Intel homebrew
-    test -f /usr/local/bin/brew && eval "$(/usr/local/bin/brew shellenv)"
+    test -f /usr/local/bin/brew && OUTPUT="$(/usr/local/bin/brew shellenv)" && eval "${OUTPUT}"
     # M1 home-brew – do second in case we are also using Intel
     # via Rosetta.
-    test -f /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
+    test -f /opt/homebrew/bin/brew && OUTPUT="$(/opt/homebrew/bin/brew shellenv)" && eval "${OUTPUT}"
 
     # Add tab completion for `defaults read|write NSGlobalDomain`
     # You could just use `-g` instead, but I like being explicit
@@ -32,8 +33,9 @@ case $(uname -s) in
 
     # Add `killall` tab completion for common apps
     complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
-
     ;;
+*) ;;
+
 esac
 
 # Shell Options
@@ -47,6 +49,7 @@ set -o ignoreeof
 # set -o notify
 #
 # command name that is directory name is executed as if it were argument to cd
+# shellcheck disable=SC2065
 shopt -s autocd 2>/dev/null
 #
 # When changing directory small typos can be ignored by bash
@@ -72,6 +75,7 @@ shopt -s dotglob
 # '**' used in filename expansion context will match all files and zero or
 # more directories and subdirectories. If pattern is followed by '/', only directories
 # and subdirectories match.
+# shellcheck disable=SC2065
 shopt -s globstar 2>/dev/null
 #
 # Make bash append rather than overwrite the history on disk
@@ -93,8 +97,10 @@ shopt -s nocaseglob
 mkdir -p "${HOME}"/.virtualenvs
 
 # source .bashrc.local and .bashrc.local.<blah>
+# shellcheck disable=SC2065
 if /bin/ls "${HOME}"/.bashrc.local* >/dev/null 2>&1; then
     for file in "${HOME}"/.bashrc.local*; do
+        # shellcheck disable=SC1090
         source "${file}"
     done
     unset file
@@ -114,8 +120,10 @@ fi
 # COMP_TAR_INTERNAL_PATHS=1
 
 ## pipx (https://github.com/pipxproject/pipx)
+# shellcheck disable=SC2065
 if type pipx >/dev/null 2>&1; then
-    eval "$(register-python-argcomplete pipx)"
+    OUTPUT="$(register-python-argcomplete pipx)"
+    eval "${OUTPUT}"
 else
     echo "Install pipx using: brew install pipx"
 fi
@@ -124,21 +132,28 @@ fi
 complete -C aws_completer aws
 
 # tab completion for conda
+# shellcheck disable=SC2065
 if type conda >/dev/null 2>&1; then
+    # shellcheck disable=SC2065
     if type register-python-argcomplete >/dev/null 2>&1; then
-        eval "$(register-python-argcomplete conda)"
+        OUTPUT="$(register-python-argcomplete conda)"
+        eval "${OUTPUT}"
     else
         echo "Install argcomplete using: python3 -m pip install argcomplete"
     fi
 fi
 
 # tab completion for whalebrew
+# shellcheck disable=SC2065
 if type whalebrew >/dev/null 2>&1; then
-    eval "$(whalebrew completion bash)"
+    OUTPUT="$(whalebrew completion bash)"
+    eval "${OUTPUT}"
 fi
 
 # Global tab completion for argcomplete-supported apps
+# shellcheck disable=SC2154
 if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete"; then
+    # shellcheck disable=SC2065
     if type activate-global-python-argcomplete >/dev/null 2>&1; then
         activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
     else
@@ -147,12 +162,14 @@ if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete"; then
 fi
 
 # https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+# shellcheck disable=SC2065
 if test -f "${HOME}"/.bash_completions/git-completion.sh >/dev/null 2>&1; then
     source "${HOME}"/.bash_completions/git-completion.sh
 fi
 
 # https://python-poetry.org/docs/
 if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/poetry.bash-completion"; then
+    # shellcheck disable=SC2065
     if test poetry >/dev/null 2>&1; then
         poetry completions bash >"${HOMEBREW_PREFIX}"/etc/bash_completion.d/poetry.bash-completion
     else
@@ -161,26 +178,30 @@ if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/poetry.bash-completion"; 
 fi
 
 # npm completion > "${HOME}"/.bash_completions/npm-completion.sh
+# shellcheck disable=SC2065
 if test -f "${HOME}"/.bash_completions/npm-completion.sh >/dev/null 2>&1; then
     source "${HOME}"/.bash_completions/npm-completion.sh
 fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "${HOME}/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
+# shellcheck disable=SC2086,SC2312
+[[ -e "${HOME}/.ssh/config" ]] && complete -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
 
 # For homebrew bash completion
+# shellcheck disable=SC2065
 if test -f "${HOMEBREW_PREFIX}/etc/bash_completion" >/dev/null 2>&1; then
+    # shellcheck disable=SC1091
     . "${HOMEBREW_PREFIX}/etc/bash_completion"
 fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/usr/local/google-cloud-sdk/completion.bash.inc' ]; then
+if [[ -f '/usr/local/google-cloud-sdk/completion.bash.inc' ]]; then
     . '/usr/local/google-cloud-sdk/completion.bash.inc'
 fi
 
 export CLOUDSDK_PYTHON=/opt/homebrew/bin/python3
 
-if [ -f "${HOME}/.bash/cht.sh" ]; then
+if [[ -f "${HOME}/.bash/cht.sh" ]]; then
     # https://cheat.sh/
     . "${HOME}/.bash/cht.sh"
 fi
@@ -188,7 +209,7 @@ fi
 # History Options
 #
 # Don't put duplicate lines in the history.
-export HISTCONTROL="$HISTCONTROL${HISTCONTROL+,}ignoredups"
+export HISTCONTROL="${HISTCONTROL}${HISTCONTROL+,}ignoredups"
 #
 # Ignore some controlling instructions
 # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
@@ -218,7 +239,7 @@ RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"
 WHITE="\[\033[1;37m\]"
-PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
+PS1="${GREEN}\u@\h ${YELLOW}\w ${RED}\$(parse_git_branch)${WHITE} [\!]\n\$ "
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -228,14 +249,18 @@ PS1="$GREEN\u@\h $YELLOW\w $RED\$(parse_git_branch)$WHITE [\!]\n\$ "
 #done;
 #unset file;
 
+# shellcheck disable=SC2065
 if brew command command-not-found-init >/dev/null 2>&1; then
-    eval "$(brew command-not-found-init)"
+    OUTPUT="$(brew command-not-found-init)"
+    eval "${OUTPUT}"
 fi
 
 # Warn of missing tools
+# shellcheck disable=SC2065
 if ! type hub >/dev/null 2>&1; then
     echo "Install hub using: brew install hub"
 fi
+# shellcheck disable=SC2065
 if ! type overcommit >/dev/null 2>&1; then
     echo "Install overcommit using: gem install overcommit"
 fi
@@ -243,6 +268,7 @@ fi
 export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
 
 ## fzf
+# shellcheck disable=SC2065
 if type fzf >/dev/null 2>&1; then
     if ! test -f "${HOME}"/.fzf.bash; then
         "${HOMEBREW_PREFIX}/opt/fzf/install" --all --no-update-rc
@@ -255,31 +281,38 @@ else
 fi
 
 # Add keychain keys - use 1password instead for ssh key
+# shellcheck disable=SC2065
 if type keychain >/dev/null 2>&1; then
-    eval "$(keychain --eval --agents gpg --ignore-missing --inherit any 6519D396 740CFB25 97FAE23F)"
+    OUTPUT="$(keychain --eval --agents gpg --ignore-missing --inherit any 6519D396 740CFB25 97FAE23F)"
+    eval "${OUTPUT}"
 else
     echo "Install keychain using: brew install keychain"
 fi
 
 # # Add 1password-cli session
+# shellcheck disable=SC2065
 if type op >/dev/null 2>&1; then
-    eval "$(op signin --account slesnonovans)"
+    OUTPUT="$(op signin --account slesnonovans)"
+    eval "${OUTPUT}"
 else
     echo "Install 1password-cli using: brew cask install 1password-cli"
 fi
 
 case $(uname -s) in
 "Linux")
-    function cleanup {
-        echo "Killing SSH-Agent"
-
-        rm -rf $(ls -ld /tmp/ssh-* | grep fodonovan | awk '{print $9}') >/dev/null 2>&1
-        kill -9 $SSH_AGENT_PID >/dev/null 2>&1
-    }
+    # function cleanup {
+    #     echo "Killing SSH-Agent"
+    #
+    #     # shellcheck disable=SC2065
+    #     rm -rf "$(ls -ld /tmp/ssh-*fodonovan* | awk '{print $9}')" >/dev/null 2>&1
+    #     # shellcheck disable=SC2065,SC2154
+    #     kill -9 "${SSH_AGENT_PID}" >/dev/null 2>&1
+    # }
     # 2016-05-31 - commented below to debug sudden exits
     # trap cleanup EXIT
 
     # https://github.com/KittyKatt/screenFetch
+    # shellcheck disable=SC2065
     if type screenfetch >/dev/null 2>&1; then
         screenfetch
     fi
@@ -287,12 +320,14 @@ case $(uname -s) in
 "Darwin")
 
     # https://github.com/obihann/archey-osx
+    # shellcheck disable=SC2065
     if type archey >/dev/null 2>&1; then
         archey
     else
         echo "Install archey using: brew install archey4"
     fi
     # https://github.com/dylanaraps/neofetch
+    # shellcheck disable=SC2065
     if type neofetch >/dev/null 2>&1; then
         neofetch
     else
@@ -316,19 +351,25 @@ case $(uname -s) in
     # <https://stackoverflow.com/questions/32418438/how-can-i-disable-bash-sessions-in-os-x-el-capitan>
     export SHELL_SESSION_HISTORY=0
     ;;
+*) ;;
+
 esac
 
 # Use `/bin/ls` for these tests, since homebrew `ls` gives errors
+# shellcheck disable=SC2065
 if /bin/ls "${HOME}"/.bash/* 1>/dev/null 2>&1; then
     for file in "${HOME}"/.bash/*; do
-        source $file
+        # shellcheck disable=SC1090
+        source "${file}"
     done
     unset file
 fi
 
 # source .bash_aliases and .bash_aliases.local.<blah>
+# shellcheck disable=SC2065
 if /bin/ls "${HOME}"/.bash_aliases* 1>/dev/null 2>&1; then
     for file in "${HOME}"/.bash_aliases*; do
+        # shellcheck disable=SC1090
         source "${file}"
     done
     unset file
@@ -336,8 +377,10 @@ fi
 
 # A utility for sending notifications, on demand and when commands finish.
 # https://github.com/dschep/ntfy/
+# shellcheck disable=SC2065
 if type ntfy >/dev/null 2>&1; then
-    eval "$(ntfy shell-integration --foreground-too)"
+    OUTPUT="$(ntfy shell-integration --foreground-too)"
+    eval "${OUTPUT}"
     export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld ""\
 psql screen tmux vim"
 fi
@@ -348,25 +391,33 @@ export CHEATCOLORS=true
 
 ### https://github.com/clvv/fasd
 ### Offers quick access to files and directories
+# shellcheck disable=SC2065
 if type fasd >/dev/null 2>&1; then
-    eval "$(fasd --init auto)"
+    OUTPUT="$(fasd --init auto)"
+    eval "${OUTPUT}"
 fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[[ -x /usr/bin/lesspipe ]] && OUTPUT="$(SHELL=/bin/sh lesspipe)" && eval "${OUTPUT}"
 
 # "Magnificent app which corrects your previous console command"
+# shellcheck disable=SC2065
 if type thefuck >/dev/null 2>&1; then
-    eval "$(thefuck --alias)"
+    OUTPUT="$(thefuck --alias)"
+    eval "${OUTPUT}"
 else
     echo "Install thefuck using: brew install thefuck"
 fi
 
 # pyenv
+# shellcheck disable=SC2065
 if type pyenv >/dev/null 2>&1; then
-    eval "$(pyenv init --path)" # Puts shims dir as prefix to PATH.
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
+    OUTPUT="$(pyenv init --path)" # Puts shims dir as prefix to PATH.
+    eval "${OUTPUT}"
+    OUTPUT="$(pyenv init -)"
+    eval "${OUTPUT}"
+    OUTPUT="$(pyenv virtualenv-init -)"
+    eval "${OUTPUT}"
     export PYENV_VIRTUALENV_DISABLE_PROMPT=1
     # eval "$(pipenv --completion)"
 else
@@ -380,15 +431,19 @@ fi
 # ssh-add -K ~/.ssh/id_rsa
 
 # Starship
+# shellcheck disable=SC2065
 if type starship >/dev/null 2>&1; then
-    eval "$(starship init bash)"
+    OUTPUT="$(starship init bash)"
+    eval "${OUTPUT}"
 else
     echo "Install starship using: brew install starship"
 fi
 
 ### http://direnv.net/
+# shellcheck disable=SC2065
 if type direnv >/dev/null 2>&1; then
-    eval "$(direnv hook bash)"
+    OUTPUT="$(direnv hook bash)"
+    eval "${OUTPUT}"
 else
     echo "Install direnv using: brew install direnv"
 fi
@@ -399,6 +454,7 @@ fi
 #   source "${HOME}"/.bashhub/bashhub.sh
 # fi
 
+# shellcheck disable=SC2065
 if test -f "${HOME}"/.config/broot/launcher/bash/br >/dev/null 2>&1; then
     source "${HOME}"/.config/broot/launcher/bash/br
 fi
@@ -407,10 +463,13 @@ fi
 export SSH_AUTH_SOCK=~/.1password/agent.sock
 
 # nbp bash completion
+# shellcheck disable=SC2065
 if type nbp >/dev/null 2>&1; then
+    # shellcheck disable=SC2065
     if ! test -f "${HOME}"/.bash_completions/nbp.sh >/dev/null 2>&1; then
         nbp --install-completion bash
     fi
+    # shellcheck disable=SC2065
     if test -f "${HOME}"/.bash_completions/nbp.sh >/dev/null 2>&1; then
         source "${HOME}"/.bash_completions/nbp.sh
     fi
@@ -419,17 +478,20 @@ else
 fi
 
 # Deduplicate PATH variable
-export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+export PATH
 
 ### Print message of the day.
 
 # istheinternetonfire.com
+# shellcheck disable=SC2065
 if ping -c 1 google.com >/dev/null 2>&1; then
     echo "Is the internet on fire?:"
     dig +short -t txt istheinternetonfire.com
 fi
 
 # pyjokes
+# shellcheck disable=SC2065
 if type pyjoke >/dev/null 2>&1; then
     echo
     echo "Joke of the Day:"
@@ -437,7 +499,7 @@ if type pyjoke >/dev/null 2>&1; then
 fi
 
 # tldr
-
+# shellcheck disable=SC2065
 if type tldr >/dev/null 2>&1; then
     echo
     echo "tldr random example"
@@ -445,6 +507,7 @@ if type tldr >/dev/null 2>&1; then
 fi
 
 # motd
+# shellcheck disable=SC2065
 if type motd >/dev/null 2>&1; then
     echo
     echo "tip of the day"

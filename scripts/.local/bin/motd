@@ -30,6 +30,7 @@ array=(
     "pet new -t  # save new snippet with tags"
     "tig show  # run git show via text-mode interface for Git"
     "tldr tar  # simplified man pages with practical examples"
+    "yq  # uses jq syntax but works with yaml/json/xml/properties/csv/tsv"
 )
 
 size="${#array[@]}"

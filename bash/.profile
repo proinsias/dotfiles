@@ -67,7 +67,9 @@ case $(uname -s) in
       test -d "${HOME}/.linuxbrew/" && eval "$(${HOME}/.linuxbrew/bin/brew shellenv)"
 
       # gpg-agent
-      export GPG_TTY=$(tty)
+      # Avoid issues with `gpg` as installed via Homebrew.
+      # https://stackoverflow.com/a/42265848/96656
+      export GPG_TTY=$(tty);
 
       export PATH="/usr/lib/ccache${PATH:+:${PATH}}"
       ;;
@@ -88,6 +90,9 @@ case $(uname -s) in
 
       # To install homebrew casks in /Applications by default
       export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+      # Hide the "default interactive shell is now zsh" warning on macOS.
+      export BASH_SILENCE_DEPRECATION_WARNING=1;
 
       ;;
 esac

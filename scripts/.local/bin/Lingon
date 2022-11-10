@@ -147,3 +147,8 @@ if type gcloud >/dev/null 2>&1; then
         # To upgrade, run: `sudo gcloud components update --quiet`.
     ) 2>&1 | slackcat --channel francis --filename "gcloud_outdated_${host}_${dt}.txt"
 fi
+
+(
+    echo -e "\nsoftwareupdate --list:"
+    softwareupdate --list
+) 2>&1 | slackcat --channel francis --filename "softwareupdate_${host}_${dt}.txt"

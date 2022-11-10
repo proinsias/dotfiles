@@ -24,6 +24,7 @@ if type stow >/dev/null 2>&1; then
         bundle \
         cheat \
         conda \
+        curl \
         direnv \
         emacs \
         fzf \

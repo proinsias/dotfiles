@@ -77,6 +77,7 @@
     changed = green
     untracked = cyan
 [commit]
+    # https://help.github.com/articles/signing-commits-using-gpg/
     gpgSign = true
 [core]
     attributesfile = ~/.gitattributes
@@ -106,6 +107,9 @@
     # Make `git rebase` safer on OS X.
     # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
     trustctime = false
+    # Speed up commands involving untracked files such as `git status`.
+    # https://git-scm.com/docs/git-update-index#_untracked_cache
+    untrackedCache = true
     # Git comes preset to detect and fix some whitespace issues.
     # It can look for six primary whitespace issues –
     # three are enabled by default and can be turned off,

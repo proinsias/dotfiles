@@ -260,10 +260,6 @@ fi
 if ! type hub >/dev/null 2>&1; then
     echo "Install hub using: brew install hub"
 fi
-# shellcheck disable=SC2065
-if ! type overcommit >/dev/null 2>&1; then
-    echo "Install overcommit using: gem install overcommit"
-fi
 
 export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
 

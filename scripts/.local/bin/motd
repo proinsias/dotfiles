@@ -26,6 +26,7 @@ array=(
     "f@@k  # try to correct previous command"
     "git branch-status"
     "git show | tig  # colorize the output of git-show using tig"
+    "glow README.md  # Terminal viewer of markdown files"
     "nbpreview file.ipynb  # render a Jupyter Notebook in the terminal"
     "pet new -t  # save new snippet with tags"
     "tig show  # run git show via text-mode interface for Git"

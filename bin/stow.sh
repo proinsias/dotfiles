@@ -14,7 +14,7 @@ if type stow >/dev/null 2>&1; then
     cd "${SCRIPT_DIR}"/..
 
     mkdir -p "${HOME}/.local/bin"
-    
+
     stow --target="${HOME}" \
         base \
         ansible \

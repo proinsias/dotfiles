@@ -163,7 +163,7 @@ plugins=(
     # autojump # FIXME:
     # aws
     # bundler
-    charm
+    # charm
     colored-man-pages
     # colorize
     command-not-found
@@ -195,7 +195,31 @@ plugins=(
     yarn
 )
 
+# For homebrew
+# Adds $HOMEBREW_PREFIX/bin as prefix to PATH.
+case $(uname -s) in
+"Linux")
+    # homebrew linuxbrew
+    test -d /home/linuxbrew/.linuxbrew && OUTPUT="$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
+    # shellcheck disable=SC2086
+    test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
+    ;;
+"Darwin")
+    # Intel homebrew
+    test -f /usr/local/bin/brew && OUTPUT="$(/usr/local/bin/brew shellenv)" && eval "${OUTPUT}"
+    # M1 home-brew – do second in case we are also using Intel
+    # via Rosetta.
+    test -f /opt/homebrew/bin/brew && OUTPUT="$(/opt/homebrew/bin/brew shellenv)" && eval "${OUTPUT}"
+    ;;
+*) ;;
+esac
+
 # Completion setup before loading Oh My Zsh.
+
+## tab completion for npm
+if ! test -f "${HOMEBREW_PREFIX}/share/zsh-completions/_npm" &>/dev/null; then
+    npm completion >"${HOMEBREW_PREFIX}/share/zsh-completions/_npm"
+fi
 
 ## Global tab completion for argcomplete-supported apps
 # shellcheck disable=SC2154
@@ -217,25 +241,6 @@ source "${ZSH}/oh-my-zsh.sh"
 # compinit
 
 # User configuration
-
-## For homebrew
-## Adds $HOMEBREW_PREFIX/bin as prefix to PATH.
-case $(uname -s) in
-"Linux")
-    # homebrew linuxbrew
-    test -d /home/linuxbrew/.linuxbrew && OUTPUT="$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
-    # shellcheck disable=SC2086
-    test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
-    ;;
-"Darwin")
-    # Intel homebrew
-    test -f /usr/local/bin/brew && OUTPUT="$(/usr/local/bin/brew shellenv)" && eval "${OUTPUT}"
-    # M1 home-brew – do second in case we are also using Intel
-    # via Rosetta.
-    test -f /opt/homebrew/bin/brew && OUTPUT="$(/opt/homebrew/bin/brew shellenv)" && eval "${OUTPUT}"
-    ;;
-*) ;;
-esac
 
 ## Exports
 
@@ -441,11 +446,6 @@ fi
 if type whalebrew >/dev/null 2>&1; then
     OUTPUT="$(whalebrew completion zsh)"
     eval "${OUTPUT}"
-fi
-
-## tab completion for npm
-if ! test -f "${HOMEBREW_PREFIX}/share/zsh-completions/_npm" &>/dev/null; then
-    npm completion >"${HOMEBREW_PREFIX}/share/zsh-completions/_npm"
 fi
 
 ## The next line enables shell command completion for gcloud.
@@ -694,6 +694,8 @@ export PATH
 # # Example aliases
 # # alias zshconfig="mate ~/.zshrc"
 # # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias gs="git status"
 
 # FIXME:
 # # # Use `/bin/ls` for these tests, since homebrew `ls` gives errors

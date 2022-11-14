@@ -20,6 +20,7 @@ if type stow >/dev/null 2>&1; then
         ansible \
         archey4 \
         aspell \
+        atuin \
         bash \
         boto \
         broot \

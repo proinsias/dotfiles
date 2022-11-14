@@ -226,8 +226,10 @@ else
     echo "Install zsh-completions using: brew install zsh-completions"
 fi
 
-# https://nbpreview.readthedocs.io/en/latest/usage.html?highlight=completion#cmdoption-nbpreview-install-completion
+# https://github.com/ellie/atuin/blob/main/docs/shell-completions.md
 # https://github.com/chubin/cheat.sh#tab-completion
+# https://github.com/zricethezav/gitleaks
+# https://nbpreview.readthedocs.io/en/latest/usage.html?highlight=completion#cmdoption-nbpreview-install-completion
 fpath+=~/.zfunc
 
 # shellcheck disable=SC1091
@@ -595,6 +597,7 @@ else
 fi
 
 # ## http://direnv.net/
+# Installed above as plugin.
 # # shellcheck disable=SC2065
 # if type direnv >/dev/null 2>&1; then
 #     OUTPUT="$(direnv hook zsh)"
@@ -602,6 +605,15 @@ fi
 # else
 #     echo "Install direnv using: brew install direnv"
 # fi
+
+# shellcheck disable=SC2065
+if type atuin >/dev/null 2>&1; then
+    OUTPUT="$(atuin init zsh)"
+    eval "${OUTPUT}"
+    # zinit load ellie/atuin
+else
+    echo "Install atuin using: brew install atuin"
+fi
 
 case $(uname -s) in
 "Linux")

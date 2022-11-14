@@ -1,13 +1,4 @@
-# User dependent .bashrc file
-
-# Stuff NOT specifically related to `Sh`, such as environment variables (`PATH` and
-# friends) – Anything that should be available to graphical applications OR to sh or
-# to login shells.
-
-# Source global definitions
-if test -f /etc/zshrc; then
-    . /etc/zshrc
-fi
+# User dependent .zshrc file
 
 # Umask
 #
@@ -244,6 +235,13 @@ source "${ZSH}/oh-my-zsh.sh"
 
 ## Exports
 
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='vi'
+else
+    export EDITOR='emacsclient'
+fi
+
 ### For hunspell.
 export LANG=en_US.UTF-8
 export DICTIONARY=en_US
@@ -412,10 +410,7 @@ if [ -d "${HOME}/.ubuntu/bin" ]; then
 fi
 
 # If not running interactively, stop here
-[[ "$-" != *i* ]] && return
-
-# Anything you'd want at an interactive non-login shell.
-# Command prompt, `EDITOR` variable, bash aliases for my use.
+# [[ "$-" != *i* ]] && return
 
 # Completion setup after loading Oh My Zsh.
 
@@ -678,43 +673,12 @@ echo
 PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
 export PATH
 
-# # Preferred editor for local and remote sessions  # FIXME:
-# # if [[ -n $SSH_CONNECTION ]]; then
-# #   export EDITOR='vim'
-# # else
-# #   export EDITOR='mvim'
-# # fi
-#
-
-# # Set personal aliases, overriding those provided by oh-my-zsh libs,
-# # plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# # users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# # For a full list of active aliases, run `alias`.
-# # FIXME:
-# # Example aliases
-# # alias zshconfig="mate ~/.zshrc"
-# # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-alias gs="git status"
-
-# FIXME:
-# # # Use `/bin/ls` for these tests, since homebrew `ls` gives errors
-# # # shellcheck disable=SC2065
-# # if /bin/ls "${HOME}"/.bash/* 1>/dev/null 2>&1; then
-# #     for file in "${HOME}"/.bash/*; do
-# #         # shellcheck disable=SC1090
-# #         source "${file}"
-# #     done
-# #     unset file
-# # fi
-# #
-# # # source .bash_aliases and .bash_aliases.local.<blah>
-# # # shellcheck disable=SC2065
-# # if /bin/ls "${HOME}"/.bash_aliases* 1>/dev/null 2>&1; then
-# #     for file in "${HOME}"/.bash_aliases*; do
-# #         # shellcheck disable=SC1090
-# #         source "${file}"
-# #     done
-# #     unset file
-# # fi
-# #
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+# https://unix.stackexchange.com/a/587802/198328
+# If you need to override existing oh-my-zsh aliases, then you would configure them at the bottom of the .zshrc file.
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"

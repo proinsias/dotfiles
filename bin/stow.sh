@@ -33,6 +33,7 @@ if type stow >/dev/null 2>&1; then
         gdb \
         git \
         gitlint \
+        glow \
         gnupg \
         htop \
         httpie \
@@ -44,6 +45,7 @@ if type stow >/dev/null 2>&1; then
         mog \
         neofetch \
         npm \
+        oh-my-zsh \
         pet \
         prettier \
         python \

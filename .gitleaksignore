@@ -24,5 +24,5 @@ a4ca1b8:.ntfy.yml:generic-api-key:3
 a4ca1b8:.ntfy.yml:slack-access-token:3
 880a178:.wakatime.cfg:generic-api-key:2
 640a27a:.wakatime.cfg:generic-api-key:2
-.secrets.baseline:generic-api-key:119
-.secrets.baseline:generic-api-key:129
+9a41080:.secrets.baseline:generic-api-key:129
+9a4108092e7a8f6f96d6c548a11bc21847c0eb14:.secrets.baseline:generic-api-key:129

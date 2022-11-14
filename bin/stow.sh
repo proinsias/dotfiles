@@ -29,7 +29,6 @@ if type stow >/dev/null 2>&1; then
         curl \
         direnv \
         emacs \
-        fzf \
         gdb \
         git \
         gitlint \

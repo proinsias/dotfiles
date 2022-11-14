@@ -85,6 +85,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="random"
+# Use starship instead.
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -547,6 +548,8 @@ fi
 ## fzf
 # shellcheck disable=SC2065
 if type fzf >/dev/null 2>&1; then
+    # Ensure we have the right files. It's dependent on
+    # HOMEBREW_PREFIX so I don't keep it in version control.
     if ! test -f "${HOME}"/.fzf.zsh; then
         "${HOMEBREW_PREFIX}/opt/fzf/install" --all --no-update-rc
     fi

@@ -77,14 +77,14 @@ setopt combining_chars # combine zero-length punctuation characters (accents) wi
 setopt emacs           # use emacs keybindings in the shell
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="random"
+#ZSH_THEME="random"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -119,12 +119,14 @@ zstyle ':completion:*' menu select
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
+# shellcheck disable=SC2034
 ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# shellcheck disable=SC2034
 COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -138,6 +140,7 @@ COMPLETION_WAITING_DOTS="true"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
+# shellcheck disable=SC2034
 HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
@@ -149,6 +152,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
+# shellcheck disable=SC2034
 plugins=(
     # asdf # FIXME:
     # autojump # FIXME:
@@ -208,12 +212,13 @@ esac
 # Completion setup before loading Oh My Zsh.
 
 ## tab completion for npm
+# shellcheck disable=SC2065,SC2154
 if ! test -f "${HOMEBREW_PREFIX}/share/zsh-completions/_npm" &>/dev/null; then
     npm completion >"${HOMEBREW_PREFIX}/share/zsh-completions/_npm"
 fi
 
 ## Global tab completion for argcomplete-supported apps
-# shellcheck disable=SC2154
+# shellcheck disable=SC2065,SC2154
 if test -d "${HOMEBREW_PREFIX}/share/zsh-completions" &>/dev/null; then
     FPATH="${HOMEBREW_PREFIX}/share/zsh-completions:${FPATH}"
 else
@@ -224,6 +229,7 @@ fi
 # https://github.com/chubin/cheat.sh#tab-completion
 fpath+=~/.zfunc
 
+# shellcheck disable=SC1091
 source "${ZSH}/oh-my-zsh.sh"
 # Should run the following:
 # autoload -U bashcompinit
@@ -236,7 +242,7 @@ source "${ZSH}/oh-my-zsh.sh"
 ## Exports
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
+if [[ -n "${SSH_CONNECTION}" ]]; then
     export EDITOR='vi'
 else
     export EDITOR='emacsclient'
@@ -273,7 +279,8 @@ export GOPATH="${HOME}/golang"
 export GOROOT="${HOMEBREW_PREFIX}/opt/go/libexec"
 
 ### GPG
-export GPG_TTY=$(tty)
+OUTPUT="$(tty)"
+export GPG_TTY="${OUTPUT}"
 
 ### os-specific exports
 
@@ -319,6 +326,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export MANPATH="${NPM_PACKAGES}/share/man${MANPATH:+:${MANPATH}}" # Keep first.
 
 #### Set MANPATH so it includes users' private man if it exists
+# shellcheck disable=SC2065
 if test -d "${HOME}/man" >/dev/null 2>&1; then
     export MANPATH="${HOME}/man:${MANPATH}"
 fi
@@ -332,6 +340,7 @@ export MANPATH="${HOMEBREW_PREFIX}/share/man:${MANPATH}"
 ### Setup info path.
 
 # Set INFOPATH so it includes users' private info if it exists
+# shellcheck disable=SC2065
 if test -d "${HOME}/info" >/dev/null 2>&1; then
     export INFOPATH="${HOME}/info${INFOPATH:+:${INFOPATH}}" # Keep first.
 fi
@@ -364,11 +373,11 @@ export PATH="${RUBY_HOME}/bin:${PATH}"
 export PATH="${PATH}:${GEM_PATH}/bin"
 
 #### set PATH so it includes user's private bin if it exists
-if [ -d "${HOME}/bin" ]; then
+if [[ -d "${HOME}/bin" ]]; then
     export PATH="${HOME}/bin:${PATH}"
 fi
 
-if [ -d "${HOME}/.generic/bin" ]; then
+if [[ -d "${HOME}/.generic/bin" ]]; then
     export PATH="${PATH}:${HOME}/.generic/bin"
 fi
 
@@ -388,24 +397,25 @@ export PATH="${PATH}:${GOPATH}/bin"
 export PATH="${PATH}:${GOROOT}/bin"
 
 #### Add .NET Core SDK tools
-export PATH="$PATH:${HOME}/.dotnet/tools"
+export PATH="${PATH}:${HOME}/.dotnet/tools"
 
 #### pyenv
 export PATH="${PYENV_ROOT}/bin:${PATH}"
-eval "$(pyenv init --path)" # Puts shims dir as prefix to PATH.
+OUTPUT="$(pyenv init --path)"
+eval "${OUTPUT}" # Puts shims dir as prefix to PATH.
 
 #### Google Cloud SDK.
-if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then
+if [[ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]]; then
     . '/usr/local/google-cloud-sdk/path.zsh.inc'
 fi
 
 #### macOS
-if [ -d "${HOME}/.osx/bin" ]; then
+if [[ -d "${HOME}/.osx/bin" ]]; then
     export PATH="${PATH}:${HOME}/.osx/bin"
 fi
 
 #### ubunbtu
-if [ -d "${HOME}/.ubuntu/bin" ]; then
+if [[ -d "${HOME}/.ubuntu/bin" ]]; then
     export PATH="${PATH:+${PATH}:}${HOME}/.ubuntu/bin"
 fi
 
@@ -416,9 +426,10 @@ fi
 
 ## tab completion for poetry
 ## https://python-poetry.org/docs/
+# shellcheck disable=SC2065,SC2154
 if ! test -f "${ZSH_CUSTOM}/plugins/poetry/_poetry" &>/dev/null; then
-    echo "Install poetry completions using: mkdir $ZSH_CUSTOM/plugins/poetry &&" \
-        "poetry completions zsh > $ZSH_CUSTOM/plugins/poetry/_poetry"
+    echo "Install poetry completions using: mkdir ${ZSH_CUSTOM}/plugins/poetry &&" \
+        "poetry completions zsh > ${ZSH_CUSTOM}/plugins/poetry/_poetry"
 fi
 
 ## AWS bash completion
@@ -527,7 +538,8 @@ fi
 ## Wrap git automatically with hub
 ## https://hub.github.com/
 if type hub >/dev/null 2>&1; then
-    eval "$(hub alias -s)"
+    OUTPUT="$(hub alias -s)"
+    eval "${OUTPUT}"
 else
     echo "Install hub using: brew install hub"
 fi
@@ -539,6 +551,7 @@ if type fzf >/dev/null 2>&1; then
         "${HOMEBREW_PREFIX}/opt/fzf/install" --all --no-update-rc
     fi
     if test -f "${HOME}"/.fzf.zsh; then
+        # shellcheck disable=SC1091
         source "${HOME}"/.fzf.zsh
     fi
 else

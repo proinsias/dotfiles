@@ -232,6 +232,16 @@ fi
 # https://nbpreview.readthedocs.io/en/latest/usage.html?highlight=completion#cmdoption-nbpreview-install-completion
 fpath+=~/.zfunc
 
+case $(hostname -s) in
+  "booth")
+    # I'm not the main user on this machine
+    ZSH_DISABLE_COMPFIX=true
+    ;;
+*)
+    stow --target="${HOME}" default-gitconfig
+    ;;
+esac
+
 # shellcheck disable=SC1091
 source "${ZSH}/oh-my-zsh.sh"
 # Should run the following:

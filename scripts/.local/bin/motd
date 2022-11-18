@@ -9,6 +9,7 @@ shopt -s failglob             # Cause globs that don't get expanded to cause err
 shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
 
 array=(
+    "ctrl-r  # altuin switch filter modes"
     "!$  # get the last argument of the previous command"
     "!?foo  # repeat the most recent command that contained the string 'foo'"
     "bat --show-all  # A cat clone with syntax highlighting and Git integration."
@@ -32,6 +33,10 @@ array=(
     "tig show  # run git show via text-mode interface for Git"
     "tldr tar  # simplified man pages with practical examples"
     "yq  # uses jq syntax but works with yaml/json/xml/properties/csv/tsv"
+    "z foo bar  # cd into highest ranked directory matching foo and bar"
+    "z foo /  # cd into a subdirectory starting with foo"
+    "zi foo  # cd with interactive selection (using fzf)"
+    "z foo<SPACE><TAB>  # show interactive completions"
 )
 
 size="${#array[@]}"

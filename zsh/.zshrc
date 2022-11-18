@@ -11,11 +11,16 @@
 # Shell options
 # http://zsh.sourceforge.net/Doc/Release/Options.html
 
+# DIRSTACKSIZE keeps the directory stack from getting too large, much like HISTSIZE
+# DIRSTACKSIZE=8
+
 ## Changing directories
 setopt auto_cd           # if a command isn't valid, but is a directory, cd to that dir
 setopt auto_pushd        # make cd push the old directory onto the directory stack
 setopt pushd_ignore_dups # don't push multiple copies of the same directory onto the directory stack
 setopt pushd_to_home     # have pushd with no arguments act like 'pushd $HOME'.
+# setopt pushd_minus
+# setopt pushd_silent      # keep shell from printing the directory stack each time we do a cd
 
 ## Completions
 setopt always_to_end    # move cursor to the end of a completed word
@@ -504,6 +509,16 @@ esac
 
 # Setup various commands
 
+## A smarter cd command.
+# https://github.com/ajeetdsouza/zoxide
+if type zoxide >/dev/null 2>&1; then
+    export _ZO_ECHO=1 # Print the matched directory before navigating to it.
+    OUTPUT="$(zoxide init zsh)"
+    eval "${OUTPUT}"
+else
+    echo "Install zoxide using: brew install zoxide"
+fi
+
 ## A utility for sending notifications, on demand and when commands finish.
 ## https://github.com/dschep/ntfy/
 # shellcheck disable=SC2065
@@ -513,14 +528,6 @@ if type ntfy >/dev/null 2>&1; then
     export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld ""\
 psql screen tmux vim"
 fi
-
-# ## https://github.com/clvv/fasd
-# ## Offers quick access to files and directories
-# # shellcheck disable=SC2065
-# if type fasd >/dev/null 2>&1; then
-#     OUTPUT="$(fasd --init auto)"
-#     eval "${OUTPUT}"
-# fi
 
 ## make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && OUTPUT="$(SHELL=/bin/sh lesspipe)" && eval "${OUTPUT}"

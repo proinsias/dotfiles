@@ -438,7 +438,12 @@ if [[ -d "${HOME}/.ubuntu/bin" ]]; then
 fi
 
 # If not running interactively, stop here
-# [[ "$-" != *i* ]] && return
+[[ "$-" != *i* ]] && return
+# Use the generic form above instead of this PyCHarm/IntelliJ-specific way.
+# if [ -n "${INTELLIJ_ENVIRONMENT_READER}" ]; then
+#     return
+# fi
+#
 
 # Completion setup after loading Oh My Zsh.
 

@@ -238,8 +238,9 @@ fi
 fpath+=~/.zfunc
 
 case $(hostname -s) in
-  "booth")
+"booth")
     # I'm not the main user on this machine
+    # shellcheck disable=SC2034
     ZSH_DISABLE_COMPFIX=true
     ;;
 *)

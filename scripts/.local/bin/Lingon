@@ -31,7 +31,7 @@ if type apt-get >/dev/null 2>&1; then
         apt-get update --yes
         echo -e "\apt-get upgrade:"
         apt-get upgrade --yes
-    ) 2>&1 | slackcat --channel francis --filename "apt-get_${host}_${dt}.txt" --tee
+    ) 2>&1 | slackcat --channel builds --filename "apt-get_${host}_${dt}.txt" --tee
 fi
 
 if type brew >/dev/null 2>&1; then
@@ -43,13 +43,13 @@ if type brew >/dev/null 2>&1; then
     brew cleanup
 else
     echo -e "\nbrew not found!"
-fi 2>&1 | slackcat --channel francis --filename "brew_${host}_${dt}.txt" --tee
+fi 2>&1 | slackcat --channel builds --filename "brew_${host}_${dt}.txt" --tee
 
 if type mas >/dev/null 2>&1; then
     (
         echo -e "\nmas upgrade:"
         mas upgrade
-    ) 2>&1 | slackcat --channel francis --filename "mas_${host}_${dt}.txt" --tee
+    ) 2>&1 | slackcat --channel builds --filename "mas_${host}_${dt}.txt" --tee
 fi
 
 if type gem >/dev/null 2>&1; then
@@ -62,41 +62,41 @@ if type gem >/dev/null 2>&1; then
     yes n | gem cleanup
 else
     echo -e "\ngem not found!"
-fi 2>&1 | slackcat --channel francis --filename "gemupdate_${host}_${dt}.txt" --tee
+fi 2>&1 | slackcat --channel builds --filename "gemupdate_${host}_${dt}.txt" --tee
 
 if type npm >/dev/null 2>&1; then
     echo -e "\nnpm update --location=global:"
     npm update --location=global
 else
     echo -e "\nnpm not found!"
-fi 2>&1 | slackcat --channel francis --filename "npm_${host}_${dt}.txt" --tee
+fi 2>&1 | slackcat --channel builds --filename "npm_${host}_${dt}.txt" --tee
 
 if type pipx >/dev/null 2>&1; then
     echo -e "\npipx upgrade-all:"
     pipx upgrade-all 2>&1 | grep -v "upgrading "
 else
     echo -e "\npipx not found!"
-fi 2>&1 | slackcat --channel francis --filename "pipx_${host}_${dt}.txt" --tee
+fi 2>&1 | slackcat --channel builds --filename "pipx_${host}_${dt}.txt" --tee
 
 if type pre-commit-autoupdate >/dev/null 2>&1; then
     echo -e "\npre-commit-autoupdate:"
     pre-commit-autoupdate
 else
     echo -e "\npre-commit-autoupdate not found!"
-fi 2>&1 | slackcat --channel francis --filename "pre-commit-autoupdate_${host}_${dt}.txt" --tee
+fi 2>&1 | slackcat --channel builds --filename "pre-commit-autoupdate_${host}_${dt}.txt" --tee
 
 if type ~/favs/gh/dotfiles/bin/stow.sh >/dev/null 2>&1; then
     (
         echo -e "\n~/favs/gh/dotfiles/bin/stow.sh:"
         ~/favs/gh/dotfiles/bin/stow.sh
-    ) 2>&1 | slackcat --channel francis --filename "stow_${host}_${dt}.txt" --tee
+    ) 2>&1 | slackcat --channel builds --filename "stow_${host}_${dt}.txt" --tee
 fi
 
 if type tldr >/dev/null 2>&1; then
     (
         echo -e "\ntldr --update:"
         tldr --update
-    ) 2>&1 | slackcat --channel francis --filename "tldr_${host}_${dt}.txt" --tee
+    ) 2>&1 | slackcat --channel builds --filename "tldr_${host}_${dt}.txt" --tee
 fi
 
 if type pyenv >/dev/null 2>&1; then
@@ -105,38 +105,38 @@ if type pyenv >/dev/null 2>&1; then
     pyenv rehash
 else
     echo -e "\npyenv not found!"
-fi 2>&1 | slackcat --channel francis --filename "pyenv_${host}_${dt}.txt" --tee
+fi 2>&1 | slackcat --channel builds --filename "pyenv_${host}_${dt}.txt" --tee
 
 if type uncommitted-francis >/dev/null 2>&1; then
     echo -e "\nuncommitted-francis:"
     uncommitted-francis "${HOME}"
 else
     echo -e "\nuncommitted-francis not found!"
-fi 2>&1 | slackcat --channel francis --filename "uncommitted_${host}_${dt}.txt" --tee
+fi 2>&1 | slackcat --channel builds --filename "uncommitted_${host}_${dt}.txt" --tee
 
 if type build-docker >/dev/null 2>&1; then
-    build-docker 2>&1 | slackcat --channel francis --filename "build-docker_${host}_${dt}.txt" --tee
+    build-docker 2>&1 | slackcat --channel builds --filename "build-docker_${host}_${dt}.txt" --tee
 fi
 
 if type docker-cleanup >/dev/null 2>&1; then
-    docker-cleanup 2>&1 | slackcat --channel francis --filename "docker-cleanup_${host}_${dt}.txt" --tee
+    docker-cleanup 2>&1 | slackcat --channel builds --filename "docker-cleanup_${host}_${dt}.txt" --tee
 fi
 
 if type apt-get >/dev/null 2>&1; then
-    apt list --upgradeable 2>&1 | slackcat --channel francis --filename "apt_upgradeable_${host}_${dt}.txt" --tee
+    apt list --upgradeable 2>&1 | slackcat --channel builds --filename "apt_upgradeable_${host}_${dt}.txt" --tee
 fi
 
 if type brew >/dev/null 2>&1; then
     brew outdated
 else
     echo -e "\nbrew not found!"
-fi 2>&1 | slackcat --channel francis --filename "brew_outdated_${host}_${dt}.txt" --tee
+fi 2>&1 | slackcat --channel builds --filename "brew_outdated_${host}_${dt}.txt" --tee
 
 if type mas >/dev/null 2>&1; then
     (
         echo -e "\nmas outdated:"
         mas outdated
-    ) 2>&1 | slackcat --channel francis --filename "mas_outdated_${host}_${dt}.txt" --tee
+    ) 2>&1 | slackcat --channel builds --filename "mas_outdated_${host}_${dt}.txt" --tee
 fi
 
 if type gcloud >/dev/null 2>&1; then
@@ -145,10 +145,32 @@ if type gcloud >/dev/null 2>&1; then
         # shellcheck disable=SC2312
         gcloud components list 2>&1 | grep "Update Available"
         # To upgrade, run: `sudo gcloud components update --quiet`.
-    ) 2>&1 | slackcat --channel francis --filename "gcloud_outdated_${host}_${dt}.txt" --tee
+    ) 2>&1 | slackcat --channel builds --filename "gcloud_outdated_${host}_${dt}.txt" --tee
 fi
 
 (
     echo -e "\nsoftwareupdate --list:"
     softwareupdate --list
-) 2>&1 | slackcat --channel francis --filename "softwareupdate_${host}_${dt}.txt" --tee
+) 2>&1 | slackcat --channel builds --filename "softwareupdate_${host}_${dt}.txt" --tee
+
+# shellcheck disable=SC2065
+if test -d ~/favs/gh/mac-playbook >/dev/null 2>&1; then
+    (
+        echo -e "\n~/favs/gh/mac-playbook:"
+        cd ~/favs/gh/mac-playbook || exit
+
+        case $(hostname -s) in
+        "ilovemovies")
+            ansible-playbook main.yml --inventory inventory --skip-tags "become" --tags "personal"
+            ;;
+        "intleacht")
+            ansible-playbook main.yml --inventory inventory --skip-tags "become"
+            ;;
+        *)
+            ansible-playbook main.yml --inventory inventory --skip-tags "become" --tags "personal"
+            ;;
+        esac
+
+        cd - || exit
+    ) 2>&1 | slackcat --channel builds --filename "stow_${host}_${dt}.txt" --tee
+fi

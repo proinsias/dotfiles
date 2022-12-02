@@ -243,9 +243,8 @@ case $(hostname -s) in
     # shellcheck disable=SC2034
     ZSH_DISABLE_COMPFIX=true
     ;;
-*)
-    stow --target="${HOME}" default-gitconfig
-    ;;
+*) ;;
+
 esac
 
 # shellcheck disable=SC1091

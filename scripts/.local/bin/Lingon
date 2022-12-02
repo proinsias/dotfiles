@@ -172,5 +172,5 @@ if test -d ~/favs/gh/mac-playbook >/dev/null 2>&1; then
         esac
 
         cd - || exit
-    ) 2>&1 | slackcat --channel builds --filename "stow_${host}_${dt}.txt" --tee
+    ) 2>&1 | slackcat --channel builds --filename "mac-playbook_${host}_${dt}.txt" --tee
 fi

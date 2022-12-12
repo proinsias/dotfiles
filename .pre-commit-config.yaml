@@ -124,3 +124,12 @@ repos:
       rev: v6.15.0
       hooks:
           - id: cspell
+
+    - repo: https://github.com/mxab/pre-commit-trivy.git
+      rev: v0.2.0
+      hooks:
+          - id: trivyfs-docker
+            args:
+                - --ignore-unfixed
+                - . # last arg indicates the path/file to scan
+            stages: [push]

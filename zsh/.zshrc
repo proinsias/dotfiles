@@ -514,7 +514,7 @@ esac
 
 # Setup various commands
 
-## A smarter cd command.
+## A smarter cd command - use z instead of cd.
 # https://github.com/ajeetdsouza/zoxide
 if type zoxide >/dev/null 2>&1; then
     export _ZO_ECHO=1 # Print the matched directory before navigating to it.
@@ -732,3 +732,4 @@ export PATH
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+source /Users/ftod/.op/plugins.sh

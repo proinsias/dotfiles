@@ -405,7 +405,6 @@ fabric.properties
 
 .settings
 bin/
-!bin/*.sh  # Include scripts!
 #doc
 .metadata
 tmp/
@@ -590,3 +589,7 @@ megalinter-reports/
 report/
 .pre-commit-trivv-cache
 .pre-commit-trivy-cache
+!/bin/*.sh  # Include scripts!
+!/direnv/.envrc
+!/scripts/*
+!/scripts/.local/bin/*

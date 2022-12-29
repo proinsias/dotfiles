@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+uncommitted --non-tracking --untracked --stash -I "old/proinsias" -I ".cache" "${1}"

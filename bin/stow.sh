@@ -20,7 +20,6 @@ if type stow >/dev/null 2>&1; then
         ansible \
         archey4 \
         aspell \
-        atuin \
         bash \
         boto \
         broot \
@@ -69,13 +68,18 @@ if type stow >/dev/null 2>&1; then
 
     case $(hostname -s) in
     "ilovemovies")
-        stow --target="${HOME}" ilovemovies-gitconfig
+        stow --target="${HOME}" \
+            ilovemovies-gitconfig
         ;;
-    "intleacht")
-        stow --target="${HOME}" intleacht-gitconfig
+    "francis-odonovan-macbook")
+        stow --target="${HOME}" \
+            francis-odonovan-macbook-atuin \
+            francis-odonovan-macbook-gitconfig
         ;;
     *)
-        stow --target="${HOME}" default-gitconfig
+        stow --target="${HOME}" \
+            default-atuin \
+            default-gitconfig
         ;;
     esac
 

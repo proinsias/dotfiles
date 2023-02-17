@@ -163,11 +163,11 @@ if test -d ~/favs/gh/mac-playbook >/dev/null 2>&1; then
         "ilovemovies")
             ansible-playbook main.yml --inventory inventory --skip-tags "become" --tags "personal"
             ;;
-        "intleacht")
-            ansible-playbook main.yml --inventory inventory --skip-tags "become"
-            ;;
+        # "francis-odonovan-macbook")
+        #     ansible-playbook main.yml --inventory inventory --skip-tags "become"
+        #     ;;
         *)
-            ansible-playbook main.yml --inventory inventory --skip-tags "become" --tags "personal"
+            #  ansible-playbook main.yml --inventory inventory --skip-tags "become" --tags "personal"
             ;;
         esac
 

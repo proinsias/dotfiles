@@ -527,12 +527,12 @@ fi
 ## A utility for sending notifications, on demand and when commands finish.
 ## https://github.com/dschep/ntfy/
 # shellcheck disable=SC2065
-if type ntfy >/dev/null 2>&1; then
-    OUTPUT="$(ntfy shell-integration --foreground-too)"
-    eval "${OUTPUT}"
-    export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld ""\
-psql screen tmux vim"
-fi
+# if type ntfy >/dev/null 2>&1; then
+#     OUTPUT="$(ntfy shell-integration --foreground-too)"
+#     eval "${OUTPUT}"
+#     export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld ""\
+# psql screen tmux vim"
+# fi
 
 ## make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && OUTPUT="$(SHELL=/bin/sh lesspipe)" && eval "${OUTPUT}"

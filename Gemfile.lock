@@ -6,7 +6,7 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     afm (0.2.2)
     ast (2.4.2)
-    async (2.3.1)
+    async (2.5.0)
       console (~> 1.10)
       io-event (~> 1.1)
       timers (~> 4.1)
@@ -64,7 +64,7 @@ GEM
     google-protobuf (3.21.12)
     google-protobuf (3.21.12-x86_64-linux)
     hashery (2.1.2)
-    html-proofer (5.0.4)
+    html-proofer (5.0.6)
       addressable (~> 2.3)
       async (~> 2.1)
       nokogiri (~> 1.13)
@@ -90,7 +90,7 @@ GEM
       image_optim (~> 0.19)
     image_size (3.2.0)
     in_threads (1.6.0)
-    io-event (1.1.6)
+    io-event (1.1.7)
     jekyll (4.3.2)
       addressable (~> 2.4)
       colorator (~> 1.0)
@@ -207,7 +207,7 @@ GEM
       rexml (~> 3.2)
     webrick (1.7.0)
     yell (2.2.2)
-    zeitwerk (2.6.6)
+    zeitwerk (2.6.7)
 
 PLATFORMS
   arm64-darwin-21

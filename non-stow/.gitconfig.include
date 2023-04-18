@@ -97,7 +97,7 @@
     # functionality, recording the carriage returns in the repository by setting the config
     # value to false.
     # autocrlf = false
-    editor = emacs
+    editor = charm
     excludesfile = ~/.gitignore_global
     # # Don't paginate output by default, default is less.
     # pager = cat

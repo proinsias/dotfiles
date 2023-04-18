@@ -48,7 +48,13 @@ fi 2>&1 | slackcat --channel builds --filename "brew_${host}_${dt}.txt" --tee
 if type mas >/dev/null 2>&1; then
     (
         echo -e "\nmas upgrade:"
-        mas upgrade
+
+        case $(hostname -s) in
+        "francis-odonovan-macbook") ;;
+        *)
+            mas upgrade
+            ;;
+        esac
     ) 2>&1 | slackcat --channel builds --filename "mas_${host}_${dt}.txt" --tee
 fi
 

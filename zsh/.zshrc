@@ -194,6 +194,8 @@ plugins=(
     # screen
     # ssh-agent
     yarn
+    zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 # For homebrew

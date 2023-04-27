@@ -335,8 +335,6 @@ TSWLatexianTemp*
 # KBibTeX
 *~[0-9]*
 
-
-
 # Misc
 .sonar
 config.ini

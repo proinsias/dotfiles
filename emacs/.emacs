@@ -11,6 +11,7 @@
  '(show-paren-mode t)
  '(tex-dvi-view-command "xdvi")
  '(transient-mark-mode (quote (only . t))))
+ '(package-selected-packages '(use-package)))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -100,8 +101,6 @@
 ; If I get an error about
 ; 'Wrong type argument listp \.\.\.'
 ; delete ~/.emacs-places and start over.
-
-(transient-mark-mode 1)
 
 ;;;;Completion ignores filenames ending in any string in this list.
 ;(setq completion-ignored-extensions
@@ -239,3 +238,32 @@
 ;(load-theme 'solarized t)
 ;(setq solarized-termcolors 256)
 ;(add-to-list 'default-frame-alist '(background-mode . dark))
+
+;; Don't use TABS for indentations.
+(setq-default indent-tabs-mode nil)
+
+;; Set the number to the number of columns to use.
+(setq-default fill-column 120)
+
+;; Show line number in the mode line.
+(line-number-mode 1)
+
+;; Show column number in the mode line.
+(column-number-mode 1)
+
+;; Enable syntax highlighting. This will also highlight lines that form a region.
+(global-font-lock-mode 1)
+
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+
+(use-package auto-package-update
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+(use-package python-black
+  :demand t
+  :after python
+  :hook (python-mode . python-black-on-save-mode-enable-dwim)
+)

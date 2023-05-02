@@ -472,6 +472,14 @@ if type conda >/dev/null 2>&1; then
     fi
 fi
 
+## tab completion for ruff
+# shellcheck disable=SC2065
+if type ruff >/dev/null 2>&1; then
+    # shellcheck disable=SC2065
+    OUTPUT="$(ruff generate-shell-completion zsh)"
+    eval "${OUTPUT}"
+fi
+
 ## tab completion for whalebrew
 # shellcheck disable=SC2065
 if type whalebrew >/dev/null 2>&1; then

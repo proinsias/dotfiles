@@ -60,6 +60,7 @@ if type stow >/dev/null 2>&1; then
         tcsh \
         thefuck \
         tmux \
+        tmuxinator \
         vim \
         vnc \
         wget \

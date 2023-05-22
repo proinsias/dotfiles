@@ -742,4 +742,5 @@ export PATH
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source /Users/ftod/.op/plugins.sh
+test -d "${HOME}"/.op && source "${HOME}"/.op/plugins.sh
+test -d "${HOME}"/.config/op && source "${HOME}"/.config/op/plugins.sh

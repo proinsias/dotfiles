@@ -330,6 +330,9 @@ case $(uname -s) in
         echo "Install neofetch using: brew install neofetch"
     fi
 
+    # Get weather forecast.
+    curl --silent wttr.in
+
     # Add tab completion for `defaults read|write NSGlobalDomain`
     # You could just use `-g` instead, but I like being explicit
     complete -W "NSGlobalDomain" defaults

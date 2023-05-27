@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+
+import argparse
+import re
+import webbrowser
+
+
+def open_urls_in_browser(markdown_file, num_urls):
+    # Read the markdown file
+    with open(markdown_file, 'r') as file:
+        markdown_content = file.read()
+
+    # Extract URLs from the markdown content
+    urls = re.findall(r'\[(.*?)\]\((http[s]?://.*?)\)', markdown_content)
+
+    # Open the specified number of URLs in a browser
+    for title, url in urls[:num_urls]:
+        webbrowser.open(url)
+
+
+if __name__ == '__main__':
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser(description='Open URLs from a Markdown file in a browser')
+    parser.add_argument('markdown_file', help='Path to the markdown file')
+    parser.add_argument('num_urls', type=int, help='Number of URLs to open')
+    args = parser.parse_args()
+
+    # Call the function with the provided arguments
+    open_urls_in_browser(args.markdown_file, args.num_urls)

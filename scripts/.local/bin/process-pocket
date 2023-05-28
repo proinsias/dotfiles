@@ -2,8 +2,30 @@
 
 import os
 
+import bs4
 import requests
 
+headers={'X-Accept': 'application/json'}
+
+print("Loading articles from medium reading list...")
+
+url = "https://medium.com/@proinsias/list/predefined:fd6fd6e89f7a:READING_LIST"
+
+response = requests.get(url, headers=headers)
+
+
+soup = BeautifulSoup(response.content, 'html.parser')
+
+urls = []
+# Find all anchor tags with 'a' and class 'link' within the reading list
+for anchor_tag in soup.find_all('a', class_='link'):
+    url = anchor_tag.get('href')
+    urls.append(url)
+
+print(urls)
+
+import sys
+sys.exit()
 
 def filterurl(url, char):
     ''' Function to prune off extra URL options '''
@@ -18,7 +40,6 @@ consumer_key = os.getenv("POCKET_CONSUMER_KEY")
 access_token = os.getenv("POCKET_ACCESS_TOKEN")
 
 url = "https://getpocket.com/v3/get"
-headers={'X-Accept': 'application/json'}
 unique_urls = set()
 duplicate_article_ids = []
 duplicate_article_urls = []
@@ -96,6 +117,8 @@ if len(duplicate_article_ids) > 0:
 
 else:
     print("No duplicate articles!")
+
+
 
 # If necessary, I can update this to get the access token via script as follows:
 # https://gist.github.com/Mierdin/0996952ba02d87175f3b

@@ -1,0 +1,93 @@
+#!/usr/bin/env python
+
+import os
+
+import requests
+
+
+def filterurl(url, char):
+    ''' Function to prune off extra URL options '''
+    try:
+        return url[:url.index(char)]
+    except ValueError:
+        return url
+
+
+# Set your Pocket API credentials.
+consumer_key = os.getenv("POCKET_CONSUMER_KEY")
+access_token = os.getenv("POCKET_ACCESS_TOKEN")
+
+url = "https://getpocket.com/v3/get"
+headers={'X-Accept': 'application/json'}
+unique_urls = set()
+duplicate_article_ids = []
+
+# If an article is in the archived AND unread list,
+# we want to deduplicate the unread version.
+# So let's start with the list of archived articles.
+
+# Retrieve the list of archived articles from Pocket.
+data = {
+    "consumer_key": consumer_key,
+    "access_token": access_token,
+    "state": "archive",  # Retrieve only archived articles
+    "sort": "newest",  # Sort articles by newest first
+    "detailType": "complete"  # Retrieve complete article details
+}
+
+response = requests.post(url, data=data, headers=headers)
+articles = response.json()["list"]
+
+# Remove duplicate articles based on URLs.
+for article_id, article_data in articles.items():
+    article_url = article_data["given_url"]
+    # Remove extra crap from URLS (DANGEROUS - don't remove too much!)
+    article_url = filterurl(article_url, '?utm')
+
+    if article_url in unique_urls:
+        duplicate_article_ids.append(article_id)
+    else:
+        unique_urls.add(article_url)
+
+# Retrieve the list of unread articles from Pocket.
+data = {
+    "consumer_key": consumer_key,
+    "access_token": access_token,
+    "state": "unread",  # Retrieve only unread articles
+    "sort": "newest",  # Sort articles by newest first
+    "detailType": "complete"  # Retrieve complete article details
+}
+
+response = requests.post(url, data=data, headers=headers)
+articles = response.json()["list"]
+
+# Remove duplicate articles based on URLs.
+for article_id, article_data in articles.items():
+    article_url = article_data["given_url"]
+    # Remove extra crap from URLS (DANGEROUS - don't remove too much!)
+    article_url = filterurl(article_url, '?utm')
+
+    if article_url in unique_urls:
+        duplicate_article_ids.append(article_id)
+    else:
+        unique_urls.add(article_url)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# FIXME: Dump list of deleted urls to disk for inspection.
+
+
+# FIXME: If read article has duplicate in unread, delete the unread one!
+# FIXME: https://gist.github.com/Mierdin/0996952ba02d87175f3b
+# FIXME: https://gist.github.com/alexpyoung/7e241a8f3f805630f0f66a1cf0763675#file-pocket_import-L71
+# FIXME: Add urls to wayback machine.

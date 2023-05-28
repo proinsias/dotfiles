@@ -2,16 +2,9 @@
 
 import os
 
+import bs4
+import pathlib
 import requests
-
-
-def filterurl(url, char):
-    """Function to prune off extra URL options"""
-    try:
-        return url[:url.index(char)]
-    except ValueError:
-        return url
-
 
 # Set your Pocket API credentials.
 consumer_key = os.getenv('POCKET_CONSUMER_KEY')
@@ -19,37 +12,7 @@ access_token = os.getenv('POCKET_ACCESS_TOKEN')
 
 url = 'https://getpocket.com/v3/get'
 unique_urls = set()
-duplicate_article_ids = []
-duplicate_article_urls = []
-headers={'X-Accept': 'application/json'}
-
-# If an article is in the archived AND unread list,
-# we want to deduplicate the unread version.
-# So let's start with the list of archived articles.
-
-print('Retrieving the list of archived articles from Pocket...')
-data = {
-    'consumer_key': consumer_key,
-    'access_token': access_token,
-    'state': 'archive',  # Retrieve only archived articles
-    'sort': 'newest',  # Sort articles by newest first
-    'detailType': 'complete'  # Retrieve complete article details
-}
-
-response = requests.post(url, data=data, headers=headers)
-articles = response.json()['list']
-
-print('Removing duplicate archived articles based on URLs...')
-for article_id, article_data in articles.items():
-    full_article_url = article_data['given_url']
-    # Remove extra crap from URLS (DANGEROUS - don't remove too much!)
-    article_url = filterurl(full_article_url, '?utm')
-
-    if article_url in unique_urls:
-        duplicate_article_ids.append(article_id)
-        duplicate_article_urls.append(full_article_url)
-    else:
-        unique_urls.add(article_url)
+headers = {'X-Accept': 'application/json'}
 
 print('Retrieving the list of unread articles from Pocket...')
 data = {
@@ -62,6 +25,26 @@ data = {
 
 response = requests.post(url, data=data, headers=headers)
 articles = response.json()['list']
+
+for article_id, article_data in articles.items():
+    full_article_url = article_data['given_url']
+    # Remove extra crap from URLS (DANGEROUS - don't remove too much!)
+    article_url = filterurl(full_article_url, '?utm')
+    unique_urls.add(article_url)
+
+print('Loading articles from medium reading list data dump...')
+
+file_content = pathlib.Path('reading-list.html').read_text()
+soup = bs4.BeautifulSoup(file_content, 'html.parser')
+
+urls = []
+# Find all anchor tags with 'a' and class 'link' within the reading list
+for anchor_tag in soup.find_all('a'):
+    url = anchor_tag.get('href')
+    urls.append(url)
+
+# I need to figure out how to get the link the medium shorted url points to.
+
 
 print('Removing duplicate unread articles based on URLs...')
 for article_id, article_data in articles.items():

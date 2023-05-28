@@ -593,3 +593,4 @@ report/
 !direnv/.envrc
 !scripts/*
 !scripts/.local/bin/*
+!/scripts/.local/bin/*

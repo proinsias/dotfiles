@@ -88,7 +88,7 @@ ignoredPackages = ["unit_tests"]
   # Enable guessing what packages are needed from the code.
   guessImports = true
 
-# These are the files that need to be preserved when this 
+# These are the files that need to be preserved when this
 # language template is used as the base language template
 # for Python repos imported from GitHub
 [gitHubImport]

@@ -21,12 +21,13 @@ url = "https://getpocket.com/v3/get"
 headers={'X-Accept': 'application/json'}
 unique_urls = set()
 duplicate_article_ids = []
+duplicate_article_urls = []
 
 # If an article is in the archived AND unread list,
 # we want to deduplicate the unread version.
 # So let's start with the list of archived articles.
 
-# Retrieve the list of archived articles from Pocket.
+print("Retrieving the list of archived articles from Pocket...")
 data = {
     "consumer_key": consumer_key,
     "access_token": access_token,
@@ -38,18 +39,19 @@ data = {
 response = requests.post(url, data=data, headers=headers)
 articles = response.json()["list"]
 
-# Remove duplicate articles based on URLs.
+print("Removing duplicate archived articles based on URLs...")
 for article_id, article_data in articles.items():
-    article_url = article_data["given_url"]
+    full_article_url = article_data["given_url"]
     # Remove extra crap from URLS (DANGEROUS - don't remove too much!)
-    article_url = filterurl(article_url, '?utm')
+    article_url = filterurl(full_article_url, '?utm')
 
     if article_url in unique_urls:
         duplicate_article_ids.append(article_id)
+        duplicate_article_urls.append(full_article_url)
     else:
         unique_urls.add(article_url)
 
-# Retrieve the list of unread articles from Pocket.
+print("Retrieving the list of unread articles from Pocket...")
 data = {
     "consumer_key": consumer_key,
     "access_token": access_token,
@@ -61,33 +63,43 @@ data = {
 response = requests.post(url, data=data, headers=headers)
 articles = response.json()["list"]
 
-# Remove duplicate articles based on URLs.
+print("Removing duplicate unread articles based on URLs...")
 for article_id, article_data in articles.items():
-    article_url = article_data["given_url"]
+    full_article_url = article_data["given_url"]
     # Remove extra crap from URLS (DANGEROUS - don't remove too much!)
-    article_url = filterurl(article_url, '?utm')
+    article_url = filterurl(full_article_url, '?utm')
 
     if article_url in unique_urls:
         duplicate_article_ids.append(article_id)
+        duplicate_article_urls.append(full_article_url)
     else:
         unique_urls.add(article_url)
 
+if len(duplicate_article_ids) > 0:
 
+    print("Deleting duplicate articles from Pocket...")
+    delete_url = "https://getpocket.com/v3/send"
+    delete_data = {
+        "consumer_key": consumer_key,
+        "access_token": access_token,
+        "actions": [{"action": "delete", "item_id": article_id} for article_id in duplicate_article_ids]
+    }
+    
+    delete_response = requests.post(delete_url, json=delete_data)
+    
+    # Print the number of deleted duplicate articles
+    deleted_count = delete_response.json()["action_results"].count("deleted")
+    print(f"Deleted {deleted_count} duplicate articles.")
+    
+    for article_url in duplicate_article_urls:
+        print(article_url)
 
+else:
+    print("No duplicate articles!")
 
+# If necessary, I can update this to get the access token via script as follows:
+# https://gist.github.com/Mierdin/0996952ba02d87175f3b
+# https://gist.github.com/alexpyoung/7e241a8f3f805630f0f66a1cf0763675#file-pocket_import-L71
 
-
-
-
-
-
-
-
-
-# FIXME: Dump list of deleted urls to disk for inspection.
-
-
-# FIXME: If read article has duplicate in unread, delete the unread one!
-# FIXME: https://gist.github.com/Mierdin/0996952ba02d87175f3b
-# FIXME: https://gist.github.com/alexpyoung/7e241a8f3f805630f0f66a1cf0763675#file-pocket_import-L71
-# FIXME: Add urls to wayback machine.
+# Otherwise use this service: http://reader.fxneumann.de/plugins/oneclickpocket/auth.php
+    

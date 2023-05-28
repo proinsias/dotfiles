@@ -14,11 +14,10 @@ url = 'https://getpocket.com/v3/get'
 unique_urls = set()
 headers = {'X-Accept': 'application/json'}
 
-print('Retrieving the list of unread articles from Pocket...')
+print('Retrieving the list of archived and unread articles from Pocket...')
 data = {
     'consumer_key': consumer_key,
     'access_token': access_token,
-    'state': 'unread',  # Retrieve only unread articles
     'sort': 'newest',  # Sort articles by newest first
     'detailType': 'complete'  # Retrieve complete article details
 }
@@ -37,48 +36,39 @@ print('Loading articles from medium reading list data dump...')
 file_content = pathlib.Path('reading-list.html').read_text()
 soup = bs4.BeautifulSoup(file_content, 'html.parser')
 
-urls = []
-# Find all anchor tags with 'a' and class 'link' within the reading list
+data = {
+    "consumer_key": consumer_key,
+    "access_token": access_token,
+    "actions": []
+}
+
+# Find all anchor tags with 'a' within the reading list.
 for anchor_tag in soup.find_all('a'):
     url = anchor_tag.get('href')
-    urls.append(url)
+    if url not in unique_urls:
+        unique_urls.add(url)
+        action = {
+            "action": "add",
+            "url": url
+        }
+        data["actions"].append(action)
 
-# I need to figure out how to get the link the medium shorted url points to.
+# FIXME: I need to figure out how to get the link the medium shorted url points to. do i need to filter it? 
 
+# Batch add articles to Pocket. 
+url = "https://getpocket.com/v3/add"
 
-print('Removing duplicate unread articles based on URLs...')
-for article_id, article_data in articles.items():
-    full_article_url = article_data['given_url']
-    # Remove extra crap from URLS (DANGEROUS - don't remove too much!)
-    article_url = filterurl(full_article_url, '?utm')
+headers = {
+    "Content-Type": "application/json; charset=UTF-8",
+    "X-Accept": "application/json"
+}
 
-    if article_url in unique_urls:
-        duplicate_article_ids.append(article_id)
-        duplicate_article_urls.append(full_article_url)
-    else:
-        unique_urls.add(article_url)
+response = requests.post(url, headers=headers, json=data)
 
-if len(duplicate_article_ids) > 0:
-
-    print('Deleting duplicate articles from Pocket...')
-    delete_url = 'https://getpocket.com/v3/send'
-    delete_data = {
-        'consumer_key': consumer_key,
-        'access_token': access_token,
-        'actions': [{'action': 'delete', 'item_id': article_id} for article_id in duplicate_article_ids]
-    }
-
-    delete_response = requests.post(delete_url, json=delete_data)
-
-    # Print the number of deleted duplicate articles
-    deleted_count = delete_response.json()['action_results'].count('deleted')
-    print(f'Deleted {deleted_count} duplicate articles.')
-
-    for article_url in duplicate_article_urls:
-        print(article_url)
-
+if response.status_code == 200:
+    print("Articles successfully added to Pocket!")
 else:
-    print('No duplicate articles!')
+    print("Failed to add articles to Pocket.")
 
 # If necessary, I can update this to get the access token via script as follows:
 # https://gist.github.com/Mierdin/0996952ba02d87175f3b

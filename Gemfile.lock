@@ -2,12 +2,13 @@ GEM
   remote: https://rubygems.org/
   specs:
     Ascii85 (1.1.0)
-    addressable (2.8.4)
+    addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
     afm (0.2.2)
     ast (2.4.2)
-    async (2.5.0)
+    async (2.6.3)
       console (~> 1.10)
+      fiber-annotation
       io-event (~> 1.1)
       timers (~> 4.1)
     bundle-audit (0.1.0)
@@ -23,7 +24,8 @@ GEM
     colorator (1.1.0)
     colored2 (3.1.2)
     concurrent-ruby (1.1.10)
-    console (1.16.2)
+    console (1.21.0)
+      fiber-annotation
       fiber-local
     cork (0.3.0)
       colored2 (~> 3.1)
@@ -55,6 +57,7 @@ GEM
       faraday (>= 0.8)
     faraday-net_http (3.0.2)
     ffi (1.15.5)
+    fiber-annotation (0.2.0)
     fiber-local (1.0.0)
     forwardable-extended (2.6.0)
     fspath (3.1.2)
@@ -64,7 +67,7 @@ GEM
     google-protobuf (3.21.12)
     google-protobuf (3.21.12-x86_64-linux)
     hashery (2.1.2)
-    html-proofer (5.0.7)
+    html-proofer (5.0.8)
       addressable (~> 2.3)
       async (~> 2.1)
       nokogiri (~> 1.13)
@@ -90,7 +93,7 @@ GEM
       image_optim (~> 0.19)
     image_size (3.3.0)
     in_threads (1.6.0)
-    io-event (1.1.7)
+    io-event (1.2.3)
     jekyll (4.3.2)
       addressable (~> 2.4)
       colorator (~> 1.0)
@@ -145,7 +148,7 @@ GEM
       ruby-rc4
       ttfunk
     progress (3.6.0)
-    public_suffix (5.0.1)
+    public_suffix (5.0.3)
     racc (1.7.1)
     rainbow (3.1.1)
     rb-fsevent (0.11.2)
@@ -210,7 +213,7 @@ GEM
       rexml (~> 3.2)
     webrick (1.7.0)
     yell (2.2.2)
-    zeitwerk (2.6.7)
+    zeitwerk (2.6.11)
 
 PLATFORMS
   arm64-darwin-21

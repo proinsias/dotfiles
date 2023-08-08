@@ -697,7 +697,7 @@ esac
 # Startup output commands
 
 # shellcheck disable=SC2065
-if ping -c 1 google.com >/dev/null 2>&1; then  # Are we online?
+if ping -c 1 google.com >/dev/null 2>&1; then # Are we online?
     echo "Is the internet on fire?:"
     dig +short -t txt istheinternetonfire.com
 

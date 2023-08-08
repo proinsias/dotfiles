@@ -104,6 +104,7 @@ alias true="gtrue"
 #alias truncate="gtruncate"
 alias tsort="gtsort"
 #alias tty="gtty"
+alias tx='tmuxinator'
 alias uname="guname"
 #alias unexpand="gunexpand"
 alias uniq="guniq"

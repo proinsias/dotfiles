@@ -103,6 +103,7 @@ alias touch="gtouch"
 alias true="gtrue"
 #alias truncate="gtruncate"
 alias tsort="gtsort"
+alias tx='tmuxinator'
 #alias tty="gtty"
 alias uname="guname"
 #alias unexpand="gunexpand"

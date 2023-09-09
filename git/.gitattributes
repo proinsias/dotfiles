@@ -120,7 +120,7 @@ Makefile        text whitespace=-tab-in-indent,trailing-space,tabwidth=4
 *.py3           text
 *.pyw           text
 *.pyx           text
-*.ipynb         diff=jupyternotebook
+*.ipynb         diff=jupyternotebook merge=jupyternotebook
 
 # Binary files
 # ============

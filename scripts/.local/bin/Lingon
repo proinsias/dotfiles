@@ -91,10 +91,10 @@ else
     echo -e "\npre-commit-autoupdate not found!"
 fi 2>&1 | slackcat --channel builds --filename "pre-commit-autoupdate_${host}_${dt}.txt" --tee
 
-if type ~/favs/gh/dotfiles/bin/stow.sh >/dev/null 2>&1; then
+if type ~/favs/gh/dotfiles/install.sh >/dev/null 2>&1; then
     (
-        echo -e "\n~/favs/gh/dotfiles/bin/stow.sh:"
-        ~/favs/gh/dotfiles/bin/stow.sh
+        echo -e "\n~/favs/gh/dotfiles/install.sh:"
+        ~/favs/gh/dotfiles/install.sh
     ) 2>&1 | slackcat --channel builds --filename "stow_${host}_${dt}.txt" --tee
 fi
 
@@ -156,7 +156,7 @@ fi
 
 (
     echo -e "\nsoftwareupdate --list:"
-    softwareupdate --list
+    /usr/sbin/softwareupdate --list
 ) 2>&1 | slackcat --channel builds --filename "softwareupdate_${host}_${dt}.txt" --tee
 
 # shellcheck disable=SC2065

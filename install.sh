@@ -11,7 +11,7 @@ shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 if type stow >/dev/null 2>&1; then
-    cd "${SCRIPT_DIR}"/..
+    cd "${SCRIPT_DIR}"/
 
     mkdir -p "${HOME}/.local/bin"
 

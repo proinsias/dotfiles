@@ -18,6 +18,6 @@ echo "Linking dotfiles..."
 
 cd dotfiles/.
 
-./bin/stow.sh
+./install.sh
 
 echo "...done!"

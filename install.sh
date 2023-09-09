@@ -110,5 +110,8 @@ if type stow >/dev/null 2>&1; then
 
     cd -
 else
-    echo "Install stow using: brew install stow"
+    echo "Install stow using: "
+    echo "> brew install stow"
+    echo "or:"
+    echo "> sudo apt-get update --yes && sudo apt-get install stow --yes"
 fi

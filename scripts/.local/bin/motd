@@ -12,6 +12,7 @@ array=(
     "ctrl-r  # altuin switch filter modes"
     "!$  # get the last argument of the previous command"
     "!?foo  # repeat the most recent command that contained the string 'foo'"
+    "^WORD1^WORD2^  # repeat the last command replacing WORD1 with WORD2"
     "bat --show-all  # A cat clone with syntax highlighting and Git integration."
     "br  # a better way to navigate directories"
     "br -hsdp  # display sizes, dates and permissions, and include hidden files"

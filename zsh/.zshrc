@@ -746,3 +746,5 @@ export PATH
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 test -f "${HOME}"/.op/plugins.sh && source "${HOME}"/.op/plugins.sh
 test -f "${HOME}"/.config/op/plugins.sh && source "${HOME}"/.config/op/plugins.sh
+
+[ -f ~/.inshellisense/key-bindings.zsh ] && source ~/.inshellisense/key-bindings.zsh

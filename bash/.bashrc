@@ -131,6 +131,13 @@ fi
 # AWS bash completion
 complete -C aws_completer aws
 
+# git-town completion
+# shellcheck disable=SC2065
+if type git-town >/dev/null 2>&1; then
+    OUTPUT="$(git town completions bash)"
+    eval "${OUTPUT}"
+fi
+
 # tab completion for conda
 # shellcheck disable=SC2065
 if type conda >/dev/null 2>&1; then

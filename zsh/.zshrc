@@ -457,6 +457,13 @@ if ! test -f "${ZSH_CUSTOM}/plugins/poetry/_poetry" &>/dev/null; then
         "poetry completions zsh > ${ZSH_CUSTOM}/plugins/poetry/_poetry"
 fi
 
+## tab completion for git-town
+# shellcheck disable=SC2065,SC2154
+if ! test -f "${ZSH_CUSTOM}/plugins/git-town/_git-town" &>/dev/null; then
+    echo "Install git town completions using: mkdir ${ZSH_CUSTOM}/plugins/git-town &&" \
+        "git-town completions zsh > ${ZSH_CUSTOM}/plugins/git-town/_git-town"
+fi
+
 ## AWS bash completion
 complete -C aws_completer aws
 
@@ -729,6 +736,8 @@ if type motd >/dev/null 2>&1; then
     motd
 fi
 
+# [ -f ~/.inshellisense/key-bindings.zsh ] && source ~/.inshellisense/key-bindings.zsh
+
 echo
 
 # Deduplicate PATH variable
@@ -746,5 +755,3 @@ export PATH
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 test -f "${HOME}"/.op/plugins.sh && source "${HOME}"/.op/plugins.sh
 test -f "${HOME}"/.config/op/plugins.sh && source "${HOME}"/.config/op/plugins.sh
-
-[ -f ~/.inshellisense/key-bindings.zsh ] && source ~/.inshellisense/key-bindings.zsh

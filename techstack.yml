@@ -1,11 +1,11 @@
 repo_name: proinsias/dotfiles
-report_id: '08a9d9d9320615eb13fe89ea08965caf'
+report_id: 740eef21abc8530e99e6f5167c7b4f54
 repo_type: Public
-timestamp: '2023-11-13T01:28:24+00:00'
+timestamp: '2023-12-14T10:34:11+00:00'
 requested_by: proinsias
 provider: github
 branch: master
-detected_tools_count: 19
+detected_tools_count: 22
 tools:
 - name: Python
   description: A clear and powerful object-oriented programming language, comparable
@@ -27,6 +27,15 @@ tools:
   sub_category: Languages
   image_url: https://img.stackshare.io/service/989/ruby.png
   detection_source: Repo Metadata
+- name: pgvector
+  description: Open-source vector similarity search for Postgres
+  website_url: https://github.com/pgvector/pgvector/
+  open_source: false
+  hosted_saas: false
+  category: Data Stores
+  sub_category: Database Tools
+  image_url: https://img.stackshare.io/service/109221/default_b888cdf5617d936aa6aacf130911906955508639.png
+  detection_source: project-words.txt
 - name: Bundler
   description: 'A consistent environment for tracking and installing  gems and versions '
   website_url: http://bundler.io
@@ -41,11 +50,13 @@ tools:
 - name: Git
   description: Fast, scalable, distributed revision control system
   website_url: http://git-scm.com/
+  version: 1.18.0
   open_source: true
   hosted_saas: false
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/proinsias/dotfiles/blob/master/Gemfile.lock
   detection_source: Repo Metadata
 - name: GitHub Actions
   description: Automate your workflow from idea to production
@@ -55,9 +66,9 @@ tools:
   category: Build, Test, Deploy
   sub_category: Continuous Integration
   image_url: https://img.stackshare.io/service/11563/actions.png
-  detection_source: ".github/workflows/mega-linter.yml"
-  last_updated_by: Francis T. O'Donovan
-  last_updated_on: 2022-06-05 02:41:44.000000000 Z
+  detection_source: ".github/workflows/languagetool.yml"
+  last_updated_by: dependabot[bot]
+  last_updated_on: 2023-09-11 11:09:19.000000000 Z
 - name: RSpec
   description: Behaviour Driven Development for Ruby
   website_url: https://rspec.info/
@@ -68,21 +79,21 @@ tools:
   category: Build, Test, Deploy
   sub_category: Testing Frameworks
   image_url: https://img.stackshare.io/service/2539/logo.png
-  detection_source_url: Gemfile.lock
+  detection_source_url: https://github.com/proinsias/dotfiles/blob/master/Gemfile.lock
   detection_source: Gemfile
   last_updated_by: Francis T. O'Donovan
   last_updated_on: 2017-09-22 16:27:15.000000000 Z
 - name: RuboCop
   description: A Ruby static code analyzer, based on the community Ruby style guide
   website_url: http://batsov.com/rubocop/
-  version: 1.56.2
+  version: 1.57.2
   license: MIT
   open_source: true
   hosted_saas: false
   category: Build, Test, Deploy
   sub_category: Code Review
   image_url: https://img.stackshare.io/service/2643/rubocop.png
-  detection_source_url: Gemfile.lock
+  detection_source_url: https://github.com/proinsias/dotfiles/blob/master/Gemfile.lock
   detection_source: Gemfile
   last_updated_by: Francis T. O'Donovan
   last_updated_on: 2017-09-22 16:27:15.000000000 Z
@@ -107,10 +118,19 @@ tools:
   category: Application Utilities
   sub_category: Static Site Generators
   image_url: https://img.stackshare.io/service/1114/ad968c1615d956e800fa36494314f48c.jpeg
-  detection_source_url: Gemfile.lock
+  detection_source_url: https://github.com/proinsias/dotfiles/blob/master/Gemfile.lock
   detection_source: Gemfile
   last_updated_by: Francis T. O'Donovan
   last_updated_on: 2017-09-22 16:27:15.000000000 Z
+- name: LangChain
+  description: Build AI apps with LLMs through composability
+  website_url: https://github.com/hwchase17/langchain
+  open_source: true
+  hosted_saas: false
+  category: Communications
+  sub_category: Large Language Model Tools
+  image_url: https://img.stackshare.io/service/48790/default_5b6c6b73f1ff3775c85d2a1ba954cb87e30cbf13.jpg
+  detection_source: project-words.txt
 - name: Shell
   description: A shell is a text-based terminal, used for manipulating programs and
     files. Shell scripts typically manage program execution.
@@ -131,28 +151,28 @@ tools:
 - name: danger
   description: Stop Saying 'You Forgot To…' in Code Review
   package_url: https://rubygems.org/danger
-  version: 9.3.1
+  version: 9.3.2
   license: MIT
   open_source: true
   hosted_saas: false
   category: Libraries
   sub_category: RubyGems Packages
   image_url: https://img.stackshare.io/package/19531/default_613f4a81e068e079bd9a85743fffda50ec58cc62.png
-  detection_source_url: Gemfile.lock
+  detection_source_url: https://github.com/proinsias/dotfiles/blob/master/Gemfile.lock
   detection_source: Gemfile
   last_updated_by: Francis T. O'Donovan
   last_updated_on: 2018-01-04 05:15:19.000000000 Z
 - name: html-proofer
   description: Test your rendered HTML files to make sure they're accurate
   package_url: https://rubygems.org/html-proofer
-  version: 5.0.7
+  version: 5.0.8
   license: MIT
   open_source: true
   hosted_saas: false
   category: Libraries
   sub_category: RubyGems Packages
   image_url: https://img.stackshare.io/package/19495/default_8a79db3626c57c6bb46227c448ffd01861613398.png
-  detection_source_url: Gemfile.lock
+  detection_source_url: https://github.com/proinsias/dotfiles/blob/master/Gemfile.lock
   detection_source: Gemfile
   last_updated_by: Francis T. O'Donovan
   last_updated_on: 2017-09-22 16:27:15.000000000 Z
@@ -166,7 +186,21 @@ tools:
   category: Libraries
   sub_category: RubyGems Packages
   image_url: https://img.stackshare.io/package/19798/default_5acb201e8340ca5b337b8c46c2fcaff7aa0db0ec.png
-  detection_source_url: Gemfile.lock
+  detection_source_url: https://github.com/proinsias/dotfiles/blob/master/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: Francis T. O'Donovan
+  last_updated_on: 2017-09-22 16:27:15.000000000 Z
+- name: image_optim_pack
+  description: 'Precompiled binaries for image_optim: advpng'
+  package_url: https://rubygems.org/image_optim_pack
+  version: 0.9.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: RubyGems Packages
+  image_url: https://img.stackshare.io/package/rubygems/image.png
+  detection_source_url: https://github.com/proinsias/dotfiles/blob/master/Gemfile.lock
   detection_source: Gemfile
   last_updated_by: Francis T. O'Donovan
   last_updated_on: 2017-09-22 16:27:15.000000000 Z
@@ -180,21 +214,21 @@ tools:
   category: Libraries
   sub_category: RubyGems Packages
   image_url: https://img.stackshare.io/package/18822/default_19184669508c0f71aec9521d5f14d71b77203130.png
-  detection_source_url: Gemfile.lock
+  detection_source_url: https://github.com/proinsias/dotfiles/blob/master/Gemfile.lock
   detection_source: Gemfile
   last_updated_by: Francis T. O'Donovan
   last_updated_on: 2017-09-22 16:27:15.000000000 Z
 - name: nokogiri
   description: Nokogiri
   package_url: https://rubygems.org/nokogiri
-  version: 1.15.3
+  version: 1.15.4
   license: MIT
   open_source: true
   hosted_saas: false
   category: Libraries
   sub_category: RubyGems Packages
   image_url: https://img.stackshare.io/package/18823/default_b8fbb83e23c963442e15398c5b56262cc6267d6f.png
-  detection_source_url: Gemfile.lock
+  detection_source_url: https://github.com/proinsias/dotfiles/blob/master/Gemfile.lock
   detection_source: Gemfile
   last_updated_by: Francis T. O'Donovan
   last_updated_on: 2022-04-19 15:15:26.000000000 Z
@@ -202,14 +236,14 @@ tools:
   description: A collection of RuboCop cops to check for performance optimizations
     in Ruby code
   package_url: https://rubygems.org/rubocop-performance
-  version: 1.18.0
+  version: 1.19.1
   license: MIT
   open_source: true
   hosted_saas: false
   category: Libraries
   sub_category: RubyGems Packages
   image_url: https://img.stackshare.io/package/19003/default_ed0106f3a65a9fdb4ffde124a531663be2de70ba.png
-  detection_source_url: Gemfile.lock
+  detection_source_url: https://github.com/proinsias/dotfiles/blob/master/Gemfile.lock
   detection_source: Gemfile
   last_updated_by: Francis T. O'Donovan
   last_updated_on: 2019-05-13 16:12:28.000000000 Z
@@ -223,7 +257,7 @@ tools:
   category: Libraries
   sub_category: RubyGems Packages
   image_url: https://img.stackshare.io/package/19126/default_8cdfa50e17bca4b467d6718a237904b98923651a.png
-  detection_source_url: Gemfile.lock
+  detection_source_url: https://github.com/proinsias/dotfiles/blob/master/Gemfile.lock
   detection_source: Gemfile
   last_updated_by: Francis T. O'Donovan
   last_updated_on: 2018-01-04 05:15:19.000000000 Z
@@ -238,7 +272,7 @@ tools:
   category: Libraries
   sub_category: RubyGems Packages
   image_url: https://img.stackshare.io/package/19548/default_ec75fa516f46db70c375f72ac2df9cefa613aece.png
-  detection_source_url: Gemfile.lock
+  detection_source_url: https://github.com/proinsias/dotfiles/blob/master/Gemfile.lock
   detection_source: Gemfile
   last_updated_by: Francis T. O'Donovan
   last_updated_on: 2017-09-22 16:27:15.000000000 Z

@@ -1,19 +1,13 @@
 [credential]
     helper = osxkeychain
+[git-town]
+    # Can't put this in included file.
+    ship-delete-remote-branch = false
+    sync-before-ship = true
+    sync-feature-strategy = rebase
 [include]
     path = ~/.gitconfig.include
 [user]
     name = "Francis T. O'Donovan"
     email = proinsias@users.noreply.github.com
     signingkey = 74B07AE5FFB55BFC2FB8B25E8DBE5F9A6519D396
-[alias]
-	append = town append
-	diff-parent = town diff-parent
-	hack = town hack
-	kill = town kill
-	new-pull-request = town new-pull-request
-	prepend = town prepend
-	rename-branch = town rename-branch
-	repo = town repo
-	ship = town ship
-	sync = town sync

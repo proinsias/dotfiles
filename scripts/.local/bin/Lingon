@@ -50,7 +50,7 @@ fi
 
 if type topgrade >/dev/null 2>&1; then
     echo -e "\topgrade:"
-    topgrade --cleanup --disable gcloud system --no-retry --yes
+    topgrade --cleanup --disable gcloud system tlmgr --no-retry --yes
 else
     echo -e "\topgrade not found!"
 fi 2>&1 | slackcat --channel builds --filename "topgrade_${host}_${dt}.txt" --tee

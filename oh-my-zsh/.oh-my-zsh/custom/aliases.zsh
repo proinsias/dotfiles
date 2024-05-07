@@ -51,7 +51,7 @@ alias kill="gkill"
 alias ln="gln"
 #alias logname="glogname"
 #alias ls='gls --almost-all --classify --human-readable --color --quote-name -v' # natural sort
-alias ls='exa --all --classify --color=always --color-scale --icons' # Natural sort by default.
+alias ls='eza --all --classify --color=always --color-scale --icons' # Natural sort by default.
 alias md5sum="gmd5sum"
 alias mkdir="gmkdir"
 #alias mkfifo="gmkfifo"

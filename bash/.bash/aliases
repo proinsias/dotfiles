@@ -84,8 +84,8 @@ else
 
 fi
 
-if type exa >/dev/null 2>&1; then
-    alias ls='exa --all --classify --color=always --color-scale --icons'  # Natural sort by default.
+if type eza >/dev/null 2>&1; then
+    alias ls='eza --all --classify --color=always --color-scale --icons'  # Natural sort by default.
 fi
 
 # main aliases

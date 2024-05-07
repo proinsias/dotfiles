@@ -1,5 +1,8 @@
 # User dependent .zshrc file
 
+# If not running interactively, stop here.
+[[ -o interactive ]] && return
+
 # Umask
 #
 # /etc/profile sets 022, removing write perms to group + others.

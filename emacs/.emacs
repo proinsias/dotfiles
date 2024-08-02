@@ -10,7 +10,7 @@
  '(sh-basic-offset 2)
  '(show-paren-mode t)
  '(tex-dvi-view-command "xdvi")
- '(transient-mark-mode (quote (only . t))))
+ '(transient-mark-mode (quote (only . t)))
  '(package-selected-packages '(use-package)))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -145,8 +145,8 @@
 
 (setq debug-on-error t)
 
-(let ((default-directory "/usr/local/share/emacs/site-lisp/"))
-  (normal-top-level-add-subdirs-to-load-path))
+;(let ((default-directory "/usr/local/share/emacs/site-lisp/"))
+;  (normal-top-level-add-subdirs-to-load-path))
 
 ; (condition-case nil
 ;   (require 'git-messenger)
@@ -257,13 +257,13 @@
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
-(use-package auto-package-update
-  :config
-  (setq auto-package-update-delete-old-versions t)
-  (setq auto-package-update-hide-results t)
-  (auto-package-update-maybe))
-(use-package python-black
-  :demand t
-  :after python
-  :hook (python-mode . python-black-on-save-mode-enable-dwim)
-)
+;(use-package auto-package-update
+;  :config
+;  (setq auto-package-update-delete-old-versions t)
+;  (setq auto-package-update-hide-results t)
+;  (auto-package-update-maybe))
+;(use-package python-black
+;  :demand t
+;  :after python
+;  :hook (python-mode . python-black-on-save-mode-enable-dwim)
+;)

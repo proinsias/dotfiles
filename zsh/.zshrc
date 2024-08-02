@@ -1,7 +1,8 @@
 # User dependent .zshrc file
 
 # If not running interactively, stop here.
-[[ -o interactive ]] && return
+# FIXME: Doesn't work ?!
+# [[ -o interactive ]] && return
 
 # Umask
 #
@@ -84,8 +85,11 @@ unsetopt beep          # be quiet!
 setopt combining_chars # combine zero-length punctuation characters (accents) with the base character
 setopt emacs           # use emacs keybindings in the shell
 
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
-export ZSH="${HOME}/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -305,6 +309,9 @@ export GOROOT="${HOMEBREW_PREFIX}/opt/go/libexec"
 OUTPUT="$(tty)"
 export GPG_TTY="${OUTPUT}"
 
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
 ### os-specific exports
 
 case $(uname -s) in
@@ -411,6 +418,9 @@ fi
 
 #### Add homebrew's GNU findutils to PATH:
 #export PATH="${HOMEBREW_PREFIX}/opt/findutils/bin${PATH:+:${PATH}}"
+
+#### PyCharm
+test -d "/Applications/PyCharm CE.app/Contents/MacOS" && export PATH="/Applications/PyCharm CE.app/Contents/MacOS${PATH:+:${PATH}}"
 
 #### Ccache
 export PATH="${HOMEBREW_PREFIX}/opt/ccache/libexec:${PATH}"

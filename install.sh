@@ -6,7 +6,6 @@ set -o noclobber              # Don't allow overwriting files.
 set -o nounset                # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
 set -o pipefail               # Produce a failure return code if any pipeline command errors.
 shopt -s failglob             # Cause globs that don't get expanded to cause errors.
-shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
@@ -68,14 +67,18 @@ if type stow >/dev/null 2>&1; then
         zsh
 
     case $(hostname -s) in
-    "ilovemovies")
-        stow --target="${HOME}" \
-            ilovemovies-gitconfig
-        ;;
     "francis-odonovan-macbook")
         stow --target="${HOME}" \
             francis-odonovan-macbook-atuin \
             francis-odonovan-macbook-gitconfig
+        ;;
+    "mercury")
+        stow --target="${HOME}" \
+            mercury-gitconfig
+        ;;
+    "ilovemovies")
+        stow --target="${HOME}" \
+            ilovemovies-gitconfig
         ;;
     *)
         stow --target="${HOME}" \

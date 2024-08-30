@@ -14,6 +14,7 @@
 alias basename="gbasename"
 #alias cat="gcat"
 alias cat="mog"
+alias charm="pycharm"
 #alias chcon="gchcon"
 alias chgrp="gchgrp"
 alias chmod="gchmod"

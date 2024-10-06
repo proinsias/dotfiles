@@ -50,7 +50,7 @@ fi
 
 if type topgrade >/dev/null 2>&1; then
     echo -e "\topgrade:"
-    topgrade --cleanup --disable gcloud system tlmgr --no-retry --yes
+    topgrade --cleanup --disable gcloud mas system tlmgr --no-retry --yes
 else
     echo -e "\topgrade not found!"
 fi 2>&1 | slackcat --channel builds --filename "topgrade_${host}_${dt}.txt" --tee
@@ -88,12 +88,12 @@ else
     echo -e "\nbrew not found!"
 fi 2>&1 | slackcat --channel builds --filename "brew_outdated_${host}_${dt}.txt" --tee
 
-if type mas >/dev/null 2>&1; then
-    (
-        echo -e "\nmas outdated:"
-        mas outdated
-    ) 2>&1 | slackcat --channel builds --filename "mas_outdated_${host}_${dt}.txt" --tee
-fi
+# if type mas >/dev/null 2>&1; then
+#     (
+#         echo -e "\nmas outdated:"
+#         mas outdated
+#     ) 2>&1 | slackcat --channel builds --filename "mas_outdated_${host}_${dt}.txt" --tee
+# fi
 
 if type gcloud >/dev/null 2>&1; then
     (

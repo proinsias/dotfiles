@@ -13,7 +13,7 @@
 #alias base64="gbase64"
 alias basename="gbasename"
 #alias cat="gcat"
-alias cat="mog"
+alias cat="mog --followsymlinks"
 alias charm="pycharm"
 #alias chcon="gchcon"
 alias chgrp="gchgrp"

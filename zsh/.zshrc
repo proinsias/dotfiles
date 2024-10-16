@@ -425,6 +425,12 @@ test -d "/Applications/PyCharm CE.app/Contents/MacOS" && export PATH="/Applicati
 #### Ccache
 export PATH="${HOMEBREW_PREFIX}/opt/ccache/libexec:${PATH}"
 
+#### doomemacs
+export PATH="${HOME}/.emacs.d/bin:${PATH}"
+
+#### gnu grep
+export PATH="/opt/homebrew/opt/grep/libexec/gnubin:${PATH}"
+
 #### Go lang.
 export PATH="${PATH}:${GOPATH}/bin"
 export PATH="${PATH}:${GOROOT}/bin"
@@ -519,8 +525,12 @@ fi
 ## pipx (https://github.com/pipxproject/pipx)
 # shellcheck disable=SC2065
 if type pipx >/dev/null 2>&1; then
-    OUTPUT="$(register-python-argcomplete pipx)"
-    eval "${OUTPUT}"
+    if type register-python-argcomplete >/dev/null 2>&1; then
+        OUTPUT="$(register-python-argcomplete pipx)"
+        eval "${OUTPUT}"
+    else
+        echo "Install register-python-argcomplete using: pipx install argcomplete"
+    fi
 else
     echo "Install pipx using: brew install pipx"
 fi

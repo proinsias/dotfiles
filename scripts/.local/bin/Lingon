@@ -99,7 +99,7 @@ update_all() {
             echo -e "\n~/favs/gh/mac-playbook:"
             cd ~/favs/gh/mac-playbook || exit
 
-            ansible-playbook main.yml --inventory inventory --tags "personal"
+            ansible-playbook main.yml --inventory inventory --ask-become-pass
 
             cd - || exit
         fi

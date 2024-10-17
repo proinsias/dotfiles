@@ -73,7 +73,7 @@ if type stow >/dev/null 2>&1; then
             francis-odonovan-macbook-atuin \
             francis-odonovan-macbook-gitconfig
         ;;
-    "Mercury")
+    "mercury")
         stow --target="${HOME}" \
             mercury-gitconfig
         ;;

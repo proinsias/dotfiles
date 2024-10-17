@@ -205,6 +205,14 @@ plugins=(
     zsh-syntax-highlighting
 )
 
+#### devbox
+if type devbox >/dev/null >&1; then
+    OUTPUT="$(devbox global shellenv --init-hook)"
+    eval "${OUTPUT}"
+else
+    echo "Install devbox!"
+fi
+
 # For homebrew
 # Adds $HOMEBREW_PREFIX/bin as prefix to PATH.
 case $(uname -s) in
@@ -655,14 +663,6 @@ if type starship >/dev/null 2>&1; then
     eval "${OUTPUT}"
 else
     echo "Install starship using: brew install starship"
-fi
-
-#### devbox
-if type devbox >/dev/null >&1; then
-    OUTPUT="$(devbox global shellenv --init-hook)"
-    eval "${OUTPUT}"
-else
-    echo "Install devbox!"
 fi
 
 # ## http://direnv.net/

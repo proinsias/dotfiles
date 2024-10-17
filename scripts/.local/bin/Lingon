@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2312
 
+# FIXME: https://nix.dev/tutorials/first-steps/reproducible-scripts.html
+
+# shellcheck source=/Users/ftod/.env
+source ~/.env
+
 # Intel homebrew
 test -f /usr/local/bin/brew && SHELLENV="$(/usr/local/bin/brew shellenv)" && eval "${SHELLENV}"
 # M1 home-brew. Do second in case we are also using Intel via Rosetta.
@@ -25,108 +30,84 @@ export PATH
 DEBIAN_FRONTEND="noninteractive"
 export DEBIAN_FRONTEND
 
-if type apt-get >/dev/null 2>&1; then
-    (
+update_all() {
+    if type apt-get >/dev/null 2>&1; then
         echo -e "\apt-get update:"
         apt-get update --yes
         echo -e "\apt-get upgrade:"
         apt-get upgrade --yes
-    ) 2>&1 | slackcat --channel builds --filename "apt-get_${host}_${dt}.txt" --tee
-fi
+    fi
 
-if type pre-commit-autoupdate >/dev/null 2>&1; then
-    echo -e "\npre-commit-autoupdate:"
-    pre-commit-autoupdate
-else
-    echo -e "\npre-commit-autoupdate not found!"
-fi 2>&1 | slackcat --channel builds --filename "pre-commit-autoupdate_${host}_${dt}.txt" --tee
+    if type pre-commit-autoupdate >/dev/null 2>&1; then
+        echo -e "\npre-commit-autoupdate:"
+        pre-commit-autoupdate
+    else
+        echo -e "\npre-commit-autoupdate not found!"
+    fi
 
-if type ~/favs/gh/dotfiles/install.sh >/dev/null 2>&1; then
-    (
-        echo -e "\n~/favs/gh/dotfiles/install.sh:"
-        ~/favs/gh/dotfiles/install.sh
-    ) 2>&1 | slackcat --channel builds --filename "stow_${host}_${dt}.txt" --tee
-fi
+    if type topgrade >/dev/null 2>&1; then
+        echo -e "\topgrade:"
 
-if type topgrade >/dev/null 2>&1; then
-    echo -e "\topgrade:"
-    topgrade --cleanup --disable gcloud mas system tlmgr --no-retry --yes
-else
-    echo -e "\topgrade not found!"
-fi 2>&1 | slackcat --channel builds --filename "topgrade_${host}_${dt}.txt" --tee
+        topgrade --cleanup --no-retry --yes --disable certbot gcloud gitrepos mas nix system tlmgr uv
+    else
+        echo -e "\topgrade not found!"
+    fi
 
-if type pyenv >/dev/null 2>&1; then
-    # Need to run this after upgrading pyenv via brew.
-    echo -e "\npyenv rehash:"
-    pyenv rehash
-else
-    echo -e "\npyenv not found!"
-fi 2>&1 | slackcat --channel builds --filename "pyenv_${host}_${dt}.txt" --tee
+    if type ~/GitHub/dotfiles/install.sh >/dev/null 2>&1; then
+        (
+            echo -e "\ndotfiles/install.sh:"
+            ~/GitHub/dotfiles/install.sh
+        )
+    fi
 
-if type uncommitted-francis >/dev/null 2>&1; then
-    echo -e "\nuncommitted-francis:"
-    uncommitted-francis "${HOME}"
-else
-    echo -e "\nuncommitted-francis not found!"
-fi 2>&1 | slackcat --channel builds --filename "uncommitted_${host}_${dt}.txt" --tee
+    if type uncommitted-francis >/dev/null 2>&1; then
+        echo -e "\nuncommitted-francis:"
+        uncommitted-francis "${HOME}"
+    else
+        echo -e "\nuncommitted-francis not found!"
+    fi
 
-if type build-docker >/dev/null 2>&1; then
-    build-docker 2>&1 | slackcat --channel builds --filename "build-docker_${host}_${dt}.txt" --tee
-fi
+    if type docker-cleanup >/dev/null 2>&1; then
+        docker-cleanup
+    fi
 
-if type docker-cleanup >/dev/null 2>&1; then
-    docker-cleanup 2>&1 | slackcat --channel builds --filename "docker-cleanup_${host}_${dt}.txt" --tee
-fi
+    if type apt-get >/dev/null 2>&1; then
+        apt list --upgradeable
+    fi
 
-if type apt-get >/dev/null 2>&1; then
-    apt list --upgradeable 2>&1 | slackcat --channel builds --filename "apt_upgradeable_${host}_${dt}.txt" --tee
-fi
+    if type brew >/dev/null 2>&1; then
+        brew outdated
+    else
+        echo -e "\nbrew not found!"
+    fi
 
-if type brew >/dev/null 2>&1; then
-    brew outdated
-else
-    echo -e "\nbrew not found!"
-fi 2>&1 | slackcat --channel builds --filename "brew_outdated_${host}_${dt}.txt" --tee
-
-# if type mas >/dev/null 2>&1; then
-#     (
-#         echo -e "\nmas outdated:"
-#         mas outdated
-#     ) 2>&1 | slackcat --channel builds --filename "mas_outdated_${host}_${dt}.txt" --tee
-# fi
-
-if type gcloud >/dev/null 2>&1; then
-    (
+    if type gcloud >/dev/null 2>&1; then
         echo -e "\ngcloud components list 2>&1 | grep \"Update Available\":"
         # shellcheck disable=SC2312
         gcloud components list 2>&1 | grep "Update Available"
         # To upgrade, run: `sudo gcloud components update --quiet`.
-    ) 2>&1 | slackcat --channel builds --filename "gcloud_outdated_${host}_${dt}.txt" --tee
-fi
+    fi
 
-(
-    echo -e "\nsoftwareupdate --list:"
-    /usr/sbin/softwareupdate --list
-) 2>&1 | slackcat --channel builds --filename "softwareupdate_${host}_${dt}.txt" --tee
+    if [ "${-#*i}" == "$-" ]; then
+        if type topgrade >/dev/null 2>&1; then
+            echo -e "\topgrade interactive:"
+            topgrade --cleanup --only certbot gcloud nix system tlmgr --no-retry --yes
+        fi
 
-# shellcheck disable=SC2065
-if test -d ~/favs/gh/mac-playbook >/dev/null 2>&1; then
-    (
-        echo -e "\n~/favs/gh/mac-playbook:"
-        cd ~/favs/gh/mac-playbook || exit
+        # shellcheck disable=SC2065
+        if test -d ~/favs/gh/mac-playbook >/dev/null 2>&1; then
+            echo -e "\n~/favs/gh/mac-playbook:"
+            cd ~/favs/gh/mac-playbook || exit
 
-        case $(hostname -s) in
-        "ilovemovies")
-            ansible-playbook main.yml --inventory inventory --skip-tags "become" --tags "personal"
-            ;;
-        # "francis-odonovan-macbook")
-        #     ansible-playbook main.yml --inventory inventory --skip-tags "become"
-        #     ;;
-        *)
-            #  ansible-playbook main.yml --inventory inventory --skip-tags "become" --tags "personal"
-            ;;
-        esac
+            ansible-playbook main.yml --inventory inventory --tags "personal"
 
-        cd - || exit
-    ) 2>&1 | slackcat --channel builds --filename "mac-playbook_${host}_${dt}.txt" --tee
-fi
+            cd - || exit
+        fi
+
+    fi
+
+}
+
+pop <<<"$(update_all)" \
+    --to "${POP_TO}" \
+    --subject "update_all_${host}_${dt}.txt"

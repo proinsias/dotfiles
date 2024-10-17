@@ -42,6 +42,7 @@ if type stow >/dev/null 2>&1; then
         ksh \
         mog \
         neofetch \
+        nix \
         npm \
         oh-my-zsh \
         pet \

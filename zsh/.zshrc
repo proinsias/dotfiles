@@ -457,7 +457,6 @@ fi
 if [[ -d "${HOME}/.ubuntu/bin" ]]; then
     export PATH="${PATH:+${PATH}:}${HOME}/.ubuntu/bin"
 fi
-
 # If not running interactively, stop here
 [[ "$-" != *i* ]] && return
 # Use the generic form above instead of this PyCHarm/IntelliJ-specific way.
@@ -656,6 +655,14 @@ if type starship >/dev/null 2>&1; then
     eval "${OUTPUT}"
 else
     echo "Install starship using: brew install starship"
+fi
+
+#### devbox
+if type devbox >/dev/null >&1; then
+    OUTPUT="$(devbox global shellenv --init-hook)"
+    eval "${OUTPUT}"
+else
+    echo "Install devbox!"
 fi
 
 # ## http://direnv.net/

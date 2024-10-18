@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash --pure
+#! nix-shell -p bash coreutils gnugrep gnused
+
 # Usage: rbenv doctor
 # Summary: Detects common problems in rbenv installation
 # https://raw.githubusercontent.com/rbenv/rbenv-installer/c48a208257bac582a70f6a3b0c575a5054b9f938/bin/rbenv-doctor
@@ -50,7 +53,8 @@ echo -n "Checking for \`rbenv' in PATH: "
 num_locations="$(which -a rbenv | uniq | wc -l)"
 if [ $num_locations -eq 0 ]; then
   printc red "not found\n"
-  { if [ -x ~/.rbenv/bin/rbenv ]; then
+  {
+    if [ -x ~/.rbenv/bin/rbenv ]; then
       echo "You seem to have rbenv installed in \`$HOME/.rbenv/bin', but that"
       echo "directory is not present in PATH. Please add it to PATH by configuring"
       echo "your \`~/${bashrc}', \`~/.zshrc', or \`~/.config/fish/config.fish'."
@@ -63,7 +67,8 @@ elif [ $num_locations -eq 1 ]; then
   printc green "%s\n" "$(which rbenv)"
 else
   printc yellow "multiple\n"
-  { echo "You seem to have multiple rbenv installs in the following locations."
+  {
+    echo "You seem to have multiple rbenv installs in the following locations."
     echo "Please pick just one installation and remove the others."
     echo
     which -a rbenv
@@ -87,7 +92,8 @@ if [ -n "$found" ]; then
   printc green "OK\n"
 else
   printc red "not found\n"
-  { echo "The directory \`$shims_dir' must be present in PATH for rbenv to work."
+  {
+    echo "The directory \`$shims_dir' must be present in PATH for rbenv to work."
     echo "Please run \`rbenv init' and follow the instructions."
   } | indent
   echo
@@ -95,13 +101,15 @@ else
 fi
 
 echo -n "Checking \`rbenv install' support: "
-rbenv_installs="$({ ls "$RBENV_ROOT"/plugins/*/bin/rbenv-install 2>/dev/null || true
-                    which -a rbenv-install || true
-                  } | uniq)"
+rbenv_installs="$({
+  ls "$RBENV_ROOT"/plugins/*/bin/rbenv-install 2>/dev/null || true
+  which -a rbenv-install || true
+} | uniq)"
 num_installs="$(wc -l <<<"$rbenv_installs")"
 if [ $num_installs -eq 0 ]; then
   printc red "not found\n"
-  { echo "Unless to plan to add Ruby versions manually, you should install ruby-build."
+  {
+    echo "Unless to plan to add Ruby versions manually, you should install ruby-build."
     echo "Please refer to https://github.com/rbenv/ruby-build#installation"
   }
   echo
@@ -117,7 +125,8 @@ elif [ $num_installs -eq 1 ]; then
   printf " (%s)\n" "$rbenv_install_version"
 else
   printc yellow "multiple\n"
-  { echo "You seem to have multiple \`rbenv-install' in the following locations."
+  {
+    echo "You seem to have multiple \`rbenv-install' in the following locations."
     echo "Please pick just one installation and remove the others."
     echo
     echo "$rbenv_installs"
@@ -153,18 +162,18 @@ done
 echo -n "Auditing installed plugins: "
 OLDIFS="$IFS"
 IFS=$'\n'
-hooks=(`rbenv hooks exec`)
+hooks=($(rbenv hooks exec))
 IFS="$OLDIFS"
 plugin_broken=0
 for hook in "${hooks[@]}"; do
   plugin_name=
   message=
   case "$hook" in
-  */"~gem-rehash.bash" )
+  */"~gem-rehash.bash")
     plugin_name=rbenv-gem-rehash
     message="functionality is now included in rbenv core. Please remove the plugin."
     ;;
-  */"bundler.bash" )
+  */"bundler.bash")
     plugin_name=rbenv-bundler
     message="is considered harmful. Please remove the plugin and \`rm -rf \$(rbenv root)/shims && rbenv rehash'."
     ;;
@@ -172,7 +181,8 @@ for hook in "${hooks[@]}"; do
 
   if [ -n "$plugin_name" ]; then
     [ "$((plugin_broken++))" -gt 0 ] || printc yellow "warning\n"
-    { printc bright "$plugin_name"
+    {
+      printc bright "$plugin_name"
       echo " $message"
       echo "  (found in \`${hook}')"
     } | indent

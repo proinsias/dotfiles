@@ -1,9 +1,5 @@
 # User dependent .zshrc file
 
-# If not running interactively, stop here.
-# FIXME: Doesn't work ?!
-# [[ -o interactive ]] && return
-
 # Umask
 #
 # /etc/profile sets 022, removing write perms to group + others.
@@ -232,20 +228,22 @@ case $(uname -s) in
 *) ;;
 esac
 
-# Completion setup before loading Oh My Zsh.
+if [ "${-#*i}" == "$-"]; then
+    # Completion setup before loading Oh My Zsh.
 
-## tab completion for npm
-# shellcheck disable=SC2065,SC2154
-if ! test -f "${HOMEBREW_PREFIX}/share/zsh-completions/_npm" &>/dev/null; then
-    npm completion >"${HOMEBREW_PREFIX}/share/zsh-completions/_npm"
-fi
+    ## tab completion for npm
+    # shellcheck disable=SC2065,SC2154
+    if ! test -f "${HOMEBREW_PREFIX}/share/zsh-completions/_npm" &>/dev/null; then
+        npm completion >"${HOMEBREW_PREFIX}/share/zsh-completions/_npm"
+    fi
 
-## Global tab completion for argcomplete-supported apps
-# shellcheck disable=SC2065,SC2154
-if test -d "${HOMEBREW_PREFIX}/share/zsh-completions" &>/dev/null; then
-    FPATH="${HOMEBREW_PREFIX}/share/zsh-completions:${FPATH}"
-else
-    echo "Install zsh-completions using: brew install zsh-completions"
+    ## Global tab completion for argcomplete-supported apps
+    # shellcheck disable=SC2065,SC2154
+    if test -d "${HOMEBREW_PREFIX}/share/zsh-completions" &>/dev/null; then
+        FPATH="${HOMEBREW_PREFIX}/share/zsh-completions:${FPATH}"
+    else
+        echo "Install zsh-completions using: brew install zsh-completions"
+    fi
 fi
 
 # https://github.com/ellie/atuin/blob/main/docs/shell-completions.md
@@ -280,7 +278,7 @@ source "${ZSH}/oh-my-zsh.sh"
 if [[ -n "${SSH_CONNECTION}" ]]; then
     export EDITOR='vi'
 else
-    export EDITOR='emacsclient'
+    export EDITOR='emacs -nw'
 fi
 
 ### For hunspell.
@@ -305,7 +303,7 @@ export NPM_PACKAGES="${HOME}/.npm-packages"
 export HOMEBREW_INSTALL_CLEANUP=true
 
 ### For git
-export GIT_EDITOR=emacsclient
+export GIT_EDITOR='emacs -nw'
 export ALTERNATE_EDITOR=""
 export GIT_TEMPLATE_DIR="${HOME}"/.git-template
 
@@ -465,15 +463,37 @@ fi
 if [[ -d "${HOME}/.ubuntu/bin" ]]; then
     export PATH="${PATH:+${PATH}:}${HOME}/.ubuntu/bin"
 fi
+
 # If not running interactively, stop here
-[[ "$-" != *i* ]] && return
-# Use the generic form above instead of this PyCHarm/IntelliJ-specific way.
-# if [ -n "${INTELLIJ_ENVIRONMENT_READER}" ]; then
-#     return
-# fi
-#
+[[ -o interactive ]] && return
+[[ "${-#*i}" == "$-"]] && return
+
+if [ -n "${INTELLIJ_ENVIRONMENT_READER}" ]; then
+    return
+fi
+
+if [[ "${TERM_PROGRAM}" == "vscode" ]]; then
+    return
+fi
 
 # Completion setup after loading Oh My Zsh.
+
+## os-specific tab completions
+
+case $(uname -s) in
+"Linux") ;;
+
+"Darwin")
+    # Add tab completion for `defaults read|write NSGlobalDomain`
+    # You could just use `-g` instead, but I like being explicit
+    complete -W "NSGlobalDomain" defaults
+
+    # Add `killall` tab completion for common apps
+    complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
+    ;;
+*) ;;
+
+esac
 
 ## tab completion for poetry
 ## https://python-poetry.org/docs/
@@ -541,23 +561,6 @@ if type pipx >/dev/null 2>&1; then
 else
     echo "Install pipx using: brew install pipx"
 fi
-
-## os-specific tab completions
-
-case $(uname -s) in
-"Linux") ;;
-
-"Darwin")
-    # Add tab completion for `defaults read|write NSGlobalDomain`
-    # You could just use `-g` instead, but I like being explicit
-    complete -W "NSGlobalDomain" defaults
-
-    # Add `killall` tab completion for common apps
-    complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
-    ;;
-*) ;;
-
-esac
 
 # Setup various commands
 

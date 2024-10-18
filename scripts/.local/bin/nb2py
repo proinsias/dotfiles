@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash --pure
+#! nix-shell -p bash python311Packages.jupyter
 
 # Step 1: put this file in your path and make executable
 # Step 2: add the following to your .gitattributes file

@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash --pure
+#! nix-shell -p bash coreutils git gnugrep
 #
 # Copyright (c) 2010-2016, Benjamin C. Meyer <ben@meyerhome.net>
 # Copyright (c) 2013-2016, Phil Black-Knight <pblack88@gmail.com>
@@ -29,22 +31,21 @@
 
 function test_file {
     file="${1}"
-    if [ ! -f "${file}" ] ; then
+    if [ ! -f "${file}" ]; then
         return
     fi
     if grep 'Copyright ' "${file}" | grep -v grep >/dev/null; then
         year=$(date +%Y)
         cr_holder=$(git config --get hooks.copyrightholder)
-        if [ -n "${cr_holder}" ]
-        then
-            if grep 'Copyright ' "${file}" | grep "${year}" | grep "${cr_holder}" >/dev/null ; then
-                echo "Error: $file seems to be missing a copyright string for ${cr_holder} with the year $year in it.";
+        if [ -n "${cr_holder}" ]; then
+            if grep 'Copyright ' "${file}" | grep "${year}" | grep "${cr_holder}" >/dev/null; then
+                echo "Error: $file seems to be missing a copyright string for ${cr_holder} with the year $year in it."
                 exit 1
             fi
         else
 
-            if grep 'Copyright ' "${file}" | grep "${year}" >/dev/null ; then
-                echo "Error: $file seems to be missing a copyright string with the year $year in it.";
+            if grep 'Copyright ' "${file}" | grep "${year}" >/dev/null; then
+                echo "Error: $file seems to be missing a copyright string with the year $year in it."
                 exit 1
             fi
         fi
@@ -52,16 +53,16 @@ function test_file {
 }
 
 case "${1}" in
-    --about )
-        cat << EOF
+--about)
+    cat <<EOF
 Check that the files have a copyright with the current year.  If the git config key
 "hooks.copyrightholder" is set, the script will verify that in addition to the
 current year, a copyright notice exists for person/entity listed in "hooks.copyrightholder"
 EOF
-        ;;
-    * )
-        for file in $(git diff-index --cached --name-only HEAD) ; do
-            test_file "${file}"
-        done
-        ;;
+    ;;
+*)
+    for file in $(git diff-index --cached --name-only HEAD); do
+        test_file "${file}"
+    done
+    ;;
 esac

@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash --pure
+#! nix-shell -p bash wget
 
 wget --delete-after \
      --keep-session-cookies \

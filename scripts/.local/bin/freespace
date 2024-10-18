@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash --pure
+#! nix-shell -p bash coreutils gawk
+
 #
 # Copyright (c) 2010-2016, Benjamin C. Meyer <ben@meyerhome.net>
 # All rights reserved.
@@ -34,10 +37,10 @@ function run_test {
 }
 
 case "${1}" in
-    --about )
-        echo "Check if there is less then 100MB of free space."
-        ;;
-    * )
-        run_test
-        ;;
+--about)
+    echo "Check if there is less then 100MB of free space."
+    ;;
+*)
+    run_test
+    ;;
 esac

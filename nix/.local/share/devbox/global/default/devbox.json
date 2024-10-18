@@ -8,7 +8,9 @@
     "vscode-langservers-extracted@latest",
     "nodePackages.unified-language-server@latest",
     "fabric-ai@latest",
-    "dockfmt@latest"
+    "dockfmt@latest",
+    "_1password@latest",
+    "bat@latest"
   ],
   "shell": {
     "init_hook": [

@@ -8,207 +8,6 @@
 # Paranoid: neither group nor others have any perms:
 # umask 077
 
-# Shell options
-# http://zsh.sourceforge.net/Doc/Release/Options.html
-
-# DIRSTACKSIZE keeps the directory stack from getting too large, much like HISTSIZE
-# DIRSTACKSIZE=8
-
-## Changing directories
-setopt auto_cd           # if a command isn't valid, but is a directory, cd to that dir
-setopt auto_pushd        # make cd push the old directory onto the directory stack
-setopt pushd_ignore_dups # don't push multiple copies of the same directory onto the directory stack
-setopt pushd_to_home     # have pushd with no arguments act like 'pushd $HOME'.
-# setopt pushd_minus
-# setopt pushd_silent      # keep shell from printing the directory stack each time we do a cd
-
-## Completions
-setopt always_to_end    # move cursor to the end of a completed word
-setopt auto_list        # automatically list choices on ambiguous completion
-setopt auto_menu        # show completion menu on a successive tab press
-setopt auto_param_slash # if completed parameter is a directory, add a trailing slash
-setopt complete_in_word # complete from both ends of a word
-unsetopt menu_complete  # don't autoselect the first completion entry
-
-## Expansion and Globbing
-setopt extended_glob # use more awesome globbing features
-setopt glob_dots     # include dotfiles when globbing
-
-## History
-setopt append_history         # append to history file
-setopt extended_history       # write the history file in the ':start:elapsed;command' format
-unsetopt hist_beep            # don't beep when attempting to access a missing history entry
-setopt hist_expire_dups_first # expire a duplicate event first when trimming history
-setopt hist_find_no_dups      # don't display a previously found event
-setopt hist_ignore_all_dups   # delete an old recorded event if a new event is a duplicate
-setopt hist_ignore_dups       # don't record an event that was just recorded again
-setopt hist_ignore_space      # don't record an event starting with a space
-setopt hist_no_store          # don't store history commands
-setopt hist_reduce_blanks     # remove superfluous blanks from each command line being added to the history list
-setopt hist_save_no_dups      # don't write a duplicate event to the history file
-setopt hist_verify            # don't execute immediately upon history expansion
-setopt inc_append_history     # write to the history file immediately, not when the shell exits
-setopt share_history          # share history between all sessions
-
-## Input/Output
-unsetopt clobber   # must use >| to truncate existing files
-setopt correct     # try to correct the spelling of commands
-setopt correct_all # try to correct the spelling of all arguments in a line
-setopt ignore_eof  # Do not exit on end-of-file.
-# unsetopt flow_control          # disable start/stop characters in shell editor
-setopt interactive_comments # enable comments in interactive shell
-unsetopt mail_warning       # don't print a warning message if a mail file has been accessed
-setopt path_dirs            # perform path search even on command names with slashes
-# setopt rc_quotes               # allow 'Henry''s Garage' instead of 'Henry'\''s Garage'
-unsetopt rm_star_silent # ask for confirmation for `rm *' or `rm path/*'
-setopt rm_star_wait     # if asking for confirmation, wait 10 seconds before accepting response.
-
-## Job Control
-setopt auto_resume        # attempt to resume existing job before creating a new process
-unsetopt bg_nice          # don't run all background jobs at a lower priority
-setopt check_jobs         # report on jobs when shell exit
-setopt check_running_jobs # check for both running and suspended jobs
-unsetopt hup              # don't kill jobs on shell exit
-setopt long_list_jobs     # list jobs in the long format by default
-setopt notify             # report status of background jobs immediately
-
-## Prompting
-setopt prompt_subst # expand parameters in prompt variables
-
-## Zle
-# http://zsh.sourceforge.net/Doc/Release/Options.html#Zle
-unsetopt beep          # be quiet!
-setopt combining_chars # combine zero-length punctuation characters (accents) with the base character
-setopt emacs           # use emacs keybindings in the shell
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="random"
-# Use starship instead.
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-zstyle ':omz:update' mode reminder # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-zstyle ':completion:*' menu select
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# shellcheck disable=SC2034
-ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# shellcheck disable=SC2034
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# shellcheck disable=SC2034
-HIST_STAMPS="yyyy-mm-dd"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-# https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
-# shellcheck disable=SC2034
-plugins=(
-    # asdf # FIXME:
-    # autojump # FIXME:
-    # aws
-    # bundler
-    # charm
-    colored-man-pages
-    # colorize
-    command-not-found
-    # dash
-    direnv
-    docker
-    docker-compose
-    fasd
-    # fzf
-    # gcloud
-    gem
-    gh
-    git-auto-fetch
-    gitfast
-    github
-    # golang
-    gpg-agent
-    httpie
-    # keychain
-    # mosh
-    npm
-    pip
-    # pipenv
-    poetry
-    pylint
-    # ripgrep
-    # screen
-    # ssh-agent
-    yarn
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-)
-
-#### devbox
-if type devbox >/dev/null >&1; then
-    OUTPUT="$(devbox global shellenv --init-hook)"
-    eval "${OUTPUT}"
-else
-    echo "Install devbox!"
-fi
-
 # For homebrew
 # Adds $HOMEBREW_PREFIX/bin as prefix to PATH.
 case $(uname -s) in
@@ -227,50 +26,6 @@ case $(uname -s) in
     ;;
 *) ;;
 esac
-
-if [ "${-#*i}" == "$-"]; then
-    # Completion setup before loading Oh My Zsh.
-
-    ## tab completion for npm
-    # shellcheck disable=SC2065,SC2154
-    if ! test -f "${HOMEBREW_PREFIX}/share/zsh-completions/_npm" &>/dev/null; then
-        npm completion >"${HOMEBREW_PREFIX}/share/zsh-completions/_npm"
-    fi
-
-    ## Global tab completion for argcomplete-supported apps
-    # shellcheck disable=SC2065,SC2154
-    if test -d "${HOMEBREW_PREFIX}/share/zsh-completions" &>/dev/null; then
-        FPATH="${HOMEBREW_PREFIX}/share/zsh-completions:${FPATH}"
-    else
-        echo "Install zsh-completions using: brew install zsh-completions"
-    fi
-fi
-
-# https://github.com/ellie/atuin/blob/main/docs/shell-completions.md
-# https://github.com/chubin/cheat.sh#tab-completion
-# https://github.com/zricethezav/gitleaks
-# https://nbpreview.readthedocs.io/en/latest/usage.html?highlight=completion#cmdoption-nbpreview-install-completion
-fpath+=~/.zfunc
-
-case $(hostname -s) in
-"booth")
-    # I'm not the main user on this machine
-    # shellcheck disable=SC2034
-    ZSH_DISABLE_COMPFIX=true
-    ;;
-*) ;;
-
-esac
-
-# shellcheck disable=SC1091
-source "${ZSH}/oh-my-zsh.sh"
-# Should run the following:
-# autoload -U bashcompinit
-# autoload -Uz compinit
-# bashcompinit
-# compinit
-
-# User configuration
 
 ## Exports
 
@@ -444,11 +199,6 @@ export PATH="${PATH}:${GOROOT}/bin"
 #### Add .NET Core SDK tools
 export PATH="${PATH}:${HOME}/.dotnet/tools"
 
-#### pyenv
-export PATH="${PYENV_ROOT}/bin:${PATH}"
-OUTPUT="$(pyenv init --path)"
-eval "${OUTPUT}" # Puts shims dir as prefix to PATH.
-
 #### Google Cloud SDK.
 if [[ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]]; then
     . '/usr/local/google-cloud-sdk/path.zsh.inc'
@@ -464,19 +214,358 @@ if [[ -d "${HOME}/.ubuntu/bin" ]]; then
     export PATH="${PATH:+${PATH}:}${HOME}/.ubuntu/bin"
 fi
 
-# If not running interactively, stop here
-[[ -o interactive ]] && return
-[[ "${-#*i}" == "$-"]] && return
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-if [ -n "${INTELLIJ_ENVIRONMENT_READER}" ]; then
-    return
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Setup various commands before oh-my-zsh
+
+## pyenv
+# shellcheck disable=SC2065
+if type pyenv >/dev/null 2>&1; then
+    OUTPUT="$(pyenv init --path)" # Puts shims dir as prefix to PATH.
+    eval "${OUTPUT}"
+    OUTPUT="$(pyenv init -)"
+    eval "${OUTPUT}"
+    OUTPUT="$(pyenv virtualenv-init -)"
+    eval "${OUTPUT}"
+    export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 fi
 
-if [[ "${TERM_PROGRAM}" == "vscode" ]]; then
-    return
+## fzf
+# shellcheck disable=SC2065
+if type fzf >/dev/null 2>&1; then
+    # Ensure we have the right files. It's dependent on
+    # HOMEBREW_PREFIX so I don't keep it in version control.
+    if ! test -f "${HOME}"/.fzf.zsh; then
+        "${HOMEBREW_PREFIX}/opt/fzf/install" --all --no-update-rc
+    fi
+    if test -f "${HOME}"/.fzf.zsh; then
+        # shellcheck disable=SC1091
+        source "${HOME}"/.fzf.zsh
+    fi
 fi
+
+#### pyenv
+export PATH="${PYENV_ROOT}/bin:${PATH}"
+OUTPUT="$(pyenv init --path)"
+eval "${OUTPUT}" # Puts shims dir as prefix to PATH.
+
+## A smarter cd command - use z instead of cd.
+# https://github.com/ajeetdsouza/zoxide
+if type zoxide >/dev/null 2>&1; then
+    export _ZO_ECHO=1 # Print the matched directory before navigating to it.
+    OUTPUT="$(zoxide init zsh)"
+    eval "${OUTPUT}"
+fi
+
+#### devbox
+if type devbox >/dev/null >&1; then
+    OUTPUT="$(devbox global shellenv --init-hook)"
+    eval "${OUTPUT}"
+fi
+
+if [[ -o interactive ]]; then
+    # Completion setup before loading Oh My Zsh.
+
+    ## tab completion for npm
+    # shellcheck disable=SC2065,SC2154
+    if ! test -f "${HOMEBREW_PREFIX}/share/zsh-completions/_npm" &>/dev/null; then
+        npm completion >"${HOMEBREW_PREFIX}/share/zsh-completions/_npm"
+    fi
+
+    ## Global tab completion for argcomplete-supported apps
+    # shellcheck disable=SC2065,SC2154
+    if test -d "${HOMEBREW_PREFIX}/share/zsh-completions" &>/dev/null; then
+        FPATH="${HOMEBREW_PREFIX}/share/zsh-completions:${FPATH}"
+    fi
+
+    ## tab completion for conda
+    # shellcheck disable=SC2065
+    if type conda >/dev/null 2>&1; then
+        # shellcheck disable=SC2065
+        if type register-python-argcomplete >/dev/null 2>&1; then
+            OUTPUT="$(register-python-argcomplete conda)"
+            eval "${OUTPUT}"
+        fi
+    fi
+
+    ## The next line enables shell command completion for gcloud.
+    if [[ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]]; then
+        . '/usr/local/google-cloud-sdk/completion.zsh.inc'
+    fi
+fi
+
+# Shell options
+# http://zsh.sourceforge.net/Doc/Release/Options.html
+
+# DIRSTACKSIZE keeps the directory stack from getting too large, much like HISTSIZE
+# DIRSTACKSIZE=8
+
+## Changing directories
+setopt auto_cd           # if a command isn't valid, but is a directory, cd to that dir
+setopt auto_pushd        # make cd push the old directory onto the directory stack
+setopt pushd_ignore_dups # don't push multiple copies of the same directory onto the directory stack
+setopt pushd_to_home     # have pushd with no arguments act like 'pushd $HOME'.
+# setopt pushd_minus
+# setopt pushd_silent      # keep shell from printing the directory stack each time we do a cd
+
+## Completions
+setopt always_to_end    # move cursor to the end of a completed word
+setopt auto_list        # automatically list choices on ambiguous completion
+setopt auto_menu        # show completion menu on a successive tab press
+setopt auto_param_slash # if completed parameter is a directory, add a trailing slash
+setopt complete_in_word # complete from both ends of a word
+unsetopt menu_complete  # don't autoselect the first completion entry
+
+## Expansion and Globbing
+setopt extended_glob # use more awesome globbing features
+setopt glob_dots     # include dotfiles when globbing
+
+## History
+setopt append_history         # append to history file
+setopt extended_history       # write the history file in the ':start:elapsed;command' format
+unsetopt hist_beep            # don't beep when attempting to access a missing history entry
+setopt hist_expire_dups_first # expire a duplicate event first when trimming history
+setopt hist_find_no_dups      # don't display a previously found event
+setopt hist_ignore_all_dups   # delete an old recorded event if a new event is a duplicate
+setopt hist_ignore_dups       # don't record an event that was just recorded again
+setopt hist_ignore_space      # don't record an event starting with a space
+setopt hist_no_store          # don't store history commands
+setopt hist_reduce_blanks     # remove superfluous blanks from each command line being added to the history list
+setopt hist_save_no_dups      # don't write a duplicate event to the history file
+setopt hist_verify            # don't execute immediately upon history expansion
+setopt inc_append_history     # write to the history file immediately, not when the shell exits
+setopt share_history          # share history between all sessions
+
+## Input/Output
+unsetopt clobber   # must use >| to truncate existing files
+setopt correct     # try to correct the spelling of commands
+setopt correct_all # try to correct the spelling of all arguments in a line
+setopt ignore_eof  # Do not exit on end-of-file.
+# unsetopt flow_control          # disable start/stop characters in shell editor
+setopt interactive_comments # enable comments in interactive shell
+unsetopt mail_warning       # don't print a warning message if a mail file has been accessed
+setopt path_dirs            # perform path search even on command names with slashes
+# setopt rc_quotes               # allow 'Henry''s Garage' instead of 'Henry'\''s Garage'
+unsetopt rm_star_silent # ask for confirmation for `rm *' or `rm path/*'
+setopt rm_star_wait     # if asking for confirmation, wait 10 seconds before accepting response.
+
+## Job Control
+setopt auto_resume        # attempt to resume existing job before creating a new process
+unsetopt bg_nice          # don't run all background jobs at a lower priority
+setopt check_jobs         # report on jobs when shell exit
+setopt check_running_jobs # check for both running and suspended jobs
+unsetopt hup              # don't kill jobs on shell exit
+setopt long_list_jobs     # list jobs in the long format by default
+setopt notify             # report status of background jobs immediately
+
+## Prompting
+setopt prompt_subst # expand parameters in prompt variables
+
+## Zle
+# http://zsh.sourceforge.net/Doc/Release/Options.html#Zle
+unsetopt beep          # be quiet!
+setopt combining_chars # combine zero-length punctuation characters (accents) with the base character
+setopt emacs           # use emacs keybindings in the shell
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="robbyrussell"
+#ZSH_THEME="random"
+# Use starship instead.
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode reminder # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+zstyle ':completion:*' menu select
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# shellcheck disable=SC2034
+ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# shellcheck disable=SC2034
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# shellcheck disable=SC2034
+HIST_STAMPS="yyyy-mm-dd"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+# https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
+# shellcheck disable=SC2034
+plugins=(
+    # asdf # FIXME:
+    # autojump # FIXME:
+    # aws
+    # bundler
+    # charm
+    colored-man-pages
+    # colorize
+    command-not-found
+    # dash
+    direnv
+    docker
+    docker-compose
+    fasd
+    # fzf
+    # gcloud
+    gem
+    gh
+    git-auto-fetch
+    gitfast
+    github
+    # golang
+    gpg-agent
+    httpie
+    # keychain
+    # mosh
+    npm
+    pip
+    # pipenv
+    poetry
+    pylint
+    # ripgrep
+    # screen
+    # ssh-agent
+    yarn
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
+
+# https://github.com/ellie/atuin/blob/main/docs/shell-completions.md
+# https://github.com/chubin/cheat.sh#tab-completion
+# https://github.com/zricethezav/gitleaks
+# https://nbpreview.readthedocs.io/en/latest/usage.html?highlight=completion#cmdoption-nbpreview-install-completion
+fpath+=~/.zfunc
+
+case $(hostname -s) in
+"booth")
+    # I'm not the main user on this machine
+    # shellcheck disable=SC2034
+    ZSH_DISABLE_COMPFIX=true
+    ;;
+*) ;;
+
+esac
+
+if [[ -o interactive ]]; then
+    # shellcheck disable=SC1091
+    source "${ZSH}/oh-my-zsh.sh"
+else
+    # Avoid oh-my-zsh in non-interactive shells like devbox shell.
+    autoload -U bashcompinit
+    autoload -Uz compinit
+    bashcompinit
+    compinit
+
+    ## http://direnv.net/
+    Installed above as plugin.
+    # shellcheck disable=SC2065
+    if type direnv >/dev/null 2>&1; then
+        OUTPUT="$(direnv hook zsh)"
+        eval "${OUTPUT}"
+    fi
+fi
+
+# User configuration
 
 # Completion setup after loading Oh My Zsh.
+
+## pipx (https://github.com/pipxproject/pipx)
+# shellcheck disable=SC2065
+if type pipx >/dev/null 2>&1; then
+    if type register-python-argcomplete >/dev/null 2>&1; then
+        OUTPUT="$(register-python-argcomplete pipx)"
+        eval "${OUTPUT}"
+    fi
+fi
+
+## tab completion for whalebrew
+# shellcheck disable=SC2065
+if type whalebrew >/dev/null 2>&1; then
+    OUTPUT="$(whalebrew completion zsh)"
+    eval "${OUTPUT}"
+fi
+
+## tab completion for ruff
+# shellcheck disable=SC2065
+if type ruff >/dev/null 2>&1; then
+    # shellcheck disable=SC2065
+    OUTPUT="$(ruff generate-shell-completion zsh)"
+    eval "${OUTPUT}"
+fi
+
+## Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+# shellcheck disable=SC2086,SC2312
+[[ -e "${HOME}/.ssh/config" ]] && complete -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
+
+## tab completion for poetry
+## https://python-poetry.org/docs/
+# shellcheck disable=SC2065,SC2154
+if ! test -f "${ZSH_CUSTOM}/plugins/poetry/_poetry" &>/dev/null; then
+    echo "Install poetry completions using: mkdir ${ZSH_CUSTOM}/plugins/poetry &&" \
+        "poetry completions zsh > ${ZSH_CUSTOM}/plugins/poetry/_poetry"
+fi
+
+## tab completion for git-town
+# shellcheck disable=SC2065,SC2154
+if ! test -f "${ZSH_CUSTOM}/plugins/git-town/_git-town" &>/dev/null; then
+    echo "Install git town completions using: mkdir ${ZSH_CUSTOM}/plugins/git-town &&" \
+        "git-town completions zsh > ${ZSH_CUSTOM}/plugins/git-town/_git-town"
+fi
 
 ## os-specific tab completions
 
@@ -495,94 +584,10 @@ case $(uname -s) in
 
 esac
 
-## tab completion for poetry
-## https://python-poetry.org/docs/
-# shellcheck disable=SC2065,SC2154
-if ! test -f "${ZSH_CUSTOM}/plugins/poetry/_poetry" &>/dev/null; then
-    echo "Install poetry completions using: mkdir ${ZSH_CUSTOM}/plugins/poetry &&" \
-        "poetry completions zsh > ${ZSH_CUSTOM}/plugins/poetry/_poetry"
-fi
-
-## tab completion for git-town
-# shellcheck disable=SC2065,SC2154
-if ! test -f "${ZSH_CUSTOM}/plugins/git-town/_git-town" &>/dev/null; then
-    echo "Install git town completions using: mkdir ${ZSH_CUSTOM}/plugins/git-town &&" \
-        "git-town completions zsh > ${ZSH_CUSTOM}/plugins/git-town/_git-town"
-fi
-
 ## AWS bash completion
 complete -C aws_completer aws
 
-## tab completion for conda
-# shellcheck disable=SC2065
-if type conda >/dev/null 2>&1; then
-    # shellcheck disable=SC2065
-    if type register-python-argcomplete >/dev/null 2>&1; then
-        OUTPUT="$(register-python-argcomplete conda)"
-        eval "${OUTPUT}"
-    else
-        echo "Install argcomplete using: python3 -m pip install argcomplete"
-    fi
-fi
-
-## tab completion for ruff
-# shellcheck disable=SC2065
-if type ruff >/dev/null 2>&1; then
-    # shellcheck disable=SC2065
-    OUTPUT="$(ruff generate-shell-completion zsh)"
-    eval "${OUTPUT}"
-fi
-
-## tab completion for whalebrew
-# shellcheck disable=SC2065
-if type whalebrew >/dev/null 2>&1; then
-    OUTPUT="$(whalebrew completion zsh)"
-    eval "${OUTPUT}"
-fi
-
-## The next line enables shell command completion for gcloud.
-if [[ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]]; then
-    . '/usr/local/google-cloud-sdk/completion.zsh.inc'
-fi
-
-## Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-# shellcheck disable=SC2086,SC2312
-[[ -e "${HOME}/.ssh/config" ]] && complete -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
-
-## pipx (https://github.com/pipxproject/pipx)
-# shellcheck disable=SC2065
-if type pipx >/dev/null 2>&1; then
-    if type register-python-argcomplete >/dev/null 2>&1; then
-        OUTPUT="$(register-python-argcomplete pipx)"
-        eval "${OUTPUT}"
-    else
-        echo "Install register-python-argcomplete using: pipx install argcomplete"
-    fi
-else
-    echo "Install pipx using: brew install pipx"
-fi
-
 # Setup various commands
-
-## A smarter cd command - use z instead of cd.
-# https://github.com/ajeetdsouza/zoxide
-if type zoxide >/dev/null 2>&1; then
-    export _ZO_ECHO=1 # Print the matched directory before navigating to it.
-    OUTPUT="$(zoxide init zsh)"
-    eval "${OUTPUT}"
-else
-    echo "Install zoxide using: brew install zoxide"
-fi
-
-## A utility for sending notifications, on demand and when commands finish.
-## https://github.com/dschep/ntfy/
-# shellcheck disable=SC2065
-# if type ntfy >/dev/null 2>&1; then
-#     OUTPUT="$(ntfy shell-integration --foreground-too)"
-#     eval "${OUTPUT}"
-#     export AUTO_NTFY_DONE_IGNORE="aws-shell ec emacs glances ipython jupyter man meld ""\
-# psql screen tmux vim"
-# fi
 
 ## make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && OUTPUT="$(SHELL=/bin/sh lesspipe)" && eval "${OUTPUT}"
@@ -592,22 +597,6 @@ fi
 if type thefuck >/dev/null 2>&1; then
     OUTPUT="$(thefuck --alias)"
     eval "${OUTPUT}"
-else
-    echo "Install thefuck using: brew install thefuck"
-fi
-
-## pyenv
-# shellcheck disable=SC2065
-if type pyenv >/dev/null 2>&1; then
-    OUTPUT="$(pyenv init --path)" # Puts shims dir as prefix to PATH.
-    eval "${OUTPUT}"
-    OUTPUT="$(pyenv init -)"
-    eval "${OUTPUT}"
-    OUTPUT="$(pyenv virtualenv-init -)"
-    eval "${OUTPUT}"
-    export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-else
-    echo "Install pyenv using: brew install pyenv"
 fi
 
 ## Wrap git automatically with hub
@@ -615,34 +604,7 @@ fi
 if type hub >/dev/null 2>&1; then
     OUTPUT="$(hub alias -s)"
     eval "${OUTPUT}"
-else
-    echo "Install hub using: brew install hub"
 fi
-
-## fzf
-# shellcheck disable=SC2065
-if type fzf >/dev/null 2>&1; then
-    # Ensure we have the right files. It's dependent on
-    # HOMEBREW_PREFIX so I don't keep it in version control.
-    if ! test -f "${HOME}"/.fzf.zsh; then
-        "${HOMEBREW_PREFIX}/opt/fzf/install" --all --no-update-rc
-    fi
-    if test -f "${HOME}"/.fzf.zsh; then
-        # shellcheck disable=SC1091
-        source "${HOME}"/.fzf.zsh
-    fi
-else
-    echo "Install fzf using: brew install fzf"
-fi
-
-## Add keychain keys - use 1password instead for ssh key
-# # shellcheck disable=SC2065
-# if type keychain >/dev/null 2>&1; then
-#     OUTPUT="$(keychain --eval --agents gpg --ignore-missing --inherit any 6519D396 740CFB25 97FAE23F)"
-#     eval "${OUTPUT}"
-# else
-#     echo "Install keychain using: brew install keychain"
-# fi
 
 ## Add 1password-cli session
 # shellcheck disable=SC2065
@@ -667,16 +629,6 @@ if type starship >/dev/null 2>&1; then
 else
     echo "Install starship using: brew install starship"
 fi
-
-# ## http://direnv.net/
-# Installed above as plugin.
-# # shellcheck disable=SC2065
-# if type direnv >/dev/null 2>&1; then
-#     OUTPUT="$(direnv hook zsh)"
-#     eval "${OUTPUT}"
-# else
-#     echo "Install direnv using: brew install direnv"
-# fi
 
 # shellcheck disable=SC2065
 if type atuin >/dev/null 2>&1; then

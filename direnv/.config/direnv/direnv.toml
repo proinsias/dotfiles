@@ -6,5 +6,8 @@ load_dotenv = true
 [whitelist]
 exact = [
       "/Users/ftod/.envrc",
-      "/Users/ftod/GitHub/dotfiles/direnv/.envrc"
+      "/Users/ftod/GitHub/dotfiles/.envrc",
+      "/Users/ftod/GitHub/dotfiles/direnv/.envrc",
+      "/Users/ftod/GitHub/mac-playbook/.envrc",
+      "/Users/ftod/GitHub/proinsias.github.io/.envrc"
 ]

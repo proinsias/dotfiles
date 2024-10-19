@@ -16,9 +16,7 @@
     "mdl@latest",
     "ruby@3.2",
     "bundler@latest",
-    "coreutils@latest",
-    "imagemagick@latest",
-    "checkov@latest"
+    "coreutils@latest"
   ],
   "shell": {
     "scripts": {

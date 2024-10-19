@@ -6,8 +6,13 @@ load_dotenv = true
 [whitelist]
 exact = [
       "/Users/ftod/.envrc",
+      "/Users/ftod/GitHub/an-independent-mind/.envrc",
+      "/Users/ftod/GitHub/copier-python-template/.envrc",
+      "/Users/ftod/GitHub/copier-python-template/copier-python-template/.envrc",
       "/Users/ftod/GitHub/dotfiles/.envrc",
       "/Users/ftod/GitHub/dotfiles/direnv/.envrc",
+      "/Users/ftod/GitHub/knowledge-dump/.envrc",
       "/Users/ftod/GitHub/mac-playbook/.envrc",
-      "/Users/ftod/GitHub/proinsias.github.io/.envrc"
+      "/Users/ftod/GitHub/proinsias.github.io/.envrc",
+      "/Users/ftod/GitHub/scripts/.envrc"
 ]

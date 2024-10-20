@@ -233,7 +233,8 @@ alias up3='cd ../../../'
 #
 # Misc :)
 alias less='less -r' # raw control characters
-alias more='less'
+# alias more='less'
+alias more='bat'
 alias whence='type -a' # where, of a sort
 
 case $(guname -s) in

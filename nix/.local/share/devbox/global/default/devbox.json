@@ -9,8 +9,9 @@
     "nodePackages.unified-language-server@latest",
     "fabric-ai@latest",
     "dockfmt@latest",
-    "_1password@latest",
-    "bat@latest"
+    "bat@latest",
+    "has@latest",
+    "_1password@latest"
   ],
   "shell": {
     "init_hook": [

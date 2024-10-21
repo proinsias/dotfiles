@@ -594,3 +594,4 @@ report/
 !scripts/*
 !scripts/.local/bin/*
 !/scripts/.local/bin/*
+.aider*

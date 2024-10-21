@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+# /// script
+# dependencies = [
+#   "nbformat",
+# ]
+# [tool.uv]
+# exclude-newer = "2024-10-14T00:00:00Z"
+# ///
+
 """strip outputs from a Jupyter Notebook
 
 Reads a notebook from stdin, strips its output, and writes the outputless version
@@ -11,6 +20,7 @@ import sys
 
 # Jupyter >= 4
 from nbformat import read, write, NO_CONVERT
+
 
 def _cells(nb):
     """Yield all cells in an nbformat-insensitive manner"""

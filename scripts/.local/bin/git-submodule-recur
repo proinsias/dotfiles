@@ -1,8 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash --pure
+#! nix-shell -p bash git
 
 case "$1" in
-        "init") CMD="submodule update --init" ;;
-        *) CMD="$*" ;;
+"init") CMD="submodule update --init" ;;
+*) CMD="$*" ;;
 esac
 
 git $CMD

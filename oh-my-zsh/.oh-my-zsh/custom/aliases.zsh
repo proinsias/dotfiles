@@ -13,7 +13,8 @@
 #alias base64="gbase64"
 alias basename="gbasename"
 #alias cat="gcat"
-alias cat="mog"
+#alias cat="mog --followsymlinks"
+alias cat="bat"
 alias charm="pycharm"
 #alias chcon="gchcon"
 alias chgrp="gchgrp"
@@ -168,7 +169,7 @@ alias count='function _count(){ gls "$@" | gwc -l ; };_count'
 alias delete='function _delete(){ move "$@" ~/.Trash/ ; };_delete'
 
 alias ec='function _ec(){ emacsclient "$@" ; };_ec'
-alias emacs='function _ec(){ emacsclient "$@" ; };_ec'
+# alias emacs='function _ec(){ emacsclient "$@" ; };_ec'  # Breaks auto-completion. Just use `emacs -nw`.
 alias ew='function _ew(){ /usr/local/bin/emacs -nw "$@" ; };_ew'
 
 alias free='df'
@@ -232,7 +233,8 @@ alias up3='cd ../../../'
 #
 # Misc :)
 alias less='less -r' # raw control characters
-alias more='less'
+# alias more='less'
+alias more='bat'
 alias whence='type -a' # where, of a sort
 
 case $(guname -s) in

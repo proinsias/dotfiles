@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash --pure
+#! nix-shell -p bash coreutils pre-commit
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
 set -o errtrace               # Exit on error inside any functions or subshells.
@@ -10,13 +12,7 @@ shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories
 
 cd ~/bin
 
-dir="${HOME}"/favs/hiq
-test -d "${dir}" && for file in "${dir}"/**/.pre-commit-config.yaml; do
-    echo "${file}"
-    pre-commit autoupdate -c "${file}" | grep -v "already up to date"
-done
-
-dir="${HOME}"/favs/gh
+dir="${HOME}"/GitHub
 test -d "${dir}" && for file in "${dir}"/**/.pre-commit-config.yaml; do
     echo "${file}"
     pre-commit autoupdate -c "${file}" | grep -v "already up to date"

@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash --pure
+#! nix-shell -p bash coreutils _1password
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
 set -o errtrace               # Exit on error inside any functions or subshells.

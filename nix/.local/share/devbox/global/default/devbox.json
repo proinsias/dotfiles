@@ -13,16 +13,64 @@
     "has@latest",
     "_1password@latest",
     "cowsay@latest",
-    "pop@latest"
+    "pop@latest",
+    "aspell@latest",
+    "bash@latest",
+    "bash-completion@latest",
+    "catimg@latest",
+    "ccache@latest",
+    "atuin@latest",
+    "cheat@latest",
+    "cmake@latest",
+    "colordiff@latest",
+    "cookiecutter@latest",
+    "coreutils@latest",
+    "ddgr@latest",
+    "diffutils@latest",
+    "direnv@latest",
+    "dive@latest",
+    "docker@latest",
+    "dos2unix@latest",
+    "dotenv-linter@latest",
+    "exiftool@latest",
+    "eza@latest",
+    "figlet@latest",
+    "ffmpeg@latest",
+    "findutils@latest",
+    "fortune@latest",
+    "fzf@latest",
+    "gawk@latest",
+    "gcc@latest",
+    "ghostscript@latest",
+    "git@latest",
+    "imagemagick@latest",
+    "isort@latest",
+    "hadolint@latest",
+    "htop@latest",
+    "httpie@latest",
+    "hub@latest",
+    "hunspell@latest",
+    "keychain@latest",
+    "xsv@latest",
+    "zoxide@latest",
+    "zsh@latest",
+    "zsh-completions@latest",
+    "watch@latest",
+    "wget@latest",
+    "unzip@latest",
+    "ttyrec@latest",
+    "ttygif@latest",
+    "jq@latest",
+    "pandoc@latest",
+    "pop@latest",
+    "pv@latest",
+    "screenfetch@latest",
+    "aider-chat@latest"
   ],
   "shell": {
-    "init_hook": [
-      "echo 'Welcome to devbox!' > /dev/null"
-    ],
+    "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
     "scripts": {
-      "test": [
-        "echo \"Error: no test specified\" && exit 1"
-      ]
+      "test": ["echo \"Error: no test specified\" && exit 1"]
     }
   }
 }

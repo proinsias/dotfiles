@@ -51,7 +51,7 @@ update_all() {
     if type topgrade >/dev/null 2>&1; then
         echo -e "\topgrade:"
 
-        topgrade --cleanup --no-retry --yes --disable certbot gcloud git_repos mas nix system tlmgr uv
+        topgrade --cleanup --no-retry --yes --disable certbot gcloud git_repos mas system tlmgr uv
     else
         echo -e "\topgrade not found!"
     fi
@@ -95,7 +95,7 @@ update_all() {
         if type topgrade >/dev/null 2>&1; then
             echo -e "\topgrade interactive:"
             sudo -v
-            topgrade --cleanup --no-retry --yes --only certbot gcloud system tlmgr
+            topgrade --cleanup --no-retry --yes --only certbot gcloud nix system tlmgr
         fi
 
         # shellcheck disable=SC2065

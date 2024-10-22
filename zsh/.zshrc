@@ -97,9 +97,6 @@ export RUBY_VERSION="3.1.0"
 export GEM_HOME="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 export GEM_PATH="${RUBY_HOME}/lib/ruby/gems/${RUBY_VERSION}"
 
-### pyenv
-export PYENV_ROOT="${HOME}/.pyenv"
-
 ### Prevent accidental global package install through pip.
 export PIP_REQUIRE_VIRTUALENV=true
 
@@ -225,6 +222,11 @@ export ZSH="$HOME/.oh-my-zsh"
 ## pyenv
 # shellcheck disable=SC2065
 if type pyenv >/dev/null 2>&1; then
+    export PYENV_ROOT="${HOME}/.pyenv"
+    export PATH="${PYENV_ROOT}/bin:${PATH}"
+
+    OUTPUT="$(pyenv init --path)"
+    eval "${OUTPUT}" # Puts shims dir as prefix to PATH.
     OUTPUT="$(pyenv init --path)" # Puts shims dir as prefix to PATH.
     eval "${OUTPUT}"
     OUTPUT="$(pyenv init -)"
@@ -246,19 +248,6 @@ if type fzf >/dev/null 2>&1; then
         # shellcheck disable=SC1091
         source "${HOME}"/.fzf.zsh
     fi
-fi
-
-#### pyenv
-export PATH="${PYENV_ROOT}/bin:${PATH}"
-OUTPUT="$(pyenv init --path)"
-eval "${OUTPUT}" # Puts shims dir as prefix to PATH.
-
-## A smarter cd command - use z instead of cd.
-# https://github.com/ajeetdsouza/zoxide
-if type zoxide >/dev/null 2>&1; then
-    export _ZO_ECHO=1 # Print the matched directory before navigating to it.
-    OUTPUT="$(zoxide init zsh)"
-    eval "${OUTPUT}"
 fi
 
 #### devbox
@@ -518,6 +507,15 @@ else
         OUTPUT="$(direnv hook zsh)"
         eval "${OUTPUT}"
     fi
+fi
+
+## A smarter cd command - use z instead of cd.
+# https://github.com/ajeetdsouza/zoxide
+if type zoxide >/dev/null 2>&1; then
+    # Do this AFTER compinit!
+    export _ZO_ECHO=1 # Print the matched directory before navigating to it.
+    OUTPUT="$(zoxide init zsh)"
+    eval "${OUTPUT}"
 fi
 
 # User configuration

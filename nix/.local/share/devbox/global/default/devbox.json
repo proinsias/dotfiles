@@ -65,7 +65,8 @@
     "pop@latest",
     "pv@latest",
     "screenfetch@latest",
-    "aider-chat@latest"
+    "aider-chat@latest",
+    "pre-commit@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],

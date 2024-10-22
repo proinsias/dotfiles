@@ -10,7 +10,7 @@
 [user]
     name = "Francis T. O'Donovan"
     email = proinsias@users.noreply.github.com
-    signingkey = 6519D396
+    signingkey = /Users/ftod/.ssh/id_rsa.pub
 [safe]
        directory = /usr/local/Homebrew
        directory = /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask
@@ -29,3 +29,5 @@
        directory = /usr/local/Homebrew/Library/Taps/jonof/homebrew-kenutils
        directory = /usr/local/Homebrew/Library/Taps/jzaleski/homebrew-jzaleski
        directory = /usr/local/Homebrew/Library/Taps/vitorgalvao/homebrew-tiny-scripts
+[gpg]
+	format = ssh

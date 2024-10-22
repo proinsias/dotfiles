@@ -11,7 +11,9 @@
     "dockfmt@latest",
     "bat@latest",
     "has@latest",
-    "_1password@latest"
+    "_1password@latest",
+    "cowsay@latest",
+    "pop@latest"
   ],
   "shell": {
     "init_hook": [

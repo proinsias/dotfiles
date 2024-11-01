@@ -7,7 +7,7 @@
 # FIXME: Update ansible files so I can pick and chose with tags what to run.
 
 # shellcheck source=/Users/ftod/.env
-source ~/.env
+source ~/.envrc
 
 # Intel homebrew
 test -f /usr/local/bin/brew && SHELLENV="$(/usr/local/bin/brew shellenv)" && eval "${SHELLENV}"

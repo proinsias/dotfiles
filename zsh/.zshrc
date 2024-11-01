@@ -33,7 +33,7 @@ esac
 if [[ -n "${SSH_CONNECTION}" ]]; then
     export EDITOR='vi'
 else
-    export EDITOR='emacs -nw'
+    export EDITOR='emacsclient'
 fi
 
 ### For hunspell.
@@ -58,7 +58,7 @@ export NPM_PACKAGES="${HOME}/.npm-packages"
 export HOMEBREW_INSTALL_CLEANUP=true
 
 ### For git
-export GIT_EDITOR='emacs -nw'
+export GIT_EDITOR='emacsclient'
 export ALTERNATE_EDITOR=""
 export GIT_TEMPLATE_DIR="${HOME}"/.git-template
 
@@ -609,8 +609,6 @@ fi
 if type op >/dev/null 2>&1; then
     OUTPUT="$(op signin --account slesnonovans)"
     eval "${OUTPUT}"
-else
-    echo "Install 1password-cli using: brew cask install 1password-cli"
 fi
 
 # Don't need this with use of keychain.
@@ -624,8 +622,6 @@ fi
 if type starship >/dev/null 2>&1; then
     OUTPUT="$(starship init zsh)"
     eval "${OUTPUT}"
-else
-    echo "Install starship using: brew install starship"
 fi
 
 # shellcheck disable=SC2065
@@ -633,9 +629,11 @@ if type atuin >/dev/null 2>&1; then
     OUTPUT="$(atuin init zsh)"
     eval "${OUTPUT}"
     # zinit load ellie/atuin
-else
-    echo "Install atuin using: brew install atuin"
 fi
+
+# grc
+[[ -s "/opt/homebrew/etc/grc.zsh" ]] && source /opt/homebrew/etc/grc.zsh
+[[ -s "~/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.zsh" ]] && source ~/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.zsh
 
 case $(uname -s) in
 "Linux")
@@ -662,15 +660,11 @@ case $(uname -s) in
     # shellcheck disable=SC2065
     if type archey >/dev/null 2>&1; then
         archey
-    else
-        echo "Install archey using: brew install archey4"
     fi
     # https://github.com/dylanaraps/neofetch
     # shellcheck disable=SC2065
     if type neofetch >/dev/null 2>&1; then
         neofetch
-    else
-        echo "Install neofetch using: brew install neofetch"
     fi
 
     # homebrew openssh with keychain support doesn't work anymore?

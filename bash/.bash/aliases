@@ -96,6 +96,8 @@ alias boss='cd ; clear'
 alias bye='clear;logout'
 #alias cat="mog"
 alias cat="bat"
+alias ec="emacsclient"
+alias emacs="emacsclient"
 alias tx='tmuxinator'
 
 # Kill all the tabs in Chrome to free up memory

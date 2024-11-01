@@ -483,6 +483,11 @@ else
     echo "Install nbp using: pipx install nbpreview"
 fi
 
+# grc
+GRC_ALIASES=true
+[[ -s "/opt/homebrew/etc/grc.sh" ]] && source /opt/homebrew/etc/grc.sh
+[[ -s "~/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.sh" ]] && source ~/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.sh
+
 # Deduplicate PATH variable
 PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
 export PATH

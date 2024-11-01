@@ -66,7 +66,11 @@
     "pv@latest",
     "screenfetch@latest",
     "aider-chat@latest",
-    "pre-commit@latest"
+    "pre-commit@latest",
+    "ripgrep@latest",
+    "grc@latest",
+    "starship@latest",
+    "vscode-extensions.wakatime.vscode-wakatime@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],

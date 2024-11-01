@@ -91,7 +91,7 @@ update_all() {
         # To upgrade, run: `sudo gcloud components update --quiet`.
     fi
 
-    if [ "${-#*i}" == "$-" ]; then
+    if [[ "${-#*i}" == "$-" ]]; then
         if type topgrade >/dev/null 2>&1; then
             echo -e "\topgrade interactive:"
             sudo -v

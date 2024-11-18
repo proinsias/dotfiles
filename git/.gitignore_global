@@ -341,7 +341,7 @@ config.ini
 .idea
 .google_apis
 nohup.out
-.envrc
+# .envrc
 
 # Created by https://www.gitignore.io/api/pycharm
 

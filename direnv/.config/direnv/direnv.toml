@@ -13,6 +13,9 @@ exact = [
       "/Users/ftod/GitHub/dotfiles/direnv/.envrc",
       "/Users/ftod/GitHub/knowledge-dump/.envrc",
       "/Users/ftod/GitHub/mac-playbook/.envrc",
+      "/Users/ftod/GitHub/monorepo/.envrc",
+      "/Users/ftod/GitHub/monorepo/datascience/DS-123/.envrc",
+      "/Users/ftod/GitHub/monorepo/datascience/ds-utils/.envrc",
       "/Users/ftod/GitHub/proinsias.github.io/.envrc",
       "/Users/ftod/GitHub/scripts/.envrc"
 ]

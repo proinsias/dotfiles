@@ -11,11 +11,22 @@ exact = [
       "/Users/ftod/GitHub/copier-python-template/copier-python-template/.envrc",
       "/Users/ftod/GitHub/dotfiles/.envrc",
       "/Users/ftod/GitHub/dotfiles/direnv/.envrc",
+      "/Users/ftod/GitHub/ds-playground/.envrc",
+      "/Users/ftod/GitHub/ds-playground/projects/disease-risk-prediction/.envrc",
+      "/Users/ftod/GitHub/ds-playground/projects/ds-utils/.envrc",
+      "/Users/ftod/GitHub/ds-playground/projects/gilbert-shannon-reeds/.envrc",
       "/Users/ftod/GitHub/knowledge-dump/.envrc",
       "/Users/ftod/GitHub/mac-playbook/.envrc",
       "/Users/ftod/GitHub/monorepo/.envrc",
       "/Users/ftod/GitHub/monorepo/datascience/DS-123/.envrc",
       "/Users/ftod/GitHub/monorepo/datascience/ds-utils/.envrc",
       "/Users/ftod/GitHub/proinsias.github.io/.envrc",
-      "/Users/ftod/GitHub/scripts/.envrc"
+      "/Users/ftod/GitHub/scripts/.envrc",
+      "/Users/ftod/GitHub/take-homes/.envrc",
+      "/Users/ftod/GitHub/take-homes/32health/.envrc",
+      "/Users/ftod/GitHub/take-homes/diagnostic-robotics/.envrc",
+      "/Users/ftod/GitHub/take-homes/hospitaliq/.envrc",
+      "/Users/ftod/GitHub/take-homes/oura/.envrc",
+      "/Users/ftod/GitHub/take-homes/overjet/.envrc",
+      "/Users/ftod/GitHub/take-homes/platform-science/.envrc"
 ]

@@ -1,21 +1,21 @@
 # Configuration file for jupyter-notebook.
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Configurable configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # LoggingConfigurable configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # A parent class for Configurables that log.
 #
 # Subclasses have a log trait, and the default behavior is to get the logger
 # from the currently running Application.
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # SingletonConfigurable configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # A configurable that only allows one instance.
 #
@@ -23,9 +23,9 @@
 # *any* subclass. To create and retrieve such a class use the
 # :meth:`SingletonConfigurable.instance` method.
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Application configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # This is an application.
 
@@ -38,9 +38,9 @@
 # Set the log level by value or name.
 # c.Application.log_level = 30
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # JupyterApp configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Base class for Jupyter applications
 
@@ -56,9 +56,9 @@
 # Generate default config file.
 # c.JupyterApp.generate_config = False
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # NotebookApp configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Set the Access-Control-Allow-Credentials: true header
 # c.NotebookApp.allow_credentials = False
@@ -201,7 +201,7 @@
 # c.NotebookApp.password = u'sha1:42b4cfb2bf41:ab16481c08a67f6f57bed8c6c6ab4e7870077dbc'
 
 # The port the notebook server will listen on.
-c.NotebookApp.port = 9999
+c.ServerApp.port = 9999
 
 # The number of additional ports to try if the specified port is not available.
 # c.NotebookApp.port_retries = 50
@@ -209,7 +209,7 @@ c.NotebookApp.port = 9999
 # DISABLED: use %pylab or %matplotlib in the notebook to enable matplotlib.
 # c.NotebookApp.pylab = 'disabled'
 
-c.IPKernelApp.pylab = 'inline'
+c.IPKernelApp.pylab = "inline"
 
 # Reraise exceptions encountered loading server extensions?
 # c.NotebookApp.reraise_server_extension_failures = False
@@ -243,9 +243,9 @@ c.IPKernelApp.pylab = 'inline'
 # Should be in the form of an HTTP origin: ws[s]://hostname[:port]
 # c.NotebookApp.websocket_url = ''
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ConnectionFileMixin configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Mixin for configurable classes that work with connection files
 
@@ -279,9 +279,9 @@ c.IPKernelApp.pylab = 'inline'
 #
 # c.ConnectionFileMixin.transport = 'tcp'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # KernelManager configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Manages a single kernel in a subprocess on this host.
 #
@@ -300,9 +300,9 @@ c.IPKernelApp.pylab = 'inline'
 # line.
 # c.KernelManager.kernel_cmd = []
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Session configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Object for handling serialization and sending of messages.
 #
@@ -388,9 +388,9 @@ c.IPKernelApp.pylab = 'inline'
 # Username for the Session. Default is your system username.
 # c.Session.username = 'francis'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # MultiKernelManager configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # A class for managing multiple kernels.
 
@@ -401,18 +401,18 @@ c.IPKernelApp.pylab = 'inline'
 # KernelManager for customized behavior.
 # c.MultiKernelManager.kernel_manager_class = 'jupyter_client.ioloop.IOLoopKernelManager'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # MappingKernelManager configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # A KernelManager that handles notebook mapping and HTTP error handling
 
 #
 # c.MappingKernelManager.root_dir = ''
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ContentsManager configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Base class for serving files and directories.
 #
@@ -466,9 +466,9 @@ c.IPKernelApp.pylab = 'inline'
 # The base name used when creating untitled notebooks.
 # c.ContentsManager.untitled_notebook = 'Untitled'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # FileManagerMixin configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Mixin for ContentsAPI classes that interact with the filesystem.
 #
@@ -492,9 +492,9 @@ c.IPKernelApp.pylab = 'inline'
 # )
 # c.FileManagerMixin.use_atomic_writing = True
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # FileContentsManager configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Python callable or importstring thereof
 #
@@ -517,9 +517,9 @@ c.IPKernelApp.pylab = 'inline'
 # DEPRECATED, use post_save_hook
 # c.FileContentsManager.save_script = False
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # NotebookNotary configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # A class for computing and verifying notebook signatures.
 
@@ -541,16 +541,16 @@ c.IPKernelApp.pylab = 'inline'
 # The file where the secret key is stored.
 # c.NotebookNotary.secret_file = ''
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # KernelSpecManager configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Whitelist of allowed kernel names.
 #
 # By default, all installed kernels are allowed.
 # c.KernelSpecManager.whitelist = set()
 
-#def post_save(model, os_path, contents_manager):
+# def post_save(model, os_path, contents_manager):
 #    """post-save hook for converting notebooks to .py scripts"""
 #    import os
 #    from subprocess import check_call

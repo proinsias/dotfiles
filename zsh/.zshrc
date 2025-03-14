@@ -685,8 +685,8 @@ if ping -c 1 google.com >/dev/null 2>&1; then # Are we online?
     echo "Is the internet on fire?:"
     dig +short -t txt istheinternetonfire.com
 
-    echo "Check the weather"
-    curl -s wttr.in
+    # echo "Check the weather"
+    # curl -s wttr.in
 fi
 
 ## pyjokes

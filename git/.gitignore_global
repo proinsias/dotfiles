@@ -559,7 +559,7 @@ docs/_build/
 .ipynb_checkpoints
 
 # pyenv
-.python-version
+# .python-version
 
 # celery beat schedule file
 celerybeat-schedule

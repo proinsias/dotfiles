@@ -170,7 +170,7 @@ alias delete='function _delete(){ move "$@" ~/.Trash/ ; };_delete'
 
 #alias ec='function _ec(){ emacsclient "$@" ; };_ec'
 alias ec="emacsclient"
-alias emacs="emacsclient"
+# alias emacs="emacsclient"
 # alias emacs='function _ec(){ emacsclient "$@" ; };_ec'  # Breaks auto-completion. Just use `emacs -nw`.
 # alias ew='function _ew(){ /usr/local/bin/emacs -nw "$@" ; };_ew'
 

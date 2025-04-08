@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# FIXME: Add instaler for devbox if not present?!
-
 set -o errexit    # Exit on error. Append || true if you expect an error.
 set -o errtrace   # Exit on error inside any functions or subshells.
 set -o noclobber  # Don't allow overwriting files.
@@ -38,12 +36,17 @@ mkdir -p \
       ~/.jupyter \
       ~/.local/bin \
       ~/.local/share/devbox/global/default \
-      ~/.oh-my-zsh/custom \
       ~/.ssh \
       ~/.subversion/auth \
       ~/.vnc \
       ~/.zfunc/ \
       ~/Library/Preferences/glow
+
+if test -f "${ZSH}/oh-my-zsh.sh"; then
+    mkdir -p ~/.oh-my-zsh/custom
+else
+    echo "Install oh-my-zsh via: https://ohmyz.sh/#install"
+fi
 
 if type stow >/dev/null 2>&1; then
     cd "${SCRIPT_DIR}"/
@@ -104,7 +107,7 @@ if type stow >/dev/null 2>&1; then
         zsh
 
     case $(hostname -s) in
-    "francis-odonovan-macbook")
+    "francis")
         stow --target="${HOME}" \
             francis-odonovan-macbook-atuin \
             francis-odonovan-macbook-gitconfig

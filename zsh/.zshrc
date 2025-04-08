@@ -261,8 +261,11 @@ if [[ -o interactive ]]; then
 
     ## tab completion for npm
     # shellcheck disable=SC2065,SC2154
-    if ! test -f "${HOMEBREW_PREFIX}/share/zsh-completions/_npm" &>/dev/null; then
-        npm completion >"${HOMEBREW_PREFIX}/share/zsh-completions/_npm"
+    if type npm >/dev/null >&1; then
+        if ! test -f "${HOMEBREW_PREFIX}/share/zsh-completions/_npm" &>/dev/null; then
+            mkdir -p "${HOMEBREW_PREFIX}/share/zsh-completions/"
+            npm completion >"${HOMEBREW_PREFIX}/share/zsh-completions/_npm"
+        fi
     fi
 
     ## Global tab completion for argcomplete-supported apps
@@ -492,7 +495,7 @@ esac
 
 if [[ -o interactive ]]; then
     # shellcheck disable=SC1091
-    source "${ZSH}/oh-my-zsh.sh"
+    test -f "${ZSH}/oh-my-zsh.sh" && source "${ZSH}/oh-my-zsh.sh"
 else
     # Avoid oh-my-zsh in non-interactive shells like devbox shell.
     autoload -U bashcompinit
@@ -501,7 +504,7 @@ else
     compinit
 
     ## http://direnv.net/
-    Installed above as plugin.
+    # Installed above as plugin.
     # shellcheck disable=SC2065
     if type direnv >/dev/null 2>&1; then
         OUTPUT="$(direnv hook zsh)"
@@ -553,16 +556,20 @@ fi
 ## tab completion for poetry
 ## https://python-poetry.org/docs/
 # shellcheck disable=SC2065,SC2154
-if ! test -f "${ZSH_CUSTOM}/plugins/poetry/_poetry" &>/dev/null; then
-    echo "Install poetry completions using: mkdir ${ZSH_CUSTOM}/plugins/poetry &&" \
-        "poetry completions zsh > ${ZSH_CUSTOM}/plugins/poetry/_poetry"
+if type poetry >/dev/null 2>&1; then
+    if ! test -f "${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/poetry/_poetry" &>/dev/null; then
+        echo "Install poetry completions using: mkdir ${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/poetry &&" \
+            "poetry completions zsh > ${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/poetry/_poetry"
+    fi
 fi
 
 ## tab completion for git-town
 # shellcheck disable=SC2065,SC2154
-if ! test -f "${ZSH_CUSTOM}/plugins/git-town/_git-town" &>/dev/null; then
-    echo "Install git town completions using: mkdir ${ZSH_CUSTOM}/plugins/git-town &&" \
-        "git-town completions zsh > ${ZSH_CUSTOM}/plugins/git-town/_git-town"
+if type git-town >/dev/null 2>&1; then
+    if ! test -f "${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/git-town/_git-town" &>/dev/null; then
+        echo "Install git town completions using: mkdir ${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/git-town &&" \
+            "git-town completions zsh > ${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/git-town/_git-town"
+    fi
 fi
 
 ## os-specific tab completions

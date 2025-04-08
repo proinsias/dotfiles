@@ -1,13 +1,19 @@
+[commit]
+  gpgsign = true
 [credential]
     helper = osxkeychain
-[git-town]
-    # Can't put this in included file.
-    ship-delete-remote-branch = false
-    sync-before-ship = true
-    sync-feature-strategy = rebase
+# [git-town]
+#     # Can't put this in included file.
+#     ship-delete-remote-branch = false
+#     sync-before-ship = true
+#     sync-feature-strategy = rebase
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [include]
     path = ~/.gitconfig.include
 [user]
     name = "Francis T. O'Donovan"
-    email = proinsias@users.noreply.github.com
-    signingkey = 74B07AE5FFB55BFC2FB8B25E8DBE5F9A6519D396
+    email = francis.odonovan@platformscience.com
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIcXU/LmJdu/Xb7svKu4Uj8sloRQImilCUDeUiHQJPMU

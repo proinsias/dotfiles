@@ -5,6 +5,7 @@ load_dotenv = true
 
 [whitelist]
 exact = [
+      "/Users/francis.odonovan/.envrc",
       "/Users/ftod/.envrc",
       "/Users/ftod/GitHub/an-independent-mind/.envrc",
       "/Users/ftod/GitHub/copier-python-template/.envrc",

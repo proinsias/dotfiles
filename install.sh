@@ -11,41 +11,59 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 # Make sure that these directories already exist so stow symlinks files not directories.
 mkdir -p \
-      ~/.bash \
-      ~/.bash_completions \
-      ~/.bundle \
-      ~/.config/archey4 \
-      ~/.config/atuin \
-      ~/.config/broot \
-      ~/.config/cheat \
-      ~/.config/direnv \
-      ~/.config/htop \
-      ~/.config/kitty \
-      ~/.config/neofetch \
-      ~/.config/pet \
-      ~/.config/sourcery \
-      ~/.config/thefuck \
-      ~/.config/tmuxinator \
-      ~/.config/yamllint \
-      ~/.doom.d \
-      ~/.git-template/hooks \
-      ~/.gnupg \
-      ~/.httpie \
-      ~/.hunspell_default \
-      ~/.ipython \
-      ~/.jupyter \
-      ~/.local/bin \
-      ~/.local/share/devbox/global/default \
-      ~/.ssh \
-      ~/.subversion/auth \
-      ~/.vnc \
-      ~/.zfunc/ \
-      ~/Library/Preferences/glow
+    ~/.bash \
+    ~/.bash_completions \
+    ~/.bundle \
+    ~/.config/archey4 \
+    ~/.config/atuin \
+    ~/.config/broot \
+    ~/.config/cheat \
+    ~/.config/direnv \
+    ~/.config/htop \
+    ~/.config/kitty \
+    ~/.config/neofetch \
+    ~/.config/pet \
+    ~/.config/sourcery \
+    ~/.config/thefuck \
+    ~/.config/tmuxinator \
+    ~/.config/yamllint \
+    ~/.doom.d \
+    ~/.git-template/hooks \
+    ~/.gnupg \
+    ~/.httpie \
+    ~/.hunspell_default \
+    ~/.ipython \
+    ~/.jupyter \
+    ~/.local/bin \
+    ~/.local/share/devbox/global/default \
+    ~/.ssh \
+    ~/.subversion/auth \
+    ~/.vnc \
+    ~/.zfunc/ \
+    ~/Library/Preferences/glow
 
+export ZSH="${ZSH:-${HOME}/.oh-my-zsh}"
 if test -f "${ZSH}/oh-my-zsh.sh"; then
-    mkdir -p ~/.oh-my-zsh/custom
+    mkdir -p "${ZSH}/custom"
 else
     echo "Install oh-my-zsh via: https://ohmyz.sh/#install"
+fi
+
+if type op >/dev/null 2>&1; then
+    op signin
+    op plugin init aws
+    op plugin init brew
+    # op plugin init cdk  # AWS CDK
+    # op plugin init dog  # DataDog
+    op plugin init gh
+    # op plugin init huggingface-cli
+    # op plugin init kaggle
+    # op plugin init mysql
+    # op plugin init ngrok
+    # op plugin init okta
+    # op plugin init openai
+    # op plugin init psql
+    # op plugin init snowsql
 fi
 
 if type stow >/dev/null 2>&1; then

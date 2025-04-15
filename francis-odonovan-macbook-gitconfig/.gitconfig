@@ -8,12 +8,14 @@
 #     sync-before-ship = true
 #     sync-feature-strategy = rebase
 [gpg]
-	format = ssh
+    format = ssh
 [gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+    program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [include]
     path = ~/.gitconfig.include
 [user]
     name = "Francis T. O'Donovan"
     email = francis.odonovan@platformscience.com
     signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIcXU/LmJdu/Xb7svKu4Uj8sloRQImilCUDeUiHQJPMU
+[core]
+    autocrlf = input

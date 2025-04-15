@@ -27,13 +27,15 @@ case $(uname -s) in
 *) ;;
 esac
 
+export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-/usr/local/}
+
 ## Exports
 
 # Preferred editor for local and remote sessions
 if [[ -n "${SSH_CONNECTION}" ]]; then
     export EDITOR='vi'
 else
-    export EDITOR='emacsclient'
+    export EDITOR='emacs'
 fi
 
 ### For hunspell.
@@ -58,7 +60,7 @@ export NPM_PACKAGES="${HOME}/.npm-packages"
 export HOMEBREW_INSTALL_CLEANUP=true
 
 ### For git
-export GIT_EDITOR='emacsclient'
+export GIT_EDITOR='emacs'
 export ALTERNATE_EDITOR=""
 export GIT_TEMPLATE_DIR="${HOME}"/.git-template
 
@@ -198,6 +200,7 @@ export PATH="${PATH}:${HOME}/.dotnet/tools"
 
 #### Google Cloud SDK.
 if [[ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]]; then
+    # shellcheck disable=SC1091
     . '/usr/local/google-cloud-sdk/path.zsh.inc'
 fi
 
@@ -215,7 +218,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 
 # Setup various commands before oh-my-zsh
 
@@ -227,8 +230,6 @@ if type pyenv >/dev/null 2>&1; then
 
     OUTPUT="$(pyenv init --path)"
     eval "${OUTPUT}" # Puts shims dir as prefix to PATH.
-    OUTPUT="$(pyenv init --path)" # Puts shims dir as prefix to PATH.
-    eval "${OUTPUT}"
     OUTPUT="$(pyenv init -)"
     eval "${OUTPUT}"
     OUTPUT="$(pyenv virtualenv-init -)"
@@ -286,6 +287,7 @@ if [[ -o interactive ]]; then
 
     ## The next line enables shell command completion for gcloud.
     if [[ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]]; then
+        # shellcheck disable=SC1091
         . '/usr/local/google-cloud-sdk/completion.zsh.inc'
     fi
 fi
@@ -639,8 +641,10 @@ if type atuin >/dev/null 2>&1; then
 fi
 
 # grc
+# shellcheck disable=SC1091
 [[ -s "/opt/homebrew/etc/grc.zsh" ]] && source /opt/homebrew/etc/grc.zsh
-[[ -s "~/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.zsh" ]] && source ~/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.zsh
+# shellcheck disable=SC1091
+[[ -s "${HOME}/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.zsh" ]] && source "${HOME}/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.zsh"
 
 case $(uname -s) in
 "Linux")
@@ -724,6 +728,11 @@ fi
 
 echo
 
+# shellcheck disable=SC1091
+test -f "${HOME}"/.op/plugins.sh && source "${HOME}"/.op/plugins.sh
+# shellcheck disable=SC1091
+test -f "${HOME}"/.config/op/plugins.sh && source "${HOME}"/.config/op/plugins.sh
+
 # Deduplicate PATH variable
 PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
 export PATH
@@ -737,5 +746,3 @@ export PATH
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-test -f "${HOME}"/.op/plugins.sh && source "${HOME}"/.op/plugins.sh
-test -f "${HOME}"/.config/op/plugins.sh && source "${HOME}"/.config/op/plugins.sh

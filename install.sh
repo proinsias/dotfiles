@@ -51,7 +51,7 @@ fi
 
 if type op >/dev/null 2>&1; then
     op signin
-    op plugin init aws
+    # op plugin init aws
     op plugin init brew
     # op plugin init cdk  # AWS CDK
     # op plugin init dog  # DataDog

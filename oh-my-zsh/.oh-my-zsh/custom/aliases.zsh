@@ -53,7 +53,7 @@ alias kill="gkill"
 alias ln="gln"
 #alias logname="glogname"
 #alias ls='gls --almost-all --classify --human-readable --color --quote-name -v' # natural sort
-alias ls='eza --all --classify --color=always --color-scale --icons' # Natural sort by default.
+alias ls='eza --all --classify=auto --color=always --color-scale --icons=auto' # Natural sort by default.
 alias md5sum="gmd5sum"
 alias mkdir="gmkdir"
 #alias mkfifo="gmkfifo"
@@ -164,9 +164,9 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 
 alias close='gchmod g-w,o-rwx'
 alias copy='gcp -i'
-alias count='function _count(){ gls "$@" | gwc -l ; };_count'
+# alias count='function _count(){ gls "$@" | gwc -l ; };_count'
 
-alias delete='function _delete(){ move "$@" ~/.Trash/ ; };_delete'
+# alias delete='function _delete(){ move "$@" ~/.Trash/ ; };_delete'
 
 #alias ec='function _ec(){ emacsclient "$@" ; };_ec'
 alias ec="emacsclient"
@@ -215,7 +215,7 @@ alias prikey="more ~/.ssh/id_ed25519 | xclip -selection clipboard | echo '=> Pri
 # Pipe my public key to my clipboard.
 alias pubkey="more ~/.ssh/id_ed25519.pub | xclip -selection clipboard | echo '=> Public key copied to pasteboard.'"
 
-alias reload="exec ${SHELL} -l"
+# alias reload="exec ${SHELL} -l"
 alias remove='grm -i'
 alias removebackups='delete *~ #*# .*~'
 
@@ -271,4 +271,5 @@ case $(guname -s) in
 
     alias top='top -o cpu'
     ;;
+*) ;;
 esac

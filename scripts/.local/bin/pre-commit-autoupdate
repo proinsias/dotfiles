@@ -1,6 +1,4 @@
-#!/usr/bin/env nix-shell
-#! nix-shell -i bash --pure
-#! nix-shell -p bash coreutils pre-commit
+#!/usr/bin/env bash
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
 set -o errtrace               # Exit on error inside any functions or subshells.
@@ -10,12 +8,8 @@ set -o pipefail               # Produce a failure return code if any pipeline co
 shopt -s failglob             # Cause globs that don't get expanded to cause errors.
 shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
 
-for dir in "${HOME}/GitHub/*"; do
-    if [ -d "${dir}" ]; then
-        cd "${dir}"
-	for file in "**/.pre-commit-config.yaml"; do
-	    echo "${dir}/${file}"
-	    pre-commit autoupdate -c "${file}" | grep -v "already up to date"
-	done
-    fi
-done
+find "${HOME}"/GitHub/ \
+    -type d \
+    -maxdepth 1 \
+    -mindepth 1 \
+    -exec sh -c 'cd "$1"; find . -name ".pre-commit-config.yaml" -exec pre-commit autoupdate -c \{\} \;' shell {} \;

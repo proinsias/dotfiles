@@ -61,7 +61,7 @@ repos:
     # YAML
 
     - repo: https://github.com/adrienverge/yamllint
-      rev: v1.37.0
+      rev: v1.37.1
       hooks:
           - id: yamllint
             args: [-c=.yamllint.yml]
@@ -98,7 +98,7 @@ repos:
           - id: check-readthedocs
 
     - repo: https://github.com/zricethezav/gitleaks
-      rev: v8.25.0
+      rev: v8.25.1
       hooks:
           - id: gitleaks
 

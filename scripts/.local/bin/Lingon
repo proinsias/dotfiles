@@ -6,7 +6,7 @@
 
 # FIXME: Update ansible files so I can pick and chose with tags what to run.
 
-# shellcheck source=/Users/ftod/.env
+# shellcheck disable=SC1090
 source ~/.envrc
 
 # Intel homebrew
@@ -81,18 +81,18 @@ updateall() {
         # To upgrade, run: `sudo gcloud components update --quiet`.
     fi
 
-    if type devbox >/dev/null 2>&1; then
-        echo -e "\ndevbox updates:"
-        devbox global update
-        for dir in "${HOME}/GitHub/*"; do
-            if [ -d "${dir}" ]; then
-                cd "${dir}"
-	            if [ -f "${dir}/devbox.json" ]; then
-	                devbox update
-                fi
-            fi
-        done
-    fi
+    #    if type devbox >/dev/null 2>&1; then
+    #        echo -e "\ndevbox updates:"
+    #        devbox global update
+    #        for dir in "${HOME}"/GitHub/*; do
+    #            if [ -d "${dir}" ]; then
+    #                cd "${dir}"
+    #               if [ -f "${dir}/devbox.json" ]; then
+    #                   devbox update
+    #                fi
+    #            fi
+    #        done
+    #    fi
 
     if [[ "${-#*i}" == "$-" ]]; then
         if type topgrade >/dev/null 2>&1; then
@@ -120,6 +120,7 @@ tmpfile="$(mktemp)"
 
 updateall |& tee "${tmpfile}"
 
-pop < "${tmpfile}" \
+# shellcheck disable=SC2154
+pop <"${tmpfile}" \
     --to "${POP_TO}" \
     --subject "update_all_${host}_${dt}.txt"

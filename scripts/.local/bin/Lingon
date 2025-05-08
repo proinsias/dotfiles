@@ -35,19 +35,19 @@ export DEBIAN_FRONTEND
 
 updateall() {
     if type apt-get >/dev/null 2>&1; then
-        echo -e "\apt-get update:"
+        echo -e "\napt-get update:"
         apt-get update --yes
-        echo -e "\apt-get upgrade:"
+        echo -e "\napt-get upgrade:"
         apt-get upgrade --yes
     fi
 
     if type pre-commit-autoupdate >/dev/null 2>&1; then
         echo -e "\npre-commit-autoupdate:"
-        pre-commit-autoupdate
+        pre-commit-autoupdate | grep -v "already up to date!"
     fi
 
     if type topgrade >/dev/null 2>&1; then
-        echo -e "\topgrade:"
+        echo -e "\ntopgrade:"
         topgrade --cleanup --no-retry --skip-notify --yes \
             --disable certbot gcloud git_repos mas nix system tlmgr uv
     fi
@@ -96,7 +96,7 @@ updateall() {
 
     if [[ "${-#*i}" == "$-" ]]; then
         if type topgrade >/dev/null 2>&1; then
-            echo -e "\topgrade interactive:"
+            echo -e "\ntopgrade interactive:"
             sudo -v
             topgrade --cleanup --no-retry --skip-notify --yes \
                 --only certbot gcloud nix system tlmgr

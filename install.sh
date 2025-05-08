@@ -50,12 +50,19 @@ else
 fi
 
 if type op >/dev/null 2>&1; then
-    op signin
+    if ! test -f "${HOME}"/.config/op/plugins/brew.json; then
+        op signin
+        op plugin init brew
+    fi
+
+    if ! test -f "${HOME}"/.config/op/plugins/gh.json; then
+        op signin
+        op plugin init gh
+    fi
+
     # op plugin init aws
-    op plugin init brew
     # op plugin init cdk  # AWS CDK
     # op plugin init dog  # DataDog
-    op plugin init gh
     # op plugin init huggingface-cli
     # op plugin init kaggle
     # op plugin init mysql

@@ -105,7 +105,7 @@ updateall() {
         # shellcheck disable=SC2065
         if test -d ~/favs/gh/mac-playbook >/dev/null 2>&1; then
             echo -e "\n~/favs/gh/mac-playbook:"
-            cd ~/favs/gh/mac-playbook || exit
+            cd "${HOME}"/favs/gh/mac-playbook || exit
 
             ansible-playbook main.yml --inventory inventory
 

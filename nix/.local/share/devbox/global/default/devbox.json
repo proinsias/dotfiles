@@ -70,7 +70,8 @@
     "ripgrep@latest",
     "grc@latest",
     "starship@latest",
-    "vscode-extensions.wakatime.vscode-wakatime@latest"
+    "vscode-extensions.wakatime.vscode-wakatime@latest",
+    "yt-dlp@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],

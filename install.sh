@@ -90,7 +90,6 @@ if type stow >/dev/null 2>&1; then
         cheat \
         conda \
         curl \
-        direnv \
         emacs \
         gdb \
         git \
@@ -134,20 +133,24 @@ if type stow >/dev/null 2>&1; then
     case $(hostname -s) in
     "francis")
         stow --target="${HOME}" \
+            francis-odonovan-direnv \
             francis-odonovan-macbook-atuin \
             francis-odonovan-macbook-gitconfig
         ;;
     "mercury")
         stow --target="${HOME}" \
+            default-direnv \
             mercury-gitconfig
         ;;
     "ilovemovies")
         stow --target="${HOME}" \
+            default-direnv \
             ilovemovies-gitconfig
         ;;
     *)
         stow --target="${HOME}" \
             default-atuin \
+            default-direnv \
             default-gitconfig
         ;;
     esac

@@ -746,3 +746,6 @@ export PATH
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Added by Windsurf
+export PATH="/Users/francis.odonovan/.codeium/windsurf/bin:$PATH"

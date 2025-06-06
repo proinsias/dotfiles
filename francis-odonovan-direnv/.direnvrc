@@ -1,0 +1,7 @@
+# use a certain pyenv version
+use_python() {
+    if [ -n "$(which pyenv)" ]; then
+        local pyversion="${1}"
+        pyenv local "${pyversion}"
+    fi
+}

@@ -12,6 +12,7 @@ exact = [
       "/Users/francis.odonovan/git/dotfiles/default-direnv/.envrc",
       "/Users/francis.odonovan/git/dotfiles/francis.odonovan-direnv/.envrc",
       "/Users/francis.odonovan/git/mac-playbook/.envrc",
+      "/Users/francis.odonovan/git/scripts/.envrc",
 ]
 
 prefix = [

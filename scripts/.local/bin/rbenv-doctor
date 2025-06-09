@@ -1,6 +1,4 @@
-#!/usr/bin/env nix-shell
-#! nix-shell -i bash --pure
-#! nix-shell -p bash coreutils gnugrep gnused
+#!/usr/bin/env bash
 
 # Usage: rbenv doctor
 # Summary: Detects common problems in rbenv installation

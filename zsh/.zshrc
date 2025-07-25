@@ -749,3 +749,6 @@ export PATH
 
 # Added by Windsurf
 export PATH="/Users/francis.odonovan/.codeium/windsurf/bin:$PATH"
+
+# bun completions
+[ -s "/Users/ftod/.bun/_bun" ] && source "/Users/ftod/.bun/_bun"

@@ -12,4 +12,6 @@ find "${HOME}"/GitHub/ \
     -type d \
     -maxdepth 1 \
     -mindepth 1 \
-    -exec sh -c 'cd "$1"; find . -name ".pre-commit-config.yaml" -exec pre-commit autoupdate -c \{\} \;' shell {} \;
+    | xargs -P "$(nproc)" -I{} sh -c \
+    'cd {} && pre-commit autoupdate'
+

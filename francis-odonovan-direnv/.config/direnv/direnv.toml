@@ -1,0 +1,20 @@
+[global]
+# If set to true, also look for and load .env files on top of the .envrc files.
+# If both .envrc and .env files exist, the .envrc will always be chosen first.
+load_dotenv = true
+
+[whitelist]
+exact = [
+      "/Users/francis.odonovan/.envrc",
+      "/Users/francis.odonovan/git/an-independent-mind/.envrc",
+      "/Users/francis.odonovan/git/dbt-configs/.envrc",
+      "/Users/francis.odonovan/git/dotfiles/.envrc",
+      "/Users/francis.odonovan/git/dotfiles/default-direnv/.envrc",
+      "/Users/francis.odonovan/git/dotfiles/francis.odonovan-direnv/.envrc",
+      "/Users/francis.odonovan/git/mac-playbook/.envrc",
+      "/Users/francis.odonovan/git/scripts/.envrc",
+]
+
+prefix = [
+      "/Users/francis.odonovan/git/ml_testing",
+]

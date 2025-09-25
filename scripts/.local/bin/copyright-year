@@ -1,6 +1,4 @@
-#!/usr/bin/env nix-shell
-#! nix-shell -i bash --pure
-#! nix-shell -p bash coreutils git gnugrep
+#!/usr/bin/env bash
 #
 # Copyright (c) 2010-2016, Benjamin C. Meyer <ben@meyerhome.net>
 # Copyright (c) 2013-2016, Phil Black-Knight <pblack88@gmail.com>

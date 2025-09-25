@@ -626,6 +626,9 @@ fi
 # To add identities, run:
 # ssh-add -K ~/.ssh/id_rsa
 
+# Don't run ssh-add in tmux shells - see tmuxinator config.
+# [[ -z $TMUX ]] && ssh-add
+
 ## Starship
 # shellcheck disable=SC2065
 if type starship >/dev/null 2>&1; then
@@ -746,3 +749,9 @@ export PATH
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Added by Windsurf
+export PATH="/Users/francis.odonovan/.codeium/windsurf/bin:$PATH"
+
+# bun completions
+[ -s "/Users/ftod/.bun/_bun" ] && source "/Users/ftod/.bun/_bun"

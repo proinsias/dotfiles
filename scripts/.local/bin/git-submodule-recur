@@ -1,6 +1,4 @@
-#!/usr/bin/env nix-shell
-#! nix-shell -i bash --pure
-#! nix-shell -p bash git
+#!/usr/bin/env bash
 
 case "$1" in
 "init") CMD="submodule update --init" ;;

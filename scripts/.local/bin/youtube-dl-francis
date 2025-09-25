@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-#!/usr/bin/env nix-shell
-#! nix-shell -i bash --pure
-#! nix-shell -p bash youtube-dl
+
 youtube-dl --ignore-errors --mark-watched --no-overwrites --continue \
     --console-title --embed-subs --embed-thumbnail \
     --add-metadata --batch-file youtube.txt

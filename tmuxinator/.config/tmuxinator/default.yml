@@ -7,14 +7,19 @@ root: ~/
 windows:
   - iqueue-surgery-ds:
       - cd ~/favs/lt/iqueue-surgery-ds/iqueue-surgery-ds-master/
+      - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
   - patientroutesystems:
       - cd ~/favs/hiq/patientroutesystems/patientroutesystems-develop
+      - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
   - forecaster:
       - cd ~/favs/hiq/patientroutesystems/patientroutesystems-develop/pr-apps/managed/forecaster
+      - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
   - data-science:
       - cd ~/favs/hiq/data-science/data-science-master
+      - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
   - misc:
       - cd ~/Desktop
+      - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
 
 # - example:
 #     root: ~/favs/lt/iqueue-surgery-ds

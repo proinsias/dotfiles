@@ -1,6 +1,4 @@
-#!/usr/bin/env nix-shell
-#! nix-shell -i bash --pure
-#! nix-shell -p bash silver-searcher
+#!/usr/bin/env bash
 
 # Find and replace by a given list of files.
 #

@@ -626,6 +626,8 @@ fi
 # To add identities, run:
 # ssh-add -K ~/.ssh/id_rsa
 
+# Don't run ssh-add in tmux shells - see tmuxinator config.
+
 ## Starship
 # shellcheck disable=SC2065
 if type starship >/dev/null 2>&1; then

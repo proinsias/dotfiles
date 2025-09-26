@@ -31,6 +31,13 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 
 -   [ ] Handle .doom.d
 -   [ ] How handle .oh-my-zsh/custom/aliases.zsh ?
+-   [ ] And .oh-my-zsh/custom/plugins/
+
+```
+Install poetry completions using: mkdir /Users/ftod/.oh-my-zsh/custom/plugins/poetry && poetry completions zsh > /Users/ftod/.oh-my-zsh/custom/plugins/poetry/_poetry
+Install git town completions using: mkdir /Users/ftod/.oh-my-zsh/custom/plugins/git-town && git-town completions zsh > /Users/ftod/.oh-my-zsh/custom/plugins/git-town/_git-town
+```
+
 -   [ ] op
 
 ```

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Step 1: put this file in your path and make executable
+# Step 2: add the following to your .gitattributes file
+#   *.ipynb diff=nb2md
+# Step 3: add the following to your .git/config
+#   [diff "nb2md"]
+#       textconv = nb2md
+# or to it globally with
+#   git config --global diff.nb2md.textconv nb2md.sh
+
+jupyter nbconvert --to markdown $1 --stdout --log-level=0

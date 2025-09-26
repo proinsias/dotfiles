@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+set -o errexit                # Exit on error. Append || true if you expect an error.
+set -o errtrace               # Exit on error inside any functions or subshells.
+set -o noclobber              # Don't allow overwriting files.
+set -o nounset                # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail               # Produce a failure return code if any pipeline command errors.
+shopt -s failglob             # Cause globs that don't get expanded to cause errors.
+shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
+
+array=(
+    "ctrl-r  # altuin switch filter modes"
+    "!$  # get the last argument of the previous command"
+    "!?foo  # repeat the most recent command that contained the string 'foo'"
+    "^WORD1^WORD2^  # repeat the last command replacing WORD1 with WORD2"
+    "bat --show-all  # A cat clone with syntax highlighting and Git integration."
+    "br  # a better way to navigate directories"
+    "br -hsdp  # display sizes, dates and permissions, and include hidden files"
+    "cheat tar  # view the tar cheatsheet"
+    "cheat -c -s ssh  # search for ssh among all cheatsheets, and colorize matches"
+    "cheat -l apt  # list all cheatsheets whose titles match apt"
+    "echo this command will no be saved #ignore  # bashhub will ignore this command"
+    "em egg  # get emojii using name"
+    "em -s food  # search for emojii using keyword"
+    "find * -type f | fzf > selected  # launch interactive finder, read the list from STDIN, and write the selected item to STDOUT"
+    "fkill  # launch the interactive UI to fabulously kill processes"
+    "fkill :8080  # kill a port"
+    "fkill safari  # kill an application by name"
+    "f@@k  # try to correct previous command"
+    "git branch-status"
+    "git show | tig  # colorize the output of git-show using tig"
+    "glow README.md  # Terminal viewer of markdown files"
+    "nbpreview file.ipynb  # render a Jupyter Notebook in the terminal"
+    "pet new -t  # save new snippet with tags"
+    "tig show  # run git show via text-mode interface for Git"
+    "tldr tar  # simplified man pages with practical examples"
+    "yq  # uses jq syntax but works with yaml/json/xml/properties/csv/tsv"
+    "z foo bar  # cd into highest ranked directory matching foo and bar"
+    "z foo /  # cd into a subdirectory starting with foo"
+    "zi foo  # cd with interactive selection (using fzf)"
+    "z foo<SPACE><TAB>  # show interactive completions"
+)
+
+size="${#array[@]}"
+index="$((RANDOM % size))"
+echo "${array[${index}]}"

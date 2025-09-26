@@ -1,0 +1,44 @@
+{{- $email := promptStringOnce . "email" "Email address" -}}
+
+encryption = "gpg"
+
+[data]
+    name = "{{ promptStringOnce . "name" "Your full name" }}"
+    email = {{ $email | quote }}
+    defaultkey = "{{ promptStringOnce . "defaultkey" "Default gpg key" }}"
+    githubemail = "{{ promptStringOnce . "githubemail" "GitHub email address" }}"
+    opaccount = "{{ promptStringOnce . "opaccount" "1Password account" }}"
+    slackrecipient = "{{ promptStringOnce . "slackrecipient" "Slack recipient" }}"
+    slacktoken = "{{ promptStringOnce . "slacktoken" "Slack token" }}"
+
+    {{- $work := promptBoolOnce . "work" "Is this a work machine" }}
+    work = {{ $work }}
+
+    {{- if $work }}
+    # Work-specific configuration
+    {{- else }}
+    # Personal machine configuration
+    {{- end }}
+
+[diff]
+command = "code"
+args = ["--wait", "--diff"]
+
+[edit]
+    command = "code"
+    args = ["--wait"]
+
+[git]
+    autoCommit = true
+    autoPush = false
+
+[gpg]
+    recipient = "74B07AE5FFB55BFC2FB8B25E8DBE5F9A6519D396"  # pragma: allowlist secret
+    args = ["--quiet"]
+
+{{ if eq .chezmoi.os "darwin" -}}
+[[textconv]]
+    pattern = "**/*.plist"
+    command = "plutil"
+    args = ["-convert", "xml1", "-o", "-", "-"]
+{{- end }}

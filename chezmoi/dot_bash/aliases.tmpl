@@ -1,0 +1,163 @@
+# Some example alias instructions
+# If these are enabled they will be used instead of any instructions
+# they may mask.  For example, alias rm='rm -i' will mask the rm
+# application.  To override the alias instruction use a \ before, ie
+# \rm will call the real rm not the alias.
+#
+
+# bash default-names
+
+if type gecho >/dev/null 2>&1; then
+
+    ## coreutils
+    alias basename="gbasename"
+    alias chgrp="gchgrp"
+    alias chmod="gchmod"
+    alias chown="gchown"
+    alias chroot="gchroot"
+    alias cp='gcp -i'
+    alias cut="gcut"
+    alias date="gdate"
+    alias df='gdf -h'  # Default to human readable figures
+    alias dir="gdir"
+    alias du='gdu -h'  # Default to human readable figures
+    alias echo="gecho"
+    alias head="ghead"
+    alias join="gjoin"
+    alias kill="gkill"
+    alias ll='gls --almost-all --classify --human-readable --color --quote-name -v -l'  # long list, natural sort.
+    alias ln="gln"
+    alias md5sum="gmd5sum"
+    alias mkdir="gmkdir"
+    alias mv="gmv -i"
+    alias nice="gnice"
+    alias nohup="gnohup"
+    alias rm="grm -i"
+    alias rmdir="grmdir"
+    alias sha1sum="gsha1sum"
+    alias sha224sum="gsha224sum"
+    alias sha256sum="gsha256sum"
+    alias sha384sum="gsha384sum"
+    alias sha512sum="gsha512sum"
+    alias shred="gshred"
+    alias shuf="gshuf"
+    alias sleep="gsleep"
+    alias sort="gsort"
+    alias split="gsplit"
+    alias stat="gstat"
+    alias tail="gtail"
+    alias tee="gtee"
+    alias touch="gtouch"
+    alias true="gtrue"
+    alias tsort="gtsort"
+    alias uname="guname"
+    alias uniq="guniq"
+    alias uptime="guptime"
+    alias users="gusers"
+    alias wc="gwc"
+    alias who="gwho"
+    alias whoami="gwhoami"
+    alias yes="gyes"
+
+    ## gnu-sed
+    alias sed="gsed"
+
+    ## gnu-tar
+    alias tar="gtar"
+
+    ## gnu-which
+    alias which="gwhich"
+
+    ## grep
+    alias grep='ggrep --color'                     # show differences in color
+    alias egrep='gegrep --color=auto'              # show differences in color
+    alias fgrep='gfgrep --color=auto'              # show differences in color
+
+
+else
+
+    alias cp='cp -i'
+    alias df='df -h'  # Default to human readable figures
+    alias du='du -h'  # Default to human readable figures
+    alias mv="mv -i"
+    alias rm="rm -i"
+
+fi
+
+if type eza >/dev/null 2>&1; then
+    alias ls='eza --all --classify --color=always --color-scale --icons'  # Natural sort by default.
+fi
+
+# main aliases
+
+alias alais='alias'
+alias bc="bc -l"
+alias boss='cd ; clear'
+alias bye='clear;logout'
+#alias cat="mog"
+alias cat="bat"
+alias ec="emacsclient"
+alias emacs="emacsclient"
+alias tx='tmuxinator'
+
+# Kill all the tabs in Chrome to free up memory
+# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
+alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+
+# Git
+alias gc='git checkout'
+alias gd='git diff'
+alias gs='git status --show-stash'
+alias GS='git status --show-stash'
+alias gp='git pull'
+
+alias h='history'
+
+alias ip='ifconfig -a | ggrep inet | ggrep broadcast'
+#alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+alias jl='jupyter lab'
+alias jn='jupyter notebook'
+
+# Clean up LaunchServices to remove duplicates in the "Open With" menu
+alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
+
+alias mroe='more'
+
+alias reload="exec ${SHELL} -l"
+
+# Misc :)
+alias less='less -r'                          # raw control characters
+alias more='less'
+alias whence='type -a'                        # where, of a sort
+
+{{ if eq .chezmoi.os "linux" }}
+alias top='top -o %CPU'
+{{ else if eq .chezmoi.os "darwin" }}
+# OS X has no `md5sum`, so use `md5` as a fallback
+command -v md5sum > /dev/null || alias md5sum="md5"
+
+# OS X has no `sha1sum`, so use `shasum` as a fallback
+command -v sha1sum > /dev/null || alias sha1sum="shasum"
+
+# Show/hide hidden files in Finder
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool
+gtrue && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool
+false && killall Finder"
+
+# Hide/show all desktop icons (useful when presenting)
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool
+false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool
+gtrue && killall Finder"
+
+# Ring the terminal bell, and put a badge on Terminal.app's Dock icon
+# (useful when executing time-consuming commands)
+alias badge="tput bel"
+
+# Lock the screen (when going AFK)
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+alias top='top -o cpu'
+{{ end }}

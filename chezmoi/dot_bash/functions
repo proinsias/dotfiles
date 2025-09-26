@@ -1,0 +1,201 @@
+
+# https://github.com/junegunn/fzf/wiki/Examples
+# Modified version where you can press
+#   - CTRL-O to open with `open` command,
+#   - CTRL-E or Enter key to open with the $EDITOR
+fo() {
+  local out file key
+  out=$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)
+  key=$(head -1 <<< "$out")
+  file=$(head -2 <<< "$out" | tail -1)
+  if [ -n "$file" ]; then
+    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+  fi
+}
+
+# https://github.com/junegunn/fzf/wiki/Examples
+# ef - fuzzy open with emacs from anywhere
+# ex: ef word1 word2 ... (even part of a file name)
+# zsh autoload function
+ef() {
+  local files
+
+  files=(${(f)"$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1 -m)"})
+
+  if [[ -n $files ]]
+  then
+     emacs -nw -- $files
+     print -l $files[1]
+  fi
+}
+
+# https://github.com/junegunn/fzf/wiki/Examples
+# cdf - cd to selected directory
+cdfd() {
+  local dir
+  dir=$(find ${1:-*} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+# https://github.com/junegunn/fzf/wiki/Examples
+# fda - including hidden directories
+fda() {
+  local dir
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
+
+# https://github.com/junegunn/fzf/wiki/Examples
+# cdf - cd into the directory of the selected file
+cdff() {
+   local file
+   local dir
+   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+# https://github.com/junegunn/fzf/wiki/Examples
+# fbr - checkout git branch (including remote branches)
+fbr() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# https://github.com/junegunn/fzf/wiki/Examples
+# fcs - get git commit sha
+# example usage: git rebase -i `fcs`
+fcs() {
+  local commits commit
+  commits=$(git log --color=always --pretty=oneline --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --tac +s +m -e --ansi --reverse) &&
+  echo -n $(echo "$commit" | sed "s/ .*//")
+}
+
+# Functions
+#
+# Some people use a different file for functions
+# if [ -f "${HOME}/.bash_functions" ]; then
+#   source "${HOME}/.bash_functions"
+# fi
+#
+# Some example functions:
+#
+# a) function settitle
+# settitle ()
+# {
+#   echo -ne "\e]2;$@\a\e]1;$@\a";
+# }
+#
+# b) function cd_func
+# This function defines a 'cd' replacement function capable of keeping,
+# displaying and accessing history of visited directories, up to 10 entries.
+# To use it, uncomment it, source this file and try 'cd --'.
+# acd_func 1.0.5, 10-nov-2004
+# Petar Marinov, http:/geocities.com/h2428, this is public domain
+# cd_func ()
+# {
+#   local x2 the_new_dir adir index
+#   local -i cnt
+#
+#   if [[ $1 ==  "--" ]]; then
+#     dirs -v
+#     return 0
+#   fi
+#
+#   the_new_dir=$1
+#   [[ -z $1 ]] && the_new_dir=$HOME
+#
+#   if [[ ${the_new_dir:0:1} == '-' ]]; then
+#     #
+#     # Extract dir N from dirs
+#     index=${the_new_dir:1}
+#     [[ -z $index ]] && index=1
+#     adir=$(dirs +$index)
+#     [[ -z $adir ]] && return 1
+#     the_new_dir=$adir
+#   fi
+#
+#   #
+#   # '~' has to be substituted by ${HOME}
+#   [[ ${the_new_dir:0:1} == '~' ]] && the_new_dir="${HOME}${the_new_dir:1}"
+#
+#   #
+#   # Now change to the new dir and add to the top of the stack
+#   pushd "${the_new_dir}" > /dev/null
+#   [[ $? -ne 0 ]] && return 1
+#   the_new_dir=$(pwd)
+#
+#   #
+#   # Trim down everything beyond 11th entry
+#   popd -n +11 2>/dev/null 1>/dev/null
+#
+#   #
+#   # Remove any other occurrence of this dir, skipping the top of the stack
+#   for ((cnt=1; cnt <= 10; cnt++)); do
+#     x2=$(dirs +${cnt} 2>/dev/null)
+#     [[ $? -ne 0 ]] && return 0
+#     [[ ${x2:0:1} == '~' ]] && x2="${HOME}${x2:1}"
+#     if [[ "${x2}" == "${the_new_dir}" ]]; then
+#       popd -n +$cnt 2>/dev/null 1>/dev/null
+#       cnt=cnt-1
+#     fi
+#   done
+#
+#   return 0
+# }
+#
+# alias cd=cd_func
+
+# From http://www.railstips.org/blog/archives/2009/02/02/bedazzle-your-bash-prompt-with-git-info/
+function parse_git_branch {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo "("${ref#refs/heads/}")"
+}
+
+# From https://github.com/hjuutilainen/dotfiles/blob/master/bin/osx-user-defaults.sh
+function CFPreferencesAppSynchronize() {
+    /usr/bin/python - <<END
+from Foundation import CFPreferencesAppSynchronize
+CFPreferencesAppSynchronize('$1')
+END
+}
+
+# From http://stackoverflow.com/a/23550347/1257318
+errcho(){
+    # Redirect output to stderr rather than stdout
+    >&2 echo $@;
+}
+
+# Keychain
+# From https://gist.github.com/bmhatfield/f613c10e360b4f27033761bbee4404fd
+getpassword(){
+    security find-generic-password -a ${USER} -D "environment variable" -s "${1}" -w
+}
+setpassword(){
+    security add-generic-password -U -a ${USER} -D "environment variable" -s "${1}" -w "${2}"
+}
+
+# Provide alias to disable requiring virtualenv.
+gpip(){
+  PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+
+# # Provide commands to keep virtualenvs contained in a certain folder.
+# pyenv() {
+#   source ~/.virtualenvs/$@/bin/activate
+# }
+#
+# newpyenv() {
+#   # Use builtin in case there's some cd customizations.
+#   builtin cd ~/.virtualenvs/.
+#   virtualenv $@ && source ~/.virtualenvs/$@/bin/activate
+#   builtin cd "${OLDPWD}"
+# }
+
+# https://github.com/knqyf263/pet
+function petprev() {
+  PREV=$(echo `history | tail -n2 | head -n1` | sed 's/[0-9]* //')
+  sh -c "pet new `printf %q "$PREV"`"
+}

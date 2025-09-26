@@ -1,0 +1,25 @@
+#!/bin/bash
+
+## TODO: Figure out how to turn on/off updating 'latest' apps
+
+# important apps that are at 'latest'
+apps=(
+  box-sync
+  dropbox
+  flux
+  github
+  google-chrome
+  google-drive
+  ibettercharge
+  lastpass
+  macdown
+  mactex
+  skype
+)
+
+brew update && brew upgrade && \
+brew cask install --appdir="/Applications" ${apps[@]} --force && \<<<<<<< HEAD
+brew cleanup && \
+brew doctor
+
+pyenv rehash  # Need to run this after upgrading pyenv.

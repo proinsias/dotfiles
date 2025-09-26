@@ -1,0 +1,41 @@
+# EditorConfig helps maintain consistent coding styles for multiple developers
+# working on the same project across various editors and IDEs.
+# https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+charset = utf-8
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+max_line_length = 120
+trim_trailing_whitespace = true
+
+# Tab indentation (no size specified)
+[Makefile]
+indent_style = tab
+
+## Markdown
+[*.md]
+trim_trailing_whitespace = false
+
+# Python
+# [*.py]
+
+# Ruby
+[{*.rb,*.gemspec,Gemfile{,.lock},Rakefile,Vagrantfile}]
+indent_size = 2
+
+# Front End Languages (HTML, JS, CSS etc)
+[*.{css,js,html}]
+indent_size = 2
+
+[*.json]
+indent_size = 2
+
+# YAML Based files
+[*.{yml,yaml,sls}]
+indent_size = 2

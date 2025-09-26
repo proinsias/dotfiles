@@ -1,0 +1,8 @@
+default-cache-ttl 600
+max-cache-ttl 7200
+allow-preset-passphrase
+{{ if eq .chezmoi.os "darwin" -}}
+    pinentry-program ${HOMEBREW_PREFIX}/bin/pinentry-mac
+{{- else if eq .chezmoi.os "linux" -}}
+    pinentry-program ${HOMEBREW_PREFIX}/bin/pinentry
+{{- end }}

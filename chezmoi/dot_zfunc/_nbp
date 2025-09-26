@@ -1,0 +1,7 @@
+#compdef nbp
+
+_nbp_completion() {
+  eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _NBP_COMPLETE=complete_zsh nbp)
+}
+
+compdef _nbp_completion nbp

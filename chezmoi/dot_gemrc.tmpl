@@ -1,0 +1,11 @@
+# http://guides.rubygems.org/command-reference/#gem-environment
+{{- if and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64") -}}
+gem: --no-document --bindir /opt/homebrew/bin # homebrew ruby
+{{ else }}
+gem: --no-document --bindir /usr/local/bin # homebrew ruby
+{{ end }}
+verbose: true
+update_sources: true
+backtrace: true
+benchmark: false
+bulk_threshold: 1000

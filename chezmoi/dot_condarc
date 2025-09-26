@@ -1,0 +1,23 @@
+channels:
+  - conda-forge
+  - defaults
+create_default_packages:
+  - argcomplete
+  - autopep8
+  - pep257
+  - pep8
+  - pyflakes
+  - pylint
+  - uncommitted
+show_channel_urls: true
+
+report_errors: true
+auto_activate_base: false
+# anaconda_upload: false
+# always_yes: true
+# auto_update_conda: false
+# changeps1: false
+# add_pip_as_python_dependency: false
+# use_pip: false
+# offline: true
+# allow_softlinks: false

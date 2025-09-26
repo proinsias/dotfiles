@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+uvx uncommitted --non-tracking --untracked --stash -I "old/proinsias" -I ".emacs.d" -I ".cache" "${1}"

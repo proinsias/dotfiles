@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -o nounset # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+# set -o xtrace  # Output expanded commands.
+
+if docker version >/dev/null 2>&1; then
+    docker system prune --all --filter "until=168h" --force # Filter out items created in last week.
+    docker volume prune --force
+else
+    echo "Docker daemon not running"
+fi

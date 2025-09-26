@@ -29,6 +29,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 
 ## To Dos
 
+-   [ ] Add .pypirc, .prettierignore, .envrc
 -   [ ] Handle .doom.d
 -   [ ] How handle .oh-my-zsh/custom/aliases.zsh ?
 -   [ ] And .oh-my-zsh/custom/plugins/

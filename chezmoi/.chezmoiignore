@@ -1,12 +1,3 @@
 README.md
-.editorconfig
-.prettierignore
-.prettierrc.json
-.pre-commit-config.yaml
-.secrets.baseline
-.yamllint.yml
-node_modules/
-gitleaks-report.json
 sym_config
-.gitleaksignore
-.oh-my-zsh/cache/completions/
+.oh-my-zsh/cache/

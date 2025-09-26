@@ -1,7 +1,0 @@
-# http://guides.rubygems.org/command-reference/#gem-environment
-gem: --no-document --bindir /usr/local/bin # homebrew ruby
-verbose: true
-update_sources: true
-backtrace: true
-benchmark: false
-bulk_threshold: 1000

@@ -1,9 +1,0 @@
-# Example /etc/pam.d/sudo file with support for Touch ID authentication.
-
-# sudo: auth account password session
-auth       sufficient     pam_tid.so
-auth       sufficient     pam_smartcard.so
-auth       required       pam_opendirectory.so
-account    required       pam_permit.so
-password   required       pam_deny.so
-session    required       pam_permit.so

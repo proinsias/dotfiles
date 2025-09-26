@@ -29,6 +29,9 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 
 ## To Dos
 
+1. gitconfig - Switch to getting from op!
+1. Convert zsh aliases to chezmoi template.
+
 ```
 -   [ ] /etc/hosts
 

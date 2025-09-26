@@ -88,5 +88,3 @@ fi
 
 
 ```
-
-Eventually, overwrite dotfiles directory with this repo's contents!

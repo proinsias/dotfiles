@@ -1,5 +1,0 @@
-#!/bin/bash
-
-cd /tmp/.
-
-curl -OL https://bashhub.com/setup && bash setup

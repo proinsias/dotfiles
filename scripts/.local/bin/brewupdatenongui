@@ -1,7 +1,0 @@
-#!/bin/bash
-
-brew update && brew upgrade && \
-brew cleanup && \
-brew doctor
-
-pyenv rehash  # Need to run this after upgrading pyenv.

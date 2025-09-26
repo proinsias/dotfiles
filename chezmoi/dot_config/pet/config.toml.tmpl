@@ -1,5 +1,5 @@
 [General]
-  snippetfile = "/Users/ftod/.config/pet/snippet.toml"
+  snippetfile = "/Users/{{ .chezmoi.username }}/.config/pet/snippet.toml"
   editor = "emacsclient"
   column = 40
   selectcmd = "fzf --ansi"
@@ -8,8 +8,8 @@
 
 [Gist]
   file_name = "pet-snippet.toml"
-  access_token = ""  # Use PET_GITHUB_ACCESS_TOKEN via .envrc instead.
-  gist_id = ""
+  access_token = {{ onepasswordRead "op://Private/PET_GITHUB_ACCESS_TOKEN/credential" | quote }}
+  gist_id = {{ onepasswordRead "op://Private/PET_GITHUB_ACCESS_TOKEN/gist" | quote }}
   public = false
   auto_sync = true
 

@@ -30,7 +30,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 ## To Dos
 
 -   [ ] Handle .doom.d
--   [ ] How handle .oh-my-zsh/custom/aliases.zsh ?
+-   [ ] How handle .oh-my-zsh/custom/aliases.zsh  -> sym_oh-my-zsh/custom/aliases.zsh -> write script
 -   [ ] And .oh-my-zsh/custom/plugins/
 
 ```

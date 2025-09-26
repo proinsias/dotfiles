@@ -1,4 +1,4 @@
-# dotfiles_chezmoi
+# dotfiles
 
 My personal collection of dotfiles to be managed with
 [chezmoi](https://www.chezmoi.io/).

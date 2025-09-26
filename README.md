@@ -38,35 +38,6 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 Install poetry completions using: mkdir /Users/ftod/.oh-my-zsh/custom/plugins/poetry && poetry completions zsh > /Users/ftod/.oh-my-zsh/custom/plugins/poetry/_poetry
 Install git town completions using: mkdir /Users/ftod/.oh-my-zsh/custom/plugins/git-town && git-town completions zsh > /Users/ftod/.oh-my-zsh/custom/plugins/git-town/_git-town
 ```
-
--   [ ] op
-
-```
-if type op >/dev/null 2>&1; then
-    if ! test -f "${HOME}"/.config/op/plugins/brew.json; then
-        op signin
-        op plugin init brew
-    fi
-
-    if ! test -f "${HOME}"/.config/op/plugins/gh.json; then
-        op signin
-        op plugin init gh
-    fi
-
-    # op plugin init aws
-    # op plugin init cdk  # AWS CDK
-    # op plugin init dog  # DataDog
-    # op plugin init huggingface-cli
-    # op plugin init kaggle
-    # op plugin init mysql
-    # op plugin init ngrok
-    # op plugin init okta
-    # op plugin init openai
-    # op plugin init psql
-    # op plugin init snowsql
-fi
-```
-
 -   [ ] /etc/hosts
 
 ```

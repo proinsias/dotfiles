@@ -27,15 +27,13 @@ Simply run this command from your terminal.
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 ```
 
-## Extras
-
-chezmoi update
-
 ## To Dos
 
-1. Handle .doom.d
-1. How handle .oh-my-zsh/custom/aliases.zsh ?
-1. TEST installing.
+- [ ] Handle .doom.d
+- [ ] How handle .oh-my-zsh/custom/aliases.zsh ?
+- [ ] TEST installing.
+
+- [ ] op
 
 ```
 if type op >/dev/null 2>&1; then
@@ -63,6 +61,8 @@ if type op >/dev/null 2>&1; then
 fi
 ```
 
+- [ ] /etc/hosts
+      
 ```
 ───────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
        │ File: /etc/hosts

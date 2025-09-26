@@ -29,12 +29,9 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 
 ## To Dos
 
-- [ ] Handle .doom.d
-- [ ] Install op on linux (not in linuxbrew)
-- [ ] How handle .oh-my-zsh/custom/aliases.zsh ?
-- [ ] TEST installing.
-
-- [ ] op
+-   [ ] Handle .doom.d
+-   [ ] How handle .oh-my-zsh/custom/aliases.zsh ?
+-   [ ] op
 
 ```
 if type op >/dev/null 2>&1; then
@@ -62,8 +59,8 @@ if type op >/dev/null 2>&1; then
 fi
 ```
 
-- [ ] /etc/hosts
-      
+-   [ ] /etc/hosts
+
 ```
 ───────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
        │ File: /etc/hosts

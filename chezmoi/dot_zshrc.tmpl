@@ -17,12 +17,6 @@ test -f /usr/local/bin/brew && OUTPUT="$(/usr/local/bin/brew shellenv)" && eval 
 # via Rosetta.
 test -f /opt/homebrew/bin/brew && OUTPUT="$(/opt/homebrew/bin/brew shellenv)" && eval "${OUTPUT}"
 
-# Add tab completion for `defaults read|write NSGlobalDomain`
-# You could just use `-g` instead, but I like being explicit
-complete -W "NSGlobalDomain" defaults
-
-# Add `killall` tab completion for common apps
-complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
 {{ else if eq .chezmoi.os "linux" }}
 # homebrew linuxbrew
 test -d /home/linuxbrew/.linuxbrew && OUTPUT="$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
@@ -535,6 +529,15 @@ fi
 # User configuration
 
 # Completion setup after loading Oh My Zsh.
+
+{{ if eq .chezmoi.os "darwin" }}
+# Add tab completion for `defaults read|write NSGlobalDomain`
+# You could just use `-g` instead, but I like being explicit
+complete -W "NSGlobalDomain" defaults
+
+# Add `killall` tab completion for common apps
+complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
+{{ end }}
 
 ## pipx (https://github.com/pipxproject/pipx)
 # shellcheck disable=SC2065

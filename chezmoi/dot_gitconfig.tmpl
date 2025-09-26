@@ -249,7 +249,8 @@
 {{ if eq .chezmoi.os "darwin" -}}
     signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJrV3U0rv3tP+EgPny5wVxm46FutLreH2YmyPYzLQ3/g
 {{- else if eq .chezmoi.os "linux" -}}
-    signingkey = ~/.ssh/id_rsa.pub
+    # FIXME: Switch to getting from op!
+    signingkey = ~/.ssh/id_ed25519.pub
 {{- end }}
 [tag]
     # Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.

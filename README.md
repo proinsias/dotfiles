@@ -30,6 +30,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 ## To Dos
 
 - [ ] Handle .doom.d
+- [ ] Install op on linux (not in linuxbrew)
 - [ ] How handle .oh-my-zsh/custom/aliases.zsh ?
 - [ ] TEST installing.
 

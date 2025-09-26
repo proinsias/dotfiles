@@ -47,10 +47,11 @@ else
 fi
 
 ### For hunspell.
-export LANG=en_US.UTF-8
-export DICTIONARY=en_US
-export LANGUAGE="en_US:en"
-export LC_ALL="en_US.UTF-8"
+# Linux doesn't like this.
+# export LANG=en_US.UTF-8
+# export DICTIONARY=en_US
+# export LANGUAGE="en_US:en"
+# export LC_ALL="en_US.UTF-8"
 
 ### Google Cloud
 export CLOUDSDK_PYTHON="${HOMEBREW_PREFIX}/bin/python3"
@@ -616,18 +617,21 @@ fi
 ## Add 1password-cli session
 # shellcheck disable=SC2065
 if type op >/dev/null 2>&1; then
-    OUTPUT="$(op signin --account {{ .opaccount }})"
-    eval "${OUTPUT}"
+    if [[ -z $TMUX ]]; then
+        OUTPUT="$(op signin --account {{ .opaccount }})"
+        eval "${OUTPUT}"
+    fi
 fi
+
+eval "$(ssh-agent -s)"
+# Don't run ssh-add in tmux shells - see tmuxinator config.
+[[ -z $TMUX ]] && ssh-add
 
 # Don't need this with use of keychain.
 # ssh-add -A  # Add all identities stored in your keychain.
 # ssh-add ~/.ssh/id_rsa
 # To add identities, run:
 # ssh-add -K ~/.ssh/id_rsa
-
-# Don't run ssh-add in tmux shells - see tmuxinator config.
-# [[ -z $TMUX ]] && ssh-add
 
 ## Starship
 # shellcheck disable=SC2065
@@ -666,7 +670,6 @@ fi
 if type screenfetch >/dev/null 2>&1; then
     screenfetch
 fi
-;;
 {{ else if eq .chezmoi.os "darwin" }}
 # https://github.com/obihann/archey-osx
 # shellcheck disable=SC2065
@@ -690,8 +693,10 @@ fi
 
 # shellcheck disable=SC2065
 if ping -c 1 google.com >/dev/null 2>&1; then # Are we online?
-    echo "Is the internet on fire?:"
-    dig +short -t txt istheinternetonfire.com
+    if type dig >/dev/null 2>&1; then
+        echo "Is the internet on fire?:"
+        dig +short -t txt istheinternetonfire.com
+    fi
 
     # echo "Check the weather"
     # curl -s wttr.in

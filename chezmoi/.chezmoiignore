@@ -2,5 +2,5 @@ README.md
 sym_config
 .oh-my-zsh/cache/
 .oh-my-zsh/custom/aliases.zsh
-.oh-my-zsh/custom/plugins/git-town/_git-town
-.oh-my-zsh/custom/plugins/poetry/_poetry
+.oh-my-zsh/custom/plugins/git-town
+.oh-my-zsh/custom/plugins/poetry

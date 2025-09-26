@@ -21,7 +21,9 @@ encryption = "age"
     {{- end }}
 
 [age]
-    passphrase = true
+    # passphrase = true
+    identity = "~/.config/chezmoi/key.txt"
+    recipient = {{ onepasswordRead "op://Parents/chezmoi/public-key" | quote}}
 
 [diff]
     command = "code"

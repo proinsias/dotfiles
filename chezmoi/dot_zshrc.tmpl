@@ -565,7 +565,7 @@ fi
 
 ## Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 # shellcheck disable=SC2086,SC2312
-[[ -e "${HOME}/.ssh/config" ]] && complete -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
+[[ -e "${HOME}/.ssh/config" ]] && complete -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\\n')" scp sftp ssh
 
 ## tab completion for poetry
 ## https://python-poetry.org/docs/

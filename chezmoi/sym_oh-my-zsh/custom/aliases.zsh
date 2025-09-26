@@ -143,9 +143,9 @@ alias which="gwhich"
 #alias red="gred"
 
 ## grep
-alias grep='ggrep --color'        # show differences in colour
-alias egrep='gegrep --color=auto' # show differences in colour
-alias fgrep='gfgrep --color=auto' # show differences in colour
+#alias grep='ggrep --color'        # show differences in colour
+#alias egrep='gegrep --color=auto' # show differences in colour
+#alias fgrep='gfgrep --color=auto' # show differences in colour
 
 # main aliases
 
@@ -238,6 +238,8 @@ alias less='less -r' # raw control characters
 # alias more='less'
 alias more='bat'
 alias whence='type -a' # where, of a sort
+
+# FIXME: Convert to chezmoi template.
 
 case $(guname -s) in
 --"Linux")

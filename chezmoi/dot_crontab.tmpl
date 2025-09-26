@@ -5,5 +5,5 @@
 ## month          1-12 (or names, see below)
 ## day of week    0-7 (0 or 7 is Sun, or use names)
 ######################################################################
- 00 00  * *     * /usr/bin/crontab /Users/{{ .chezmoi.username }}/.crontab
-# 02 00  * *     * /usr/local/bin/mktexlsr /Users/{{ .chezmoi.username }}/texmf
+ 00 00  * *     * /usr/bin/crontab {{ .chezmoi.homeDir }}/.crontab
+# 02 00  * *     * /usr/local/bin/mktexlsr {{ .chezmoi.homeDir }}/texmf

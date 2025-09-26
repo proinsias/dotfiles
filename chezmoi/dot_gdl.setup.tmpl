@@ -1,4 +1,4 @@
-addpath = '/Users/{{ .chezmoi.username }}/idl_lib/:'
+addpath = '{{ .chezmoi.homeDir }}/idl_lib/:'
 !PATH = expand_path('+' + !DIR + ':' + 'external' + ':' + !PATH)
 
 if !path eq '' then $
@@ -8,4 +8,4 @@ else !path = addpath + ':' + !path
 
 ;astrolib
 
-;@/Users/{{ .chezmoi.username }}/idl_lib/PhysicalConstants.pro
+;@{{ .chezmoi.homeDir }}/idl_lib/PhysicalConstants.pro

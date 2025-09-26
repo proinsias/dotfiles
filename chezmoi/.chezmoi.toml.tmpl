@@ -33,8 +33,8 @@ args = ["--wait", "--diff"]
     autoPush = false
 
 [gpg]
-    recipient = "74B07AE5FFB55BFC2FB8B25E8DBE5F9A6519D396"  # pragma: allowlist secret
     args = ["--quiet"]
+    symmetric = true
 
 {{ if eq .chezmoi.os "darwin" -}}
 [[textconv]]

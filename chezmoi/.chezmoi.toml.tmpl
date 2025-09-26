@@ -1,6 +1,6 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
 
-encryption = "gpg"
+encryption = "age"
 
 [data]
     name = "{{ promptStringOnce . "name" "Your full name" }}"
@@ -19,6 +19,9 @@ encryption = "gpg"
     {{- else }}
     # Personal machine configuration
     {{- end }}
+
+[age]
+passphrase = true
 
 [diff]
 command = "code"

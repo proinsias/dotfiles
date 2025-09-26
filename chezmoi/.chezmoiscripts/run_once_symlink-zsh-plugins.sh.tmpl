@@ -1,0 +1,6 @@
+#!{{ lookPath "sh" }}
+
+mkdir -p ~/.oh-my-zsh/custom/plugins/git-town ~/.oh-my-zsh/custom/plugins/poetry
+
+ln -f -s {{ .chezmoi.sourceDir }}/sym_oh-my-zsh/custom/plugins/git-town/_git-town ~/.oh-my-zsh/custom/plugins/git-town/_git-town
+ln -f -s {{ .chezmoi.sourceDir }}/sym_oh-my-zsh/custom/plugins/poetry/_poetry ~/.oh-my-zsh/custom/plugins/poetry/_poetry

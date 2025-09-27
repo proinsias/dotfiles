@@ -8,6 +8,11 @@ BASH_SHELLCHECK_ARGUMENTS: "--external-sources --format=gcc --shell=bash"
 
 FILEIO_REPORTER: true
 
+REPOSITORY_GITLEAKS_CONFIG_FILE: .gitleaks.toml
+REPOSITORY_GITLEAKS_ARGUMENTS:
+  - --baseline-path
+  - gitleaks-report.json
+
 JSON_V8R_DISABLE_ERRORS: true
 
 LINTER_RULES_PATH: .

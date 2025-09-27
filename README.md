@@ -34,7 +34,6 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 1. ml/shellcheck
 1. ml/EDITORCONFIG
 1. ml/gitleaks
-1. ml/kics
 1. .doom.d -> ilovemovies
 1. gpg private keys -> ilovemovies?
 1. mv .zsh*files to ~/.config/zsh/*

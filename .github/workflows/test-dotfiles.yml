@@ -47,15 +47,18 @@ jobs:
           HOME: ${{ runner.temp }}/testhome
 
       - name: Initialize chezmoi
-        run: chezmoi init --source="$(pwd)" --destination="${HOME}"
+        run: |
+          "${HOME}"/bin/chezmoi init --source="$(pwd)" --destination="${HOME}"
         env:
           HOME: ${{ runner.temp }}/testhome
 
       - name: Run chezmoi doctor
-        run: chezmoi doctor --verbose
+        run: |
+          "${HOME}"/bin/chezmoi doctor --verbose
 
       - name: Apply dotfiles into temp home
-        run: chezmoi apply --verbose
+        run: |
+          "${HOME}"/bin/chezmoi apply --verbose
         env:
           HOME: ${{ runner.temp }}/testhome
 
@@ -81,6 +84,7 @@ jobs:
           HOME: ${{ runner.temp }}/testhome
 
       - name: Verify dotfiles consistency
-        run: chezmoi verify --verbose
+        run: |
+          "${HOME}"/bin/chezmoi verify --verbose
         env:
           HOME: ${{ runner.temp }}/testhome

@@ -34,7 +34,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 .doom.d -> ilovemovies
 gpg private keys -> ilovemovies?
 
-1. mv .zsh* files to ~/.config/zsh/*
+1. mv .zsh*files to ~/.config/zsh/*
 1. gitconfig - Switch to getting from op!
 1. Convert zsh aliases to chezmoi template.
 
@@ -52,9 +52,9 @@ gpg private keys -> ilovemovies?
 4 │ # when the system is booting. Do not change this entry.
 5 │ ##
 6 │ 127.0.0.1 localhost
-7 │ # Disable Cryptohacking - https://www.grc.com/sn/SN-637-Notes.pdf
+7 │ # Disable Cryptohacking - <https://www.grc.com/sn/SN-637-Notes.pdf>
 8 │ 127.0.0.1 coin-hive.com coinhive.com
-9 │ # Disable AudienceInsights - https://www.grc.com/sn/SN-644-Notes.pdf
+9 │ # Disable AudienceInsights - <https://www.grc.com/sn/SN-644-Notes.pdf>
 10 │ 127.0.0.1 static.audienceinsights.net
 11 │ 127.0.0.1 api.behavioralengine.com
 12 │ 255.255.255.255 broadcasthost

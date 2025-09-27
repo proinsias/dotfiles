@@ -41,7 +41,7 @@ jobs:
 
       - name: Install chezmoi
         run: |
-          curl -fsSL https://get.chezmoi.io | sh
+          curl -fsSL https://get.chezmoi.io -b "${HOME}/bin" | sh
           echo "${HOME}/bin" >> "${GITHUB_PATH}"
         env:
           HOME: ${{ runner.temp }}/testhome

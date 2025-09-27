@@ -4,8 +4,8 @@ ci: # https://pre-commit.ci
   autoupdate_schedule: monthly
   skip:
     - lychee # Requires rust.
-    - megalinter-incremental
-    - megalinter-full
+    # - megalinter-incremental
+    # - megalinter-full
   submodules: false
 
 default_install_hook_types:
@@ -123,12 +123,13 @@ repos:
       - id: gitleaks
         args: [--baseline-path, gitleaks-report.json]
 
-  - repo: https://github.com/oxsecurity/megalinter
-    rev: v9.0.1 # Git tag specifying the hook, not mega-linter-runner, version
-    hooks:
-      - id: megalinter-incremental # Faster, less thorough
-        stages:
-          - pre-commit
-      - id: megalinter-full # Slower, more thorough
-        stages:
-          - pre-push
+  # Fails pre-commit.ci even with skipping.
+  # - repo: https://github.com/oxsecurity/megalinter
+  #   rev: v9.0.1 # Git tag specifying the hook, not mega-linter-runner, version
+  #   hooks:
+  #     - id: megalinter-incremental # Faster, less thorough
+  #       stages:
+  #         - pre-commit
+  #     - id: megalinter-full # Slower, more thorough
+  #       stages:
+  #         - pre-push

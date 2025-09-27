@@ -73,7 +73,6 @@ alias nohup="gnohup"
 #alias printenv="gprintenv"
 ##alias printf="gprintf" # Causes issues in bash shell
 #alias ptx="gptx"
-#alias pwd="gpwd"
 #alias readlink="greadlink"
 #alias realpath="grealpath"
 alias rm="grm -i"

@@ -5,17 +5,17 @@ name: work
 root: ~/git/project-manticore
 
 windows:
-  - development:
-      - cd development
-      - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
-      - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
-  - francis-experiments:
-      - cd francis-experiments
-      - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
-      - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
-  - extras:
-      - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
-      - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
+    - development:
+        - cd development
+        - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
+        - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
+    - francis-experiments:
+        - cd francis-experiments
+        - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
+        - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
+    - extras:
+        - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
+        - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
 startup_window: development

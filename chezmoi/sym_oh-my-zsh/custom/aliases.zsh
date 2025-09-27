@@ -157,10 +157,6 @@ alias bc="bc -l"
 alias boss='cd ; clear'
 alias bye='clear;logout'
 
-# Kill all the tabs in Chrome to free up memory
-# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
-alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
-
 alias close='gchmod g-w,o-rwx'
 alias copy='gcp -i'
 # alias count='function _count(){ gls "$@" | gwc -l ; };_count'
@@ -194,14 +190,12 @@ alias k9='gkill -9='
 
 alias ll='gls --almost-all --classify --human-readable --color --quote-name -v -l' # long list, natural sort
 # Clean up LaunchServices to remove duplicates in the "Open With" menu
-alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
+alias lscleanup="/System/Library/Frameworks/CoreServices.framework/\
+Frameworks/LaunchServices.framework/Support/lsregister \
+-kill -r -domain local -domain system -domain user && killall Finder"
 
 alias mc='gmv -i' # Stop calling Midnight Commander
 alias me='whoami'
-
-# Merge PDF files
-# Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
-alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
 
 alias move='gmv -i'
 alias mroe='more'

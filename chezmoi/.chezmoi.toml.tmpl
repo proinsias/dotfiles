@@ -11,7 +11,7 @@ encryption = "age"
     slackrecipient = {{ promptStringOnce . "slackrecipient" "Slack recipient" | default "slackuser" | quote }}
     slacktoken = {{ promptStringOnce . "slacktoken" "Slack token" | default "123" | quote }}
 
-    {{- $work := promptBoolOnce . "work" "Is this a work machine" | default False }}
+    {{- $work := promptBoolOnce . "work" "Is this a work machine" | default false }}
     work = {{ $work }}
 
     {{- if $work }}

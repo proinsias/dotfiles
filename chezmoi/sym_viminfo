@@ -237,24 +237,24 @@
 # History of marks within files (newest to oldest):
 
 > ~/GitHub/mac-playbook/roles/all_pipx/vars/main.yml
-	*	1757211306	0
-	"	2	29
-	^	2	30
-	.	2	29
-	+	2	29
+    *    1757211306    0
+    "    2    29
+    ^    2    30
+    .    2    29
+    +    2    29
 
 > ~/.local/bin/Lingon
-	*	1757210599	0
-	"	98	4
-	^	98	5
-	.	98	4
-	+	100	0
-	+	97	14
-	+	98	4
+    *    1757210599    0
+    "    98    4
+    ^    98    5
+    .    98    4
+    +    100    0
+    +    97    14
+    +    98    4
 
 > /private/var/folders/v0/1r6fvn094n71cyz1lcmgr4wr0000gn/T/chsh.uHJ4kv
-	*	1713363207	0
-	"	6	19
-	^	6	20
-	.	6	19
-	+	6	19
+    *    1713363207    0
+    "    6    19
+    ^    6    20
+    .    6    19
+    +    6    19

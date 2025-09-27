@@ -1,0 +1,11 @@
+{
+  "Exclude": [
+    "\\.git",
+    "\\.venv",
+    "node_modules",
+    "dist",
+    "gitleaks-report.json",
+    "chezmoi/sym_oh-my-zsh/custom/plugins/.*",
+    "chezmoi/private_dot_gnupg/private_pubring\\.kbx"
+  ]
+}

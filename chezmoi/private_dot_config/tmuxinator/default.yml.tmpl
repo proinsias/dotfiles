@@ -3,11 +3,11 @@
 name: default
 root: ~/git
 
-  - git:
-      - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
-  - misc:
-      - cd ~/Desktop
-      - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
+    - git:
+        - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
+    - misc:
+        - cd ~/Desktop
+        - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
 startup_window: git

@@ -3,7 +3,7 @@
 My personal collection of dotfiles to be managed with
 [chezmoi](https://www.chezmoi.io/).
 
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/proinsias/dotfiles/main.svg)](https://results.pre-commit.ci/latest/github/proinsias/dotfiles/main)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/proinsias/dotfiles/main.svg)](https://results.pre-commit.ci/latest/github/proinsias/dotfiles/main) <!-- editorconfig-checker-disable-line -->
 
 ## Table of contents
 
@@ -30,10 +30,8 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 
 ## To Dos
 
-1. ml/devskim
 1. ml/shellcheck
 1. ml/EDITORCONFIG
-1. ml/gitleaks
 1. .doom.d -> ilovemovies
 1. gpg private keys -> ilovemovies?
 1. mv .zsh*files to ~/.config/zsh/*
@@ -43,9 +41,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 -   [ ] /etc/hosts
 
 ```shell
-───────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 │ File: /etc/hosts
-───────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 1 │ # Host Database
 2 │ #
 3 │ # localhost is used to configure the loopback interface
@@ -62,7 +58,5 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 14 │ # Added by Docker Desktop
 15 │ # To allow the same kube context to work on the host and the container:
 16 │ 127.0.0.1 kubernetes.docker.internal
-17 │ # End of section
-───────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 ```

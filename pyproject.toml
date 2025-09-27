@@ -24,12 +24,12 @@ exclude = '^(chezmoi/dot_jupyter/*\\.py)$'
 [tool.pyright]
 # Pyright uses "exclude" (glob-based, not regex)
 exclude = [
-  "chezmoi/dot_jupyter/*.py"
+    "chezmoi/dot_jupyter/*.py"
 ]
 
 [tool.ruff]
 exclude = [
-  "chezmoi/dot_jupyter/*.py"
+    "chezmoi/dot_jupyter/*.py"
 ]
 
 [tool.ruff.isort]

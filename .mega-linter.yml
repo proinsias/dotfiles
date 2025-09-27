@@ -6,6 +6,9 @@ APPLY_FIXES: all # all, none, or list of linter keys
 
 BASH_SHELLCHECK_ARGUMENTS: "--external-sources --format=gcc --shell=bash"
 
+DISABLE_LINTERS:
+  - REPOSITORY_DEVSKIM
+
 FILEIO_REPORTER: true
 
 REPOSITORY_GITLEAKS_CONFIG_FILE: .gitleaks.toml

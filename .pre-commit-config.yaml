@@ -128,3 +128,8 @@ repos:
   #     - id: megalinter-full # Slower, more thorough
   #       stages:
   #         - pre-push
+
+  - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+    rev: "3.4.0"
+    hooks:
+      - id: editorconfig-checker

@@ -32,6 +32,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 .doom.d -> ilovemovies
 gpg private keys -> ilovemovies?
 
+1. run chezmoi unmanaged on work
 1. mv .zsh* files to ~/.config/zsh/*
 1. gitconfig - Switch to getting from op!
 1. Convert zsh aliases to chezmoi template.

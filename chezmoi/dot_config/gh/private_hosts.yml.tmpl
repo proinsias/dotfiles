@@ -1,0 +1,7 @@
+github.com:
+    user: proinsias
+    oauth_token: {{ onepasswordRead "op://Parents/github.com/token" | quote }}
+    git_protocol: ssh
+    users:
+        proinsias:
+            oauth_token: {{ onepasswordRead "op://Parents/github.com/token" | quote }}

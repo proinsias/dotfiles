@@ -3,16 +3,20 @@ README.md
 .aider/
 .ansible/
 .aspnet/
+.bash_history
+.bash_sessions/
 .bun/
 .bundle/cache/
 .cache/
 .cargo/
+.ccache/
 .CFUserTextEncoding
 .config/broot/launcher/
 .config/butterfish/
 .config/chezmoi/
 .config/fabric/
 !.config/fabric/.env
+.config/gh/state.yml
 .config/gpt4all.io/
 .config/gtk-2.0/
 .config/jgit/
@@ -38,6 +42,8 @@ README.md
 !.gnupg/gpg-agent.conf
 !.gnupg/gpg.conf
 !.gnupg/pubring.kbx
+.ipython/extensions
+.ipython/nbextensions
 .ipython/profile_default/
 .jupyter/.mypy_cache/
 .jupyter/lab/
@@ -109,9 +115,13 @@ README.md
 .pyenv/
 .pytensor/
 .python_history
+.rustup/
 .sonarlint/
 .ssh/known_hosts
 .ssh/known_hosts.old
+.ssh/id_rsa
+.ssh/id_rsa.pub
+.streamlit/
 .tldr/
 .Trash/
 .viminfo
@@ -123,18 +133,25 @@ README.md
 .zsh_history
 .zsh_sessions/
 Applications/
+Calibre Library/
 Desktop/
 Documents/
 Downloads/
-GitHub/
-Google Drive/
-Library/
-Movies/
-Music/
-Pictures/
-Public/
+Dropbox/
 favs/
 git/
+GitHub/
 go/
 golang/
+Google Drive/
+Library/
+mbox
+mlink
+Movies/
+Music/
+OneDrive/
+Pictures/
+Public/
+Sites/
 sym_config/
+VirtualBox VMs/

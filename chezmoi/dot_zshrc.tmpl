@@ -247,15 +247,8 @@ fi
 ## fzf
 # shellcheck disable=SC2065
 if type fzf >/dev/null 2>&1; then
-    # Ensure we have the right files. It's dependent on
-    # HOMEBREW_PREFIX so I don't keep it in version control.
-    if ! test -f "${HOME}"/.fzf.zsh; then
-        "${HOMEBREW_PREFIX}/opt/fzf/install" --all --no-update-rc
-    fi
-    if test -f "${HOME}"/.fzf.zsh; then
-        # shellcheck disable=SC1091
-        source "${HOME}"/.fzf.zsh
-    fi
+    # Set up fzf key bindings and fuzzy completion
+    source <(fzf --zsh)
 fi
 
 #### devbox

@@ -30,6 +30,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 ## To Dos
 
 .doom.d -> ilovemovies
+gpg private keys -> ilovemovies?
 
 .aider
 .aspnet

@@ -259,12 +259,8 @@ export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
 ## fzf
 # shellcheck disable=SC2065
 if type fzf >/dev/null 2>&1; then
-    if ! test -f "${HOME}"/.fzf.bash; then
-        "${HOMEBREW_PREFIX}/opt/fzf/install" --all --no-update-rc
-    fi
-    if test -f "${HOME}"/.fzf.bash; then
-        source "${HOME}"/.fzf.bash
-    fi
+    # Set up fzf key bindings and fuzzy completion
+    eval "$(fzf --bash)"
 else
     echo "Install fzf using: brew install fzf"
 fi

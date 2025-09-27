@@ -40,9 +40,10 @@ jobs:
         env:
           TEST_HOME: ${{ runner.temp }}/testhome
 
-      - name: Install chezmoi
+      - name: Install chezmoi and fake op
         run: |
           curl -fsSL https://get.chezmoi.io | sh -s -- -b "${TEST_HOME}/bin"
+          cp "$(pwd)"/bin/op "${TEST_HOME}/bin/op"
           echo "${TEST_HOME}/bin" >> "${GITHUB_PATH}"
         env:
           TEST_HOME: ${{ runner.temp }}/testhome

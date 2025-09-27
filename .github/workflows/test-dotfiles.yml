@@ -41,26 +41,28 @@ jobs:
 
       - name: Install chezmoi
         run: |
-          curl -fsSL https://get.chezmoi.io -b "${HOME}/bin" | sh
-          echo "${HOME}/bin" >> "${GITHUB_PATH}"
+          curl -fsSL https://get.chezmoi.io | sh -s -- -b "${TEST_HOME}/bin"
+          echo "${TEST_HOME}/bin" >> "${GITHUB_PATH}"
         env:
-          HOME: ${{ runner.temp }}/testhome
+          TEST_HOME: ${{ runner.temp }}/testhome
 
       - name: Initialize chezmoi
         run: |
-          "${HOME}"/bin/chezmoi init --source="$(pwd)" --destination="${HOME}"
+          chezmoi init --source="$(pwd)" --destination="${TEST_HOME}"
         env:
-          HOME: ${{ runner.temp }}/testhome
+          TEST_HOME: ${{ runner.temp }}/testhome
 
       - name: Run chezmoi doctor
         run: |
-          "${HOME}"/bin/chezmoi doctor --verbose
+          chezmoi doctor --verbose
 
       - name: Apply dotfiles into temp home
         run: |
-          "${HOME}"/bin/chezmoi apply --verbose
-        env:
-          HOME: ${{ runner.temp }}/testhome
+          chezmoi apply --verbose
+
+      - name: Verify dotfiles consistency
+        run: |
+          chezmoi verify --verbose
 
       - name: Smoke test shell startup
         run: |
@@ -75,16 +77,10 @@ jobs:
                 brew install zsh
               fi
             fi
-            ZDOTDIR="${HOME}" zsh -i -c 'echo "zsh ${ZSH_VERSION}"; alias | head -n 10'
+            ZDOTDIR="${TEST_HOME}" HOME="${TEST_HOME}" zsh -i -c 'echo "zsh ${ZSH_VERSION}"; alias | head -n 10'
           else
-            bash -i -c 'echo "bash ${BASH_VERSION}"; alias | head -n 10'
+            HOME="${TEST_HOME}" bash -i -c 'echo "bash ${BASH_VERSION}"; alias | head -n 10'
           fi
         shell: bash
         env:
-          HOME: ${{ runner.temp }}/testhome
-
-      - name: Verify dotfiles consistency
-        run: |
-          "${HOME}"/bin/chezmoi verify --verbose
-        env:
-          HOME: ${{ runner.temp }}/testhome
+          TEST_HOME: ${{ runner.temp }}/testhome

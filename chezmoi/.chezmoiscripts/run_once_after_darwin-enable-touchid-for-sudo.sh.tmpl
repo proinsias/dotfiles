@@ -1,7 +1,10 @@
+{{ if eq .chezmoi.os "darwin" -}}
 #!{{ lookPath "sh" }}
 
-{{ if eq .chezmoi.os "darwin" -}}
 set -euo pipefail
+
+echo ""
+echo "Enable Touch ID for sudo."
 
 sudo tee /etc/pam.d/sudo_local >/dev/null <<EOF
 # sudo_local: local config file which survives system update and is included for sudo.

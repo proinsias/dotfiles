@@ -3,6 +3,8 @@
 My personal collection of dotfiles to be managed with
 [chezmoi](https://www.chezmoi.io/).
 
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/proinsias/dotfiles/main.svg)](https://results.pre-commit.ci/latest/github/proinsias/dotfiles/main)
+
 ## Table of contents
 
 <!--
@@ -32,7 +34,6 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 .doom.d -> ilovemovies
 gpg private keys -> ilovemovies?
 
-1. run chezmoi unmanaged on work
 1. mv .zsh* files to ~/.config/zsh/*
 1. gitconfig - Switch to getting from op!
 1. Convert zsh aliases to chezmoi template.

@@ -18,7 +18,7 @@ README.md
 .config/broot/launcher/
 .config/butterfish/
 .config/chezmoi/
-.config/fabric/
+.config/fabric/*
 !.config/fabric/.env
 .config/gh/state.yml
 .config/gpt4all.io/
@@ -44,7 +44,7 @@ README.md
 .emacs.d/
 .git-template/
 .gk/
-.gnupg/
+.gnupg/*
 !.gnupg/dirmngr.conf
 !.gnupg/gpg-agent.conf
 !.gnupg/gpg.conf
@@ -57,7 +57,7 @@ README.md
 .jupyter/migrated/
 .lesshst
 .llamafile/
-.local/bin/
+.local/bin/*
 !.local/bin/add-tags-reader.py
 !.local/bin/add-worktree
 !.local/bin/astextplain
@@ -111,7 +111,9 @@ README.md
 !.local/bin/update-requirements
 !.local/bin/youtube-dl-francis
 .local/pipx/
-.local/share/
+.local/share/*
+!.local/share/atuin/
+!.local/share/atuin/key
 .local/state/
 .matplotlib/
 .npm/

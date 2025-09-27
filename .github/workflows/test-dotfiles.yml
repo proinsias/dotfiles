@@ -34,8 +34,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup temporary HOME
-        run: mkdir -p "${TEST_HOME}"
+      - name: Setup temporary HOME and copy blank config
+        run: |
+          mkdir -p "${TEST_HOME}/.config/chezmoi"
+          cp .blank.chezmoi.toml "${TEST_HOME}/.config/chezmoi/chezmoi.toml"
         env:
           TEST_HOME: ${{ runner.temp }}/testhome
 

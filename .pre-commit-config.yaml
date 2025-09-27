@@ -1,4 +1,13 @@
 ---
+ci: # https://pre-commit.ci
+  autofix_prs: true
+  autoupdate_schedule: monthly
+  skip:
+    - lychee # Requires rust.
+    - megalinter-incremental
+    - megalinter-full
+  submodules: false
+
 default_install_hook_types:
   - commit-msg
   - prepare-commit-msg
@@ -113,3 +122,13 @@ repos:
     hooks:
       - id: gitleaks
         args: [--baseline-path, gitleaks-report.json]
+
+  - repo: https://github.com/oxsecurity/megalinter
+    rev: v9.0.1 # Git tag specifying the hook, not mega-linter-runner, version
+    hooks:
+      - id: megalinter-incremental # Faster, less thorough
+        stages:
+          - pre-commit
+      - id: megalinter-full # Slower, more thorough
+        stages:
+          - pre-push

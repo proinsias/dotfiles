@@ -13,10 +13,9 @@ uvx --from md-toc md_toc --in-place github -- README.md
 -->
 <!--TOC-->
 
--   [dotfiles_chezmoi](#dotfiles_chezmoi)
+-   [dotfiles](#dotfiles)
     -   [Table of contents](#table-of-contents)
     -   [Install](#install)
-    -   [Extras](#extras)
     -   [To Dos](#to-dos)
 
 <!--TOC-->
@@ -31,18 +30,20 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 
 ## To Dos
 
-.doom.d -> ilovemovies
-gpg private keys -> ilovemovies?
-
+1. ml/devskim
+1. ml/shellcheck
+1. ml/EDITORCONFIG
+1. ml/gitleaks
+1. ml/kics
+1. .doom.d -> ilovemovies
+1. gpg private keys -> ilovemovies?
 1. mv .zsh*files to ~/.config/zsh/*
 1. gitconfig - Switch to getting from op!
 1. Convert zsh aliases to chezmoi template.
 
-```
 -   [ ] /etc/hosts
 
-```
-
+```shell
 ───────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 │ File: /etc/hosts
 ───────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -64,7 +65,5 @@ gpg private keys -> ilovemovies?
 16 │ 127.0.0.1 kubernetes.docker.internal
 17 │ # End of section
 ───────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-
-```
 
 ```

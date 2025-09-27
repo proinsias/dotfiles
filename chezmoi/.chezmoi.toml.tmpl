@@ -3,15 +3,15 @@
 encryption = "age"
 
 [data]
-    name = "{{ promptStringOnce . "name" "Your full name" }}"
-    email = {{ $email | quote }}
-    defaultkey = "{{ promptStringOnce . "defaultkey" "Default gpg key" }}"
-    githubemail = "{{ promptStringOnce . "githubemail" "GitHub email address" }}"
-    opaccount = "{{ promptStringOnce . "opaccount" "1Password account" }}"
-    slackrecipient = "{{ promptStringOnce . "slackrecipient" "Slack recipient" }}"
-    slacktoken = "{{ promptStringOnce . "slacktoken" "Slack token" }}"
+    name = "{{ promptStringOnce . "name" "Your full name" | default "Name" }}"
+    email = {{ $email | quote | default "name@example.com" }}
+    defaultkey = "{{ promptStringOnce . "defaultkey" "Default gpg key" | default "123}}"
+    githubemail = "{{ promptStringOnce . "githubemail" "GitHub email address" | default "name@example.com" }}"
+    opaccount = "{{ promptStringOnce . "opaccount" "1Password account" | default "opaccount"}}"
+    slackrecipient = "{{ promptStringOnce . "slackrecipient" "Slack recipient" | default "slackuser"}}"
+    slacktoken = "{{ promptStringOnce . "slacktoken" "Slack token" | default "123" }}"
 
-    {{- $work := promptBoolOnce . "work" "Is this a work machine" }}
+    {{- $work := promptBoolOnce . "work" "Is this a work machine" | default False }}
     work = {{ $work }}
 
     {{- if $work }}

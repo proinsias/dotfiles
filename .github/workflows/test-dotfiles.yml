@@ -37,7 +37,6 @@ jobs:
       - name: Setup temporary HOME and copy blank config
         run: |
           mkdir -p "${TEST_HOME}/.config/chezmoi"
-          cp .blank.chezmoi.toml "${TEST_HOME}/.config/chezmoi/chezmoi.toml"
         env:
           TEST_HOME: ${{ runner.temp }}/testhome
 
@@ -50,7 +49,8 @@ jobs:
 
       - name: Initialize chezmoi
         run: |
-          chezmoi init --source="$(pwd)" --destination="${TEST_HOME}"
+          chezmoi init --source="$(pwd)" --destination="${TEST_HOME}" \
+              --promptDefaults
         env:
           TEST_HOME: ${{ runner.temp }}/testhome
 

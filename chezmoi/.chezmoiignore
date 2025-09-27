@@ -92,6 +92,7 @@ README.md
 !.local/bin/load-creds
 !.local/bin/look_for_duplicate_readwise.py
 !.local/bin/motd
+!.local/bin/murder
 !.local/bin/mysql_load_dump
 !.local/bin/nb2md
 !.local/bin/nb2py

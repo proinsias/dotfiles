@@ -1,38 +1,24 @@
+{{ if .work }}
 ---
 
-name: default
-root: ~/
+name: work
+root: ~/git/project-manticore
 
 windows:
-{{ if eq .chezmoi.hostname "HTNAQAK2706A" }}
   - development:
-      - cd ~/git/project-manticore/development
+      - cd development
       - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
       - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
   - francis-experiments:
-      - cd ~/git/project-manticore/francis-experiments
+      - cd francis-experiments
       - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
       - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
   - extras:
-      - cd ~/git/project-manticore/
       - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
       - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
 startup_window: development
-
-{{ else }}
-  - data-science:
-      - cd ~/git/data-science/data-science-main
-      - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
-  - misc:
-      - cd ~/Desktop
-      - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
-
-# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-startup_window: data-science
-{{ end }}
-
 
 # - example:
 #     root: ~/git/data-science/data-science-main
@@ -82,3 +68,5 @@ startup_window: data-science
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
 # attach: false
+
+{{ end }}

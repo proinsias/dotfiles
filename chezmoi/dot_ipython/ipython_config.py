@@ -2,14 +2,14 @@ c = get_config()
 
 # Run all nodes interactively
 # https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/
-c.InteractiveShell.ast_node_interactivity = 'all'
+c.InteractiveShell.ast_node_interactivity = "all"
 
 # Automatically restore stored variables at startup.
 # https://ipython-docs.readthedocs.io/en/latest/config/extensions/storemagic.html
 c.StoreMagics.autorestore = True
 
 c.InteractiveShellApp.exec_lines = [
-    '''
+    """
 try:
     import matplotlib
     matplotlib.use('nbagg')
@@ -38,5 +38,5 @@ except ImportError:
 
 %load_ext autoreload
 %autoreload 2
-    ''',
-    ]
+    """,
+]

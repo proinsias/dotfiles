@@ -34,10 +34,10 @@ function run_test {
 }
 
 case "${1}" in
-    --about )
-        echo "Check if there is less then 100MB of free space."
-        ;;
-    * )
-        run_test
-        ;;
+--about)
+    echo "Check if there is less then 100MB of free space."
+    ;;
+*)
+    run_test
+    ;;
 esac

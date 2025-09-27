@@ -11,6 +11,6 @@ shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories
 find "${HOME}"/GitHub/ \
     -type d \
     -maxdepth 1 \
-    -mindepth 1 \
-    | xargs -P "$(nproc)" -I{} sh -c \
-    'cd {} && pre-commit autoupdate'
+    -mindepth 1 |
+    xargs -P "$(nproc)" -I{} sh -c \
+        'cd {} && pre-commit autoupdate'

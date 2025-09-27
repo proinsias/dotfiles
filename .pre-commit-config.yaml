@@ -83,6 +83,8 @@ repos:
     hooks:
       - id: prettier
         stages: [pre-commit]
+        files: '\.(js|ts|jsx|tsx|json|md|yaml|yml)$'
+        args: [--ignore-unknown, --log-level, warn]
 
   # YAML
 

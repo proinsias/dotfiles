@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-set -o errexit  # Exit on error. Append || true if you expect an error.
-set -o errtrace  # Exit on error inside any functions or subshells.
+set -o errexit    # Exit on error. Append || true if you expect an error.
+set -o errtrace   # Exit on error inside any functions or subshells.
 set -o noclobber  # don't allow overwriting files
-set -o nounset  # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
-set -o pipefail  # Produce a failure return code if any pipeline command errors
-shopt -s failglob  # Cause globs that don't get expanded to cause errors
+set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail   # Produce a failure return code if any pipeline command errors
+shopt -s failglob # Cause globs that don't get expanded to cause errors
 
 # Usage info
-show_help_and_exit(){
-    cat >&2 << EOF
+show_help_and_exit() {
+    cat >&2 <<EOF
 Usage: ${0##*/} [-h] [-b branch] [-r repo]
 
     -h         display this help and exit
@@ -26,25 +26,25 @@ REPO="dslib"
 
 while getopts "b:hr:" opt; do
     case "${opt}" in
-        b)
-            BRANCH="${OPTARG}"
-            ;;
-        h)
-            show_help_and_exit
-            ;;
-        r)
-            REPO="${OPTARG}"
-            ;;
-        :)
-            echo "Option -${OPTARG} requires an argument." >&2
-            show_help_and_exit
-            ;;
-        '?')
-            show_help_and_exit
-            ;;
+    b)
+        BRANCH="${OPTARG}"
+        ;;
+    h)
+        show_help_and_exit
+        ;;
+    r)
+        REPO="${OPTARG}"
+        ;;
+    :)
+        echo "Option -${OPTARG} requires an argument." >&2
+        show_help_and_exit
+        ;;
+    '?')
+        show_help_and_exit
+        ;;
     esac
 done
-shift "$((OPTIND-1))" # Shift off the options and optional --.
+shift "$((OPTIND - 1))" # Shift off the options and optional --.
 # Everything that's left in "$@" is a non-option.
 
 test -z "${BRANCH}" && echo "Must specify branch!" && exit 3
@@ -62,9 +62,9 @@ fi
 mkdir --parents "${BRANCH}"
 
 # Get or create branch of interest.
-test "${BRANCH}" = 'master' || \
-git worktree add ../"${BRANCH}" "${BRANCH}" || \
-git worktree add ../"${BRANCH}" -b "${BRANCH}"
+test "${BRANCH}" = 'master' ||
+    git worktree add ../"${BRANCH}" "${BRANCH}" ||
+    git worktree add ../"${BRANCH}" -b "${BRANCH}"
 
 cd ../"${BRANCH}"
 
@@ -72,7 +72,7 @@ git push --set-upstream origin "${BRANCH}"
 
 # mkdir --parents .git/info
 # ln --symbolic ~/favs/om1/shared_files/exclude .git/info/.
-cp ~/favs/om1/shared_files/.env .  # Docker needs this but can't handle symlinks.
+cp ~/favs/om1/shared_files/.env . # Docker needs this but can't handle symlinks.
 ln --symbolic ~/.overcommit.yml .
 overcommit --sign
 overcommit --sign pre-commit
@@ -80,32 +80,32 @@ overcommit --sign pre-push
 overcommit --sign post-checkout
 
 mkdir --parents .idea
-for file in bashsupport_project.xml dataSources.ids dataSources.local.xml dataSources.xml other.xml sqldialects.xml ; do
-  ln --symbolic ~/favs/om1/shared_files/"${file}" .idea/.
+for file in bashsupport_project.xml dataSources.ids dataSources.local.xml dataSources.xml other.xml sqldialects.xml; do
+    ln --symbolic ~/favs/om1/shared_files/"${file}" .idea/.
 done
-for file in vcs.xml fileTemplates inspectionProfiles dataSources ; do
-  ln --symbolic ~/favs/om1/shared_files/"${file}" .idea/.
+for file in vcs.xml fileTemplates inspectionProfiles dataSources; do
+    ln --symbolic ~/favs/om1/shared_files/"${file}" .idea/.
 done
 
-for file in .envrc Gemfile Gemfile.lock .mdl.rb .mdlrc ; do
-  ln --symbolic ~/favs/om1/shared_files/"${file}" .
+for file in .envrc Gemfile Gemfile.lock .mdl.rb .mdlrc; do
+    ln --symbolic ~/favs/om1/shared_files/"${file}" .
 done
 direnv allow
 
 if test "${REPO}" = "dsrnd"; then
-  ln --symbolic ~/favs/om1/shared_files/.python-version-nbs .python-version
-  ln --symbolic ~/favs/om1/shared_files/misc-nbs.xml .idea/misc.xml
-  ln --symbolic ~/favs/om1/shared_files/dsrnd.iml .idea/.
-  ln --symbolic ~/favs/om1/shared_files/modules-nbs.xml .idea/modules.xml
+    ln --symbolic ~/favs/om1/shared_files/.python-version-nbs .python-version
+    ln --symbolic ~/favs/om1/shared_files/misc-nbs.xml .idea/misc.xml
+    ln --symbolic ~/favs/om1/shared_files/dsrnd.iml .idea/.
+    ln --symbolic ~/favs/om1/shared_files/modules-nbs.xml .idea/modules.xml
 else
-  ln --symbolic ~/favs/om1/shared_files/.python-version .
-  ln --symbolic ~/favs/om1/shared_files/misc.xml .idea/.
-  ln --symbolic ~/favs/om1/shared_files/dslib.iml .idea/.
-  ln --symbolic ~/favs/om1/shared_files/modules.xml .idea/.
+    ln --symbolic ~/favs/om1/shared_files/.python-version .
+    ln --symbolic ~/favs/om1/shared_files/misc.xml .idea/.
+    ln --symbolic ~/favs/om1/shared_files/dslib.iml .idea/.
+    ln --symbolic ~/favs/om1/shared_files/modules.xml .idea/.
 fi
 
 if test ! -f tox.ini; then
-  ln --symbolic ~/favs/om1/shared_files/tox.ini .
+    ln --symbolic ~/favs/om1/shared_files/tox.ini .
 fi
 
 cd "${CURRENT_DIR}"

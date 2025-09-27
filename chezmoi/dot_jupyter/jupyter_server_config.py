@@ -1,8 +1,8 @@
 # Configuration file for jupyter-server.
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## This is an application.
 
 ## The date format used by logging formatters for %(asctime)s
@@ -73,9 +73,9 @@
 #  Default: False
 # c.Application.show_config_json = False
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # JupyterApp(Application) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Base class for Jupyter applications
 
 ## Answer yes to any prompts.
@@ -118,9 +118,9 @@
 #  See also: Application.show_config_json
 # c.JupyterApp.show_config_json = False
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ServerApp(JupyterApp) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Set the Access-Control-Allow-Credentials: true header
 #  Default: False
 # c.ServerApp.allow_credentials = False
@@ -607,9 +607,9 @@
 #  Default: ''
 # c.ServerApp.websocket_url = ''
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ConnectionFileMixin(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Mixin for configurable classes that work with connection files
 
 ## JSON file in which to store connection info [default: kernel-<pid>.json]
@@ -651,9 +651,9 @@
 #  Default: 'tcp'
 # c.ConnectionFileMixin.transport = 'tcp'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # KernelManager(ConnectionFileMixin) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Manages a single kernel in a subprocess on this host.
 #
 #      This version starts kernels with Popen.
@@ -704,9 +704,9 @@
 #  See also: ConnectionFileMixin.transport
 # c.KernelManager.transport = 'tcp'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Session(Configurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Object for handling serialization and sending of messages.
 #
 #      The Session object handles building messages and sending them
@@ -813,9 +813,9 @@
 #  Default: 'sagemaker-user'
 # c.Session.username = 'sagemaker-user'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # MultiKernelManager(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## A class for managing multiple kernels.
 
 ## The name of the default kernel to start
@@ -831,9 +831,9 @@
 #  Default: True
 # c.MultiKernelManager.shared_context = True
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # MappingKernelManager(MultiKernelManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## A KernelManager that handles
 #      - File mapping
 #      - HTTP error handling
@@ -910,9 +910,9 @@
 #  Default: 'An exception occurred at runtime, which is not shown due to security reasons.'
 # c.MappingKernelManager.traceback_replacement_message = 'An exception occurred at runtime, which is not shown due to security reasons.'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # KernelSpecManager(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## List of allowed kernel names.
 #
 #          By default, all installed kernels are allowed.
@@ -933,9 +933,9 @@
 #  Default: set()
 # c.KernelSpecManager.whitelist = set()
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # AsyncMultiKernelManager(MultiKernelManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## The name of the default kernel to start
 #  See also: MultiKernelManager.default_kernel_name
 # c.AsyncMultiKernelManager.default_kernel_name = 'python3'
@@ -954,9 +954,9 @@
 #  Default: False
 # c.AsyncMultiKernelManager.use_pending_kernels = False
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # AsyncMappingKernelManager(MappingKernelManager, AsyncMultiKernelManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Whether to send tracebacks to clients on exceptions.
 #  See also: MappingKernelManager.allow_tracebacks
 # c.AsyncMappingKernelManager.allow_tracebacks = True
@@ -1015,9 +1015,9 @@
 #  See also: AsyncMultiKernelManager.use_pending_kernels
 # c.AsyncMappingKernelManager.use_pending_kernels = False
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ContentsManager(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Base class for serving files and directories.
 #
 #      This serves any text or binary file,
@@ -1121,9 +1121,9 @@ c.ContentsManager.allow_hidden = True
 #  Default: 'Untitled'
 # c.ContentsManager.untitled_notebook = 'Untitled'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # FileManagerMixin(Configurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Mixin for ContentsAPI classes that interact with the filesystem.
 #
 #  Provides facilities for reading, writing, and copying files.
@@ -1143,9 +1143,9 @@ c.ContentsManager.allow_hidden = True
 #  Default: True
 # c.FileManagerMixin.use_atomic_writing = True
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # FileContentsManager(FileManagerMixin, ContentsManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Allow access to hidden files
 #  See also: ContentsManager.allow_hidden
 # c.FileContentsManager.allow_hidden = False
@@ -1213,9 +1213,9 @@ c.ContentsManager.allow_hidden = True
 #  See also: FileManagerMixin.use_atomic_writing
 # c.FileContentsManager.use_atomic_writing = True
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # AsyncContentsManager(ContentsManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Base class for serving files and directories asynchronously.
 
 ## Allow access to hidden files
@@ -1266,9 +1266,9 @@ c.ContentsManager.allow_hidden = True
 #  See also: ContentsManager.untitled_notebook
 # c.AsyncContentsManager.untitled_notebook = 'Untitled'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # AsyncFileManagerMixin(FileManagerMixin) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Mixin for ContentsAPI classes that interact with the filesystem
 #  asynchronously.
 
@@ -1277,9 +1277,9 @@ c.ContentsManager.allow_hidden = True
 #  See also: FileManagerMixin.use_atomic_writing
 # c.AsyncFileManagerMixin.use_atomic_writing = True
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # AsyncFileContentsManager(FileContentsManager, AsyncFileManagerMixin, AsyncContentsManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Allow access to hidden files
 #  See also: ContentsManager.allow_hidden
 # c.AsyncFileContentsManager.allow_hidden = False
@@ -1341,9 +1341,9 @@ c.ContentsManager.allow_hidden = True
 #  See also: FileManagerMixin.use_atomic_writing
 # c.AsyncFileContentsManager.use_atomic_writing = True
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # NotebookNotary(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## A class for computing and verifying notebook signatures.
 
 ## The hashing algorithm used to sign notebooks.
@@ -1374,9 +1374,9 @@ c.ContentsManager.allow_hidden = True
 #  Default: traitlets.Undefined
 # c.NotebookNotary.store_factory = traitlets.Undefined
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # GatewayMappingKernelManager(AsyncMappingKernelManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## Kernel manager that supports remote kernels hosted by Jupyter Kernel or
 #  Enterprise Gateway.
 
@@ -1438,9 +1438,9 @@ c.ContentsManager.allow_hidden = True
 #  See also: AsyncMultiKernelManager.use_pending_kernels
 # c.GatewayMappingKernelManager.use_pending_kernels = False
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # GatewayKernelSpecManager(KernelSpecManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## List of allowed kernel names.
 #  See also: KernelSpecManager.allowed_kernelspecs
 # c.GatewayKernelSpecManager.allowed_kernelspecs = set()
@@ -1457,9 +1457,9 @@ c.ContentsManager.allow_hidden = True
 #  See also: KernelSpecManager.whitelist
 # c.GatewayKernelSpecManager.whitelist = set()
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # SessionManager(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## The filesystem path to SQLite Database file (e.g.
 #  /path/to/session_database.db). By default, the session database is stored in-
 #  memory (i.e. `:memory:` setting from sqlite3) and does not persist when the
@@ -1467,9 +1467,9 @@ c.ContentsManager.allow_hidden = True
 #  Default: ':memory:'
 # c.SessionManager.database_filepath = ':memory:'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # GatewaySessionManager(SessionManager) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## The filesystem path to SQLite Database file (e.g.
 #  /path/to/session_database.db). By default, the session database is stored in-
 #  memory (i.e. `:memory:` setting from sqlite3) and does not persist when the
@@ -1477,9 +1477,9 @@ c.ContentsManager.allow_hidden = True
 #  See also: SessionManager.database_filepath
 # c.GatewaySessionManager.database_filepath = ':memory:'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # GatewayClient(SingletonConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ## This class manages the configuration.  It's its own singleton class so that we
 #      can share these values across all objects.  It also contains some helper methods
 #       to build request arguments out of the various config options.
@@ -1599,9 +1599,9 @@ c.ContentsManager.allow_hidden = True
 #  Default: None
 # c.GatewayClient.ws_url = None
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # TerminalManager(LoggingConfigurable) configuration
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 ##
 
 ## Timeout (in seconds) in which a terminal has been inactive and ready to be culled.

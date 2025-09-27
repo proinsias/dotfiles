@@ -29,6 +29,8 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 
 ## To Dos
 
+.doom.d -> ilovemovies
+
 .aider
 .aspnet
 .bun
@@ -119,8 +121,6 @@ butterfish
 cheat
 chezmoi
 curlrc
-devbox
-direnv
 
 dot_bash
 dot_bash_completions

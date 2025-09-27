@@ -156,8 +156,8 @@ fi
 
 # https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 # shellcheck disable=SC2065
-if test -f "${HOME}"/.bash_completions/git-completion.sh >/dev/null 2>&1; then
-    source "${HOME}"/.bash_completions/git-completion.sh
+if test -f "${HOME}"/.config/bash/bash_completions/git-completion.sh >/dev/null 2>&1; then
+    source "${HOME}"/.config/bash/bash_completions/git-completion.sh
 fi
 
 # https://python-poetry.org/docs/
@@ -170,10 +170,10 @@ if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/poetry.bash-completion"; 
     fi
 fi
 
-# npm completion > "${HOME}"/.bash_completions/npm-completion.sh
+# npm completion > "${HOME}"/.config/bash/bash_completions/npm-completion.sh
 # shellcheck disable=SC2065
-if test -f "${HOME}"/.bash_completions/npm-completion.sh >/dev/null 2>&1; then
-    source "${HOME}"/.bash_completions/npm-completion.sh
+if test -f "${HOME}"/.config/bash/bash_completions/npm-completion.sh >/dev/null 2>&1; then
+    source "${HOME}"/.config/bash/bash_completions/npm-completion.sh
 fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
@@ -193,11 +193,6 @@ if [[ -f '/usr/local/google-cloud-sdk/completion.bash.inc' ]]; then
 fi
 
 export CLOUDSDK_PYTHON=/opt/homebrew/bin/python3
-
-if [[ -f "${HOME}/.bash/cht.sh" ]]; then
-    # https://cheat.sh/
-    . "${HOME}/.bash/cht.sh"
-fi
 
 # History Options
 #
@@ -340,18 +335,8 @@ fi
 
 # Use `/bin/ls` for these tests, since homebrew `ls` gives errors
 # shellcheck disable=SC2065
-if /bin/ls "${HOME}"/.bash/* 1>/dev/null 2>&1; then
-    for file in "${HOME}"/.bash/*; do
-        # shellcheck disable=SC1090
-        source "${file}"
-    done
-    unset file
-fi
-
-# source .bash_aliases and .bash_aliases.local.<blah>
-# shellcheck disable=SC2065
-if /bin/ls "${HOME}"/.bash_aliases* 1>/dev/null 2>&1; then
-    for file in "${HOME}"/.bash_aliases*; do
+if /bin/ls "${HOME}"/.config/bash/* 1>/dev/null 2>&1; then
+    for file in "${HOME}"/.config/bash/*; do
         # shellcheck disable=SC1090
         source "${file}"
     done
@@ -451,12 +436,12 @@ export SSH_AUTH_SOCK=~/.1password/agent.sock
 # shellcheck disable=SC2065
 if type nbp >/dev/null 2>&1; then
     # shellcheck disable=SC2065
-    if ! test -f "${HOME}"/.bash_completions/nbp.sh >/dev/null 2>&1; then
+    if ! test -f "${HOME}"/.config/bash/bash_completions/nbp.sh >/dev/null 2>&1; then
         nbp --install-completion bash
     fi
     # shellcheck disable=SC2065
-    if test -f "${HOME}"/.bash_completions/nbp.sh >/dev/null 2>&1; then
-        source "${HOME}"/.bash_completions/nbp.sh
+    if test -f "${HOME}"/.config/bash/bash_completions/nbp.sh >/dev/null 2>&1; then
+        source "${HOME}"/.config/bash/bash_completions/nbp.sh
     fi
 else
     echo "Install nbp using: pipx install nbpreview"

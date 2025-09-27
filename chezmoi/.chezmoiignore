@@ -1,8 +1,11 @@
+**/*~
 README.md
 .1password/
 .aider/
 .ansible/
 .aspnet/
+.atuin/
+.azd/
 .bash_history
 .bash_sessions/
 .bun/
@@ -11,6 +14,7 @@ README.md
 .cargo/
 .ccache/
 .CFUserTextEncoding
+.config/atuin/atuin-receipt.json
 .config/broot/launcher/
 .config/butterfish/
 .config/chezmoi/
@@ -25,6 +29,7 @@ README.md
 .config/raycast/
 .config/thefuck/rules/
 .config/thefuck/__pycache__/
+.config/uv/
 .config/yarn/
 .cookiecutter_replay/
 .cookiecutters/
@@ -34,8 +39,10 @@ README.md
 .dotnet/
 .dropbox/
 .DS_Store
+.duckdb/
 .dwagent/
 .emacs.d/
+.git-template/
 .gk/
 .gnupg/
 !.gnupg/dirmngr.conf
@@ -119,6 +126,8 @@ README.md
 .sonarlint/
 .ssh/known_hosts
 .ssh/known_hosts.old
+.ssh/id_ed25519
+.ssh/id_ed25519.pub
 .ssh/id_rsa
 .ssh/id_rsa.pub
 .streamlit/
@@ -127,9 +136,13 @@ README.md
 .viminfo
 .vscode/
 .vscode-oss/
+.vscode-remote-containers
+.vscode-server
 .wakatime/
 .wakatime-internal.cfg
 .wdm/
+.wget-hsts
+.zcompdump*
 .zsh_history
 .zsh_sessions/
 Applications/
@@ -153,5 +166,6 @@ OneDrive/
 Pictures/
 Public/
 Sites/
+snap/
 sym_config/
 VirtualBox VMs/

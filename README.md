@@ -121,27 +121,6 @@ chezmoi
 curlrc
 devbox
 direnv
-fabric
-git
-gpt4all.io
-gtk-2.0
-htop
-jgit
-kitty
-neofetch
-nixpkgs
-op
-pet
-raycast
-sourcery
-starship.toml
-thefuck
-tmuxinator
-topgrade.d
-topgrade.toml
-yamllint
-yarn
-yt-dlp
 
 dot_bash
 dot_bash_completions

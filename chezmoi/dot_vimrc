@@ -73,6 +73,7 @@ set laststatus=2          " last window always has a statusline
 set nohlsearch            " Don't continue to highlight searched phrases.
 set incsearch             " But do highlight as you type your search.
 set ignorecase            " Make searches case-insensitive.
+set smartcase             " override 'ignorecase' when pattern has uppercase characters
 set ruler                 " Always show info along bottom.
 set showmatch
 set statusline=%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\
@@ -90,3 +91,10 @@ set shiftround            " always indent/outdent to the nearest tabstop
 set expandtab             " use spaces instead of tabs
 set smarttab              " use tabs at the start of a line, spaces elsewhere
 set nowrap                " don't wrap text
+set smoothscroll          " scroll by screen line
+
+" terminal
+set term=xterm-256color   " name of the used terminal
+
+" multi-byte characters
+set encoding=utf8         " character encoding used in Vim

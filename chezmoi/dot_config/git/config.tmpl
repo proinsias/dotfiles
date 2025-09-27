@@ -96,8 +96,8 @@
     # functionality, recording the carriage returns in the repository by setting the config
     # value to false.
     # autocrlf = false
-    editor = charm
-    excludesfile = ~/.gitignore_global
+    editor = code
+    # excludesfile = ~/.gitignore_global
     # # Don't paginate output by default, default is less.
     # pager = cat
     # Prevent showing files whose names contain non-ASCII symbols as unversioned.
@@ -142,6 +142,8 @@
     # Display submodule-related information (commit listings).
     submodule = log
     tool = icdiff
+    # guitool = vscode
+    # guiDefault = true
 [difftool]
     prompt = false
 [difftool "icdiff"]
@@ -210,6 +212,8 @@
     # Include summaries of merged commits in newly created merge commit messages.
     log = true # synonym for 20
     stat = true
+    # guitool = vscode
+    # guiDefault = true
 [mergetool "emerge"]
     cmd = emacs -Q \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
 [mergetool "p4merge"]
@@ -232,10 +236,13 @@
     followTags = true
     # Not supported by bitbucket or github yet.
     gpgSign = if-asked
+    autoSetupRemote = true
 [rebase]
     # If you've committed whitespace issues but haven't yet pushed upstream,
     # have Git automatically fix whitespace issues as it's rewriting the patches.
     # whitespace = warn
+[submodule]
+    recurse = true
 [status]
     # Shows paths relative to the repository root.
     # relativePaths = false

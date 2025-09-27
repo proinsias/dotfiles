@@ -1,0 +1,25 @@
+# Filesystem Options
+
+--output "~/Downloads/%(title)s.%(ext)s"
+--cookies-from-browser firefox
+
+# Video Format Options
+
+--format-sort "ext"
+
+# Subtitle Options
+
+--write-subs
+--sub-langs "en.\*"
+
+# Post-Processing Options
+
+--embed-subs
+--embed-thumbnail
+--embed-metadata
+--embed-chapters
+--ffmpeg-location {{ env "HOMEBREW_PREFIX" }}/bin/ffmpeg
+
+# SponsorBlock Options
+
+--sponsorblock-remove "sponsor,intro,outro"

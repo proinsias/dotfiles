@@ -8,6 +8,7 @@ BASH_SHELLCHECK_ARGUMENTS: "--external-sources --format=gcc --shell=bash"
 
 DISABLE_LINTERS:
   - BASH_EXEC
+  - MARKDOWN_MARKDOWNLINT
   - PYTHON_FLAKE8
   - PYTHON_MYPY
   - PYTHON_PYLINT

@@ -37,7 +37,10 @@ jobs:
       - name: Setup temporary HOME and copy blank config
         run: |
           mkdir -p "${TEST_HOME}/.config/chezmoi"
+          # Use template file with defaults.
           cp -f .blank.chezmoi.toml chezmoi/.chezmoi.toml.tmpl
+          # Provide empty age key.
+          touch "${HOME}"/.config/chezmoi/key.txt
         env:
           TEST_HOME: ${{ runner.temp }}/testhome
 

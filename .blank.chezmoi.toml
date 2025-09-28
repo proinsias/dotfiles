@@ -17,12 +17,12 @@ encryption = "age"
     recipient = "123"
 
 [diff]
-    command = "code"
-    args = ["--wait", "--diff"]
+    command = "vi"
+    args = ["-d"]
 
 [edit]
-    command = "code"
-    args = ["--wait"]
+    command = "vi"
+    args = []
 
 [git]
     autoCommit = false

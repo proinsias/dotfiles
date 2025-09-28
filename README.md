@@ -30,11 +30,8 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 
 ## To Dos
 
-1. Add all megalinters to pre-commit.
-1. ml/python\*
-1. ml/gitleaks?
 1. .doom.d -> ilovemovies
-1. gpg private keys -> ilovemovies?
+1. gpg public/private keys -> ilovemovies?
 1. mv .zsh*files to ~/.config/zsh/*
 1. gitconfig - Switch to getting from op!
 1. Convert zsh aliases to chezmoi template.

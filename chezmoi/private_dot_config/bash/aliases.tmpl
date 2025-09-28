@@ -100,10 +100,6 @@ alias ec="emacsclient"
 alias emacs="emacsclient"
 alias tx='tmuxinator'
 
-# Kill all the tabs in Chrome to free up memory
-# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
-alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
-
 # Git
 alias gc='git checkout'
 alias gd='git diff'
@@ -118,9 +114,6 @@ alias ip='ifconfig -a | ggrep inet | ggrep broadcast'
 
 alias jl='jupyter lab'
 alias jn='jupyter notebook'
-
-# Clean up LaunchServices to remove duplicates in the "Open With" menu
-alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
 
 alias mroe='more'
 

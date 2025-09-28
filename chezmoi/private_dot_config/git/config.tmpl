@@ -1,7 +1,9 @@
 [alias]
+    # editorconfig-checker-disable-next-line
     alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\t=> \\2/' | sort  # Show all defined aliases.
     br = branch
     cam = commit -am
+    # editorconfig-checker-disable-next-line
     change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f "
     ci = commit
     clone = clone --recursive
@@ -9,11 +11,15 @@
     dc = diff --cached
     df = diff
     dump = cat-file -p
+    # editorconfig-checker-disable-next-line
     find = !git ls-tree -r --name-only HEAD | grep --color $1  # Finds a filename in the git repository. Gives absolute location (from the git root).
+    # editorconfig-checker-disable-next-line
     h = !git --no-pager log origin/master..HEAD --abbrev-commit --pretty=oneline  # Fast overview of differences between master and my current branch.
     hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    # editorconfig-checker-disable-next-line
     hist2 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     ign = ls-files -o -i --exclude-standard  # Show files ignored by git.
+    # editorconfig-checker-disable-next-line
     ignore=!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore  # Quickly add a file/dir to .gitignore.
     lg = log -p
     lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
@@ -184,7 +190,7 @@
     sync-before-ship = true
     sync-feature-strategy = rebase
 [gpg]
-	format = ssh
+    format = ssh
 {{ if eq .chezmoi.os "darwin" -}}
 [gpg "ssh"]
     program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
@@ -219,6 +225,7 @@
 [mergetool "p4merge"]
     cmd = p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [mergetool "sourcetree"]
+    # editorconfig-checker-disable-next-line
     cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     keepBackup = false
     trustExitCode = true

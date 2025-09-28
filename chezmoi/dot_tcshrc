@@ -107,7 +107,6 @@ umask 002
 #complete {cd,pushd} 'p/1/d/'
 #complete finger 'p/*/u/'
 #complete gunzip 'p/*/f:*.{z,Z,gz,GZ,tgz,TGZ}/'
-#complete gv 'p/*/f:*.{ps,eps,PS,EPS,pdf,PDF,ps.gz,ps.GZ,PS.gz,,PS.GZ,pdf.gz,pdf.GZ,PDF.gz,PDF.GZ,eps.gz,EPS.gz,eps.GZ,EPS.GZ}/'
 #complete javac 'p/*/f:*.{java,JAVA}/'
 #complete latex 'p/*/f:*.{tex,TEX,dtx,DTX,ins,INS}/'
 #complete more 'p/*/f:^{core,*.[oa],*.fasl}/'
@@ -122,7 +121,6 @@ umask 002
 #complete tex 'p/*/f:*.{tex,TEX}/'
 #complete unzip 'p/*/f:*.{zip,ZIP,jar,JAR,exe,EXE}/'
 #complete vi 'p/*/f:^{core,*.[oa],*.fasl}/'
-#complete xv 'p/*/f:*.{jpg,jpeg,gif,bmp,pcx,tif,tiff,png,JPG,JPEG,GIF,BMP,PCX,TIF,TIFF,PNG,pnm,PNM,ppm,PPM,pbm,PBM,pgm,PGM}/'
 #complete zcat 'n/*/f:*.{gz,GZ,z,Z,tgz,TGZ}/'
 
 #
@@ -173,32 +171,28 @@ setenv SHORTHOST `echo -n $HOST | sed -e 's%\..*%%'`
 alias precmd 'printf "\033]0;%s @ $SHORTHOST\007" "${cwd}" | sed -e "s%$HOME%~%"'
 sched +0:00 alias postcmd 'printf "\033]0;%s @ $SHORTHOST\007" "\!#"'
 
-# Also from http://www.entropy.ch/software/macosx/welcome.html
-cut -f 1 -d ' ' ~/.ssh/known_hosts | perl -p -e 's#,#\n#' | sort -u | perl -e 'chomp(@x = <>); print map {"$x[$_]\n"} grep {$x[$_ + 1] !~ /^$x[$_]\..+$/m} (0 .. $#x);' >! ~/.known_ssh_hostnames
-alias list_all_hostnames cat ~/.known_ssh_hostnames
-#complete scp 'p/*/`scp_completions`/'
-
 # The cd command will search the
 # list of paths defined in the cdpath variable for the directory
 # provided as its argument.
 
 if ( $TERM == screen) then
 # ---------------- screen setup ----------
-  if (!~ $?SHOWED_SCREEN_MESSAGE ) then
-    set detached_screens=`screen -list | grep Detached`
-    if ( "$detached_screens" != "" ) then
-      echo "+-------------------------------------+"
-      echo "| Detached screens are available:     |"
-      echo "$detached_screens"
-      echo "+-------------------------------------+"
-    else
-      echo "[ screen is activated ]"
+    if (!~ $?SHOWED_SCREEN_MESSAGE ) then
+        set detached_screens=`screen -list | grep Detached`
+        if ( "$detached_screens" != "" ) then
+            echo "+-------------------------------------+"
+            echo "| Detached screens are available:     |"
+            echo "$detached_screens"
+            echo "+-------------------------------------+"
+        else
+            echo "[ screen is activated ]"
+        endif
+        setenv SHOWED_SCREEN_MESSAGE true
     endif
-    setenv SHOWED_SCREEN_MESSAGE true
-  endif
-
+    # editorconfig-checker-disable-next-line
     set prompt = "%{\033[0;1;32m%}[%{\033[31m%}%d%w%D %T %{\033[34m%}%n@%m:%{\033[35m%}#$WINDOW %!(%?):%{\033[36m%}%c%{\033[32m%}]%{\033[0m%}%# "
 else
+    # editorconfig-checker-disable-next-line
     set prompt = "%{\033[0;1;32m%}[%{\033[31m%}%d%w%D %T %{\033[34m%}%n@%m:%{\033[35m%}%!(%?):%{\033[36m%}%c%{\033[32m%}]%{\033[0m%}%# "
 endif
 

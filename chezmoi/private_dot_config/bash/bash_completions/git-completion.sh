@@ -563,7 +563,7 @@ __git_index_files() {
             if ((esc_idx = index("abtvfr\"\\", esc)) != 0) {
                 # C-style one-character escape sequence.
                 out = out substr("\a\b\t\v\f\r\"\\",
-                         esc_idx, 1)
+                        esc_idx, 1)
             } else if (esc == "n") {
                 # Uh-oh, a newline character.
                 # We cannot reliably put a pathname
@@ -574,8 +574,8 @@ __git_index_files() {
             } else {
                 # Must be a \nnn octal value, then.
                 dec = esc             * 64 + \
-                      substr(p, 1, 1) * 8  + \
-                      substr(p, 2, 1)
+                    substr(p, 1, 1) * 8  + \
+                    substr(p, 2, 1)
                 out = out sprintf("%c", dec)
                 p = substr(p, 3)
             }
@@ -948,7 +948,7 @@ __git_complete_revlist_file() {
 
         __gitcomp_file "$(__git ls-tree "$ls" |
             sed 's/^.*    //
-                       s/$//')" \
+                    s/$//')" \
             "$pfx" "$cur_"
         ;;
     *...*)

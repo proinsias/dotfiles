@@ -5,6 +5,9 @@
     "node_modules",
     "dist",
     "gitleaks-report.json",
+    "chezmoi/dot_subversion/README.txt",
+    "chezmoi/dot_zfunc/_cht",
+    "chezmoi/dot_zfunc/_rustup",
     "chezmoi/sym_oh-my-zsh/custom/plugins/.*",
     "chezmoi/private_dot_gnupg/private_pubring\\.kbx"
   ]

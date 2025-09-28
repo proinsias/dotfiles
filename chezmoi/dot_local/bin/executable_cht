@@ -160,6 +160,7 @@ EOF
     space_available=$(($(df -k "$installdir" | awk '{print $4}' | tail -1) / 1024))
 
     if [ "$space_available" -lt "$space_needed" ]; then
+        # editorconfig-checker-disable-next-line
         echo "ERROR: Installation directory has no enough space (needed: ${space_needed}M, available: ${space_available}M"
         echo "ERROR: Please clean up and start the script again"
         rmdir "$installdir"
@@ -294,6 +295,7 @@ chtsh_mode() {
     )
 
     if [ -z "$mode" ]; then
+        # editorconfig-checker-disable-next-line
         echo "current mode: $CHTSH_MODE ($(printf "%s" "$text" | grep "$CHTSH_MODE" | sed "s/$CHTSH_MODE//; s/^ *//; s/ \+/ /"))"
         if [ -d "$CHEATSH_INSTALLATION" ]; then
             echo "cheat.sh standalone installation: $CHEATSH_INSTALLATION"
@@ -408,7 +410,8 @@ if [ "$CHTSH_MODE" = auto ] && [ -d "$CHEATSH_INSTALLATION" ]; then
         local url
         url="$1"
         shift
-        PYTHONIOENCODING=UTF-8 "$CHEATSH_INSTALLATION/ve/bin/python" "$CHEATSH_INSTALLATION/lib/standalone.py" "${url#"$CHTSH_URL"}" "$@"
+        PYTHONIOENCODING=UTF-8 "$CHEATSH_INSTALLATION/ve/bin/python" \
+            "$CHEATSH_INSTALLATION/lib/standalone.py" "${url#"$CHTSH_URL"}" "$@"
     }
 elif [ "$(uname -s)" = OpenBSD ] && [ -x /usr/bin/ftp ]; then
     # any better test not involving either OS matching or actual query?
@@ -622,9 +625,9 @@ update  - self update (only if the scriptfile is writeable)
 version - show current cht.sh version
 /:help  - service help
 QUERY   - space separated query staring (examples are below)
-              cht.sh> python zip list
-              cht.sh/python> zip list
-              cht.sh/go> /python zip list
+            cht.sh> python zip list
+            cht.sh/python> zip list
+            cht.sh/go> /python zip list
 EOF
 }
 
@@ -714,6 +717,7 @@ cmd_stealth() {
             # shellcheck disable=SC2021,SC2086
             current_text="$(echo $current | tr -c '[a-zA-Z0-9]' ' ')"
             if [ "$(echo "$current_text" | wc -w)" -gt "$STEALTH_MAX_SELECTION_LENGTH" ]; then
+                # editorconfig-checker-disable-next-line
                 echo "\033[0;31mstealth:\033[0m selection length is longer than $STEALTH_MAX_SELECTION_LENGTH words; ignoring"
                 continue
             else

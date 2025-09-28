@@ -186,6 +186,7 @@ fi
 
 {{ if eq .chezmoi.os "darwin" }}
 #### PyCharm
+# editorconfig-checker-disable-next-line
 test -d "/Applications/PyCharm CE.app/Contents/MacOS" && export PATH="/Applications/PyCharm CE.app/Contents/MacOS${PATH:+:${PATH}}"
 {{ end }}
 
@@ -558,6 +559,7 @@ fi
 
 ## Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 # shellcheck disable=SC2086,SC2312
+# editorconfig-checker-disable-next-line
 [[ -e "${HOME}/.ssh/config" ]] && complete -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\\n')" scp sftp ssh
 
 ## tab completion for poetry
@@ -647,6 +649,7 @@ fi
 # shellcheck disable=SC1091
 [[ -s "${HOMEBREW_PREFIX}/etc/grc.zsh" ]] && source "${HOMEBREW_PREFIX}/etc/grc.zsh"
 # shellcheck disable=SC1091
+# editorconfig-checker-disable-next-line
 [[ -s "${HOME}/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.zsh" ]] && source "${HOME}/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.zsh"
 
 {{ if eq .chezmoi.os "linux" }}

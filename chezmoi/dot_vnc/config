@@ -8,8 +8,10 @@
 # interface=127.0.0.1  # explicit ipv4 localhost address
 # httpd=""  # disable http server (port 5800)
 
-#geometry=1920x1080
+# geometry=1920x1080
 geometry=2048x1152
 # geometry=3440x1440
-# Only allow connections from the same machine. Useful if you use SSH and want to stop non-SSH connections from any other hosts.
+# Only allow connections from the same machine.
+# Useful if you use SSH and want to stop non-SSH
+# connections from any other hosts.
 localhost

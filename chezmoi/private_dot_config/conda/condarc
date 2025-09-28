@@ -1,14 +1,14 @@
 channels:
-  - conda-forge
-  - defaults
+    - conda-forge
+    - defaults
 create_default_packages:
-  - argcomplete
-  - autopep8
-  - pep257
-  - pep8
-  - pyflakes
-  - pylint
-  - uncommitted
+    - argcomplete
+    - autopep8
+    - pep257
+    - pep8
+    - pyflakes
+    - pylint
+    - uncommitted
 show_channel_urls: true
 
 report_errors: true

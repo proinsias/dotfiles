@@ -908,6 +908,7 @@
 
 ## Message to print when allow_tracebacks is False, and an exception occurs
 #  Default: 'An exception occurred at runtime, which is not shown due to security reasons.'
+# # editorconfig-checker-disable-next-line
 # c.MappingKernelManager.traceback_replacement_message = 'An exception occurred at runtime, which is not shown due to security reasons.'
 
 # ------------------------------------------------------------------------------
@@ -1009,7 +1010,8 @@
 
 ## Message to print when allow_tracebacks is False, and an exception occurs
 #  See also: MappingKernelManager.traceback_replacement_message
-# c.AsyncMappingKernelManager.traceback_replacement_message = 'An exception occurred at runtime, which is not shown due to security reasons.'
+# # editorconfig-checker-disable-next-line
+# # c.AsyncMappingKernelManager.traceback_replacement_message = 'An exception occurred at runtime, which is not shown due to security reasons.'
 
 ## Whether to make kernels available before the process has started.  The
 #  See also: AsyncMultiKernelManager.use_pending_kernels
@@ -1138,9 +1140,11 @@ c.ContentsManager.allow_hidden = True
 #  log : logging.Logger
 
 ## By default notebooks are saved on disk on a temporary file and then if succefully written, it replaces the old ones.
-#        This procedure, namely 'atomic_writing', causes some bugs on file system whitout operation order enforcement (like some networked fs).
-#        If set to False, the new notebook is written directly on the old one which could fail (eg: full filesystem or quota )
-#  Default: True
+# This procedure, namely 'atomic_writing', causes some bugs on file system
+# whitout operation order enforcement (like some networked fs).
+# If set to False, the new notebook is written directly on the old one
+# which could fail (eg: full filesystem or quota )
+# Default: True
 # c.FileManagerMixin.use_atomic_writing = True
 
 # ------------------------------------------------------------------------------
@@ -1347,6 +1351,7 @@ c.ContentsManager.allow_hidden = True
 ## A class for computing and verifying notebook signatures.
 
 ## The hashing algorithm used to sign notebooks.
+# # editorconfig-checker-disable-next-line
 #  Choices: any of ['sha3_256', 'sha512', 'sha3_224', 'sha3_512', 'blake2s', 'sha3_384', 'sha256', 'blake2b', 'sha224', 'sha1', 'md5', 'sha384']
 #  Default: 'sha256'
 # c.NotebookNotary.algorithm = 'sha256'
@@ -1432,6 +1437,7 @@ c.ContentsManager.allow_hidden = True
 
 ## Message to print when allow_tracebacks is False, and an exception occurs
 #  See also: MappingKernelManager.traceback_replacement_message
+# # editorconfig-checker-disable-next-line
 # c.GatewayMappingKernelManager.traceback_replacement_message = 'An exception occurred at runtime, which is not shown due to security reasons.'
 
 ## Whether to make kernels available before the process has started.  The
@@ -1595,8 +1601,9 @@ c.ContentsManager.allow_hidden = True
 # c.GatewayClient.validate_cert = True
 
 ## The websocket url of the Kernel or Enterprise Gateway server.  If not provided, this value
-#          will correspond to the value of the Gateway url with 'ws' in place of 'http'.  (JUPYTER_GATEWAY_WS_URL env var)
-#  Default: None
+# will correspond to the value of the Gateway url with 'ws' in place of 'http'.
+# (JUPYTER_GATEWAY_WS_URL env var)
+# Default: None
 # c.GatewayClient.ws_url = None
 
 # ------------------------------------------------------------------------------

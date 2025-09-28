@@ -25,12 +25,12 @@ export MANPATH="${NPM_PACKAGES}/share/man${MANPATH:+:${MANPATH}}"
 
 # Set MANPATH so it includes users' private man if it exists
 if test -d "${HOME}/man" > /dev/null 2>&1; then
-  MANPATH="${HOME}/man${MANPATH:+:${MANPATH}}"
+    MANPATH="${HOME}/man${MANPATH:+:${MANPATH}}"
 fi
 
 # Set INFOPATH so it includes users' private info if it exists
 if test -d "${HOME}/info" > /dev/null 2>&1; then
-  INFOPATH="${HOME}/info${INFOPATH:+:${INFOPATH}}"
+    INFOPATH="${HOME}/info${INFOPATH:+:${INFOPATH}}"
 fi
 
 # Umask
@@ -42,21 +42,6 @@ fi
 # umask 077
 
 {{ if eq .chezmoi.os "linux" }}
-## set environment variables if user's agent already exists
-### Need to try again when system ssh-agent has been rebooted
-##[ -z "$SSH_AUTH_SOCK" ] && SSH_AUTH_SOCK=$(ls -l /tmp/ssh-*/agent.* 2> /dev/null | grep $(whoami) | awk '{print $9}')
-#SSH_AUTH_SOCK=$(ls -l /tmp/ssh-*/agent.* 2> /dev/null | grep $(whoami) | awk '{print $9}')
-#
-#[ -z "$SSH_AGENT_PID" -a -n "$(echo $SSH_AUTH_SOCK | cut -d. -f2)" ] && SSH_AGENT_PID=$(($(echo $SSH_AUTH_SOCK | cut -d. -f2 | cut -d= -f1) + 1))
-#[ -n "$SSH_AUTH_SOCK" ] && export SSH_AUTH_SOCK
-#[ -n "$SSH_AGENT_PID" ] && export SSH_AGENT_PID
-
-# start agent if necessary
-#if [ -z $SSH_AGENT_PID ] && [ -z $SSH_TTY ]; then  # if no agent & not in ssh
-#if [ -z $SSH_AGENT_PID ] ; then
-#   eval $(ssh-agent -s)
-#fi
-
 if [ -d "${HOME}/.ubuntu/bin" ] ; then
     export PATH="${PATH:+${PATH}:}${HOME}/.ubuntu/bin"
 fi
@@ -122,7 +107,7 @@ export DICPATH="${HOME}/.hunspell_default:${HOMEBREW_PREFIX}/share/hunspell${DIC
 
 # Wrap git automatically with hub
 if type hub > /dev/null 2>&1 ; then
-  eval "$(hub alias -s)"
+    eval "$(hub alias -s)"
 fi
 
 # overcommit
@@ -156,7 +141,7 @@ export PIPENV_IGNORE_VIRTUALENVS=1
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/usr/local/google-cloud-sdk/path.bash.inc' ]; then
-  . '/usr/local/google-cloud-sdk/path.bash.inc'
+    . '/usr/local/google-cloud-sdk/path.bash.inc'
 fi
 
 export PYENV_ROOT="${HOME}/.pyenv"

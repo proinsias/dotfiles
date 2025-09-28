@@ -10,7 +10,7 @@ addpath = '/Users/{{ .chezmoi.username }}/idl_lib/:'+$
 astrolib
 
 if !path eq '' then $
-  !path = addpath $
+    !path = addpath $
 else !path = addpath + ':' + !path
 delvar, addpath
 

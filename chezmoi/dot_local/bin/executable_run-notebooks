@@ -22,7 +22,8 @@ from nbconvert.preprocessors.execute import CellExecutionError
 
 
 RUN_PATH_HELP_STR = 'The path the notebook will be run from'
-TIMEOUT_HELP_STR = 'Length of time (in secs) a cell can run before raising TimeoutError; a values of -1 disables timeout'
+TIMEOUT_HELP_STR = 'Length of time (in secs) a cell can run \
+before raising TimeoutError; a values of -1 disables timeout'
 
 try:
     import ntfy

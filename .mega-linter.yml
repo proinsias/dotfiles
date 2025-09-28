@@ -8,6 +8,7 @@ BASH_SHELLCHECK_ARGUMENTS: "--external-sources --format=gcc --shell=bash"
 
 DISABLE_LINTERS:
   - REPOSITORY_DEVSKIM
+  - REPOSITORY_GITLEAKS
 
 FILEIO_REPORTER: true
 

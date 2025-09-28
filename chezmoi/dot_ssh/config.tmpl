@@ -1,7 +1,7 @@
 Include {{ .chezmoi.homeDir }}/.colima/ssh_config
 
 Host bitbucket.???  # .org and .com
-  ControlMaster no  # https://stackoverflow.com/a/52496021/1257318
+    ControlMaster no  # https://stackoverflow.com/a/52496021/1257318
 
 Host *
     {{ if eq .chezmoi.os "darwin" }}

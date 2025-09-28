@@ -178,6 +178,7 @@ fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 # shellcheck disable=SC2086,SC2312
+# editorconfig-checker-disable-next-line
 [[ -e "${HOME}/.ssh/config" ]] && complete -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
 
 # For homebrew bash completion
@@ -450,6 +451,7 @@ fi
 # grc
 GRC_ALIASES=true
 [[ -s "/opt/homebrew/etc/grc.sh" ]] && source /opt/homebrew/etc/grc.sh
+# editorconfig-checker-disable-next-line
 [[ -s "~/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.sh" ]] && source ~/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.sh
 
 # Deduplicate PATH variable

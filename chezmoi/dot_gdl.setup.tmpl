@@ -2,7 +2,7 @@ addpath = '{{ .chezmoi.homeDir }}/idl_lib/:'
 !PATH = expand_path('+' + !DIR + ':' + 'external' + ':' + !PATH)
 
 if !path eq '' then $
-  !path = addpath $
+    !path = addpath $
 else !path = addpath + ':' + !path
 ;delvar, addpath
 

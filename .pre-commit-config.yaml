@@ -133,3 +133,58 @@ repos:
     rev: "3.4.0"
     hooks:
       - id: editorconfig-checker
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.45.0
+    hooks:
+      - id: markdownlint
+
+  - repo: https://github.com/koalaman/shellcheck-precommit
+    rev: v0.11.0
+    hooks:
+      - id: shellcheck
+        args: [--external-sources, --format=gcc, --shell=bash]
+
+  - repo: https://github.com/kucherenko/jscpd
+    rev: "jscpd@4.0.1"
+    hooks:
+      - id: jscpd
+        # Optionally can add the following to restrict to certain file
+        # types:
+        # files \.[js]sx?$
+        types: [text]
+        # Optionally can specify additional arguments for the jscp
+        # command:
+        # args:
+        #  --ignore "**/*.min.js,**/*.map,**/node_modules,**/tests"
+        #  --reporters console
+
+  - repo: https://github.com/RobertCraigie/pyright-python
+    rev: v1.1.405
+    hooks:
+      - id: pyright
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: "v0.12.7"
+    hooks:
+      - id: ruff-check
+        args: [--fix, --exit-non-zero-on-fix]
+        types_or: [python, pyi]
+      - id: ruff-format
+        types_or: [python, pyi]
+
+  - repo: https://github.com/pycqa/isort
+    rev: "6.0.1"
+    hooks:
+      - id: isort
+        name: isort (python)
+
+  - repo: https://github.com/psf/black-pre-commit-mirror
+    rev: 25.9.0
+    hooks:
+      - id: black
+        # It is recommended to specify the latest version of Python
+        # supported by your project here, or alternatively use
+        # pre-commit's default_language_version, see
+        # https://pre-commit.com/#top_level-default_language_version
+        language_version: python3.11

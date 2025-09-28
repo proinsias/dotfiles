@@ -30,8 +30,9 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 
 ## To Dos
 
-1. ml/shellcheck
-1. ml/editorconfig-checker
+1. Add all megalinters to pre-commit.
+1. ml/python\*
+1. ml/gitleaks?
 1. .doom.d -> ilovemovies
 1. gpg private keys -> ilovemovies?
 1. mv .zsh*files to ~/.config/zsh/*

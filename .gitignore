@@ -1,3 +1,4 @@
 .lycheecache
-node_modules
-megalinter-reports
+node_modules/
+megalinter-reports/
+report/

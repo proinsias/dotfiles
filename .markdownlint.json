@@ -11,7 +11,7 @@
     "punctuation": ",.,:;!。，；:"
   },
   "ol-prefix": {
-    "style": "ordered"
+    "style": "one_or_ordered"
   },
   "ul-indent": {
     "indent": 4

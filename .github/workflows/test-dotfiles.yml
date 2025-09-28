@@ -37,6 +37,7 @@ jobs:
       - name: Setup temporary HOME and copy blank config
         run: |
           mkdir -p "${TEST_HOME}/.config/chezmoi"
+          cp -f .blank.chezmoi.toml chezmoi/.chezmoi.toml.tmpl
         env:
           TEST_HOME: ${{ runner.temp }}/testhome
 

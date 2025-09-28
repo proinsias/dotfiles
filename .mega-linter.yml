@@ -12,7 +12,7 @@ DISABLE_LINTERS:
 
 FILEIO_REPORTER: true
 
-REPOSITORY_GITLEAKS_CONFIG_FILE: .gitleaks.toml
+REPOSITORY_GITLEAKS_CONFIG_FILE: ./.gitleaks.toml
 REPOSITORY_GITLEAKS_ARGUMENTS:
   - --baseline-path
   - gitleaks-report.json
@@ -21,13 +21,13 @@ JSON_V8R_DISABLE_ERRORS: true
 
 LINTER_RULES_PATH: .
 
-PYTHON_BANDIT_CONFIG_FILE: pyproject.toml]
-PYTHON_BLACK_CONFIG_FILE: pyproject.toml
-PYTHON_FLAKE8_CONFIG_FILE: pyproject.toml
-PYTHON_ISORT_CONFIG_FILE: pyproject.toml
-PYTHON_MYPY_CONFIG_FILE: pyproject.toml
-PYTHON_PYLINT_CONFIG_FILE: pyproject.toml
-PYTHON_PYRIGHT_CONFIG_FILE: pyproject
-PYTHON_RUFF_CONFIG_FILE: pyproject.toml
+PYTHON_BANDIT_CONFIG_FILE: ./pyproject.toml
+PYTHON_BLACK_CONFIG_FILE: ./pyproject.toml
+PYTHON_FLAKE8_CONFIG_FILE: ./pyproject.toml
+PYTHON_ISORT_CONFIG_FILE: ./pyproject.toml
+PYTHON_MYPY_CONFIG_FILE: ./pyproject.toml
+PYTHON_PYLINT_CONFIG_FILE: ./pyproject.toml
+PYTHON_PYRIGHT_CONFIG_FILE: ./pyproject.toml
+PYTHON_RUFF_CONFIG_FILE: ./pyproject.toml
 
 SHOW_ELAPSED_TIME: true

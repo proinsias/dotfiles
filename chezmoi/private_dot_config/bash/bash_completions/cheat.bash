@@ -6,9 +6,11 @@ _cheat_complete_cheatsheets() {
     # shellcheck disable=SC2154
     if [[ "${CHEAT_USE_FZF}" = true ]]; then
         FZF_COMPLETION_TRIGGER='' _fzf_complete "--no-multi" "${@}" < <(
+            # shellcheck disable=SC2312
             cheat -l | tail -n +2 | cut -d' ' -f1
         )
     else
+        # shellcheck disable=SC2312,SC2207
         COMPREPLY=($(compgen -W "$(cheat -l | tail -n +2 | cut -d' ' -f1)" -- "${cur}"))
     fi
 }
@@ -16,8 +18,10 @@ _cheat_complete_cheatsheets() {
 # generate tag completions, optionally using `fzf`
 _cheat_complete_tags() {
     if [[ "${CHEAT_USE_FZF}" = true ]]; then
+        # shellcheck disable=SC2312
         FZF_COMPLETION_TRIGGER='' _fzf_complete "--no-multi" "$@" < <(cheat -T)
     else
+        # shellcheck disable=SC2312,SC2207
         COMPREPLY=($(compgen -W "$(cheat -T)" -- "${cur}"))
     fi
 }
@@ -29,7 +33,9 @@ _cheat() {
 
     # complete options that are currently being typed: `--col` => `--colorize`
     if [[ "${cur}" == -* ]]; then
+        # shellcheck disable=SC2016,SC2207
         COMPREPLY=($(compgen -W '$(_parse_help "$1" | sed "s/=//g")' -- "${cur}"))
+        # shellcheck disable=SC2128
         [[ ${COMPREPLY} == *= ]] && compopt -o nospace
         return
     fi
@@ -52,6 +58,7 @@ _cheat() {
         _cheat_complete_cheatsheets
         ;;
     --path | -p)
+        # shellcheck disable=SC2312,SC2207
         COMPREPLY=($(compgen -W "$(cheat -d | cut -d':' -f1)" -- "${cur}"))
         ;;
     --rm)

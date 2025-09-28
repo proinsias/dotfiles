@@ -3,7 +3,7 @@
 My personal collection of dotfiles to be managed with
 [chezmoi](https://www.chezmoi.io/).
 
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/proinsias/dotfiles/main.svg)](https://results.pre-commit.ci/latest/github/proinsias/dotfiles/main) <!-- editorconfig-checker-disable-line -->
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/proinsias/dotfiles/main.svg)](https://results.pre-commit.ci/latest/github/proinsias/dotfiles/main) <!-- editorconfig-checker-disable-line --> {{< mdl-disable "<!-- markdownlint-disable line-length -->" >}}
 
 ## Table of contents
 

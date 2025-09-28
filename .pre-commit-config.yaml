@@ -3,7 +3,10 @@ ci: # https://pre-commit.ci
   autofix_prs: true
   autoupdate_schedule: monthly
   skip:
+    - jscpd
     - lychee # Requires rust.
+    - prettier
+    - pyright
     - shellcheck
     # - megalinter-incremental
     # - megalinter-full

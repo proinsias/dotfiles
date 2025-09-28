@@ -37,7 +37,8 @@ jobs:
       - name: Setup temporary HOME and copy blank config
         run: |
           mkdir -p "${TEST_HOME}/.config/chezmoi"
-          cp -f .blank.chezmoi.toml chezmoi/.chezmoi.toml.tmpl
+          # FIXME: Testing prompts with --no-tty
+          # cp -f .blank.chezmoi.toml chezmoi/.chezmoi.toml.tmpl
         env:
           TEST_HOME: ${{ runner.temp }}/testhome
 
@@ -51,21 +52,25 @@ jobs:
 
       - name: Initialize chezmoi
         run: |
-          chezmoi init --source="$(pwd)" --destination="${TEST_HOME}" --verbose
+          chezmoi init --source="$(pwd)" --destination="${TEST_HOME}" \
+              --no-tty --promptDefaults --keep-going
         env:
           TEST_HOME: ${{ runner.temp }}/testhome
 
       - name: Apply dotfiles into temp home
         run: |
-          chezmoi apply --source="$(pwd)" --destination="${TEST_HOME}" --verbose
+          chezmoi apply --source="$(pwd)" --destination="${TEST_HOME}" \
+              --keep-going  --no-tty
 
       - name: Verify dotfiles consistency
         run: |
-          chezmoi verify --source="$(pwd)" --destination="${TEST_HOME}" --verbose
+          chezmoi verify --source="$(pwd)" --destination="${TEST_HOME}" \
+              --keep-going --no-tty
 
       - name: Run chezmoi doctor
         run: |
-          chezmoi doctor --source="$(pwd)" --destination="${TEST_HOME}" --verbose
+          chezmoi doctor --source="$(pwd)" --destination="${TEST_HOME}" \
+              --keep-going --no-tty
 
       - name: Smoke test shell startup
         run: |

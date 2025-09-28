@@ -55,10 +55,6 @@ jobs:
         env:
           TEST_HOME: ${{ runner.temp }}/testhome
 
-      - name: Run chezmoi doctor
-        run: |
-          chezmoi doctor --source="$(pwd)" --destination="${TEST_HOME}" --verbose
-
       - name: Apply dotfiles into temp home
         run: |
           chezmoi apply --source="$(pwd)" --destination="${TEST_HOME}" --verbose
@@ -66,6 +62,10 @@ jobs:
       - name: Verify dotfiles consistency
         run: |
           chezmoi verify --source="$(pwd)" --destination="${TEST_HOME}" --verbose
+
+      - name: Run chezmoi doctor
+        run: |
+          chezmoi doctor --source="$(pwd)" --destination="${TEST_HOME}" --verbose
 
       - name: Smoke test shell startup
         run: |

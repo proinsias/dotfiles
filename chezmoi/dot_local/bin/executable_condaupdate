@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # conda search --outdated --names-only
+# shellcheck disable=SC2312
 conda update --all && conda clean --index-cache --lock --tarballs --packages --source-cache
 
 # After updating via conda, do the same for pip-only packages

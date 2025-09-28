@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC2312
 openssl req -new -sha256 -nodes -out server.csr -newkey rsa:2048 \
     -keyout server.key -config <(cat ~/.ssl/server.csr.cnf)
 

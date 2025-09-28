@@ -4,9 +4,10 @@
 #
 # replace foo bar **/*.rb
 
-find_this="$1"
+find_this="${1}"
 shift
-replace_with="$1"
+replace_with="${1}"
 shift
 
-ag -l --nocolor "$find_this" $* | xargs sed -i '' "s/$find_this/$replace_with/g"
+# shellcheck disable=SC2312
+ag -l --nocolor "${find_this}" "$@" | xargs sed -i '' "s/${find_this}/${replace_with}/g"

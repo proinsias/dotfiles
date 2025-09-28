@@ -15,10 +15,11 @@
 
 # hook function to send wakatime a tick
 pre_prompt_command() {
+    # shellcheck disable=SC2046,SC2312
     wakatime --write --plugin "bash-wakatime/0.0.1" \
         --entitytype app --project Terminal \
-        --entity "$(echo $(fc -ln -0) | cut -d ' ' -f1)" \
-        2>&1 >/dev/null &
+        --entity "$(fc -ln -0 | cut -d ' ' -f1)" \
+        >/dev/null 2>&1 &
 }
 
 PROMPT_COMMAND=pre_prompt_command

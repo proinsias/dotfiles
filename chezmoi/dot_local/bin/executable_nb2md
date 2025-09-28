@@ -9,4 +9,4 @@
 # or to it globally with
 #   git config --global diff.nb2md.textconv nb2md.sh
 
-jupyter nbconvert --to markdown $1 --stdout --log-level=0
+jupyter nbconvert --to markdown "${1}" --stdout --log-level=0

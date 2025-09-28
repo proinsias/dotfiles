@@ -29,21 +29,24 @@
 
 function test_file {
     file="${1}"
-    if [ ! -f "${file}" ]; then
+    if [[ ! -f "${file}" ]]; then
         return
     fi
+    # shellcheck disable=SC2312
     if grep 'Copyright ' "${file}" | grep -v grep >/dev/null; then
         year=$(date +%Y)
         cr_holder=$(git config --get hooks.copyrightholder)
-        if [ -n "${cr_holder}" ]; then
+        if [[ -n "${cr_holder}" ]]; then
+            # shellcheck disable=SC2312
             if grep 'Copyright ' "${file}" | grep "${year}" | grep "${cr_holder}" >/dev/null; then
-                echo "Error: $file seems to be missing a copyright string for ${cr_holder} with the year $year in it."
+                # editorconfig-checker-disable-next-line
+                echo "Error: ${file} seems to be missing a copyright string for ${cr_holder} with the year ${year} in it."
                 exit 1
             fi
         else
 
             if grep 'Copyright ' "${file}" | grep "${year}" >/dev/null; then
-                echo "Error: $file seems to be missing a copyright string with the year $year in it."
+                echo "Error: ${file} seems to be missing a copyright string with the year ${year} in it."
                 exit 1
             fi
         fi

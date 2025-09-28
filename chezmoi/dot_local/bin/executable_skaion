@@ -3,5 +3,5 @@
 wget --delete-after \
     --keep-session-cookies \
     --save-cookies cookies.txt \
-    --post-data 'username='${PCH_USERNAME}'&password='${PCH_PASSWORD}'&duration=20' \
+    --post-data "username=${PCH_USERNAME:-}&password=${PCH_PASSWORD:-}&duration=20" \
     https://prefix.pch.net/applications/login/index.php

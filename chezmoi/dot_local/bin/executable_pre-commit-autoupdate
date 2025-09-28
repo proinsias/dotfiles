@@ -8,9 +8,11 @@ set -o pipefail               # Produce a failure return code if any pipeline co
 shopt -s failglob             # Cause globs that don't get expanded to cause errors.
 shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
 
+# shellcheck disable=SC2312
 find "${HOME}"/GitHub/ \
     -type d \
     -maxdepth 1 \
-    -mindepth 1 |
+    -mindepth 1 \
+    -print0 | \
     xargs -P "$(nproc)" -I{} sh -c \
         'cd {} && pre-commit autoupdate'

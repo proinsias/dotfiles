@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-cd /tmp/.
+cd /tmp/. || exit
 
 curl -OL https://bashhub.com/setup && bash setup

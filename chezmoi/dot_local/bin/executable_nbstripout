@@ -1,4 +1,4 @@
-#!/Users/ftod/.local/pipx/venvs/nbstripout/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import re
 import sys

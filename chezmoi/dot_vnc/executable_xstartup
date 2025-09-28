@@ -1,5 +1,5 @@
-#!/bin/bash
-xrdb $HOME/.Xresources
+#!/usr/bin/env bash
+xrdb "${HOME}"/.Xresources
 
 # Allow copy & paste when ClientCutText is set to true on the client side
 autocutsel -fork

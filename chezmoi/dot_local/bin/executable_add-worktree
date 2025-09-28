@@ -42,6 +42,10 @@ while getopts "b:hr:" opt; do
     '?')
         show_help_and_exit
         ;;
+    *)
+        echo "Unimplemented option: -${OPTARG}" >&2
+        show_help_and_exit
+        ;;
     esac
 done
 shift "$((OPTIND - 1))" # Shift off the options and optional --.

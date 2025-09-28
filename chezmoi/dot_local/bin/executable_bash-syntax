@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Copyright (c) 2010-2016, Benjamin C. Meyer <ben@meyerhome.net>
 # All rights reserved.
@@ -28,11 +28,13 @@
 
 function test_file {
     file="${1}"
-    if [ ! -f "${file}" ]; then
+    if [[ ! -f "${file}" ]]; then
         return
     fi
-
-    if head -n 1 "${file}" | grep 'bash' | grep '^#!/' >/dev/null; then
+    # shellcheck disable=SC2312
+    head -n 1 "${file}" | grep 'bash' | grep '^#!/' >/dev/null
+    # shellcheck disable=SC2181
+    if [[ "$?" -eq 0 ]]; then
         set -e
         bash -n "${file}"
         set +e

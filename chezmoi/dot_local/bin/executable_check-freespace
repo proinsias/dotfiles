@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Copyright (c) 2010-2016, Benjamin C. Meyer <ben@meyerhome.net>
 # All rights reserved.
@@ -27,6 +27,7 @@
 #
 
 function run_test {
+    # shellcheck disable=SC2312
     df . -k | tail -n 1 | awk ' {
     if ($4 < (1024 * 100))
         print "Warning: less then 100MB of free space left." > "/dev/stderr"

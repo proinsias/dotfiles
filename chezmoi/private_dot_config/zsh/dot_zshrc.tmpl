@@ -480,12 +480,6 @@ plugins=(
     zsh-syntax-highlighting
 )
 
-# https://github.com/ellie/atuin/blob/main/docs/shell-completions.md
-# https://github.com/chubin/cheat.sh#tab-completion
-# https://github.com/zricethezav/gitleaks
-# https://nbpreview.readthedocs.io/en/latest/usage.html?highlight=completion#cmdoption-nbpreview-install-completion
-fpath+=~/.zfunc
-
 {{ if eq .chezmoi.hostname "booth" }}  # See https://www.chezmoi.io/user-guide/machines/macos/#determine-the-hostname
 # I'm not the main user on this machine
 # shellcheck disable=SC2034
@@ -564,22 +558,22 @@ fi
 
 ## tab completion for poetry
 ## https://python-poetry.org/docs/
-# shellcheck disable=SC2065,SC2154
-if type poetry >/dev/null 2>&1; then
-    if ! test -f "${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/poetry/_poetry" &>/dev/null; then
-        echo "Install poetry completions using: mkdir ${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/poetry &&" \
-            "poetry completions zsh > ${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/poetry/_poetry"
-    fi
-fi
+## shellcheck disable=SC2065,SC2154
+#if type poetry >/dev/null 2>&1; then
+#    if ! test -f "${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/poetry/_poetry" &>/dev/null; then
+#        echo "Install poetry completions using: mkdir ${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/poetry &&" \
+#            "poetry completions zsh > ${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/poetry/_poetry"
+#    fi
+#fi
 
 ## tab completion for git-town
-# shellcheck disable=SC2065,SC2154
-if type git-town >/dev/null 2>&1; then
-    if ! test -f "${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/git-town/_git-town" &>/dev/null; then
-        echo "Install git town completions using: mkdir ${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/git-town &&" \
-            "git-town completions zsh > ${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/git-town/_git-town"
-    fi
-fi
+## shellcheck disable=SC2065,SC2154
+#if type git-town >/dev/null 2>&1; then
+#    if ! test -f "${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/git-town/_git-town" &>/dev/null; then
+#        echo "Install git town completions using: mkdir ${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/git-town &&" \
+#            "git-town completions zsh > ${ZSH_CUSTOM:-ZSH_CUSTOM}/plugins/git-town/_git-town"
+#    fi
+#fi
 
 {{ if eq .chezmoi.os "darwin" }}
 # Add tab completion for `defaults read|write NSGlobalDomain`
@@ -759,3 +753,6 @@ export PATH="${HOMEBREW_PREFIX}/opt/rustup/bin:$PATH"
 
 # Disable oh-my-zsh auto update. Use chezmoi instead.
 export DISABLE_AUTO_UPDATE="true"
+
+# Ensure path arrays do not contain duplicates.
+typeset -gU path fpath

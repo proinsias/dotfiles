@@ -40,6 +40,7 @@ jobs:
           # Use template file with defaults.
           cp -f .blank.chezmoi.toml chezmoi/.chezmoi.toml.tmpl
           # Provide empty age key.
+          mkdir -p "${HOME}"/.config/chezmoi
           touch "${HOME}"/.config/chezmoi/key.txt
         env:
           TEST_HOME: ${{ runner.temp }}/testhome

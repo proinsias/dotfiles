@@ -13,6 +13,6 @@ find "${HOME}"/GitHub/ \
     -type d \
     -maxdepth 1 \
     -mindepth 1 \
-    -print0 | \
+    -print0 |
     xargs -P "$(nproc)" -I{} sh -c \
         'cd {} && pre-commit autoupdate'

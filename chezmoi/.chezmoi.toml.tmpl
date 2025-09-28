@@ -1,10 +1,8 @@
-{{- $email := promptStringOnce . "email" "Email address" | default "name@example.com" -}}
-
 encryption = "age"
 
 [data]
     name = {{ promptStringOnce . "name" "Your full name" | default "Name" | quote}}
-    email = {{ $email | quote }}
+    email = {{ promptStringOnce . "email" "Email address" | default "name@example.com" | quote}}
     defaultkey = {{ promptStringOnce . "defaultkey" "Default gpg key" | default "123" | quote}}
     githubemail = {{ promptStringOnce . "githubemail" "GitHub email address" | default "name@example.com" | quote }}
     opaccount = {{ promptStringOnce . "opaccount" "1Password account" | default "opaccount" | quote }}

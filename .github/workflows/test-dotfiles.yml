@@ -63,7 +63,7 @@ jobs:
       - name: Apply dotfiles into temp home
         run: |
           chezmoi apply --source="$(pwd)" --destination="${TEST_HOME}" \
-              --keep-going --no-tty
+              --keep-going --no-tty --exclude encrypted
 
       - name: Verify dotfiles consistency
         run: |

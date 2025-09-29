@@ -16,19 +16,19 @@ echo
 brew update
 
 # Brewfile hash: {{ include "./private_dot_config/homebrew/Brewfile.tmpl" | sha256sum }}
-{{ if not .test }}
-if ! command brew bundle check --global &> /dev/null; then
-    echo
-    echo "The Brewfile's dependencies are not satisfied. Running brew bundle install --global..."
-    brew bundle install --no-upgrade --global
-else
-    echo "The Brewfile's dependencies are satisfied. Skipping brew bundle install --global..."
-fi
-{{ else }}
+{{ if .test }}
 if ! command brew bundle check --file "${TEST_HOME}/.config/homebrew/Brewfile" &> /dev/null; then
     echo
     echo "The Brewfile's dependencies are not satisfied. Running brew bundle install --global..."
     brew bundle install --no-upgrade --file "${TEST_HOME}/.config/homebrew/Brewfile"
+else
+    echo "The Brewfile's dependencies are satisfied. Skipping brew bundle install --global..."
+fi
+{{ else }}
+if ! command brew bundle check --global &> /dev/null; then
+    echo
+    echo "The Brewfile's dependencies are not satisfied. Running brew bundle install --global..."
+    brew bundle install --no-upgrade --global
 else
     echo "The Brewfile's dependencies are satisfied. Skipping brew bundle install --global..."
 fi

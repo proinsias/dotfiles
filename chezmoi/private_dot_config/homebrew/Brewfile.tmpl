@@ -105,8 +105,10 @@ brew "dos2unix"
 brew "dotenv-linter"
 # .NET Core
 brew "dotnet"
+{{ if eq .chezmoi.os "darwin" }}
 # Select default apps for documents and URL schemes on macOS
 brew "duti"
+{{ end }}
 # Maintain consistent coding style between multiple editors
 # Git for data science projects
 brew "dvc"
@@ -235,8 +237,10 @@ brew "hub"
 brew "icdiff"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
+{{ if eq .chezmoi.os "darwin" }}
 # CLI for ImageOptim, ImageAlpha and JPEGmini
 brew "imageoptim-cli"
+{{ end }}
 # Sort Python imports automatically
 brew "isort"
 # Utility to optimize JPEG files
@@ -287,8 +291,10 @@ brew "make"
 brew "makedepend"
 # CLI for Node.js style checker and lint tool for Markdown files
 brew "markdownlint-cli"
+{{ if eq .chezmoi.os "darwin" }}
 # Mac App Store command-line interface
 brew "mas"
+{{ end }}
 # Unified display of technical and tag data for audio/video
 brew "media-info"
 # Project documentation with Markdown
@@ -311,8 +317,10 @@ brew "nano"
 brew "nmap"
 # Create, run, and share large language models (LLMs)
 brew "ollama", restart_service: :changed
+{{ if eq .chezmoi.os "darwin" }}
 # Bash completion for open
 brew "open-completion"
+{{ end }}
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # PNG file optimizer
@@ -323,8 +331,10 @@ brew "p7zip"
 brew "pandoc"
 # Search PDFs for strings matching a regular expression
 brew "pdfgrep"
+{{ if eq .chezmoi.os "darwin" }}
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
+{{ end }}
 # Bash completion for Pip
 brew "pip-completion"
 # Locking and sync for Pip requirements files
@@ -461,8 +471,10 @@ brew "tmuxinator-completion"
 brew "tokei"
 # Upgrade all the things
 brew "topgrade"
+{{ if eq .chezmoi.os "darwin" }}
 # CLI tool that moves files or folder to the trash
 brew "trash", link: true
+{{ end }}
 # Terminal interaction recorder and player
 brew "ttyrec"
 # Converts a ttyrec file into gif files
@@ -471,8 +483,10 @@ brew "ttygif"
 brew "unzip"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+{{ if eq .chezmoi.os "darwin" }}
 # GNU Fortran compatibility for Apple's vecLib
 brew "veclibfort"
+{{ end }}
 # Your CLI home video recorder
 brew "vhs"
 # Executes a program periodically, showing output fullscreen
@@ -483,8 +497,10 @@ brew "wdiff"
 brew "wget"
 # Homebrew, but with Docker images
 brew "whalebrew"
+{{ if eq .chezmoi.os "darwin" }}
 # Show the current WiFi network password
 brew "wifi-password"
+{{ end }}
 # Tools for the WireGuard secure network tunnel
 brew "wireguard-tools"
 # Automatic workarounds for problems in Wine
@@ -509,11 +525,15 @@ brew "zsh-autosuggestions"
 brew "zsh-completions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+{{ if eq .chezmoi.os "darwin" }}
 brew "alexdavid/tap/git-branch-status"
+{{ end }}
 # Scanner for vulnerabilities in container images, file systems, and Git repositories, as well as for configuration issues
 brew "aquasecurity/trivy/trivy"
+{{ if eq .chezmoi.os "darwin" }}
 # A tool for using LLMs on the command line
 brew "bakks/bakks/butterfish"
+{{ end }}
 # AI on the command line
 brew "charmbracelet/tap/mods"
 # A tool for recording terminal GIFs
@@ -530,8 +550,10 @@ brew "vitorgalvao/tiny-scripts/cask-repair"
 brew "eddieantonio/eddieantonio/imgcat"
 # Ken Silverman's PNG optimisation utility
 brew "jonof/kenutils/pngout"
+{{ if eq .chezmoi.os "darwin" }}
 # Automatic Password Generator
 brew "jzaleski/jzaleski/apg"
+{{ end }}
 # Simple command-line snippet manager
 brew "knqyf263/pet/pet"
 {{ if eq .chezmoi.os "darwin" }}

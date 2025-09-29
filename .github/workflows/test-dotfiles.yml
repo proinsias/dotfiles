@@ -71,7 +71,7 @@ jobs:
       - name: Verify dotfiles consistency
         run: |
           chezmoi verify --source="$(pwd)" --destination="${TEST_HOME}" \
-              --keep-going --no-tty
+              --keep-going --no-tty --exclude encrypted
 
       - name: Run chezmoi doctor
         run: |

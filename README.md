@@ -13,10 +13,10 @@ uvx --from md-toc md_toc --in-place github -- README.md
 -->
 <!--TOC-->
 
--   [dotfiles](#dotfiles)
-    -   [Table of contents](#table-of-contents)
-    -   [Install](#install)
-    -   [To Dos](#to-dos)
+- [dotfiles](#dotfiles)
+    - [Table of contents](#table-of-contents)
+    - [Install](#install)
+    - [To Dos](#to-dos)
 
 <!--TOC-->
 
@@ -30,6 +30,5 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 
 ## To Dos
 
-1. .doom.d -> ilovemovies
 1. work: gitconfig - Switch to getting from op!
 1. Setup /etc/hosts -> see `hosts` file.

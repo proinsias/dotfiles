@@ -1,7 +1,8 @@
 #!{{ lookPath "sh" }}
 
-echo ""
+echo
+echo
 echo "Adding symbolic links for oh-my-zsh aliases."
 
 mkdir -p ~/.oh-my-zsh/custom
-ln -f -s {{ .chezmoi.sourceDir }}/sym_oh-my-zsh/custom/aliases.zsh ~/.oh-my-zsh/custom/aliases.zsh
+ln -f -s ~/.config/zsh/aliases.zsh ~/.oh-my-zsh/custom/aliases.zsh

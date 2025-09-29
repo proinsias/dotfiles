@@ -31,10 +31,8 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias
 ## To Dos
 
 1. .doom.d -> ilovemovies
-1. gpg public/private keys -> ilovemovies?
-1. mv .zsh*files to ~/.config/zsh/*
-1. gitconfig - Switch to getting from op!
-1. Convert zsh aliases to chezmoi template.
+1. gpg public keys -> ilovemovies?
+1. work: gitconfig - Switch to getting from op!
 
 -   [ ] /etc/hosts
 

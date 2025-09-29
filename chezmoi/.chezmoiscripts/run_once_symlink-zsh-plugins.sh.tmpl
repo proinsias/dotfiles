@@ -1,13 +1,32 @@
 #!{{ lookPath "sh" }}
 
-echo ""
+echo
+echo
 echo "Adding symbolic links for oh-my-zsh plugins."
 
 mkdir -p \
+    ~/.oh-my-zsh/custom/plugins/atuin \
+    ~/.oh-my-zsh/custom/plugins/chezmoi \
+    ~/.oh-my-zsh/custom/plugins/cht \
     ~/.oh-my-zsh/custom/plugins/git-town \
-    ~/.oh-my-zsh/custom/plugins/poetry
+    ~/.oh-my-zsh/custom/plugins/gitleaks \
+    ~/.oh-my-zsh/custom/plugins/nbp \
+    ~/.oh-my-zsh/custom/plugins/op \
+    ~/.oh-my-zsh/custom/plugins/rustup
 
+ln -f -s {{ .chezmoi.sourceDir }}/sym_oh-my-zsh/custom/plugins/atuin/_atuin \
+    ~/.oh-my-zsh/custom/plugins/atuin/_atuin
+ln -f -s {{ .chezmoi.sourceDir }}/sym_oh-my-zsh/custom/plugins/chezmoi/_chezmoi \
+    ~/.oh-my-zsh/custom/plugins/chezmoi/_chezmoi
+ln -f -s {{ .chezmoi.sourceDir }}/sym_oh-my-zsh/custom/plugins/cht/_cht \
+    ~/.oh-my-zsh/custom/plugins/cht/_cht
 ln -f -s {{ .chezmoi.sourceDir }}/sym_oh-my-zsh/custom/plugins/git-town/_git-town \
     ~/.oh-my-zsh/custom/plugins/git-town/_git-town
-ln -f -s {{ .chezmoi.sourceDir }}/sym_oh-my-zsh/custom/plugins/poetry/_poetry \
-    ~/.oh-my-zsh/custom/plugins/poetry/_poetry
+ln -f -s {{ .chezmoi.sourceDir }}/sym_oh-my-zsh/custom/plugins/gitleaks/_gitleaks \
+    ~/.oh-my-zsh/custom/plugins/gitleaks/_gitleaks
+ln -f -s {{ .chezmoi.sourceDir }}/sym_oh-my-zsh/custom/plugins/nbp/_nbp \
+    ~/.oh-my-zsh/custom/plugins/nbp/_nbp
+ln -f -s {{ .chezmoi.sourceDir }}/sym_oh-my-zsh/custom/plugins/op/_op \
+    ~/.oh-my-zsh/custom/plugins/op/_op
+ln -f -s {{ .chezmoi.sourceDir }}/sym_oh-my-zsh/custom/plugins/rustup/_rustup \
+    ~/.oh-my-zsh/custom/plugins/rustup/_rustup

@@ -8,6 +8,7 @@
     "chezmoi/dot_subversion/README.txt",
     "chezmoi/dot_zfunc/_cht",
     "chezmoi/dot_zfunc/_rustup",
+    "chezmoi/private_dot_config/homebrew/Brewfile.tmpl",
     "chezmoi/sym_oh-my-zsh/custom/plugins/.*",
     "chezmoi/sym_dot_gnupg/private_pubring\\.kbx"
   ]

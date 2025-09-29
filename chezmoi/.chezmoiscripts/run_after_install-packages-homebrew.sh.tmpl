@@ -1,0 +1,22 @@
+#!{{ lookPath "sh" }}
+
+echo
+echo
+echo "Install homebrew packages"
+
+# Install Homebrew if not installed
+if ! command -v brew &>/dev/null; then
+    echo
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# Update Homebrew
+echo
+brew update
+
+# brew bundle dump --global --force --describe
+# Install packages using Homebrew
+echo
+echo "Installing packages from Brewfile..."
+brew bundle install --no-upgrade --file=${HOME}/.config/homebrew/Brewfile

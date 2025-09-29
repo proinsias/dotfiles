@@ -110,10 +110,16 @@ brew "dos2unix"
 brew "dotenv-linter"
 # .NET Core
 brew "dotnet"
+# Select default apps for documents and URL schemes on macOS
+brew "duti"
 # Maintain consistent coding style between multiple editors
+# Git for data science projects
+brew "dvc"
 brew "editorconfig"
 # Tool to verify that your files are in harmony with your .editorconfig
 brew "editorconfig-checker"
+# Useful examples at the command-line
+brew "eg-examples"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
 # Modern, maintained replacement for ls
@@ -124,6 +130,10 @@ brew "fabric-ai"
 brew "ffmpeg"
 # Banner-like program prints strings as ASCII art
 brew "figlet"
+# Utility to determine file types
+brew "file-formula"
+# Collection of GNU find, xargs, and locate
+brew "findutils"
 # Infamous electronic fortune-cookie generator
 brew "fortune"
 # Command-line fuzzy finder written in Go
@@ -132,6 +142,8 @@ brew "fzf"
 brew "gawk"
 # Graphics library to dynamically manipulate images
 brew "gd"
+# GNU debugger
+brew "gdb"
 # GNU database manager
 brew "gdbm"
 # Bash completion for gem
@@ -224,6 +236,8 @@ brew "htop"
 brew "httpie", link: false
 # Add GitHub support to git on the command-line
 brew "hub"
+# Improved colored diff
+brew "icdiff"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
 # CLI for ImageOptim, ImageAlpha and JPEGmini
@@ -236,6 +250,8 @@ brew "jpegoptim"
 brew "jq"
 # Copy/paste detector for programming source code
 brew "jscpd"
+# JSON parser and validator with a CLI
+brew "jsonlint"
 # User-friendly front-end to ssh-agent(1)
 brew "keychain"
 # Detect vulnerabilities, compliance issues, and misconfigurations
@@ -300,14 +316,20 @@ brew "nano"
 brew "neofetch"
 # Port scanning utility for large networks
 brew "nmap"
+# Create, run, and share large language models (LLMs)
+brew "ollama", restart_service: :changed
 # Bash completion for open
 brew "open-completion"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
+# PNG file optimizer
+brew "optipng"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
+# Search PDFs for strings matching a regular expression
+brew "pdfgrep"
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
 # Bash completion for Pip
@@ -320,6 +342,8 @@ brew "pipx"
 brew "plotutils"
 # Optimizer for PNG files
 brew "pngcrush"
+# PNG image optimizing utility
+brew "pngquant"
 # Send emails from your terminal
 brew "pop"
 # PDF rendering library (based on the xpdf-3.0 code base)
@@ -328,12 +352,22 @@ brew "poppler"
 brew "pre-commit"
 # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
 brew "prettier"
+# Linter for prose
+brew "proselint"
 # Monitor data's progress through a pipe
 brew "pv"
+# Simple Python style checker in one Python file
+brew "pycodestyle"
+# Python version management
+brew "pyenv"
+# Make Python build faster, using the leverage of `ccache`
+brew "pyenv-ccache"
 # It's not just a linter that annoys you!
 brew "pylint"
 # Python bindings for v6 of Qt
 brew "pyqt"
+# Static type checker for Python
+brew "pyright"
 # Tab completion for Python argparse
 brew "python-argcomplete"
 # Interpreted, interactive, object-oriented programming language
@@ -346,18 +380,36 @@ brew "python@3.9"
 brew "pyupgrade"
 # Perl-powered file rename script with many helpful built-ins
 brew "rename"
+# Viewer for ReStructuredText documents that renders them on the fly
+brew "restview"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Prevent committing secret keys into your source code
+brew "ripsecrets"
+# ReStructuredText linter
+brew "rst-lint"
+# Utility that provides fast incremental file transfer
+brew "rsync"
 # Powerful, clean, object-oriented scripting language
 brew "ruby"
 # Bash completion for Ruby
 brew "ruby-completion"
+# Install various Ruby versions and implementations
+brew "ruby-build"
+# Ruby version manager
+brew "rbenv"
 # Extremely fast Python linter, written in Rust
 brew "ruff"
+# Rust toolchain installer
+brew "rustup"
 # Checks Python dependencies for known vulnerabilities and suggests remediations
 brew "safety"
+# Terminal multiplexer with VT100/ANSI terminal emulation
+brew "screen"
 # Generate ASCII art with terminal, shell, and OS info
 brew "screenfetch"
+# Bash syntax highlighter that encourages/fixes variables quoting
+brew "shellharden"
 # Autoformat shell script source code
 brew "shfmt"
 # Tool to create Python bindings for C and C++ libraries
@@ -410,6 +462,8 @@ brew "tivodecode"
 brew "tmux"
 # Manage complex tmux sessions easily
 brew "tmuxinator"
+# Shell completion for Tmuxinator
+brew "tmuxinator-completion"
 # Program that allows you to count code, quickly
 brew "tokei"
 # Upgrade all the things
@@ -426,14 +480,22 @@ brew "unzip"
 brew "uv"
 # GNU Fortran compatibility for Apple's vecLib
 brew "veclibfort"
+# Your CLI home video recorder
+brew "vhs"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
+# Display word differences between text files
+brew "wdiff"
 # Create screenshots of webpages from the terminal
 brew "webkit2png"
 # Internet file retriever
 brew "wget"
+# Homebrew, but with Docker images
+brew "whalebrew"
 # Show the current WiFi network password
 brew "wifi-password"
+# Tools for the WireGuard secure network tunnel
+brew "wireguard-tools"
 # Automatic workarounds for problems in Wine
 brew "winetricks"
 # Fast CSV toolkit written in Rust
@@ -444,6 +506,8 @@ brew "yamlfmt"
 brew "yamllint"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # UNIX shell (command interpreter)
@@ -471,6 +535,14 @@ brew "proinsias/yaml-update-last-modified-date/yaml-update-last-modified-date"
 brew "teamookla/speedtest/speedtest"
 # Quickly repair outdated/broken Casks from homebrew-cask
 brew "vitorgalvao/tiny-scripts/cask-repair"
+# It's like cat(1), but for images
+brew "eddieantonio/eddieantonio/imgcat"
+# Ken Silverman's PNG optimisation utility
+brew "jonof/kenutils/pngout"
+# Automatic Password Generator
+brew "jzaleski/jzaleski/apg"
+# Simple command-line snippet manager
+brew "knqyf263/pet/pet"
 {{ if eq .chezmoi.os "darwin" }}
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
@@ -478,6 +550,8 @@ cask "1password"
 cask "1password-cli"
 # View, print, and comment on PDF documents
 cask "adobe-acrobat-reader"
+# Apple TV Aerial screensaver
+cask "aerial"
 # Memory training application
 # cask "anki"
 # App for quickly limiting CPU usage of any running process
@@ -497,10 +571,14 @@ cask "basictex"
 # cask "bettertouchtool"
 # Utility to create and modify archives
 cask "betterzip"
+# 3D creation suite
+cask "blender"
 # Cloud based collaboration and management platform focusing on security
 # cask "box-sync"
 # Open source IDE for exploring and testing APIs
 cask "bruno"
+# E-books management software
+cask "calibre"
 # Use your phone as a high-quality webcam with image tuning controls
 cask "camo-studio"
 {{- if eq .chezmoi.arch "arm64" -}}
@@ -509,12 +587,18 @@ cask "chatgpt"
 {{ end }}
 # Tool to list all active shortcuts of the current application
 cask "cheatsheet"
+{{ if ne .chezmoi.hostname "ilovemovies" }}
+# Synchronisation and backup tool
+cask "chronosync"
+{{ end }}
 # Tool to show live information about the batteries in various devices
 cask "coconutbattery"
 # Remote desktop client
 cask "cord"
 # Disk space visualiser
 # cask "daisydisk"
+# API documentation browser and code snippet manager
+cask "dash"
 # Voice and text chat software
 cask "discord"
 # App to build and share containerised applications and microservices
@@ -533,6 +617,8 @@ cask "esse"
 # cask "filebot"
 # Web browser
 cask "firefox"
+# Screen colour temperature controller
+cask "flux-app"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-ntr"
 cask "font-rubik"
@@ -627,6 +713,8 @@ cask "neohtop"
 # cask "netnewswire"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
+# Utility to toggle dark mode
+cask "nightowl"
 # Keeps current IP address in sync
 cask "no-ip-duc"
 # Calculator and converter application
@@ -647,10 +735,14 @@ cask "openaudible"
 cask "oversight"
 # Extract files and folders from package files, disk images, and archives
 # cask "pacifist"
+# Tool to eliminate similar or duplicate photos
+cask "photosweeper-x"
 # Home media server
 cask "plex-media-server"
 # Tool to display Overcast on the menu bar
 cask "podcastmenu"
+# Podcast platform
+cask "pocket-casts"
 # G-code generator for 3D printers (RepRap, Makerbot, Ultimaker etc.)
 cask "prusaslicer"
 # IDE for professional Python development
@@ -700,6 +792,8 @@ cask "smartreporter-free"
 cask "spotify"
 # Video game digital distribution service
 cask "steam"
+ # Command-line client for Steam
+cask "steamcmd"
 # Break time reminder app
 # cask "stretchly"
 # Mux and tag mp4 files
@@ -712,6 +806,8 @@ cask "suspicious-package"
 # cask "swiftbar"
 # Mesh VPN based on WireGuard
 cask "tailscale-app"
+# Remote access and connectivity software focused on security
+cask "teamviewer"
 # Unpacks archive files
 # cask "the-unarchiver"
 # End-to-end encrypted instant messaging application
@@ -721,7 +817,7 @@ cask "tigervnc-viewer"
 # Control your data usage on slow or expensive networks
 cask "tripmode"
 # 3D printer and slicing GUI
-cask "ultimaker-cura"
+# cask "ultimaker-cura"
 # Mutes your keyboard while you type
 cask "unclack"
 # Multimedia player
@@ -744,7 +840,7 @@ cask "yubico-yubikey-manager"
 # Visual tool to design, develop and administer MySQL servers
 cask "mysqlworkbench"
 {{ end }}
-{{- if ne .test }}
+{{- if not .test }}
 # Open links in any browser
 cask "choosy"
 # Remote file sharing for ChronoSync
@@ -785,10 +881,10 @@ mas "SafeHomeCamera", id: 1176788147
 # mas "Save to Pocket", id: 1477385213
 mas "Save to Raindrop.io", id: 1549370672
 mas "Shush", id: 496437906
-mas "SimpleLogin", id: 1494051017
+# mas "SimpleLogin", id: 1494051017
 mas "Speedtest", id: 1153157709
 mas "TestFlight", id: 899247664
-mas "UnPlugged", id: 423123087
+# mas "UnPlugged", id: 423123087
 mas "WhiteNoise", id: 415139197
 mas "WiFi Explorer", id: 494803304
 mas "Windows App", id: 1295203466

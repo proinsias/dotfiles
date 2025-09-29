@@ -16,7 +16,6 @@ test -f /usr/local/bin/brew && OUTPUT="$(/usr/local/bin/brew shellenv)" && eval 
 # M1 home-brew – do second in case we are also using Intel
 # via Rosetta.
 test -f /opt/homebrew/bin/brew && OUTPUT="$(/opt/homebrew/bin/brew shellenv)" && eval "${OUTPUT}"
-
 {{ else if eq .chezmoi.os "linux" }}
 # homebrew linuxbrew
 test -d /home/linuxbrew/.linuxbrew && OUTPUT="$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"

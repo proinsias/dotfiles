@@ -881,6 +881,7 @@ mas "WireGuard", id: 1451685025
 mas "WordService", id: 899972312
 {{ end }}
 {{ end }}
+{{ if not .work }}  # Not sure why VSCode opens a new window each time on work machine.
 vscode "bierner.markdown-mermaid"
 vscode "charliermarsh.ruff"
 vscode "davidanson.vscode-markdownlint"
@@ -924,3 +925,4 @@ vscode "quarto.quarto"
 vscode "redhat.vscode-yaml"
 vscode "thisotherthing.vscode-todo-list"
 vscode "wakatime.vscode-wakatime"
+{{ end }}

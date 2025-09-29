@@ -15,9 +15,6 @@ fi
 echo
 brew update
 
-# FIXME: Rerun after ilovemovie install to find new installs. Update template.
-# # brew bundle dump --force --describe --global
-
 # Brewfile hash: {{ include "./private_dot_config/homebrew/Brewfile.tmpl" | sha256sum }}
 {{ if not .test }}
 if ! command brew bundle check --global &> /dev/null; then
@@ -42,3 +39,9 @@ brew upgrade
 
 echo
 brew cleanup
+
+echo
+brew doctor
+
+echo
+brew outdated

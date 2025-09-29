@@ -6,9 +6,6 @@ tap "charmbracelet/tap"
 tap "eddieantonio/eddieantonio"
 tap "gbeine/java"
 tap "heroku/brew"
-tap "homebrew/bundle"
-tap "homebrew/command-not-found"
-tap "homebrew/services"
 tap "hpedrorodrigues/tools"
 tap "iterative/dvc"
 tap "jonof/kenutils"
@@ -52,8 +49,6 @@ brew "bash"
 brew "bash-completion"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Fish completion for brew-cask
-brew "brew-cask-completion"
 # New way to see and navigate directory trees
 brew "broot"
 # Bash completion for Bundler
@@ -312,8 +307,6 @@ brew "zlib"
 brew "mysql"
 # Free (GNU) replacement for the Pico text editor
 brew "nano"
-# Fast, highly customisable system info script
-brew "neofetch"
 # Port scanning utility for large networks
 brew "nmap"
 # Create, run, and share large language models (LLMs)
@@ -486,8 +479,6 @@ brew "vhs"
 brew "watch"
 # Display word differences between text files
 brew "wdiff"
-# Create screenshots of webpages from the terminal
-brew "webkit2png"
 # Internet file retriever
 brew "wget"
 # Homebrew, but with Docker images
@@ -498,8 +489,6 @@ brew "wifi-password"
 brew "wireguard-tools"
 # Automatic workarounds for problems in Wine
 brew "winetricks"
-# Fast CSV toolkit written in Rust
-brew "xsv"
 # Extensible command-line tool to format YAML files
 brew "yamlfmt"
 # Linter for YAML files
@@ -556,7 +545,6 @@ cask "aerial"
 # cask "anki"
 # App for quickly limiting CPU usage of any running process
 cask "apppolice"
-cask "apptrap"
 # Data backup and storage service
 cask "backblaze"
 # Download Backblaze restored files more reliably
@@ -587,14 +575,12 @@ cask "chatgpt"
 {{ end }}
 # Tool to list all active shortcuts of the current application
 cask "cheatsheet"
-{{ if ne .chezmoi.hostname "ilovemovies" }}
+{{ if eq .chezmoi.hostname "ilovemovies" }}
 # Synchronisation and backup tool
 cask "chronosync"
 {{ end }}
 # Tool to show live information about the batteries in various devices
 cask "coconutbattery"
-# Remote desktop client
-cask "cord"
 # Disk space visualiser
 # cask "daisydisk"
 # API documentation browser and code snippet manager
@@ -611,10 +597,6 @@ cask "dropbox"
 cask "duplicati"
 # Swiss army knife of text transformation for iOS and macOS
 cask "esse"
-# Calendar software
-# cask "fantastical"
-# Tool for organising and renaming movies, TV shows, anime or music
-# cask "filebot"
 # Web browser
 cask "firefox"
 # Screen colour temperature controller
@@ -628,15 +610,10 @@ cask "font-rubik"
 # cask "fs-uae-launcher"
 # Gantt chart and project management application
 # cask "ganttproject"
-# Desktop customization tool
-cask "geektool"
 # Open-source platform for visualizing and manipulating large graphs
 cask "gephi"
 # Free and open-source image editor
 cask "gimp"
-cask "gmvault"
-# Opens a terminal window to the current directory in Finder
-cask "go2shell"
 # Scan computer disk for 32-bit applications
 # cask "go64"
 # Web browser
@@ -681,16 +658,10 @@ cask "keka"
 # cask "keybase"
 # GPU-based terminal emulator
 cask "kitty"
-# Snippet management app
-cask "lepton"
 # Automator software to start apps, run scripts or commands and more
 # cask "lingon-x"
 # Open-source Markdown editor
 cask "macdown"
-# Video format converter (transcoder)
-cask "makemkv"
-# Markdown editor
-cask "mark-text"
 # Shows the next meeting in the menu bar
 cask "meetingbar"
 # Set of CPU, memory, disk, and network monitoring tools
@@ -713,10 +684,6 @@ cask "neohtop"
 # cask "netnewswire"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
-# Utility to toggle dark mode
-cask "nightowl"
-# Keeps current IP address in sync
-cask "no-ip-duc"
 # Calculator and converter application
 cask "numi"
 # Knowledge base that works on top of a local folder of plain text Markdown files
@@ -739,8 +706,6 @@ cask "oversight"
 cask "photosweeper-x"
 # Home media server
 cask "plex-media-server"
-# Tool to display Overcast on the menu bar
-cask "podcastmenu"
 # Podcast platform
 cask "pocket-casts"
 # G-code generator for 3D printers (RepRap, Makerbot, Ultimaker etc.)

@@ -146,6 +146,7 @@ README.md
 .ssh/id_rsa
 .ssh/id_rsa.pub
 .streamlit/
+.subversion/auth
 .tldr/
 .Trash/
 .viminfo
@@ -157,6 +158,7 @@ README.md
 .wakatime-internal.cfg
 .wdm/
 .wget-hsts
+.zsh_history
 Applications/
 Calibre Library/
 Desktop/

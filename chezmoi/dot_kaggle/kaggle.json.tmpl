@@ -1,4 +1,8 @@
 {
-    "username":"francisodonovan",
-    "key":{{ onepasswordRead "op://Parents/Kaggle Francis/token" | quote }}
+    "username": "francisodonovan",
+    {{- if .test }}
+    "key": "123"
+    {{ else }}
+    "key": {{ onepasswordRead "op://Parents/Kaggle Francis/token" | quote }}
+    {{ end }}
 }

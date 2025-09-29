@@ -1,5 +1,5 @@
 [General]
-    snippetfile = "/Users/{{ .chezmoi.username }}/.config/pet/snippet.toml"
+    snippetfile = "{{ .chezmoi.homeDir }}/.config/pet/snippet.toml"
     editor = "emacsclient"
     column = 40
     selectcmd = "fzf --ansi"
@@ -8,8 +8,13 @@
 
 [Gist]
     file_name = "pet-snippet.toml"
+    {{- if .test }}
+    access_token = "123"
+    gist_id = "123"
+    {{ else }}
     access_token = {{ onepasswordRead "op://Private/PET_GITHUB_ACCESS_TOKEN/credential" | quote }}
     gist_id = {{ onepasswordRead "op://Private/PET_GITHUB_ACCESS_TOKEN/gist" | quote }}
+    {{ end }}
     public = false
     auto_sync = true
 

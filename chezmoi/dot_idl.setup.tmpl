@@ -3,8 +3,8 @@
 ;        idl> @~/idl.setup
 ;    last modified: Jul 8 2003
 ;
-addpath = '/Users/{{ .chezmoi.username }}/idl_lib/:'+$
-'/Users/{{ .chezmoi.username }}/idl_lib/dc/:'
+addpath = '{{ .chezmoi.homeDir }}/idl_lib/:'+$
+'{{ .chezmoi.homeDir }}/idl_lib/dc/:'
 !PATH = expand_path('+' + !DIR + ':' + 'external' + ':' + !PATH)
 
 astrolib

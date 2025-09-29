@@ -11,6 +11,8 @@ encryption = "age"
 
     {{- $work := promptBoolOnce . "work" "Is this a work machine" | default false }}
     work = {{ $work }}
+    {{- $test := promptBoolOnce . "test" "Is this a test machine" | default false }}
+    test = {{ $test }}
 
     {{- if $work }}
     # Work-specific configuration

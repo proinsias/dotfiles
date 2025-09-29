@@ -2,4 +2,8 @@ default_team = "im"
 default_channel = ""
 
 [teams]
+    {{- if .test }}
+    im = "123"
+    {{ else }}
     im = {{ onepasswordRead "op://Private/Teams/credential" | quote }}
+    {{ end }}

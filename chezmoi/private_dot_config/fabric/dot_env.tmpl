@@ -2,7 +2,12 @@ DEFAULT_VENDOR=Ollama
 DEFAULT_MODEL=llama3.2:latest
 PATTERNS_LOADER_GIT_REPO_URL=https://github.com/danielmiessler/fabric.git
 PATTERNS_LOADER_GIT_REPO_PATTERNS_FOLDER=patterns
-GROQ_API_KEY={{ onepasswordRead "op://Parents/Groq/API Token mercury" | quote }}
 GROQ_API_BASE_URL=https://api.groq.com/openai/v1
 OLLAMA_API_URL=http://localhost:11434
+{{- if .test }}
+GROQ_API_KEY="123"
+YOUTUBE_API_KEY="123"
+{{ else }}
+GROQ_API_KEY={{ onepasswordRead "op://Parents/Groq/API Token mercury" | quote }}
 YOUTUBE_API_KEY={{ onepasswordRead "op://Private/Youtube Data API/password" | quote }}
+{{ end }}

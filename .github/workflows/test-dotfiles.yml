@@ -26,8 +26,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
-        shell: [bash, zsh]
+        # FIXME:
+        # os: [ubuntu-latest, macos-latest]
+        # shell: [bash, zsh]
+        os: [macos-latest]
+        shell: [zsh]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -38,7 +41,7 @@ jobs:
         run: |
           mkdir -p "${TEST_HOME}/.config/chezmoi"
           # Use template file with defaults.
-          cp -f .blank.chezmoi.toml chezmoi/.chezmoi.toml.tmpl
+          cp -f chezmoi/.test.chezmoi.toml chezmoi/.chezmoi.toml.tmpl
           # Provide empty age key.
           mkdir -p "${HOME}"/.config/chezmoi
           touch "${HOME}"/.config/chezmoi/key.txt

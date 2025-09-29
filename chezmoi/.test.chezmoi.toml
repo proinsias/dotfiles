@@ -10,6 +10,7 @@ encryption = "age"
     slacktoken = "123"
     work = false
     # Personal machine configuration
+    test = true
 
 [age]
     # passphrase = true

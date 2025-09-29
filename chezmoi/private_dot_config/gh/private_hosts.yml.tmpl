@@ -1,7 +1,15 @@
 github.com:
     user: proinsias
+    {{- if .test }}
+    oauth_token: "123"
+    {{- else }}
     oauth_token: {{ onepasswordRead "op://Parents/github.com/token" | quote }}
+    {{ end }}
     git_protocol: ssh
     users:
         proinsias:
+            {{- if .test }}
+            oauth_token:  "123"
+            {{- else }}
             oauth_token: {{ onepasswordRead "op://Parents/github.com/token" | quote }}
+            {{ end }}

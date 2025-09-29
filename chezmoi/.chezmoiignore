@@ -14,6 +14,7 @@ README.md
 .cargo/
 .ccache/
 .CFUserTextEncoding
+.chezmoi.default.toml
 .config/atuin/atuin-receipt.json
 .config/broot/launcher/
 .config/butterfish/
@@ -31,6 +32,9 @@ README.md
 .config/thefuck/__pycache__/
 .config/uv/
 .config/yarn/
+.config/zsh/.zcompdump*
+.config/zsh/.zsh_history
+.config/zsh/.zsh_sessions/
 .cookiecutter_replay/
 .cookiecutters/
 .crawl4ai/
@@ -125,8 +129,10 @@ README.md
 .npm-packages/
 .oh-my-zsh/cache/
 .oh-my-zsh/custom/aliases.zsh
-.oh-my-zsh/custom/plugins/git-town
-.oh-my-zsh/custom/plugins/poetry
+!.oh-my-zsh/custom/plugins/example
+!.oh-my-zsh/custom/plugins/zsh-autosuggestions
+!.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+.oh-my-zsh/custom/plugins/*
 .ollama/
 .pyenv/
 .pytensor/
@@ -151,9 +157,6 @@ README.md
 .wakatime-internal.cfg
 .wdm/
 .wget-hsts
-.zcompdump*
-.zsh_history
-.zsh_sessions/
 Applications/
 Calibre Library/
 Desktop/

@@ -615,9 +615,11 @@ if type op >/dev/null 2>&1; then
     fi
 fi
 
+{{ if ne .chezmoi.hostname "ilovemovies" }}
 eval "$(ssh-agent -s)"
 # Don't run ssh-add in tmux shells - see tmuxinator config.
 [[ -z $TMUX ]] && ssh-add
+{{ end }}
 
 # Don't need this with use of keychain.
 # ssh-add -A  # Add all identities stored in your keychain.

@@ -248,6 +248,22 @@
     # If you've committed whitespace issues but haven't yet pushed upstream,
     # have Git automatically fix whitespace issues as it's rewriting the patches.
     # whitespace = warn
+{{ if eq .chezmoi.hostname "ilovemovies" }}
+[safe]
+    directory = /usr/local/Homebrew
+    directory = /usr/local/Homebrew/Library/Taps/adoptopenjdk/homebrew-openjdk
+    directory = /usr/local/Homebrew/Library/Taps/alehouse/homebrew-unofficial
+    directory = /usr/local/Homebrew/Library/Taps/alexdavid/homebrew-tap
+    directory = /usr/local/Homebrew/Library/Taps/docmunch/homebrew-pdftk
+    directory = /usr/local/Homebrew/Library/Taps/homebrew/homebrew-bundle
+    directory = /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask
+    directory = /usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found
+    directory = /usr/local/Homebrew/Library/Taps/homebrew/homebrew-services
+    directory = /usr/local/Homebrew/Library/Taps/iterative/homebrew-dvc
+    directory = /usr/local/Homebrew/Library/Taps/jonof/homebrew-kenutils
+    directory = /usr/local/Homebrew/Library/Taps/jzaleski/homebrew-jzaleski
+    directory = /usr/local/Homebrew/Library/Taps/vitorgalvao/homebrew-tiny-scripts
+{{ end }}
 [submodule]
     recurse = true
 [status]

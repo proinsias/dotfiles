@@ -17,6 +17,6 @@ export RESEND_API_KEY="$(op read op://Parents/Resend/API\ Key)"
 export POP_FROM="onboarding@resend.dev"
 export POP_SIGNATURE="Sent with [Pop](https://github.com/charmbracelet/pop)!"
 
-{{ if eq .chezmoi.os "darwin" }}
+{{ if and (eq .chezmoi.os "darwin") (ne .chezmoi.hostname "ilovemovies.local") }}
 export OP_BIOMETRIC_UNLOCK_ENABLED=true
 {{ end }}

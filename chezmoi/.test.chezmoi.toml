@@ -11,6 +11,7 @@ encryption = "age"
     work = false
     # Personal machine configuration
     test = true
+    lite = false
 
 [age]
     # passphrase = true

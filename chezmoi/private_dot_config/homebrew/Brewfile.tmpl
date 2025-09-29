@@ -474,6 +474,7 @@ brew "railwaycat/emacsmacport/emacs-mac@29", args: ["with-native-comp", "without
 brew "teamookla/speedtest/speedtest"
 # Quickly repair outdated/broken Casks from homebrew-cask
 brew "vitorgalvao/tiny-scripts/cask-repair"
+{{ if eq .chezmoi.os "darwin" }}
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Command-line interface for 1Password
@@ -793,6 +794,7 @@ mas "WiFi Explorer", id: 494803304
 mas "Windows App", id: 1295203466
 mas "WireGuard", id: 1451685025
 mas "WordService", id: 899972312
+{{ end }}
 vscode "bierner.markdown-mermaid"
 vscode "charliermarsh.ruff"
 vscode "davidanson.vscode-markdownlint"

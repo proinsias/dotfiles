@@ -15,7 +15,7 @@ MISE_GITHUB_TOKEN = {{ onepasswordRead "op://Parents/github.com/Tokens/mise" | q
 OLLAMA_API_BASE = "http://127.0.0.1:11434"
 PYTHONUNBUFFERED = "1"
 
-{{- if eq .chezmoi.os "darwin" }}
+{{ if eq .chezmoi.os "darwin" }}
 OP_BIOMETRIC_UNLOCK_ENABLED = true
 {{ end -}}
 

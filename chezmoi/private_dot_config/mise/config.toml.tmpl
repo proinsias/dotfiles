@@ -11,18 +11,19 @@ DOCKER_DEFAULT_PLATFORM = "linux/amd64"
 {{ else }}
 DOCKER_DEFAULT_PLATFORM = "linux/x86_64"
 {{ end }}
-MISE_GITHUB_TOKEN = {{ onepasswordRead "op://Parents/github.com/Tokens/mise" | quote }}
+# editorconfig-checker-disable-next-line
+MISE_GITHUB_TOKEN = { age = "YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOTExMVm9JT1FZeWptYXpMdDlsalBsOUY1bjNNeFlERHFrdE9EWUdGeG1NClZ5Sks1UWFvWndjM3gxdXhDWEZGeWR0aHZ1WHcxZnVBNnR3UzVmbEVPLzgKLT4gfn4rdWhyLj4tZ3JlYXNlIF54cyA5IC5lCmFCTWtqc3k3ZEx2TDZjZnpSSUhsdWZIdnRHd2JXM3R0NmxCSG9xWThhTTlGYmFNcGdLaUpsUmlvZ3kxaFFkVG8KQkQzVjVmMzJJdkRXRVdJQmU5cmQwM3c5cUx1dnU4SQotLS0gQkoxQlFTelV2RHJSU2hKUHQ5RGVVcWN6aWhTanlEVldHTDlwdnQ3RTMzTQoFmYHYLzBAK/W0klYmQbyUOOiJfpqTaQrJ7dDpr+ZQ/q0SDZKL0l/QelAITjBWJ2l06ZAcyr3hWAg/mqHgGMOPSpUmn5OEYbc"}
 OLLAMA_API_BASE = "http://127.0.0.1:11434"
-PYTHONUNBUFFERED = "1"
-
 {{ if eq .chezmoi.os "darwin" }}
 OP_BIOMETRIC_UNLOCK_ENABLED = true
-{{ end -}}
-
+{{ end }}
 POP_FROM = "onboarding@resend.dev"
-POP_TO = {{ onepasswordRead "op://Parents/Resend/username" | quote }}
 POP_SIGNATURE = "Sent with [Pop](https://github.com/charmbracelet/pop)!"
-RESEND_API_KEY = {{ onepasswordRead "op://Parents/Resend/API Key" | quote }}
+# editorconfig-checker-disable-next-line
+POP_TO = { age = "YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB1S2pieTFNbnZyS2FZcUxuTUVVUk9YU3AxT1dEQ1dsamd4eEwvSmVaOEVjCmZlOGtJK0IrTXZJbjUyVDZJTXU0VTlETW41ZDE1RXR5S2JOL0FSQjRmVkkKLT4gMj9fYEFJdC1ncmVhc2Uge1s/CkpRVFFPekJSMUNKME1nMmdZV2N0N1hnNzQ0a1U2UQotLS0gS240L1E4b2JjYnZoWWsxZURsZnd2dHNyeGJCZytDVVd3TjBQdXZwQ3pTcwqXDshcH0VkXn0ZBvjeaZ1eDCOlYVhaMuwpyxg5x0BZyWLBplsPdf+zoev3J1hnCMyLJfMNaqMQlLMeQD9sOvJI5P+0teb2" }
+PYTHONUNBUFFERED = "1"
+# editorconfig-checker-disable-next-line
+RESEND_API_KEY = { age = "YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArY1o3TVZWWXFBZlF2V1dkeEtTNVRBSmQ1VGdVa0JOUDl1YlZweEs1UGdFCmllRkg0WEJiWmd1SGVkWEhITDc4QjZla0VkbnQybmFvUUdBdjBJZEdmK28KLT4gQ1QtZ3JlYXNlICdOWTcyIGgkaUNWJXE6CkwwSEJkUFRWSDRkWkVnTUZZZW1uc0ViNEN1djI3K0ZadEl5bUtPamVmVUpsMlkzSWpZNC9PTFoyNTUxMlJJeEkKSmVGa0xVYWZVWUpBCi0tLSA4ak54T0pUTjRIbGt5RE5oNGUraXAvWUtabWx2QVdkaW1KRjN3c2xaSjBjCvC5QVwUY+IzvR7K2b6zjAG1NyNCGUL2bBp/zh0zBIFSe+13MqfUCdsjFJmBRMClnqA8vA1t4rdJiRQWe7qLv4nxOlwB" }
 
 [hooks]
 enter = "mise i -q"  # Install tools quietly on entering a directory.

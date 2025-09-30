@@ -5,7 +5,9 @@ README.md
 .ansible/
 .aspnet/
 .atuin/
+.aws/
 .azd/
+.azure/
 .bash_history
 .bash_sessions/
 .bun/

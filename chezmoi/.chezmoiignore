@@ -24,6 +24,7 @@ README.md
 .config/fabric/*
 !.config/fabric/.env
 .config/gh/state.yml
+.config/go/
 .config/gpt4all.io/
 .config/gtk-2.0/
 .config/jgit/

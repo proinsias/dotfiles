@@ -3,7 +3,7 @@
 # Applies to all projects unless overridden locally.
 
 [env]
-_.source = {path = "export-secrets.sh", redact = true }
+# _.source = {path = "export-secrets.sh", redact = true }
 # Then we can run, e.g., `op run -- pop`.
 
 {{ if eq .chezmoi.arch "arm64" }}
@@ -11,6 +11,7 @@ DOCKER_DEFAULT_PLATFORM = "linux/amd64"
 {{ else }}
 DOCKER_DEFAULT_PLATFORM = "linux/x86_64"
 {{ end }}
+MISE_GITHUB_TOKEN = {{ onepasswordRead "op://Parents/github.com/Tokens/mise" | quote }}
 OLLAMA_API_BASE = "http://127.0.0.1:11434"
 PYTHONUNBUFFERED = "1"
 
@@ -19,10 +20,12 @@ OP_BIOMETRIC_UNLOCK_ENABLED = true
 {{ end -}}
 
 POP_FROM = "onboarding@resend.dev"
+POP_TO = {{ onepasswordRead "op://Parents/Resend/username" | quote }}
 POP_SIGNATURE = "Sent with [Pop](https://github.com/charmbracelet/pop)!"
+RESEND_API_KEY = {{ onepasswordRead "op://Parents/Resend/API Key" | quote }}
 
 [hooks]
-enter = "mise i -q"
+enter = "mise i -q"  # Install tools quietly on entering a directory.
 
 [settings]
 env_file = ".env"

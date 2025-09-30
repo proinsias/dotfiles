@@ -1,15 +1,8 @@
 # Don't put credentials or other secrets into this shared file!
 # Global mise configuration
 
-[tools]
-go = "1.25"
-python = "3.13"
-node = "24"
-usage = "latest"
-
 [env]
 # Applies to all projects unless overridden locally.
-dotenv = ".env"   # auto-load .env file
 GITHUB_TOKEN = {{ onepasswordRead "op://Parents/github.com/Tokens/mise" | quote }}
 
 {{ if eq .chezmoi.arch "arm64" }}
@@ -30,5 +23,23 @@ POP_SIGNATURE = "Sent with [Pop](https://github.com/charmbracelet/pop)!"
 POP_TO = {{ onepasswordRead "op://Parents/Resend/username" | quote }}
 RESEND_API_KEY = {{ onepasswordRead "op://Parents/Resend/API Key" | quote }}
 
+[hooks]
+enter = "mise i -q"
+
 [settings]
+env_file = ".env"
+experimental = true
+gpg_verify = true
 idiomatic_version_file_enable_tools = ["python"]
+python.uv_venv_auto = true  # Use uv venv.
+status.missing_tools = "always"
+status.show_env = true
+swift.gpg_verify = true
+
+[tools]
+age = "latest"
+go = "1.25"
+op = "latest"
+node = "24"
+python = "3.13"
+usage = "latest"

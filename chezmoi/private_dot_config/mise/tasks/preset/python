@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#MISE dir="{{cwd}}"
+#MISE depends=["preset:python"]
+#USAGE arg "<version>"
+
+mise use pre-commit
+mise use python@$usage_version
+
+mise config set env._.python.venv.path .venv
+mise config set env._.python.venv.create true -t bool
+
+mise config set hooks.postinstall "uv sync"
+
+mise tasks add lint -- pre-commit run -a
+
+
+

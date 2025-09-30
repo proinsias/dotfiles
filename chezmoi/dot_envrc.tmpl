@@ -11,6 +11,13 @@ export DOCKER_DEFAULT_PLATFORM=linux/amd64
 # For aider.
 export OLLAMA_API_BASE=http://127.0.0.1:11434
 
+# Try to get current signed-in user info
+if ! op whoami > /dev/null 2>&1; then
+    eval "$(op signin)"
+fi
+
+ssh-add
+
 # op run -- pop
 export POP_TO="$(op read op://Parents/Resend/username)"
 export RESEND_API_KEY="$(op read op://Parents/Resend/API\ Key)"

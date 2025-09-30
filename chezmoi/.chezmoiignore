@@ -149,9 +149,11 @@ README.md
 .ssh/id_rsa.pub
 .streamlit/
 .subversion/auth
+.sudo_as_admin_successful
 .tldr/
 .Trash/
 .viminfo
+.virtualenvs
 .vscode/
 .vscode-oss/
 .vscode-remote-containers

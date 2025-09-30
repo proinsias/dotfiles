@@ -264,7 +264,7 @@ fi
 # Add keychain keys - use 1password instead for ssh key
 # shellcheck disable=SC2065
 if type keychain >/dev/null 2>&1; then
-    OUTPUT="$(keychain --eval --agents gpg --ignore-missing --inherit any 6519D396 740CFB25 97FAE23F)"
+    OUTPUT="$(keychain --eval --ignore-missing --ssh-allow-forwarded)"
     eval "${OUTPUT}"
 else
     echo "Install keychain using: brew install keychain"
@@ -389,8 +389,6 @@ if type pyenv >/dev/null 2>&1; then
     eval "${OUTPUT}"
     export PYENV_VIRTUALENV_DISABLE_PROMPT=1
     # eval "$(pipenv --completion)"
-else
-    echo "Install pyenv using: brew install pyenv"
 fi
 
 # Don't need this with use of keychain.
@@ -444,8 +442,6 @@ if type nbp >/dev/null 2>&1; then
     if test -f "${HOME}"/.config/bash/bash_completions/nbp.sh >/dev/null 2>&1; then
         source "${HOME}"/.config/bash/bash_completions/nbp.sh
     fi
-else
-    echo "Install nbp using: pipx install nbpreview"
 fi
 
 # grc

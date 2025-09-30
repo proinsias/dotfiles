@@ -1,9 +1,10 @@
 # Don't put credentials or other secrets into this shared file!
 # Global mise configuration
+# Applies to all projects unless overridden locally.
 
 [env]
-# Applies to all projects unless overridden locally.
-GITHUB_TOKEN = {{ onepasswordRead "op://Parents/github.com/Tokens/mise" | quote }}
+_.source = {path = "export-secrets.sh", redact = true }
+# Then we can run, e.g., `op run -- pop`.
 
 {{ if eq .chezmoi.arch "arm64" }}
 DOCKER_DEFAULT_PLATFORM = "linux/amd64"
@@ -13,15 +14,12 @@ DOCKER_DEFAULT_PLATFORM = "linux/x86_64"
 OLLAMA_API_BASE = "http://127.0.0.1:11434"
 PYTHONUNBUFFERED = "1"
 
-{{ if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 OP_BIOMETRIC_UNLOCK_ENABLED = true
-{{ end }}
+{{ end -}}
 
-# op run -- pop
 POP_FROM = "onboarding@resend.dev"
 POP_SIGNATURE = "Sent with [Pop](https://github.com/charmbracelet/pop)!"
-POP_TO = {{ onepasswordRead "op://Parents/Resend/username" | quote }}
-RESEND_API_KEY = {{ onepasswordRead "op://Parents/Resend/API Key" | quote }}
 
 [hooks]
 enter = "mise i -q"

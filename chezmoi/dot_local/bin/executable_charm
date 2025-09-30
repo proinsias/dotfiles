@@ -1,0 +1,3 @@
+#!/bin/sh
+
+nohup /Applications/PyCharm.app/Contents/MacOS/pycharm "$@"

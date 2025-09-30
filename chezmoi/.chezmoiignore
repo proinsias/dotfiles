@@ -159,7 +159,8 @@ README.md
 .wdm/
 .wget-hsts
 .zsh_history
-Applications/
+!Applications/LingonUpdateScripts.app
+Applications/*
 Calibre Library/
 Desktop/
 Documents/

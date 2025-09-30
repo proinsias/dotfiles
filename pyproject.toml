@@ -11,12 +11,14 @@ include_trailing_comma = true
 [tool.pyright]
 # Pyright uses "exclude" (glob-based, not regex)
 exclude = [
+    "chezmoi/dot_local/bin/*.py",
     "chezmoi/dot_ipython/ipython_config.py",
     "chezmoi/dot_jupyter/*.py",
 ]
 
 [tool.ruff]
 exclude = [
+    "chezmoi/dot_local/bin/*.py",
     "chezmoi/dot_ipython/*.py",
     "chezmoi/dot_jupyter/*.py",
 ]
@@ -36,6 +38,7 @@ max-doc-length = 88  # Black.
 # paths.
 ignore = [
     "CVS",
+    "chezmoi/dot_local/bin/executable_auto-sync.py",
     "chezmoi/dot_jupyter/jupyter_notebook_config.py",
     "chezmoi/dot_jupyter/jupyter_server_config.py"
 ]

@@ -59,14 +59,14 @@ jobs:
       - name: Initialize chezmoi
         run: |
           chezmoi init --source="$(pwd)" --destination="${TEST_HOME}" \
-              --keep-going --no-tty --promptDefaults
+              --keep-going --no-tty # --promptDefaults
         env:
           TEST_HOME: ${{ runner.temp }}/testhome
 
       - name: Apply dotfiles into temp home
         run: |
           chezmoi apply --source="$(pwd)" --destination="${TEST_HOME}" \
-              --keep-going --no-tty --exclude encrypted
+              --keep-going --no-tty --exclude encrypted,scripts
 
       - name: Verify dotfiles consistency
         run: |

@@ -1,0 +1,62 @@
+#!{{ lookPath "bash" }}
+
+echo
+echo
+echo "Install homebrew packages."
+
+# For homebrew
+# Adds $HOMEBREW_PREFIX/bin as prefix to PATH.
+{{ if eq .chezmoi.os "darwin" }}
+# Intel homebrew
+test -f /usr/local/bin/brew && OUTPUT="$(/usr/local/bin/brew shellenv)" && eval "${OUTPUT}"
+# M1 home-brew – do second in case we are also using Intel
+# via Rosetta.
+test -f /opt/homebrew/bin/brew && OUTPUT="$(/opt/homebrew/bin/brew shellenv)" && eval "${OUTPUT}"
+{{ else if eq .chezmoi.os "linux" }}
+# homebrew linuxbrew
+test -d /home/linuxbrew/.linuxbrew && OUTPUT="$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
+# shellcheck disable=SC2086
+test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
+{{ end }}
+
+# Install Homebrew if not installed
+if ! command -v brew &>/dev/null; then
+    echo
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# Update Homebrew
+echo
+brew update
+
+# Brewfile hash: {{ include "./private_dot_config/homebrew/Brewfile.tmpl" | sha256sum }}
+{{ if .test }}
+if ! command brew bundle check --file "${TEST_HOME}/.config/homebrew/Brewfile" &> /dev/null; then
+    echo
+    echo "The Brewfile's dependencies are not satisfied. Running brew bundle install --global..."
+    brew bundle install --no-upgrade --file "${TEST_HOME}/.config/homebrew/Brewfile"
+else
+    echo "The Brewfile's dependencies are satisfied. Skipping brew bundle install --global..."
+fi
+{{ else }}
+if ! command brew bundle check --global &> /dev/null; then
+    echo
+    echo "The Brewfile's dependencies are not satisfied. Running brew bundle install --global..."
+    brew bundle install --no-upgrade --global
+else
+    echo "The Brewfile's dependencies are satisfied. Skipping brew bundle install --global..."
+fi
+{{ end }}
+
+echo
+brew upgrade
+
+echo
+brew cleanup
+
+echo
+brew doctor
+
+echo
+brew outdated

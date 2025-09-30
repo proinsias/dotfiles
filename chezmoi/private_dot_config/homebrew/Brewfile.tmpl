@@ -1,14 +1,10 @@
 tap "alehouse/unofficial"
-tap "alexdavid/tap"
 tap "aquasecurity/trivy"
 tap "bakks/bakks"
 tap "charmbracelet/tap"
 tap "eddieantonio/eddieantonio"
 tap "gbeine/java"
 tap "heroku/brew"
-tap "homebrew/bundle"
-tap "homebrew/command-not-found"
-tap "homebrew/services"
 tap "hpedrorodrigues/tools"
 tap "iterative/dvc"
 tap "jonof/kenutils"
@@ -52,8 +48,6 @@ brew "bash"
 brew "bash-completion"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Fish completion for brew-cask
-brew "brew-cask-completion"
 # New way to see and navigate directory trees
 brew "broot"
 # Bash completion for Bundler
@@ -110,8 +104,6 @@ brew "dos2unix"
 brew "dotenv-linter"
 # .NET Core
 brew "dotnet"
-# Select default apps for documents and URL schemes on macOS
-brew "duti"
 # Maintain consistent coding style between multiple editors
 # Git for data science projects
 brew "dvc"
@@ -240,8 +232,6 @@ brew "hub"
 brew "icdiff"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
-# CLI for ImageOptim, ImageAlpha and JPEGmini
-brew "imageoptim-cli"
 # Sort Python imports automatically
 brew "isort"
 # Utility to optimize JPEG files
@@ -292,8 +282,6 @@ brew "make"
 brew "makedepend"
 # CLI for Node.js style checker and lint tool for Markdown files
 brew "markdownlint-cli"
-# Mac App Store command-line interface
-brew "mas"
 # Unified display of technical and tag data for audio/video
 brew "media-info"
 # Project documentation with Markdown
@@ -312,14 +300,10 @@ brew "zlib"
 brew "mysql"
 # Free (GNU) replacement for the Pico text editor
 brew "nano"
-# Fast, highly customisable system info script
-brew "neofetch"
 # Port scanning utility for large networks
 brew "nmap"
 # Create, run, and share large language models (LLMs)
 brew "ollama", restart_service: :changed
-# Bash completion for open
-brew "open-completion"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # PNG file optimizer
@@ -330,8 +314,6 @@ brew "p7zip"
 brew "pandoc"
 # Search PDFs for strings matching a regular expression
 brew "pdfgrep"
-# Pinentry for GPG on Mac
-brew "pinentry-mac"
 # Bash completion for Pip
 brew "pip-completion"
 # Locking and sync for Pip requirements files
@@ -359,9 +341,9 @@ brew "pv"
 # Simple Python style checker in one Python file
 brew "pycodestyle"
 # Python version management
-brew "pyenv"
+# brew "pyenv"
 # Make Python build faster, using the leverage of `ccache`
-brew "pyenv-ccache"
+# brew "pyenv-ccache"
 # It's not just a linter that annoys you!
 brew "pylint"
 # Python bindings for v6 of Qt
@@ -468,8 +450,6 @@ brew "tmuxinator-completion"
 brew "tokei"
 # Upgrade all the things
 brew "topgrade"
-# CLI tool that moves files or folder to the trash
-brew "trash", link: true
 # Terminal interaction recorder and player
 brew "ttyrec"
 # Converts a ttyrec file into gif files
@@ -478,28 +458,22 @@ brew "ttygif"
 brew "unzip"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
-# GNU Fortran compatibility for Apple's vecLib
-brew "veclibfort"
 # Your CLI home video recorder
 brew "vhs"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
 # Display word differences between text files
 brew "wdiff"
-# Create screenshots of webpages from the terminal
-brew "webkit2png"
 # Internet file retriever
 brew "wget"
 # Homebrew, but with Docker images
 brew "whalebrew"
-# Show the current WiFi network password
-brew "wifi-password"
 # Tools for the WireGuard secure network tunnel
 brew "wireguard-tools"
 # Automatic workarounds for problems in Wine
 brew "winetricks"
-# Fast CSV toolkit written in Rust
-brew "xsv"
+# Access X11 clipboards from the command-line
+brew "xclip"
 # Extensible command-line tool to format YAML files
 brew "yamlfmt"
 # Linter for YAML files
@@ -518,11 +492,8 @@ brew "zsh-autosuggestions"
 brew "zsh-completions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-brew "alexdavid/tap/git-branch-status"
 # Scanner for vulnerabilities in container images, file systems, and Git repositories, as well as for configuration issues
 brew "aquasecurity/trivy/trivy"
-# A tool for using LLMs on the command line
-brew "bakks/bakks/butterfish"
 # AI on the command line
 brew "charmbracelet/tap/mods"
 # A tool for recording terminal GIFs
@@ -539,15 +510,64 @@ brew "vitorgalvao/tiny-scripts/cask-repair"
 brew "eddieantonio/eddieantonio/imgcat"
 # Ken Silverman's PNG optimisation utility
 brew "jonof/kenutils/pngout"
-# Automatic Password Generator
-brew "jzaleski/jzaleski/apg"
 # Simple command-line snippet manager
 brew "knqyf263/pet/pet"
-{{ if eq .chezmoi.os "darwin" }}
+
+{{ if eq .chezmoi.os "darwin" }}{{/* darwin */}}
+tap "alexdavid/tap"
+
+# Select default apps for documents and URL schemes on macOS
+brew "duti"
+# CLI for ImageOptim, ImageAlpha and JPEGmini
+brew "imageoptim-cli"
+# Mac App Store command-line interface
+brew "mas"
+# Bash completion for open
+brew "open-completion"
+# Pinentry for GPG on Mac
+brew "pinentry-mac"
+# CLI tool that moves files or folder to the trash
+brew "trash", link: true
+# GNU Fortran compatibility for Apple's vecLib
+brew "veclibfort"
+# Show the current WiFi network password
+brew "wifi-password"
+brew "alexdavid/tap/git-branch-status"
+# A tool for using LLMs on the command line
+brew "bakks/bakks/butterfish"
+# Automatic Password Generator
+brew "jzaleski/jzaleski/apg"
+
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Command-line interface for 1Password
 cask "1password-cli"
+# Data backup and storage service
+cask "backblaze"
+# Web browser
+cask "firefox"
+# Set of CPU, memory, disk, and network monitoring tools
+cask "menumeters"
+# Scheduling application focusing on organisation
+cask "omnifocus"
+# Control your tools with a few keystrokes
+cask "raycast"
+# Drive failure monitoring tool
+cask "smartreporter-free"
+# Mesh VPN based on WireGuard
+cask "tailscale-app"
+
+{{ if .work }}{{/* darwin .work */}}
+# Visual tool to design, develop and administer MySQL servers
+cask "mysqlworkbench"
+{{ end }}{{/* darwin .work */}}
+
+{{ if eq .chezmoi.hostname "ilovemovies" }}{{/* darwin ilovemovies*/}}
+# Synchronisation and backup tool
+cask "chronosync"
+{{ end }}{{/* darwin ilovemovies*/}}
+
+{{ if not .lite }}{{/* darwin not .lite*/}}
 # View, print, and comment on PDF documents
 cask "adobe-acrobat-reader"
 # Apple TV Aerial screensaver
@@ -556,9 +576,6 @@ cask "aerial"
 # cask "anki"
 # App for quickly limiting CPU usage of any running process
 cask "apppolice"
-cask "apptrap"
-# Data backup and storage service
-cask "backblaze"
 # Download Backblaze restored files more reliably
 cask "backblaze-downloader"
 # Menu bar icon organiser
@@ -581,20 +598,14 @@ cask "bruno"
 cask "calibre"
 # Use your phone as a high-quality webcam with image tuning controls
 cask "camo-studio"
-{{- if eq .chezmoi.arch "arm64" -}}
+{{- if eq .chezmoi.arch "arm64" -}}{{/* darwin not .lite arm64 */}}
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
-{{ end }}
+{{ end }}{{/* darwin not .lite arm64 */}}
 # Tool to list all active shortcuts of the current application
 cask "cheatsheet"
-{{ if ne .chezmoi.hostname "ilovemovies" }}
-# Synchronisation and backup tool
-cask "chronosync"
-{{ end }}
 # Tool to show live information about the batteries in various devices
 cask "coconutbattery"
-# Remote desktop client
-cask "cord"
 # Disk space visualiser
 # cask "daisydisk"
 # API documentation browser and code snippet manager
@@ -611,12 +622,6 @@ cask "dropbox"
 cask "duplicati"
 # Swiss army knife of text transformation for iOS and macOS
 cask "esse"
-# Calendar software
-# cask "fantastical"
-# Tool for organising and renaming movies, TV shows, anime or music
-# cask "filebot"
-# Web browser
-cask "firefox"
 # Screen colour temperature controller
 cask "flux-app"
 cask "font-jetbrains-mono-nerd-font"
@@ -628,15 +633,10 @@ cask "font-rubik"
 # cask "fs-uae-launcher"
 # Gantt chart and project management application
 # cask "ganttproject"
-# Desktop customization tool
-cask "geektool"
 # Open-source platform for visualizing and manipulating large graphs
 cask "gephi"
 # Free and open-source image editor
 cask "gimp"
-cask "gmvault"
-# Opens a terminal window to the current directory in Finder
-cask "go2shell"
 # Scan computer disk for 32-bit applications
 # cask "go64"
 # Web browser
@@ -681,20 +681,12 @@ cask "keka"
 # cask "keybase"
 # GPU-based terminal emulator
 cask "kitty"
-# Snippet management app
-cask "lepton"
 # Automator software to start apps, run scripts or commands and more
 # cask "lingon-x"
 # Open-source Markdown editor
 cask "macdown"
-# Video format converter (transcoder)
-cask "makemkv"
-# Markdown editor
-cask "mark-text"
 # Shows the next meeting in the menu bar
 cask "meetingbar"
-# Set of CPU, memory, disk, and network monitoring tools
-cask "menumeters"
 # Mp4 meta-data editor
 cask "metaz"
 # Provides updates to various Microsoft products
@@ -713,10 +705,6 @@ cask "neohtop"
 # cask "netnewswire"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
-# Utility to toggle dark mode
-cask "nightowl"
-# Keeps current IP address in sync
-cask "no-ip-duc"
 # Calculator and converter application
 cask "numi"
 # Knowledge base that works on top of a local folder of plain text Markdown files
@@ -725,8 +713,6 @@ cask "obsidian"
 cask "ollama-app"
 # Finds large, unwanted files and deletes them
 cask "omnidisksweeper"
-# Scheduling application focusing on organisation
-cask "omnifocus"
 # Verify system files structure, run miscellaneous maintenance and more
 # cask "onyx"
 # Audiobook manager for Audible users
@@ -739,8 +725,6 @@ cask "oversight"
 cask "photosweeper-x"
 # Home media server
 cask "plex-media-server"
-# Tool to display Overcast on the menu bar
-cask "podcastmenu"
 # Podcast platform
 cask "pocket-casts"
 # G-code generator for 3D printers (RepRap, Makerbot, Ultimaker etc.)
@@ -767,8 +751,6 @@ cask "quitter"
 cask "raindropio"
 # Imaging utility to install operating systems to a microSD card
 cask "raspberry-pi-imager"
-# Control your tools with a few keystrokes
-cask "raycast"
 # Save articles to read, highlight key content, and organise notes for review
 cask "reader"
 # Show installed app compatibility information
@@ -784,8 +766,6 @@ cask "skype"
 # Team communication and collaboration software
 cask "slack"
 cask "slimbatterymonitor"
-# Drive failure monitoring tool
-cask "smartreporter-free"
 # Code source explorer
 # cask "sourcetrail"
 # Music streaming service
@@ -804,8 +784,6 @@ cask "subler"
 cask "suspicious-package"
 # Menu bar customization tool
 # cask "swiftbar"
-# Mesh VPN based on WireGuard
-cask "tailscale-app"
 # Remote access and connectivity software focused on security
 cask "teamviewer"
 # Unpacks archive files
@@ -836,11 +814,27 @@ cask "xquartz"
 cask "yubico-authenticator"
 # Application for configuring any YubiKey
 cask "yubico-yubikey-manager"
-{{ if .work }}
-# Visual tool to design, develop and administer MySQL servers
-cask "mysqlworkbench"
-{{ end }}
-{{- if not .test }}
+
+{{- if not .test }}{{/* darwin not .lite not .test */}}
+# Virtual webcam and video switcher
+cask "camo"
+# Clipboard manager
+cask "clipy"
+# Note-taking application that supports Markdown
+cask "fsnotes"
+# Git GUI client
+cask "gitkraken"
+# Graphical Git client
+cask "github-desktop"
+# Markdown editor and viewer
+cask "macdown"
+# Markdown note-taking app that supports LaTeX, diagrams, and more
+cask "marktext"
+# Markdown editor for Mac, Windows, and Linux
+cask "typora"
+# Menu bar app to display the current song in Spotify, iTunes, and more
+cask "silicio"
+# Menubar app to control music players like Spotify, Apple Music, and YouTube Music
 # Open links in any browser
 cask "choosy"
 # Remote file sharing for ChronoSync
@@ -890,8 +884,9 @@ mas "WiFi Explorer", id: 494803304
 mas "Windows App", id: 1295203466
 mas "WireGuard", id: 1451685025
 mas "WordService", id: 899972312
-{{ end }}
-{{ end }}
+{{ end }}{{/* darwin not .lite not .test */}}
+
+{{ if not .work }}{{/* darwin not .lite not .work */}}
 vscode "bierner.markdown-mermaid"
 vscode "charliermarsh.ruff"
 vscode "davidanson.vscode-markdownlint"
@@ -935,3 +930,6 @@ vscode "quarto.quarto"
 vscode "redhat.vscode-yaml"
 vscode "thisotherthing.vscode-todo-list"
 vscode "wakatime.vscode-wakatime"
+{{ end }}{{/* darwin not .lite not .work */}}
+{{ end }}{{/* darwin not .lite */}}
+{{ end }}{{/* darwin */}}

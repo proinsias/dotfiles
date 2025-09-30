@@ -234,7 +234,6 @@ alias whence='type -a' # where, of a sort
 
 {{ if eq .chezmoi.os "linux" }}
 alias top='top -o %CPU'
-    ;;
 {{ else if eq .chezmoi.os "darwin" }}
 # OS X has no `md5sum`, so use `md5` as a fallback
 command -v md5sum >/dev/null || alias md5sum="md5"

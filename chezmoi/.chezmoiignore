@@ -28,6 +28,7 @@ README.md
 .config/op/config
 .config/op/op-daemon.sock
 .config/raycast/
+.config/systemd/
 .config/thefuck/rules/
 .config/thefuck/__pycache__/
 .config/uv/
@@ -59,6 +60,7 @@ README.md
 .jupyter/.mypy_cache/
 .jupyter/lab/
 .jupyter/migrated/
+.keychain/
 .lesshst
 .llamafile/
 .local/bin/*

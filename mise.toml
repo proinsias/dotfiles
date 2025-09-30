@@ -1,0 +1,18 @@
+# Don't put credentials or other secrets into this shared file!
+[env]
+dotenv = ".env"   # auto-load .env file
+
+[tools]
+age = "latest"
+chezmoi = "latest"
+editorconfig-checker = "latest"
+gitleaks = "latest"
+grype = "latest"
+lychee = "latest"
+node = "latest"
+op = "latest"
+pre-commit = "latest"
+prettier = "latest"
+ruff = "latest"
+shellcheck = "latest"
+yamllint = "latest"

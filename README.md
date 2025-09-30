@@ -37,6 +37,7 @@ chezmoi apply
 
 ## To Dos
 
+1. Convert onepasswordRead to $(op read) ?
 1. GT run_once_after_darwin_01-macos-preferences.sh.tmpl.
 1. work: gitconfig - Switch to getting from op!
 1. Setup /etc/hosts -> see `hosts` file.

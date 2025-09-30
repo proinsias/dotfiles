@@ -583,3 +583,4 @@ spark-warehouse/
 
 .pytest_cache
 .config/configstore
+mise.local.toml

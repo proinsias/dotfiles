@@ -23,6 +23,10 @@ test -d /home/linuxbrew/.linuxbrew && OUTPUT="$(/home/linuxbrew/.linuxbrew/bin/b
 test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
 {{ end }}
 
+# For mise
+OUTPUT="$(mise activate zsh)"
+eval "${OUTPUT}"
+
 ## Exports
 
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-/usr/local/}
@@ -465,6 +469,7 @@ plugins=(
     gpg-agent
     httpie
     # keychain
+    mise
     # mosh
     npm
     pip

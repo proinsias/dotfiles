@@ -1,0 +1,34 @@
+# Don't put credentials or other secrets into this shared file!
+# Global mise configuration
+
+[tools]
+go = "1.25"
+python = "3.13"
+node = "24"
+usage = "latest"
+
+[env]
+# Applies to all projects unless overridden locally.
+dotenv = ".env"   # auto-load .env file
+GITHUB_TOKEN = {{ onepasswordRead "op://Parents/github.com/Tokens/mise" | quote }}
+
+{{ if eq .chezmoi.arch "arm64" }}
+DOCKER_DEFAULT_PLATFORM = "linux/amd64"
+{{ else }}
+DOCKER_DEFAULT_PLATFORM = "linux/x86_64"
+{{ end }}
+OLLAMA_API_BASE = "http://127.0.0.1:11434"
+PYTHONUNBUFFERED = "1"
+
+{{ if eq .chezmoi.os "darwin" }}
+OP_BIOMETRIC_UNLOCK_ENABLED = true
+{{ end }}
+
+# op run -- pop
+POP_FROM = "onboarding@resend.dev"
+POP_SIGNATURE = "Sent with [Pop](https://github.com/charmbracelet/pop)!"
+POP_TO = {{ onepasswordRead "op://Parents/Resend/username" | quote }}
+RESEND_API_KEY = {{ onepasswordRead "op://Parents/Resend/API Key" | quote }}
+
+[settings]
+idiomatic_version_file_enable_tools = ["python"]

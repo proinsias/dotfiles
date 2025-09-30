@@ -284,6 +284,8 @@ brew "makedepend"
 brew "markdownlint-cli"
 # Unified display of technical and tag data for audio/video
 brew "media-info"
+# Polyglot runtime manager (asdf rust clone)
+brew "mise"
 # Project documentation with Markdown
 brew "mkdocs"
 # Collection of tools that nobody wrote when UNIX was young
@@ -816,24 +818,16 @@ cask "yubico-authenticator"
 cask "yubico-yubikey-manager"
 
 {{- if not .test }}{{/* darwin not .lite not .test */}}
-# Virtual webcam and video switcher
-cask "camo"
 # Clipboard manager
 cask "clipy"
 # Note-taking application that supports Markdown
 cask "fsnotes"
 # Git GUI client
 cask "gitkraken"
-# Graphical Git client
-cask "github-desktop"
 # Markdown editor and viewer
 cask "macdown"
-# Markdown note-taking app that supports LaTeX, diagrams, and more
-cask "marktext"
 # Markdown editor for Mac, Windows, and Linux
 cask "typora"
-# Menu bar app to display the current song in Spotify, iTunes, and more
-cask "silicio"
 # Menubar app to control music players like Spotify, Apple Music, and YouTube Music
 # Open links in any browser
 cask "choosy"

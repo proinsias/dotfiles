@@ -261,24 +261,6 @@ else
     echo "Install fzf using: brew install fzf"
 fi
 
-# Add keychain keys - use 1password instead for ssh key
-# shellcheck disable=SC2065
-if type keychain >/dev/null 2>&1; then
-    OUTPUT="$(keychain --eval --ignore-missing --ssh-allow-forwarded)"
-    eval "${OUTPUT}"
-else
-    echo "Install keychain using: brew install keychain"
-fi
-
-# # Add 1password-cli session
-# shellcheck disable=SC2065
-if type op >/dev/null 2>&1; then
-    OUTPUT="$(op signin --account slesnonovans)"
-    eval "${OUTPUT}"
-else
-    echo "Install 1password-cli using: brew cask install 1password-cli"
-fi
-
 {{ if eq .chezmoi.os "darwin" }}
 # https://github.com/obihann/archey-osx
 # shellcheck disable=SC2065
@@ -302,12 +284,6 @@ curl --silent wttr.in
 # You could just use `-g` instead, but I like being explicit
 complete -W "NSGlobalDomain" defaults
 
-# homebrew openssh with keychain support doesn't work anymore?
-# Below use Apple's ssh-add, rather than brew ssh-add
-# Move to interactive-only part
-# No need to launch ssh-agent - should be done by default
-# /usr/bin/ssh-add -l &> /dev/null || /usr/bin/ssh-add -K # ~/.ssh/id_rsa
-
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
 
@@ -315,17 +291,6 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 # <https://stackoverflow.com/questions/32418438/how-can-i-disable-bash-sessions-in-os-x-el-capitan>
 export SHELL_SESSION_HISTORY=0
 {{ else if eq .chezmoi.os "linux" }}
-# function cleanup {
-#     echo "Killing SSH-Agent"
-#
-#     # shellcheck disable=SC2065
-#     rm -rf "$(ls -ld /tmp/ssh-*fodonovan* | awk '{print $9}')" >/dev/null 2>&1
-#     # shellcheck disable=SC2065,SC2154
-#     kill -9 "${SSH_AGENT_PID}" >/dev/null 2>&1
-# }
-# 2016-05-31 - commented below to debug sudden exits
-# trap cleanup EXIT
-
 # https://github.com/KittyKatt/screenFetch
 # shellcheck disable=SC2065
 if type screenfetch >/dev/null 2>&1; then
@@ -391,14 +356,6 @@ if type pyenv >/dev/null 2>&1; then
     # eval "$(pipenv --completion)"
 fi
 
-# Don't need this with use of keychain.
-# ssh-add -A  # Add all identities stored in your keychain.
-# ssh-add ~/.ssh/id_rsa
-# To add identities, run:
-# ssh-add -K ~/.ssh/id_rsa
-# # Don't run ssh-add in tmux shells - see tmuxinator config.
-# [[ -z $TMUX ]] && ssh-add
-
 # Starship
 # shellcheck disable=SC2065
 if type starship >/dev/null 2>&1; then
@@ -428,8 +385,10 @@ if test -f "${HOME}"/.config/broot/launcher/bash/br >/dev/null 2>&1; then
     source "${HOME}"/.config/broot/launcher/bash/br
 fi
 
-# To enable support via ssh-add.
-export SSH_AUTH_SOCK=~/.1password/agent.sock
+{{ if eq .chezmoi.os "darwin" }}
+### To enable support via ssh-add.
+export SSH_AUTH_SOCK="${HOME}/.1password/agent.sock"
+{{ end }}
 
 # nbp bash completion
 # shellcheck disable=SC2065

@@ -605,26 +605,7 @@ if type hub >/dev/null 2>&1; then
     eval "${OUTPUT}"
 fi
 
-## Add 1password-cli session
-# shellcheck disable=SC2065
-if type op >/dev/null 2>&1; then
-    if [[ -z $TMUX ]]; then
-        OUTPUT="$(op signin --account {{ .opaccount }})"
-        eval "${OUTPUT}"
-    fi
-fi
-
-{{ if ne .chezmoi.hostname "ilovemovies" }}
 eval "$(ssh-agent -s)"
-# Don't run ssh-add in tmux shells - see tmuxinator config.
-[[ -z $TMUX ]] && ssh-add
-{{ end }}
-
-# Don't need this with use of keychain.
-# ssh-add -A  # Add all identities stored in your keychain.
-# ssh-add ~/.ssh/id_rsa
-# To add identities, run:
-# ssh-add -K ~/.ssh/id_rsa
 
 ## Starship
 # shellcheck disable=SC2065
@@ -648,16 +629,6 @@ fi
 [[ -s "${HOME}/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.zsh" ]] && source "${HOME}/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.zsh"
 
 {{ if eq .chezmoi.os "linux" }}
-# function cleanup {
-#     echo "Killing SSH-Agent"
-#
-#     # shellcheck disable=SC2065
-#     rm -rf "$(ls -ld /tmp/ssh-*fodonovan* | awk '{print $9}')" >/dev/null 2>&1
-#     # shellcheck disable=SC2065,SC2154
-#     kill -9 "${SSH_AGENT_PID}" >/dev/null 2>&1
-# }
-# 2016-05-31 - commented below to debug sudden exits
-# trap cleanup EXIT
 
 # https://github.com/KittyKatt/screenFetch
 # shellcheck disable=SC2065
@@ -675,12 +646,6 @@ fi
 if type neofetch >/dev/null 2>&1; then
     neofetch
 fi
-
-# homebrew openssh with keychain support doesn't work anymore?
-# Below use Apple's ssh-add, rather than brew ssh-add
-# Move to interactive-only part
-# No need to launch ssh-agent - should be done by default
-# /usr/bin/ssh-add -l &> /dev/null || /usr/bin/ssh-add -K # ~/.ssh/id_rsa
 {{ end }}
 
 # Startup output commands

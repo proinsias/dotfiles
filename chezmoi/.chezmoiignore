@@ -163,7 +163,9 @@ README.md
 .wdm/
 .wget-hsts
 .zsh_history
+{{ if eq .chezmoi.os "darwin" -}}
 !Applications/LingonUpdateScripts.app
+{{ end }}
 Applications/*
 Calibre Library/
 Desktop/

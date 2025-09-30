@@ -27,7 +27,7 @@ README.md
 .config/gpt4all.io/
 .config/gtk-2.0/
 .config/jgit/
-!.config/mise/age.txt
+.config/mise/age.txt
 .config/op/config
 .config/op/op-daemon.sock
 .config/raycast/

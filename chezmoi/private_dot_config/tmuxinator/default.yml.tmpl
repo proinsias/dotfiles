@@ -7,13 +7,13 @@ windows:
     - git:
         - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
         - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
-        - eval $(op login)
+        - eval $(op signin)
         - ssh-add
     - misc:
         - cd ~/Desktop
         - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
         - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
-        - eval $(op login)
+        - eval $(op signin)
         - ssh-add
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.

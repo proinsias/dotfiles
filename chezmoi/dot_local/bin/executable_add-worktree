@@ -10,30 +10,26 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 # Usage info
 show_help_and_exit() {
     cat >&2 <<EOF
-Usage: ${0##*/} [-h] [-b branch] [-r repo]
+Usage: ${0##*/} [-h] [-c] branch directory
 
     -h         display this help and exit
-    -b branch  git feature branch to use (default: master)
-    -r repo    git repository to use (default: dslib)
-
+    -c         create the branch before creating the worktree
+    branch     branch to switch to in the worktree
+    directory  where to locate the worktree
 EOF
 
     exit 3
 }
 
-BRANCH=""
-REPO="dslib"
+CREATE=1  # Default is false.
 
-while getopts "b:hr:" opt; do
+while getopts "ch" opt; do
     case "${opt}" in
-    b)
-        BRANCH="${OPTARG}"
+    c)
+        CREATE=0  # True.
         ;;
     h)
         show_help_and_exit
-        ;;
-    r)
-        REPO="${OPTARG}"
         ;;
     :)
         echo "Option -${OPTARG} requires an argument." >&2
@@ -51,65 +47,26 @@ done
 shift "$((OPTIND - 1))" # Shift off the options and optional --.
 # Everything that's left in "$@" is a non-option.
 
+BRANCH="${1:-}"
+DIRECTORY="${2:-}"
+
 test -z "${BRANCH}" && echo "Must specify branch!" && exit 3
+test -z "${DIRECTORY}" && DIRECTORY="${BRANCH}"
 
 CURRENT_DIR="$(pwd)"
 
-echo "Adding worktree for branch ${BRANCH} of ${REPO}..."
+echo "Adding worktree for branch ${BRANCH}..."
 
-if test "${REPO}" = "dsrnd"; then
-    cd ~/favs/om1/nbs/master/
+if [[ "${CREATE}" ]]; then
+    git worktree add ../"${DIRECTORY}" -b "${BRANCH}"
 else
-    cd ~/favs/om1/libs/master/
+    git worktree add ../"${DIRECTORY}" "${BRANCH}"
 fi
 
-mkdir --parents "${BRANCH}"
-
-# Get or create branch of interest.
-test "${BRANCH}" = 'master' ||
-    git worktree add ../"${BRANCH}" "${BRANCH}" ||
-    git worktree add ../"${BRANCH}" -b "${BRANCH}"
-
-cd ../"${BRANCH}"
+cd ../"${DIRECTORY}"
 
 git push --set-upstream origin "${BRANCH}"
 
-# mkdir --parents .git/info
-# ln --symbolic ~/favs/om1/shared_files/exclude .git/info/.
-cp ~/favs/om1/shared_files/.env . # Docker needs this but can't handle symlinks.
-ln --symbolic ~/.overcommit.yml .
-overcommit --sign
-overcommit --sign pre-commit
-overcommit --sign pre-push
-overcommit --sign post-checkout
-
-mkdir --parents .idea
-for file in bashsupport_project.xml dataSources.ids dataSources.local.xml dataSources.xml other.xml sqldialects.xml; do
-    ln --symbolic ~/favs/om1/shared_files/"${file}" .idea/.
-done
-for file in vcs.xml fileTemplates inspectionProfiles dataSources; do
-    ln --symbolic ~/favs/om1/shared_files/"${file}" .idea/.
-done
-
-for file in .envrc Gemfile Gemfile.lock .mdl.rb .mdlrc; do
-    ln --symbolic ~/favs/om1/shared_files/"${file}" .
-done
-direnv allow
-
-if test "${REPO}" = "dsrnd"; then
-    ln --symbolic ~/favs/om1/shared_files/.python-version-nbs .python-version
-    ln --symbolic ~/favs/om1/shared_files/misc-nbs.xml .idea/misc.xml
-    ln --symbolic ~/favs/om1/shared_files/dsrnd.iml .idea/.
-    ln --symbolic ~/favs/om1/shared_files/modules-nbs.xml .idea/modules.xml
-else
-    ln --symbolic ~/favs/om1/shared_files/.python-version .
-    ln --symbolic ~/favs/om1/shared_files/misc.xml .idea/.
-    ln --symbolic ~/favs/om1/shared_files/dslib.iml .idea/.
-    ln --symbolic ~/favs/om1/shared_files/modules.xml .idea/.
-fi
-
-if test ! -f tox.ini; then
-    ln --symbolic ~/favs/om1/shared_files/tox.ini .
-fi
+cp --update=none "${HOME}"/.git-template/* .
 
 cd "${CURRENT_DIR}"

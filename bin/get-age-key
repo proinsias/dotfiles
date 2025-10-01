@@ -18,4 +18,4 @@ getagekey() {
 
 getagekey >|~/.config/chezmoi/key.txt
 
-cp --force ~/.config/chezmoi/key.txt ~/.config/mise/age.txt
+cp -f -l ~/.config/chezmoi/key.txt ~/.config/mise/age.txt

@@ -12,8 +12,9 @@
     access_token = "123"
     gist_id = "123"
     {{ else }}
-    access_token = {{ onepasswordRead "op://Private/PET_GITHUB_ACCESS_TOKEN/credential" | quote }}
-    gist_id = {{ onepasswordRead "op://Private/PET_GITHUB_ACCESS_TOKEN/gist" | quote }}
+    # Don't set. Then pet uses PET_GITHUB_ACCESS_TOKEN instead.
+    # access_token = 
+    gist_id = {{ onepasswordRead "op://Private/pet/gist" | quote }}
     {{ end }}
     public = false
     auto_sync = true

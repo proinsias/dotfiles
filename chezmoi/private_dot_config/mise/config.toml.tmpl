@@ -11,10 +11,11 @@ DOCKER_DEFAULT_PLATFORM = "linux/amd64"
 {{ else }}
 DOCKER_DEFAULT_PLATFORM = "linux/x86_64"
 {{ end }}
-HOMEBREW_GITHUB_API_TOKEN = { age = {{ onepasswordRead "op://Private/HOMEBREW_GITHUB_API_TOKEN/token-age" | quote }} }
+HOMEBREW_GITHUB_API_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/Tokens/homebrew-age" | quote }} }
 LYCHEE_GITHUB_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/Tokens/lychee-age" | quote }} }
 MISE_GITHUB_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/Tokens/mise-age" | quote }} }
 OLLAMA_API_BASE = "http://127.0.0.1:11434"
+PET_GITHUB_ACCESS_TOKEN = { age = {{ onepasswordRead op://Parents/github.com/Tokens/pet-age" | quote }} }
 {{ if eq .chezmoi.os "darwin" }}
 OP_BIOMETRIC_UNLOCK_ENABLED = true
 {{ end }}

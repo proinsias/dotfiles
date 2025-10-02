@@ -11,20 +11,23 @@ DOCKER_DEFAULT_PLATFORM = "linux/amd64"
 {{ else }}
 DOCKER_DEFAULT_PLATFORM = "linux/x86_64"
 {{ end }}
+
+GROQ_API_KEY = { age = {{ onepasswordRead "op://Parents/Groq/token-age" | quote }} }
 HOMEBREW_GITHUB_API_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/Tokens/homebrew-age" | quote }} }
 LYCHEE_GITHUB_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/Tokens/lychee-age" | quote }} }
 MISE_GITHUB_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/Tokens/mise-age" | quote }} }
 OLLAMA_API_BASE = "http://127.0.0.1:11434"
-PET_GITHUB_ACCESS_TOKEN = { age = {{ onepasswordRead op://Parents/github.com/Tokens/pet-age" | quote }} }
 {{ if eq .chezmoi.os "darwin" }}
 OP_BIOMETRIC_UNLOCK_ENABLED = true
 {{ end }}
+PET_GITHUB_ACCESS_TOKEN = { age = {{ onepasswordRead op://Parents/github.com/Tokens/pet-age" | quote }} }
 POP_FROM = "onboarding@resend.dev"
 POP_SIGNATURE = "Sent with [Pop](https://github.com/charmbracelet/pop)!"
 # editorconfig-checker-disable-next-line
 POP_TO = { age = "YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB1S2pieTFNbnZyS2FZcUxuTUVVUk9YU3AxT1dEQ1dsamd4eEwvSmVaOEVjCmZlOGtJK0IrTXZJbjUyVDZJTXU0VTlETW41ZDE1RXR5S2JOL0FSQjRmVkkKLT4gMj9fYEFJdC1ncmVhc2Uge1s/CkpRVFFPekJSMUNKME1nMmdZV2N0N1hnNzQ0a1U2UQotLS0gS240L1E4b2JjYnZoWWsxZURsZnd2dHNyeGJCZytDVVd3TjBQdXZwQ3pTcwqXDshcH0VkXn0ZBvjeaZ1eDCOlYVhaMuwpyxg5x0BZyWLBplsPdf+zoev3J1hnCMyLJfMNaqMQlLMeQD9sOvJI5P+0teb2" }
 PYTHONUNBUFFERED = "1"
 RESEND_API_KEY = { age = {{ onepasswordRead "op://Parents/Resend/api-key-age" | quote }} }
+YOUTUBE_API_KEY = { age = {{ onepasswordRead "op://Private/Youtube Data API/token-age" | quote }} }
 
 [hooks]
 enter = "mise i -q"  # Install tools quietly on entering a directory.

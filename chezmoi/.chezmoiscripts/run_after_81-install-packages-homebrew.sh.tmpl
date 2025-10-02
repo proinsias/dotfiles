@@ -12,28 +12,12 @@ test -f /usr/local/bin/brew && OUTPUT="$(/usr/local/bin/brew shellenv)" && eval 
 # M1 home-brew – do second in case we are also using Intel
 # via Rosetta.
 test -f /opt/homebrew/bin/brew && OUTPUT="$(/opt/homebrew/bin/brew shellenv)" && eval "${OUTPUT}"
-
-# Check if Command Line Tools are already installed
-if ! xcode-select -p &> /dev/null; then
-    echo "installing Command Line Tools..."
-    xcode-select --install
-else
-    echo "Command Line Tools are already installed."
-fi
-
 {{ else if eq .chezmoi.os "linux" }}
 # homebrew linuxbrew
 test -d /home/linuxbrew/.linuxbrew && OUTPUT="$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
 # shellcheck disable=SC2086
 test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
 {{ end }}
-
-# Install Homebrew if not installed
-if ! command -v brew &>/dev/null; then
-    echo
-    echo "Installing Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
 
 # Update Homebrew
 echo

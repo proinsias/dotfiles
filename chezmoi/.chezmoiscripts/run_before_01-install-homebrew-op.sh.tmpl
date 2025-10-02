@@ -1,0 +1,65 @@
+#!{{ lookPath "bash" }}
+set -euo pipefail
+
+# For homebrew
+# Adds $HOMEBREW_PREFIX/bin as prefix to PATH.
+{{ if eq .chezmoi.os "darwin" }}
+# Intel homebrew
+test -f /usr/local/bin/brew && OUTPUT="$(/usr/local/bin/brew shellenv)" && eval "${OUTPUT}"
+# M1 home-brew – do second in case we are also using Intel
+# via Rosetta.
+test -f /opt/homebrew/bin/brew && OUTPUT="$(/opt/homebrew/bin/brew shellenv)" && eval "${OUTPUT}"
+
+# Check if Command Line Tools are already installed
+if ! xcode-select -p &> /dev/null; then
+    echo "Installing Command Line Tools..."
+    xcode-select --install
+fi
+
+{{ else if eq .chezmoi.os "linux" }}
+# homebrew linuxbrew
+test -d /home/linuxbrew/.linuxbrew && OUTPUT="$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
+# shellcheck disable=SC2086
+test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
+{{ end }}
+
+# Install Homebrew if not installed.
+if ! command -v brew &>/dev/null; then
+    echo
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+
+# Install 1Password CLI if not installed.
+if ! command -v op >/dev/null 2>&1; then
+    echo
+    echo "Installing 1Password CLI..."
+
+{{ if eq .chezmoi.os "darwin" }}
+    brew install op
+{{ else if and (eq .chezmoi.os "linux") (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
+    # Import GPG key
+    curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
+        sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+
+    # Add repo
+    # editorconfig-checker-disable-next-line
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | \
+        sudo tee /etc/apt/sources.list.d/1password.list
+
+    # Configure debsig policy
+    sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
+    curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | \
+        sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
+
+    sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
+    curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
+        sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+
+    # Install package
+    sudo apt update
+    sudo apt install -y 1password-cli
+{{ else }}
+    echo "Warning: No method to install 1Password CLI found!"
+{{- end -}}

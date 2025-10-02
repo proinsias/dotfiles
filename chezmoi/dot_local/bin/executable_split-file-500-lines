@@ -9,7 +9,14 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors.
 shopt -s globstar # 2> /dev/null  # Match all files and zero or more sub-directories.
 set -o xtrace     # Echo commands as they are executed.
 
-file="${1}"
-basename="${file%.*}"
+split_file() {
+    file="${1}"
+    basename="${file%.*}"
 
-split --lines 500 --numeric-suffixes --additional-suffix=.md "${file}" "${basename}"
+    split --lines 500 --numeric-suffixes --additional-suffix=.md "${file}" "${basename}"
+}
+
+export -f split_file
+
+# Make script reproducible with mise.
+mise exec coreutils@0.2.2 -- bash -c "split_file"

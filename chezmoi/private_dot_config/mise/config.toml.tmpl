@@ -21,7 +21,7 @@ OLLAMA_API_BASE = "http://127.0.0.1:11434"
 {{ if eq .chezmoi.os "darwin" }}
 OP_BIOMETRIC_UNLOCK_ENABLED = true
 {{ end }}
-PET_GITHUB_ACCESS_TOKEN = { age = {{ onepasswordRead op://Parents/github.com/Tokens/pet-age" | quote }} }
+PET_GITHUB_ACCESS_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/Tokens/pet-age" | quote }} }
 POP_FROM = "onboarding@resend.dev"
 POP_SIGNATURE = "Sent with [Pop](https://github.com/charmbracelet/pop)!"
 # editorconfig-checker-disable-next-line

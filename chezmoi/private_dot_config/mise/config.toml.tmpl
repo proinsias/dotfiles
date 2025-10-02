@@ -13,6 +13,7 @@ DOCKER_DEFAULT_PLATFORM = "linux/x86_64"
 {{ end }}
 
 GROQ_API_KEY = { age = {{ onepasswordRead "op://Parents/Groq/token-age" | quote }} }
+GH_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/gh-age" | quote }} }
 HOMEBREW_GITHUB_API_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/Tokens/homebrew-age" | quote }} }
 LYCHEE_GITHUB_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/Tokens/lychee-age" | quote }} }
 MISE_GITHUB_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/Tokens/mise-age" | quote }} }

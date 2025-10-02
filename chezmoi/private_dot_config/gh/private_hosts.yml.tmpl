@@ -1,15 +1,10 @@
 github.com:
     user: proinsias
-    {{- if .test }}
-    oauth_token: "123"
-    {{- else }}
-    oauth_token: {{ onepasswordRead "op://Parents/github.com/token" | quote }}
+    # Don't use. Then gh will use GH_TOKEN.
+    # oauth_token: "123"
     {{ end }}
     git_protocol: ssh
     users:
         proinsias:
-            {{- if .test }}
-            oauth_token:  "123"
-            {{- else }}
-            oauth_token: {{ onepasswordRead "op://Parents/github.com/token" | quote }}
-            {{ end }}
+            # Don't use. Then gh will use GH_TOKEN.
+            # oauth_token:  "123"

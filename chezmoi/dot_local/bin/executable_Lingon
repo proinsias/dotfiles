@@ -1,18 +1,3 @@
-#!/usr/bin/env bash
-# shellcheck disable=SC2312
-
-# FIXME: https://nix.dev/tutorials/first-steps/reproducible-scripts.html
-# FIXME: Add something below to run devbox upgrade
-
-# FIXME: Update ansible files so I can pick and chose with tags what to run.
-
-# shellcheck disable=SC1090
-source ~/.envrc
-
-# Intel homebrew
-test -f /usr/local/bin/brew && SHELLENV="$(/usr/local/bin/brew shellenv)" && eval "${SHELLENV}"
-# M1 home-brew. Do second in case we are also using Intel via Rosetta.
-test -f /opt/homebrew/bin/brew && SHELLENV="$(/opt/homebrew/bin/brew shellenv)" && eval "${SHELLENV}"
 
 host="$(hostname -s)"
 export host

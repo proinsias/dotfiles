@@ -2,6 +2,9 @@
 
 echo
 echo
+echo "Install packages."
+
+echo
 echo "Install homebrew packages."
 
 # For homebrew
@@ -43,13 +46,7 @@ fi
 {{ end }}
 
 echo
-brew upgrade
+echo "Install mise packages."
 
 echo
-brew cleanup
-
-echo
-brew doctor
-
-echo
-brew outdated
+mise install --yes

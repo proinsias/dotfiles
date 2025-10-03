@@ -1,0 +1,14 @@
+#!{{ lookPath "bash" }}
+
+echo
+echo
+echo "Logging into tools."
+
+if ! atuin status 2>&1 | grep -q {{ onepasswordRead "op://Parents/atuin/username" | quote }}; then
+    echo
+    echo "Logging into atuin..."
+    atuin login \
+        --username {{ onepasswordRead "op://Parents/atuin/username" | quote }} \
+        --password {{ onepasswordRead "op://Parents/atuin/password" | quote }} \
+        --key {{ onepasswordRead "op://Parents/atuin/key" | quote }}
+fi

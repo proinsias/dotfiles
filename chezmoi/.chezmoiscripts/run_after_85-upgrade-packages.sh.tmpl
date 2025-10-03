@@ -1,0 +1,26 @@
+#!{{ lookPath "bash" }}
+
+echo
+echo
+echo "Upgrade packages."
+
+echo
+brew upgrade --greedy
+
+echo
+brew cleanup
+
+echo
+brew doctor
+
+echo
+brew outdated
+
+echo
+mise upgrade --bump
+
+echo
+mise doctor
+
+echo
+mas upgrade

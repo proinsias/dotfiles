@@ -63,3 +63,11 @@ if ! command -v op >/dev/null 2>&1; then
 {{ else }}
     echo "Warning: No method to install 1Password CLI found!"
 {{- end -}}
+fi
+
+if ! op whoami >/dev/null 2>&1; then
+    echo
+    echo "Logging into 1Password..."
+
+    eval "$(op signin --account {{ .opaccount }} )"
+fi

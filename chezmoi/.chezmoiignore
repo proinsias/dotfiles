@@ -109,6 +109,7 @@ README.md
 !.local/bin/nbstripout
 !.local/bin/nbstripoutput
 !.local/bin/open-first-10-links-in-markdown-file
+!.local/bin/open-repos-in-vscode
 !.local/bin/pre-commit-autoupdate
 !.local/bin/rbenv-doctor
 !.local/bin/replace

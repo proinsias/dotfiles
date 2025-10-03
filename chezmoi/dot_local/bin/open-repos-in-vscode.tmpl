@@ -1,0 +1,22 @@
+{{ if .work }}
+#!{{ lookPath "python3" }}
+
+import os
+import subprocess
+
+# List of repository paths to open in VSCode devcontainers
+repo_paths = [
+    "${HOME}/git/project-manticore/development"
+    "${HOME}/git/project-manticore/francis-experiments",
+]
+
+# VSCode command to open a folder in a devcontainer
+vscode_command = "code"
+
+# Open each repository in a new VSCode window with devcontainer
+for repo_path in repo_paths:
+    if os.path.isdir(path):
+        subprocess.Popen([vscode_command, repo_path])
+    else:
+        print(f"Directory not found: {path}")
+{{ end }}

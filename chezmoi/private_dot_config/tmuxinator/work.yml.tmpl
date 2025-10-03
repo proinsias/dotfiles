@@ -4,20 +4,18 @@
 name: work
 root: ~/git/project-manticore
 
+#        - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
+#        - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
+
+
 windows:
     - development:
-        - cd development
-        - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
-        - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
         - eval "$(op signin)" && ssh-add
+        - cd development  # Do this after entering passwords as I might have to enter root pwd.
     - francis-experiments:
-        - cd francis-experiments
-        - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
-        - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
         - eval "$(op signin)" && ssh-add
+        - cd francis-experiments
     - extras:
-        - eval $(tmux show-environment | grep '^SSH_AUTH_SOCK')
-        - eval $(tmux show-environment | grep '^OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4')
         - eval "$(op signin)" && ssh-add
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.

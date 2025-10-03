@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+my_func() {
+
+    echo "This is sample output from a function."
+
+}
+
+# FIXME: 
+
+host="$(hostname -s)"
+export host
+dt="$(gdate --iso-8601)"
+export dt
+
+tmpfile="$(mktemp)"
+
+my_func |& tee "${tmpfile}"
+
+# shellcheck disable=SC2154
+pop <"${tmpfile}" \
+    --to "${POP_TO}" \
+    --subject "my_func_${host}_${dt}.txt"

@@ -9,7 +9,7 @@ shopt -s failglob             # Cause globs that don't get expanded to cause err
 shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
 
 # shellcheck disable=SC2312
-find "${HOME}"/GitHub/ \
+find "${HOME}"/git/ \
     -type d \
     -maxdepth 1 \
     -mindepth 1 \

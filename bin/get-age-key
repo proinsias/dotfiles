@@ -16,6 +16,8 @@ getagekey() {
     op read "op://Parents/chezmoi/key.txt"
 }
 
+mkdir -p ~/.config/chezmoi ~/.config/mise
+
 getagekey >|~/.config/chezmoi/key.txt
 
 cp -f -l ~/.config/chezmoi/key.txt ~/.config/mise/age.txt

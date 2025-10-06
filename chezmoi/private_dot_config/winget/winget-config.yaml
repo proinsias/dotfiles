@@ -7,4 +7,5 @@ packages:
   - packageIdentifier: topgrade-rs.topgrade
   - packageIdentifier: astral-sh.uv
   - packageIdentifier: 1password-cli
+  - packageIdentifier: AgileBits.1Password
 {{ end }}

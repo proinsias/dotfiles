@@ -1,0 +1,8 @@
+mdformat
+mdformat-beautysh
+mdformat-black
+mdformat-config
+mdformat-gfm
+mdformat-shfmt
+mdformat-tables
+mdformat-toc

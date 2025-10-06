@@ -1,0 +1,68 @@
+add-trailing-comma
+argcomplete
+flynt
+future
+gif-for-cli
+gittyleaks
+hashin
+hjson
+http-prompt
+interrogate
+ipython
+jupytext
+kaggle
+linkcheckmd
+mog
+nbstripout
+pdfplumber
+pip-check
+pip-tools
+ploomber
+pweave
+pycln
+pydocstyle
+pyflakes
+pyjokes
+pyroma
+python-slugify
+readwise-reader-cli
+refurb
+searchcmd
+soorgeon
+texthooks
+tox
+twine
+uncommitted
+vulture
+whereami
+xlsx2csv
+yapf
+# absolufy-imports
+# aider-chat
+# audible-cli
+# auto-walrus
+# black
+# blacken-docs
+# chkcrontab
+# clf
+# copier
+# coverage
+# csvkit
+# darglint
+# datamodel-code-generator
+# dead
+# deptry
+# detect-secrets
+# docformatter
+# docstr-coverage
+# editorconfig-checker
+# eg
+# em-keyboard
+# gitlint-core
+# howdoi
+# nbpreview  # Breaks on GitHub Actions.
+# pre-commit-hooks
+# safety
+# shrynk
+# tldr  # Use npm version instead.
+# wifi_qrcode

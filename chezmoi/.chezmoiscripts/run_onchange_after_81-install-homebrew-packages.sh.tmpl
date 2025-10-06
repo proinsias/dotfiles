@@ -2,9 +2,6 @@
 
 echo
 echo
-echo "Install packages."
-
-echo
 echo "Install homebrew packages."
 
 # For homebrew
@@ -30,23 +27,17 @@ brew update
 {{ if .test }}
 if ! command brew bundle check --file "${TEST_HOME}/.config/homebrew/Brewfile" &> /dev/null; then
     echo
-    echo "The Brewfile's dependencies are not satisfied. Running brew bundle install --global..."
-    brew bundle install --no-upgrade --file "${TEST_HOME}/.config/homebrew/Brewfile"
+    echo "The Brewfile's dependencies are not satisfied. Running brew bundle install --file..."
+    brew bundle install --file "${TEST_HOME}/.config/homebrew/Brewfile"
 else
-    echo "The Brewfile's dependencies are satisfied. Skipping brew bundle install --global..."
+    echo "The Brewfile's dependencies are satisfied. Skipping brew bundle install --file..."
 fi
 {{ else }}
 if ! command brew bundle check --global &> /dev/null; then
     echo
     echo "The Brewfile's dependencies are not satisfied. Running brew bundle install --global..."
-    brew bundle install --no-upgrade --global
+    brew bundle install --global
 else
     echo "The Brewfile's dependencies are satisfied. Skipping brew bundle install --global..."
 fi
 {{ end }}
-
-echo
-echo "Install mise packages."
-
-echo
-mise install --yes

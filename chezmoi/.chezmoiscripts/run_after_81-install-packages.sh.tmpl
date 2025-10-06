@@ -22,6 +22,7 @@ test -d /home/linuxbrew/.linuxbrew && OUTPUT="$(/home/linuxbrew/.linuxbrew/bin/b
 test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
 {{ end }}
 
+{{  if ne .chezmoi.os "windows" }}
 # Update Homebrew
 echo
 brew update
@@ -43,6 +44,14 @@ if ! command brew bundle check --global &> /dev/null; then
 else
     echo "The Brewfile's dependencies are satisfied. Skipping brew bundle install --global..."
 fi
+{{ end }}
+
+{{ else }}
+# winget hash: {{ include "./private_dot_config/winget/winget-config.yaml" | sha256sum }}
+echo
+echo "Install winget packages."
+
+winget configure -f ./private_dot_config/winget/winget-config.yaml
 {{ end }}
 
 echo

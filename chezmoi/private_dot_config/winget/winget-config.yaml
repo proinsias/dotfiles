@@ -1,0 +1,8 @@
+{{  if eq .chezmoi.os "windows" }}
+$schema: https://aka.ms/winget-schema/settings.v2.json
+packages:
+  - packageIdentifier: FiloSottile.age
+  - packageIdentifier: jdx.mise
+  - packageIdentifier: topgrade-rs.topgrade
+  - packageIdentifier: astral-sh.uv
+{{ end }}

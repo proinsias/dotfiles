@@ -2,7 +2,9 @@
 $schema: https://aka.ms/winget-schema/settings.v2.json
 packages:
   - packageIdentifier: FiloSottile.age
+  - packageIdentifier: twpayne.chezmoi
   - packageIdentifier: jdx.mise
   - packageIdentifier: topgrade-rs.topgrade
   - packageIdentifier: astral-sh.uv
+  - packageIdentifier: 1password-cli
 {{ end }}

@@ -16,6 +16,7 @@ tap "oven-sh/bun"
 tap "proinsias/yaml-update-last-modified-date"
 tap "teamookla/speedtest"
 tap "vitorgalvao/tiny-scripts"
+
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Static checker for GitHub Actions workflow files
@@ -556,6 +557,7 @@ cask "raycast"
 cask "smartreporter-free"
 # Mesh VPN based on WireGuard
 cask "tailscale-app"
+cask "wezterm"
 
 {{ if .work }}{{/* darwin .work */}}
 # Visual tool to design, develop and administer MySQL servers
@@ -876,7 +878,11 @@ mas "WiFi Explorer", id: 494803304
 mas "Windows App", id: 1295203466
 mas "WireGuard", id: 1451685025
 mas "WordService", id: 899972312
-{{ end }}{{/* darwin not .lite not .test */}}
+{{ else if eq .chezmoi.os "linux" }}
+tap wezterm/wezterm-linuxbrew
+
+brew "wezterm"
+{{ end }}
 
 {{ if not .work }}{{/* darwin not .lite not .work */}}
 vscode "bierner.markdown-mermaid"

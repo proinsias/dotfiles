@@ -9,6 +9,7 @@ packages:
   # - packageIdentifier: Starship.Starship  # Requires admin.
   - packageIdentifier: topgrade-rs.topgrade
   - packageIdentifier: astral-sh.uv
+  # - packageIdentifier: wez.wezterm  # Requires admin.
   - packageIdentifier: 1password-cli
   - packageIdentifier: AgileBits.1Password
 {{ end }}

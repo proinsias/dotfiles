@@ -6,7 +6,7 @@ echo "Upgrade packages."
 
 {{ if and (eq .chezmoi.os "linux") (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
 echo -e "\napt-get update:"
-sduo apt-get update --yes
+sudo apt-get update --yes
 echo -e "\napt-get upgrade:"
 sudo apt-get upgrade --yes
 

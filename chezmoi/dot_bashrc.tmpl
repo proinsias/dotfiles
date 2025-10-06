@@ -34,9 +34,11 @@ test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)
 {{ else }}
 {{ end }}
 
+{{ if ne .chezmoi.os "windows" }}
 # For mise
 OUTPUT="$(mise activate bash)"
 eval "${OUTPUT}"
+{{ end }}
 
 # Shell Options
 #
@@ -135,8 +137,8 @@ if type conda >/dev/null 2>&1; then
     if type register-python-argcomplete >/dev/null 2>&1; then
         OUTPUT="$(register-python-argcomplete conda)"
         eval "${OUTPUT}"
-    else
-        # echo "Install argcomplete using: python3 -m pip install argcomplete"
+    # else
+    #     echo "Install argcomplete using: python3 -m pip install argcomplete"
     fi
 fi
 
@@ -153,8 +155,8 @@ if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete"; then
     # shellcheck disable=SC2065
     if type activate-global-python-argcomplete >/dev/null 2>&1; then
         activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
-    else
-        echo "Install argcomplete using: python3 -m pip install argcomplete"
+    # else
+    #     echo "Install argcomplete using: python3 -m pip install argcomplete"
     fi
 fi
 

@@ -75,7 +75,7 @@ repos:
       - id: actionlint
 
   - repo: https://github.com/lycheeverse/lychee.git
-    rev: lychee-v0.20.1
+    rev: nightly
     hooks:
       - id: lychee
         args: ["--cache", "--suggest", "--exclude-loopback"]
@@ -144,7 +144,7 @@ repos:
         args: [--external-sources, --format=gcc, --shell=bash]
 
   - repo: https://github.com/kucherenko/jscpd
-    rev: "jscpd@4.0.1"
+    rev: "@jscpd/badge-reporter@4.0.1"
     hooks:
       - id: jscpd
         # Optionally can add the following to restrict to certain file
@@ -158,12 +158,12 @@ repos:
         #  --reporters console
 
   - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.405
+    rev: v1.1.406
     hooks:
       - id: pyright
 
   - repo: https://github.com/pycqa/isort
-    rev: "6.0.1"
+    rev: "6.1.0"
     hooks:
       - id: isort
         name: isort (python)

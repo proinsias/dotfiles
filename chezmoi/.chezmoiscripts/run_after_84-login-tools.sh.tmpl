@@ -4,6 +4,7 @@ echo
 echo
 echo "Logging into tools."
 
+{{ if not .work }}
 if ! atuin status 2>&1 | grep -q {{ onepasswordRead "op://Parents/atuin/username" | quote }}; then
     echo
     echo "Logging into atuin..."
@@ -12,3 +13,4 @@ if ! atuin status 2>&1 | grep -q {{ onepasswordRead "op://Parents/atuin/username
         --password {{ onepasswordRead "op://Parents/atuin/password" | quote }} \
         --key {{ onepasswordRead "op://Parents/atuin/key" | quote }}
 fi
+{{ end }}

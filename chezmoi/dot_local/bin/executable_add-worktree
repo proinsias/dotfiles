@@ -69,4 +69,6 @@ git push --set-upstream origin "${BRANCH}"
 
 cp --update=none "${HOME}"/.git-template/* .
 
+cp --update=none "${HOME}"/.git-template/.devcontainer/* .devcontainer/.
+
 cd "${CURRENT_DIR}"

@@ -6,15 +6,15 @@ echo "Upgrade packages."
 
 {{ if and (eq .chezmoi.os "linux") (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
 echo -e "\napt-get update:"
-apt-get update --yes
+sduo apt-get update --yes
 echo -e "\napt-get upgrade:"
-apt-get upgrade --yes
+sudo apt-get upgrade --yes
 
 apt list --upgradeable
 {{ end }}
 
 echo
-brew upgrade --greedy
+brew upgrade
 
 echo
 brew cleanup
@@ -38,21 +38,27 @@ mise upgrade --bump
 echo
 mise doctor
 
+{{ if eq .chezmoi.os "darwin" }}
 echo
 mas upgrade
+{{ end }}
 
 echo
 pre-commit-autoupdate | grep -v "already up to date"
 
 echo
 # FIXME: Setup git_repos? uv? myrepos?
+sudo --validate
 topgrade --cleanup --no-retry --skip-notify --yes --disable \
     brew_cask \
     brew_formula \
+    bun \
     chezmoi \
     git_repos \
     mas \
+    mise \
     nix \
+    rustup \
     uv
 
 echo

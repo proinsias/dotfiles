@@ -10,9 +10,9 @@ shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories
 
 # shellcheck disable=SC2312
 find "${HOME}"/git/ \
-    -type d \
     -maxdepth 1 \
     -mindepth 1 \
+    -type d \
     -print0 |
     xargs -P "$(nproc)" -I{} sh -c \
         'cd {} && pre-commit autoupdate'

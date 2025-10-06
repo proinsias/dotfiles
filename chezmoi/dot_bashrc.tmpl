@@ -115,7 +115,7 @@ if type pipx >/dev/null 2>&1; then
     OUTPUT="$(register-python-argcomplete pipx)"
     eval "${OUTPUT}"
 else
-    echo "Install pipx using: brew install pipx"
+    # echo "Install pipx using: brew install pipx"
 fi
 
 # AWS bash completion
@@ -136,7 +136,7 @@ if type conda >/dev/null 2>&1; then
         OUTPUT="$(register-python-argcomplete conda)"
         eval "${OUTPUT}"
     else
-        echo "Install argcomplete using: python3 -m pip install argcomplete"
+        # echo "Install argcomplete using: python3 -m pip install argcomplete"
     fi
 fi
 

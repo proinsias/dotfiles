@@ -93,8 +93,10 @@ brew "detect-secrets"
 brew "diffutils"
 # Tool for exploring each layer in a docker image
 brew "dive"
+{{ if not .work }}
 # Pack, ship and run any application as a lightweight container
 brew "docker", link: false
+{{ end }}
 # Clean Docker containers, images, networks, and volumes
 brew "docker-clean"
 # Convert text between DOS, UNIX, and Mac formats

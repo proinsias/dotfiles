@@ -8,10 +8,11 @@ Host *
     IdentityAgent ~/.1password/agent.sock
     {{ end }}
 
-    # Enable ssh multiplexing.
-    ControlPath /tmp/ssh-%r@%h:%p
-    ControlMaster auto
-    ControlPersist 10m
+    # # Enable ssh multiplexing.
+    # Doesn't work on Windows.
+    # ControlPath /tmp/ssh-%r@%h:%p
+    # ControlMaster auto
+    # ControlPersist 10m
 
     # UseKeychain yes
 

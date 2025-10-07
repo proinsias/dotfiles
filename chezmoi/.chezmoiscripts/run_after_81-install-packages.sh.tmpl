@@ -1,3 +1,34 @@
+{{  if eq .chezmoi.os "windows" }}
+# Set strict error handling
+$ErrorActionPreference = "Stop"  # Exit on error
+Set-StrictMode -Version Latest   # Disallow undefined variables
+
+# Prevent overwriting files (similar to noclobber)
+function SafeWrite-File {
+    param (
+        [string]$Path,
+        [string]$Content
+    )
+    if (Test-Path $Path) {
+        Write-Error "File '$Path' already exists. Aborting to prevent overwrite."
+    } else {
+        Set-Content -Path $Path -Value $Content
+    }
+}
+
+# winget hash: {{ include "./private_dot_config/winget/winget-config.yaml" | sha256sum }}
+Write-Host ""
+Write-Host "Install winget packages."
+
+winget configure -f ./private_dot_config/winget/winget-config.yaml
+
+Write-Host ""
+Write-Host "Install mise packages."
+
+Write-Host ""
+mise install --yes
+
+{{ else }}
 #!/usr/bin/env bash
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
@@ -30,7 +61,6 @@ test -d /home/linuxbrew/.linuxbrew && OUTPUT="$(/home/linuxbrew/.linuxbrew/bin/b
 test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
 {{ end }}
 
-{{  if ne .chezmoi.os "windows" }}
 # Update Homebrew
 echo
 brew update
@@ -54,16 +84,10 @@ else
 fi
 {{ end }}
 
-{{ else }}
-# winget hash: {{ include "./private_dot_config/winget/winget-config.yaml" | sha256sum }}
-echo
-echo "Install winget packages."
-
-winget configure -f ./private_dot_config/winget/winget-config.yaml
-{{ end }}
-
 echo
 echo "Install mise packages."
 
 echo
 mise install --yes
+
+{{ end }}

@@ -1,3 +1,30 @@
+{{ if eq .chezmoi.os "windows" }}
+# Set strict error handling
+$ErrorActionPreference = "Stop"  # Exit on error
+Set-StrictMode -Version Latest   # Disallow undefined variables
+
+# Prevent overwriting files (similar to noclobber)
+function SafeWrite-File {
+    param (
+        [string]$Path,
+        [string]$Content
+    )
+    if (Test-Path $Path) {
+        Write-Error "File '$Path' already exists. Aborting to prevent overwrite."
+    } else {
+        Set-Content -Path $Path -Value $Content
+    }
+}
+
+Write-Host ""
+Write-Host ""
+Write-Host "Before messages:"
+Write-Host ""
+Write-Host "You can clear run_once script states with:"
+Write-Host "  chezmoi state delete-bucket --bucket=scriptState"
+Write-Host ""
+Write-Host "Chezmoi run starting..."
+{{ else }}
 #!/usr/bin/env bash
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
@@ -18,3 +45,4 @@ echo "  chezmoi state delete-bucket --bucket=scriptState"
 
 echo
 echo "Chezmoi run starting..."
+{{ end }}

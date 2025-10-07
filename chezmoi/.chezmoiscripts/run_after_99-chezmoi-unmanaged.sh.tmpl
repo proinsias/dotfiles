@@ -1,3 +1,25 @@
+{{  if eq .chezmoi.os "windows" }}
+# Set strict error handling
+$ErrorActionPreference = "Stop"  # Exit on error
+Set-StrictMode -Version Latest   # Disallow undefined variables
+
+# Prevent overwriting files (similar to noclobber)
+function SafeWrite-File {
+    param (
+        [string]$Path,
+        [string]$Content
+    )
+    if (Test-Path $Path) {
+        Write-Error "File '$Path' already exists. Aborting to prevent overwrite."
+    } else {
+        Set-Content -Path $Path -Value $Content
+    }
+}
+
+Write-Host ""
+Write-Host "Files unmanaged by chezmoi:"
+chezmoi unmanaged
+{{ else }}
 #!/usr/bin/env bash
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
@@ -11,3 +33,4 @@ shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories
 echo
 echo "Files unmanaged by chezmoi:"
 chezmoi unmanaged
+{{ end }}

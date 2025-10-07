@@ -1,3 +1,31 @@
+{{  if eq .chezmoi.os "windows" }}
+# Set strict error handling
+$ErrorActionPreference = "Stop"  # Exit on error
+Set-StrictMode -Version Latest   # Disallow undefined variables
+
+# Prevent overwriting files (similar to noclobber)
+function SafeWrite-File {
+    param (
+        [string]$Path,
+        [string]$Content
+    )
+    if (Test-Path $Path) {
+        Write-Error "File '$Path' already exists. Aborting to prevent overwrite."
+    } else {
+        Set-Content -Path $Path -Value $Content
+    }
+}
+
+Write-Host ""
+Write-Host "Installing 1Password CLI..."
+winget install --id 1password-cli
+
+Write-Host "Logging into 1Password..."
+$sessionJson = op signin --account "{{ .opaccount }}"
+$sessionInfo = $sessionJson | ConvertFrom-Json
+# Set the session token as an environment variable
+$env:OP_SESSION_{{ .opaccount }} = $sessionInfo.session
+{{ else }}
 #!/usr/bin/env bash
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
@@ -37,7 +65,6 @@ if ! command -v brew &>/dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-
 # Install 1Password CLI if not installed.
 if ! command -v op >/dev/null 2>&1; then
     echo
@@ -76,7 +103,6 @@ if ! op whoami >/dev/null 2>&1; then
     echo
     echo "Logging into 1Password..."
 
-    # OP_SESSION_IPSQ5XJ7FFEKLI5OALM3AREXS4="P-qJ5s9_QYZmGScSWATJh878T2XE1W7ZIJOdifjsZ9Q"
-
     eval "$(op signin --account {{ .opaccount }} )"
 fi
+{{ end }}

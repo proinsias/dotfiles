@@ -1,3 +1,4 @@
+{{  if ne .chezmoi.os "windows" }}
 #!/usr/bin/env bash
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
@@ -13,7 +14,6 @@ echo
 echo "Logging into tools."
 
 {{ if not .work }}
-{{  if ne .chezmoi.os "windows" }}
 if ! atuin status 2>&1 | grep -q {{ onepasswordRead "op://Parents/atuin/username" | quote }}; then
     echo
     echo "Logging into atuin..."

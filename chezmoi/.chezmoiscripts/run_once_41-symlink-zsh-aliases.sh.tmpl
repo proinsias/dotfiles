@@ -1,3 +1,4 @@
+{{  if ne .chezmoi.os "windows" }}
 #!/usr/bin/env bash
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
@@ -14,3 +15,4 @@ echo "Adding symbolic links for oh-my-zsh aliases."
 
 mkdir -p ~/.oh-my-zsh/custom
 ln -f -s ~/.config/zsh/aliases.zsh ~/.oh-my-zsh/custom/aliases.zsh
+{{ end }}

@@ -1,3 +1,4 @@
+{{  if ne .chezmoi.os "windows" }}
 #!/usr/bin/env bash
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
@@ -38,3 +39,4 @@ ln -f -s {{ .chezmoi.sourceDir }}/sym_oh-my-zsh/custom/plugins/op/_op \
     ~/.oh-my-zsh/custom/plugins/op/_op
 ln -f -s {{ .chezmoi.sourceDir }}/sym_oh-my-zsh/custom/plugins/rustup/_rustup \
     ~/.oh-my-zsh/custom/plugins/rustup/_rustup
+{{ end }}

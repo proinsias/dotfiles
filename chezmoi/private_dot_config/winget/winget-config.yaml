@@ -1,0 +1,16 @@
+{{  if eq .chezmoi.os "windows" }}
+$schema: https://aka.ms/winget-schema/settings.v2.json
+packages:
+  - packageIdentifier: FiloSottile.age
+  - packageIdentifier: sharkdp.bat
+  - packageIdentifier: twpayne.chezmoi
+  # - packageIdentifier: GitHub.cli  # Requires admin.
+  - packageIdentifier: junegunn.fzf
+  - packageIdentifier: jdx.mise
+  # - packageIdentifier: Starship.Starship  # Requires admin.
+  - packageIdentifier: topgrade-rs.topgrade
+  - packageIdentifier: astral-sh.uv
+  # - packageIdentifier: wez.wezterm  # Requires admin.
+  - packageIdentifier: 1password-cli
+  - packageIdentifier: AgileBits.1Password
+{{ end }}

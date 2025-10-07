@@ -1,3 +1,4 @@
+{{  if ne .chezmoi.os "windows" }}
 #!/usr/bin/env bash
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
@@ -8,16 +9,18 @@ set -o pipefail               # Produce a failure return code if any pipeline co
 shopt -s failglob             # Cause globs that don't get expanded to cause errors.
 shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
 
-# Get age key from 1password and save it to disk.
-# Requires 1password CLI to be installed and signed in.
-getagekey() {
-    OUTPUT="$(op read "op://Parents/chezmoi/public-key")"
-    echo "# public key: ${OUTPUT}"
-    op read "op://Parents/chezmoi/key.txt"
-}
+echo
+echo
+echo "Logging into tools."
 
-mkdir -p ~/.config/chezmoi ~/.config/mise
-
-getagekey >|~/.config/chezmoi/key.txt
-
-cp -f -l ~/.config/chezmoi/key.txt ~/.config/mise/age.txt
+{{ if not .work }}
+if ! atuin status 2>&1 | grep -q {{ onepasswordRead "op://Parents/atuin/username" | quote }}; then
+    echo
+    echo "Logging into atuin..."
+    atuin login \
+        --username {{ onepasswordRead "op://Parents/atuin/username" | quote }} \
+        --password {{ onepasswordRead "op://Parents/atuin/password" | quote }} \
+        --key {{ onepasswordRead "op://Parents/atuin/key" | quote }}
+fi
+{{ end }}
+{{ end }}

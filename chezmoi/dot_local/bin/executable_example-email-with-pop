@@ -6,7 +6,7 @@ my_func() {
 
 }
 
-# FIXME: 
+# FIXME:
 
 host="$(hostname -s)"
 export host

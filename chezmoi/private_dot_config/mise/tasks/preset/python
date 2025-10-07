@@ -12,6 +12,3 @@ mise config set env._.python.venv.create true -t bool
 mise config set hooks.postinstall "uv sync"
 
 mise tasks add lint -- pre-commit run -a
-
-
-

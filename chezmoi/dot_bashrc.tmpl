@@ -34,9 +34,11 @@ test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)
 {{ else }}
 {{ end }}
 
+{{ if ne .chezmoi.os "windows" }}  # Doesn't work in Git Bash shell.
 # For mise
-OUTPUT="$(mise activate zsh)"
+OUTPUT="$(mise activate bash)"
 eval "${OUTPUT}"
+{{ end }}
 
 # Shell Options
 #
@@ -93,9 +95,6 @@ shopt -s lithist
 # Use case-insensitive filename globbing
 shopt -s nocaseglob
 
-# Create venv directory in case doesn't exist.
-mkdir -p "${HOME}"/.virtualenvs
-
 # Completion options
 #
 # These completion tuning parameters change the default behavior of bash_completion:
@@ -114,8 +113,8 @@ mkdir -p "${HOME}"/.virtualenvs
 if type pipx >/dev/null 2>&1; then
     OUTPUT="$(register-python-argcomplete pipx)"
     eval "${OUTPUT}"
-else
-    echo "Install pipx using: brew install pipx"
+# else
+#     echo "Install pipx using: brew install pipx"
 fi
 
 # AWS bash completion
@@ -135,8 +134,8 @@ if type conda >/dev/null 2>&1; then
     if type register-python-argcomplete >/dev/null 2>&1; then
         OUTPUT="$(register-python-argcomplete conda)"
         eval "${OUTPUT}"
-    else
-        echo "Install argcomplete using: python3 -m pip install argcomplete"
+    # else
+    #     echo "Install argcomplete using: python3 -m pip install argcomplete"
     fi
 fi
 
@@ -153,8 +152,8 @@ if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/python-argcomplete"; then
     # shellcheck disable=SC2065
     if type activate-global-python-argcomplete >/dev/null 2>&1; then
         activate-global-python-argcomplete --dest "${HOMEBREW_PREFIX}/etc/bash_completion.d"
-    else
-        echo "Install argcomplete using: python3 -m pip install argcomplete"
+    # else
+    #     echo "Install argcomplete using: python3 -m pip install argcomplete"
     fi
 fi
 
@@ -165,14 +164,14 @@ if test -f "${HOME}"/.config/bash/bash_completions/git-completion.sh >/dev/null 
 fi
 
 # https://python-poetry.org/docs/
-if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/poetry.bash-completion"; then
-    # shellcheck disable=SC2065
-    if test poetry >/dev/null 2>&1; then
-        poetry completions bash >"${HOMEBREW_PREFIX}"/etc/bash_completion.d/poetry.bash-completion
-    else
-        echo "Install poetry!"
-    fi
-fi
+# if ! test -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/poetry.bash-completion"; then
+#     # shellcheck disable=SC2065
+#     if test poetry >/dev/null 2>&1; then
+#         poetry completions bash >"${HOMEBREW_PREFIX}"/etc/bash_completion.d/poetry.bash-completion
+#     else
+#         echo "Install poetry!"
+#     fi
+# fi
 
 # npm completion > "${HOME}"/.config/bash/bash_completions/npm-completion.sh
 # shellcheck disable=SC2065
@@ -228,12 +227,6 @@ fi
 export GIT_EDITOR="${EDITOR}"
 export ALTERNATE_EDITOR=""
 
-RED="\[\033[0;31m\]"
-YELLOW="\[\033[0;33m\]"
-GREEN="\[\033[0;32m\]"
-WHITE="\[\033[1;37m\]"
-PS1="${GREEN}\u@\h ${YELLOW}\w ${RED}\$(parse_git_branch)${WHITE} [\!]\n\$ "
-
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don't want to commit.
@@ -250,9 +243,9 @@ fi
 
 # Warn of missing tools
 # shellcheck disable=SC2065
-if ! type hub >/dev/null 2>&1; then
-    echo "Install hub using: brew install hub"
-fi
+# if ! type hub >/dev/null 2>&1; then
+#     echo "Install hub using: brew install hub"
+# fi
 
 export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
 
@@ -308,10 +301,16 @@ fi
 if /bin/ls "${HOME}"/.config/bash/* 1>/dev/null 2>&1; then
     for file in "${HOME}"/.config/bash/*; do
         # shellcheck disable=SC1090
-        source "${file}"
+        test -f "${file}" && source "${file}"
     done
     unset file
 fi
+
+RED="\[\033[0;31m\]"
+YELLOW="\[\033[0;33m\]"
+GREEN="\[\033[0;32m\]"
+WHITE="\[\033[1;37m\]"
+PS1="${GREEN}\u@\h ${YELLOW}\w ${RED}$(parse_git_branch)${WHITE} [\!]\n\$ "
 
 # A utility for sending notifications, on demand and when commands finish.
 # https://github.com/dschep/ntfy/
@@ -343,8 +342,8 @@ fi
 if type thefuck >/dev/null 2>&1; then
     OUTPUT="$(thefuck --alias)"
     eval "${OUTPUT}"
-else
-    echo "Install thefuck using: brew install thefuck"
+#else
+#    echo "Install thefuck using: brew install thefuck"
 fi
 
 # pyenv
@@ -370,13 +369,13 @@ else
 fi
 
 ### http://direnv.net/
-# shellcheck disable=SC2065
-if type direnv >/dev/null 2>&1; then
-    OUTPUT="$(direnv hook bash)"
-    eval "${OUTPUT}"
-else
-    echo "Install direnv using: brew install direnv"
-fi
+# # shellcheck disable=SC2065
+# if type direnv >/dev/null 2>&1; then
+#     OUTPUT="$(direnv hook bash)"
+#     eval "${OUTPUT}"
+# else
+#     echo "Install direnv using: brew install direnv"
+# fi
 
 ### Bashhub.com Installation.
 ### This Should be at the EOF. https://bashhub.com/docs

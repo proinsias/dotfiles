@@ -1,3 +1,11 @@
+# mise config hash: {{ include "./private_dot_config/mise/config.toml.tmpl " | sha256sum }}
+{{  if eq .chezmoi.os "windows" }}
+Write-Host ""
+Write-Host "Install mise packages."
+
+Write-Host ""
+mise install --yes
+{{ else }}
 #!{{ lookPath "bash" }}
 
 echo
@@ -5,5 +13,6 @@ echo
 echo "Install mise packages."
 
 echo
-# mise config hash: {{ include "./private_dot_config/mise/config.toml.tmpl " | sha256sum }}
 mise install --yes
+{{ end }}
+

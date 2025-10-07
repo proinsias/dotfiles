@@ -1,0 +1,121 @@
+{{  if eq .chezmoi.os "windows" }}
+# Set strict error handling
+$ErrorActionPreference = "Stop"  # Exit on error
+Set-StrictMode -Version Latest   # Disallow undefined variables
+
+# Prevent overwriting files (similar to noclobber)
+function SafeWrite-File {
+    param (
+        [string]$Path,
+        [string]$Content
+    )
+    if (Test-Path $Path) {
+        Write-Error "File '$Path' already exists. Aborting to prevent overwrite."
+    } else {
+        Set-Content -Path $Path -Value $Content
+    }
+}
+
+Write-Host ""
+Write-Host ""
+Write-Host "Upgrade packages."
+
+Write-Host ""
+mise upgrade --bump
+
+Write-Host ""
+mise doctor
+
+# # Requires admin access.
+# Write-Host ""
+# winget upgrade --all
+
+Write-Host ""
+pre-commit-autoupdate | Where-Object { $_ -notmatch "already up to date" }
+
+Write-Host ""
+uncommitted-francis "${HOME}"
+
+Write-Host ""
+uv cache prune
+
+{{ else }}
+#!/usr/bin/env bash
+
+set -o errexit                # Exit on error. Append || true if you expect an error.
+set -o errtrace               # Exit on error inside any functions or subshells.
+set -o noclobber              # Don't allow overwriting files.
+set -o nounset                # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail               # Produce a failure return code if any pipeline command errors.
+shopt -s failglob             # Cause globs that don't get expanded to cause errors.
+shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
+
+echo
+echo
+echo "Upgrade packages."
+
+{{ if and (eq .chezmoi.os "linux") (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
+echo -e "\napt-get update:"
+sudo apt-get update --yes
+echo -e "\napt-get upgrade:"
+sudo apt-get upgrade --yes
+
+apt list --upgradeable
+{{ end }}
+
+echo
+brew upgrade
+
+echo
+brew cleanup
+
+echo
+brew doctor
+
+echo
+brew outdated
+
+echo
+docker-cleanup
+
+if type gcloud >/dev/null 2>&1; then
+    sudo gcloud components update --quiet
+fi
+
+echo
+mise upgrade --bump
+
+echo
+mise doctor
+
+{{ if eq .chezmoi.os "darwin" }}
+echo
+mas upgrade
+{{ end }}
+
+echo
+pre-commit-autoupdate | grep -v "already up to date"
+
+echo
+# FIXME: Setup git_repos? uv? myrepos?
+sudo --validate
+topgrade --cleanup --no-retry --skip-notify --yes --disable \
+    brew_cask \
+    brew_formula \
+    bun-packages \
+    chezmoi \
+    git_repos \
+    mas \
+    mise \
+    nix \
+    oh-my-zsh \
+    pip3 \
+    rustup \
+    uv
+
+echo
+uncommitted-francis "${HOME}"
+
+echo
+uv cache prune
+{{ end }}

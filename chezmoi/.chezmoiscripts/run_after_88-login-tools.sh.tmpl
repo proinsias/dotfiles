@@ -1,4 +1,3 @@
-{{ if ne .chezmoi.os "windows" -}}
 #!/usr/bin/env bash
 
 set -o errexit    # Exit on error. Append || true if you expect an error.
@@ -18,5 +17,4 @@ if ! atuin status 2>&1 | grep -q {{ onepasswordRead "op://Parents/atuin/username
         --password {{ onepasswordRead "op://Parents/atuin/password" | quote }} \
         --key {{ onepasswordRead "op://Parents/atuin/key" | quote }}
 fi
-{{ end }}
 {{ end }}

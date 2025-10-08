@@ -1,12 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-Write-Host ""
-Write-Host "Install mise packages."
-
-# mise config hash: {{ include "./private_dot_config/mise/config.toml.tmpl" | sha256sum }}
-
-Write-Host ""
-mise install --yes
-{{ else -}}
 #!/usr/bin/env bash
 
 set -o errexit    # Exit on error. Append || true if you expect an error.
@@ -22,4 +13,3 @@ echo -e "\n\nInstall mise packages."
 
 echo -e "\nmise install"
 mise install --yes
-{{ end }}

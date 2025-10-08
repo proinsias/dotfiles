@@ -1,24 +1,15 @@
 {{ if eq .chezmoi.os "windows" -}}
-# Set strict error handling
-$ErrorActionPreference = "Stop"  # Exit on error
-Set-StrictMode -Version Latest   # Disallow undefined variables
+#!/usr/bin/env bash
 
-# Prevent overwriting files (similar to noclobber)
-function SafeWrite-File {
-    param (
-        [string]$Path,
-        [string]$Content
-    )
-    if (Test-Path $Path) {
-        Write-Error "File '$Path' already exists. Aborting to prevent overwrite."
-    } else {
-        Set-Content -Path $Path -Value $Content
-    }
-}
+set -o errexit    # Exit on error. Append || true if you expect an error.
+set -o errtrace   # Exit on error inside any functions or subshells.
+set -o noclobber  # don't allow overwriting files
+set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail   # Produce a failure return code if any pipeline command errors
+shopt -s failglob # Cause globs that don't get expanded to cause errors
+
+echo -e "\n\nInstall winget packages."
 
 # winget hash: {{ include "./private_dot_config/winget/winget-config.yaml" | sha256sum }}
-Write-Host ""
-Write-Host "Install winget packages."
-
 winget configure -f ./private_dot_config/winget/winget-config.yaml
 {{ end }}

@@ -1,25 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-# Set strict error handling
-$ErrorActionPreference = "Stop"  # Exit on error
-Set-StrictMode -Version Latest   # Disallow undefined variables
-
-# Prevent overwriting files (similar to noclobber)
-function SafeWrite-File {
-    param (
-        [string]$Path,
-        [string]$Content
-    )
-    if (Test-Path $Path) {
-        Write-Error "File '$Path' already exists. Aborting to prevent overwrite."
-    } else {
-        Set-Content -Path $Path -Value $Content
-    }
-}
-
-Write-Host ""
-Write-Host "Files unmanaged by chezmoi:"
-chezmoi unmanaged
-{{ else -}}
 #!/usr/bin/env bash
 
 set -o errexit    # Exit on error. Append || true if you expect an error.
@@ -31,4 +9,3 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 
 echo -e "\nFiles unmanaged by chezmoi:"
 chezmoi unmanaged
-{{ end }}

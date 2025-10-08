@@ -1,45 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-# Set strict error handling
-$ErrorActionPreference = "Stop"  # Exit on error
-Set-StrictMode -Version Latest   # Disallow undefined variables
-
-# Prevent overwriting files (similar to noclobber)
-function SafeWrite-File {
-    param (
-        [string]$Path,
-        [string]$Content
-    )
-    if (Test-Path $Path) {
-        Write-Error "File '$Path' already exists. Aborting to prevent overwrite."
-    } else {
-        Set-Content -Path $Path -Value $Content
-    }
-}
-
-Write-Host ""
-Write-Host ""
-Write-Host "Upgrade packages."
-
-Write-Host ""
-mise upgrade --bump
-
-Write-Host ""
-mise doctor
-
-# # Requires admin access.
-# Write-Host ""
-# winget upgrade --all
-
-Write-Host ""
-pre-commit-autoupdate | Where-Object { $_ -notmatch "already up to date" }
-
-Write-Host ""
-uncommitted-francis "${HOME}"
-
-Write-Host ""
-uv cache prune
-
-{{ else -}}
 #!/usr/bin/env bash
 
 set -o errexit    # Exit on error. Append || true if you expect an error.
@@ -116,4 +74,3 @@ uncommitted-francis "${HOME}"
 
 echo -e "\nuv cache prune:"
 uv cache prune
-{{ end }}

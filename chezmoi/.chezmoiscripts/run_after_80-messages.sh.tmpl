@@ -1,27 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-# Set strict error handling
-$ErrorActionPreference = "Stop"  # Exit on error
-Set-StrictMode -Version Latest   # Disallow undefined variables
-
-# Prevent overwriting files (similar to noclobber)
-function SafeWrite-File {
-    param (
-        [string]$Path,
-        [string]$Content
-    )
-    if (Test-Path $Path) {
-        Write-Error "File '$Path' already exists. Aborting to prevent overwrite."
-    } else {
-        Set-Content -Path $Path -Value $Content
-    }
-}
-
-Write-Host ""
-Write-Host ""
-Write-Host "After messages:"
-Write-Host ""
-Write-Host "Chezmoi run complete!"
-{{ else -}}
 #!/usr/bin/env bash
 
 set -o errexit    # Exit on error. Append || true if you expect an error.
@@ -34,4 +10,3 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 echo -e "\n\nAfter messages:"
 
 echo -e "\nChezmoi run complete!"
-{{ end }}

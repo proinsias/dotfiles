@@ -1,44 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-# Set strict error handling
-$ErrorActionPreference = "Stop"  # Exit on error
-Set-StrictMode -Version Latest   # Disallow undefined variables
-
-# Prevent overwriting files (similar to noclobber)
-function SafeWrite-File {
-    param (
-        [string]$Path,
-        [string]$Content
-    )
-    if (Test-Path $Path) {
-        Write-Error "File '$Path' already exists. Aborting to prevent overwrite."
-    } else {
-        Set-Content -Path $Path -Value $Content
-    }
-}
-
-Write-Host ""
-Write-Host ""
-Write-Host "Install uv tools."
-
-if ! pre-commit --version 2>&1 | grep -q pre-commit-uv ; then
-    uv tool install pre-commit --with pre-commit-uv --force-reinstall
-fi
-
-# 1. Create a temp file
-$tmpfile = New-TemporaryFile
-
-# uv tools hash: {{ include "./private_dot_config/uv/tools.txt" | sha256sum }}
-
-# 2. Filter comments/blank lines and write to temp file
-Get-Content "${HOME}/.config/uv/tools.txt" |
-    Where-Object { $_ -notmatch '^\s*(#|$)' } |
-    Set-Content $tmpfile
-
-# 3. Run uv tool install on each tool in parallel
-Get-Content $tmpfile | ForEach-Object -Parallel {
-    uv tool install --force -- $_
-}
-{{ else -}}
 #!/usr/bin/env bash
 
 set -o errexit    # Exit on error. Append || true if you expect an error.
@@ -65,7 +24,6 @@ tmpfile="$(mktemp)"
 grep -vE '^\s*(#|$)' "${HOME}/.config/uv/tools.txt" >> "${tmpfile}"
 
 xargs -P0 -I{} uv tool install --force -- "{}" < "${tmpfile}"
-{{ end }}
 
 echo -e "\nInstalling uv tools with requirements."
 

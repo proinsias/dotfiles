@@ -1,4 +1,3 @@
-{{ if ne .chezmoi.os "windows" -}}
 #!/usr/bin/env bash
 
 set -o errexit    # Exit on error. Append || true if you expect an error.
@@ -44,5 +43,4 @@ if ! command brew bundle check --global &> /dev/null; then
 else
     echo -e "\nThe Brewfile's dependencies are satisfied. Skipping brew bundle install --global..."
 fi
-{{ end }}
 {{ end }}

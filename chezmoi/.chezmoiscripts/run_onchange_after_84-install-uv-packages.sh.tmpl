@@ -1,4 +1,36 @@
+{{  if eq .chezmoi.os "windows" }}
+# Set strict error handling
+$ErrorActionPreference = "Stop"  # Exit on error
+Set-StrictMode -Version Latest   # Disallow undefined variables
+
+# Prevent overwriting files (similar to noclobber)
+function SafeWrite-File {
+    param (
+        [string]$Path,
+        [string]$Content
+    )
+    if (Test-Path $Path) {
+        Write-Error "File '$Path' already exists. Aborting to prevent overwrite."
+    } else {
+        Set-Content -Path $Path -Value $Content
+    }
+}
+
+Write-Host ""
+Write-Host ""
+Write-Host "Install uv tools."
+
+# uv tools hash: {{ include "./private_dot_config/uv/tools.txt " | sha256sum }}
+
+if ! pre-commit --version 2>&1 | grep -q pre-commit-uv ; then
+    uv tool install pre-commit --with pre-commit-uv --force-reinstall
+fi
+
+# FIXME: Install from tools!
+
+{{ else }}
 #!{{ lookPath "bash" }}
+set -euo pipefail
 
 echo
 echo
@@ -9,6 +41,10 @@ echo "Install uv tools."
 if ! pre-commit --version 2>&1 | grep -q pre-commit-uv ; then
     uv tool install pre-commit --with pre-commit-uv --force-reinstall
 fi
+
+# FIXME: Install from tools!
+
+{{ end }}
 
 # flake8 req hash: {{ include "./private_dot_config/uv/flake8-reqs.txt" | sha256sum }}
 uv tool install --with-requirements flake8-reqs.txt flake8

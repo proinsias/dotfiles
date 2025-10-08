@@ -19,12 +19,6 @@ function SafeWrite-File {
 Write-Host ""
 Write-Host "Installing 1Password CLI..."
 winget install --id 1password-cli
-
-Write-Host "Logging into 1Password..."
-$sessionJson = op signin --account "{{ .opaccount }}"
-$sessionInfo = $sessionJson | ConvertFrom-Json
-# Set the session token as an environment variable
-$env:OP_SESSION_{{ .opaccount }} = $sessionInfo.session
 {{ else }}
 #!/usr/bin/env bash
 
@@ -98,11 +92,3 @@ if ! command -v op >/dev/null 2>&1; then
     echo "Warning: No method to install 1Password CLI found!"
 {{- end -}}
 fi
-
-if ! op whoami >/dev/null 2>&1; then
-    echo
-    echo "Logging into 1Password..."
-
-    eval "$(op signin --account {{ .opaccount }} )"
-fi
-{{ end }}

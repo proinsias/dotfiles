@@ -1,0 +1,34 @@
+{{  if eq .chezmoi.os "windows" }}
+# Set strict error handling
+$ErrorActionPreference = "Stop"  # Exit on error
+Set-StrictMode -Version Latest   # Disallow undefined variables
+
+# Prevent overwriting files (similar to noclobber)
+function SafeWrite-File {
+    param (
+        [string]$Path,
+        [string]$Content
+    )
+    if (Test-Path $Path) {
+        Write-Error "File '$Path' already exists. Aborting to prevent overwrite."
+    } else {
+        Set-Content -Path $Path -Value $Content
+    }
+}
+
+Write-Host "Logging into 1Password..."
+$sessionJson = op signin --account "{{ .opaccount }}"
+$sessionInfo = $sessionJson | ConvertFrom-Json
+# Set the session token as an environment variable
+$env:OP_SESSION_{{ .opaccount }} = $sessionInfo.session
+{{ else }}
+#!{{ lookPath "bash" }}
+set -euo pipefail
+
+if ! op whoami >/dev/null 2>&1; then
+    echo
+    echo "Logging into 1Password..."
+
+    eval "$(op signin --account {{ .opaccount }} )"
+fi
+{{ end }}

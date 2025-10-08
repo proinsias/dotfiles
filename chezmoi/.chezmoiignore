@@ -160,6 +160,7 @@ README.md
 .streamlit/
 .subversion/auth
 .sudo_as_admin_successful
+.swt
 .tldr/
 .Trash/
 .viminfo

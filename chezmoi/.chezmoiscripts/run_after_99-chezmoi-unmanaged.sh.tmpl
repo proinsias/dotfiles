@@ -1,4 +1,4 @@
-{{  if eq .chezmoi.os "windows" }}
+{{ if eq .chezmoi.os "windows" -}}
 # Set strict error handling
 $ErrorActionPreference = "Stop"  # Exit on error
 Set-StrictMode -Version Latest   # Disallow undefined variables
@@ -19,10 +19,15 @@ function SafeWrite-File {
 Write-Host ""
 Write-Host "Files unmanaged by chezmoi:"
 chezmoi unmanaged
-{{ else }}
+{{ else -}}
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -o errexit    # Exit on error. Append || true if you expect an error.
+set -o errtrace   # Exit on error inside any functions or subshells.
+set -o noclobber  # don't allow overwriting files
+set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail   # Produce a failure return code if any pipeline command errors
+shopt -s failglob # Cause globs that don't get expanded to cause errors
 
 echo
 echo "Files unmanaged by chezmoi:"

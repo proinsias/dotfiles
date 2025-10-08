@@ -1,16 +1,26 @@
-# mise config hash: {{ include "./private_dot_config/mise/config.toml.tmpl " | sha256sum }}
-{{  if eq .chezmoi.os "windows" }}
+{{ if eq .chezmoi.os "windows" -}}
 Write-Host ""
 Write-Host "Install mise packages."
 
+# mise config hash: {{ include "./private_dot_config/mise/config.toml.tmpl " | sha256sum }}
+
 Write-Host ""
 mise install --yes
-{{ else }}
-#!{{ lookPath "bash" }}
+{{ else -}}
+#!/usr/bin/env bash
+
+set -o errexit    # Exit on error. Append || true if you expect an error.
+set -o errtrace   # Exit on error inside any functions or subshells.
+set -o noclobber  # don't allow overwriting files
+set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail   # Produce a failure return code if any pipeline command errors
+shopt -s failglob # Cause globs that don't get expanded to cause errors
 
 echo
 echo
 echo "Install mise packages."
+
+# mise config hash: {{ include "./private_dot_config/mise/config.toml.tmpl " | sha256sum }}
 
 echo
 mise install --yes

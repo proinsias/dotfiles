@@ -10,13 +10,13 @@ root: ~/git/project-manticore
 
 windows:
     - development:
-        - eval "$(op signin)" && ssh-add
+        # - eval "$(op signin)" && ssh-add
         - cd development  # Do this after entering passwords as I might have to enter root pwd.
     - francis-experiments:
-        - eval "$(op signin)" && ssh-add
+        # - eval "$(op signin)" && ssh-add
         - cd francis-experiments
     - extras:
-        - eval "$(op signin)" && ssh-add
+        # - eval "$(op signin)" && ssh-add
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
 startup_window: development

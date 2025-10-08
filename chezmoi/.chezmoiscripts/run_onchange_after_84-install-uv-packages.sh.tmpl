@@ -1,3 +1,4 @@
+# uv tools hash: {{ include "./private_dot_config/uv/tools.txt" | sha256sum }}
 {{  if eq .chezmoi.os "windows" }}
 # Set strict error handling
 $ErrorActionPreference = "Stop"  # Exit on error
@@ -20,42 +21,59 @@ Write-Host ""
 Write-Host ""
 Write-Host "Install uv tools."
 
-# uv tools hash: {{ include "./private_dot_config/uv/tools.txt " | sha256sum }}
-
 if ! pre-commit --version 2>&1 | grep -q pre-commit-uv ; then
     uv tool install pre-commit --with pre-commit-uv --force-reinstall
 fi
 
-# FIXME: Install from tools!
+# 1. Create a temp file
+$tmpfile = New-TemporaryFile
 
+# 2. Filter comments/blank lines and write to temp file
+Get-Content "./private_dot_config/uv/tools.txt" |
+    Where-Object { $_ -notmatch '^\s*(#|$)' } |
+    Set-Content $tmpfile
+
+# 3. Run uv tool install on each tool in parallel
+Get-Content $tmpfile | ForEach-Object -Parallel {
+    uv tool install --force -- $_
+}
 {{ else }}
-#!{{ lookPath "bash" }}
-set -euo pipefail
+#!/usr/bin/env bash
+
+set -o errexit                # Exit on error. Append || true if you expect an error.
+set -o errtrace               # Exit on error inside any functions or subshells.
+set -o noclobber              # Don't allow overwriting files.
+set -o nounset                # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail               # Produce a failure return code if any pipeline command errors.
+shopt -s failglob             # Cause globs that don't get expanded to cause errors.
+shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
 
 echo
 echo
 echo "Install uv tools."
 
-# uv tools hash: {{ include "./private_dot_config/uv/tools.txt " | sha256sum }}
-
 if ! pre-commit --version 2>&1 | grep -q pre-commit-uv ; then
     uv tool install pre-commit --with pre-commit-uv --force-reinstall
 fi
 
-# FIXME: Install from tools!
+# create a temp file list with cleaned tool names
+tmpfile="$(mktemp)"
+# filter comments/blank lines
+grep -vE '^\s*(#|$)' "./private_dot_config/uv/tools.txt" >> "${tmpfile}"
 
+xargs -P0 -I{} uv tool install --force -- "{}" < "${tmpfile}"
 {{ end }}
 
 # flake8 req hash: {{ include "./private_dot_config/uv/flake8-reqs.txt" | sha256sum }}
-uv tool install --with-requirements flake8-reqs.txt flake8
+uv tool install --with-requirements flake8-reqs.txt --force flake8
 
 # mdformat req hash: {{ include "./private_dot_config/uv/mdformat-reqs.txt" | sha256sum }}
-uv tool install --with-requirements mdformat-reqs.txt mdformat
+uv tool install --with-requirements mdformat-reqs.txt --force mdformat
 
-uv tool install --with ipython_genutils nbdime
+uv tool install --with ipython_genutils --force nbdime
 
 # ntfy req hash: {{ include "./private_dot_config/uv/ntfy-reqs.txt" | sha256sum }}
-uv tool install --with-requirements ntfy-reqs.txt ntfy
+uv tool install --with-requirements ntfy-reqs.txt --force ntfy
 
 # pytest req hash: {{ include "./private_dot_config/uv/pytest-reqs.txt" | sha256sum }}
-uv tool install --with-requirements pytest-reqs.txt pytest
+uv tool install --with-requirements pytest-reqs.txt --force pytest

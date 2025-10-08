@@ -6,8 +6,6 @@ my_func() {
 
 }
 
-# FIXME:
-
 host="$(hostname -s)"
 export host
 dt="$(gdate --iso-8601)"

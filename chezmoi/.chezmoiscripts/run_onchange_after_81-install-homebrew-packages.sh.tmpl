@@ -8,9 +8,7 @@ set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an un
 set -o pipefail   # Produce a failure return code if any pipeline command errors
 shopt -s failglob # Cause globs that don't get expanded to cause errors
 
-echo
-echo
-echo "Install homebrew packages."
+echo -e "\n\nInstall homebrew packages."
 
 # For homebrew
 # Adds $HOMEBREW_PREFIX/bin as prefix to PATH.
@@ -28,25 +26,23 @@ test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)
 {{ end }}
 
 # Update Homebrew
-echo
+echo -e "\nbrew update"
 brew update
 
 # Brewfile hash: {{ include "./private_dot_config/homebrew/Brewfile.tmpl" | sha256sum }}
 {{ if .test }}
 if ! command brew bundle check --file "${TEST_HOME}/.config/homebrew/Brewfile" &> /dev/null; then
-    echo
-    echo "The Brewfile's dependencies are not satisfied. Running brew bundle install --file..."
+    echo -e "\nThe Brewfile's dependencies are not satisfied. Running brew bundle install --file..."
     brew bundle install --file "${TEST_HOME}/.config/homebrew/Brewfile"
 else
-    echo "The Brewfile's dependencies are satisfied. Skipping brew bundle install --file..."
+    echo -e "\nThe Brewfile's dependencies are satisfied. Skipping brew bundle install --file..."
 fi
 {{ else }}
 if ! command brew bundle check --global &> /dev/null; then
-    echo
-    echo "The Brewfile's dependencies are not satisfied. Running brew bundle install --global..."
+    echo -e "\nThe Brewfile's dependencies are not satisfied. Running brew bundle install --global..."
     brew bundle install --global
 else
-    echo "The Brewfile's dependencies are satisfied. Skipping brew bundle install --global..."
+    echo -e "\nThe Brewfile's dependencies are satisfied. Skipping brew bundle install --global..."
 fi
 {{ end }}
 {{ end }}

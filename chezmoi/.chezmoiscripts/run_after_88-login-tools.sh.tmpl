@@ -8,14 +8,11 @@ set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an un
 set -o pipefail   # Produce a failure return code if any pipeline command errors
 shopt -s failglob # Cause globs that don't get expanded to cause errors
 
-echo
-echo
-echo "Logging into tools."
+echo -e "\n\nLogging into tools."
 
 {{ if not .work }}
 if ! atuin status 2>&1 | grep -q {{ onepasswordRead "op://Parents/atuin/username" | quote }}; then
-    echo
-    echo "Logging into atuin..."
+    echo -e "\nLogging into atuin..."
     atuin login \
         --username {{ onepasswordRead "op://Parents/atuin/username" | quote }} \
         --password {{ onepasswordRead "op://Parents/atuin/password" | quote }} \

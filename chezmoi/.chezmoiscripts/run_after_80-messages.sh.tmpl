@@ -31,10 +31,7 @@ set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an un
 set -o pipefail   # Produce a failure return code if any pipeline command errors
 shopt -s failglob # Cause globs that don't get expanded to cause errors
 
-echo
-echo
-echo "After messages:"
+echo -e "\n\nAfter messages:"
 
-echo
-echo "Chezmoi run complete!"
+echo -e "\nChezmoi run complete!"
 {{ end }}

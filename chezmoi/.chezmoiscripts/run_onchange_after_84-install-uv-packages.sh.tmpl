@@ -48,15 +48,16 @@ set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an un
 set -o pipefail   # Produce a failure return code if any pipeline command errors
 shopt -s failglob # Cause globs that don't get expanded to cause errors
 
-echo
-echo
-echo "Install uv tools."
+echo -e "\n\nInstall uv tools."
 
 if ! pre-commit --version 2>&1 | grep -q pre-commit-uv ; then
+    echo -e "\nInstalling pre-commit."
     uv tool install pre-commit --with pre-commit-uv --force-reinstall
 fi
 
 # uv tools hash: {{ include "./private_dot_config/uv/tools.txt" | sha256sum }}
+
+echo -e "\nInstalling individual uv tools."
 
 # create a temp file list with cleaned tool names
 tmpfile="$(mktemp)"
@@ -65,6 +66,8 @@ grep -vE '^\s*(#|$)' "${HOME}/.config/uv/tools.txt" >> "${tmpfile}"
 
 xargs -P0 -I{} uv tool install --force -- "{}" < "${tmpfile}"
 {{ end }}
+
+echo -e "\nInstalling uv tools with requirements."
 
 # flake8 req hash: {{ include "./private_dot_config/uv/flake8-reqs.txt" | sha256sum }}
 uv tool install --with-requirements "${HOME}/.config/uv/flake8-reqs.txt" --force flake8

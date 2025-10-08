@@ -40,7 +40,7 @@ test -f /opt/homebrew/bin/brew && OUTPUT="$(/opt/homebrew/bin/brew shellenv)" &&
 
 # Check if Command Line Tools are already installed
 if ! xcode-select -p &> /dev/null; then
-    echo "Installing Command Line Tools..."
+    echo -e "\nInstalling Command Line Tools..."
     xcode-select --install
 fi
 
@@ -53,15 +53,13 @@ test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)
 
 # Install Homebrew if not installed.
 if ! command -v brew &>/dev/null; then
-    echo
-    echo "Installing Homebrew..."
+    echo -e "\nInstalling Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 # Install 1Password CLI if not installed.
 if ! command -v op >/dev/null 2>&1; then
-    echo
-    echo "Installing 1Password CLI..."
+    echo -e "\nInstalling 1Password CLI..."
 
 {{ if eq .chezmoi.os "darwin" }}
     brew install op

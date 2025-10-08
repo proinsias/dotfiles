@@ -32,9 +32,7 @@ set -o pipefail   # Produce a failure return code if any pipeline command errors
 shopt -s failglob # Cause globs that don't get expanded to cause errors
 
 if ! op whoami >/dev/null 2>&1; then
-    echo
-    echo "Logging into 1Password..."
-
+    echo -e "\nLogging into 1Password..."
     eval "$(op signin --account {{ .opaccount }} )"
 fi
 {{ end }}

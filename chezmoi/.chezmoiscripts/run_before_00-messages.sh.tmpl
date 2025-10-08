@@ -34,14 +34,10 @@ set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an un
 set -o pipefail   # Produce a failure return code if any pipeline command errors
 shopt -s failglob # Cause globs that don't get expanded to cause errors
 
-echo
-echo
-echo "Before messages:"
+echo -e "\n\nBefore messages:"
 
-echo
-echo "You can clear run_once script states with:"
+echo -e "\nYou can clear run_once script states with:"
 echo "  chezmoi state delete-bucket --bucket=scriptState"
 
-echo
-echo "Chezmoi run starting..."
+echo -e "\nChezmoi run starting..."
 {{ end }}

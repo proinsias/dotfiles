@@ -8,9 +8,7 @@ set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an un
 set -o pipefail   # Produce a failure return code if any pipeline command errors
 shopt -s failglob # Cause globs that don't get expanded to cause errors
 
-echo
-echo
-echo "Enable Touch ID for sudo."
+echo -e "\n\nEnable Touch ID for sudo."
 
 sudo tee /etc/pam.d/sudo_local >/dev/null <<EOF
 # sudo_local: local config file which survives system update and is included for sudo.

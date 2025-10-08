@@ -49,9 +49,7 @@ set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an un
 set -o pipefail   # Produce a failure return code if any pipeline command errors
 shopt -s failglob # Cause globs that don't get expanded to cause errors
 
-echo
-echo
-echo "Upgrade packages."
+echo -e "\n\nUpgrade packages."
 
 {{ if and (eq .chezmoi.os "linux") (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
 echo -e "\napt-get update:"
@@ -62,40 +60,41 @@ sudo apt-get upgrade --yes
 apt list --upgradeable
 {{ end }}
 
-echo
+echo -e "\nbrew upgrade:"
 brew upgrade
 
-echo
+echo -e "\nbrew cleanup:"
 brew cleanup
 
-echo
+echo -e "\nbrew doctor:"
 brew doctor
 
-echo
+echo -e "\nbrew outdated:"
 brew outdated
 
-# echo
+# echo -e "\ndocker-cleanup:"
 # docker-cleanup
 
 if type gcloud >/dev/null 2>&1; then
+    echo -e "\ngcloud components update:"
     sudo gcloud components update --quiet
 fi
 
-echo
+echo -e "\nmise upgrade:"
 mise upgrade --bump
 
-echo
+echo -e "\nmise doctor:"
 mise doctor
 
 {{ if eq .chezmoi.os "darwin" }}
-echo
+echo -e "\nmas upgrade:"
 mas upgrade
 {{ end }}
 
-echo
+echo -e "\npre-commit-autoupdate:"
 pre-commit-autoupdate | grep -v "already up to date"
 
-echo
+echo -e "\ntopgrade:"
 # FIXME: Setup git_repos? uv? myrepos?
 sudo --validate
 topgrade --cleanup --no-retry --skip-notify --yes --disable \
@@ -112,9 +111,9 @@ topgrade --cleanup --no-retry --skip-notify --yes --disable \
     rustup \
     uv
 
-echo
+echo -e "\nuncommitted-francis:"
 uncommitted-francis "${HOME}"
 
-echo
+echo -e "\nuv cache prune:"
 uv cache prune
 {{ end }}

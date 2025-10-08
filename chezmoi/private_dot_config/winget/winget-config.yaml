@@ -5,6 +5,7 @@ packages:
   - packageIdentifier: sharkdp.bat
   - packageIdentifier: twpayne.chezmoi
   # - packageIdentifier: GitHub.cli  # Requires admin.
+  - packageIdentifier: GNU.Emacs
   - packageIdentifier: junegunn.fzf
   - packageIdentifier: jdx.mise
   # - packageIdentifier: Starship.Starship  # Requires admin.

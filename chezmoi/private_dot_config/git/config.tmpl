@@ -102,7 +102,11 @@
     # functionality, recording the carriage returns in the repository by setting the config
     # value to false.
     # autocrlf = false
+{{ if eq .chezmoi.os "windows" }}
+    editor = vi
+{{ else }}
     editor = code
+{{ end }}
     # excludesfile = ~/.gitignore_global
     # # Don't paginate output by default, default is less.
     # pager = cat

@@ -36,10 +36,10 @@ export HOMEBREW_INSTALL_CLEANUP=true
 if [[ -n "${SSH_CONNECTION}" ]]; then
     export EDITOR='vi'
 else
-{{ if eq .chezmoi.os "darwin" }}
+{{ if eq .chezmoi.os "windows" }}
+    export EDITOR='vi'
+{{ else }}
     export EDITOR='code --wait'
-{{ else if eq .chezmoi.os "linux" }}
-    export EDITOR='emacsclient'
 {{ end }}
 fi
 

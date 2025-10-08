@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -o errexit    # Exit on error. Append || true if you expect an error.
+set -o errtrace   # Exit on error inside any functions or subshells.
+set -o noclobber  # don't allow overwriting files
+set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail   # Produce a failure return code if any pipeline command errors
+shopt -s failglob # Cause globs that don't get expanded to cause errors
+
+echo -e "\n\nInstall nodejs tools."
+
+# nodejs tools hash: {{ include "./private_dot_config/nodejs/tools.txt" | sha256sum }}
+
+# create a temp file list with cleaned tool names
+tmpfile="$(mktemp)"
+# filter comments/blank lines
+grep -vE '^\s*(#|$)' "${HOME}/.config/nodejs/tools.txt" >> "${tmpfile}"
+
+xargs -P0 -I{} npm install --global -- "{}" < "${tmpfile}"

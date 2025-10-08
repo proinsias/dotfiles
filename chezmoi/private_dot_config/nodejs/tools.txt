@@ -1,0 +1,50 @@
+cspell
+csslint
+dockerlint
+dockerfilelint
+dockerfile_lint
+emoj
+eslint
+fkill-cli
+git-guilt
+# how2
+htmlhint
+jscpd
+jscs
+jshint
+jslint
+# markdownlint-cli
+# markdown-link-check
+# markdown-toc
+mega-linter-runner
+npm-check
+npm-check-updates
+semistandard
+standard
+svgo
+# terminalizer
+textlint
+textlint-plugin-latex2e
+textlint-filter-rule-comments
+textlint-rule-alex
+textlint-rule-apostrophe
+textlint-rule-common-misspellings
+textlint-rule-diacritics
+textlint-rule-doubled-spaces
+textlint-rule-editorconfig
+textlint-rule-en-capitalization
+textlint-rule-en-spell
+textlint-rule-max-number-of-lines
+textlint-rule-no-dead-link
+textlint-rule-no-empty-section
+textlint-rule-no-start-duplicated-conjunction
+textlint-rule-no-todo
+textlint-rule-stop-words
+textlint-rule-terminology
+textlint-rule-write-good
+textlint-rule-unexpanded-acronym
+textlint-rule/textlint-rule-no-duplicate-abbr
+textlint-rule/textlint-rule-no-invalid-control-character
+tldr
+v8r
+yarn

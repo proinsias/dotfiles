@@ -111,7 +111,6 @@ README.md
 !.local/bin/mysql_load_dump
 !.local/bin/nb2md
 !.local/bin/nb2py
-!.local/bin/nbstripout
 !.local/bin/nbstripoutput
 !.local/bin/open-first-10-links-in-markdown-file
 !.local/bin/open-repos-in-vscode

@@ -35,7 +35,12 @@ README.md
 .config/systemd/
 .config/thefuck/rules/
 .config/thefuck/__pycache__/
-.config/uv/
+.config/uv/*
+!.config/uv/flake8-reqs.txt
+!.config/uv/mdformat-reqs.txt
+!.config/uv/ntfy-reqs.txt
+!.config/uv/pytest-reqs.txt
+!.config/uv/tools.txt
 .config/yarn/
 .config/zsh/.zcompdump*
 .config/zsh/.zsh_history

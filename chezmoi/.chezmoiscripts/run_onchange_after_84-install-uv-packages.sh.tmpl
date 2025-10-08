@@ -30,7 +30,7 @@ $tmpfile = New-TemporaryFile
 # uv tools hash: {{ include "./private_dot_config/uv/tools.txt" | sha256sum }}
 
 # 2. Filter comments/blank lines and write to temp file
-Get-Content "./private_dot_config/uv/tools.txt" |
+Get-Content "${HOME}/.config/uv/tools.txt" |
     Where-Object { $_ -notmatch '^\s*(#|$)' } |
     Set-Content $tmpfile
 
@@ -61,21 +61,21 @@ fi
 # create a temp file list with cleaned tool names
 tmpfile="$(mktemp)"
 # filter comments/blank lines
-grep -vE '^\s*(#|$)' "./private_dot_config/uv/tools.txt" >> "${tmpfile}"
+grep -vE '^\s*(#|$)' "${HOME}/.config/uv/tools.txt" >> "${tmpfile}"
 
 xargs -P0 -I{} uv tool install --force -- "{}" < "${tmpfile}"
 {{ end }}
 
 # flake8 req hash: {{ include "./private_dot_config/uv/flake8-reqs.txt" | sha256sum }}
-uv tool install --with-requirements flake8-reqs.txt --force flake8
+uv tool install --with-requirements "${HOME}/.config/uv/flake8-reqs.txt" --force flake8
 
 # mdformat req hash: {{ include "./private_dot_config/uv/mdformat-reqs.txt" | sha256sum }}
-uv tool install --with-requirements mdformat-reqs.txt --force mdformat
+uv tool install --with-requirements "${HOME}/.config/uv/mdformat-reqs.txt" --force mdformat
 
 uv tool install --with ipython_genutils --force nbdime
 
 # ntfy req hash: {{ include "./private_dot_config/uv/ntfy-reqs.txt" | sha256sum }}
-uv tool install --with-requirements ntfy-reqs.txt --force ntfy
+uv tool install --with-requirements "${HOME}/.config/uv/ntfy-reqs.txt" --force ntfy
 
 # pytest req hash: {{ include "./private_dot_config/uv/pytest-reqs.txt" | sha256sum }}
-uv tool install --with-requirements pytest-reqs.txt --force pytest
+uv tool install --with-requirements "${HOME}/.config/uv/pytest-reqs.txt" --force pytest

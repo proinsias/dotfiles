@@ -37,7 +37,7 @@ $jobs | ForEach-Object {
     Receive-Job $_
     Remove-Job $_
 }
-{{ else }}
+{{ else -}}
 #!/usr/bin/env bash
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
@@ -53,7 +53,7 @@ find "${HOME}"/git/ \
     -maxdepth 1 \
     -mindepth 1 \
     -type d \
-    -print0 |
-    xargs -P "$(nproc)" -I{} sh -c \
-        'cd {} && pre-commit autoupdate'
+    -print \
+    -exec sh -c \
+        'cd {} && test -f .pre-commit-config.yaml && pre-commit autoupdate' \;
 {{ end }}

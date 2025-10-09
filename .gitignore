@@ -2,3 +2,4 @@
 node_modules/
 megalinter-reports/
 report/
+!topgrade.d/

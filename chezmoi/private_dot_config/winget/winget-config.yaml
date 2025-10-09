@@ -11,6 +11,7 @@ packages:
   - packageIdentifier: Rustlang.Rustup
   # - packageIdentifier: Starship.Starship  # Requires admin.
   - packageIdentifier: topgrade-rs.topgrade
+  - packageIdentifier: Microsoft.VisualStudio.2022.BuildTools  # Requires admin.
   - packageIdentifier: astral-sh.uv
   # - packageIdentifier: wez.wezterm  # Requires admin.
   - packageIdentifier: 1password-cli

@@ -8,6 +8,7 @@ packages:
   - packageIdentifier: GNU.Emacs  # Requires admin.
   - packageIdentifier: junegunn.fzf
   - packageIdentifier: jdx.mise
+  - packageIdentifier: Rustlang.Rustup
   # - packageIdentifier: Starship.Starship  # Requires admin.
   - packageIdentifier: topgrade-rs.topgrade
   - packageIdentifier: astral-sh.uv

@@ -10,65 +10,61 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 
 # FIXME: GT! Copy from mac-playbook
 
+echo -e "\n\nSetting macOS preferences."
+
 # ~/.macos — https://mths.be/macos
 
-# # Close any open System Preferences panes, to prevent them from overriding
-# # settings we're about to change
-# osascript -e 'tell application "System Preferences" to quit'
-#
-# # Ask for the administrator password upfront
-# sudo -v
-#
-# # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-# while true; do
-#     sudo -n true
-#     sleep 60
-#     kill -0 "$$" || exit
-# done 2>/dev/null &
-#
-# ###############################################################################
-# # General UI/UX                                                               #
-# ###############################################################################
-#
-# # Set computer name (as done via System Preferences → Sharing)
-# #sudo scutil --set ComputerName "0x6D746873"
-# #sudo scutil --set HostName "0x6D746873"
-# #sudo scutil --set LocalHostName "0x6D746873"
-# #sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6D746873"
-#
-# # Disable the sound effects on boot
-# # sudo nvram SystemAudioVolume=" "
-#
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we're about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+done 2>/dev/null &
+
+###############################################################################
+echo -e "\n\General UI/UX"
+###############################################################################
+
+# Disable the sound effects on boot
+sudo nvram SystemAudioVolume=" "
+
 # # Disable transparency in the menu bar and elsewhere on Yosemite
 # defaults write com.apple.universalaccess reduceTransparency -bool true
-#
+
 # # Set highlight color to green
 # defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
-#
+
 # # Set sidebar icon size to medium
 # defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
-#
-# # Always show scrollbars
-# # defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
-# # Possible values: `WhenScrolling`, `Automatic` and `Always`
-#
+
+# Always show scrollbars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+# Possible values: `WhenScrolling`, `Automatic` and `Always`
+
 # # Disable the over-the-top focus ring animation
 # # defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
-#
+
 # # Adjust toolbar title rollover delay
 # defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0
-#
+
 # # Disable smooth scrolling
 # # (Uncomment if you're on an older Mac that messes up the animation)
-# #defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
-#
+# defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
+
 # # Increase window resize speed for Cocoa applications
 # defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
-#
-# # Expand save panel by default
-# defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-# defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
-#
+
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
 # # Expand print panel by default
 # defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 # defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
@@ -1044,11 +1040,6 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 # ###############################################################################
 # info "General UI/UX"
 #
-# # Set computer name (as done via System Preferences → Sharing)
-# sudo scutil --set ComputerName "inyati"
-# sudo scutil --set HostName "inyati"
-# sudo scutil --set LocalHostName "inyati"
-# sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "inyati"
 #
 # # Set standby delay to 12 hours (default is 1 hour)
 # sudo pmset -a standbydelay 43200
@@ -1058,9 +1049,6 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 #
 # # Disable the Screenshot and Empty Trash sound effects
 # defaults write com.apple.systemsound "com.apple.sound.uiaudio.enabled" -int 0
-#
-# # Disable transparency in the menu bar and elsewhere on Yosemite
-# #defaults write com.apple.universalaccess reduceTransparency -bool true
 #
 # # Menu bar: hide the Time Machine, Volume, and User icons
 # # CNS: Only hide the User icon.
@@ -1076,71 +1064,10 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 #   "/System/Library/CoreServices/Menu Extras/Battery.menu" \
 #   "/System/Library/CoreServices/Menu Extras/Clock.menu"
 #
-# # Set highlight color to green
-# #defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
-#
-# # Set sidebar icon size to medium
-# #defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
-#
-# # Show scrollbars when scrolling
-# defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
-# # Possible values: `WhenScrolling`, `Automatic` and `Always`
-#
-# # Disable smooth scrolling
-# # (Uncomment if you're on an older Mac that messes up the animation)
-# #defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
-#
-# # Increase window resize speed for Cocoa applications
-# defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
-#
-# # Expand save panel by default
-# defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-# defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
-#
-# # Expand print panel by default
-# defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
-# defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
-#
-# # Save to disk (not to iCloud) by default
-# defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
-#
-# # Automatically quit printer app once the print jobs complete
-# defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-#
-# # Disable the "Are you sure you want to open this application?" dialog
-# defaults write com.apple.LaunchServices LSQuarantine -bool false
-#
-# # Remove duplicates in the "Open With" menu (also see `lscleanup` alias)
-# /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
-#
-# # Display ASCII control characters using caret notation in standard text views
-# # Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
-# defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
-#
-# # Disable Resume system-wide
-# defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
-#
-# # Disable automatic termination of inactive apps
-# defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
-#
-# # Disable the crash reporter
-# defaults write com.apple.CrashReporter DialogType -string "none"
 #
 # # Send crash reporter notifications to the notification center
 # #defaults write com.apple.CrashReporter UseUNC 1
 #
-# # Set Help Viewer windows to non-floating mode
-# # defaults write com.apple.helpviewer DevMode -bool true
-#
-# # Fix for the ancient UTF-8 bug in QuickLook (https://mths.be/bbo)
-# # Commented out, as this is known to cause problems in various Adobe apps :(
-# # See https://github.com/mathiasbynens/dotfiles/issues/237
-# #echo "0x08000100:0" > ~/.CFUserTextEncoding
-#
-# # Reveal IP address, hostname, OS version, etc. when clicking the clock
-# # in the login window
-# # CNS: Not entirely sure I want this
-# #sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 #
 # # CNS: I do however want this:
 # sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "@lildude :: Found this computer? Please call +1-415-448-6673 :: GitHub, Inc."
@@ -1155,15 +1082,6 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 #
 # # Check for software updates daily, not just once per week
 # defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
-#
-# # Disable Notification Center and remove the menu bar icon
-# #launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
-#
-# # Disable smart quotes as they're annoying when typing code
-# defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-#
-# # Disable smart dashes as they're annoying when typing code
-# defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 #
 # # Set a custom wallpaper image. `DefaultDesktop.jpg` is already a symlink, and
 # # all wallpapers are in `/Library/Desktop Pictures/`. The default is `Wave.jpg`.
@@ -1980,9 +1898,7 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 #
 # ## Appearance (x-apple.systempreferences:com.apple.Appearance-Settings)
 # defaults write -g AppleInterfaceStyle -string "Dark"       # Dark mode
-# defaults write -g NSTableViewDefaultSizeMode -int 2        # Set "Sidebar icon size" to "Medium"
 # defaults write -g AppleReduceDesktopTinting -bool true     # Disable "Allow wallpaper tinting in windows"
-# defaults write -g AppleShowScrollBars -string "Automatic;" # Show scroll bars automatically based on mouse or trackpad
 # defaults write -g AppleScrollerPagingBehavior -bool true   # Click in the scroll bar to "Jump to the spot that's clicked"
 #
 # ## Apple Intelligence & Siri (x-apple.systempreferences:com.apple.Siri-Settings)
@@ -2177,14 +2093,9 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 # # Updates Global domain (NSGlobalDomain)
 # #######################################
 #
-# ## Expand save panel by default
-#
 # # Enable spelling and text replacement in all applications
 # defaults write -g WebContinuousSpellCheckingEnabled -boolean true
 # defaults write -g WebAutomaticTextReplacementEnabled -bool true
-#
-# defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
-# defaults write -g NSNavPanelExpandedStateForSaveMode2 -bool true
 #
 # ## Expand print panel by default
 # defaults write -g PMPrintingExpandedStateForPrint -bool true
@@ -3199,22 +3110,6 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 #   notify: Restart Day One
 # ---
 # system_defaults:
-#   hostname:
-#     # computername is the so-called "user-friendly" name for the Mac,
-#     # it's what will show up on the Mac itself and what will be
-#     # visible to others when connecting to it over a local network.
-#     # This is also what's visible under the Sharing preference panel.
-#     computername:
-#
-#     # hostname is the name assigned to the computer as visible
-#     # from the command line, and it's also used by local and
-#     # remote networks when connecting through SSH and Remote Login.
-#     hostname:
-#
-#     # localhostname is the name identifier used by Bonjour and
-#     # visible through file sharing services like AirDrop
-#     localhostname:
-#
 #   misc:
 #     enable_ssh: false
 #
@@ -3312,23 +3207,7 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 #
 #   # Space switching hotkeys (ctrl + 1-9)
 #   # enable_space_hotkeys: false
-#
-# # hostname:
-# # computername is the so-called "user-friendly" name for the Mac,
-# # it's what will show up on the Mac itself and what will be
-# # visible to others when connecting to it over a local network.
-# # This is also what's visible under the Sharing preference panel.
-# # computername: null
-#
-# # hostname is the name assigned to the computer as visible
-# # from the command line, and it's also used by local and
-# # remote networks when connecting through SSH and Remote Login.
-# # hostname: null
-#
-# # localhostname is the name identifier used by Bonjour and
-# # visible through file sharing services like AirDrop
-# # localhostname: null
-#
+##
 # security:
 #   # Gatekeeper won't allow you to easily install
 #   # unsigned apps not downloaded from the Mac App Store
@@ -3577,23 +3456,7 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 #
 #     # Space switching hotkeys (ctrl + 1-9)
 #     enable_space_hotkeys: false
-#
-#   hostname:
-#     # computername is the so-called "user-friendly" name for the Mac,
-#     # it's what will show up on the Mac itself and what will be
-#     # visible to others when connecting to it over a local network.
-#     # This is also what's visible under the Sharing preference panel.
-#     computername:
-#
-#     # hostname is the name assigned to the computer as visible
-#     # from the command line, and it's also used by local and
-#     # remote networks when connecting through SSH and Remote Login.
-#     hostname:
-#
-#     # localhostname is the name identifier used by Bonjour and
-#     # visible through file sharing services like AirDrop
-#     localhostname:
-#
+##
 #   security:
 #     # Gatekeeper won't allow you to easily install
 #     # unsigned apps not downloaded from the Mac App Store
@@ -3745,10 +3608,6 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 #   enable_secure_keyboard_entry: true
 #
 # system2:
-#   hostname:
-#     computername: mh-mbp
-#     hostname: mh-mbp
-#     localhostname: mh-mbp
 #   ui:
 #     interface_style: Dark
 #     expand_save_panel: true
@@ -4288,14 +4147,6 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 #     value: true
 #     state: present
 #
-# - name: Set sidebar icon size to 'medium'
-#   community.general.osx_defaults:
-#     domain: NSGlobalDomain
-#     key: NSTableViewDefaultSizeMode
-#     type: int
-#     value: 2
-#     state: present
-#
 # - name: Add a context menu item for showing the Web Inspector in web views
 #   community.general.osx_defaults:
 #     domain: NSGlobalDomain
@@ -4303,14 +4154,6 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 #     type: bool
 #     value: true
 #     state: present
-#
-# - name: UI - Expand save panel by default
-#   community.general.osx_defaults:
-#     domain: NSGlobalDomain
-#     key: NSNavPanelExpandedStateForSaveMode
-#     type: bool
-#     value: true
-#   notify: Restart Finder
 #
 # - name: UI - Expand print panel by default
 #   community.general.osx_defaults:
@@ -4363,13 +4206,6 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 #     type: bool
 #     value: true
 #
-# - name: UI - Enable focus ring
-#   community.general.osx_defaults:
-#     domain: NSGlobalDomain
-#     key: NSUseAnimatedFocusRing
-#     type: bool
-#     value: false
-#
 # - name: UI - Enable menubar transparency
 #   community.general.osx_defaults:
 #     domain: NSGlobalDomain
@@ -4377,26 +4213,12 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 #     type: bool
 #     value: true
 #
-# - name: UI - Show scrollbars
-#   community.general.osx_defaults:
-#     domain: NSGlobalDomain
-#     key: AppleShowScrollBars
-#     type: string
-#     value: WhenScrolling # Values: "WhenScrolling", "Always".
-#
 # - name: UI - Enable opening and closing window animations
 #   community.general.osx_defaults:
 #     domain: NSGlobalDomain
 #     key: NSAutomaticWindowAnimationsEnabled
 #     type: bool
 #     value: true
-#
-# - name: UI - Set window resize speed for Cocoa applications
-#   community.general.osx_defaults:
-#     domain: NSGlobalDomain
-#     key: NSWindowResizeTime
-#     type: float
-#     value: 0.2
 #
 # - name: Input - Enable auto correct
 #   community.general.osx_defaults:
@@ -5021,44 +4843,6 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 #   with_indexed_items: '{{ system.default_applications }}'
 #   changed_when: item.1.handler not in duti_result.results[item.0].stdout
 # ---
-# - name: Hostname - Get current ComputerName
-#   ansible.builtin.command: scutil --get ComputerName
-#   register: computername_result
-#   changed_when: false
-#   check_mode: false
-#   when: system.hostname.computername != None
-#
-# - name: Hostname - Update ComputerName
-#   ansible.builtin.command: scutil --set ComputerName {{ system.hostname.computername }}
-#   become: true
-#   when: system.hostname.computername != None and (system.hostname.computername not in computername_result.stdout)
-#
-# - name: Hostname - Get current HostName
-#   ansible.builtin.command: scutil --get HostName
-#   register: hostname_result
-#   changed_when: false
-#   failed_when: false
-#   check_mode: false
-#   when: system.hostname.hostname != None
-#
-# - name: Hostname - Update HostName
-#   ansible.builtin.command: scutil --set HostName {{ system.hostname.hostname }}
-#   become: true
-#   # yamllint disable-line rule:line-length
-#   when: system.hostname.hostname != None and (hostname_result.failed or (system.hostname.hostname not in hostname_result.stdout)) # editorconfig-checker-disable-line
-#
-# - name: Hostname - Get current LocalHostName
-#   ansible.builtin.command: scutil --get LocalHostName
-#   register: localhostname_result
-#   changed_when: false
-#   check_mode: false
-#   when: system.hostname.localhostname != None
-#
-# - name: Hostname - Update LocalHostName
-#   ansible.builtin.command: scutil --set LocalHostName {{ system.hostname.localhostname }}
-#   become: true
-#   when: system.hostname.localhostname != None and (system.hostname.localhostname not in localhostname_result.stdout)
-# ---
 # - name: Terminal – Enable UTF-8 only
 #   community.general.osx_defaults:
 #     domain: com.apple.Terminal
@@ -5287,5 +5071,6 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 #     type: bool
 #     value: true
 #   tags: [become]
+#  when: "wakeonnetworkaccess_power_settings_results.stdout != 'Wake On Network Access: On'"
 
 {{ end -}}

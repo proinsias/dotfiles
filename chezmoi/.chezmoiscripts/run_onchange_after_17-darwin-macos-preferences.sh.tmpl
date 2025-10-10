@@ -227,56 +227,56 @@ sudo systemsetup -setrestartfreeze on
 echo -e "\nScreen"
 # ###############################################################################
 
-# # Require password immediately after sleep or screen saver begins
-# # defaults write com.apple.screensaver askForPassword -int 1
-# # defaults write com.apple.screensaver askForPasswordDelay -int 0
-#
-# # Save screenshots to the desktop
-# defaults write com.apple.screencapture location -string "${HOME}/Desktop"
-#
-# # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
-# defaults write com.apple.screencapture type -string "png"
-#
+# Require password immediately after sleep or screen saver begins
+# defaults write com.apple.screensaver askForPassword -int 1
+# defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+# Save screenshots to the desktop
+defaults write com.apple.screencapture location -string "${HOME}/Desktop"
+
+# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+defaults write com.apple.screencapture type -string "png"
+
 # # Disable shadow in screenshots
 # defaults write com.apple.screencapture disable-shadow -bool true
-#
+
 # # Enable subpixel font rendering on non-Apple LCDs
 # # Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
 # defaults write NSGlobalDomain AppleFontSmoothing -int 1
-#
+
 # # Enable HiDPI display modes (requires restart)
 # sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
-#
+
 # ###############################################################################
 echo -e "\nFinder"
 # ###############################################################################
-#
-# # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
-# defaults write com.apple.finder QuitMenuItem -bool true
-#
-# # Finder: disable window animations and Get Info animations
-# defaults write com.apple.finder DisableAllAnimations -bool true
-#
-# # Set Desktop as the default location for new Finder windows
-# # For other paths, use `PfLo` and `file:///full/path/here/`
-# defaults write com.apple.finder NewWindowTarget -string "PfDe"
+
+# Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
+defaults write com.apple.finder QuitMenuItem -bool true
+
+# Finder: disable window animations and Get Info animations
+defaults write com.apple.finder DisableAllAnimations -bool true
+
+# Set Desktop as the default location for new Finder windows
+# For other paths, use `PfLo` and `file:///full/path/here/`
+defaults write com.apple.finder NewWindowTarget -string "PfDe"
 # defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
-#
-# # Show icons for hard drives, servers, and removable media on the desktop
-# defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-# defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
-# defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
-# defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
-#
-# # Finder: show hidden files by default
-# #defaults write com.apple.finder AppleShowAllFiles -bool true
-#
-# # Finder: show all filename extensions
-# defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-#
-# # Finder: show status bar
-# defaults write com.apple.finder ShowStatusBar -bool true
-#
+
+# Show icons for hard drives, servers, and removable media on the desktop
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+
+# Finder: show hidden files by default
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Finder: show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Finder: show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
 # # Finder: show path bar
 # defaults write com.apple.finder ShowPathbar -bool true
 #
@@ -908,10 +908,6 @@ echo -e "\nTransmission.app"
 # # Show ~/Library
 # chflags nohidden ~/Library
 #
-# # Show external volumes on the desktop
-# defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-# defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
-#
 # # Set up bottom-left corner to sleep display
 # defaults write com.apple.dock wvous-bl-corner -int 10
 # defaults write com.apple.dock wvous-bl-modifier -int 0
@@ -926,7 +922,6 @@ echo -e "\nTransmission.app"
 # systemsetup -setrestartpowerfailure on &>/dev/null
 #
 # # Show status bar
-# defaults write com.apple.Safari ShowStatusBar -bool true
 # defaults write com.apple.Safari ShowOverlayStatusBar -bool true
 # # Show the full URL in the address bar (note: this still hides the scheme)
 # defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
@@ -1379,7 +1374,6 @@ echo -e "\nTransmission.app"
 #   '\033Window\033Move & Resize\033Top Right' '~^i' \
 #   '\033Window\033Move & Resize\033Return to Previous Size' '~^\U008'
 #
-# defaults write -g AppleFontSmoothing -int 1                     # Enable light subpixel font rendering on non-Apple LCDs
 # defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false # Save to disk and not iCloud by default
 
 #
@@ -1389,13 +1383,9 @@ echo -e "\nTransmission.app"
 # #######################################
 #
 # # General
-# defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
-# defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
-# defaults write com.apple.finder NewWindowTarget -string "PfDe" # Set "New Finder windows show" to "Desktop"
 # defaults write com.apple.finder FinderSpawnTab -bool true      # Enable "Open folders in tabs instead of new windows"
 #
 # # Advanced
-# defaults write -g AppleShowAllExtensions -bool true                        # Enable "Show all filename extensions"
 # defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false # Disable "Show warning before changing an extension"
 # defaults write com.apple.finder WarnOnEmptyTrash -bool false               # Disable "Show warning before emptying the Trash"
 # defaults write com.apple.finder FXRemoveOldTrashItems -bool false          # Disable "Remove items from the Trash after 30 days"
@@ -1407,10 +1397,8 @@ echo -e "\nTransmission.app"
 # defaults write com.apple.finder FXPreferredViewStyle -string "clmv" # View > as Columns
 # defaults write com.apple.finder FXArrangeGroupViewBy -string "name" # View > Sort By > Name
 # defaults write com.apple.finder ShowPathbar -bool true              # View > Show Path Bar
-# defaults write com.apple.finder ShowStatusBar -bool true            # View > Show Status Bar
 #
 # chflags nohidden ~/Library                                   # Show the ~/Library folder
-# defaults write com.apple.finder AppleShowAllFiles -bool true # Show hidden files by default
 #
 # # Avoid creating `.DS_Store` files on network or USB volumes
 # # https://support.apple.com/en-us/102064
@@ -1503,16 +1491,6 @@ echo -e "\nTransmission.app"
 # echo "###############################################################################"
 # echo "Finder"
 # echo "###############################################################################"
-#
-# echo ""
-# echo "Set Desktop as the default location for new Finder windows"
-# # For other paths, use `PfLo` and `file:///full/path/here/`
-# defaults write com.apple.finder NewWindowTarget -string "PfDe"
-# defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/"
-#
-# echo ""
-# echo "Showing all filename extensions in Finder by default"
-# defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 #
 # echo ""
 # echo "Allowing text selection in Quick Look/Preview in Finder by
@@ -3268,21 +3246,6 @@ echo -e "\nTransmission.app"
 #     type: string
 #     value: Dark # "Light", "Dark".
 #
-# - name: UI - Enable subpixel font rendering on non-Apple LCDs
-#   community.general.osx_defaults:
-#     domain: NSGlobalDomain
-#     state: present
-#     key: AppleFontSmoothing
-#     type: int
-#     value: 1
-#
-# - name: UI - Show all file extensions
-#   community.general.osx_defaults:
-#     domain: NSGlobalDomain
-#     key: AppleShowAllExtensions
-#     type: bool
-#     value: true
-#
 # - name: UI - Enable menubar transparency
 #   community.general.osx_defaults:
 #     domain: NSGlobalDomain
@@ -3349,23 +3312,6 @@ echo -e "\nTransmission.app"
 #     state: present
 #   notify: Restart Reminders
 #
-# - name: Finder - Show hidden files
-#   community.general.osx_defaults:
-#     domain: com.apple.finder
-#     key: AppleShowAllFiles
-#     type: bool
-#     value: true
-#     state: present
-#   notify: Restart Finder
-#
-# - name: Finder - Set new window target
-#   community.general.osx_defaults:
-#     domain: com.apple.finder
-#     key: NewWindowTarget
-#     type: string
-#     value: PfDe # "PfHm" for Home directory, "PfDe" for Desktop.
-#   notify: Restart Finder
-#
 # - name: Finder - Show extension warning
 #   community.general.osx_defaults:
 #     domain: com.apple.finder
@@ -3406,14 +3352,6 @@ echo -e "\nTransmission.app"
 #     value: true
 #   notify: Restart Finder
 #
-# - name: Finder - Show statusbar
-#   community.general.osx_defaults:
-#     domain: com.apple.finder
-#     key: ShowStatusBar
-#     type: bool
-#     value: true
-#   notify: Restart Finder
-#
 # - name: Finder - When performing a search, search the current folder by default
 #   community.general.osx_defaults:
 #     domain: com.apple.finder
@@ -3422,52 +3360,12 @@ echo -e "\nTransmission.app"
 #     value: SCcf
 #   notify: Restart Finder
 #
-# - name: Finder - Enable quit menu item
-#   community.general.osx_defaults:
-#     domain: com.apple.finder
-#     key: QuitMenuItem
-#     type: bool
-#     value: true
-#   notify: Restart Finder
-#
 # - name: Finder - Default view style
 #   community.general.osx_defaults:
 #     domain: com.apple.finder
 #     key: FXPreferredViewStyle
 #     type: string
 #     value: clmv # "icnv" for icon view, "clmv" for column view, "Flwv" for cover flow view.
-#   notify: Restart Finder
-#
-# - name: Finder - Show external harddrives on desktop
-#   community.general.osx_defaults:
-#     domain: com.apple.finder
-#     key: ShowExternalHardDrivesOnDesktop
-#     type: bool
-#     value: true
-#   notify: Restart Finder
-#
-# - name: Finder - Show harddrives on desktop
-#   community.general.osx_defaults:
-#     domain: com.apple.finder
-#     key: ShowHardDrivesOnDesktop
-#     type: bool
-#     value: true
-#   notify: Restart Finder
-#
-# - name: Finder - Show mounted servers on desktop
-#   community.general.osx_defaults:
-#     domain: com.apple.finder
-#     key: ShowMountedServersOnDesktop
-#     type: bool
-#     value: true
-#   notify: Restart Finder
-#
-# - name: Finder - Show removable media on desktop
-#   community.general.osx_defaults:
-#     domain: com.apple.finder
-#     key: ShowRemovableMediaOnDesktop
-#     type: bool
-#     value: true
 #   notify: Restart Finder
 #
 # - name: Flux - Set flag that app has launched before
@@ -3662,22 +3560,6 @@ echo -e "\nTransmission.app"
 # #  notify: Restart Safari
 # #
 #
-# - name: Screen Capture - Save screenshots to the desktop
-#   community.general.osx_defaults:
-#     domain: com.apple.screencapture
-#     key: location
-#     type: string
-#     value: /Users/ftod/Desktop
-#     state: present
-#
-# - name: Screen Capture - Save screenshots in PNG formats
-#   community.general.osx_defaults:
-#     domain: com.apple.screencapture
-#     key: type
-#     type: string
-#     value: png # other options: BMP, GIF, JPG, PDF, TIFF.
-#     state: present
-#
 # - name: Screensaver - Show with clock
 #   community.general.osx_defaults:
 #     domain: com.apple.screensaver
@@ -3692,20 +3574,6 @@ echo -e "\nTransmission.app"
 #     host: currentHost
 #     key: idleTime
 #     type: int
-#     value: 0
-#
-# - name: Screensaver - Ask for a password when leaving the screensaver
-#   community.general.osx_defaults:
-#     domain: com.apple.screensaver
-#     key: askForPassword
-#     type: int
-#     value: 1
-#
-# - name: Screensaver - Set ask password delay
-#   community.general.osx_defaults:
-#     domain: com.apple.screensaver
-#     key: askForPasswordDelay
-#     type: float
 #     value: 0
 #
 # - name: Screensaver - Set module name

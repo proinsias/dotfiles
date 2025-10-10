@@ -27,16 +27,4 @@ xargs -P0 -I{} uv tool install --force -- "{}" < "${tmpfile}"
 
 echo -e "\nInstalling uv tools with requirements."
 
-# flake8 req hash: {{ include "./private_dot_config/uv/flake8-reqs.txt" | sha256sum }}
-uv tool install --with-requirements "${HOME}/.config/uv/flake8-reqs.txt" --force flake8
-
-# mdformat req hash: {{ include "./private_dot_config/uv/mdformat-reqs.txt" | sha256sum }}
-uv tool install --with-requirements "${HOME}/.config/uv/mdformat-reqs.txt" --force mdformat
-
 uv tool install --with ipython_genutils --force nbdime
-
-# ntfy req hash: {{ include "./private_dot_config/uv/ntfy-reqs.txt" | sha256sum }}
-uv tool install --with-requirements "${HOME}/.config/uv/ntfy-reqs.txt" --force ntfy
-
-# pytest req hash: {{ include "./private_dot_config/uv/pytest-reqs.txt" | sha256sum }}
-uv tool install --with-requirements "${HOME}/.config/uv/pytest-reqs.txt" --force pytest

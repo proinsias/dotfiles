@@ -1,4 +1,4 @@
-- if (eq .chezmoi.os "darwin") -
+{{- if (eq .chezmoi.os "darwin") -}}
 #!/usr/bin/env bash
 
 set -o errexit    # Exit on error. Append || true if you expect an error.
@@ -3890,4 +3890,4 @@ echo -e "\nTransmission.app"
 #   tags: [become]
 #  when: "wakeonnetworkaccess_power_settings_results.stdout != 'Wake On Network Access: On'"
 
- end -
+{{ end -}}

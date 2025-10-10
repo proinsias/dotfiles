@@ -1,5 +1,5 @@
 {{ if ne .chezmoi.os "windows" }}
 #!/usr/bin/env bash
-{{ end }}
 
+{{ end }}
 uvx uncommitted --non-tracking --untracked --stash -I "old/proinsias" -I ".emacs.d" -I ".cache" "${1}"

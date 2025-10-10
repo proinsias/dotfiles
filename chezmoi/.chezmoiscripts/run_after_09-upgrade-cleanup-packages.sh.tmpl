@@ -24,6 +24,9 @@ brew upgrade
 echo -e "\nbrew cleanup:"
 brew cleanup
 
+echo -e "\nbrew link:"
+brew link docker handbrake httpie
+
 echo -e "\nbrew doctor:"
 brew doctor
 
@@ -70,7 +73,7 @@ topgrade --cleanup --no-retry --skip-notify --yes --disable \
     uv
 
 echo -e "\nuncommitted-francis:"
-uncommitted-francis "${HOME}"
+uncommitted-francis "${HOME}"/git
 
 echo -e "\nuv cache prune:"
 uv cache prune

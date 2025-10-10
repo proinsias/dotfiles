@@ -1,4 +1,4 @@
-{{- if (eq .chezmoi.os "darwin") -}}
+- if (eq .chezmoi.os "darwin") -
 #!/usr/bin/env bash
 
 set -o errexit    # Exit on error. Append || true if you expect an error.
@@ -3534,7 +3534,6 @@ echo -e "\nTransmission.app"
 # #- name: Safari - Show favorites bar
 # #  community.general.osx_defaults:
 # #    domain: com.apple.Safari
-# #    key: '{{ item }}'
 # #    type: bool
 # #    value: true
 # #  with_items:
@@ -3665,16 +3664,16 @@ echo -e "\nTransmission.app"
 #
 # - name: Default applications - Get default applications for file types.
 #   ansible.builtin.command: >
-#     duti -x {{ item.extension }}
+#     duti -x  item.extension
 #   register: duti_result
-#   with_items: '{{ system.default_applications }}'
+#   with_items: 'system.default_applications '
 #   changed_when: false
 #   failed_when: false
 #
 # - name: Default applications - Set default applications for file types.
 #   ansible.builtin.command: >
-#     duti -s {{ item.1.handler }} {{ item.1.extension }} {{ item.1.roles|default('all') }}
-#   with_indexed_items: '{{ system.default_applications }}'
+#     duti -s item.1.handler  item.1.extension   item.1.roles|default('all')
+#   with_indexed_items: ' system.default_applications '
 #   changed_when: item.1.handler not in duti_result.results[item.0].stdout
 #
 # - name: Terminal – Enable UTF-8 only
@@ -3873,7 +3872,7 @@ echo -e "\nTransmission.app"
 # - name: Disk Images - Disable verification
 #   community.general.osx_defaults:
 #     domain: com.apple.frameworks.diskimages
-#     key: "{{ item }}"
+#     key: " item "
 #     type: bool
 #     value: true
 #   with_items:
@@ -3891,4 +3890,4 @@ echo -e "\nTransmission.app"
 #   tags: [become]
 #  when: "wakeonnetworkaccess_power_settings_results.stdout != 'Wake On Network Access: On'"
 
-{{ end -}}
+ end -

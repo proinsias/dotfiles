@@ -43,8 +43,8 @@ textlint-rule-stop-words
 textlint-rule-terminology
 textlint-rule-write-good
 textlint-rule-unexpanded-acronym
-textlint-rule/textlint-rule-no-duplicate-abbr
-textlint-rule/textlint-rule-no-invalid-control-character
+# textlint-rule/textlint-rule-no-duplicate-abbr
+# textlint-rule/textlint-rule-no-invalid-control-character
 tldr
 v8r
 yarn

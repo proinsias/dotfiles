@@ -16,4 +16,4 @@ tmpfile="$(mktemp)"
 # filter comments/blank lines
 grep -vE '^\s*(#|$)' "${HOME}/.config/nodejs/tools.txt" >> "${tmpfile}"
 
-xargs -P0 -I{} npm install --global -- "{}" < "${tmpfile}"
+npm install --global -- $(<"${tmpfile}")

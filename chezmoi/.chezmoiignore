@@ -150,6 +150,7 @@ README.md
 .python_history
 .rustup/
 .sonarlint/
+.ssh/agent
 .ssh/known_hosts
 .ssh/known_hosts.old
 .ssh/id_ed25519
@@ -169,6 +170,7 @@ README.md
 .vscode-remote-containers
 .vscode-server
 .wakatime/
+.wakatime.cfg
 .wakatime-internal.cfg
 .wdm/
 .wget-hsts

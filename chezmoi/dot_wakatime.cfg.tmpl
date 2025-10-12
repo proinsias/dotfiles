@@ -1,7 +1,0 @@
-
-[settings]
-{{- if .test }}
-api_key = "123"
-{{ else }}
-api_key = {{ onepasswordRead "op://Parents/Wakatime/api key" | quote }}
-{{ end }}

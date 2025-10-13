@@ -238,7 +238,7 @@ defaults write com.apple.systemsound "com.apple.sound.uiaudio.enabled" -int 0
 # sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "@lildude :: Found this computer? Please call +1-415-448-6673 :: GitHub, Inc."
 
 # Set powerchime when connecting power cord ala iOS
-defaults write com.apple.PowerChime ChimeOnAllHardware -bool true; open /System/Library/CoreServices/PowerChime.app &
+defaults write com.apple.PowerChime ChimeOnAllHardware -bool true
 
 # # Enable dark mode
 # defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
@@ -248,9 +248,6 @@ defaults write com.apple.PowerChime ChimeOnAllHardware -bool true; open /System/
 
 # Show battery percent in menu bar
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
-
-# Disable captive portal - use browser instead
-defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
 
 # # Enable sub-pixel aliasing on mojave and later - https://www.howtogeek.com/358596/how-to-fix-blurry-fonts-on-macos-mojave-with-subpixel-antialiasing/
 # defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
@@ -486,7 +483,7 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool true
 # defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
 # Show the ~/Library folder
-chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+chflags nohidden ~/Library # && xattr -d com.apple.FinderInfo ~/Library
 
 # Show the /Volumes folder
 sudo chflags nohidden /Volumes
@@ -630,6 +627,8 @@ defaults write com.apple.dock show-recents -bool false
 echo -e "\nSafari & WebKit"
 ################################################################################
 
+# FIXME: GT - need updating?
+
 # Privacy: don't send search queries to Apple
 defaults write com.apple.Safari UniversalSearchEnabled -bool false
 defaults write com.apple.Safari SuppressSearchSuggestions -bool true
@@ -681,7 +680,8 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 # # Enable continuous spellchecking
 # defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true
 # # Disable auto-correct
-# defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false# defaults write -g WebAutomaticTextReplacementEnabled -bool true
+# defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
+# defaults write -g WebAutomaticTextReplacementEnabled -bool true
 
 # # Disable AutoFill
 # defaults write com.apple.Safari AutoFillFromAddressBook -bool false
@@ -799,7 +799,7 @@ sudo mdutil -i on / >/dev/null
 # sudo mdutil -E / >/dev/null
 
 ################################################################################
-echo -e "\nTerminal & iTerm 2"
+echo -e "\nTerminal"
 ################################################################################
 
 # Only use UTF-8 in Terminal.app
@@ -849,7 +849,7 @@ defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
 ################################################################################
-echo -e "\nAddress Book, Dashboard, iCal, TextEdit, and Disk Utility#
+echo -e "\nAddress Book, Dashboard, iCal, TextEdit, and Disk Utility"
 ################################################################################
 
 # Enable the debug menu in Address Book
@@ -972,6 +972,8 @@ echo -e "\nSSD-specific tweaks"
 ################################################################################
 echo -e "\nArchive utility"
 ################################################################################
+
+# FIXME: Needs updating.
 
 # Move archive files to trash after expansion
 # Delete directly: "/dev/null"

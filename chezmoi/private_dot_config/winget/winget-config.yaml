@@ -2,13 +2,16 @@
 $schema: https://aka.ms/winget-schema/settings.v2.json
 packages:
   - packageIdentifier: FiloSottile.age
+  - packageIdentifier: Microsoft.Azure.StorageExplorer
   - packageIdentifier: sharkdp.bat
   - packageIdentifier: twpayne.chezmoi
   # - packageIdentifier: GitHub.cli  # Requires admin.
+  # - packageIdentifier: Docker.DockerDesktop  # Requires admin.
   - packageIdentifier: GNU.Emacs  # Requires admin.
   - packageIdentifier: junegunn.fzf
   - packageIdentifier: jdx.mise
   - packageIdentifier: Rustlang.Rustup
+  - packageIdentifier: Microsoft.SQLServerManagementStudio
   # - packageIdentifier: Starship.Starship  # Requires admin.
   - packageIdentifier: topgrade-rs.topgrade
   - packageIdentifier: Microsoft.VisualStudio.2022.BuildTools  # Requires admin.

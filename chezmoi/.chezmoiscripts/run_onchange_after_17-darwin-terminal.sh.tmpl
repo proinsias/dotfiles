@@ -1,0 +1,34 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/usr/bin/env bash
+
+set -o errexit    # Exit on error. Append || true if you expect an error.
+set -o errtrace   # Exit on error inside any functions or subshells.
+set -o noclobber  # don't allow overwriting files
+set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail   # Produce a failure return code if any pipeline command errors
+shopt -s failglob # Cause globs that don't get expanded to cause errors
+
+echo -e "\n\nSetting Terminal preferences."
+
+# Only use UTF-8 in Terminal.app
+defaults write com.apple.terminal StringEncodings -array 4
+
+# # Enable "focus follows mouse" for Terminal.app
+# # i.e. hover over a window and start typing in it without clicking first
+# #defaults write com.apple.terminal FocusFollowsMouse -bool true
+
+# # Enable Secure Keyboard Entry in Terminal.app
+# # See: https://security.stackexchange.com/a/47786/8918
+# defaults write com.apple.terminal SecureKeyboardEntry -bool true
+
+# # Disable the annoying line marks
+# defaults write com.apple.Terminal ShowLineMarks -int 0
+
+# Use Pro?
+# defaults write com.apple.Terminal "Default Window Settings" -string "Solarized Dark"
+# defaults write com.apple.Terminal "Startup Window Settings" -string "Solarized Dark"
+
+# Terminal – Set the size 18 by default
+# defaults write com.apple.Terminal NSWindow Frame NSFontPanel -string "929 42 445 105 0 0 1440 900"
+
+{{ end }}

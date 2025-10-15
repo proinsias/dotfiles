@@ -1,0 +1,52 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/usr/bin/env bash
+
+set -o errexit    # Exit on error. Append || true if you expect an error.
+set -o errtrace   # Exit on error inside any functions or subshells.
+set -o noclobber  # don't allow overwriting files
+set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail   # Produce a failure return code if any pipeline command errors
+shopt -s failglob # Cause globs that don't get expanded to cause errors
+
+echo -e "\n\nSetting DayOne preferences."
+
+# Dayone - Enable auto backup
+defaults write com.dayoneapp.dayone AutoBackupEnabled -bool true
+
+# Dayone - Enable correct spelling in editor
+defaults write com.dayoneapp.dayone EditorCorrectSpellingEnabled -bool true
+
+# Dayone - Enable grammar check in editor
+defaults write com.dayoneapp.dayone EditorGrammarCheckEnabled -bool true
+
+# Dayone - Enable spell check in editor
+defaults write com.dayoneapp.dayone EditorSpellCheckEnabled -bool true
+
+# Dayone - Enable embedded media
+defaults write com.dayoneapp.dayone EmbedMediaEnabled -bool true
+
+# Dayone - Set font size
+defaults write com.dayoneapp.dayone FontSize -string "16"
+
+# Dayone - Enable inspirational messages
+defaults write com.dayoneapp.dayone InspirationalMessagesEnabled -bool true
+
+# Dayone - Link twitter handles
+defaults write com.dayoneapp.dayone LinkTwitterHandles -bool true
+
+# Dayone - Enable markdown support
+defaults write com.dayoneapp.dayone MarkdownEnabled -bool true
+
+# Dayone - Lock if idle
+defaults write com.dayoneapp.dayone SecurityIdleLockEnabled -bool true
+
+# Dayone - Set lock time
+defaults write com.dayoneapp.dayone SecurityIdleLockTime -string "20"
+
+# Dayone - Enable password protection
+defaults write com.dayoneapp.dayone SecurityPasswordProtectionEnabled -bool true
+
+# Dayone - Enable lock on sleep
+defaults write com.dayoneapp.dayone SecuritySleepLockEnabled -bool true
+
+{{ end }}

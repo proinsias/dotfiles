@@ -1,0 +1,31 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/usr/bin/env bash
+
+set -o errexit    # Exit on error. Append || true if you expect an error.
+set -o errtrace   # Exit on error inside any functions or subshells.
+set -o noclobber  # don't allow overwriting files
+set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail   # Produce a failure return code if any pipeline command errors
+shopt -s failglob # Cause globs that don't get expanded to cause errors
+
+echo -e "\n\nSetting Flux preferences."
+
+# Flux - Set flag that app has launched before
+# defaults write org.herf.Flux.plist SUHasLaunchedBefore -bool true
+
+# Flux - Enable automatic update checks
+# defaults write org.herf.Flux.plist SUEnableAutomaticChecks -bool true
+
+# Flux - Set location
+# defaults write org.herf.Flux.plist location -string "42.5,-71.2"
+
+# Flux - Set locationTextField
+# defaults write org.herf.Flux.plist locationTextField -string "02474"
+
+# Flux - Set late night colour temperature
+# defaults write org.herf.Flux.plist lateColorTemp -int 3400
+
+# Flux - Set night colour temperature
+# defaults write org.herf.Flux.plist nightColorTemp -int 1900
+
+{{ end }}

@@ -1,0 +1,31 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/usr/bin/env bash
+
+set -o errexit    # Exit on error. Append || true if you expect an error.
+set -o errtrace   # Exit on error inside any functions or subshells.
+set -o noclobber  # don't allow overwriting files
+set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail   # Produce a failure return code if any pipeline command errors
+shopt -s failglob # Cause globs that don't get expanded to cause errors
+
+echo -e "\n\nSetting TextEdit preferences."
+
+# TextEdit > Settings... > New Document
+# defaults write -app TextEdit WidthInChars -int 80
+# defaults write -app TextEdit HeightInChars -int 40
+# defaults write -app TextEdit NSFixedPitchFont -string "SFPro-Regular" # Plain text font
+# defaults write -app TextEdit NSFixedPitchFontSize -int 12
+# defaults write -app TextEdit NSFont -string "SFPro-Regular" # Rich text font
+# defaults write -app TextEdit NSFontSize -int 12
+defaults write -app TextEdit CheckGrammarWithSpelling -bool true # Enable "Check grammar with spelling"
+defaults write -app TextEdit DataDetectors -bool true            # Enable "Data detectors"
+defaults write -app TextEdit SmartQuotes -bool false             # Disable "Smart quotes"
+defaults write -app TextEdit SmartLinks -bool true
+defaults write -app TextEdit SmartSubstitutionsEnabledInRichTextOnly -bool false # Disable "Smart quotes and dashes in rich text documents only"
+# # Use plain text mode for new TextEdit documents
+# defaults write com.apple.TextEdit RichText -int 0
+# # Open and save files as UTF-8 in TextEdit
+# defaults write com.apple.TextEdit PlainTextEncoding -int 4
+# defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
+
+{{ end }}

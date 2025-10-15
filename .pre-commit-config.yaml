@@ -63,14 +63,14 @@ repos:
       - id: shfmt
 
   - repo: https://github.com/sirosen/check-jsonschema
-    rev: 0.34.0
+    rev: 0.34.1
     hooks:
       - id: check-github-actions
       - id: check-github-workflows
       - id: check-readthedocs
 
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.7
+    rev: v1.7.8
     hooks:
       - id: actionlint
 
@@ -157,23 +157,54 @@ repos:
         #  --ignore "**/*.min.js,**/*.map,**/node_modules,**/tests"
         #  --reporters console
 
+  - repo: https://github.com/ikamensh/flynt/
+    rev: "1.0.6"
+    hooks:
+      - id: flynt
+
+  - repo: https://github.com/dosisod/refurb
+    rev: v2.2.0
+    hooks:
+      - id: refurb
+
+  - repo: https://github.com/MarcoGorelli/auto-walrus
+    rev: "0.3.4"
+    hooks:
+      - id: auto-walrus
+
+  - repo: https://github.com/asottile/add-trailing-comma
+    rev: v4.0.0
+    hooks:
+      - id: add-trailing-comma
+        args:
+          - --py36-plus
+
   - repo: https://github.com/RobertCraigie/pyright-python
     rev: v1.1.406
     hooks:
       - id: pyright
 
   - repo: https://github.com/pycqa/isort
-    rev: "6.1.0"
+    rev: "7.0.0"
     hooks:
       - id: isort
         name: isort (python)
 
-  - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 25.9.0
+  - repo: https://github.com/hadialqattan/pycln
+    rev: v2.5.0 # Possible releases: https://github.com/hadialqattan/pycln/releases
     hooks:
-      - id: black
-        # It is recommended to specify the latest version of Python
-        # supported by your project here, or alternatively use
-        # pre-commit's default_language_version, see
-        # https://pre-commit.com/#top_level-default_language_version
-        language_version: python3.11
+      - id: pycln
+
+  - repo: https://github.com/MarcoGorelli/absolufy-imports
+    rev: v0.3.1
+    hooks:
+      - id: absolufy-imports
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: "v0.14.0"
+    hooks:
+      - id: ruff-check
+        args: [--fix, --force-exclude, --exit-non-zero-on-fix]
+        types_or: [python, pyi]
+      - id: ruff-format
+        types_or: [python, pyi]

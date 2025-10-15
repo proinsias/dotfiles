@@ -33,6 +33,11 @@ done 2>/dev/null &
 # defaults write com.apple.CloudSubscriptionFeatures.optIn auto_opt_in -bool false # Disable "Apple Intelligence"
 # defaults write com.apple.assistant.support "Assistant Enabled" -bool false       # Disable "Siri"
 
+## Bluetooth
+
+# # Increase sound quality for Bluetooth headphones/headsets
+# defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
 ## Control Center (x-apple.systempreferences:com.apple.ControlCenter-Settings)
 
 defaults write com.apple.controlcenter "NSStatusItem Visible WiFi" -bool true
@@ -53,6 +58,131 @@ defaults write com.apple.weather.menu "NSStatusItem Visible Item-0" -bool true  
 # Set "Automatically hide and show the menu bar" to "In Full Screen Only"
 defaults write -g AppleMenuBarVisibleInFullscreen -bool false
 defaults write -g "_HIHideMenuBar" -bool false
+
+## Dashboard
+
+# # Disable Dashboard
+# defaults write com.apple.dashboard mcx-disabled -bool true
+
+# # Enable Dashboard dev mode (allows keeping widgets on the desktop)
+# defaults write com.apple.dashboard devmode -bool true
+
+## Dock
+
+# # Enable highlight hover effect for the grid view of a stack (Dock)
+# defaults write com.apple.dock mouse-over-hilite-stack -bool true
+
+# # Set the icon size of Dock items to 36 pixels
+# defaults write com.apple.dock tilesize -int 36
+
+# # Change minimize/maximize window effect
+# defaults write com.apple.dock mineffect -string "scale"
+
+# # Minimize windows into their application's icon
+# defaults write com.apple.dock minimize-to-application -bool true
+
+# Enable spring loading for all Dock items
+defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
+
+# Show indicator lights for open applications in the Dock
+defaults write com.apple.dock show-process-indicators -bool true
+
+# # Wipe all (default) app icons from the Dock
+# # This is only really useful when setting up a new Mac, or if you don't use
+# # the Dock to launch apps.
+# defaults write com.apple.dock persistent-apps -array
+
+# # Add a spacer to the left side of the Dock (where the applications are)
+# defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+# # Add a spacer to the right side of the Dock (where the Trash is)
+# defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
+
+# # Show only open applications in the Dock
+# defaults write com.apple.dock static-only -bool true
+
+# Don't animate opening applications from the Dock
+defaults write com.apple.dock launchanim -bool false
+
+# Speed up Mission Control animations
+defaults write com.apple.dock expose-animation-duration -float 0.1
+
+# # Don't group windows by application in Mission Control
+# # (i.e. use the old Exposé behavior instead)
+# defaults write com.apple.dock expose-group-by-app -bool false
+
+# # Don't show Dashboard as a Space
+# defaults write com.apple.dock dashboard-in-overlay -bool true
+
+# # Don't automatically rearrange Spaces based on most recent use
+# defaults write com.apple.dock mru-spaces -bool false
+
+# # Remove the auto-hiding Dock delay
+# defaults write com.apple.dock autohide-delay -float 0
+# # Remove the animation when hiding/showing the Dock
+# defaults write com.apple.dock autohide-time-modifier -float 0
+
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
+
+# Make Dock icons of hidden applications translucent
+defaults write com.apple.dock showhidden -bool true
+
+# Don't show recent applications in Dock
+defaults write com.apple.dock show-recents -bool false
+
+# # Disable the Launchpad gesture (pinch with thumb and three fingers)
+# #defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
+
+# # Hot corners
+# # Possible values:
+# #  0: no-op
+# #  2: Mission Control
+# #  3: Show application windows
+# #  4: Desktop
+# #  5: Start screen saver
+# #  6: Disable screen saver
+# #  7: Dashboard
+# # 10: Put display to sleep
+# # 11: Launchpad
+# # 12: Notification Center
+# # 13: Lock Screen
+# # Top left screen corner → Mission Control
+# defaults write com.apple.dock wvous-tl-corner -int 2
+# defaults write com.apple.dock wvous-tl-modifier -int 0
+# # Top right screen corner → Desktop
+# defaults write com.apple.dock wvous-tr-corner -int 4
+# defaults write com.apple.dock wvous-tr-modifier -int 0
+# # Bottom left screen corner → Start screen saver
+# defaults write com.apple.dock wvous-bl-corner -int 5
+# defaults write com.apple.dock wvous-bl-modifier -int 0
+
+# Dock - Turn off bouncing icons
+# defaults write com.apple.dock no-bouncing -bool true
+
+# Dock - Move to bottom middle of the screen
+# defaults write com.apple.dock pinning -string "middle"  # Other options: "start", "end".
+
+# Dock - Move to bottom middle of the screen
+# defaults write com.apple.dock orientation -string "bottom"  # Other options: "left", "right".
+
+# Dock - Enabling iTunes track notifications
+# defaults write com.apple.dock itunes-notifications -bool true
+
+# Dock - Set springboard rows
+# defaults write com.apple.dock springboard-rows -int 8
+
+# Dock - Set springboard columns
+# defaults write com.apple.dock springboard-columns -int 8
+
+# Dock - Making launchpad better
+# defaults write com.apple.dock ResetLaunchPad -bool true
+
+# Dock - Make animation snappier
+# defaults write com.apple.dock workspaces-edge-delay -float 0.1
+
+# # Enable dock magnification and set to 52
+# defaults write com.apple.dock magnification -bool true
+# defaults write com.apple.dock largesize -float 52
 
 ## Energy saving
 
@@ -96,131 +226,12 @@ sudo pmset -a autorestart 1
 
 ## General
 
-### General / Storage (x-apple.systempreferences:com.apple.settings.Storage)
-defaults write MobileMeAccounts iCloudHomeShouldEnable -bool true # Enable "iCloud Drive"
+# # Enable "focus follows mouse" for all X11 apps
+# # i.e. hover over a window and start typing in it without clicking first
+# #defaults write org.x.X11 wm_ffm -bool true
 
-## Keyboard (x-apple.systempreferences:com.apple.Keyboard-Settings)
-
-defaults write -g InitialKeyRepeat_Level_Saved -int 6 # Set "Delay until repeat" to shortest
-# defaults write com.apple.HIToolbox -int 1             # Set "Press 🌐︎ key to" to "Change Input Source"
-
-### Keyboard / Text Input
-defaults write -g WebAutomaticSpellingCorrectionEnabled -bool true                    # See above
-defaults write -g NSAutomaticInlinePredictionEnabled -bool true                       # Enable "Show inline predictions"
-# Set "Spelling" to "Automatic by Language"
-# defaults write -g KB_SpellingLanguage -dict KB_SpellingLanguageIsAutomatic -bool true
-
-### Keyboard / Dictation
-# defaults write com.apple.assistant.support "Dictation Enabled" -bool false # Disable "Dictation"
-
-## Mouse (x-apple.systempreferences:com.apple.Mouse-Settings)
-
-# defaults write -g com.apple.mouse.scaling -float 0.5              # Set "Tracking speed" to 3/10 slowest
-# defaults write -g com.apple.mouse.doubleClickThreshold -float 1.7 # Set "Double-click speed" to 5/11 slowest
-# defaults write -g com.apple.scrollwheel.scaling -float 0.3125     # Set "Scrolling speed" to 4/8 slowest
-# defaults write -g com.apple.mouse.linear -bool false              # Enable "Pointer acceleration"
-
-## Network (x-apple.systempreferences:com.apple.Network-Settings)
-
-# Enable "Firewall"
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
-# Enable "Automatically allow built-in software to receive incoming connections"
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned on
-# Enable "Automatically allow downloaded signed software to receive incoming connections"
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp on
-# "Enable stealth mode"
-# sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
-
-## Printer & Scanners (x-apple.systempreferences:com.apple.Print-Scan-Settings)
-
-# Set "Default printer" to "Last Printer Used"
-defaults write org.cups.PrintingPrefs UseLastPrinter -bool true
-# Set "Default paper size" to "US Letter"
-defaults write org.cups.PrintingPrefs DefaultPaperID -string "na-letter"
-
-## Screen Saver
-
-# Require password immediately after sleep or screen saver begins
-# defaults write com.apple.screensaver askForPassword -int 1
-# defaults write com.apple.screensaver askForPasswordDelay -int 0
-
-# Save screenshots to the desktop
-defaults write com.apple.screencapture location -string "${HOME}/Desktop"
-
-# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
-defaults write com.apple.screencapture type -string "png"
-
-# # Disable shadow in screenshots
-# defaults write com.apple.screencapture disable-shadow -bool true
-
-# # Enable subpixel font rendering on non-Apple LCDs
-# # Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
-# defaults write NSGlobalDomain AppleFontSmoothing -int 1
-
-# # Enable HiDPI display modes (requires restart)
-# sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
-
-## Time Machine
-
-# # Prevent Time Machine from prompting to use new hard drives as backup volume
-# defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
-
-# # Disable local Time Machine backups
-# hash tmutil &>/dev/null && sudo tmutil disablelocal
-
-## Trackpad (x-apple.systempreferences:com.apple.Trackpad-Settings)
-
-### Trackpad / Point & Click
-
-# Set "Tracking speed" to 4/10 slowest
-# defaults write -g com.apple.trackpad.scaling -float 0.6875
-# Set "Click" to "Medium"
-# defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 1
-# See above
-# defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 1
-# Disable "Quiet Click"
-# defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 1
-# Enable "Force Click and haptic feedback"
-# defaults write -g com.apple.trackpad.forceClick -bool true
-# Set "Look up & data detectors" to "Force Click with One Finger"
-# defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -bool false
-# Disable "Tap to click"
-# defaults write com.apple.AppleMultitouchTrackpad Clicking -bool false
-
-### Trackpad / More Gestures
-
-# Enable "Notification Center"
-# defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3
-# Set "Mission Control" to "Swipe Up with Three Fingers"
-# defaults write com.apple.dock showMissionControlGestureEnabled -bool true
-# defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 2
-# defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerVertSwipeGesture -bool false
-# There is no point in this setting since it just enables tiling
-# defaults write com.apple.dock enterMissionControlByTopWindowDrag -bool false
-# Set "App Exposé" to "Off"
-# defaults write com.apple.dock showAppExposeGestureEnabled -bool false
-# Enable "Show Desktop"
-# defaults write com.apple.dock showDesktopGestureEnabled -bool true
-
-### Trackpad / Scroll & Zoom
-
-# # Natural scrolling may be enabled in global domain `com.apple.swipescrolldirection`,
-# # but this maps to the same setting set in Mouse
-# Enable "Zoom in or out"
-# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadPinch -bool true
-# Enable "Smart zoom"
-# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerDoubleTapGesture -bool true
-# Enable "Rotate"
-# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRotate -bool true
-
-## Users & Groups (x-apple.systempreferences:com.apple.Users-Groups-Settings)
-
-# Disable "Allow guests to log in to this computer"
-sudo sysadminctl -guestAccount off
-
-###############################################################################
-echo -e "\nGeneral UI/UX"
-###############################################################################
+# # Set the timezone; see `sudo systemsetup -listtimezones` for other values
+# sudo systemsetup -settimezone "Asia/Bangkok" >/dev/null
 
 # # Flash the screen when a beep is played
 # defaults write -g "com.apple.sound.beep.flash" -int 1
@@ -360,32 +371,30 @@ defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 # https://www.howtogeek.com/358596/how-to-fix-blurry-fonts-on-macos-mojave-with-subpixel-antialiasing/
 # defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 
-################################################################################
-echo -e "\nTrackpad, mouse, keyboard, Bluetooth accessories, and input"
-################################################################################
+### General / Storage (x-apple.systempreferences:com.apple.settings.Storage)
+defaults write MobileMeAccounts iCloudHomeShouldEnable -bool true # Enable "iCloud Drive"
 
-# defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-# defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+## Keyboard (x-apple.systempreferences:com.apple.Keyboard-Settings)
 
-# # Trackpad: map bottom right corner to right-click
-# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
-# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-# defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
-# defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+# # Sets a space thousands separator
+# defaults write NSGlobalDomain AppleICUNumberSymbols -dict 1 ' ' 17 ' '
 
-# # Disable "natural" (Lion-style) scrolling
-# defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+# # Set keyboard to British
+# defaults write com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID -string "com.apple.keylayout.British"
 
-# # Increase sound quality for Bluetooth headphones/headsets
-# defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+# Automatically illuminate built-in MacBook keyboard in low light
+defaults write com.apple.BezelServices kDim -bool true
+
+# Turn off keyboard illumination when computer is not used for 5 minutes\n"
+defaults write com.apple.BezelServices kDimTime -int 300
+
+defaults write -g InitialKeyRepeat_Level_Saved -int 6 # Set "Delay until repeat" to shortest
+# defaults write com.apple.HIToolbox -int 1             # Set "Press 🌐︎ key to" to "Change Input Source"
 
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-# # Use scroll gesture with the Ctrl (^) modifier key to zoom
-# defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-# defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 # # Follow the keyboard focus while zoomed in
 # defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
@@ -407,124 +416,41 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 20
 # Disable language menu in the top right corner of the boot screen
 sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool false
 
-# # Set the timezone; see `sudo systemsetup -listtimezones` for other values
-# sudo systemsetup -settimezone "Asia/Bangkok" >/dev/null
+### Keyboard / Text Input
+defaults write -g WebAutomaticSpellingCorrectionEnabled -bool true                    # See above
+defaults write -g NSAutomaticInlinePredictionEnabled -bool true                       # Enable "Show inline predictions"
+# Set "Spelling" to "Automatic by Language"
+# defaults write -g KB_SpellingLanguage -dict KB_SpellingLanguageIsAutomatic -bool true
 
-# Stop iTunes from responding to the keyboard media keys
-launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
+### Keyboard / Dictation
+# defaults write com.apple.assistant.support "Dictation Enabled" -bool false # Disable "Dictation"
 
-################################################################################
-echo -e "\nDock, Dashboard, and hot corners"
-################################################################################
+## Mouse (x-apple.systempreferences:com.apple.Mouse-Settings)
 
-# # Enable highlight hover effect for the grid view of a stack (Dock)
-# defaults write com.apple.dock mouse-over-hilite-stack -bool true
+# defaults write -g com.apple.mouse.scaling -float 0.5              # Set "Tracking speed" to 3/10 slowest
+# defaults write -g com.apple.mouse.doubleClickThreshold -float 1.7 # Set "Double-click speed" to 5/11 slowest
+# defaults write -g com.apple.scrollwheel.scaling -float 0.3125     # Set "Scrolling speed" to 4/8 slowest
+# defaults write -g com.apple.mouse.linear -bool false              # Enable "Pointer acceleration"
 
-# # Set the icon size of Dock items to 36 pixels
-# defaults write com.apple.dock tilesize -int 36
+# # Disable "natural" (Lion-style) scrolling
+# defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
-# # Change minimize/maximize window effect
-# defaults write com.apple.dock mineffect -string "scale"
+# # Use scroll gesture with the Ctrl (^) modifier key to zoom
+# defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+# defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 
-# # Minimize windows into their application's icon
-# defaults write com.apple.dock minimize-to-application -bool true
+## Network (x-apple.systempreferences:com.apple.Network-Settings)
 
-# Enable spring loading for all Dock items
-defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
+# Enable "Firewall"
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+# Enable "Automatically allow built-in software to receive incoming connections"
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned on
+# Enable "Automatically allow downloaded signed software to receive incoming connections"
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp on
+# "Enable stealth mode"
+# sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
 
-# Show indicator lights for open applications in the Dock
-defaults write com.apple.dock show-process-indicators -bool true
-
-# # Wipe all (default) app icons from the Dock
-# # This is only really useful when setting up a new Mac, or if you don't use
-# # the Dock to launch apps.
-# defaults write com.apple.dock persistent-apps -array
-
-# # Add a spacer to the left side of the Dock (where the applications are)
-# defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
-# # Add a spacer to the right side of the Dock (where the Trash is)
-# defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
-
-# # Show only open applications in the Dock
-# defaults write com.apple.dock static-only -bool true
-
-# Don't animate opening applications from the Dock
-defaults write com.apple.dock launchanim -bool false
-
-# Speed up Mission Control animations
-defaults write com.apple.dock expose-animation-duration -float 0.1
-
-# # Don't group windows by application in Mission Control
-# # (i.e. use the old Exposé behavior instead)
-# defaults write com.apple.dock expose-group-by-app -bool false
-
-# # Disable Dashboard
-# defaults write com.apple.dashboard mcx-disabled -bool true
-
-# # Don't show Dashboard as a Space
-# defaults write com.apple.dock dashboard-in-overlay -bool true
-
-# # Don't automatically rearrange Spaces based on most recent use
-# defaults write com.apple.dock mru-spaces -bool false
-
-# # Remove the auto-hiding Dock delay
-# defaults write com.apple.dock autohide-delay -float 0
-# # Remove the animation when hiding/showing the Dock
-# defaults write com.apple.dock autohide-time-modifier -float 0
-
-# Automatically hide and show the Dock
-defaults write com.apple.dock autohide -bool true
-
-# Make Dock icons of hidden applications translucent
-defaults write com.apple.dock showhidden -bool true
-
-# Don't show recent applications in Dock
-defaults write com.apple.dock show-recents -bool false
-
-# # Disable the Launchpad gesture (pinch with thumb and three fingers)
-# #defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
-
-# # Reset Launchpad, but keep the desktop wallpaper intact
-# find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
-# # Add iOS & Watch Simulator to Launchpad
-# # sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" \
-#    "/Applications/Simulator.app"
-# # sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app" \
-#    "/Applications/Simulator (Watch).app"
-
-# # Hot corners
-# # Possible values:
-# #  0: no-op
-# #  2: Mission Control
-# #  3: Show application windows
-# #  4: Desktop
-# #  5: Start screen saver
-# #  6: Disable screen saver
-# #  7: Dashboard
-# # 10: Put display to sleep
-# # 11: Launchpad
-# # 12: Notification Center
-# # 13: Lock Screen
-# # Top left screen corner → Mission Control
-# defaults write com.apple.dock wvous-tl-corner -int 2
-# defaults write com.apple.dock wvous-tl-modifier -int 0
-# # Top right screen corner → Desktop
-# defaults write com.apple.dock wvous-tr-corner -int 4
-# defaults write com.apple.dock wvous-tr-modifier -int 0
-# # Bottom left screen corner → Start screen saver
-# defaults write com.apple.dock wvous-bl-corner -int 5
-# defaults write com.apple.dock wvous-bl-modifier -int 0
-
-################################################################################
-echo -e "\nDashboard and "
-################################################################################
-
-# # Enable Dashboard dev mode (allows keeping widgets on the desktop)
-# defaults write com.apple.dashboard devmode -bool true
-
-###############################################################################
-echo -e "\nPrinters"
-###############################################################################
+## Printer & Scanners (x-apple.systempreferences:com.apple.Print-Scan-Settings)
 
 # Enable CUPS web interface
 cupsctl WebInterface=yes
@@ -535,12 +461,59 @@ cupsctl --no-share-printers
 # # Add a context menu item for showing the Web Inspector in web views
 # defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
-# ???
-# defaults write -g WebAutomaticTextReplacementEnabled -bool true
+# Set "Default printer" to "Last Printer Used"
+defaults write org.cups.PrintingPrefs UseLastPrinter -bool true
+# Set "Default paper size" to "US Letter"
+defaults write org.cups.PrintingPrefs DefaultPaperID -string "na-letter"
 
-################################################################################
-echo -e "\nSpotlight"
-################################################################################
+## Screen Saver
+
+# Require password immediately after sleep or screen saver begins
+# defaults write com.apple.screensaver askForPassword -int 1
+# defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+# Save screenshots to the desktop
+defaults write com.apple.screencapture location -string "${HOME}/Desktop"
+
+# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+defaults write com.apple.screencapture type -string "png"
+
+# # Disable shadow in screenshots
+# defaults write com.apple.screencapture disable-shadow -bool true
+
+# # Enable subpixel font rendering on non-Apple LCDs
+# # Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
+# defaults write NSGlobalDomain AppleFontSmoothing -int 1
+
+# # Enable HiDPI display modes (requires restart)
+# sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+
+# Screensaver - Show with clock
+# defaults write com.apple.screensaver showClock -bool true
+# Screensaver - Set activation delay for screensaver
+# defaults write com.apple.screensaver
+#     host: currentHost idleTime -int 0
+# Screensaver - Set module name
+# defaults write com.apple.screensaver moduleName -string "Aerial"
+# Screensaver - Set display name
+# defaults write com.apple.screensaver displayName -string "Aerial"
+# Screensaver - Set path
+# defaults write com.apple.screensaver path -string "/Users/ftod/Library/Screen Savers/Aerial.saver"
+# Screensaver - Set type
+# defaults write com.apple.screensaver type -int 0
+
+## Security
+
+# # Disable the sudden motion sensor as it's not useful for SSDs
+# sudo pmset -a sms 0
+
+# # Secure FileVault on sleep
+# sudo pmset -a destroyfvkeyonstandby 1
+# sudo pmset -a powernap 0
+# sudo pmset -a standby 0
+# sudo pmset -a autopoweroff 0
+
+## Spotlight
 
 # # Hide Spotlight tray-icon (and subsequent helper)
 # #sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
@@ -589,50 +562,74 @@ sudo mdutil -i on / >/dev/null
 # # Rebuild the index from scratch
 # sudo mdutil -E / >/dev/null
 
-###############################################################################
-echo -e "\nSSD-specific tweaks"
-################################################################################
+## Time Machine
 
-# # Disable the sudden motion sensor as it's not useful for SSDs
-# sudo pmset -a sms 0
+# # Prevent Time Machine from prompting to use new hard drives as backup volume
+# defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
-# # Secure FileVault on sleep
-# sudo pmset -a destroyfvkeyonstandby 1
-# sudo pmset -a powernap 0
-# sudo pmset -a standby 0
-# sudo pmset -a autopoweroff 0
+# # Disable local Time Machine backups
+# hash tmutil &>/dev/null && sudo tmutil disablelocal
+
+## Trackpad (x-apple.systempreferences:com.apple.Trackpad-Settings)
+
+# defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+# defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# # Trackpad: map bottom right corner to right-click
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+# defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+# defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+
+### Trackpad / Point & Click
+
+# Set "Tracking speed" to 4/10 slowest
+# defaults write -g com.apple.trackpad.scaling -float 0.6875
+# Set "Click" to "Medium"
+# defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 1
+# See above
+# defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 1
+# Disable "Quiet Click"
+# defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 1
+# Enable "Force Click and haptic feedback"
+# defaults write -g com.apple.trackpad.forceClick -bool true
+# Set "Look up & data detectors" to "Force Click with One Finger"
+# defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -bool false
+# Disable "Tap to click"
+# defaults write com.apple.AppleMultitouchTrackpad Clicking -bool false
+
+### Trackpad / More Gestures
+
+# Enable "Notification Center"
+# defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3
+# Set "Mission Control" to "Swipe Up with Three Fingers"
+# defaults write com.apple.dock showMissionControlGestureEnabled -bool true
+# defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 2
+# defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerVertSwipeGesture -bool false
+# There is no point in this setting since it just enables tiling
+# defaults write com.apple.dock enterMissionControlByTopWindowDrag -bool false
+# Set "App Exposé" to "Off"
+# defaults write com.apple.dock showAppExposeGestureEnabled -bool false
+# Enable "Show Desktop"
+# defaults write com.apple.dock showDesktopGestureEnabled -bool true
+
+### Trackpad / Scroll & Zoom
+
+# # Natural scrolling may be enabled in global domain `com.apple.swipescrolldirection`,
+# # but this maps to the same setting set in Mouse
+# Enable "Zoom in or out"
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadPinch -bool true
+# Enable "Smart zoom"
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerDoubleTapGesture -bool true
+# Enable "Rotate"
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRotate -bool true
+
+## Users & Groups (x-apple.systempreferences:com.apple.Users-Groups-Settings)
+
+# Disable "Allow guests to log in to this computer"
+sudo sysadminctl -guestAccount off
 
 
-# # Enable "focus follows mouse" for all X11 apps
-# # i.e. hover over a window and start typing in it without clicking first
-# #defaults write org.x.X11 wm_ffm -bool true
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### TGT START HERE  ###
-
-########################################
-# # MARK: System Settings
-# # Updates System Settings ("/System/Applications/System Settings.app")
-# ########################################
 
 # ## General#
 # ### Airdrop & Handoff (x-apple.systempreferences:com.apple.AirDrop-Handoff-Settings)
@@ -746,16 +743,8 @@ echo -e "\nSSD-specific tweaks"
 # echo "* emacs -nw /System/Library/LaunchAgents/org.openbsd.ssh-agent.plist"
 # echo "* launchctl load -w -S Aqua /System/Library/LaunchAgents/org.openbsd.ssh-agent.plist"
 # echo "Finally, re-enable SIP in Recovery Mode with csrutil enable."
-# echo "###############################################################################"
-# echo "OmniFocus"
-# echo "###############################################################################"
-# echo ""
-# echo "Add service shortcut"
-# /usr/libexec/PlistBuddy -c \
-# # editorconfig-checker-disable-next-line
-#     "Add :NSServicesStatus:'com.omnigroup.OmniFocus2 - OmniFocus 2\: Send to Inbox - _jot':key_equivalent string '@\$x'" \
-#     pbs.plist >/dev/null 2>&1
-# /System/Library/CoreServices/pbs -flush
+
+
 # echo "###############################################################################"
 # echo "Airplay"
 # echo "###############################################################################"
@@ -763,15 +752,11 @@ echo -e "\nSSD-specific tweaks"
 # echo "Show mirroring options"
 # /usr/libexec/PlistBuddy -c "Set showInMenuBarIfPresent true" \
 #     com.apple.airplay.plist
-# echo "###############################################################################"
-# echo "pmset"
-# echo "###############################################################################"
+
 ### Show All Power Management Settings
 # #sudo pmset -g# # The -a, -b, -c, -u flags determine whether the settings apply to
 # # battery ( -b ), charger (wall power) ( -c ), UPS ( -u ) or all ( -a ).
-# echo "###############################################################################"
-# echo "System Preferences/General"
-# echo "###############################################################################"
+
 # plist="com.apple.LaunchServices/com.apple.launchservices.secure.plist"
 # echo ""
 # echo "Set my default apps for web"
@@ -809,9 +794,7 @@ echo -e "\nSSD-specific tweaks"
 # "${plb}" -c "${set}${menuitem}:updateDisplayTime 5" "${plist}"
 # "${plb}" -c "${add}${menuitem}:controlled integer" "${plist}"
 # "${plb}" -c "${set}${menuitem}:controlled 2" "${plist}"
-# echo "###############################################################################"
-# echo "System Preferences/Security & Privacy"
-# echo "###############################################################################"
+
 # echo "Want to enable FileVault?"
 # select yn in "Yes" "No"; do
 #     case "${yn}" in
@@ -823,26 +806,7 @@ echo -e "\nSSD-specific tweaks"
 #     *) ;;
 #     esac
 # done
-# echo "###############################################################################"
-# echo "System Preferences"
-# echo "###############################################################################"
-# core_apps="/System/Library/CoreServices/Applications"
-# archives_pref="${core_apps}/Archive Utility.app/Contents/Resources/Archives.prefPane"
-# echo ""
-# echo "Install hidden Archive settings preference pane"
-# cp -r "${archives_pref}" /Library/PreferencePanes/.
-# echo ""
-# echo "Symlink Network Utility.app"
-# ln -s "${core_apps}/Network Utility.app" /Applications/.
-# echo ""
-# echo "Symlink Feedback Assistant.app"
-# ln -s "${core_apps}/Feedback Assistant.app" /Applications/.
-# echo ""
-# echo "Symlink Directory Utility.app"
-# ln -s "${core_apps}/Directory Utility.app" /Applications/.
-# echo "###############################################################################"
-# echo "systemsetup"
-# echo "###############################################################################"
+
 ### Check System Sleep Idle Time
 # #systemsetup -getcomputersleep# echo ""
 # echo "Turn off wake on network access"
@@ -856,30 +820,6 @@ echo -e "\nSSD-specific tweaks"
 # defaults write com.apple.alf allowsignedenabled -bool true
 # Dictionary - Reuse definition window
 # defaults write com.apple.Dictionary ProhibitNewWindowForRequest -bool true
-
-# Dock - Turn off bouncing icons
-# defaults write com.apple.dock no-bouncing -bool true
-
-# Dock - Move to bottom middle of the screen
-# defaults write com.apple.dock pinning -string "middle"  # Other options: "start", "end".
-
-# Dock - Move to bottom middle of the screen
-# defaults write com.apple.dock orientation -string "bottom"  # Other options: "left", "right".
-
-# Dock - Enabling iTunes track notifications
-# defaults write com.apple.dock itunes-notifications -bool true
-
-# Dock - Set springboard rows
-# defaults write com.apple.dock springboard-rows -int 8
-
-# Dock - Set springboard columns
-# defaults write com.apple.dock springboard-columns -int 8
-
-# Dock - Making launchpad better
-# defaults write com.apple.dock ResetLaunchPad -bool true
-
-# Dock - Make animation snappier
-# defaults write com.apple.dock workspaces-edge-delay -float 0.1
 
 # Menu Extra - Use 24-hour format
 # Other values, e.g., "EEE MMM d  h:mm a".
@@ -908,20 +848,6 @@ echo -e "\nSSD-specific tweaks"
 # Default duration for new event
 # defaults write com.apple.iCal Default duration in minutes for new event -int 60
 
-# Screensaver - Show with clock
-# defaults write com.apple.screensaver showClock -bool true
-# Screensaver - Set activation delay for screensaver
-# defaults write com.apple.screensaver
-#     host: currentHost idleTime -int 0
-# Screensaver - Set module name
-# defaults write com.apple.screensaver moduleName -string "Aerial"
-# Screensaver - Set display name
-# defaults write com.apple.screensaver displayName -string "Aerial"
-# Screensaver - Set path
-# defaults write com.apple.screensaver path -string "/Users/ftod/Library/Screen Savers/Aerial.saver"
-# Screensaver - Set type
-# defaults write com.apple.screensaver type -int 0
-
 # XQuartz – Auto-quit on close last window
 # defaults write org.macosforge.xquartz.X11 wm_auto_quit -bool true
 
@@ -949,21 +875,6 @@ echo -e "\nSSD-specific tweaks"
 # # disable Xcode Cloud upsell
 # defaults write com.apple.dt.Xcode XcodeCloudUpsellPromptEnabled -bool false
 
-# # Sets a space thousands separator
-# defaults write NSGlobalDomain AppleICUNumberSymbols -dict 1 ' ' 17 ' '
-
-# # Set keyboard to British
-# defaults write com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID -string "com.apple.keylayout.British"
-
-# Automatically illuminate built-in MacBook keyboard in low light
-defaults write com.apple.BezelServices kDim -bool true
-
-# Turn off keyboard illumination when computer is not used for 5 minutes\n"
-defaults write com.apple.BezelServices kDimTime -int 300
-
-# # Enable the MacBook Air SuperDrive on any Mac
-# #sudo nvram boot-args="mbasd=1"
-
 # # Hide the Game Centre
 # if [ -d /Applications/game\ center.app ]; then
 #   chflags hidden /Applications/game\ center.app
@@ -974,10 +885,5 @@ defaults write com.apple.sidebarlists systemitems -dict-add ShowEjectables -bool
 defaults write com.apple.sidebarlists systemitems -dict-add ShowRemovable -bool true
 defaults write com.apple.sidebarlists systemitems -dict-add ShowServers -bool true
 defaults write com.apple.sidebarlists systemitems -dict-add ShowHardDisks -bool true
-# # Enable dock magnification and set to 52
-# defaults write com.apple.dock magnification -bool true
-# defaults write com.apple.dock largesize -float 52
-
-# FIXME: Split into different files!
 
 {{ end -}}

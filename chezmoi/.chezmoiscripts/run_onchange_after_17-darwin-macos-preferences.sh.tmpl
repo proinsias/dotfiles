@@ -71,7 +71,8 @@ defaults write -g InitialKeyRepeat_Level_Saved -int 6 # Set "Delay until repeat"
 ### Keyboard / Text Input
 defaults write -g WebAutomaticSpellingCorrectionEnabled -bool true                    # See above
 defaults write -g NSAutomaticInlinePredictionEnabled -bool true                       # Enable "Show inline predictions"
-# defaults write -g KB_SpellingLanguage -dict KB_SpellingLanguageIsAutomatic -bool true # Set "Spelling" to "Automatic by Language"
+# Set "Spelling" to "Automatic by Language"
+# defaults write -g KB_SpellingLanguage -dict KB_SpellingLanguageIsAutomatic -bool true
 
 ### Keyboard / Dictation
 # defaults write com.apple.assistant.support "Dictation Enabled" -bool false # Disable "Dictation"
@@ -83,43 +84,65 @@ defaults write -g NSAutomaticInlinePredictionEnabled -bool true                 
 # defaults write -g com.apple.mouse.linear -bool false              # Enable "Pointer acceleration"
 
 ## Network (x-apple.systempreferences:com.apple.Network-Settings)
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on    # Enable "Firewall"
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned on    # Enable "Automatically allow built-in software to receive incoming connections"
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp on # Enable "Automatically allow downloaded signed software to receive incoming connections"
-# sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on    # "Enable stealth mode"
+# Enable "Firewall"
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+# Enable "Automatically allow built-in software to receive incoming connections"
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned on
+# Enable "Automatically allow downloaded signed software to receive incoming connections"
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp on
+# "Enable stealth mode"
+# sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
 
 ## Printer & Scanners (x-apple.systempreferences:com.apple.Print-Scan-Settings)
-defaults write org.cups.PrintingPrefs UseLastPrinter -bool true          # Set "Default printer" to "Last Printer Used"
-defaults write org.cups.PrintingPrefs DefaultPaperID -string "na-letter" # Set "Default paper size" to "US Letter"
+# Set "Default printer" to "Last Printer Used"
+defaults write org.cups.PrintingPrefs UseLastPrinter -bool true
+# Set "Default paper size" to "US Letter"
+defaults write org.cups.PrintingPrefs DefaultPaperID -string "na-letter"
 
 ## Trackpad (x-apple.systempreferences:com.apple.Trackpad-Settings)
 
 ### Trackpad / Point & Click
 
-# defaults write -g com.apple.trackpad.scaling -float 0.6875                                 # Set "Tracking speed" to 4/10 slowest
-# defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 1                # Set "Click" to "Medium"
-# defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 1               # See above
-# defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 1                  # Disable "Quiet Click"
-# defaults write -g com.apple.trackpad.forceClick -bool true                                 # Enable "Force Click and haptic feedback"
-# defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -bool false # Set "Look up & data detectors" to "Force Click with One Finger"
-# defaults write com.apple.AppleMultitouchTrackpad Clicking -bool false                      # Disable "Tap to click"
+# Set "Tracking speed" to 4/10 slowest
+# defaults write -g com.apple.trackpad.scaling -float 0.6875
+# Set "Click" to "Medium"
+# defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 1
+# See above
+# defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 1
+# Disable "Quiet Click"
+# defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 1
+# Enable "Force Click and haptic feedback"
+# defaults write -g com.apple.trackpad.forceClick -bool true
+# Set "Look up & data detectors" to "Force Click with One Finger"
+# defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -bool false
+# Disable "Tap to click"
+# defaults write com.apple.AppleMultitouchTrackpad Clicking -bool false
 
 ### Trackpad / More Gestures
 
-# defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3 # Enable "Notification Center"
-# defaults write com.apple.dock showMissionControlGestureEnabled -bool true                          # Set "Mission Control" to "Swipe Up with Three Fingers"
+# Enable "Notification Center"
+# defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3
+# Set "Mission Control" to "Swipe Up with Three Fingers"
+# defaults write com.apple.dock showMissionControlGestureEnabled -bool true
 # defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 2
 # defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerVertSwipeGesture -bool false
-# defaults write com.apple.dock enterMissionControlByTopWindowDrag -bool false # There is no point in this setting since it just enables tiling
-# defaults write com.apple.dock showAppExposeGestureEnabled -bool false        # Set "App Exposé" to "Off"
-# defaults write com.apple.dock showDesktopGestureEnabled -bool true           # Enable "Show Desktop"
+# There is no point in this setting since it just enables tiling
+# defaults write com.apple.dock enterMissionControlByTopWindowDrag -bool false
+# Set "App Exposé" to "Off"
+# defaults write com.apple.dock showAppExposeGestureEnabled -bool false
+# Enable "Show Desktop"
+# defaults write com.apple.dock showDesktopGestureEnabled -bool true
 
 ### Trackpad / Scroll & Zoom
 
-# # Natural scrolling may be enabled in global domain `com.apple.swipescrolldirection`, but this maps to the same setting set in Mouse
-# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadPinch -bool true                     # Enable "Zoom in or out"
-# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerDoubleTapGesture -bool true # Enable "Smart zoom"
-# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRotate -bool true                    # Enable "Rotate"
+# # Natural scrolling may be enabled in global domain `com.apple.swipescrolldirection`,
+# # but this maps to the same setting set in Mouse
+# Enable "Zoom in or out"
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadPinch -bool true
+# Enable "Smart zoom"
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerDoubleTapGesture -bool true
+# Enable "Rotate"
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRotate -bool true
 
 ## Users & Groups (x-apple.systempreferences:com.apple.Users-Groups-Settings)
 sudo sysadminctl -guestAccount off # Disable "Allow guests to log in to this computer"
@@ -199,7 +222,8 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 
 # # Disable the crash reporter
-# #defaults write com.apple.CrashReporter DialogType -string "none"# # Set Help Viewer windows to non-floating mode
+# #defaults write com.apple.CrashReporter DialogType -string "none"
+# # Set Help Viewer windows to non-floating mode
 # defaults write com.apple.helpviewer DevMode -bool true
 
 # Reveal IP address, hostname, OS version, etc. when clicking the clock
@@ -246,7 +270,8 @@ defaults write com.apple.systemsound "com.apple.sound.uiaudio.enabled" -int 0
 #   "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
 #   "/System/Library/CoreServices/Menu Extras/Battery.menu" \
 #   "/System/Library/CoreServices/Menu Extras/Clock.menu"#
-# sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "@lildude :: Found this computer? Please call +1-415-448-6673 :: GitHub, Inc."
+# sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText \
+#    "@lildude :: Found this computer? Please call +1-415-448-6673 :: GitHub, Inc."
 
 # Set powerchime when connecting power cord ala iOS
 defaults write com.apple.PowerChime ChimeOnAllHardware -bool true
@@ -260,7 +285,8 @@ defaults write com.apple.PowerChime ChimeOnAllHardware -bool true
 # Show battery percent in menu bar
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
-# # Enable sub-pixel aliasing on mojave and later - https://www.howtogeek.com/358596/how-to-fix-blurry-fonts-on-macos-mojave-with-subpixel-antialiasing/
+# # Enable sub-pixel aliasing on mojave and later -
+# https://www.howtogeek.com/358596/how-to-fix-blurry-fonts-on-macos-mojave-with-subpixel-antialiasing/
 # defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 
 ################################################################################
@@ -448,40 +474,40 @@ defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 # defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 
 # # Show item info near icons on the desktop and in other icon views
-# # editorconfig-checker-disable-next-line
-# /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
-# # editorconfig-checker-disable-next-line
-# /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
-# # editorconfig-checker-disable-next-line
-# /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" \
+#    ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" \
+#    ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" \
+#    ~/Library/Preferences/com.apple.finder.plist
 
 # # Show item info to the right of the icons on the desktop
-# # editorconfig-checker-disable-next-line
-# /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:labelOnBottom false" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:labelOnBottom false" \
+#    ~/Library/Preferences/com.apple.finder.plist
 
 # # Enable snap-to-grid for icons on the desktop and in other icon views
-# # editorconfig-checker-disable-next-line
-# /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
-# # editorconfig-checker-disable-next-line
-# /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
-# # editorconfig-checker-disable-next-line
-# /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" \
+#    ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid"
+#    ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid"
+#    ~/Library/Preferences/com.apple.finder.plist
 
 # # Increase grid spacing for icons on the desktop and in other icon views
-# # editorconfig-checker-disable-next-line
-# /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 100" ~/Library/Preferences/com.apple.finder.plist
-# # editorconfig-checker-disable-next-line
-# /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 100" ~/Library/Preferences/com.apple.finder.plist
-# # editorconfig-checker-disable-next-line
-# /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 100" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 100"
+#    ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 100"
+#    ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 100"
+#    ~/Library/Preferences/com.apple.finder.plist
 
 # # Increase the size of icons on the desktop and in other icon views
-# # editorconfig-checker-disable-next-line
-# /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 80" ~/Library/Preferences/com.apple.finder.plist
-# # editorconfig-checker-disable-next-line
-# /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 80" ~/Library/Preferences/com.apple.finder.plist
-# # editorconfig-checker-disable-next-line
-# /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 80" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 80"
+#    ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 80"
+#    ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 80"
+#    ~/Library/Preferences/com.apple.finder.plist
 
 # Use list view in all Finder windows by default
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`
@@ -515,11 +541,15 @@ sudo chflags nohidden /Volumes
 #     Preview -bool false
 
 # General
-defaults write com.apple.finder FinderSpawnTab -bool true      # Enable "Open folders in tabs instead of new windows"
+# Enable "Open folders in tabs instead of new windows"
+defaults write com.apple.finder FinderSpawnTab -bool true
 
 # Advanced
-# defaults write com.apple.finder FXRemoveOldTrashItems -bool false          # Disable "Remove items from the Trash after 30 days"
-defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool true    # Enable "Keep folders on top on Desktop"
+# Disable "Remove items from the Trash after 30 days"
+# defaults write com.apple.finder FXRemoveOldTrashItems -bool false
+defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool true
+
+defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool true
 
 # Disable Quick Look animations
 defaults write -g QLPanelAnimationDuration -float 0
@@ -607,9 +637,10 @@ defaults write com.apple.dock show-recents -bool false
 # # Reset Launchpad, but keep the desktop wallpaper intact
 # find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
 # # Add iOS & Watch Simulator to Launchpad
-# # sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
-# # editorconfig-checker-disable-next-line
-# # sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app" "/Applications/Simulator (Watch).app"
+# # sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" \
+#    "/Applications/Simulator.app"
+# # sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app" \
+#    "/Applications/Simulator (Watch).app"
 
 # # Hot corners
 # # Possible values:
@@ -671,8 +702,10 @@ echo -e "\nGoogle Chrome and Google Chrome Canary"
 ################################################################################
 
 # # Allow installing user scripts via GitHub Gist or Userscripts.org
-# #defaults write com.google.Chrome ExtensionInstallSources -array "https://gist.githubusercontent.com/" "http://userscripts.org/*"
-# #defaults write com.google.Chrome.canary ExtensionInstallSources -array "https://gist.githubusercontent.com/" "http://userscripts.org/*"
+# #defaults write com.google.Chrome ExtensionInstallSources -array \
+#    "https://gist.githubusercontent.com/" "http://userscripts.org/*"
+# #defaults write com.google.Chrome.canary ExtensionInstallSources -array \
+#    "https://gist.githubusercontent.com/" "http://userscripts.org/*"
 
 # Disable the all too sensitive backswipe on trackpads
 defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
@@ -806,7 +839,7 @@ echo -e "\nTime Machine"
 
 ### TGT START HERE  ###
 
-# #######################################
+########################################
 # # MARK: System Settings
 # # Updates System Settings ("/System/Applications/System Settings.app")
 # ########################################
@@ -814,62 +847,84 @@ echo -e "\nTime Machine"
 # ## General#
 # ### Airdrop & Handoff (x-apple.systempreferences:com.apple.AirDrop-Handoff-Settings)
 # defaults write com.apple.sharingd DiscoverableMode -string "Contacts Only"
-# ### Language & Region (x-apple.systempreferences:com.apple.Localization-Settings)
+#### Language & Region (x-apple.systempreferences:com.apple.Localization-Settings)
 # defaults write -g AppleTemperatureUnit -string "Fahrenheit"
-# defaults write -g AppleLiveTextEnabled -bool true # Enable Live Text (Select text in images to copy or take action)
-# ### Time Machine (x-apple.systempreferences:com.apple.Time-Machine-Settings)
+# Enable Live Text (Select text in images to copy or take action)
+# defaults write -g AppleLiveTextEnabled -bool true
+#### Time Machine (x-apple.systempreferences:com.apple.Time-Machine-Settings)
 # # Exclude ~/Github and `$XDG_CACHE_HOME` from Time Machine backups
 # sudo defaults write /Library/Preferences/com.apple.TimeMachine SkipPaths -array \
 #   "${HOME}/Github" \
-#   "${HOME}/.cache"# ## Appearance (x-apple.systempreferences:com.apple.Appearance-Settings)
-# defaults write -g AppleReduceDesktopTinting -bool true     # Disable "Allow wallpaper tinting in windows"
-# defaults write -g AppleScrollerPagingBehavior -bool true   # Click in the scroll bar to "Jump to the spot that's clicked"
-# ## Accessibility (x-apple.systempreferences:com.apple.Accessibility)
-# ### Display
-# defaults write com.apple.access showWindowTitlebarIcons -bool true # Enable "Show window title icons"
-# ### Live Captions# defaults write com.apple.Accessibility FaceTimeCaptions -bool false # Disable "Live Captions in FaceTime
-# ## Desktop & Dock (x-apple.systempreferences:com.apple.Desktop-Settings)
-# ### Dock
-# defaults write -g AppleActionOnDoubleClick -string "Maximize"    # Set "Double-click a window's title bar" to "Zoom"
-# ### Desktop & Stage Manager# defaults write com.apple.WindowManager StandardHideDesktopIcons -bool false        # Enable "Show Items" for "Desktop"
-# defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool true # Set "Click wallpaper to reveal desktop" to "Always"
-# defaults write com.apple.WindowManager GloballyEnabled -bool false                 # Disable "Stage Manager"
-# ### Widgets
-# ### Windows# defaults write com.apple.dock windowtabbing -string "always" # Prefer tabs when opening documents
-# defaults write -g NSCloseAlwaysConfirmsChanges -bool true    # Enable "Ask to keep changes when closing documents"
-# defaults write com.apple.WindowManager EnableTilingByEdgeDrag -bool true        # Enable "Drag windows to screen edges to tile"
-# defaults write com.apple.WindowManager EnableTopTilingByEdgeDrag -bool true     # Enable "Drag windows to menu bar to fill screen"
-# defaults write com.apple.WindowManager EnableTilingOptionAccelerator -bool true # Enable "Hold ⌥ key while dragging windows to tile"
-# defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false     # Disable "Tiled windows have margins"
-# ### Stage Manager# defaults write -g AppleSpacesSwitchOnActivate -bool true                     # Enable "When switching to an application, switch to a Space with open windows for the application"
-# defaults write com.apple.dock expose-group-apps -bool true                   # Enable "Group windows by application"
-# defaults write com.apple.spaces spans-displays -bool false                   # Enable "Displays have separate Spaces"
-# ## Spotlight (x-apple.systempreferences:com.apple.Spotlight-Settings)
-# defaults write com.apple.assistant.support "Search Queries Data Sharing Status" -int 2 # Disable "Help Apple Improve Search"
-# ## Notifications (x-apple.systempreferences:com.apple.preference.notifications)
-# defaults write com.apple.ncprefs content_visibility -int 2 # Set "Show previews" to "When Unlocked"
-# ## Sound (x-apple.systempreferences:com.apple.preference.sound)
+#   "${HOME}/.cache"### Appearance (x-apple.systempreferences:com.apple.Appearance-Settings)
+# Disable "Allow wallpaper tinting in windows"
+# defaults write -g AppleReduceDesktopTinting -bool true
+# Click in the scroll bar to "Jump to the spot that's clicked"# defaults write -g AppleScrollerPagingBehavior -bool true
+### Accessibility (x-apple.systempreferences:com.apple.Accessibility)
+#### Display
+# Enable "Show window title icons"
+# defaults write com.apple.access showWindowTitlebarIcons -bool true
+# Disable "Live Captions in FaceTime
+#### Live Captions# defaults write com.apple.Accessibility FaceTimeCaptions -bool false
+### Desktop & Dock (x-apple.systempreferences:com.apple.Desktop-Settings)
+#### Dock
+# Set "Double-click a window's title bar" to "Zoom"
+# defaults write -g AppleActionOnDoubleClick -string "Maximize"
+# Enable "Show Items" for "Desktop"
+#### Desktop & Stage Manager
+# defaults write com.apple.WindowManager StandardHideDesktopIcons -bool false
+# Set "Click wallpaper to reveal desktop" to "Always"
+# defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool true
+# Disable "Stage Manager"# defaults write com.apple.WindowManager GloballyEnabled -bool false
+#### Widgets
+#### Windows
+# Prefer tabs when opening documents
+# defaults write com.apple.dock windowtabbing -string "always"
+# Enable "Ask to keep changes when closing documents"
+# defaults write -g NSCloseAlwaysConfirmsChanges -bool true
+# Enable "Drag windows to screen edges to tile"
+# defaults write com.apple.WindowManager EnableTilingByEdgeDrag -bool true
+# Enable "Drag windows to menu bar to fill screen"
+# defaults write com.apple.WindowManager EnableTopTilingByEdgeDrag -bool true
+# Enable "Hold ⌥ key while dragging windows to tile"
+# defaults write com.apple.WindowManager EnableTilingOptionAccelerator -bool true
+# Disable "Tiled windows have margins"
+# defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
+# Enable "When switching to an application, switch to a Space with open windows for the application"
+#### Stage Manager# defaults write -g AppleSpacesSwitchOnActivate -bool true
+# Enable "Group windows by application"
+# defaults write com.apple.dock expose-group-apps -bool true
+# Enable "Displays have separate Spaces"
+# defaults write com.apple.spaces spans-displays -bool false
+### Spotlight (x-apple.systempreferences:com.apple.Spotlight-Settings)
+# Disable "Help Apple Improve Search"
+# defaults write com.apple.assistant.support "Search Queries Data Sharing Status" -int 2
+### Notifications (x-apple.systempreferences:com.apple.preference.notifications)
+# Set "Show previews" to "When Unlocked"
+# defaults write com.apple.ncprefs content_visibility -int 2
+### Sound (x-apple.systempreferences:com.apple.preference.sound)
 # sudo nvram StartupMute=%01 # Disable "Play sound on startup"
-# ## Lock Screen (x-apple.systempreferences:com.apple.Lock-Screen-Settings)
+### Lock Screen (x-apple.systempreferences:com.apple.Lock-Screen-Settings)
 # sudo pmset -a proximitywake 1
 # sudo pmset -b displaysleep 5 disksleep 5 sleep 10     # Battery
 # sudo pmset -c displaysleep 30 disksleep 30 sleep 60   # Charger (wall power)
-# ## Privacy & Security (x-apple.systempreferences:com.apple.preference.security)
-# ### Sensitive Content Warning
-# defaults write com.apple.communicationSafetySettings "analyticsEnabled" -bool false # Disable "Improve Sensitive Content Warning"
-# ### Analytics & Improvements
-# defaults write /Library/Application\ Support/CrashReporter/DiagnosticMessagesHistory AutoSubmit -bool false # Disable "Share Mac Analytics"
-# defaults write com.apple.assistant.support "Siri Data Sharing Opt-In Status" -int 2                         # Disable "Improve Siri & Dictation"
-# defaults write com.apple.Accessibility AXSAudioDonationSiriImprovementEnabled -bool false                   # Disable "Improve Assistive Voice Features"
-# ### Apple Advertising
+### Privacy & Security (x-apple.systempreferences:com.apple.preference.security)
+#### Sensitive Content Warning
+# Disable "Improve Sensitive Content Warning"
+# defaults write com.apple.communicationSafetySettings "analyticsEnabled" -bool false
+#### Analytics & Improvements
+# Disable "Share Mac Analytics"
+# defaults write /Library/Application\ Support/CrashReporter/DiagnosticMessagesHistory AutoSubmit -bool false
+# Disable "Improve Siri & Dictation"
+# defaults write com.apple.assistant.support "Siri Data Sharing Opt-In Status" -int 2
+# Disable "Improve Assistive Voice Features"
+# defaults write com.apple.Accessibility AXSAudioDonationSiriImprovementEnabled -bool false
+#### Apple Advertising
 # defaults write com.apple.AdLib allowApplePersonalizedAdvertising -bool false # Disable "Personalized Ads"
-# ### Apple Intelligence Report
+#### Apple Intelligence Report
 # defaults write com.apple.AppleIntelligenceReport reportDuration -int 0 # Disable "Apple Intelligence Report"
 # ### Security
-# sudo spctl --global-enable # Set "Allow applications from" to "App Store" if it is "Anywhere"
-# if [[ "$(spctl --test-devid-status)" == "devid disabled" ]]; then
-#   url='\e]8;;x-apple.systempreferences:com.apple.settings.PrivacySecurity\aSystem Settings > Privacy & Security\e]8;;\a'
-#   echo -e "The option 'Allow applications from' is currently set to 'App Store'. Please go to ${url} and update it to 'App Store and Known Developers'"
+# Set "Allow applications from" to "App Store" if it is "Anywhere"
+# sudo spctl --global-enable
 # fi
 # echo ""
 # echo "###############################################################################"
@@ -907,6 +962,7 @@ echo -e "\nTime Machine"
 # echo ""
 # echo "Add service shortcut"
 # /usr/libexec/PlistBuddy -c \
+# # editorconfig-checker-disable-next-line
 #     "Add :NSServicesStatus:'com.omnigroup.OmniFocus2 - OmniFocus 2\: Send to Inbox - _jot':key_equivalent string '@\$x'" \
 #     pbs.plist >/dev/null 2>&1
 # /System/Library/CoreServices/pbs -flush
@@ -920,7 +976,7 @@ echo -e "\nTime Machine"
 # echo "###############################################################################"
 # echo "pmset"
 # echo "###############################################################################"
-# ## Show All Power Management Settings
+### Show All Power Management Settings
 # #sudo pmset -g# # The -a, -b, -c, -u flags determine whether the settings apply to
 # # battery ( -b ), charger (wall power) ( -c ), UPS ( -u ) or all ( -a ).
 # echo "###############################################################################"
@@ -997,7 +1053,7 @@ echo -e "\nTime Machine"
 # echo "###############################################################################"
 # echo "systemsetup"
 # echo "###############################################################################"
-# ## Check System Sleep Idle Time
+### Check System Sleep Idle Time
 # #systemsetup -getcomputersleep# echo ""
 # echo "Turn off wake on network access"
 # systemsetup -setwakeonnetworkaccess off
@@ -1005,7 +1061,8 @@ echo -e "\nTime Machine"
 # Show first name before last name
 # defaults write com.apple.addressbook ABNameDisplay -int 0
 # Sort by last name
-# defaults write com.apple.addressbook ABNameSortingFormat -string "sortingLastName"  # sortingFirstName
+# sortingFirstName
+# defaults write com.apple.addressbook ABNameSortingFormat -string "sortingLastName"
 # Turn on Firewall
 # defaults write com.apple.alf globalstate -bool true
 # Enable stealth mode
@@ -1043,7 +1100,8 @@ echo -e "\nTime Machine"
 # defaults write com.apple.dock workspaces-edge-delay -float 0.1
 
 # Menu Extra - Use 24-hour format
-# defaults write com.apple.menuextra.clock DateFormat -string "EEE HH:mm"  # Other values, e.g., "EEE MMM d  h:mm a".
+# Other values, e.g., "EEE MMM d  h:mm a".
+# defaults write com.apple.menuextra.clock DateFormat -string "EEE HH:mm"
 # MenuMeters - Update disk information only every 1s
 # defaults write com.ragingmenace.MenuMeters DiskInterval -float 1.0
 
@@ -1054,7 +1112,8 @@ echo -e "\nTime Machine"
 # Show fast user switching menu as [Icon]
 # defaults write NSGlobalDomain userMenuExtraStyle -int 2
 # UI - Set action for double click on titlebar
-# defaults write NSGlobalDomain AppleActionOnDoubleClick -string "Maximize"  # "Maximize", "Minimize".
+# "Maximize", "Minimize".
+# defaults write NSGlobalDomain AppleActionOnDoubleClick -string "Maximize"
 # UI - Enable menubar transparency
 # defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool true
 # UI - Enable opening and closing window animations
@@ -1076,7 +1135,6 @@ echo -e "\nTime Machine"
 # Default duration for new event
 # defaults write com.apple.iCal Default duration in minutes for new event -int 60
 
-# ##
 # Screensaver - Show with clock
 # defaults write com.apple.screensaver showClock -bool true
 # Screensaver - Set activation delay for screensaver

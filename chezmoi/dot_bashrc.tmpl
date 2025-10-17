@@ -409,6 +409,8 @@ GRC_ALIASES=true
 PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
 export PATH
 
+eval "$(ssh-agent -s)"
+
 ### Print message of the day.
 
 # istheinternetonfire.com

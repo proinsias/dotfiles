@@ -62,7 +62,7 @@ if ! command -v op >/dev/null 2>&1; then
 
     # Install package
     sudo apt update
-    sudo apt install -y 1password-cli
+    sudo apt install --yes 1password-cli
 {{ else }}
     echo "Warning: No method to install 1Password CLI found!"
 {{- end -}}

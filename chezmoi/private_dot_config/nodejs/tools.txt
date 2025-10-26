@@ -1,31 +1,37 @@
+# how2
+# markdown-link-check
+# markdown-toc
+# markdownlint-cli
+# terminalizer
+# textlint-rule/textlint-rule-no-duplicate-abbr
+# textlint-rule/textlint-rule-no-invalid-control-character
+bash-language-server
 cspell
 csslint
-dockerlint
-dockerfilelint
 dockerfile_lint
+dockerfile-language-server-nodejs
+dockerfilelint
+dockerlint
 emoj
 eslint
 fkill-cli
 git-guilt
-# how2
 htmlhint
 jscpd
 jscs
 jshint
 jslint
-# markdownlint-cli
-# markdown-link-check
-# markdown-toc
 mega-linter-runner
 npm-check
 npm-check-updates
+pyright
 semistandard
+sql-language-server
 standard
 svgo
-# terminalizer
 textlint
-textlint-plugin-latex2e
 textlint-filter-rule-comments
+textlint-plugin-latex2e
 textlint-rule-alex
 textlint-rule-apostrophe
 textlint-rule-common-misspellings
@@ -41,10 +47,13 @@ textlint-rule-no-start-duplicated-conjunction
 textlint-rule-no-todo
 textlint-rule-stop-words
 textlint-rule-terminology
-textlint-rule-write-good
 textlint-rule-unexpanded-acronym
-# textlint-rule/textlint-rule-no-duplicate-abbr
-# textlint-rule/textlint-rule-no-invalid-control-character
+textlint-rule-write-good
 tldr
+typescript-language-server
+typescript-language-server
 v8r
+vscode-css-languageserver-bin
+vscode-html-languageserver-bin
+vscode-json-languageserver-bin
 yarn

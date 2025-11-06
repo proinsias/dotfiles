@@ -25,6 +25,8 @@ uvx --from md-toc md_toc --in-place github -- README.md
 Simply run these commands from your terminal.
 
 ```shell
+# Install homebrew and 1password CLI ahead.
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/proinsias/dotfiles/refs/heads/main/bin/install-homebrew-op)"
 # Setup all but the encrypted files.
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias \
     --exclude encrypted
@@ -37,7 +39,4 @@ chezmoi apply
 
 ## To Dos
 
-1. Convert onepasswordRead to $(op read) ?
-1. GT run_once_after_darwin_01-macos-preferences.sh.tmpl.
-1. work: gitconfig - Switch to getting from op!
 1. Setup /etc/hosts -> see `hosts` file.

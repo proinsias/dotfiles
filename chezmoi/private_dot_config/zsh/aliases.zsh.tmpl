@@ -177,6 +177,8 @@ alias gd='git diff'
 alias gs='git status --show-stash'
 alias GS='git status --show-stash'
 alias gp='git pull'
+alias gfc='git branch | fzf | xargs git checkout'
+alias gcleanup='git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D'
 
 alias h='history'
 
@@ -234,6 +236,8 @@ alias whence='type -a' # where, of a sort
 
 {{ if eq .chezmoi.os "linux" }}
 alias top='top -o %CPU'
+alias pbcopy="xclip -selection clipboard
+alias pbpaste="xclip -selection clipboard -o"
 {{ else if eq .chezmoi.os "darwin" }}
 # OS X has no `md5sum`, so use `md5` as a fallback
 command -v md5sum >/dev/null || alias md5sum="md5"

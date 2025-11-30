@@ -722,10 +722,11 @@ sudo sysadminctl -guestAccount off
 # launchctl load -w /System/Library/LaunchDaemons/ssh.plist
 # echo "###############################################################################"
 # echo "launchctl"
-# echo "###############################################################################
-"# echo ""
+# echo "###############################################################################"
+# echo ""
 # echo "Turn on locate db"
-# launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist# echo ""
+# launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
+# echo ""
 # echo "Using the latest SSH from Homebrew on OSX..."
 # echo ""
 # # http://apple.stackexchange.com/a/223855
@@ -881,9 +882,9 @@ sudo sysadminctl -guestAccount off
 # fi
 
 # Sidebar list - these are all defaults, but here if you wish to change them.
-defaults write com.apple.sidebarlists systemitems -dict-add ShowEjectables -bool true
-defaults write com.apple.sidebarlists systemitems -dict-add ShowRemovable -bool true
-defaults write com.apple.sidebarlists systemitems -dict-add ShowServers -bool true
-defaults write com.apple.sidebarlists systemitems -dict-add ShowHardDisks -bool true
+# defaults write com.apple.sidebarlists systemitems -dict-add ShowEjectables -bool true
+# defaults write com.apple.sidebarlists systemitems -dict-add ShowRemovable -bool true
+# defaults write com.apple.sidebarlists systemitems -dict-add ShowServers -bool true
+# defaults write com.apple.sidebarlists systemitems -dict-add ShowHardDisks -bool true
 
 {{ end -}}

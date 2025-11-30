@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -o errexit    # Exit on error. Append || true if you expect an error.
+# set -o errtrace   # Exit on error inside any functions or subshells.
+set -o noclobber  # don't allow overwriting files
+set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail   # Produce a failure return code if any pipeline command errors
+shopt -s failglob # Cause globs that don't get expanded to cause errors
+
+echo -e "\n\nUpdating /etc/hosts"
+
+if ! grep --quiet coinhive.com /etc/hosts >/dev/null 2>&1; then
+    {
+        echo "# Disable Cryptohacking - https://www.grc.com/sn/SN-637-Notes.pdf"
+        echo "127.0.0.1 coin-hive.com coinhive.com"
+    } | sudo tee -a /etc/hosts >/dev/null
+fi
+
+if ! grep --quiet audienceinsights.net /etc/hosts >/dev/null 2>&1; then
+    {
+        echo "# Disable AudienceInsights - https://www.grc.com/sn/SN-644-Notes.pdf"
+        echo "127.0.0.1   static.audienceinsights.net"
+        echo "127.0.0.1   api.behavioralengine.com"
+    } | sudo tee -a /etc/hosts >/dev/null
+fi
+
+if ! grep --quiet kubernetes.docker.internal /etc/hosts >/dev/null 2>&1; then
+    {
+        echo "# Added by Docker Desktop"
+        echo "# To allow the same kube context to work on the host and the container:"
+        echo "127.0.0.1 kubernetes.docker.internal"
+    } | sudo tee -a /etc/hosts >/dev/null
+fi

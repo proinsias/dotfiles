@@ -15,7 +15,6 @@ tap "ngrok/ngrok"
 tap "oven-sh/bun"
 tap "proinsias/yaml-update-last-modified-date"
 tap "teamookla/speedtest"
-tap "tsonglew/dutis"
 tap "vitorgalvao/tiny-scripts"
 
 # Static analysis and lint tool, for (ba)sh scripts
@@ -106,8 +105,6 @@ brew "dos2unix"
 brew "dotenv-linter"
 # .NET Core
 brew "dotnet"
-# A cmd util to manage default app on macOS, inspired by duti
-brew "dutis"
 # Git for data science projects
 brew "dvc"
 brew "editorconfig"
@@ -359,8 +356,6 @@ brew "python-argcomplete"
 brew "python@3.10"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.11"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
 # Upgrade syntax for newer versions of Python
 brew "pyupgrade"
 # Perl-powered file rename script with many helpful built-ins
@@ -520,9 +515,12 @@ brew "knqyf263/pet/pet"
 
 {{ if eq .chezmoi.os "darwin" }}{{/* darwin */}}
 tap "alexdavid/tap"
+tap "tsonglew/dutis"
 
 # Select default apps for documents and URL schemes on macOS
 brew "duti"
+# A cmd util to manage default app on macOS, inspired by duti
+brew "dutis"
 # CLI for ImageOptim, ImageAlpha and JPEGmini
 brew "imageoptim-cli"
 # Mac App Store command-line interface
@@ -769,8 +767,6 @@ cask "roaringapps"
 cask "send-to-kindle"
 # Instant messaging application focusing on security
 cask "signal"
-# Font manager
-cask "skyfonts"
 # Video chat, voice call and instant messaging application
 # cask "skype"
 # Team communication and collaboration software

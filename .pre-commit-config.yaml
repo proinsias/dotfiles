@@ -63,14 +63,14 @@ repos:
       - id: shfmt
 
   - repo: https://github.com/sirosen/check-jsonschema
-    rev: 0.34.1
+    rev: 0.36.0
     hooks:
       - id: check-github-actions
       - id: check-github-workflows
       - id: check-readthedocs
 
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.8
+    rev: v1.7.10
     hooks:
       - id: actionlint
 
@@ -116,7 +116,7 @@ repos:
         # - --additional-pattern 'mykey*'
 
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.28.0
+    rev: v8.30.0
     hooks:
       - id: gitleaks
         args: [--baseline-path, gitleaks-report.json]
@@ -133,7 +133,7 @@ repos:
   #         - pre-push
 
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
-    rev: "3.4.0"
+    rev: "3.6.0"
     hooks:
       - id: editorconfig-checker
 
@@ -180,7 +180,7 @@ repos:
           - --py36-plus
 
   - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.406
+    rev: v1.1.407
     hooks:
       - id: pyright
 
@@ -191,7 +191,7 @@ repos:
         name: isort (python)
 
   - repo: https://github.com/hadialqattan/pycln
-    rev: v2.5.0 # Possible releases: https://github.com/hadialqattan/pycln/releases
+    rev: v2.6.0 # Possible releases: https://github.com/hadialqattan/pycln/releases
     hooks:
       - id: pycln
 
@@ -201,7 +201,7 @@ repos:
       - id: absolufy-imports
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: "v0.14.0"
+    rev: "v0.14.10"
     hooks:
       - id: ruff-check
         args: [--fix, --force-exclude, --exit-non-zero-on-fix]

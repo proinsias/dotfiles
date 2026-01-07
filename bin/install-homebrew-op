@@ -48,7 +48,7 @@ if ! command -v op >/dev/null 2>&1; then
 
     case "$(uname -s)" in
         Darwin*)
-            brew install op
+            brew install 1password-cli
             ;;
         Linux*)
             # Import GPG key

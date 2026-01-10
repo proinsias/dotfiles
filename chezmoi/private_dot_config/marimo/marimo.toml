@@ -1,60 +1,71 @@
+[package_management]
+manager = "uv"
+
+[formatting]
+line_length = 79
+
 [save]
-format_on_save = true
 autosave = "after_delay"
+format_on_save = true
 autosave_delay = 1000
 
-[experimental]
+[snippets]
+custom_paths = []
+include_default_snippets = true
 
 [runtime]
-watcher_on_save = "lazy"
-default_sql_output = "auto"
-on_cell_change = "autorun"
-std_stream_max_bytes = 1000000
-reactive_tests = true
 auto_reload = "autorun"
+reactive_tests = true
+auto_instantiate = true
+default_sql_output = "auto"
 output_max_bytes = 8000000
-auto_instantiate = false
+std_stream_max_bytes = 1000000
+watcher_on_save = "lazy"
 default_auto_download = []
+on_cell_change = "autorun"
+
+[ai]
+mode = "manual"
+rules = ""
+inline_tooltip = false
+
+[ai.models]
+custom_models = []
+displayed_models = []
+
+[display]
+reference_highlighting = false
+dataframes = "rich"
+cell_output = "below"
+code_editor_font_size = 14
+theme = "light"
+default_width = "medium"
+default_table_max_columns = 50
+default_table_page_size = 10
+
+[language_servers.ty]
+enabled = true
+
+[language_servers.pylsp]
+enable_mypy = true
+enable_ruff = true
+enable_pylint = false
+enable_flake8 = false
+enabled = true
+enable_pyflakes = false
+enable_pydocstyle = false
+
+[language_servers.basedpyright]
+enabled = true
 
 [mcp]
 presets = []
 
 [mcp.mcpServers]
 
-[display]
-default_width = "medium"
-cell_output = "below"
-code_editor_font_size = 14
-theme = "light"
-dataframes = "rich"
-default_table_page_size = 10
-default_table_max_columns = 50
-reference_highlighting = false
-
-[language_servers.pylsp]
-enable_pydocstyle = false
-enable_mypy = true
-enable_pyflakes = false
-enable_ruff = true
-enable_flake8 = false
+[diagnostics]
+sql_linter = true
 enabled = false
-enable_pylint = false
-
-[language_servers.ty]
-enabled = false
-
-[language_servers.basedpyright]
-
-[formatting]
-line_length = 79
-
-[server]
-browser = "default"
-follow_symlink = false
-
-[snippets]
-custom_paths = []
-include_default_snippets = true
 
 [datasources]
 
@@ -62,24 +73,14 @@ include_default_snippets = true
 copilot = false
 activate_on_typing = true
 
-[diagnostics]
-enabled = false
-sql_linter = true
-
-[ai]
-mode = "manual"
-inline_tooltip = false
-rules = ""
-
-[ai.models]
-displayed_models = []
-custom_models = []
-
 [keymap]
 destructive_delete = true
 preset = "default"
 
 [keymap.overrides]
 
-[package_management]
-manager = "uv"
+[experimental]
+
+[server]
+follow_symlink = false
+browser = "default"

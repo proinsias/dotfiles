@@ -23,10 +23,6 @@ test -d /home/linuxbrew/.linuxbrew && OUTPUT="$(/home/linuxbrew/.linuxbrew/bin/b
 test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
 {{ end }}
 
-# For mise
-OUTPUT="$(mise activate zsh)"
-eval "${OUTPUT}"
-
 ## Exports
 
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-/usr/local/}
@@ -166,7 +162,7 @@ test -d /home/linuxbrew/.linuxbrew/include && export CPPFLAGS="-L/home/linuxbrew
 ### Setup path.
 export PATH="${HOME}/.local/bin${PATH:+:${PATH}}" # Keep first.
 export PATH="${PATH}:${NPM_PACKAGES}/bin"
-export PATH="${RUBY_HOME}/bin:${PATH}"
+export PATH="${PATH}:${RUBY_HOME}/bin"
 export PATH="${PATH}:${GEM_PATH}/bin"
 
 #### set PATH so it includes user's private bin if it exists
@@ -725,3 +721,7 @@ export DISABLE_AUTO_UPDATE="true"
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU path fpath
+
+# For mise
+OUTPUT="$(mise activate zsh)"
+eval "${OUTPUT}"

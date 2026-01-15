@@ -923,6 +923,7 @@ mas "WordService", id: 899972312
 {{ end }}{{/* darwin not .work not .lite not .test */}}
 {{ end }}{{/* darwin not .work not .lite */}}
 {{ else if .work }}{{/* darwin not .work */}}
+brew "awscli"
 # # Visual tool to design, develop and administer MySQL servers
 # cask "mysqlworkbench"
 {{ end }}{{/* darwin .work */}}

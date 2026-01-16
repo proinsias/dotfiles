@@ -44,9 +44,9 @@ else
     echo -e "\nThe Brewfile's dependencies are satisfied. Skipping brew bundle install --file..."
 fi
 
-# Ensure we have a symlink to 1password's agent in an easy place.
-mkdir -p ~/.1password
-test -e ~/.1password/agent.sock || \\
-    ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
+# # Ensure we have a symlink to 1password's agent in an easy place.
+# mkdir -p ~/.1password
+# test -e ~/.1password/agent.sock || \\
+#     ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
 
 {{ end }}

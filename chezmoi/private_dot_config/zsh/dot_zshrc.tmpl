@@ -53,11 +53,6 @@ export CLOUDSDK_PYTHON="${HOMEBREW_PREFIX}/bin/python3"
 ### cheat allows you to create and view interactive cheatsheets on the command-line.
 export CHEATCOLORS=true
 
-{{ if eq .chezmoi.os "darwin" }}
-### To enable support via ssh-add.
-export SSH_AUTH_SOCK="${HOME}/.1password/agent.sock"
-{{ end }}
-
 export NPM_PACKAGES="${HOME}/.npm-packages"
 
 ### For git
@@ -725,3 +720,8 @@ typeset -gU path fpath
 # For mise
 OUTPUT="$(mise activate zsh)"
 eval "${OUTPUT}"
+
+{{ if eq .chezmoi.os "darwin" }}
+### To enable support via ssh-add.
+export SSH_AUTH_SOCK="${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{ end }}

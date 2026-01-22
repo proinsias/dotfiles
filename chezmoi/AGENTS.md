@@ -74,6 +74,8 @@
 **ALWAYS**:
 
 - Commit working code incrementally
+- Update code documentation as you go if needed
 - Update plan documentation as you go
+- Always explain abbreviations used in documentation
 - Learn from existing implementations
 - Stop after 3 failed attempts and reassess

@@ -2,6 +2,7 @@
 README.md
 .1password/
 .aider/
+.altimate/
 .ansible/
 .aspnet/
 .atuin/
@@ -13,13 +14,20 @@ README.md
 .bun/
 .bundle/cache/
 .cache/
+.cagent/
 .cargo/
 .ccache/
 .CFUserTextEncoding
 .chezmoi.default.toml
+.claude.json
+.claude.json.backup
+.claude/
+.codex/
+.config/1Password/
 .config/atuin/atuin-receipt.json
 .config/broot/launcher/
 .config/butterfish/
+.config/cagent/
 .config/chezmoi/
 .config/fabric/*
 !.config/fabric/.env
@@ -49,6 +57,8 @@ README.md
 .cookiecutters/
 .crawl4ai/
 .cups/
+.cursor/
+.dbt/
 .docker/
 .dotnet/
 .dropbox/
@@ -56,6 +66,8 @@ README.md
 .duckdb/
 .dwagent/
 .emacs.d/
+.env
+.gemini/
 .git-template/
 .gk/
 .gnupg/*
@@ -63,6 +75,8 @@ README.md
 !.gnupg/gpg-agent.conf
 !.gnupg/gpg.conf
 !.gnupg/pubring.kbx
+.config/graphite/
+!.config/graphite/aliases
 .ipython/extensions
 .ipython/nbextensions
 .ipython/profile_default/

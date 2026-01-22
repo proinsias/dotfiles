@@ -28,7 +28,7 @@ echo -e "\nbrew link:"
 brew link docker handbrake httpie ollama || true
 
 echo -e "\nbrew doctor:"
-brew doctor
+brew doctor || true
 
 echo -e "\nbrew outdated:"
 brew outdated
@@ -69,6 +69,7 @@ topgrade --cleanup --no-retry --skip-notify --yes --disable \
     mise \
     nix \
     pip3 \
+    poetry \
     rustup \
     uv
 

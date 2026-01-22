@@ -1,0 +1,86 @@
+[package_management]
+manager = "uv"
+
+[formatting]
+line_length = 79
+
+[save]
+autosave = "after_delay"
+format_on_save = true
+autosave_delay = 1000
+
+[snippets]
+custom_paths = []
+include_default_snippets = true
+
+[runtime]
+auto_reload = "autorun"
+reactive_tests = true
+auto_instantiate = true
+default_sql_output = "auto"
+output_max_bytes = 8000000
+std_stream_max_bytes = 1000000
+watcher_on_save = "lazy"
+default_auto_download = []
+on_cell_change = "autorun"
+
+[ai]
+mode = "manual"
+rules = ""
+inline_tooltip = false
+
+[ai.models]
+custom_models = []
+displayed_models = []
+
+[display]
+reference_highlighting = false
+dataframes = "rich"
+cell_output = "below"
+code_editor_font_size = 14
+theme = "light"
+default_width = "medium"
+default_table_max_columns = 50
+default_table_page_size = 10
+
+[language_servers.ty]
+enabled = true
+
+[language_servers.pylsp]
+enable_mypy = true
+enable_ruff = true
+enable_pylint = false
+enable_flake8 = false
+enabled = true
+enable_pyflakes = false
+enable_pydocstyle = false
+
+[language_servers.basedpyright]
+enabled = true
+
+[mcp]
+presets = []
+
+[mcp.mcpServers]
+
+[diagnostics]
+sql_linter = true
+enabled = false
+
+[datasources]
+
+[completion]
+copilot = false
+activate_on_typing = true
+
+[keymap]
+destructive_delete = true
+preset = "default"
+
+[keymap.overrides]
+
+[experimental]
+
+[server]
+follow_symlink = false
+browser = "default"

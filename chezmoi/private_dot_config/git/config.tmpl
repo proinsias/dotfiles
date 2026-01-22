@@ -282,7 +282,9 @@
 [user]
     name = {{ .name | quote }}
     email = {{ .githubemail | quote }}
-{{ if eq .chezmoi.os "darwin" -}}
+{{ if .work }}
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMizfyextfdtVbiHbD8jjPToidUH4Ykj37ex/k74ARQQ
+{{ else if eq .chezmoi.os "darwin" }}
     signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJrV3U0rv3tP+EgPny5wVxm46FutLreH2YmyPYzLQ3/g
 {{- else if or (eq .chezmoi.os "linux") (eq .chezmoi.os "windows") -}}
     # FIXME: Switch to getting from op!

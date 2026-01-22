@@ -1,4 +1,3 @@
-{{- if (eq .chezmoi.os "darwin") -}}
 #!/usr/bin/env bash
 
 set -o errexit    # Exit on error. Append || true if you expect an error.
@@ -8,13 +7,10 @@ set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an un
 set -o pipefail   # Produce a failure return code if any pipeline command errors
 shopt -s failglob # Cause globs that don't get expanded to cause errors
 
-echo -e "\n\nSetting Archive Utility preferences."
+{{ if not .work }}
 
-# FIXME: Needs updating.
+echo -e "\n\nInstall claude."
 
-# Move archive files to trash after expansion
-# Delete directly: "/dev/null"
-# Leave alone (default) "."
-# defaults write com.apple.archiveutility dearchive-move-after -string "$HOME/.Trash"
+curl -fsSL https://claude.ai/install.sh | bash
 
 {{ end }}

@@ -47,7 +47,7 @@ mise upgrade --bump
 echo -e "\nmise doctor:"
 mise doctor
 
-{{ if eq .chezmoi.os "darwin" }}
+{{ if and (eq .chezmoi.os "darwin") (not .work)}}
 echo -e "\nmas upgrade:"
 mas upgrade
 {{ end }}

@@ -37,10 +37,16 @@ else
     echo -e "\nThe Brewfile's dependencies are satisfied. Skipping brew bundle install --file..."
 fi
 {{ else }}
-if ! command brew bundle check --global &> /dev/null; then
-    echo -e "\nThe Brewfile's dependencies are not satisfied. Running brew bundle install --global..."
-    brew bundle install --global
+if ! command brew bundle check --file "${HOME}/.config/homebrew/Brewfile" &> /dev/null; then
+    echo -e "\nThe Brewfile's dependencies are not satisfied. Running brew bundle install --file..."
+    brew bundle install --file "${HOME}/.config/homebrew/Brewfile"
 else
-    echo -e "\nThe Brewfile's dependencies are satisfied. Skipping brew bundle install --global..."
+    echo -e "\nThe Brewfile's dependencies are satisfied. Skipping brew bundle install --file..."
 fi
+
+# # Ensure we have a symlink to 1password's agent in an easy place.
+# mkdir -p ~/.1password
+# test -e ~/.1password/agent.sock || \\
+#     ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
+
 {{ end }}

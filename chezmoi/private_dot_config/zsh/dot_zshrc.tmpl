@@ -23,10 +23,6 @@ test -d /home/linuxbrew/.linuxbrew && OUTPUT="$(/home/linuxbrew/.linuxbrew/bin/b
 test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
 {{ end }}
 
-# For mise
-OUTPUT="$(mise activate zsh)"
-eval "${OUTPUT}"
-
 ## Exports
 
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-/usr/local/}
@@ -56,11 +52,6 @@ export CLOUDSDK_PYTHON="${HOMEBREW_PREFIX}/bin/python3"
 ### https://github.com/chrisallenlane/cheat
 ### cheat allows you to create and view interactive cheatsheets on the command-line.
 export CHEATCOLORS=true
-
-{{ if eq .chezmoi.os "darwin" }}
-### To enable support via ssh-add.
-export SSH_AUTH_SOCK="${HOME}/.1password/agent.sock"
-{{ end }}
 
 export NPM_PACKAGES="${HOME}/.npm-packages"
 
@@ -166,7 +157,7 @@ test -d /home/linuxbrew/.linuxbrew/include && export CPPFLAGS="-L/home/linuxbrew
 ### Setup path.
 export PATH="${HOME}/.local/bin${PATH:+:${PATH}}" # Keep first.
 export PATH="${PATH}:${NPM_PACKAGES}/bin"
-export PATH="${RUBY_HOME}/bin:${PATH}"
+export PATH="${PATH}:${RUBY_HOME}/bin"
 export PATH="${PATH}:${GEM_PATH}/bin"
 
 #### set PATH so it includes user's private bin if it exists
@@ -725,3 +716,12 @@ export DISABLE_AUTO_UPDATE="true"
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU path fpath
+
+# For mise
+OUTPUT="$(mise activate zsh)"
+eval "${OUTPUT}"
+
+{{ if eq .chezmoi.os "darwin" }}
+### To enable support via ssh-add.
+export SSH_AUTH_SOCK="${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{ end }}

@@ -53,6 +53,7 @@
 - Follow existing conventions in the project
 - Refer to linter configurations and .editorconfig, if present
 - Text files should always end with an empty line
+- Markdown files should always have no markdownlint errors
 
 <!--
 ## MCP Tool Use

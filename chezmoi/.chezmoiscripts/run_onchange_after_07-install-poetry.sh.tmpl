@@ -7,10 +7,8 @@ set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an un
 set -o pipefail   # Produce a failure return code if any pipeline command errors
 shopt -s failglob # Cause globs that don't get expanded to cause errors
 
-{{ if not .work }}
-
-echo -e "\n\nInstall poetry."
-
-curl -sSL https://install.python-poetry.org | python3 -
-
-{{ end }}
+if ! command -v poetry &> /dev/null
+then
+    echo -e "\n\nInstall poetry."
+    curl -sSL https://install.python-poetry.org | python3 -
+fi

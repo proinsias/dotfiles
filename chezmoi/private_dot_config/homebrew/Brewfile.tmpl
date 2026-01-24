@@ -274,8 +274,10 @@ brew "llm"
 brew "lolcat"
 # Utility to list open files
 brew "lsof"
+{{ if ne .chezmoi.hostname "ilovemovies" }}
 # Fast, async, resource-friendly link checker
 brew "lychee"
+{{ end }}
 # Text-based web browser
 brew "lynx"
 # LZMA-based compression program similar to gzip or bzip2

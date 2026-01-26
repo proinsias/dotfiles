@@ -9,5 +9,5 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 
 echo -e "\n\nInstall uv dbt tool."
 
-# flake8 req hash: {{ include "./private_dot_config/uv/dbt-reqs.txt" | sha256sum }}
+# dbt req hash: {{ include "./private_dot_config/uv/dbt-reqs.txt" | sha256sum }}
 uv tool install --with-requirements "${HOME}/.config/uv/dbt-reqs.txt" --force DBT-core

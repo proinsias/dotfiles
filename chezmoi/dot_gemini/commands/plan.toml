@@ -1,6 +1,6 @@
 # ~/.gemini/commands/plan.toml
 
-description="Investigates and creates a strategic plan to accomplish a task."
+description="Investigate and create a strategic plan to accomplish a task."
 
 prompt = """
 

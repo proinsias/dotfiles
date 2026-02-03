@@ -37,6 +37,7 @@ README.md
 .config/gtk-2.0/
 .config/jgit/
 .config/mise/age.txt
+.config/mlflow/
 .config/op/config
 .config/op/op-daemon.sock
 .config/raycast/

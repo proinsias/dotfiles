@@ -1,0 +1,14 @@
+{
+    "mcpServers": {
+        "Readwise MCP": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@readwise/readwise-mcp"
+            ],
+            "env": {
+                "ACCESS_TOKEN": {{ onepasswordRead "op://Parents/Readwise/API token" | quote }}
+            }
+        }
+    }
+}

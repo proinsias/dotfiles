@@ -206,7 +206,9 @@ GitHub/
 go/
 golang/
 Google Drive/
-Library/
+Library/*
+!Library/Application Support
+!Library/Application Support/Claude/claude_desktop_config.json
 mbox
 mlink
 Movies/

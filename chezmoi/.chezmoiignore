@@ -21,7 +21,8 @@ README.md
 .chezmoi.default.toml
 .claude.json
 .claude.json.backup
-.claude/
+.claude/*
+!.claude/settings.json
 .codex/
 .config/1Password/
 .config/atuin/atuin-receipt.json

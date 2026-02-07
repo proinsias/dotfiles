@@ -1,25 +1,105 @@
-# Filesystem Options
-
---output "~/Downloads/%(title)s.%(ext)s"
---cookies-from-browser firefox
-
-# Video Format Options
-
+# -----------------------------
+# Misc Options
+# -----------------------------
+# Output filename template.
+--output "~/Desktop/%(title)s.%(ext)s"
+# Browser to load cookies from.
+--cookies-from-browser brave
+# Sort the formats by the fields given.
 --format-sort "ext"
 
-# Subtitle Options
+# -----------------------------
+# Archival Safety
+# -----------------------------
+--ignore-errors
+--no-overwrites
+--continue
+--download-archive ~/Documents/yt-dlp/archive.txt
 
---write-subs
---sub-langs "en.\*"
+# -----------------------------
+# Performance / Stability
+# -----------------------------
+--concurrent-fragments 5
+--console-title
+--fragment-retries infinite
+--retries infinite
+--file-access-retries infinite
 
-# Post-Processing Options
+# -----------------------------
+# Quality Selection
+# -----------------------------
+# 	•	Downloads best separate video + audio streams
+#	•	Falls back to best muxed stream if necessary
+#	•	Avoids quality loss from re-encoding
+-f bv*+ba/b
+# MKV is archival-friendly because it:
+# 	•	Supports multiple subtitle tracks
+# 	•	Supports rich metadata
+# 	•	Avoids MP4 subtitle limitations
+# 	•	Is widely supported by modern players
+--merge-output-format mkv
 
---embed-subs
---embed-thumbnail
+# -----------------------------
+# Metadata Preservation
+# -----------------------------
+# The info JSON is extremely valuable for archival and reproducibility.
+--write-info-json
+--write-description
+--write-thumbnail
+--add-metadata
 --embed-metadata
 --embed-chapters
---ffmpeg-location {{ env "HOMEBREW_PREFIX" }}/bin/ffmpeg
 
-# SponsorBlock Options
+# -----------------------------
+# Subtitle Preservation
+# -----------------------------
+#	•	Captures human + auto captions
+#	•	Stores externally AND embeds them
+#	•	Preserves language variants
+--write-subs
+--write-auto-subs
+--sub-langs all
+--embed-subs
 
---sponsorblock-remove "sponsor,intro,outro"
+# -----------------------------
+# Thumbnail Handling
+# -----------------------------
+--convert-thumbnails jpg
+--embed-thumbnail
+
+# -----------------------------
+# Filename Structure
+# -----------------------------
+-o "%(uploader)s/%(upload_date>%Y)s/%(title)s [%(id)s].%(ext)s"
+
+# -----------------------------
+# Date Normalization
+# -----------------------------
+--parse-metadata "upload_date:%(upload_date)s"
+
+# -----------------------------
+# Compatibility + Integrity
+# -----------------------------
+--check-formats
+
+# -----------------------------
+# Ultra-Archival Mode (Research Grade)
+# -----------------------------
+# This preserves maximum provenance.
+--write-link
+--write-webloc-link
+--no-clean-info-json
+
+# -----------------------------
+# Optional Enhancements (Highly Recommended)
+# -----------------------------
+# Preserve Comments (When Supported)
+--write-comments
+# Preserve Live Chat (Streams)
+--write-live-chat
+# Store Full Playlist Metadata
+--write-playlist-metafiles
+# Rate Limiting (Avoid Throttling)
+--throttled-rate 100K
+# SponsorBlock Removal (Optional Preference)
+--sponsorblock-remove all

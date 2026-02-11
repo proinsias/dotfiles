@@ -19,8 +19,7 @@ README.md
 .ccache/
 .CFUserTextEncoding
 .chezmoi.default.toml
-.claude.json
-.claude.json.backup
+.claude.json**
 .claude/*
 !.claude/settings.json
 .codex/
@@ -151,6 +150,7 @@ README.md
 # Ignore everything else under atuin
 .local/share/atuin/*
 .local/state/
+.mactop/
 .matplotlib/
 .npm/
 .npm-packages/
@@ -209,6 +209,7 @@ golang/
 Google Drive/
 Library/*
 !Library/Application Support
+Library/Application Support/*
 !Library/Application Support/Claude/claude_desktop_config.json
 mbox
 mlink

@@ -92,6 +92,7 @@ README.md
 !.local/bin/add-worktree
 !.local/bin/astextplain
 !.local/bin/auto-sync.py
+!.local/bin/backup_photos
 !.local/bin/bash-syntax
 !.local/bin/bash-wakatime
 !.local/bin/bash_syntax
@@ -162,6 +163,7 @@ README.md
 .oh-my-zsh/custom/plugins/*
 .ollama/
 .pyenv/
+.pyicloud/
 .pytensor/
 .python_history
 .rustup/

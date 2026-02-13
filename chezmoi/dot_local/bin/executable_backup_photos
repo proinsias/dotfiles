@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+icloudpd \
+    --password-provider keyring \
+    --password-provider console \
+    --username francis.odonovan+apple@gmail.com \
+    --directory "/Volumes/My Passport/Backups/Photos/Francis" \
+    --library "PrimarySync"
+
+icloudpd \
+    --password-provider keyring \
+    --password-provider console \
+    --username francis.odonovan+apple@gmail.com \
+    --directory "/Volumes/My Passport/Backups/Photos/Francis" \
+    --library "SharedSync-1F4DE6F8-5359-4070-933A-80F0E62D9647"
+
+icloudpd \
+    --password-provider keyring \
+    --password-provider console \
+    --username clslesnick@gmail.com \
+    --directory "/Volumes/My Passport/Backups/Photos/Cathy"
+# No need for Shared Library for Cathy.
+
+icloudpd \
+    --password-provider keyring \
+    --password-provider console \
+    --username bea.odonovan@icloud.com \
+    --directory "/Volumes/My Passport/Backups/Photos/Bea"
+
+icloudpd \
+    --password-provider keyring \
+    --password-provider console \
+    --username arthur.odonovan@icloud.com \
+    --directory "/Volumes/My Passport/Backups/Photos/Arthur"
+
+# FIXME: Add notifications:
+# You can receive an email notification when two-factor authentication expires
+# by passing the --smtp-username and --smtp-password options.
+# Emails will be sent to --smtp-username by default,
+# or you can send to a different email address with --notification-email.
+
+# FIXME: Setup crontab with email notification.
+
+# FIXME: Switch Photos x4 to minimize disk space!
+
+# FIXME: Gemini / Claude - add good documentation of this script (and others!)

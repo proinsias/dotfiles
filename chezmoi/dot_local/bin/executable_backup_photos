@@ -123,3 +123,63 @@ icloudpd \
 #
 # Use /fail if the task fails.
 # This approach allows you to track the start, completion, and duration of launchd jobs, just like cron jobs.
+#
+# ==============================================================================
+#
+#                    Scheduling with launchd and Lingon X
+#
+# ==============================================================================
+#
+# While cron is a traditional way to schedule tasks, on macOS, launchd is the
+# modern and recommended method. It is more robust and offers better
+# integration with the operating system.
+#
+# 'Lingon X' is a powerful graphical application that makes it easy to create
+# and manage launchd jobs without manually writing XML .plist files.
+#
+# --- Guide to Scheduling with Lingon X ---
+#
+# 1.  **Create a New Job:**
+#     - Open Lingon X and click the '+' button to create a new job.
+#     - Choose to create a "User Agent". This ensures the job runs when you are
+#       logged in and has access to your user keychain.
+#
+# 2.  **Name the Job:**
+#     - Use a descriptive, reverse-domain name, e.g., `com.yourname.backup-icloud-photos`.
+#
+# 3.  **Define the Command:**
+#     - In the "What" section, enter the absolute path to this script.
+#       After being applied by chezmoi, this is likely in `~/.local/bin/`.
+#       Example: `/Users/your-username/.local/bin/backup_photos`
+#     - **Important:** `launchd` requires absolute paths.
+#
+# 4.  **Set the Schedule:**
+#     - In the "When" section, check "Run on a schedule".
+#     - Set a calendar interval. For example, to run every day at 2:00 AM, you
+#       would set the interval for every 1 day, at Hour 2, Minute 0.
+#
+# 5.  **Log Script Output (Recommended):**
+#     - It's crucial to log the script's output to debug any issues.
+#     - In the "Advanced" section of Lingon X, you can set paths for
+#       "Standard Out Log" and "Standard Error Log".
+#     - Example: `~/Library/Logs/icloud_backup.log` for both.
+#
+# 6.  **Save and Enable:**
+#     - Click "Save" in Lingon X. The job will be enabled and will run on the
+#       schedule you defined.
+#
+# --- Important Considerations ---
+#
+# - **Environment Variables:** `launchd` jobs run with a minimal environment. If
+#   this script depends on a specific `PATH` to find `icloudpd` or other tools,
+#   you may need to set the `PATH` explicitly at the top of this script, e.g.,
+#   `export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"`.
+#
+# - **Keychain Access:** The first time `launchd` runs this script, macOS may
+#   display a security prompt asking for permission to allow the script to access
+#   passwords in your keychain. You must select "Always Allow" for future runs
+#   to be non-interactive.
+#
+# - **External Drive:** This script will only succeed if the external drive
+#   ("/Volumes/My Passport") is mounted when the job runs.
+#

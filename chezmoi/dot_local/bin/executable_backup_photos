@@ -114,3 +114,12 @@ icloudpd \
 #     --smtp-username "${SMTP_USERNAME}" \
 #     --smtp-password "${SMTP_PASSWORD}" \
 #     --notification-email "${SMTP_USERNAME}"#
+
+# Use the curl command in a launchd plist file to ping Healthchecks.io's /start and /success URLs.
+# For example, in your launchd job, add a ProgramArguments entry that calls:
+# curl -fsS https://hc-ping.com/YOUR-UUID/start
+# # Your task logic here
+# curl -fsS https://hc-ping.com/YOUR-UUID/success
+#
+# Use /fail if the task fails.
+# This approach allows you to track the start, completion, and duration of launchd jobs, just like cron jobs.

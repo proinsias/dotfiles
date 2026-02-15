@@ -1,4 +1,52 @@
 #!/usr/bin/env bash
+#
+# ==============================================================================
+#
+#                            iCloud Photos Backup Script
+#
+# ==============================================================================
+#
+# Purpose:
+#   This script automates the process of backing up iCloud Photos for multiple
+#   users to a designated external hard drive. It uses 'icloudpd' to download
+#   photos and videos from specified iCloud accounts and libraries.
+#
+# Dependencies:
+#   - icloudpd: A command-line tool to download iCloud photos.
+#     (https://github.com/icloud-photos-downloader/icloud_photos_downloader)
+#   - bash: The script is written for the bash shell.
+#   - macOS Keychain: The script is configured to use 'keyring' to securely
+#     fetch iCloud passwords, which typically integrates with the macOS Keychain.
+#
+# Pre-run Configuration:
+#   1. Ensure 'icloudpd' is installed and accessible in your system's PATH.
+#   2. The target backup volume, "/Volumes/My Passport/", must be mounted and
+#      writable.
+#   3. For non-interactive execution, ensure the iCloud account passwords are
+#      stored in your system's keychain so 'icloudpd' can retrieve them via
+#      the 'keyring' password provider. If not found, 'icloudpd' will fall
+#      back to prompting for the password on the console.
+#
+# Usage:
+#   Execute the script from your terminal:
+#   backup_photos
+#
+# Script Breakdown:
+#   The script executes a series of 'icloudpd' commands, one for each user
+#   or library to be backed up.
+#
+#   - For 'francis.odonovan+apple@gmail.com', it backs up both the personal
+#     "PrimarySync" library and a specific "SharedSync" library.
+#   - For other users ('clslesnick@gmail.com', 'bea.odonovan@icloud.com',
+#     'arthur.odonovan@icloud.com'), it backs up their primary photo libraries.
+#
+# Email Notifications (for 2FA Expiration):
+#   The script is configured to send email notifications if an account's
+#   two-factor authentication session expires.
+#
+# TODO:
+#   - Setup email notifications for expired two-factor authentication sessions - see below.
+#   - Set up this script to run automatically on a schedule using a cron job with pushover.net notifications.
 
 icloudpd \
     --password-provider keyring \
@@ -33,14 +81,36 @@ icloudpd \
     --username arthur.odonovan@icloud.com \
     --directory "/Volumes/My Passport/Backups/Photos/Arthur"
 
+# FIXME:
+#   Setup for Gmail:
+#   1. Generate an "App Password" from your Google Account security settings.
+#   2. Store this password securely in the macOS Keychain:
+#      security add-generic-password -a "$USER" -s "icloudpd-smtp-gmail" -w "YOUR_APP_PASSWORD"
+#   3. Add the following flags to the desired 'icloudpd' command, after
+#      retrieving the password in the script:
+#      --smtp-host "smtp.gmail.com" \
+#      --smtp-port 587 \
+#      --smtp-username "your-email@gmail.com" \
+#      --smtp-password "$YOUR_RETRIEVED_PASSWORD" \
+#      --notification-email "your-email@gmail.com"
 # FIXME: Add notifications:
 # You can receive an email notification when two-factor authentication expires
 # by passing the --smtp-username and --smtp-password options.
 # Emails will be sent to --smtp-username by default,
 # or you can send to a different email address with --notification-email.
-
-# FIXME: Setup crontab with email notification.
-
-# FIXME: Switch Photos x4 to minimize disk space!
-
-# FIXME: Gemini / Claude - add good documentation of this script (and others!)
+#
+# # Retrieve the stored SMTP password from the keychain
+# SMTP_PASSWORD=$(security find-generic-password -w -s "icloudpd-smtp-gmail")
+# SMTP_USERNAME="francis.odonovan+apple@gmail.com"
+#
+# icloudpd \
+#     --password-provider keyring \
+#     --password-provider console \
+#     --username "${SMTP_USERNAME}" \
+#     --directory "/Volumes/My Passport/Backups/Photos/Francis" \
+#     --library "PrimarySync" \
+#     --smtp-host "smtp.gmail.com" \
+#     --smtp-port 587 \
+#     --smtp-username "${SMTP_USERNAME}" \
+#     --smtp-password "${SMTP_PASSWORD}" \
+#     --notification-email "${SMTP_USERNAME}"#

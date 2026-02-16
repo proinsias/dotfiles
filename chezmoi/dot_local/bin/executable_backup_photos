@@ -79,9 +79,6 @@
 #   6.  **Save and Enable:**
 #       - Click "Save" in Lingon X. The job will be enabled and will run on the
 #         schedule you defined.
-#
-# TODO:
-#   - Set up this script to run automatically on a schedule using a cron job with pushover.net notifications.
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
 set -o errtrace               # Exit on error inside any functions or subshells.

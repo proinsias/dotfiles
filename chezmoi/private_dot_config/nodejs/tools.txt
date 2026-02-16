@@ -22,9 +22,11 @@ jscs
 jshint
 jslint
 mega-linter-runner
+mermaid-js/mermaid-cli
 npm-check
 npm-check-updates
 pyright
+redoc-cli
 semistandard
 sql-language-server
 standard

@@ -510,6 +510,16 @@ if type zoxide >/dev/null 2>&1; then
     eval "${OUTPUT}"
 fi
 
+## Sending notifications.
+# https://github.com/dschep/ntfy
+if type ntfy >/dev/null 2>&1; then
+    OUTPUT="$(ntfy shell-integration)"
+    eval "${OUTPUT}"
+
+    # Avoid unnecessary notifications when running interactive programs.
+    export AUTO_NTFY_DONE_IGNORE="vim screen meld"
+fi
+
 # User configuration
 
 # Completion setup after loading Oh My Zsh.

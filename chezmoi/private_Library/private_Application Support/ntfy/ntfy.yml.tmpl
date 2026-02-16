@@ -1,0 +1,5 @@
+---
+backends:
+    - pushover
+pushover:
+    user_key: { age = {{ onepasswordRead "op://Parents/Pushover.net/user-key-age" | quote }} }

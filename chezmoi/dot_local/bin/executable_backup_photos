@@ -14,6 +14,8 @@
 # Dependencies:
 #   - icloudpd: A command-line tool to download iCloud photos.
 #     (https://github.com/icloud-photos-downloader/icloud_photos_downloader)
+#   - runitor: A command runner with healthchecks.io integration.
+#     (https://github.com/bdd/runitor)
 #   - bash: The script is written for the bash shell.
 #   - macOS Keychain: The script is configured to use 'keyring' to securely
 #     fetch iCloud passwords, which typically integrates with the macOS Keychain.
@@ -26,6 +28,7 @@
 #      stored in your system's keychain so 'icloudpd' can retrieve them via
 #      the 'keyring' password provider. If not found, 'icloudpd' will fall
 #      back to prompting for the password on the console.
+#   4. Set the CHECK_UUID environment variable for runitor.
 #
 # Usage:
 #   Execute the script from your terminal:
@@ -44,10 +47,41 @@
 #   The script is configured to send email notifications if an account's
 #   two-factor authentication session expires.
 #
+# Scheduling with launchd and Lingon X:
+#   'Lingon X' is a powerful graphical application that makes it easy to create
+#   and manage launchd jobs without manually writing XML .plist files.
+#
+#   1.  **Create a New Job:**
+#       - Open Lingon X and click the '+' button to create a new job.
+#       - Choose to create a "User Agent". This ensures the job runs when you are
+#         logged in and has access to your user keychain.
+#
+#   2.  **Name the Job:**
+#       - Use a descriptive, reverse-domain name, e.g., `com.yourname.backup-icloud-photos`.
+#
+#   3.  **Define the Command:**
+#       - In the "What" section, enter the absolute path to this script.
+#         After being applied by chezmoi, this is likely in `~/.local/bin/`.
+#         Example: `/Users/your-username/.local/bin/backup_photos`
+#       - **Important:** `launchd` requires absolute paths.
+#
+#   4.  **Set the Schedule:**
+#       - In the "When" section, check "Run on a schedule".
+#       - Set a calendar interval. For example, to run every day at 2:00 AM, you
+#         would set the interval for every 1 day, at Hour 2, Minute 0.
+#
+#   5.  **Log Script Output (Recommended):**
+#       - It's crucial to log the script's output to debug any issues.
+#       - In the "Advanced" section of Lingon X, you can set paths for
+#         "Standard Out Log" and "Standard Error Log".
+#       - Example: `~/Library/Logs/icloud_backup.log` for both.
+#
+#   6.  **Save and Enable:**
+#       - Click "Save" in Lingon X. The job will be enabled and will run on the
+#         schedule you defined.
+#
 # TODO:
-#   - Setup email notifications for expired two-factor authentication sessions - see below.
 #   - Set up this script to run automatically on a schedule using a cron job with pushover.net notifications.
-#   - Gemini - update this documentation once these TODOs are done.
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
 set -o errtrace               # Exit on error inside any functions or subshells.
@@ -59,36 +93,24 @@ shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories
 
 run_icloudpd() {
     icloudpd \
+        --notification-email "${SMTP_USERNAME}" \
         --password-provider keyring \
         --password-provider console \
-        --username francis.odonovan+apple@gmail.com \
+        --smtp-host "smtp.gmail.com" \
+        --smtp-port 587 \
+        --smtp-username "${SMTP_USERNAME}" \
+        --smtp-password "${SMTP_PASSWORD}" \
+        --username "${APPLE_USERNAME_1}" \
         --directory "/Volumes/My Passport/Backups/Photos/Francis" \
-        --library "PrimarySync"
-
-    icloudpd \
-        --password-provider keyring \
-        --password-provider console \
-        --username francis.odonovan+apple@gmail.com \
+        --library "PrimarySync" \
+        --username "${APPLE_USERNAME_1}" \
         --directory "/Volumes/My Passport/Backups/Photos/Francis" \
-        --library "SharedSync-1F4DE6F8-5359-4070-933A-80F0E62D9647"
-
-    icloudpd \
-        --password-provider keyring \
-        --password-provider console \
-        --username clslesnick@gmail.com \
-        --directory "/Volumes/My Passport/Backups/Photos/Cathy"
-    # No need for Shared Library for Cathy.
-
-    icloudpd \
-        --password-provider keyring \
-        --password-provider console \
-        --username bea.odonovan@icloud.com \
-        --directory "/Volumes/My Passport/Backups/Photos/Bea"
-
-    icloudpd \
-        --password-provider keyring \
-        --password-provider console \
-        --username arthur.odonovan@icloud.com \
+        --library "${APPLE_LIBRARY}" \
+        --username "${APPLE_USERNAME_2}"\
+        --directory "/Volumes/My Passport/Backups/Photos/Cathy" \
+        --username "${APPLE_USERNAME_3}" \
+        --directory "/Volumes/My Passport/Backups/Photos/Bea" \
+        --username "${APPLE_USERNAME_4}" \
         --directory "/Volumes/My Passport/Backups/Photos/Arthur"
 }
 
@@ -100,81 +122,4 @@ export PATH="/usr/local/bin:/opt/homebrew/bin:${PATH}"
 export -f run_icloudpd
 export -f run_icloudpd_version
 
-# FIXME: Switch to run_icloudpd
-runitor -- bash -c 'run_icloudpd_version | tail --bytes=100000'
-
-# FIXME:
-#   Setup for Gmail:
-#   1. Generate an "App Password" from your Google Account security settings.
-#   2. Store this password securely in the macOS Keychain:
-#      security add-generic-password -a "$USER" -s "icloudpd-smtp-gmail" -w "YOUR_APP_PASSWORD"
-#   3. Add the following flags to the desired 'icloudpd' command, after
-#      retrieving the password in the script:
-#      --smtp-host "smtp.gmail.com" \
-#      --smtp-port 587 \
-#      --smtp-username "your-email@gmail.com" \
-#      --smtp-password "$YOUR_RETRIEVED_PASSWORD" \
-#      --notification-email "your-email@gmail.com"
-# FIXME: Add notifications:
-# You can receive an email notification when two-factor authentication expires
-# by passing the --smtp-username and --smtp-password options.
-# Emails will be sent to --smtp-username by default,
-# or you can send to a different email address with --notification-email.
-#
-# # Retrieve the stored SMTP password from the keychain
-# SMTP_PASSWORD=$(security find-generic-password -w -s "icloudpd-smtp-gmail")
-# SMTP_USERNAME="francis.odonovan+apple@gmail.com"
-#
-# icloudpd \
-#     --password-provider keyring \
-#     --password-provider console \
-#     --username "${SMTP_USERNAME}" \
-#     --directory "/Volumes/My Passport/Backups/Photos/Francis" \
-#     --library "PrimarySync" \
-#     --smtp-host "smtp.gmail.com" \
-#     --smtp-port 587 \
-#     --smtp-username "${SMTP_USERNAME}" \
-#     --smtp-password "${SMTP_PASSWORD}" \
-#     --notification-email "${SMTP_USERNAME}"#
-
-# ==============================================================================
-#
-#                    Scheduling with launchd and Lingon X
-#
-# ==============================================================================
-#
-# 'Lingon X' is a powerful graphical application that makes it easy to create
-# and manage launchd jobs without manually writing XML .plist files.
-#
-# --- Guide to Scheduling with Lingon X ---
-#
-# 1.  **Create a New Job:**
-#     - Open Lingon X and click the '+' button to create a new job.
-#     - Choose to create a "User Agent". This ensures the job runs when you are
-#       logged in and has access to your user keychain.
-#
-# 2.  **Name the Job:**
-#     - Use a descriptive, reverse-domain name, e.g., `com.yourname.backup-icloud-photos`.
-#
-# 3.  **Define the Command:**
-#     - In the "What" section, enter the absolute path to this script.
-#       After being applied by chezmoi, this is likely in `~/.local/bin/`.
-#       Example: `/Users/your-username/.local/bin/backup_photos`
-#     - **Important:** `launchd` requires absolute paths.
-#
-# 4.  **Set the Schedule:**
-#     - In the "When" section, check "Run on a schedule".
-#     - Set a calendar interval. For example, to run every day at 2:00 AM, you
-#       would set the interval for every 1 day, at Hour 2, Minute 0.
-#
-# 5.  **Log Script Output (Recommended):**
-#     - It's crucial to log the script's output to debug any issues.
-#     - In the "Advanced" section of Lingon X, you can set paths for
-#       "Standard Out Log" and "Standard Error Log".
-#     - Example: `~/Library/Logs/icloud_backup.log` for both.
-#
-# 6.  **Save and Enable:**
-#     - Click "Save" in Lingon X. The job will be enabled and will run on the
-#       schedule you defined.
-#
-# healthchecks.io - switch to pushover!
+runitor -- bash -c 'run_icloudpd | tail --bytes=100000'

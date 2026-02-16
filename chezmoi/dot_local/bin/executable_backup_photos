@@ -47,39 +47,61 @@
 # TODO:
 #   - Setup email notifications for expired two-factor authentication sessions - see below.
 #   - Set up this script to run automatically on a schedule using a cron job with pushover.net notifications.
+#   - Gemini - update this documentation once these TODOs are done.
 
-icloudpd \
-    --password-provider keyring \
-    --password-provider console \
-    --username francis.odonovan+apple@gmail.com \
-    --directory "/Volumes/My Passport/Backups/Photos/Francis" \
-    --library "PrimarySync"
+set -o errexit                # Exit on error. Append || true if you expect an error.
+set -o errtrace               # Exit on error inside any functions or subshells.
+set -o noclobber              # Don't allow overwriting files.
+set -o nounset                # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail               # Produce a failure return code if any pipeline command errors.
+shopt -s failglob             # Cause globs that don't get expanded to cause errors.
+shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
 
-icloudpd \
-    --password-provider keyring \
-    --password-provider console \
-    --username francis.odonovan+apple@gmail.com \
-    --directory "/Volumes/My Passport/Backups/Photos/Francis" \
-    --library "SharedSync-1F4DE6F8-5359-4070-933A-80F0E62D9647"
+run_icloudpd() {
+    icloudpd \
+        --password-provider keyring \
+        --password-provider console \
+        --username francis.odonovan+apple@gmail.com \
+        --directory "/Volumes/My Passport/Backups/Photos/Francis" \
+        --library "PrimarySync"
 
-icloudpd \
-    --password-provider keyring \
-    --password-provider console \
-    --username clslesnick@gmail.com \
-    --directory "/Volumes/My Passport/Backups/Photos/Cathy"
-# No need for Shared Library for Cathy.
+    icloudpd \
+        --password-provider keyring \
+        --password-provider console \
+        --username francis.odonovan+apple@gmail.com \
+        --directory "/Volumes/My Passport/Backups/Photos/Francis" \
+        --library "SharedSync-1F4DE6F8-5359-4070-933A-80F0E62D9647"
 
-icloudpd \
-    --password-provider keyring \
-    --password-provider console \
-    --username bea.odonovan@icloud.com \
-    --directory "/Volumes/My Passport/Backups/Photos/Bea"
+    icloudpd \
+        --password-provider keyring \
+        --password-provider console \
+        --username clslesnick@gmail.com \
+        --directory "/Volumes/My Passport/Backups/Photos/Cathy"
+    # No need for Shared Library for Cathy.
 
-icloudpd \
-    --password-provider keyring \
-    --password-provider console \
-    --username arthur.odonovan@icloud.com \
-    --directory "/Volumes/My Passport/Backups/Photos/Arthur"
+    icloudpd \
+        --password-provider keyring \
+        --password-provider console \
+        --username bea.odonovan@icloud.com \
+        --directory "/Volumes/My Passport/Backups/Photos/Bea"
+
+    icloudpd \
+        --password-provider keyring \
+        --password-provider console \
+        --username arthur.odonovan@icloud.com \
+        --directory "/Volumes/My Passport/Backups/Photos/Arthur"
+}
+
+run_icloudpd_version() {
+    icloudpd --version
+}
+
+export PATH="/usr/local/bin:/opt/homebrew/bin:${PATH}"
+export -f run_icloudpd
+export -f run_icloudpd_version
+
+# FIXME: Switch to run_icloudpd
+runitor -- bash -c 'run_icloudpd_version | tail --bytes=100000'
 
 # FIXME:
 #   Setup for Gmail:
@@ -115,24 +137,11 @@ icloudpd \
 #     --smtp-password "${SMTP_PASSWORD}" \
 #     --notification-email "${SMTP_USERNAME}"#
 
-# Use the curl command in a launchd plist file to ping Healthchecks.io's /start and /success URLs.
-# For example, in your launchd job, add a ProgramArguments entry that calls:
-# curl -fsS https://hc-ping.com/YOUR-UUID/start
-# # Your task logic here
-# curl -fsS https://hc-ping.com/YOUR-UUID/success
-#
-# Use /fail if the task fails.
-# This approach allows you to track the start, completion, and duration of launchd jobs, just like cron jobs.
-#
 # ==============================================================================
 #
 #                    Scheduling with launchd and Lingon X
 #
 # ==============================================================================
-#
-# While cron is a traditional way to schedule tasks, on macOS, launchd is the
-# modern and recommended method. It is more robust and offers better
-# integration with the operating system.
 #
 # 'Lingon X' is a powerful graphical application that makes it easy to create
 # and manage launchd jobs without manually writing XML .plist files.
@@ -168,18 +177,4 @@ icloudpd \
 #     - Click "Save" in Lingon X. The job will be enabled and will run on the
 #       schedule you defined.
 #
-# --- Important Considerations ---
-#
-# - **Environment Variables:** `launchd` jobs run with a minimal environment. If
-#   this script depends on a specific `PATH` to find `icloudpd` or other tools,
-#   you may need to set the `PATH` explicitly at the top of this script, e.g.,
-#   `export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"`.
-#
-# - **Keychain Access:** The first time `launchd` runs this script, macOS may
-#   display a security prompt asking for permission to allow the script to access
-#   passwords in your keychain. You must select "Always Allow" for future runs
-#   to be non-interactive.
-#
-# - **External Drive:** This script will only succeed if the external drive
-#   ("/Volumes/My Passport") is mounted when the job runs.
-#
+# healthchecks.io - switch to pushover!

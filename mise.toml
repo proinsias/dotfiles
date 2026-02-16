@@ -1,6 +1,8 @@
 # Don't put credentials or other secrets into this shared file!
 [env]
 dotenv = ".env"   # auto-load .env file
+# editorconfig-checker-disable-next-line
+CHECK_UUID = { age = "YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBrRnIrc2E0cU1zV2dqMm0zdllpTkZlcTJidE5lbzBWZy8yRitwS1VTVERBCk1NbVNESkhURVh2VDh0WHNGakJHSmpXQVBRRE5YbG9kOGdEU2VVWVVNcEEKLT4gc35SO08tZ3JlYXNlIHUrIUIgZgpQR2YxYkFyN0xqUnRodDl2dDRheldUeE9sOFVVCi0tLSBvT01aZWhXUXJ5T21JemZ3TUx3WVQ5d0RpMG9Uc3Q0dXZvNHFBVGhDOVhrCi6oIuA390VzkPHv5FAN3wx6KdWx3ty+btbi8RM+JtODrX4pINYuyBqM9/aMYf577uJ9g88QUTlqO4dVF1PfCgxKSCG6" }
 
 [tools]
 age = "latest"

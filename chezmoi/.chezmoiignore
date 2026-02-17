@@ -22,6 +22,8 @@ README.md
 .claude.json**
 .claude/*
 !.claude/settings.json
+!.claude/commands
+!.claude/commands/custom-code-review.md
 .codex/
 .config/1Password/
 .config/atuin/atuin-receipt.json

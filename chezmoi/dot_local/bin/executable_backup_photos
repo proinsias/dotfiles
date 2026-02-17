@@ -17,8 +17,6 @@
 #   - runitor: A command runner with healthchecks.io integration.
 #     (https://github.com/bdd/runitor)
 #   - bash: The script is written for the bash shell.
-#   - macOS Keychain: The script is configured to use 'keyring' to securely
-#     fetch iCloud passwords, which typically integrates with the macOS Keychain.
 #
 # Pre-run Configuration:
 #   1. Ensure 'icloudpd' is installed and accessible in your system's PATH.
@@ -28,7 +26,6 @@
 #      stored in your system's keychain so 'icloudpd' can retrieve them via
 #      the 'keyring' password provider. If not found, 'icloudpd' will fall
 #      back to prompting for the password on the console.
-#   4. Set the CHECK_UUID environment variable for runitor.
 #
 # Usage:
 #   Execute the script from your terminal:
@@ -37,11 +34,6 @@
 # Script Breakdown:
 #   The script executes a series of 'icloudpd' commands, one for each user
 #   or library to be backed up.
-#
-#   - For 'francis.odonovan+apple@gmail.com', it backs up both the personal
-#     "PrimarySync" library and a specific "SharedSync" library.
-#   - For other users ('clslesnick@gmail.com', 'bea.odonovan@icloud.com',
-#     'arthur.odonovan@icloud.com'), it backs up their primary photo libraries.
 #
 # Email Notifications (for 2FA Expiration):
 #   The script is configured to send email notifications if an account's
@@ -108,7 +100,8 @@ run_icloudpd() {
         --username "${APPLE_USERNAME_3}" \
         --directory "/Volumes/My Passport/Backups/Photos/Bea" \
         --username "${APPLE_USERNAME_4}" \
-        --directory "/Volumes/My Passport/Backups/Photos/Arthur"
+        --directory "/Volumes/My Passport/Backups/Photos/Arthur" \
+    | tee --append "${HOME}/Library/Logs/backup_photos_full.log"
 }
 
 run_icloudpd_version() {
@@ -119,4 +112,10 @@ export PATH="/usr/local/bin:/opt/homebrew/bin:${PATH}"
 export -f run_icloudpd
 export -f run_icloudpd_version
 
-runitor -- bash -c 'run_icloudpd | tail --bytes=100000'
+cd "${HOME}/.local/share/chezmoi"
+
+mise exec -- \
+    runitor -- \
+    bash -c 'run_icloudpd | tail --bytes=100000'
+
+cd -

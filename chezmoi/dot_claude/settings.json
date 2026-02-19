@@ -1,4 +1,21 @@
 {
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'"
+          },
+          {
+            "type": "command",
+            "command": "curl -s \\\n  --form-string \"token=ubfco1kwthrt4p31g29hea1xpazbxx\" \\\n  --form-string \"user=armory_lank.7f@icloud.com\" \\\n  --form-string \"message=Claude Code needs your attention\" \\\n  https://api.pushover.net/1/messages.json"
+          }
+        ]
+      }
+    ]
+  },
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true,
     "context7@claude-plugins-official": true,

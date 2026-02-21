@@ -3,13 +3,10 @@ ci: # https://pre-commit.ci
   autofix_prs: true
   autoupdate_schedule: monthly
   skip:
-    - jscpd
     - lychee # Requires rust.
     - prettier
     - pyright
     - shellcheck
-    # - megalinter-incremental
-    # - megalinter-full
   submodules: false
 
 default_install_hook_types:
@@ -115,23 +112,6 @@ repos:
         # - --additional-pattern 'mytoken*'
         # - --additional-pattern 'mykey*'
 
-  - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.30.0
-    hooks:
-      - id: gitleaks
-        args: [--baseline-path, gitleaks-report.json]
-
-  # Fails pre-commit.ci even with skipping.
-  # - repo: https://github.com/oxsecurity/megalinter
-  #   rev: v9.0.1 # Git tag specifying the hook, not mega-linter-runner, version
-  #   hooks:
-  #     - id: megalinter-incremental # Faster, less thorough
-  #       stages:
-  #         - pre-commit
-  #     - id: megalinter-full # Slower, more thorough
-  #       stages:
-  #         - pre-push
-
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
     rev: "3.6.0"
     hooks:
@@ -142,20 +122,6 @@ repos:
     hooks:
       - id: shellcheck
         args: [--external-sources, --format=gcc, --shell=bash]
-
-  - repo: https://github.com/kucherenko/jscpd
-    rev: "@jscpd/badge-reporter@4.0.1"
-    hooks:
-      - id: jscpd
-        # Optionally can add the following to restrict to certain file
-        # types:
-        # files \.[js]sx?$
-        types: [text]
-        # Optionally can specify additional arguments for the jscp
-        # command:
-        # args:
-        #  --ignore "**/*.min.js,**/*.map,**/node_modules,**/tests"
-        #  --reporters console
 
   - repo: https://github.com/ikamensh/flynt/
     rev: "1.0.6"

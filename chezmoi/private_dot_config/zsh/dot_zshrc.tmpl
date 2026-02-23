@@ -115,9 +115,7 @@ if test -d "${HOME}/man" >/dev/null 2>&1; then
 fi
 
 export MANPATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman:${MANPATH}"
-
 export MANPATH="${HOMEBREW_PREFIX}/opt/findutils/share/man:${MANPATH}"
-
 export MANPATH="${HOMEBREW_PREFIX}/share/man:${MANPATH}"
 
 ### Setup info path.
@@ -247,12 +245,6 @@ fi
 if type fzf >/dev/null 2>&1; then
     # Set up fzf key bindings and fuzzy completion
     source <(fzf --zsh)
-fi
-
-#### devbox
-if type devbox >/dev/null >&1; then
-    OUTPUT="$(devbox global shellenv --init-hook)"
-    eval "${OUTPUT}"
 fi
 
 if [[ -o interactive ]]; then
@@ -446,7 +438,6 @@ plugins=(
     # colorize
     command-not-found
     # dash
-    #direnv
     docker
     docker-compose
     fasd
@@ -491,23 +482,31 @@ else
     autoload -Uz compinit
     bashcompinit
     compinit
-
-    ## http://direnv.net/
-    # Installed above as plugin.
-    # shellcheck disable=SC2065
-    if type direnv >/dev/null 2>&1; then
-        OUTPUT="$(direnv hook zsh)"
-        eval "${OUTPUT}"
-    fi
 fi
 
-## A smarter cd command - use z instead of cd.
-# https://github.com/ajeetdsouza/zoxide
-if type zoxide >/dev/null 2>&1; then
-    # Do this AFTER compinit!
-    export _ZO_ECHO=1 # Print the matched directory before navigating to it.
-    OUTPUT="$(zoxide init zsh)"
-    eval "${OUTPUT}"
+if [[ -o interactive ]]; then
+    ## Starship
+    # shellcheck disable=SC2065
+    if type starship >/dev/null 2>&1; then
+        OUTPUT="$(starship init zsh)"
+        eval "${OUTPUT}"
+    fi
+
+    # shellcheck disable=SC2065
+    if type atuin >/dev/null 2>&1; then
+        OUTPUT="$(atuin init zsh)"
+        eval "${OUTPUT}"
+        # zinit load ellie/atuin
+    fi
+
+    ## A smarter cd command - use z instead of cd.
+    # https://github.com/ajeetdsouza/zoxide
+    if type zoxide >/dev/null 2>&1; then
+        # Do this AFTER compinit!
+        export _ZO_ECHO=1 # Print the matched directory before navigating to it.
+        OUTPUT="$(zoxide init zsh)"
+        eval "${OUTPUT}"
+    fi
 fi
 
 ## Sending notifications.
@@ -612,21 +611,8 @@ if type hub >/dev/null 2>&1; then
     eval "${OUTPUT}"
 fi
 
-eval "$(ssh-agent -s)"
-
-## Starship
-# shellcheck disable=SC2065
-if type starship >/dev/null 2>&1; then
-    OUTPUT="$(starship init zsh)"
-    eval "${OUTPUT}"
-fi
-
-# shellcheck disable=SC2065
-if type atuin >/dev/null 2>&1; then
-    OUTPUT="$(atuin init zsh)"
-    eval "${OUTPUT}"
-    # zinit load ellie/atuin
-fi
+# 1Password is explicitly setting SSH_AUTH_SOCK.
+# eval "$(ssh-agent -s)"
 
 # grc
 # shellcheck disable=SC1091
@@ -635,61 +621,62 @@ fi
 # editorconfig-checker-disable-next-line
 [[ -s "${HOME}/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.zsh" ]] && source "${HOME}/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.zsh"
 
-{{ if eq .chezmoi.os "linux" }}
+if [[ -o interactive ]]; then
+    {{ if eq .chezmoi.os "linux" }}
+    # https://github.com/KittyKatt/screenFetch
+    # shellcheck disable=SC2065
+    if type screenfetch >/dev/null 2>&1; then
+        screenfetch
+    fi
+    {{ else if eq .chezmoi.os "darwin" }}
+    # https://github.com/obihann/archey-osx
+    # shellcheck disable=SC2065
+    if type archey >/dev/null 2>&1; then
+        archey
+    fi
+    # https://github.com/dylanaraps/neofetch
+    # shellcheck disable=SC2065
+    if type neofetch >/dev/null 2>&1; then
+        neofetch
+    fi
+    {{ end }}
 
-# https://github.com/KittyKatt/screenFetch
-# shellcheck disable=SC2065
-if type screenfetch >/dev/null 2>&1; then
-    screenfetch
-fi
-{{ else if eq .chezmoi.os "darwin" }}
-# https://github.com/obihann/archey-osx
-# shellcheck disable=SC2065
-if type archey >/dev/null 2>&1; then
-    archey
-fi
-# https://github.com/dylanaraps/neofetch
-# shellcheck disable=SC2065
-if type neofetch >/dev/null 2>&1; then
-    neofetch
-fi
-{{ end }}
+    # Startup output commands
 
-# Startup output commands
+    # shellcheck disable=SC2065
+    if ping -c 1 -w 1 google.com >/dev/null 2>&1; then # Are we online?
+        if type dig >/dev/null 2>&1; then
+            echo "Is the internet on fire?:"
+            dig +short -t txt istheinternetonfire.com
+        fi
 
-# shellcheck disable=SC2065
-if ping -c 1 -w 1 google.com >/dev/null 2>&1; then # Are we online?
-    if type dig >/dev/null 2>&1; then
-        echo "Is the internet on fire?:"
-        dig +short -t txt istheinternetonfire.com
+        # echo "Check the weather"
+        # curl -s wttr.in
     fi
 
-    # echo "Check the weather"
-    # curl -s wttr.in
-fi
+    ## pyjokes
+    # shellcheck disable=SC2065
+    if type pyjoke >/dev/null 2>&1; then
+        echo
+        echo "Joke of the Day:"
+        pyjoke
+    fi
 
-## pyjokes
-# shellcheck disable=SC2065
-if type pyjoke >/dev/null 2>&1; then
-    echo
-    echo "Joke of the Day:"
-    pyjoke
-fi
+    ## tldr
+    # shellcheck disable=SC2065
+    if type tldr >/dev/null 2>&1; then
+        echo
+        echo "tldr random example"
+        tldr --random-example
+    fi
 
-## tldr
-# shellcheck disable=SC2065
-if type tldr >/dev/null 2>&1; then
-    echo
-    echo "tldr random example"
-    tldr --random-example
-fi
-
-## motd
-# shellcheck disable=SC2065
-if type motd >/dev/null 2>&1; then
-    echo
-    echo "tip of the day"
-    motd
+    ## motd
+    # shellcheck disable=SC2065
+    if type motd >/dev/null 2>&1; then
+        echo
+        echo "tip of the day"
+        motd
+    fi
 fi
 
 # [ -f ~/.inshellisense/key-bindings.zsh ] && source ~/.inshellisense/key-bindings.zsh

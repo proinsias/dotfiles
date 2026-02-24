@@ -21,6 +21,7 @@ indent_style = tab
 
 ## Markdown
 [*.md]
+indent_size = false  # May vary
 trim_trailing_whitespace = true
 
 # Python

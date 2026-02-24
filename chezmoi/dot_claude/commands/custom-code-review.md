@@ -19,22 +19,30 @@ To do this, follow these steps precisely:
 3. Then, launch 7 parallel Sonnet agents to independently code review the
    change. The agents should do the following, then return a list of issues and
    the reason each issue was flagged (eg. CLAUDE.md adherence, bug, historical
-   git context, etc.): a. Agent #1: Audit the changes to make sure they compily
+   git context, etc.):
+
+   a. Agent #1: Audit the changes to make sure they compily
    with the CLAUDE.md. Note that CLAUDE.md is guidance for Claude as it writes
-   code, so not all instructions will be applicable during code review. b. Agent
-   #2: Read the file changes in the pull request, then do a shallow scan for
+   code, so not all instructions will be applicable during code review.
+   b. Agent #2: Read the file changes in the pull request, then do a shallow scan for
    obvious bugs. Avoid reading extra context beyond the changes, focusing just
    on the changes themselves. Focus on large bugs, and avoid small issues and
-   nitpicks. Ignore likely false positives. c. Agent #3: Read the git blame and
+   nitpicks. Ignore likely false positives.
+   c. Agent #3: Read the git blame and
    history of the code modified, to identify any bugs in light of that
-   historical context d. Agent #4: Read previous pull requests that touched
+   historical context
+   d. Agent #4: Read previous pull requests that touched
    these files, and check for any comments on those pull requests that may also
-   apply to the current pull request. e. Agent #5: Read code comments in the
+   apply to the current pull request.
+   e. Agent #5: Read code comments in the
    modified files, and make sure the changes in the pull request comply with any
-   guidance in the comments. f. Agent #6: Identify any missing unit tests that
-   should be implemented based on the modified files. g. Agent #7: Identify any
+   guidance in the comments. Also, make sure that any acronym mentioned in a code comment within a given file is explained the first time in that file.
+   f. Agent #6: Identify any missing unit tests that
+   should be implemented based on the modified files.
+   g. Agent #7: Identify any
    docstrings that should be updated or could be improved upon based on the
-   modified files.
+   modified files. Verify that any acronym mentioned in a docstring is explained.
+
 4. For each issue found in #4 (and **only** in #4), launch a parallel Haiku
    agent that takes the PR, issue description, and list of CLAUDE.md files (from
    step 2), and returns a score to indicate the agent's level of confidence for

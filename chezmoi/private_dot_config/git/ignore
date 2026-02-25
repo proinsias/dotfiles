@@ -583,6 +583,6 @@ spark-warehouse/
 
 .pytest_cache
 .config/configstore
-mise.local.toml
+*mise.local.toml
 
 **/.claude/settings.local.json

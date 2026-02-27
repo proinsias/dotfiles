@@ -4,7 +4,8 @@
 
 ### Core Beliefs
 
-- **Incremental progress over big bangs** - Small changes that compile and pass tests
+- **Incremental progress over big bangs** - Small changes that compile and pass
+  tests
 - **Learning from existing code** - Study and plan before implementing
 - **Pragmatic over dogmatic** - Adapt to project reality
 - **Clear intent over clever code** - Be boring and obvious
@@ -80,3 +81,22 @@
 - Always explain abbreviations used in documentation
 - Learn from existing implementations
 - Stop after 3 failed attempts and reassess
+
+## Graphite Workflow (ALWAYS USE FOR STACKED PRs)
+
+**CRITICAL: When working with stacked PRs, ALWAYS use Graphite (gt) commands
+instead of git push/pull**
+
+- **Push changes**: Use `gt submit` (NOT `git push`)
+- **Sync with remote**: Use `gt sync` (NOT `git pull` or `git fetch`)
+- **Restack branches**: Use `gt restack` when parent branches change
+- **Switch branches**: Use `gt checkout <branch>` (same as git)
+
+**NEVER use these when working with stacked PRs:**
+
+- ❌ `git push --force-with-lease` (causes divergence)
+- ❌ `git push` (bypasses Graphite tracking)
+- ❌ `git pull` (use `gt sync` instead)
+
+**Why**: Using git commands directly bypasses Graphite's tracking and causes
+branches to diverge between local and remote, leading to duplicate code in PRs.

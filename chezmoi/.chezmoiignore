@@ -139,6 +139,7 @@ README.md
 !.local/bin/run-notebooks
 !.local/bin/skaion
 !.local/bin/split-file-500-lines
+!.local/bin/tm-pushover
 !.local/bin/transfer_pocket_to_reeder.py
 !.local/bin/typora
 !.local/bin/uncommitted-francis

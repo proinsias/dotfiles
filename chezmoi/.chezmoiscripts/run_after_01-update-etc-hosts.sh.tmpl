@@ -7,6 +7,11 @@ set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an un
 set -o pipefail   # Produce a failure return code if any pipeline command errors
 shopt -s failglob # Cause globs that don't get expanded to cause errors
 
+# Only run if it is an interactive shell
+if [[ ! -t 0 ]] || [[ -z "${PS1:-}" ]] || [[ "$-" != *i* ]]; then
+    exit 0
+fi
+
 echo -e "\n\nUpdating /etc/hosts"
 
 if ! grep --quiet coinhive.com /etc/hosts >/dev/null 2>&1; then

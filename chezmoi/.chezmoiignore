@@ -48,6 +48,7 @@ README.md
 .config/thefuck/rules/
 .config/thefuck/__pycache__/
 .config/uv/*
+!.config/uv/dbt-reqs.txt
 !.config/uv/flake8-reqs.txt
 !.config/uv/mdformat-reqs.txt
 !.config/uv/ntfy-reqs.txt

@@ -10,16 +10,22 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 echo -e "\n\nUpgrade packages."
 
 {{ if and (eq .chezmoi.os "linux") (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
-echo -e "\napt-get update:"
-sudo apt-get update --yes
-echo -e "\napt-get upgrade:"
-sudo apt-get upgrade --yes
-
-apt list --upgradeable
+# Only run if it is an interactive shell
+if [[ -t 0 ]] && [[ -n "${PS1:-}" ]] && [[ "$-" == *i* ]]; then
+    echo -e "\napt-get update:"
+    sudo apt-get update --yes
+    echo -e "\napt-get upgrade:"
+    sudo apt-get upgrade --yes
+    apt list --upgradeable
+fi
 {{ end }}
 
 echo -e "\nbrew upgrade:"
-brew upgrade
+if [[ -t 0 ]] && [[ -n "${PS1:-}" ]] && [[ "$-" == *i* ]]; then
+    brew upgrade --greedy
+else
+    brew upgrade --formulae
+fi
 
 echo -e "\nbrew cleanup:"
 brew cleanup
@@ -37,8 +43,10 @@ brew outdated
 # docker-cleanup
 
 if type gcloud >/dev/null 2>&1; then
-    echo -e "\ngcloud components update:"
-    sudo gcloud components update --quiet
+    if [[ -t 0 ]] && [[ -n "${PS1:-}" ]] && [[ "$-" == *i* ]]; then
+        echo -e "\ngcloud components update:"
+        sudo gcloud components update --quiet
+    fi
 fi
 
 echo -e "\nmise upgrade:"
@@ -55,23 +63,25 @@ mas upgrade
 # echo -e "\npre-commit-autoupdate:"
 # pre-commit-autoupdate | grep -v "already up to date"
 
-echo -e "\ntopgrade:"
-# FIXME: Setup git_repos? uv? myrepos?
-sudo --validate
-topgrade --cleanup --no-retry --skip-notify --yes --disable \
-    brew_cask \
-    brew_formula \
-    bun_packages \
-    chezmoi \
-    containers \
-    git_repos \
-    mas \
-    mise \
-    nix \
-    pip3 \
-    poetry \
-    rustup \
-    uv
+if [[ -t 0 ]] && [[ -n "${PS1:-}" ]] && [[ "$-" == *i* ]]; then
+    echo -e "\ntopgrade:"
+    # FIXME: Setup git_repos? uv? myrepos?
+    sudo --validate
+    topgrade --cleanup --no-retry --skip-notify --yes --disable \
+        brew_cask \
+        brew_formula \
+        bun_packages \
+        chezmoi \
+        containers \
+        git_repos \
+        mas \
+        mise \
+        nix \
+        pip3 \
+        poetry \
+        rustup \
+        uv
+fi
 
 echo -e "\nuncommitted-francis:"
 uncommitted-francis "${HOME}"/git

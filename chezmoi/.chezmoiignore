@@ -108,6 +108,7 @@ README.md
 !.local/bin/check-freespace
 !.local/bin/check-todos
 !.local/bin/check4brew
+!.local/bin/chezmoi-update
 !.local/bin/cht
 !.local/bin/cloud-proxy
 !.local/bin/condaupdate

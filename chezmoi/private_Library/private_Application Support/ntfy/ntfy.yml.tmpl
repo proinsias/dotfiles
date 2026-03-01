@@ -2,4 +2,5 @@
 backends:
     - pushover
 pushover:
-    user_key: { age = {{ onepasswordRead "op://Parents/Pushover.net/user-key-age" | quote }} }
+    user_key: {{ onepasswordRead "op://Parents/Pushover.net/user-key-age" | quote }}
+    api_token: {{ onepasswordRead "op://Parents/Pushover.net/ntfy-api-token-age" | quote }}

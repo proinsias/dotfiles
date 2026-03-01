@@ -8,6 +8,7 @@
 00 00  * * * /usr/bin/crontab ${HOME}/.config/crontab/crontab
 {{- if or (eq .chezmoi.hostname "booth") (eq .chezmoi.hostname "cathy") (eq .chezmoi.hostname "jerry") (eq .chezmoi.hostname "mercury") }}  # editorconfig-checker-disable
 00 01  * * * ${HOME}/.local/bin/tm-pushover
+{{- end }}
 {{- if or (eq .chezmoi.hostname "ilovemovies") (eq .chezmoi.hostname "mercury") }}
 00 23  * * * ${HOME}/.local/bin/chezmoi-update
 {{- end }}

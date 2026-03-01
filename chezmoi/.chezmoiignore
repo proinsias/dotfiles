@@ -59,6 +59,7 @@ README.md
 .config/zsh/.zsh_sessions/
 .cookiecutter_replay/
 .cookiecutters/
+.copilot/
 .crawl4ai/
 .cups/
 .cursor/
@@ -187,6 +188,7 @@ README.md
 .terraform.d/
 .tflint.d/
 .tldr/
+.tm-lock
 .Trash/
 .viminfo
 .virtualenvs

@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+# A wrapper script for rsync, specifically designed for syncing between macOS and a Synology NAS.
+#
+# There's a plenitude of pitfalls syncing things from a Mac to and from a Synology NAS:
+# encoding, unicode decomposition, system files, and a severely-outdate, pre-installed rsync utility on OSX.
+#
+# Notes on rsync options:
+#
+# Do not use --archive since preserving owner/group/permissions will annoy you
+# if you ever want to restore your files on a different machine.
+#
+# --partial: Support resume for partial file transfers
+# --exclude .DS_Store: Ignore system clutter files and exclude from syncing.
+# --delete-excluded: Delete non-empty folders that only contain excluded files,
+#                    i.e. delete empty folders that only contain .DS_Store files.
+# -e: Customise SSH options, e.g., turn off compression or use a key file instead of password login.
+# --iconv=UTF-8-MAC,UTF-8: OSX decomposes unicode characters implicitly, so names on the NAS (UTF-8 NFC) may not match
+#                          the names on OSX (UTF-8 NFD) so it'll repeatedly sync files unless --iconv is set correctly.
+#
+# However, --iconv is only supported on recent versions of rsync, so you'll need to install the latest rsync via brew.
+#
+# Notes on ssh options:
+#
+# -T: Disable pseudo-terminal allocation.
+# -i: Selects a file from which the identity (private key) for public key authentication is read.
+# -o: Specifying options for which there is no separate command-line flag.
+#
+# https://www.filebot.net/forums/viewtopic.php?t=2201
+
+set -o errexit    # Exit on error. Append || true if you expect an error.
+set -o errtrace   # Exit on error inside any functions or subshells.
+set -o noclobber  # don't allow overwriting files
+set -o nounset    # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail   # Produce a failure return code if any pipeline command errors
+shopt -s failglob # Cause globs that don't get expanded to cause errors
+
+usage() {
+    echo "Usage: $0 -s <source> -d <destination>"
+    echo "  e.g. $0 -s admin@10.0.1.5:/volume1/data/Downloads -d \$HOME/Downloads"
+    exit 1
+}
+
+while getopts "s:d:" opt; do
+    case $opt in
+        s) SRC="$OPTARG" ;;
+        d) DEST="$OPTARG" ;;
+        *) usage ;;
+    esac
+done
+
+if [ -z "${SRC:-}" ] || [ -z "${DEST:-}" ]; then
+    usage
+fi
+
+export HOMEBREW_PREFIX="$(brew --prefix)"
+export RSYNC_CMD="${HOMEBREW_PREFIX:-/usr/local}/bin/rsync"
+export RSYNC_OPTS="--recursive --times --links --executability --progress --human-readable \
+--iconv=UTF-8-MAC,UTF-8 --prune-empty-dirs --delete-excluded --delete --exclude @eaDir \
+--exclude .DS_Store --exclude Thumbs.db --exclude desktop.ini"
+export RSYNC_SSH="ssh -T -o compression=no"
+
+echo "Syncing from ${SRC} to ${DEST}..."
+"${RSYNC_CMD}" ${RSYNC_OPTS} -e "${RSYNC_SSH}" "${SRC}" "${DEST}"

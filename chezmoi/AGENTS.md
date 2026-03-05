@@ -82,6 +82,30 @@
 - Learn from existing implementations
 - Stop after 3 failed attempts and reassess
 
+## Code reviews
+
+- When performing code reviews, always output the review as a structured report
+  to stdout. Never edit source files unless explicitly asked to make changes.
+- Ensure GitHub CLI (`gh`) is authenticated before attempting PR-based
+  workflows. Run `gh auth status` first and report if not authenticated rather
+  than failing mid-review.
+
+## Git usage
+
+- Before committing, be aware that pre-commit hooks (ruff, hadolint, shellcheck)
+  may fail and require retries. If a commit fails due to pre-commit auto-fixes,
+  re-stage the fixed files and retry rather than trying to work around the
+  hooks.
+- Check if the current project uses Python with pytest for testing, ruff for
+  linting, and pre-commit hooks. Always run `pytest` after code changes and
+  `ruff check` before committing if appropriate
+
+## Refactoring
+
+When asked to find or list things (magic numbers, missing tests, redundant
+config), list ALL matches comprehensively before asking if the user wants
+changes. Do not start refactoring until explicitly confirmed.
+
 ## Graphite Workflow (ALWAYS USE FOR STACKED PRs)
 
 **CRITICAL: When working with stacked PRs, ALWAYS use Graphite (gt) commands

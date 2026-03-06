@@ -1,0 +1,148 @@
+#!/usr/bin/env bash
+#
+# ==============================================================================
+#
+#                            Link Audiobooks Script
+#
+# ==============================================================================
+#
+# Description:
+#   This script organizes OpenAudible audiobooks into a directory structure
+#   compatible with Plex. For each book in the OpenAudible library, it creates
+#   a dedicated folder named after the book and places a hard link to the
+#   original .m4b file inside it.
+#
+#   Using hard links ensures that no additional disk space is consumed, while
+#   allowing Plex to correctly identify and metadata-match each audiobook
+#   without interfering with the OpenAudible library structure.
+#
+# Source: ~/OpenAudible/books/*.m4b
+# Target: ~/Plex/Audiobooks/<Book Name>/<Book Name>.m4b
+#
+# ==============================================================================
+
+set -o errexit                # Exit on error.
+set -o nounset                # Don't allow use of undefined vars.
+set -o pipefail               # Produce a failure return code if any pipeline command errors.
+
+usage() {
+    echo "Usage: $(basename "$0") [options]"
+    echo ""
+    echo "Description:"
+    echo "  Organizes OpenAudible .m4b files into a Plex-friendly folder structure"
+    echo "  using hard links (~/Plex/Audiobooks/Book Name/Book Name.m4b)."
+    echo ""
+    echo "Options:"
+    echo "  -r, --run        Actually execute the linking process."
+    echo "  -n, --dry-run    Show what would be done without making any changes."
+    echo "  -h, --help       Show this help message."
+    echo ""
+    echo "Note: One of --run or --dry-run must be specified."
+}
+
+# If no arguments, show usage
+if [[ $# -eq 0 ]]; then
+    usage
+    exit 1
+fi
+
+DRY_RUN=false
+RUN=false
+
+# Simple argument parsing
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -n|--dry-run)
+            DRY_RUN=true
+            shift
+            ;;
+        -r|--run)
+            RUN=true
+            shift
+            ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            usage
+            exit 1
+            ;;
+    esac
+done
+
+# Ensure at least one mode is selected
+if [[ "${RUN}" == "false" && "${DRY_RUN}" == "false" ]]; then
+    echo "Error: You must specify either --run or --dry-run."
+    echo ""
+    usage
+    exit 1
+fi
+
+# Dry run takes precedence if both are set (safety first)
+if [[ "${DRY_RUN}" == "true" ]]; then
+    RUN=false
+    echo "--- DRY RUN MODE: No changes will be made ---"
+fi
+
+# Source and target directories
+SOURCE_DIR="${HOME}/OpenAudible/books"
+TARGET_BASE_DIR="${HOME}/Plex/Audiobooks"
+
+# Check if source directory exists
+if [[ ! -d "${SOURCE_DIR}" ]]; then
+    echo "Source directory ${SOURCE_DIR} does not exist. Skipping."
+    exit 0
+fi
+
+# Ensure target base directory exists
+if [[ "${RUN}" == "true" ]]; then
+    mkdir -p "${TARGET_BASE_DIR}"
+else
+    echo "[DRY-RUN] mkdir -p ${TARGET_BASE_DIR}"
+fi
+
+# Iterate over all .m4b files in the source directory
+# Using nullglob to handle no matches gracefully
+shopt -s nullglob
+for m4b_file in "${SOURCE_DIR}"/*.m4b; do
+    # Extract the filename and the base name (without extension)
+    filename=$(basename "${m4b_file}")
+    book_name="${filename%.m4b}"
+
+    # Define the target directory and target file path
+    target_dir="${TARGET_BASE_DIR}/${book_name}"
+    target_file="${target_dir}/${filename}"
+
+    # Create the target directory if it doesn't exist
+    if [[ ! -d "${target_dir}" ]]; then
+        if [[ "${RUN}" == "true" ]]; then
+            echo "Creating directory: ${target_dir}"
+            mkdir -p "${target_dir}"
+        else
+            echo "[DRY-RUN] mkdir -p ${target_dir}"
+        fi
+    fi
+
+    # Check if the hard link already exists
+    if [[ ! -e "${target_file}" ]]; then
+        if [[ "${RUN}" == "true" ]]; then
+            echo "Linking '${filename}' to '${target_file}'..."
+            ln "${m4b_file}" "${target_file}"
+        else
+            echo "[DRY-RUN] ln "${m4b_file}" "${target_file}""
+        fi
+    else
+        # Check if it's the same inode
+        if [[ "${m4b_file}" -ef "${target_file}" ]]; then
+            # Already linked
+            :
+        else
+            echo "Warning: '${target_file}' already exists but is not a hard link to '${m4b_file}'. Skipping."
+        fi
+    fi
+done
+shopt -u nullglob
+
+echo "Finished linking audiobooks."

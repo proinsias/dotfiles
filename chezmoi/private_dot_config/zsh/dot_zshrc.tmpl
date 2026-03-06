@@ -516,7 +516,10 @@ if type ntfy >/dev/null 2>&1; then
     eval "${OUTPUT}"
 
     # Avoid unnecessary notifications when running interactive programs.
-    export AUTO_NTFY_DONE_IGNORE="vim screen meld"
+    export AUTO_NTFY_DONE_IGNORE="
+    aws-shell bash cd chezmoi claude code curl df du emacs gemini git glances info ipython
+    jupyter less ls man meld more nano ping psql pwd screen sh ssh tmux top tree vi vim wget
+    "
 fi
 
 # User configuration

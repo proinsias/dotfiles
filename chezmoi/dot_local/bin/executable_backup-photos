@@ -95,13 +95,13 @@ run_icloudpd() {
         --username "${APPLE_USERNAME_1}" \
         --directory "/Volumes/ilovemoviesHD/Backups/Photos/Francis" \
         --library "${APPLE_LIBRARY}" \
-        --username "${APPLE_USERNAME_2}"\
+        --username "${APPLE_USERNAME_2}" \
         --directory "/Volumes/ilovemoviesHD/Backups/Photos/Cathy" \
         --username "${APPLE_USERNAME_3}" \
         --directory "/Volumes/ilovemoviesHD/Backups/Photos/Bea" \
         --username "${APPLE_USERNAME_4}" \
         --directory "/Volumes/ilovemoviesHD/Backups/Photos/Arthur" \
-    | tee --append "${HOME}/Library/Logs/backup-photos_full.log"
+    | tee -a "${HOME}/Library/Logs/backup-photos_full.log"
 }
 
 run_icloudpd_version() {
@@ -116,6 +116,6 @@ cd "${HOME}/.local/share/chezmoi"
 
 mise exec -- \
     runitor -- \
-    bash -c 'run_icloudpd | tail --bytes=100000'
+    bash -c 'run_icloudpd | tail -c 100000'
 
 cd -

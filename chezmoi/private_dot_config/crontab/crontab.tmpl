@@ -6,9 +6,10 @@
 ## day of week    0-7 (0 or 7 is Sun, or use names)
 ######################################################################
 00 00  * * * /usr/bin/crontab {{ .chezmoi.homeDir }}/.config/crontab/crontab
-{{- if or (eq .chezmoi.hostname "booth") (eq .chezmoi.hostname "cathy") (eq .chezmoi.hostname "jerry") (eq .chezmoi.hostname "mercury") }}  # editorconfig-checker-disable
 00 01  * * * {{ .chezmoi.homeDir }}/.local/bin/tm-pushover
-{{- end }}
 {{- if or (eq .chezmoi.hostname "ilovemovies") (eq .chezmoi.hostname "mercury") }}
 00 23  * * * {{ .chezmoi.homeDir }}/.local/bin/chezmoi-update
+{{- end }}
+{{- if eq .chezmoi.hostname "ilovemovies"}}
+00 02  * * * {{ .chezmoi.homeDir }}/.local/bin/backup-photos
 {{- end }}

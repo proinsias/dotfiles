@@ -20,7 +20,7 @@
 #
 # Pre-run Configuration:
 #   1. Ensure 'icloudpd' is installed and accessible in your system's PATH.
-#   2. The target backup volume, "/Volumes/My Passport/", must be mounted and
+#   2. The target backup volume, "/Volumes/ilovemoviesHD/", must be mounted and
 #      writable.
 #   3. For non-interactive execution, ensure the iCloud account passwords are
 #      stored in your system's keychain so 'icloudpd' can retrieve them via
@@ -29,7 +29,7 @@
 #
 # Usage:
 #   Execute the script from your terminal:
-#   backup_photos
+#   backup-photos
 #
 # Script Breakdown:
 #   The script executes a series of 'icloudpd' commands, one for each user
@@ -54,7 +54,7 @@
 #   3.  **Define the Command:**
 #       - In the "What" section, enter the absolute path to this script.
 #         After being applied by chezmoi, this is likely in `~/.local/bin/`.
-#         Example: `/Users/your-username/.local/bin/backup_photos`
+#         Example: `/Users/your-username/.local/bin/backup-photos`
 #       - **Important:** `launchd` requires absolute paths.
 #
 #   4.  **Set the Schedule:**
@@ -90,18 +90,18 @@ run_icloudpd() {
         --smtp-username "${SMTP_USERNAME}" \
         --smtp-password "${SMTP_PASSWORD}" \
         --username "${APPLE_USERNAME_1}" \
-        --directory "/Volumes/My Passport/Backups/Photos/Francis" \
+        --directory "/Volumes/ilovemoviesHD/Backups/Photos/Francis" \
         --library "PrimarySync" \
         --username "${APPLE_USERNAME_1}" \
-        --directory "/Volumes/My Passport/Backups/Photos/Francis" \
+        --directory "/Volumes/ilovemoviesHD/Backups/Photos/Francis" \
         --library "${APPLE_LIBRARY}" \
         --username "${APPLE_USERNAME_2}"\
-        --directory "/Volumes/My Passport/Backups/Photos/Cathy" \
+        --directory "/Volumes/ilovemoviesHD/Backups/Photos/Cathy" \
         --username "${APPLE_USERNAME_3}" \
-        --directory "/Volumes/My Passport/Backups/Photos/Bea" \
+        --directory "/Volumes/ilovemoviesHD/Backups/Photos/Bea" \
         --username "${APPLE_USERNAME_4}" \
-        --directory "/Volumes/My Passport/Backups/Photos/Arthur" \
-    | tee --append "${HOME}/Library/Logs/backup_photos_full.log"
+        --directory "/Volumes/ilovemoviesHD/Backups/Photos/Arthur" \
+    | tee --append "${HOME}/Library/Logs/backup-photos_full.log"
 }
 
 run_icloudpd_version() {

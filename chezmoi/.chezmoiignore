@@ -219,6 +219,7 @@ GitHub/
 go/
 golang/
 Google Drive/
+Horcrux Email Backups/
 Library/*
 !Library/Application Support
 Library/Application Support/*
@@ -233,7 +234,9 @@ mlink
 Movies/
 Music/
 OneDrive/
+OpenAudible/
 Pictures/
+Plex/
 Public/
 Sites/
 snap/

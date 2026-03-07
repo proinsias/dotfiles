@@ -37,7 +37,7 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 
 usage() {
     echo "Usage: $0 -s <source> -d <destination>"
-    echo "  e.g. $0 -s admin@10.0.1.5:/volume1/data/Downloads -d \$HOME/Downloads"
+    echo "  e.g. $0 -s admin@10.0.1.5:/volume1/homes/admin -d \$HOME/Downloads"
     exit 1
 }
 
@@ -58,7 +58,7 @@ export RSYNC_CMD="${HOMEBREW_PREFIX:-/usr/local}/bin/rsync"
 export RSYNC_OPTS="--recursive --times --links --executability --progress --human-readable \
 --iconv=UTF-8-MAC,UTF-8 --prune-empty-dirs --delete-excluded --delete --exclude @eaDir \
 --exclude .DS_Store --exclude Thumbs.db --exclude desktop.ini"
-export RSYNC_SSH="ssh -T -o compression=no"
+export RSYNC_SSH="ssh -T -o compression=no -p 8022"
 
 echo "Syncing from ${SRC} to ${DEST}..."
 "${RSYNC_CMD}" ${RSYNC_OPTS} -e "${RSYNC_SSH}" "${SRC}" "${DEST}"

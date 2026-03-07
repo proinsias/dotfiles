@@ -125,6 +125,8 @@ README.md
 !.local/bin/install_certificates
 !.local/bin/Lingon
 !.local/bin/LingonUpdateScripts.app
+!.local/bin/link-audiobooks
+!.local/bin/link-audiobooks-ntfy
 !.local/bin/llamafile
 !.local/bin/load-creds
 !.local/bin/look_for_duplicate_readwise.py
@@ -139,6 +141,8 @@ README.md
 !.local/bin/pre-commit-autoupdate
 !.local/bin/rbenv-doctor
 !.local/bin/replace
+!.local/bin/rsync-nas
+!.local/bin/rsync-nas-icloud-drive
 !.local/bin/run-notebooks
 !.local/bin/skaion
 !.local/bin/split-file-500-lines

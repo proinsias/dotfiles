@@ -23,7 +23,6 @@
 # Notes on ssh options:
 #
 # -T: Disable pseudo-terminal allocation.
-# -i: Selects a file from which the identity (private key) for public key authentication is read.
 # -o: Specifying options for which there is no separate command-line flag.
 #
 # https://www.filebot.net/forums/viewtopic.php?t=2201
@@ -37,7 +36,7 @@ shopt -s failglob # Cause globs that don't get expanded to cause errors
 
 usage() {
     echo "Usage: $0 -s <source> -d <destination>"
-    echo "  e.g. $0 -s admin@10.0.1.5:/volume1/homes/admin -d \$HOME/Downloads"
+    echo "  e.g. $0 -s admin@10.0.1.5:/volume1/data/Downloads -d \$HOME/Downloads"
     exit 1
 }
 
@@ -55,9 +54,8 @@ fi
 
 export HOMEBREW_PREFIX="$(brew --prefix)"
 export RSYNC_CMD="${HOMEBREW_PREFIX:-/usr/local}/bin/rsync"
-export RSYNC_OPTS="--recursive --times --links --executability --progress --human-readable \
---iconv=UTF-8-MAC,UTF-8 --prune-empty-dirs --delete-excluded --delete --exclude @eaDir \
---exclude .DS_Store --exclude Thumbs.db --exclude desktop.ini"
+# editorconfig-checker-disable-next-line
+export RSYNC_OPTS="--recursive --times --links --executability --progress --human-readable --iconv=UTF-8-MAC,UTF-8 --prune-empty-dirs --delete-excluded --delete --exclude @eaDir --exclude .DS_Store --exclude Thumbs.db --exclude desktop.ini"
 export RSYNC_SSH="ssh -T -o compression=no -p 8022"
 
 echo "Syncing from ${SRC} to ${DEST}..."

@@ -12,4 +12,6 @@
 {{- end }}
 {{- if eq .chezmoi.hostname "ilovemovies"}}
 00 02  * * * {{ .chezmoi.homeDir }}/.local/bin/backup-photos
+00 06  * * * {{ .chezmoi.homeDir }}/.local/bin/rsync-nas-icloud-drive
+00 12  * * * {{ .chezmoi.homeDir }}/.local/bin/link-audiobooks-ntfy
 {{- end }}

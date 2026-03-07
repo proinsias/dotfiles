@@ -6,15 +6,9 @@
 #
 # ==============================================================================
 #
-# Description:
-#   This script organizes OpenAudible audiobooks into a directory structure
-#   compatible with Plex. For each book in the OpenAudible library, it creates
-#   a dedicated folder named after the book and places a hard link to the
-#   original .m4b file inside it.
-#
-#   Using hard links ensures that no additional disk space is consumed, while
-#   allowing Plex to correctly identify and metadata-match each audiobook
-#   without interfering with the OpenAudible library structure.
+# Purpose:
+#   This script automates the process of creating hard links for m4b files
+#   from OpenAudible to a Plex-friendly directory structure.
 #
 # Source: ~/OpenAudible/books/*.m4b
 # Target: ~/Plex/Audiobooks/<Book Name>/<Book Name>.m4b
@@ -27,10 +21,6 @@ set -o pipefail               # Produce a failure return code if any pipeline co
 
 usage() {
     echo "Usage: $(basename "$0") [options]"
-    echo ""
-    echo "Description:"
-    echo "  Organizes OpenAudible .m4b files into a Plex-friendly folder structure"
-    echo "  using hard links (~/Plex/Audiobooks/Book Name/Book Name.m4b)."
     echo ""
     echo "Options:"
     echo "  -r, --run        Actually execute the linking process."
@@ -100,7 +90,7 @@ fi
 if [[ "${RUN}" == "true" ]]; then
     mkdir -p "${TARGET_BASE_DIR}"
 else
-    echo "[DRY-RUN] mkdir -p ${TARGET_BASE_DIR}"
+    echo "[DRY-RUN] Would ensure directory exists: ${TARGET_BASE_DIR}"
 fi
 
 # Iterate over all .m4b files in the source directory
@@ -121,7 +111,7 @@ for m4b_file in "${SOURCE_DIR}"/*.m4b; do
             echo "Creating directory: ${target_dir}"
             mkdir -p "${target_dir}"
         else
-            echo "[DRY-RUN] mkdir -p ${target_dir}"
+            echo "[DRY-RUN] Would create directory: ${target_dir}"
         fi
     fi
 
@@ -131,7 +121,7 @@ for m4b_file in "${SOURCE_DIR}"/*.m4b; do
             echo "Linking '${filename}' to '${target_file}'..."
             ln "${m4b_file}" "${target_file}"
         else
-            echo "[DRY-RUN] ln "${m4b_file}" "${target_file}""
+            echo "[DRY-RUN] Would link '${filename}' to '${target_file}'"
         fi
     else
         # Check if it's the same inode

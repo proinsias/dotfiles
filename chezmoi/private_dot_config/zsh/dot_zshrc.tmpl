@@ -178,6 +178,11 @@ fi
 #### Add homebrew's GNU findutils to PATH:
 #export PATH="${HOMEBREW_PREFIX}/opt/findutils/bin${PATH:+:${PATH}}"
 
+{{ if .work }}
+# Force dbt to always use home directory profiles
+export DBT_PROFILES_DIR=~/.dbt
+# Once run, reload your shell (command: source ~/.zshrc)
+{{ end }}
 
 {{ if eq .chezmoi.os "darwin" }}
 #### PyCharm

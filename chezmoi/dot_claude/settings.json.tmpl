@@ -18,11 +18,13 @@
   },
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true,
-    "context7@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
-    "github@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
+    {{ if not .work }}
+    "context7@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    {{ end }}
     "commit-commands@claude-plugins-official": true
   }
 }

@@ -2,6 +2,7 @@
   "Exclude": [
     "\\.git",
     "\\.venv",
+    "chezmoi/dot_claude/settings.json.tmpl",
     "chezmoi/dot_subversion/README.txt",
     "chezmoi/dot_zfunc/_cht",
     "chezmoi/dot_zfunc/_rustup",

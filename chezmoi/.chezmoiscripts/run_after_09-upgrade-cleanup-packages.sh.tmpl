@@ -63,6 +63,9 @@ mas upgrade
 # echo -e "\npre-commit-autoupdate:"
 # pre-commit-autoupdate | grep -v "already up to date"
 
+echo -e "\gh extension upgrade:"
+gh extension upgrade --all
+
 if [[ -t 0 ]] && [[ -n "${PS1:-}" ]] && [[ "$-" == *i* ]]; then
     echo -e "\ntopgrade:"
     # FIXME: Setup git_repos? uv? myrepos?

@@ -5,7 +5,6 @@
 ## month          1-12 (or names, see below)
 ## day of week    0-7 (0 or 7 is Sun, or use names)
 ######################################################################
-00 00  * * * /usr/bin/crontab {{ .chezmoi.homeDir }}/.config/crontab/crontab
 00 01  * * * {{ .chezmoi.homeDir }}/.local/bin/tm-pushover
 {{- if or (eq .chezmoi.hostname "ilovemovies") (eq .chezmoi.hostname "mercury") }}
 00 23  * * * {{ .chezmoi.homeDir }}/.local/bin/chezmoi-update

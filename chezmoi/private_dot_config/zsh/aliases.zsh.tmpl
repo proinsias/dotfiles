@@ -266,3 +266,7 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 alias top='top -o cpu'
 {{ end }}
+
+{{ if not .work }}
+alias claude="ollama launch claude --model kimi-k2.5:cloud"
+{{ end }}

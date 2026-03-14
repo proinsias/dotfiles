@@ -276,8 +276,6 @@ brew "libvo-aacenc"
 brew "llm"
 # Rainbows and unicorns in your console!
 brew "lolcat"
-# Create and manage Apple Silicon-native virtual machines
-brew "lume"
 # Utility to list open files
 brew "lsof"
 {{ if ne .chezmoi.hostname "ilovemovies" }}
@@ -784,6 +782,8 @@ cask "raspberry-pi-imager"
 cask "reader"
 # Show installed app compatibility information
 cask "roaringapps"
+# Open source virtual/remote desktop application
+cask "rustdesk"
 # Tool for sending personal documents to Kindles from Macs
 cask "send-to-kindle"
 # Instant messaging application focusing on security
@@ -847,6 +847,11 @@ cask "yubico-authenticator"
 {{- if eq .chezmoi.arch "arm64" -}}{{/* darwin not .work not .lite arm64 */}}
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
+# Create and manage Apple Silicon-native virtual machines
+brew "lume"
+{{- else }}
+# Virtual machines UI using QEMU
+brew "utm"
 {{ end }}{{/* darwin not .work not .lite arm64 */}}
 
 {{- if not .test }}{{/* darwin not .work not .lite not .test */}}

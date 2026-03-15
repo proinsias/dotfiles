@@ -35,7 +35,7 @@ README.md
 .config/fabric/*
 !.config/fabric/.env
 .config/gh/state.yml
-.config/git-crypt/dotfiles.bin
+.config/git-crypt/
 .config/go/
 .config/gpt4all.io/
 .config/gtk-2.0/

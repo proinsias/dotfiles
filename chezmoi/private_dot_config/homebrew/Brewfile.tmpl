@@ -290,8 +290,6 @@ brew "lynx"
 brew "lzip"
 # Keep your Mac's application settings in sync
 brew "mackup"
-# Apple Silicon Monitor Top written in Go Lang
-brew "mactop"
 # Utility for directing compilation
 brew "make"
 # Creates dependencies in makefiles
@@ -849,10 +847,12 @@ cask "yubico-authenticator"
 # cask "yubico-yubikey-manager"
 
 {{- if eq .chezmoi.arch "arm64" -}}{{/* darwin not .work not .lite arm64 */}}
-# OpenAI's official ChatGPT desktop app
-cask "chatgpt"
 # Create and manage Apple Silicon-native virtual machines
 brew "lume"
+# Apple Silicon Monitor Top written in Go Lang
+brew "mactop"
+# OpenAI's official ChatGPT desktop app
+cask "chatgpt"
 {{- else }}
 # Virtual machines UI using QEMU
 brew "utm"

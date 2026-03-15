@@ -134,7 +134,7 @@ repos:
     rev: "v0.15.4"
     hooks:
       - id: ruff-check
-        args: [--fix, --force-exclude, --exit-non-zero-on-fix]
-        types_or: [python, pyi]
+        args: [--fix, --exit-non-zero-on-fix]
+        types_or: [python, pyi, markdown]
       - id: ruff-format
-        types_or: [python, pyi]
+        types_or: [python, pyi, markdown]

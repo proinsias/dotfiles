@@ -1,4 +1,4 @@
-encrypted_* filter=git-crypt diff=git-crypt
+encrypted_* filter=git-crypt diff=git-crypt merge=git-crypt
 
 # Set the default behavior, in case people don't have core.autocrlf set.
 * text=auto

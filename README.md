@@ -37,8 +37,16 @@ Simply run these commands from your terminal.
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply proinsias \
     --exclude encrypted
 cd ~/.local/share/chezmoi
+
 # Save age key from 1password to disk.
 ./bin/get-age-key
+
+# Save git-crypt key from 1password to disk:
+# ~/.config/git-crypt/dotfiles.bin
+
+# De-crypt everything:
+git-crypt unlock ~/.config/git-crypt/dotfiles.bin
+
 # Apply everything.
 chezmoi apply
 ```

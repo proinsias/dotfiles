@@ -1,2 +1,5 @@
+encrypted_*.age binary
+encrypted_* filter=git-crypt diff=git-crypt
+
 # Set the default behavior, in case people don't have core.autocrlf set.
 * text=auto

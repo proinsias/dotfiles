@@ -26,7 +26,8 @@ README.md
 !.claude/commands/custom-code-review.md
 .cline/
 .codex/
-.config/1Password/
+.config/1Password/*
+!.config/1Password/ssh
 .config/atuin/atuin-receipt.json
 .config/broot/launcher/
 .config/butterfish/

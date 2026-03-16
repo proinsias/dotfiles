@@ -284,7 +284,10 @@
     email = {{ .githubemail | quote }}
 {{ if .work }}
     signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMizfyextfdtVbiHbD8jjPToidUH4Ykj37ex/k74ARQQ
-{{ else if eq .chezmoi.os "darwin" }}
+{{ else if eq .chezmoi.hostname "ilovemovies"}}
+    # editorconfig-checker-disable-next-line
+    signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrRjM73r9ZXU+fuqN430F5j5rzElfC9wo+T6k4/Y6SXMTKhsZ0kxc46L6+BU1IGKyjZjFVPea4hBLmJIqH2ph43LTyBINJeMqkrlHObopz8YaYwMoyEVoHjtMOJO6dY/IXtK7sqqi/XxlyRhnzuypt1wpOeNzGlN9chtSvhrHEcPH6H8tI/t3Ci88+Q0sdXe3C9/QGBKi+EfEZfNklNr2c2WkJc54pYqdbTINW6LzyCWFbJTuw3XyLZw0PoBs52pNs5SCTT9+opiNu24ZYa24V3hgv0vZsJmoohossX1cVsLomfbQIqt8x0l/XoXzEvWomHLKj3wKdkrfNMHe0t+Yd
+{{ else if eq .chezmoi.hostname "mercury"}}
     signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJrV3U0rv3tP+EgPny5wVxm46FutLreH2YmyPYzLQ3/g
 {{- else if or (eq .chezmoi.os "linux") (eq .chezmoi.os "windows") -}}
     # FIXME: Switch to getting from op!

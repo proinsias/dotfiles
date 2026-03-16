@@ -85,3 +85,12 @@ cd "${HOME}/.local/share/chezmoi"
 mise exec -- runitor -- bash -c 'run_icloudpd'
 
 cd -
+
+# FIXME: Switch all scripts to use runitor - move .mise.toml variables here AND ENCRYPT!
+# FIXME: Also all scripts should use pushover to get outputs to phone. don't bother with tail.
+# FIXME: encrypted_executable_backup-photos-ntfy
+# FIXME: encrypted_executable_chezmoi-update
+# FIXME: encrypted_executable_link-audiobooks-ntfy
+# FIXME: encrypted_executable_rsync-nas-icloud-drive
+# FIXME: encrypted_executable_tm-pushover
+#

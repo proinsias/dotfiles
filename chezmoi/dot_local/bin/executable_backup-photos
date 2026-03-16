@@ -48,8 +48,8 @@ shopt -s failglob             # Cause globs that don't get expanded to cause err
 shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
 
 run_icloudpd() {
-    DATE="$(date +%FT%R)"
     icloudpd \
+        --log-level error \
         --notification-email "${SMTP_USERNAME}" \
         --password-provider keyring \
         --password-provider console \
@@ -69,7 +69,7 @@ run_icloudpd() {
         --directory "/Volumes/ilovemoviesHD/Backups/Photos/Bea" \
         --username "${APPLE_USERNAME_4}" \
         --directory "/Volumes/ilovemoviesHD/Backups/Photos/Arthur" \
-    | tee "${HOME}/Library/Logs/backup-photos-${DATE}.log"
+        2>&1 | tee "${HOME}/Library/Logs/backup-photos.log"
 }
 
 run_icloudpd_version() {
@@ -82,8 +82,6 @@ export -f run_icloudpd_version
 
 cd "${HOME}/.local/share/chezmoi"
 
-mise exec -- \
-    runitor -- \
-    bash -c 'run_icloudpd | tail -c 100000'
+mise exec -- runitor -- bash -c 'run_icloudpd'
 
 cd -

@@ -38,39 +38,6 @@
 # Email Notifications (for 2FA Expiration):
 #   The script is configured to send email notifications if an account's
 #   two-factor authentication session expires.
-#
-# Scheduling with launchd and Lingon X:
-#   'Lingon X' is a powerful graphical application that makes it easy to create
-#   and manage launchd jobs without manually writing XML .plist files.
-#
-#   1.  **Create a New Job:**
-#       - Open Lingon X and click the '+' button to create a new job.
-#       - Choose to create a "User Agent". This ensures the job runs when you are
-#         logged in and has access to your user keychain.
-#
-#   2.  **Name the Job:**
-#       - Use a descriptive, reverse-domain name, e.g., `com.yourname.backup-icloud-photos`.
-#
-#   3.  **Define the Command:**
-#       - In the "What" section, enter the absolute path to this script.
-#         After being applied by chezmoi, this is likely in `~/.local/bin/`.
-#         Example: `/Users/your-username/.local/bin/backup-photos`
-#       - **Important:** `launchd` requires absolute paths.
-#
-#   4.  **Set the Schedule:**
-#       - In the "When" section, check "Run on a schedule".
-#       - Set a calendar interval. For example, to run every day at 2:00 AM, you
-#         would set the interval for every 1 day, at Hour 2, Minute 0.
-#
-#   5.  **Log Script Output (Recommended):**
-#       - It's crucial to log the script's output to debug any issues.
-#       - In the "Advanced" section of Lingon X, you can set paths for
-#         "Standard Out Log" and "Standard Error Log".
-#       - Example: `~/Library/Logs/icloud_backup.log` for both.
-#
-#   6.  **Save and Enable:**
-#       - Click "Save" in Lingon X. The job will be enabled and will run on the
-#         schedule you defined.
 
 set -o errexit                # Exit on error. Append || true if you expect an error.
 set -o errtrace               # Exit on error inside any functions or subshells.
@@ -81,6 +48,7 @@ shopt -s failglob             # Cause globs that don't get expanded to cause err
 shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
 
 run_icloudpd() {
+    DATE="$(date +%FT%R)"
     icloudpd \
         --notification-email "${SMTP_USERNAME}" \
         --password-provider keyring \
@@ -101,7 +69,7 @@ run_icloudpd() {
         --directory "/Volumes/ilovemoviesHD/Backups/Photos/Bea" \
         --username "${APPLE_USERNAME_4}" \
         --directory "/Volumes/ilovemoviesHD/Backups/Photos/Arthur" \
-    | tee -a "${HOME}/Library/Logs/backup-photos_full.log"
+    | tee "${HOME}/Library/Logs/backup-photos-${DATE}.log"
 }
 
 run_icloudpd_version() {

@@ -558,6 +558,9 @@ brew "bakks/bakks/butterfish"
 # Automatic Password Generator
 brew "jzaleski/jzaleski/apg"
 
+# Finds large, unwanted files and deletes them
+cask "omnidisksweeper"
+
 {{ if not .test }}{{/* darwin not .test */}}
 vscode "Anthropic.claude-code"
 vscode "github.vscode-github-actions"
@@ -740,8 +743,6 @@ cask "numi"
 cask "obsidian"
 # Get up and running with large language models locally
 cask "ollama-app"
-# Finds large, unwanted files and deletes them
-cask "omnidisksweeper"
 # Verify system files structure, run miscellaneous maintenance and more
 # cask "onyx"
 # Audiobook manager for Audible users

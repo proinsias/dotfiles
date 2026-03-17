@@ -19,10 +19,10 @@ OPENAI_API_KEY = { age = {{ onepasswordRead "op://Private/OpenAI.com/api-key-age
 GROQ_API_KEY = { age = {{ onepasswordRead "op://Parents/Groq/token-age" | quote }} }
 {{ if not .work}}
 GH_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/gh-age" | quote }} }
+MISE_GITHUB_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/Tokens/mise-age" | quote }} }
 {{ end }}
 HOMEBREW_GITHUB_API_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/Tokens/homebrew-age" | quote }} }
 LYCHEE_GITHUB_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/Tokens/lychee-age" | quote }} }
-MISE_GITHUB_TOKEN = { age = {{ onepasswordRead "op://Parents/github.com/Tokens/mise-age" | quote }} }
 OLLAMA_API_BASE = "http://127.0.0.1:11434"
 {{ if eq .chezmoi.os "darwin" }}
 OP_BIOMETRIC_UNLOCK_ENABLED = true

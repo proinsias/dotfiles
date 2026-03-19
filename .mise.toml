@@ -4,6 +4,7 @@ dotenv = ".env"   # auto-load .env file
 
 [tools]
 age = "latest"
+bats = "latest"
 chezmoi = "latest"
 editorconfig-checker = "latest"
 gitleaks = "latest"

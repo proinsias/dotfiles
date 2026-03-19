@@ -37,7 +37,8 @@ esac
 # Install Homebrew if not installed.
 if ! command -v brew &>/dev/null; then
     echo -e "\nInstalling Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    OUTPUT="$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /bin/bash -c "${OUTPUT}"
 fi
 
 # Install 1Password CLI if not installed.
@@ -54,8 +55,9 @@ if ! command -v op >/dev/null 2>&1; then
             sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
 
         # Add repo
+        ARCH="$(dpkg --print-architecture)"
         # editorconfig-checker-disable-next-line
-        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" |
+        echo "deb [arch=${ARCH} signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/${ARCH} stable main" |
             sudo tee /etc/apt/sources.list.d/1password.list
 
         # Configure debsig policy

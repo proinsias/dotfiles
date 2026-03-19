@@ -18,10 +18,10 @@ uvx --from md-toc md_toc --in-place github -- README.md
 -->
 <!--TOC-->
 
--   [dotfiles](#dotfiles)
-    -   [Table of contents](#table-of-contents)
-    -   [Install](#install)
-    -   [To Dos](#to-dos)
+- [dotfiles](#dotfiles)
+    - [Table of contents](#table-of-contents)
+    - [Install](#install)
+    - [To Dos](#to-dos)
 
 <!--TOC-->
 

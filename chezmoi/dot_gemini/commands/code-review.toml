@@ -1,3 +1,5 @@
+# editorconfig-checker-disable
+
 description = "Reviews changes in the current git branch against the main branch."
 
 # The !{...} syntax executes a shell command and injects the output into the prompt.

@@ -21,7 +21,8 @@ defaults write -app TextEdit CheckGrammarWithSpelling -bool true # Enable "Check
 defaults write -app TextEdit DataDetectors -bool true            # Enable "Data detectors"
 defaults write -app TextEdit SmartQuotes -bool false             # Disable "Smart quotes"
 defaults write -app TextEdit SmartLinks -bool true
-defaults write -app TextEdit SmartSubstitutionsEnabledInRichTextOnly -bool false # Disable "Smart quotes and dashes in rich text documents only"
+# Disable "Smart quotes and dashes in rich text documents only"
+defaults write -app TextEdit SmartSubstitutionsEnabledInRichTextOnly -bool false
 # # Use plain text mode for new TextEdit documents
 # defaults write com.apple.TextEdit RichText -int 0
 # # Open and save files as UTF-8 in TextEdit

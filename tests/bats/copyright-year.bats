@@ -84,10 +84,19 @@ teardown() {
 
 @test "copyright has current year and matching holder: exits 0" {
     git config hooks.copyrightholder "Alice"
-    echo "# Copyright ${YEAR} Alice" >valid-holder.txt
+    echo "# Copyright ${YEAR} Alice" > valid-holder.txt
     git add valid-holder.txt
     run bash "${SCRIPT}"
     [ "$status" -eq 0 ]
+}
+
+@test "copyright has current year but omits holder with configured holder: exits non-zero" {
+    git config hooks.copyrightholder "Alice"
+    echo "# Copyright ${YEAR}" > missing-holder.txt
+    git add missing-holder.txt
+    run bash "${SCRIPT}"
+    [ "$status" -ne 0 ]
+    [[ "$output" == *"Error"* ]]
 }
 
 @test "copyright has current year but wrong holder: exits non-zero" {

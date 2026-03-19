@@ -238,11 +238,13 @@ if type pyenv >/dev/null 2>&1; then
 
     OUTPUT="$(pyenv init --path)"
     eval "${OUTPUT}" # Puts shims dir as prefix to PATH.
-    OUTPUT="$(pyenv init -)"
-    eval "${OUTPUT}"
-    OUTPUT="$(pyenv virtualenv-init -)"
-    eval "${OUTPUT}"
-    export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+    if [[ -o interactive ]] && [[ -t 1 ]]; then
+        OUTPUT="$(pyenv init -)"
+        eval "${OUTPUT}"
+        OUTPUT="$(pyenv virtualenv-init -)"
+        eval "${OUTPUT}"
+        export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+    fi
 fi
 
 ## fzf
@@ -252,7 +254,7 @@ if type fzf >/dev/null 2>&1; then
     source <(fzf --zsh)
 fi
 
-if [[ -o interactive ]]; then
+if [[ -o interactive ]] && [[ -t 1 ]]; then
     # Completion setup before loading Oh My Zsh.
 
     ## tab completion for npm
@@ -478,7 +480,7 @@ plugins=(
 ZSH_DISABLE_COMPFIX=true
 {{ end }}
 
-if [[ -o interactive ]]; then
+if [[ -o interactive ]] && [[ -t 1 ]]; then
     # shellcheck disable=SC1091
     test -f "${ZSH}/oh-my-zsh.sh" && source "${ZSH}/oh-my-zsh.sh"
 else
@@ -489,7 +491,7 @@ else
     compinit
 fi
 
-if [[ -o interactive ]]; then
+if [[ -o interactive ]] && [[ -t 1 ]]; then
     ## Starship
     # shellcheck disable=SC2065
     if type starship >/dev/null 2>&1; then
@@ -516,7 +518,7 @@ fi
 
 ## Sending notifications.
 # https://github.com/dschep/ntfy
-if type ntfy >/dev/null 2>&1; then
+if [[ -o interactive ]] && [[ -t 1 ]] && type ntfy >/dev/null 2>&1; then
     OUTPUT="$(ntfy shell-integration)"
     eval "${OUTPUT}"
 
@@ -629,7 +631,7 @@ fi
 # editorconfig-checker-disable-next-line
 [[ -s "${HOME}/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.zsh" ]] && source "${HOME}/.local/share/devbox/global/default/.devbox/nix/profile/default/etc/grc.zsh"
 
-if [[ -o interactive ]]; then
+if [[ -o interactive ]] && [[ -t 1 ]]; then
     {{ if eq .chezmoi.os "linux" }}
     # https://github.com/KittyKatt/screenFetch
     # shellcheck disable=SC2065
@@ -726,8 +728,10 @@ export DISABLE_AUTO_UPDATE="true"
 typeset -gU path fpath
 
 # For mise
-OUTPUT="$(mise activate zsh)"
-eval "${OUTPUT}"
+if [[ -o interactive ]] && [[ -t 1 ]]; then
+    OUTPUT="$(mise activate zsh)"
+    eval "${OUTPUT}"
+fi
 
 {{ if eq .chezmoi.os "darwin" }}
 ### To enable support via ssh-add.

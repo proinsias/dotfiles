@@ -24,7 +24,7 @@ teardown() {
 _stub_df() {
     local available="${1}"
     printf '#!/usr/bin/env bash\necho "Filesystem 1K-blocks Used Available Use%% Mounted"\necho "/dev/sda1 20480000 5120000 %s 50%% /"\n' \
-        "${available}" > "${STUB_DIR}/df"
+        "${available}" >"${STUB_DIR}/df"
     chmod +x "${STUB_DIR}/df"
 }
 

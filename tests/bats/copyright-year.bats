@@ -42,7 +42,7 @@ teardown() {
 # ---------------------------------------------------------------------------
 
 @test "file with no copyright line: exits 0" {
-    echo "Just some code, no copyright here." > no-copyright.txt
+    echo "Just some code, no copyright here." >no-copyright.txt
     git add no-copyright.txt
     run bash "${SCRIPT}"
     [ "$status" -eq 0 ]
@@ -53,14 +53,14 @@ teardown() {
 # ---------------------------------------------------------------------------
 
 @test "file with copyright bearing the current year: exits 0" {
-    echo "# Copyright ${YEAR} Someone" > valid.txt
+    echo "# Copyright ${YEAR} Someone" >valid.txt
     git add valid.txt
     run bash "${SCRIPT}"
     [ "$status" -eq 0 ]
 }
 
 @test "file with multi-year copyright range including current year: exits 0" {
-    echo "# Copyright 2019-${YEAR} Someone" > range.txt
+    echo "# Copyright 2019-${YEAR} Someone" >range.txt
     git add range.txt
     run bash "${SCRIPT}"
     [ "$status" -eq 0 ]
@@ -71,7 +71,7 @@ teardown() {
 # ---------------------------------------------------------------------------
 
 @test "file with copyright from a past year only: exits non-zero" {
-    echo "# Copyright 2020 Someone" > outdated.txt
+    echo "# Copyright 2020 Someone" >outdated.txt
     git add outdated.txt
     run bash "${SCRIPT}"
     [ "$status" -ne 0 ]
@@ -84,7 +84,7 @@ teardown() {
 
 @test "copyright has current year and matching holder: exits 0" {
     git config hooks.copyrightholder "Alice"
-    echo "# Copyright ${YEAR} Alice" > valid-holder.txt
+    echo "# Copyright ${YEAR} Alice" >valid-holder.txt
     git add valid-holder.txt
     run bash "${SCRIPT}"
     [ "$status" -eq 0 ]
@@ -92,7 +92,7 @@ teardown() {
 
 @test "copyright has current year but wrong holder: exits non-zero" {
     git config hooks.copyrightholder "Alice"
-    echo "# Copyright ${YEAR} Bob" > wrong-holder.txt
+    echo "# Copyright ${YEAR} Bob" >wrong-holder.txt
     git add wrong-holder.txt
     run bash "${SCRIPT}"
     [ "$status" -ne 0 ]
@@ -101,7 +101,7 @@ teardown() {
 
 @test "copyright has matching holder but wrong year: exits non-zero" {
     git config hooks.copyrightholder "Alice"
-    echo "# Copyright 2020 Alice" > old-year-holder.txt
+    echo "# Copyright 2020 Alice" >old-year-holder.txt
     git add old-year-holder.txt
     run bash "${SCRIPT}"
     [ "$status" -ne 0 ]
@@ -113,14 +113,14 @@ teardown() {
 # ---------------------------------------------------------------------------
 
 @test "unstaged file with outdated copyright is not checked" {
-    echo "# Copyright 2020 Someone" > unstaged.txt
+    echo "# Copyright 2020 Someone" >unstaged.txt
     # deliberately NOT staged — git diff-index won't list it
     run bash "${SCRIPT}"
     [ "$status" -eq 0 ]
 }
 
 @test "staged deleted file (no longer on disk) is skipped gracefully" {
-    echo "# Copyright 2020 Someone" > to-delete.txt
+    echo "# Copyright 2020 Someone" >to-delete.txt
     git add to-delete.txt
     git commit -m "add file to delete"
     git rm to-delete.txt
@@ -131,9 +131,9 @@ teardown() {
 }
 
 @test "multiple staged files: only the outdated one triggers failure" {
-    echo "# Copyright ${YEAR} Someone" > current.txt
-    echo "# No copyright here"         > no-cr.txt
-    echo "# Copyright 2019 Someone"   > old.txt
+    echo "# Copyright ${YEAR} Someone" >current.txt
+    echo "# No copyright here" >no-cr.txt
+    echo "# Copyright 2019 Someone" >old.txt
     git add current.txt no-cr.txt old.txt
     run bash "${SCRIPT}"
     [ "$status" -ne 0 ]

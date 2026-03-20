@@ -31,8 +31,8 @@ auto_sync = true
 # sync_frequency = "1h"
 
 ## which search mode to use
-## possible values: prefix, fulltext, fuzzy, skim
-# search_mode = "fuzzy"
+## possible values: prefix, fulltext, fuzzy, skim, daemon-fuzzy
+search_mode = "daemon-fuzzy"
 
 ## which filter mode to use
 ## possible values: global, host, session, directory
@@ -106,3 +106,7 @@ common_subcommands = [
     "mise",
     "task",
 ]
+
+[daemon]
+enabled = true
+autostart = true

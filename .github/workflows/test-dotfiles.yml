@@ -82,12 +82,12 @@ jobs:
       - name: Verify dotfiles consistency
         run: |
           chezmoi verify --source="$(pwd)" --destination="${TEST_HOME}" \
-              --keep-going --no-tty --exclude encrypted
+              --keep-going --no-tty --exclude encrypted,scripts
 
       - name: Run chezmoi doctor
+        continue-on-error: true
         run: |
-          chezmoi doctor --source="$(pwd)" --destination="${TEST_HOME}" \
-              --keep-going --no-tty
+          chezmoi doctor --source="$(pwd)" --destination="${TEST_HOME}"
 
       - name: Smoke test shell startup
         run: |

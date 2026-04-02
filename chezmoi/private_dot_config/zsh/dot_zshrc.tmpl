@@ -528,7 +528,7 @@ if [[ -o interactive ]] && [[ -t 1 ]] && type ntfy >/dev/null 2>&1; then
 
     # Avoid unnecessary notifications when running interactive programs.
     export AUTO_NTFY_DONE_IGNORE="
-    aws-shell bash cd chezmoi claude code curl df du emacs gemini git glances info ipython
+    aws-shell bash cd chezmoi claude code curl docker df du emacs gemini git glances info ipython
     jupyter less ls man meld more nano ping psql pwd screen sh ssh tmux top tree vi vim wget
     "
 fi

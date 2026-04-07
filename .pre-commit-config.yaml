@@ -1,4 +1,7 @@
 ---
+# Don't run on encrypted files because they may be locked.
+exclude: (^|/)encrypted_[^/]*$
+
 ci: # https://pre-commit.ci
   autofix_prs: true
   autoupdate_schedule: monthly
@@ -55,19 +58,19 @@ repos:
         exclude: \.(aff|dic)$
 
   - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.12.0-2
+    rev: v3.13.0-1
     hooks:
       - id: shfmt
 
   - repo: https://github.com/sirosen/check-jsonschema
-    rev: 0.37.0
+    rev: 0.37.1
     hooks:
       - id: check-github-actions
       - id: check-github-workflows
       - id: check-readthedocs
 
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.11
+    rev: v1.7.12
     hooks:
       - id: actionlint
 
@@ -113,7 +116,7 @@ repos:
         # - --additional-pattern 'mykey*'
 
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
-    rev: "3.6.0"
+    rev: "3.6.1"
     hooks:
       - id: editorconfig-checker
 
@@ -131,7 +134,7 @@ repos:
         language: system
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: "v0.15.4"
+    rev: "v0.15.9"
     hooks:
       - id: ruff-check
         args: [--fix, --exit-non-zero-on-fix, --preview]

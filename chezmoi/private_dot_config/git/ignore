@@ -588,3 +588,4 @@ spark-warehouse/
 *mise.local.toml
 
 **/.claude/settings.local.json
+node_modules

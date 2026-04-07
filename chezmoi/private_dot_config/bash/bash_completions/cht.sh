@@ -7,7 +7,7 @@ _cht_complete() {
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     # shellcheck disable=SC2034
-    prev="${COMP_WORDS[COMP_CWORD - 1]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
     opts="$(curl -s cheat.sh/:list)"
 
     if [[ "${COMP_CWORD}" = 1 ]]; then

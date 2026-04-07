@@ -282,7 +282,7 @@ if ! type _get_comp_words_by_ref >/dev/null 2>&1; then
                 cur=$cur_
                 ;;
             prev)
-                prev=${words_[$cword_ - 1]}
+                prev=${words_[$cword_-1]}
                 ;;
             words)
                 words=("${words_[@]}")
@@ -3219,7 +3219,7 @@ _git_worktree() {
                 # filename completion.
                 :
             else
-                case "${words[cword - 2]}" in
+                case "${words[cword-2]}" in
                 -b | -B) # After '-b <branch>': have to
                     # complete the path, so fall back
                     # to Bash filename completion.

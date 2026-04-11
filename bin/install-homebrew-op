@@ -41,6 +41,13 @@ if ! command -v brew &>/dev/null; then
     /bin/bash -c "${OUTPUT}"
 fi
 
+# Install Nanobrew if not installed.
+if ! command -v nb &>/dev/null; then
+    echo -e "\nInstalling Nanobrew..."
+    OUTPUT="$(curl -fsSL https://nanobrew.trilok.ai/install)"
+    /bin/bash -c "${OUTPUT}"
+fi
+
 # Install 1Password CLI if not installed.
 if ! command -v op >/dev/null 2>&1; then
     echo -e "\nInstalling 1Password CLI..."

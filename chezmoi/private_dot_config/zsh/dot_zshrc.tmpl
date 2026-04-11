@@ -25,8 +25,12 @@ test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)
 
 ## Exports
 
+# For homebrew
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-/usr/local/}
 export HOMEBREW_INSTALL_CLEANUP=true
+
+# For nanobrew
+export PATH="/opt/nanobrew/prefix/bin:$PATH"
 
 # Preferred editor for local and remote sessions
 if [[ -n "${SSH_CONNECTION}" ]]; then

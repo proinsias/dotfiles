@@ -40,20 +40,17 @@ function test_file {
     if [[ ! -f "${file}" ]]; then
         return
     fi
-    # shellcheck disable=SC2312
-    if grep 'Copyright ' "${file}" | grep -v grep >/dev/null; then
+    if grep -q 'Copyright ' "${file}"; then
         year=$(date +%Y)
-        cr_holder=$(git config --get hooks.copyrightholder)
+        cr_holder=$(git config --local --get hooks.copyrightholder || true)
         if [[ -n "${cr_holder}" ]]; then
-            # shellcheck disable=SC2312
-            if ! grep 'Copyright ' "${file}" | grep "${year}" | grep "${cr_holder}" >/dev/null; then
+            if ! grep 'Copyright ' "${file}" | grep "${year}" | grep -q "${cr_holder}"; then
                 # editorconfig-checker-disable-next-line
                 echo "Error: ${file} seems to be missing a copyright string for ${cr_holder} with the year ${year} in it."
                 exit 1
             fi
         else
-
-            if ! grep 'Copyright ' "${file}" | grep "${year}" >/dev/null; then
+            if ! grep 'Copyright ' "${file}" | grep -q "${year}"; then
                 echo "Error: ${file} seems to be missing a copyright string with the year ${year} in it."
                 exit 1
             fi
@@ -61,7 +58,7 @@ function test_file {
     fi
 }
 
-case "${1}" in
+case "${1:-}" in
 --about)
     cat <<EOF
 Check that the files have a copyright with the current year.  If the git config key

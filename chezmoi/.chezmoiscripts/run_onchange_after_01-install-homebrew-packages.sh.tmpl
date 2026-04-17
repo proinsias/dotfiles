@@ -24,7 +24,6 @@ test -d /home/linuxbrew/.linuxbrew && OUTPUT="$(/home/linuxbrew/.linuxbrew/bin/b
 test -d "${HOME}/.linuxbrew/" && OUTPUT="$(${HOME}/.linuxbrew/bin/brew shellenv)" && eval "${OUTPUT}"
 {{ end }}
 
-# Update Homebrew
 echo -e "\nbrew update"
 brew update
 
@@ -49,4 +48,19 @@ fi
 # test -e ~/.1password/agent.sock || \\
 #     ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
 
+{{ end }}
+
+
+echo -e "\n\nInstall nanobrew packages."
+
+export PATH="/opt/nanobrew/prefix/bin${PATH:+:${PATH}}"
+
+echo -e "\nnb update"
+nb update
+
+# Brewfile hash: {{ include "./private_dot_config/nanobrew/Brewfile.tmpl" | sha256sum }}
+{{ if .test }}
+nb bundle install "${TEST_HOME}/.config/nanobrew/Brewfile"
+{{ else }}
+nb bundle install "${HOME}/.config/homebrew/Brewfile"
 {{ end }}

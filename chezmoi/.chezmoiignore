@@ -171,6 +171,7 @@ README.md
 .matplotlib/
 .npm/
 .npm-packages/
+.nx
 .oh-my-zsh/cache/
 .oh-my-zsh/custom/aliases.zsh
 !.oh-my-zsh/custom/plugins/example
@@ -183,6 +184,7 @@ README.md
 .pyicloud/
 .pytensor/
 .python_history
+.qt
 .rustup/
 .sonarlint/
 .ssh/agent
@@ -196,6 +198,7 @@ README.md
 .streamlit/
 .subversion/auth
 .sudo_as_admin_successful
+.swiftpm
 .swt
 .terraform.d/
 .tflint.d/
@@ -213,6 +216,7 @@ README.md
 .wakatime-internal.cfg
 .wdm/
 .wget-hsts
+.Xauthority
 .yarnrc
 .zsh_history
 {{ if eq .chezmoi.os "darwin" -}}

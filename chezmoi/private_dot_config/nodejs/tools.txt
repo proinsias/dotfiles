@@ -25,6 +25,7 @@ mega-linter-runner
 mermaid-js/mermaid-cli
 npm-check
 npm-check-updates
+prettier-plugin-sh
 pyright
 redoc-cli
 semistandard

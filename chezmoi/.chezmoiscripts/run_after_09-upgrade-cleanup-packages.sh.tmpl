@@ -49,6 +49,9 @@ if type gcloud >/dev/null 2>&1; then
     fi
 fi
 
+echo -e "\gh extension upgrade:"
+gh extension upgrade --all
+
 echo -e "\nmise upgrade:"
 mise upgrade --bump
 
@@ -60,11 +63,20 @@ echo -e "\nmas upgrade:"
 mas upgrade
 {{ end }}
 
+echo -e "\nnb upgrade:"
+nb upgrade
+
+echo -e "\nnb cleanup:"
+nb cleanup
+
+echo -e "\nnb doctor:"
+nb doctor || true
+
+echo -e "\nnb outdated:"
+nb outdated
+
 # echo -e "\npre-commit-autoupdate:"
 # pre-commit-autoupdate | grep -v "already up to date"
-
-echo -e "\gh extension upgrade:"
-gh extension upgrade --all
 
 if [[ -t 0 ]] && [[ -n "${PS1:-}" ]] && [[ "$-" == *i* ]]; then
     echo -e "\ntopgrade:"

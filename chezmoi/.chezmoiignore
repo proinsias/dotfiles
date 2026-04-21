@@ -1,6 +1,8 @@
 **/*~
 README.md
 .1password/
+.9router/*
+!.9router/db.json
 .aider/
 .altimate/
 .ansible/
@@ -28,6 +30,8 @@ README.md
 !.claude/skills/morning-briefing
 !.claude/skills/morning-briefing/SKILL.md
 .cline/
+.claude-code-router/*
+!.claude-code-router/config.json
 .codex/
 .config/1Password/*
 !.config/1Password/ssh
@@ -49,6 +53,7 @@ README.md
 .config/op/config
 .config/op/op-daemon.sock
 .config/raycast/
+.config/swiftpm/
 .config/systemd/
 .config/thefuck/rules/
 .config/thefuck/__pycache__/

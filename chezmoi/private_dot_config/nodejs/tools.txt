@@ -5,6 +5,7 @@
 # terminalizer
 # textlint-rule/textlint-rule-no-duplicate-abbr
 # textlint-rule/textlint-rule-no-invalid-control-character
+9router
 bash-language-server
 cspell
 csslint

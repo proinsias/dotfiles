@@ -75,7 +75,7 @@ repos:
       - id: actionlint
 
   - repo: https://github.com/lycheeverse/lychee.git
-    rev: nightly
+    rev: lychee-v0.23.0
     hooks:
       - id: lychee
         args: ["--cache", "--suggest", "--exclude-loopback"]

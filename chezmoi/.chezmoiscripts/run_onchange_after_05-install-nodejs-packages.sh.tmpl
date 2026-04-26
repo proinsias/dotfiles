@@ -17,3 +17,5 @@ tmpfile="$(mktemp)"
 grep -vE '^\s*(#|$)' "${HOME}/.config/nodejs/tools.txt" >> "${tmpfile}"
 
 npm install --global -- $(<"${tmpfile}")
+
+npm install --global @mermaid-js/mermaid-cli

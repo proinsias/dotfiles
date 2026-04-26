@@ -35,6 +35,7 @@ README.md
 .codex/
 .config/1Password/*
 !.config/1Password/ssh
+.config/act
 .config/atuin/atuin-receipt.json
 .config/broot/launcher/
 .config/butterfish/

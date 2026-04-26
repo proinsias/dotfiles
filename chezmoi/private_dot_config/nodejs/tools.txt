@@ -1,60 +1,10 @@
-# how2
-# markdown-link-check
-# markdown-toc
-# markdownlint-cli
-# terminalizer
-# textlint-rule/textlint-rule-no-duplicate-abbr
-# textlint-rule/textlint-rule-no-invalid-control-character
 9router
 bash-language-server
-cspell
-csslint
-dockerfile_lint
-dockerfile-language-server-nodejs
-dockerfilelint
-dockerlint
-emoj
-eslint
 fkill-cli
 git-guilt
-htmlhint
-jscpd
-jscs
-jshint
-jslint
-mega-linter-runner
-mermaid-js/mermaid-cli
-npm-check
-npm-check-updates
 prettier-plugin-sh
 pyright
-redoc-cli
-semistandard
-sql-language-server
-standard
-svgo
-textlint
-textlint-filter-rule-comments
-textlint-plugin-latex2e
-textlint-rule-alex
-textlint-rule-apostrophe
-textlint-rule-common-misspellings
-textlint-rule-diacritics
-textlint-rule-doubled-spaces
-textlint-rule-editorconfig
-textlint-rule-en-capitalization
-textlint-rule-en-spell
-textlint-rule-max-number-of-lines
-textlint-rule-no-dead-link
-textlint-rule-no-empty-section
-textlint-rule-no-start-duplicated-conjunction
-textlint-rule-no-todo
-textlint-rule-stop-words
-textlint-rule-terminology
-textlint-rule-unexpanded-acronym
-textlint-rule-write-good
 tldr
-typescript-language-server
 typescript-language-server
 v8r
 vscode-css-languageserver-bin

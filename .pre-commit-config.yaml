@@ -58,12 +58,12 @@ repos:
         exclude: \.(aff|dic)$
 
   - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.13.0-1
+    rev: v3.13.1-1
     hooks:
       - id: shfmt
 
   - repo: https://github.com/sirosen/check-jsonschema
-    rev: 0.37.1
+    rev: 0.37.2
     hooks:
       - id: check-github-actions
       - id: check-github-workflows
@@ -75,7 +75,7 @@ repos:
       - id: actionlint
 
   - repo: https://github.com/lycheeverse/lychee.git
-    rev: lychee-v0.23.0
+    rev: nightly
     hooks:
       - id: lychee
         args: ["--cache", "--suggest", "--exclude-loopback"]
@@ -127,14 +127,14 @@ repos:
         args: [--external-sources, --format=gcc, --shell=bash]
 
   - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.408
+    rev: v1.1.409
     hooks:
       - id: pyright
         # Use project venv instead of isolated pre-commit venv
         language: system
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: "v0.15.9"
+    rev: "v0.15.12"
     hooks:
       - id: ruff-check
         args: [--fix, --exit-non-zero-on-fix, --preview]

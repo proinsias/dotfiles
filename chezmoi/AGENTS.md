@@ -215,3 +215,5 @@ branches to diverge between local and remote, leading to duplicate code in PRs.
 - Git, code review, repo requirements: @best_practices/git.md
 - Deployment and CI/CD: @best_practices/deployment.md
 - Working with AI coding assistants: @best_practices/ai-development.md
+
+@RTK.md

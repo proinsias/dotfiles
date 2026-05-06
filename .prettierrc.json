@@ -1,4 +1,4 @@
 {
-  "plugins": ["prettier-plugin-sh"],
+  "plugins": [],
   "proseWrap": "always"
 }

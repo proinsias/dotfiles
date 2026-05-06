@@ -216,4 +216,6 @@ branches to diverge between local and remote, leading to duplicate code in PRs.
 - Deployment and CI/CD: @best_practices/deployment.md
 - Working with AI coding assistants: @best_practices/ai-development.md
 
+## Linked files
+
 @RTK.md

@@ -217,6 +217,7 @@ README.md
 .vscode-oss/
 .vscode-remote-containers
 .vscode-server
+.vscode-shared/
 .wakatime/
 .wakatime.cfg
 .wakatime-internal.cfg

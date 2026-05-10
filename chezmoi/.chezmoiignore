@@ -26,11 +26,7 @@ README.md
 !.claude/settings.json
 !.claude/commands
 !.claude/commands/custom-code-review.md
-!.claude/plugins
-.claude/plugins/*
-!.claude/plugins/private_blocklist.json
-!.claude/plugins/installed_plugins.json
-!.claude/plugins/known_marketplaces.json
+.claude/plugins
 !.claude/skills
 !.claude/skills/morning-briefing
 !.claude/skills/morning-briefing/SKILL.md

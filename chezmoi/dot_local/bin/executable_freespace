@@ -27,20 +27,21 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-set -o errexit                # Exit on error. Append || true if you expect an error.
-set -o errtrace               # Exit on error inside any functions or subshells.
-set -o noclobber              # Don't allow overwriting files.
-set -o nounset                # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
-set -o pipefail               # Produce a failure return code if any pipeline command errors.
-shopt -s failglob             # Cause globs that don't get expanded to cause errors.
-shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
+set -o errexit                        # Exit on error. Append || true if you expect an error.
+set -o errtrace                       # Exit on error inside any functions or subshells.
+set -o noclobber                      # Don't allow overwriting files.
+set -o nounset                        # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
+set -o pipefail                       # Produce a failure return code if any pipeline command errors.
+shopt -s failglob                     # Cause globs that don't get expanded to cause errors.
+shopt -s globstar 2>/dev/null || true # Match all files and zero or more sub-directories.
 
 function run_test {
     # shellcheck disable=SC2312
-    df . -k | tail -n 1 | awk ' {
-    if ($4 < (1024 * 100))
-        print "Warning: less then 100MB of free space left." > "/dev/stderr"
-    }'
+    local available
+    available=$(df -k . | tail -n 1 | awk '{print $4}')
+    if ((available < 1024 * 100)); then
+        echo "Warning: less then 100MB of free space left." >&2
+    fi
 }
 
 case "${1:-}" in

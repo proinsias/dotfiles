@@ -9,6 +9,7 @@
 # Strategy: each test spins up a temporary git repository so the script
 # can run against real staged files without touching the main repo.
 
+# shellcheck disable=SC2154  # BATS_TEST_DIRNAME is set by the BATS runner
 SCRIPT="${BATS_TEST_DIRNAME}/../../chezmoi/dot_local/bin/executable_copyright-year"
 YEAR=$(date +%Y)
 
@@ -34,8 +35,8 @@ teardown() {
 
 @test "--about prints a description and exits 0" {
     run bash "${SCRIPT}" --about
-    [ "$status" -eq 0 ]
-    [[ "$output" == *"copyright"* ]]
+    [[ "${status}" -eq 0 ]]
+    [[ "${output}" == *"copyright"* ]]
 }
 
 # ---------------------------------------------------------------------------
@@ -46,7 +47,7 @@ teardown() {
     echo "Just some code, no copyright here." >no-copyright.txt
     git add no-copyright.txt
     run bash "${SCRIPT}"
-    [ "$status" -eq 0 ]
+    [[ "${status}" -eq 0 ]]
 }
 
 # ---------------------------------------------------------------------------
@@ -57,14 +58,14 @@ teardown() {
     echo "# Copyright ${YEAR} Someone" >valid.txt
     git add valid.txt
     run bash "${SCRIPT}"
-    [ "$status" -eq 0 ]
+    [[ "${status}" -eq 0 ]]
 }
 
 @test "file with multi-year copyright range including current year: exits 0" {
     echo "# Copyright 2019-${YEAR} Someone" >range.txt
     git add range.txt
     run bash "${SCRIPT}"
-    [ "$status" -eq 0 ]
+    [[ "${status}" -eq 0 ]]
 }
 
 # ---------------------------------------------------------------------------
@@ -75,8 +76,8 @@ teardown() {
     echo "# Copyright 2020 Someone" >outdated.txt
     git add outdated.txt
     run bash "${SCRIPT}"
-    [ "$status" -ne 0 ]
-    [[ "$output" == *"Error"* ]]
+    [[ "${status}" -ne 0 ]]
+    [[ "${output}" == *"Error"* ]]
 }
 
 # ---------------------------------------------------------------------------
@@ -88,7 +89,7 @@ teardown() {
     echo "# Copyright ${YEAR} Alice" >valid-holder.txt
     git add valid-holder.txt
     run bash "${SCRIPT}"
-    [ "$status" -eq 0 ]
+    [[ "${status}" -eq 0 ]]
 }
 
 @test "copyright has current year but omits holder with configured holder: exits non-zero" {
@@ -96,8 +97,8 @@ teardown() {
     echo "# Copyright ${YEAR}" >missing-holder.txt
     git add missing-holder.txt
     run bash "${SCRIPT}"
-    [ "$status" -ne 0 ]
-    [[ "$output" == *"Error"* ]]
+    [[ "${status}" -ne 0 ]]
+    [[ "${output}" == *"Error"* ]]
 }
 
 @test "copyright has current year but wrong holder: exits non-zero" {
@@ -105,8 +106,8 @@ teardown() {
     echo "# Copyright ${YEAR} Bob" >wrong-holder.txt
     git add wrong-holder.txt
     run bash "${SCRIPT}"
-    [ "$status" -ne 0 ]
-    [[ "$output" == *"Error"* ]]
+    [[ "${status}" -ne 0 ]]
+    [[ "${output}" == *"Error"* ]]
 }
 
 @test "copyright has matching holder but wrong year: exits non-zero" {
@@ -114,8 +115,8 @@ teardown() {
     echo "# Copyright 2020 Alice" >old-year-holder.txt
     git add old-year-holder.txt
     run bash "${SCRIPT}"
-    [ "$status" -ne 0 ]
-    [[ "$output" == *"Error"* ]]
+    [[ "${status}" -ne 0 ]]
+    [[ "${output}" == *"Error"* ]]
 }
 
 # ---------------------------------------------------------------------------
@@ -126,7 +127,7 @@ teardown() {
     echo "# Copyright 2020 Someone" >unstaged.txt
     # deliberately NOT staged — git diff-index won't list it
     run bash "${SCRIPT}"
-    [ "$status" -eq 0 ]
+    [[ "${status}" -eq 0 ]]
 }
 
 @test "staged deleted file (no longer on disk) is skipped gracefully" {
@@ -137,7 +138,7 @@ teardown() {
     # File is staged for deletion and does not exist on disk;
     # test_file() should return early without error.
     run bash "${SCRIPT}"
-    [ "$status" -eq 0 ]
+    [[ "${status}" -eq 0 ]]
 }
 
 @test "multiple staged files: only the outdated one triggers failure" {
@@ -146,5 +147,5 @@ teardown() {
     echo "# Copyright 2019 Someone" >old.txt
     git add current.txt no-cr.txt old.txt
     run bash "${SCRIPT}"
-    [ "$status" -ne 0 ]
+    [[ "${status}" -ne 0 ]]
 }

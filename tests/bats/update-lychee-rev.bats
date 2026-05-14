@@ -6,6 +6,7 @@
 # The script references CONFIG=".pre-commit-config.yaml" relative to CWD,
 # so each test cd's into a temporary working directory.
 
+# shellcheck disable=SC2154  # BATS_TEST_DIRNAME is set by the BATS runner
 SCRIPT="${BATS_TEST_DIRNAME}/../../chezmoi/dot_local/bin/executable_update-lychee-rev"
 
 setup() {
@@ -56,7 +57,7 @@ _typical_tags() {
     _stub_git ""
     touch .pre-commit-config.yaml
     run bash "${SCRIPT}" 2>&1
-    [ "$status" -ne 0 ]
+    [[ "${status}" -ne 0 ]]
 }
 
 # ---------------------------------------------------------------------------
@@ -64,21 +65,25 @@ _typical_tags() {
 # ---------------------------------------------------------------------------
 
 @test "replaces 'rev: nightly' with the latest tag and exits 0" {
-    _stub_git "$(_typical_tags)"
+    local tags
+    tags=$(_typical_tags)
+    _stub_git "${tags}"
     printf 'rev: nightly\n' >.pre-commit-config.yaml
     run bash "${SCRIPT}"
-    [ "$status" -eq 0 ]
+    [[ "${status}" -eq 0 ]]
     grep -q 'rev: v0.14.0' .pre-commit-config.yaml
-    ! grep -q 'rev: nightly' .pre-commit-config.yaml
+    run ! grep -q 'rev: nightly' .pre-commit-config.yaml
 }
 
 @test "stdout reports the version and the substitution when updated" {
-    _stub_git "$(_typical_tags)"
+    local tags
+    tags=$(_typical_tags)
+    _stub_git "${tags}"
     printf 'rev: nightly\n' >.pre-commit-config.yaml
     run bash "${SCRIPT}"
-    [ "$status" -eq 0 ]
-    [[ "$output" == *"Latest lychee version: v0.14.0"* ]]
-    [[ "$output" == *"Updated .pre-commit-config.yaml"* ]]
+    [[ "${status}" -eq 0 ]]
+    [[ "${output}" == *"Latest lychee version: v0.14.0"* ]]
+    [[ "${output}" == *"Updated .pre-commit-config.yaml"* ]]
 }
 
 # ---------------------------------------------------------------------------
@@ -86,11 +91,13 @@ _typical_tags() {
 # ---------------------------------------------------------------------------
 
 @test "exits 0 with 'nothing to update' when config lacks rev: nightly" {
-    _stub_git "$(_typical_tags)"
+    local tags
+    tags=$(_typical_tags)
+    _stub_git "${tags}"
     printf 'rev: v0.14.0\n' >.pre-commit-config.yaml
     run bash "${SCRIPT}"
-    [ "$status" -eq 0 ]
-    [[ "$output" == *"nothing to update"* ]]
+    [[ "${status}" -eq 0 ]]
+    [[ "${output}" == *"nothing to update"* ]]
 }
 
 # ---------------------------------------------------------------------------
@@ -101,15 +108,17 @@ _typical_tags() {
     _stub_git "$(printf 'a\trefs/tags/v0.14.0\nb\trefs/tags/v0.10.2\nc\trefs/tags/v0.9.0\n')"
     printf 'rev: nightly\n' >.pre-commit-config.yaml
     run bash "${SCRIPT}"
-    [ "$status" -eq 0 ]
-    [[ "$output" == *"v0.14.0"* ]]
+    [[ "${status}" -eq 0 ]]
+    [[ "${output}" == *"v0.14.0"* ]]
 }
 
 @test "peeled tag entries (^{}) do not appear in the selected version" {
-    _stub_git "$(_typical_tags)"
+    local tags
+    tags=$(_typical_tags)
+    _stub_git "${tags}"
     printf 'rev: nightly\n' >.pre-commit-config.yaml
     run bash "${SCRIPT}"
-    [ "$status" -eq 0 ]
-    [[ "$output" != *"^{}"* ]]
+    [[ "${status}" -eq 0 ]]
+    [[ "${output}" != *"^{}"* ]]
     grep -q 'rev: v0.14.0' .pre-commit-config.yaml
 }

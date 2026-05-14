@@ -40,7 +40,7 @@ jobs:
       - name: Install bats-core
         run: |
           if [ "${{ matrix.os }}" = "macos-latest" ]; then
-            brew install bats-core
+            brew upgrade bash bats-core 2>/dev/null || brew install bash bats-core
           else
             sudo apt-get update && sudo apt-get install -y bats
           fi

@@ -4,13 +4,13 @@ set -euo pipefail
 REPO="https://github.com/lycheeverse/lychee.git"
 CONFIG=".pre-commit-config.yaml"
 
-latest=$(git ls-remote --tags "$REPO" \
-    | grep -v '\^{}' \
-    | awk '{print $2}' \
-    | sed 's|refs/tags/||' \
-    | grep '^v[0-9]' \
-    | sort -V \
-    | tail -1)
+latest=$(git ls-remote --tags "$REPO" |
+    grep -v '\^{}' |
+    awk '{print $2}' |
+    sed 's|refs/tags/||' |
+    grep '^v[0-9]' |
+    sort -V |
+    tail -1)
 
 if [[ -z "$latest" ]]; then
     echo "error: could not determine latest lychee version" >&2

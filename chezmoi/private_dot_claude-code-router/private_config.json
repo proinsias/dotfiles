@@ -11,34 +11,29 @@
       "name": "gemini",
       "api_base_url": "https://generativelanguage.googleapis.com/v1beta/models/",
       "api_key": "$GEMINI_API_KEY",
-      "models": [
-        "gemini-2.5-flash",
-        "gemini-2.5-pro"
-      ],
+      "models": ["gemini-2.5-flash", "gemini-2.5-pro"],
       "transformer": {
-        "use": [
-          "gemini"
-        ]
+        "use": ["gemini"]
       }
     },
     {
       "name": "groq",
       "api_base_url": "https://api.groq.com/openai/v1/chat/completions",
       "api_key": "$GROQ_API_KEY",
-      "models": [
-        "moonshotai/kimi-k2-instruct"
-      ],
+      "models": ["moonshotai/kimi-k2-instruct"],
       "transformer": {
-        "use": [
-          ["maxtoken", { "max_tokens": 16384 }]
-        ]
+        "use": [["maxtoken", { "max_tokens": 16384 }]]
       }
     },
     {
       "name": "ollama",
       "api_base_url": "http://localhost:11434/v1/chat/completions",
       "api_key": "ollama",
-      "models": ["kimi-k2.5:cloud", "gemini-3-flash-preview:latest", "qwen2.5-coder:14b"]
+      "models": [
+        "kimi-k2.5:cloud",
+        "gemini-3-flash-preview:latest",
+        "qwen2.5-coder:14b"
+      ]
     }
   ],
   "StatusLine": {
@@ -82,7 +77,7 @@
       "modules": []
     }
   },
-"Router": {
+  "Router": {
     "default": "gemini,gemini-2.5-flash",
     "background": "ollama,qwen2.5-coder:14b",
     "think": "groq,moonshotai/kimi-k2-instruct",

@@ -65,13 +65,7 @@ _typical_tags() {
 
 @test "replaces 'rev: nightly' with the latest tag and exits 0" {
     _stub_git "$(_typical_tags)"
-    cat >.pre-commit-config.yaml <<'EOF'
-repos:
-  - repo: https://github.com/lycheeverse/lychee
-    rev: nightly
-    hooks:
-      - id: lychee
-EOF
+    printf 'rev: nightly\n' >.pre-commit-config.yaml
     run bash "${SCRIPT}"
     [ "$status" -eq 0 ]
     grep -q 'rev: v0.14.0' .pre-commit-config.yaml
@@ -93,13 +87,7 @@ EOF
 
 @test "exits 0 with 'nothing to update' when config lacks rev: nightly" {
     _stub_git "$(_typical_tags)"
-    cat >.pre-commit-config.yaml <<'EOF'
-repos:
-  - repo: https://github.com/lycheeverse/lychee
-    rev: v0.14.0
-    hooks:
-      - id: lychee
-EOF
+    printf 'rev: v0.14.0\n' >.pre-commit-config.yaml
     run bash "${SCRIPT}"
     [ "$status" -eq 0 ]
     [[ "$output" == *"nothing to update"* ]]

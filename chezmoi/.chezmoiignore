@@ -28,7 +28,7 @@ README.md
 !.claude/commands/custom-code-review.md
 !.claude/plugins
 .claude/plugins/*
-!.claude/plugins/blocklist.json
+!.claude/plugins/private_blocklist.json
 !.claude/plugins/installed_plugins.json
 !.claude/plugins/known_marketplaces.json
 !.claude/skills
@@ -166,6 +166,7 @@ README.md
 !.local/bin/transfer_pocket_to_reeder.py
 !.local/bin/typora
 !.local/bin/uncommitted-francis
+!.local/bin/update-lychee-rev
 !.local/bin/update-requirements
 !.local/bin/youtube-dl-francis
 .local/pipx/

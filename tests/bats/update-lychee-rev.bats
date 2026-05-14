@@ -67,10 +67,10 @@ _typical_tags() {
     _stub_git "$(_typical_tags)"
     cat >.pre-commit-config.yaml <<'EOF'
 repos:
-  - repo: https://github.com/lycheeverse/lychee
-    rev: nightly
-    hooks:
-      - id: lychee
+    - repo: https://github.com/lycheeverse/lychee
+      rev: nightly
+      hooks:
+          - id: lychee
 EOF
     run bash "${SCRIPT}"
     [ "$status" -eq 0 ]
@@ -95,10 +95,10 @@ EOF
     _stub_git "$(_typical_tags)"
     cat >.pre-commit-config.yaml <<'EOF'
 repos:
-  - repo: https://github.com/lycheeverse/lychee
-    rev: v0.14.0
-    hooks:
-      - id: lychee
+    - repo: https://github.com/lycheeverse/lychee
+      rev: v0.14.0
+      hooks:
+          - id: lychee
 EOF
     run bash "${SCRIPT}"
     [ "$status" -eq 0 ]

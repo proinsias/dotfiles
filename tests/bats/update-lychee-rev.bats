@@ -6,6 +6,8 @@
 # The script references CONFIG=".pre-commit-config.yaml" relative to CWD,
 # so each test cd's into a temporary working directory.
 
+bats_require_minimum_version 1.5.0
+
 # shellcheck disable=SC2154  # BATS_TEST_DIRNAME is set by the BATS runner
 SCRIPT="${BATS_TEST_DIRNAME}/../../chezmoi/dot_local/bin/executable_update-lychee-rev"
 

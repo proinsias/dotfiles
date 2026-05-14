@@ -40,7 +40,9 @@ jobs:
       - name: Install bats-core
         run: |
           if [ "${{ matrix.os }}" = "macos-latest" ]; then
-            brew upgrade bash bats-core 2>/dev/null || brew install bash bats-core
+            brew install bash bats-core 2>/dev/null || brew upgrade bash bats-core
+            # bash is keg-only on macOS; prepend its bin so subsequent steps use bash 5.x
+            echo "$(brew --prefix bash)/bin" >> "${GITHUB_PATH}"
           else
             sudo apt-get update && sudo apt-get install -y bats
           fi

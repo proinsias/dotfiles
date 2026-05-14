@@ -18,6 +18,7 @@ setup() {
     git init
     git config user.email "test@example.com"
     git config user.name "Test User"
+    git config commit.gpgsign false
     # Create HEAD so git diff-index has something to diff against.
     git commit --allow-empty -m "initial commit"
 }

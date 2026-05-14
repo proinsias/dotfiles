@@ -24,5 +24,9 @@ if ! grep -q 'rev: nightly' "$CONFIG"; then
     exit 0
 fi
 
-sed -i '' "s/rev: nightly/rev: $latest/" "$CONFIG"
+if [[ "$(uname)" == "Darwin" ]]; then
+    sed -i '' "s/rev: nightly/rev: $latest/" "$CONFIG"
+else
+    sed -i "s/rev: nightly/rev: $latest/" "$CONFIG"
+fi
 echo "Updated $CONFIG: rev: nightly -> rev: $latest"

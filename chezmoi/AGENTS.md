@@ -90,7 +90,8 @@
 - Commit working code incrementally
 - Update code documentation as you go if needed
 - Update plan documentation as you go
-- Always explain abbreviations used in documentation
+- Always ensure acronyms and abbreviations used in documentation are expanded
+  when first occuring in a file
 - Learn from existing implementations
 - Stop after 3 failed attempts and reassess
 
@@ -179,6 +180,7 @@ branches to diverge between local and remote, leading to duplicate code in PRs.
 - Parallelize loops over long iterables when possible
 - Prefer vectorized pandas operations over `iterrows()`
 - Implement caching for expensive computations or repeated data fetches
+- Use tqdm to generate a progress bar for long-running computations.
 
 ## Code Organization
 

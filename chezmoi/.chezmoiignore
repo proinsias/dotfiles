@@ -271,3 +271,4 @@ sym_oh-my-zsh/
 sym_viminfo
 VirtualBox VMs/
 !.local/bin/wifi_log_manager.sh
+!.local/bin/wdutil_report.py
